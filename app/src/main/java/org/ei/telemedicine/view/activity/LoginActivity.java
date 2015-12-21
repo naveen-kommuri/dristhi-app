@@ -9,6 +9,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -16,6 +17,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
@@ -23,18 +25,29 @@ import org.ei.telemedicine.R;
 import org.ei.telemedicine.doctor.NativeDoctorActivity;
 import org.ei.telemedicine.domain.LoginResponse;
 import org.ei.telemedicine.event.Listener;
+
 import org.ei.telemedicine.sync.DrishtiSyncScheduler;
 import org.ei.telemedicine.view.BackgroundAction;
 import org.ei.telemedicine.view.LockingBackgroundTask;
 import org.ei.telemedicine.view.ProgressIndicator;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.security.PublicKey;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import org.json.JSONObject;
+
+import de.tavendo.autobahn.WebSocketConnection;
+import de.tavendo.autobahn.WebSocketException;
+import de.tavendo.autobahn.WebSocketHandler;
+
+
+
 
 import static android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS;
 import static org.ei.telemedicine.domain.LoginResponse.SUCCESS;
@@ -45,9 +58,79 @@ public class LoginActivity extends Activity {
     private Context context;
     private EditText userNameEditText;
     private EditText passwordEditText;
+    private final String CALLER = "name";
 
     private ProgressDialog progressDialog;
     private String TAG = "LoginActivity";
+
+    private int waitTime = 5;
+    private final WebSocketConnection mConnection = new WebSocketConnection();
+
+    public String getUsern()
+    {
+        context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
+        return context.allSharedPreferences().fetchRegisteredANM();
+    }
+
+    private void start() {
+
+
+        final String wsuri = AllConstants.WEBSOCKET;
+        try {
+            mConnection.connect(String.format(wsuri,getUsern()), new WebSocketHandler() {
+
+                @Override
+                public void onOpen() {
+                    Log.d(TAG, "Status: Connected to " + wsuri);
+                    //Toast.makeText(getApplicationContext(),String.format(wsuri,getUsern()), Toast.LENGTH_SHORT).show();
+                    //mConnection.sendTextMessage("Hello, world!");
+                }
+
+                @Override
+                public void onTextMessage(String payload) {
+                    Log.d(TAG, "Got echo: " + payload);
+                    try {
+                        JSONObject jObject = new JSONObject(payload);
+                        String status = jObject.getString("status");
+                        String msg = jObject.getString("msg_type");
+                        String caller = jObject.getString("caller");
+                        //Log.d(TAG, check);
+                        String match = "INI";
+                        boolean response = (status.equals(match));
+                        if (response)
+                        {
+                            //Toast.makeText(getApplicationContext(),"call started",Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(getApplicationContext(), ActionActivity.class);
+                            i.putExtra(CALLER, caller);
+                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(i);
+                        }
+
+                    }catch (Exception ex)
+                    {
+                        Log.d(TAG, ex.toString());
+                    }
+                }
+
+                @Override
+                public void onClose(int code, String reason) {
+                    Log.d(TAG, "Connection lost.");
+                    //Toast.makeText(getApplicationContext(),"closed",Toast.LENGTH_SHORT).show();
+                    try {
+                        Thread.sleep(waitTime);
+                        waitTime = waitTime*2;
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    start();
+
+                }
+            });
+        } catch (WebSocketException e) {
+
+            Log.d(TAG, e.toString());
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,6 +143,7 @@ public class LoginActivity extends Activity {
         initializeBuildDetails();
         setDoneActionHandlerOnPasswordField();
         initializeProgressDialog();
+
 
     }
 
@@ -124,6 +208,7 @@ public class LoginActivity extends Activity {
     private void localLogin(View view, String userName, String password) {
         if (context.userService().isValidLocalLogin(userName, password)) {
             localLoginWith(userName, password);
+
         } else {
             showErrorDialog(getString(R.string.login_failed_dialog_message));
             view.setClickable(true);
@@ -135,6 +220,7 @@ public class LoginActivity extends Activity {
             public void onEvent(LoginResponse loginResponse) {
                 if (loginResponse == SUCCESS) {
                     remoteLoginWith(userName, password, loginResponse.payload());
+
                 } else {
                     if (loginResponse == null) {
                         showErrorDialog("Login failed. Unknown reason. Try Again");
@@ -205,7 +291,9 @@ public class LoginActivity extends Activity {
         context.allSharedPreferences().updateIsFirstLogin(false);
         String userRole = context.userService().getUserRole();
         goToHome(userRole);
+        start();
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
+        //DrishtiCallScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 
 
@@ -240,7 +328,10 @@ public class LoginActivity extends Activity {
             context.allSharedPreferences().savePwd(password);
         }
         goToHome(userRole);
+        start();
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
+
+        //DrishtiCallScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 
     private void goToHome(String userRole) {

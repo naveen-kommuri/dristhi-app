@@ -46,9 +46,10 @@ import java.util.List;
  * Created by naveen on 6/1/15.
  */
 public class DoctorPlanofCareActivity extends Activity {
+    String url="";
     AutoCompleteTextView act_icd10Diagnosis, act_tests;
     ListView lv_selected_icd10, lv_selected_tests, lv_selected_drugs;
-    Switch swich_poc_pending, switch_poc_physical_consultation;
+    Switch swich_poc_pending;
     Spinner sp_services, sp_drug_name, sp_drug_frequency, sp_drug_direction, sp_drug_dosage;
     EditText et_drug_qty, et_drug_no_of_days, et_reason, et_advice;
 
@@ -81,7 +82,8 @@ public class DoctorPlanofCareActivity extends Activity {
     Context context;
     private String TAG = "DoctorPlanOfCareActivity";
     String visitType, visitNumber;
-    String documentId, formData, phoneNumber, motherName, caseId;
+    String documentId, formData, phoneNumber;
+    public String CALLER_URL= AllConstants.CALLING_URL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +93,6 @@ public class DoctorPlanofCareActivity extends Activity {
             String resultData = bundle.getString(AllConstants.DRUG_INFO_RESULT);
             documentId = bundle.getString(DoctorFormDataConstants.documentId);
             phoneNumber = bundle.getString(DoctorFormDataConstants.phoneNumber);
-            caseId = bundle.getString(DoctorFormDataConstants.anc_entityId);
             formData = bundle.getString("formData");
             try {
                 setContentView(R.layout.doc_plan_of_care);
@@ -121,8 +122,6 @@ public class DoctorPlanofCareActivity extends Activity {
                 tv_stop_date = (CustomFontTextView) findViewById(R.id.tv_stop_by_date);
                 sp_drug_name = (Spinner) findViewById(R.id.sp_drug_name);
                 swich_poc_pending = (Switch) findViewById(R.id.switch_poc_pending);
-                switch_poc_physical_consultation = (Switch) findViewById(R.id.switch_poc_physical_consultation);
-
                 sp_drug_direction = (Spinner) findViewById(R.id.sp_drug_direction);
                 sp_drug_dosage = (Spinner) findViewById(R.id.sp_drug_dosage);
                 sp_drug_frequency = (Spinner) findViewById(R.id.sp_drug_frequency);
@@ -143,7 +142,7 @@ public class DoctorPlanofCareActivity extends Activity {
                 pocDrugDirectionsList.add(getString(R.string.please_select_direction));
                 pocDrugDosagesList.add(getString(R.string.please_select_dosage));
 
-                String existPocInfo = context.allDoctorRepository().getPocInfoCaseId(caseId);
+                String existPocInfo = context.allDoctorRepository().getPocInfoCaseId(documentId);
                 if (existPocInfo != null && !existPocInfo.equals("")) {
                     JSONObject pocInfo = new JSONObject(existPocInfo);
                     JSONArray diagnosisArray = pocInfo.has("diagnosis") ? pocInfo.getJSONArray("diagnosis") : new JSONArray();
@@ -216,18 +215,17 @@ public class DoctorPlanofCareActivity extends Activity {
                         pocDrugFrequenciesList.add(drugJsonObject.getString("frequency"));
 
                 }
+                final String doc_name = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
+                final String nus_name = getData(formDataJson, DoctorFormDataConstants.anmId);
+                tv_doc_name.setText(doc_name);
+                tv_mother_name.setText(getData(formDataJson, DoctorFormDataConstants.wife_name));
+                tv_age.setText(getData(formDataJson, DoctorFormDataConstants.age));
                 visitType = getData(formDataJson, DoctorFormDataConstants.visit_type);
                 visitNumber = getData(formDataJson, DoctorFormDataConstants.anc_visit_number);
-                motherName = getData(formDataJson, DoctorFormDataConstants.wife_name);
 
                 tv_visit_type.setText(visitType);
-                tv_doc_name.setText(Context.getInstance().allSharedPreferences().fetchRegisteredANM());
-                tv_mother_name.setText(motherName);
-                tv_age.setText(getData(formDataJson, DoctorFormDataConstants.age));
-
-
                 tv_village.setText(getData(formDataJson, DoctorFormDataConstants.village_name));
-                tv_health_worker_name.setText(getData(formDataJson, DoctorFormDataConstants.anmId));
+                tv_health_worker_name.setText(nus_name);
                 tv_health_worker_village.setText(getData(formDataJson, DoctorFormDataConstants.village_name));
 
                 Log.e(TAG, selectICD10Diagnosis.size() + "--" + selectDrugs.size() + "--" + selectTests.size());
@@ -255,6 +253,10 @@ public class DoctorPlanofCareActivity extends Activity {
                 ib_anm_logo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        String caller_url = String.format(CALLER_URL,doc_name,nus_name);
+                        Uri url = Uri.parse(caller_url);
+                        Intent _broswer = new Intent(Intent.ACTION_VIEW,url);
+                        startActivity(_broswer);
                     }
                 });
 
@@ -402,13 +404,11 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                selectDrugs.add(pocDrugData);
                                                                pocDrugBaseAdapter.notifyDataSetChanged();
                                                            }
-                                                           et_drug_no_of_days.setText("");
-                                                           et_drug_qty.setText("");
-                                                           tv_stop_date.setText("");
                                                        } else
                                                            Toast.makeText(DoctorPlanofCareActivity.this, "All Fields are mandatory", Toast.LENGTH_SHORT).show();
-
-
+                                                       tv_stop_date.setText("");
+                                                       et_drug_no_of_days.setText("");
+                                                       et_drug_qty.setText("");
                                                    }
                                                }
 
@@ -446,7 +446,6 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                     for (int i = 0; i < selectTests.size(); i++) {
                                                                         testsArray.put(selectTests.get(i).toString());
                                                                     }
-                                                                    resultJson.put("documentId", documentId);
                                                                     resultJson.put("visitType", visitType);
                                                                     resultJson.put("visitNumber", visitNumber);
                                                                     resultJson.put("doctorName", Context.getInstance().allSharedPreferences().fetchRegisteredANM());
@@ -454,22 +453,17 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                     resultJson.put("diagnosis", diagnosisArray);
                                                                     resultJson.put("drugs", drugsArray);
                                                                     resultJson.put("investigations", testsArray);
-                                                                    resultJson.put("advice", et_advice.getText().toString() + (switch_poc_physical_consultation.isChecked() ? ".Physical examination is required, for this patient." : ""));
+                                                                    resultJson.put("advice", et_advice.getText().toString());
                                                                     //                            resultJson.put("reason", et_reason.getText().toString());
                                                                     Log.e(TAG, "Reason" + et_reason.getText().toString() + "---" + swich_poc_pending.isChecked() + "");
                                                                     Log.e(TAG, "selected Json" + resultJson.toString());
-                                                                    if (swich_poc_pending.isChecked()) {
-                                                                        if (et_reason.getText().toString().trim().length() != 0) {
-                                                                            saveDatainLocal(documentId, resultJson.toString(), et_reason.getText().toString(), caseId);
-                                                                            saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString(), phoneNumber, caseId);
-                                                                        } else {
-                                                                            Toast.makeText(DoctorPlanofCareActivity.this, "Reason for Pending must be given", Toast.LENGTH_SHORT).show();
-                                                                        }
-                                                                    } else if (!swich_poc_pending.isChecked()) {
-                                                                        if (resultJson.getString("advice").length() != 0)
-                                                                            saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString(), phoneNumber, caseId);
-                                                                        else
-                                                                            Toast.makeText(DoctorPlanofCareActivity.this, "Advice must be given", Toast.LENGTH_SHORT).show();
+                                                                    if (swich_poc_pending.isChecked() && et_reason.getText().toString().trim().length() != 0) {
+                                                                        saveDatainLocal(documentId, resultJson.toString(), et_reason.getText().toString());
+                                                                        saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString(), phoneNumber);
+                                                                    } else if (!swich_poc_pending.isChecked() && (diagnosisArray.length() != 0 || drugsArray.length() != 0 || testsArray.length() != 0 || resultJson.getString("advice").length() != 0)) {
+                                                                        saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString(), phoneNumber);
+                                                                    } else {
+                                                                        Toast.makeText(DoctorPlanofCareActivity.this, "Plan of care / Reason for Pending must be given", Toast.LENGTH_SHORT).show();
                                                                     }
 
                                                                 } catch (JSONException e) {
@@ -524,14 +518,13 @@ public class DoctorPlanofCareActivity extends Activity {
 
             {
                 e.printStackTrace();
-//                Toast.makeText(DoctorPlanofCareActivity.this, "Json Failure" + e.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(DoctorPlanofCareActivity.this, "Json Failure" + e.toString(), Toast.LENGTH_SHORT).show();
             }
         } else
 
         {
             Log.e(TAG, "No Data");
         }
-
     }
 
     private String getData(JSONObject jsonData, String key) {
@@ -548,19 +541,19 @@ public class DoctorPlanofCareActivity extends Activity {
     }
 
     public void saveDatainLocal(String documentId, String pocJsonInfo, String
-            pocPendingInfo, String caseId) {
-        context.allDoctorRepository().updatePocInLocal(caseId, pocJsonInfo, pocPendingInfo);
+            pocPendingInfo) {
+        context.allDoctorRepository().updatePocInLocal(documentId, pocJsonInfo, pocPendingInfo);
         if (!pocPendingInfo.equals(""))
             gotoHome();
     }
 
-    private void saveData(final String documentID, String pocJsonData, JSONObject formDataJson, final String pocPendingReason, final String phoneNumber, final String caseId) {
+    private void saveData(final String documentID, String pocJsonData, JSONObject formDataJson, final String pocPendingReason, final String phoneNumber) {
         savePocData(documentID, pocJsonData, formDataJson, pocPendingReason, phoneNumber, new Listener<String>() {
                     //        getDataFromServer(new Listener<String>() {
                     public void onEvent(String resultData) {
                         if (resultData != null) {
                             if (pocPendingReason.length() == 0) {
-                                context.allDoctorRepository().deleteUseCaseId(caseId);
+                                context.allDoctorRepository().deleteUseCaseId(documentID);
                             }
                             Toast.makeText(DoctorPlanofCareActivity.this, "Plan of care is submitted", Toast.LENGTH_SHORT).show();
                             gotoHome();
@@ -592,7 +585,7 @@ public class DoctorPlanofCareActivity extends Activity {
                     _params.add(new BasicNameValuePair("pending", pendingReason));
                     _params.add(new BasicNameValuePair("entityid", formDataJson.getString(DoctorFormDataConstants.entityId)));
                     _params.add(new BasicNameValuePair("patientph", phoneNumber));
-                    _params.add(new BasicNameValuePair("patientname", visitType.equalsIgnoreCase("child") ? motherName + " your baby" : motherName));
+
                     switch (formDataJson.getString(DoctorFormDataConstants.visit_type)) {
                         case DoctorFormDataConstants.ancvisit:
                             _params.add(new BasicNameValuePair("visitid", formDataJson.getString(DoctorFormDataConstants.anc_entityId)));
@@ -618,7 +611,6 @@ public class DoctorPlanofCareActivity extends Activity {
 
                 return result;
             }
-
 
             @Override
             protected void onPostExecute(String resultData) {

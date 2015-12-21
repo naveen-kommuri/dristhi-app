@@ -4,6 +4,7 @@
     <string-array name="django_url_list">
         <item>202.153.34.169:8000</item>
         <item>10.10.11.6:8000</item>
+        <item>10.10.11.79:8000</item>
     </string-array>
     <string-array name="url_list">
         <item>202.153.34.169:8080</item>
@@ -310,6 +311,10 @@
     <string name="please_select_direction">Please Select Direction</string>
     <string name="please_select_dosage">Please Select Dosage</string>
     <string name="view_ec_form">View EC</string>
+    <string name="title_activity_action">ActionActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 
 </resources>
