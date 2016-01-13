@@ -54,21 +54,17 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.text.DateFormat;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Locale;
 import java.util.Vector;
 
-import static android.os.Environment.getExternalStoragePublicDirectory;
-import static android.view.View.*;
 import static android.view.View.GONE;
+import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static org.ei.telemedicine.AllConstants.DRUGS;
 import static org.ei.telemedicine.AllConstants.DRUGS_INFO_RESULT_CODE;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT_EDIT;
 
 public class BlueToothInfoActivity extends SecuredActivity implements OnClickListener,
         ICallBack, OnBluetoothResult, org.ei.telemedicine.bluetooth.bp.ICallBack,
@@ -336,9 +332,11 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
     public void onBackPressed() {
         if (bluetoothAdapter != null)
             bluetoothAdapter.cancelDiscovery();
+        Log.e("Form Back press", formName);
         if (formName.equalsIgnoreCase(AllConstants.FormNames.ANC_VISIT) || formName.equalsIgnoreCase(AllConstants.FormNames.ANC_VISIT_EDIT)) {
-            this.finish();
-            startFormActivity(AllConstants.FormNames.ANC_VISIT_EDIT, entityId, new FieldOverrides(context.anmLocationController().getFormInfoJSON()).getJSONString());
+            formController.startFormActivity(ANC_VISIT_EDIT, entityId, new FieldOverrides(context.anmLocationController().getFormInfoJSON()).getJSONString());
+//            this.finish();
+//            startFormActivity(AllConstants.FormNames.ANC_VISIT_EDIT, entityId, new FieldOverrides(context.anmLocationController().getFormInfoJSON()).getJSONString());
         }
     }
 

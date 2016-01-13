@@ -146,10 +146,6 @@
         "shouldLoadValue": true
       },
       {
-        "name": "numberOfSpontaneousAbortions",
-        "bind": "/model/instance/EC_View_EngKan/ec_view_group/num_abortions_spontaneous"
-      },
-      {
         "name": "numberOfInducedAbortions",
         "bind": "/model/instance/EC_View_EngKan/ec_view_group/num_abortions_induced"
       },

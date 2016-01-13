@@ -23,7 +23,7 @@
         "name": "pncNumber",
         "shouldLoadValue": true,
         "bind": "/model/instance/Postpartum_FamilyPlanning_EngKan/pnc_num",
-        "source": "mother.eligible_couple.pncNumber"
+        "source": "mother.pncNumber"
       },
       {
         "name": "thayiCardNumber",

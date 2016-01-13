@@ -5,22 +5,13 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.DataSetObserver;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -29,35 +20,25 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.repository.AllDoctorRepository;
-
 import org.ei.telemedicine.sync.SyncAfterFetchListener;
 import org.ei.telemedicine.sync.SyncProgressIndicator;
 import org.ei.telemedicine.sync.UpdateActionsTask;
 import org.ei.telemedicine.view.activity.LoginActivity;
 import org.ei.telemedicine.view.customControls.CustomFontTextView;
-import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.channels.FileChannel;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-import static com.google.common.collect.Iterables.concat;
-import static com.google.common.collect.Iterables.toArray;
-import static java.lang.String.valueOf;
-import static java.util.Arrays.asList;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.*;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.visit_type;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.sorting_anc;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.sorting_child;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.sorting_hr;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.sorting_name;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.sorting_pnc;
 import static org.ei.telemedicine.event.Event.ACTION_HANDLED;
 import static org.ei.telemedicine.event.Event.SYNC_COMPLETED;
 import static org.ei.telemedicine.event.Event.SYNC_STARTED;
@@ -174,21 +155,21 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
         ib_sort_selection.setOnClickListener(this);
         ib_clear_search.setOnClickListener(this);
         ib_logout.setOnClickListener(this);
+        context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
+        allDoctorRepository = context.allDoctorRepository();
     }
 
-    private void initalize() {
+    public void startListeners() {
         SYNC_STARTED.addListener(onSyncStartListener);
         SYNC_COMPLETED.addListener(onSyncCompleteListener);
         ACTION_HANDLED.addListener(updateANMDetailsListener);
-        context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
-        allDoctorRepository = context.allDoctorRepository();
     }
 
     public void updateFromServer() {
 //        allDoctorRepository.clearDataNoPoc();
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(
                 this, context.actionService(), context.formSubmissionSyncService(), new SyncProgressIndicator());
-        updateActionsTask.updateFromServer(new SyncAfterFetchListener(),"");
+        updateActionsTask.updateFromServer(new SyncAfterFetchListener(), "");
     }
 
     @Override
@@ -205,8 +186,8 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
 //        _context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
 
         setupViews();
-        initalize();
-
+        startListeners();
+        updateFromServer();
 //        updateRegisterCounts();
         adapter = new PendingConsultantBaseAdapter(NativeDoctorActivity.this, updateRegisterCounts(), this);
         lv_pending_consultants.setAdapter(adapter);
@@ -260,32 +241,7 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
         startActivity(intent);
         this.finish();
     }
-
-    private void backup() {
-        File sd = Environment.getExternalStorageDirectory();
-        File data = Environment.getDataDirectory();
-        FileChannel source = null;
-        FileChannel destination = null;
-        String SAMPLE_DB_NAME = "drishti.db";
-        String currentDBPath = "/data/" + "org.ei.telemedicine" + "/databases/" + SAMPLE_DB_NAME;
-        String backupDBPath = SAMPLE_DB_NAME;
-        File currentDB = new File(data, currentDBPath);
-        File backupDB = new File(sd, backupDBPath);
-        try {
-            source = new FileInputStream(currentDB).getChannel();
-            destination = new FileOutputStream(backupDB).getChannel();
-            destination.transferFrom(source, 0, source.size());
-            source.close();
-            destination.close();
-            Toast.makeText(this, "DB Exported!", Toast.LENGTH_LONG).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Toast.makeText(this, "Comple", Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
+@Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ib_doc_search_cancel:

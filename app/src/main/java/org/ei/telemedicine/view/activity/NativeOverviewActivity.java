@@ -32,7 +32,6 @@ import org.ei.telemedicine.domain.Mother;
 import org.ei.telemedicine.domain.TimelineEvent;
 import org.ei.telemedicine.domain.form.FieldOverrides;
 import org.ei.telemedicine.event.CapturedPhotoInformation;
-import org.ei.telemedicine.event.Event;
 import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.image.ImageLoader;
 import org.ei.telemedicine.view.controller.ANCDetailController;
@@ -47,7 +46,8 @@ import org.json.JSONException;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -56,7 +56,6 @@ import java.util.Map;
 
 import static android.view.View.GONE;
 import static org.ei.telemedicine.AllConstants.ALLFORMDATA;
-import static org.ei.telemedicine.AllConstants.CHILD_TYPE;
 import static org.ei.telemedicine.AllConstants.ENTITY_ID;
 import static org.ei.telemedicine.AllConstants.FORMINFO;
 import static org.ei.telemedicine.AllConstants.FormNames.ANC_CLOSE;
@@ -83,7 +82,6 @@ import static org.ei.telemedicine.AllConstants.FormNames.VIEW_EC_REGISTRATION;
 import static org.ei.telemedicine.AllConstants.FormNames.VITAMIN_A;
 import static org.ei.telemedicine.AllConstants.IS_FP;
 import static org.ei.telemedicine.AllConstants.VISIT_TYPE;
-import static org.ei.telemedicine.AllConstants.WOMAN_TYPE;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_gender;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.id_no;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.visit_type;
@@ -193,6 +191,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                 context = Context.getInstance();
                 setupViews();
                 timelineEvents = context.allTimelineEvents().forCase(caseId);
+
                 if (isFP)
                     ib_overview_options.setVisibility(GONE);
 
@@ -628,6 +627,21 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
         for (Map.Entry<String, TimelineEvent> entry : timelineEventsMap.entrySet()) {
             timelineEvents.add(entry.getValue());
         }
+
+        for (TimelineEvent t : timelineEvents) {
+            Log.e("Beof sort", t.referenceDate() + "-------------" + t.title().toString());
+        }
+        Collections.sort(timelineEvents, new Comparator<TimelineEvent>() {
+            @Override
+            public int compare(TimelineEvent timelineEvent, TimelineEvent t1) {
+                if (timelineEvent.referenceDate() == null || t1.referenceDate() == null)
+                    return 0;
+                return timelineEvent.referenceDate().compareTo(t1.referenceDate());
+            }
+        });
+        for (TimelineEvent t : timelineEvents) {
+            Log.e("After sort", t.referenceDate() + "-------------" + t.title().toString());
+        }
         return timelineEvents;
     }
 
@@ -687,6 +701,8 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                 return true;
             case R.id.anc_visit_edit:
                 if (!isPoc)
+//                    startFormActivity(ANC_VISIT_EDIT, caseId, formInfo);
+//                    new OpenFormOption(ANC_VISIT_EDIT, ANC_VISIT_EDIT, new FormController(this)).doEdit(client);
                     formController.startFormActivity(ANC_VISIT_EDIT, caseId, formInfo);
                 else
                     Toast.makeText(this, "Already Poc given for this visit", Toast.LENGTH_SHORT).show();

@@ -80,19 +80,19 @@ public class TimelineEvent {
                 .put("reviewedHRPStatus", highRiskReason).map();
 
         String detailsString = new DetailBuilder(map)
-                .withDeliveryFacilityName("deliveryFacilityName")
-                .withTransportationPlan("transportationPlan")
-                .withBirthCompanion("birthCompanion")
-                .withAshaPhoneNumber("ashaPhoneNumber")
-                .withFamilyContactNumber("phoneNumber")
-                .withHighRiskReason("reviewedHRPStatus")
+                .withDeliveryFacilityName("deliveryFacilityName").withComma()
+                .withTransportationPlan("transportationPlan").withComma()
+                .withBirthCompanion("birthCompanion").withComma()
+                .withFamilyContactNumber("phoneNumber").withComma()
+                .withHighRiskReason("reviewedHRPStatus").withComma()
                 .value();
 
         return new TimelineEvent(caseId, "DELIVERYPLAN", LocalDate.parse(referenceDate), "Delivery Plan", "Detail: " + detailsString, null);
     }
 
     public static TimelineEvent forChangeOfFPMethod(String caseId, String oldFPMethod, String newFPMethod, String dateOfFPChange) {
-        return new TimelineEvent(caseId, "FPCHANGE", LocalDate.parse(dateOfFPChange), "Changed FP Method", "From: " + oldFPMethod, "To: " + newFPMethod);
+        String oldFp = oldFPMethod.equalsIgnoreCase("iud") ? "IUCD" : oldFPMethod;
+        return new TimelineEvent(caseId, "FPCHANGE", LocalDate.parse(dateOfFPChange), "Changed FP Method", "From: " + oldFp, "To: " + newFPMethod);
     }
 
     public static TimelineEvent forANCCareProvided(String caseId, String visitNumber, String visitDate, Map<String, String> details) {
@@ -253,6 +253,14 @@ public class TimelineEvent {
         return title;
     }
 
+//    @Override
+//    public int compareTo(TimelineEvent timelineEvent) {
+//        if (referenceDate() == null || timelineEvent.referenceDate() == null) {
+//            return 0;
+//        }
+//        return referenceDate().compareTo(timelineEvent.referenceDate());
+//    }
+
     private static class DetailBuilder {
         private Map<String, String> details;
         private final StringBuilder stringBuilder;
@@ -300,6 +308,11 @@ public class TimelineEvent {
         private DetailBuilder withDeliveryFacilityName(String deliveryFacilityName) {
             String deliveryFacility = "Delivery Facility Name: " + details.get(deliveryFacilityName);
             this.stringBuilder.append(checkEmptyField(deliveryFacility, details.get(deliveryFacilityName)));
+            return this;
+        }
+
+        private DetailBuilder withComma() {
+            this.stringBuilder.append(", ");
             return this;
         }
 
