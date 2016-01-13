@@ -77,6 +77,14 @@
             android:name=".view.activity.HomeActivity"
             android:screenOrientation="landscape" />
         <activity
+            android:name=".view.activity.ReportsInfoActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
+        <activity
+            android:name=".view.activity.NativeReportsActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
+        <activity
             android:name=".view.activity.ReportsActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
@@ -205,7 +213,7 @@
             android:name=".view.activity.NativeANMPlanofCareActivity"
             android:theme="@android:style/Theme.Holo.Light.Dialog" />
 
-        
+
         <activity
             android:name=".doctor.ViewPreVisitScreenActivity"
             android:screenOrientation="landscape" />
@@ -221,10 +229,8 @@
         <activity
             android:name=".view.activity.ActionActivity"
             android:label="@string/title_activity_action"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
-            android:screenOrientation="portrait">
-        </activity>       
-
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"></activity>
 
     </application>
 

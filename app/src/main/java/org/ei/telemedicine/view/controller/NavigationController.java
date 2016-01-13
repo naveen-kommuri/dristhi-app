@@ -3,10 +3,19 @@ package org.ei.telemedicine.view.controller;
 import android.app.Activity;
 import android.content.Intent;
 
-import org.ei.telemedicine.Context;
-import org.ei.telemedicine.view.activity.*;
+import org.ei.telemedicine.view.activity.NativeANCSmartRegisterActivity;
+import org.ei.telemedicine.view.activity.NativeChildSmartRegisterActivity;
+import org.ei.telemedicine.view.activity.NativeECSmartRegisterActivity;
+import org.ei.telemedicine.view.activity.NativeFPSmartRegisterActivity;
+import org.ei.telemedicine.view.activity.NativePNCSmartRegisterActivity;
+import org.ei.telemedicine.view.activity.NativeReportsActivity;
 
-import static org.ei.telemedicine.view.controller.ProfileNavigationController.*;
+import static org.ei.telemedicine.view.controller.ProfileNavigationController.navigateToANCProfile;
+import static org.ei.telemedicine.view.controller.ProfileNavigationController.navigateToChildProfile;
+import static org.ei.telemedicine.view.controller.ProfileNavigationController.navigateToECProfile;
+import static org.ei.telemedicine.view.controller.ProfileNavigationController.navigateToFPProfile;
+import static org.ei.telemedicine.view.controller.ProfileNavigationController.navigateToPNCProfile;
+import static org.ei.telemedicine.view.controller.ProfileNavigationController.navigateToProfile;
 
 public class NavigationController {
     private Activity activity;
@@ -18,7 +27,7 @@ public class NavigationController {
     }
 
     public void startReports() {
-        activity.startActivity(new Intent(activity, ReportsActivity.class));
+        activity.startActivity(new Intent(activity, NativeReportsActivity.class));
     }
 
 

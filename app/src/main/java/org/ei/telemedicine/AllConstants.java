@@ -57,7 +57,7 @@ public class AllConstants {
     public static final String VITALS_INFO_RESULT = "vitalsData";
     public static final String VITAL_TYPE = "vitalType";
     public static final String POC_DATA_SAVE_URL_PATH = "/pocupdate/?";
-
+    public static final String REPORTS_URL = "/reporting/?activity=%s&anmid=%s";
 
     public static final String DRUG_INFO_RESULT = "drugsResultData";
     public static final String POC_DRUGS = "drug_data";
@@ -422,5 +422,17 @@ public class AllConstants {
         public static final String DELIVERY_FACILITY_HOME_VALUE = "home";
         public static final String DELIVERY_FACILITY_SDH_VALUE = "sdh";
         public static final String DELIVERY_FACILITY_DH_VALUE = "dh";
+    }
+
+    public class Reports {
+        public static final String FP_SERVICES = "Family Planning Services";
+        public static final String ANC_SERVICES = "ANC Services";
+        public static final String PREGNANCY = "Pregnancy Outcomes";
+        public static final String PNC_SERVICES = "PNC Services";
+        public static final String BENEFICIARY_SCHEMES = "Beneficiary Schemes";
+        public static final String CHILD_SERVICES = "Child Services";
+        public static final String MORTALITY = "Mortality";
+
+
     }
 }
