@@ -5,7 +5,6 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,7 +45,7 @@ import java.util.List;
  * Created by naveen on 6/1/15.
  */
 public class DoctorPlanofCareActivity extends Activity {
-    String url="";
+    String url = "";
     AutoCompleteTextView act_icd10Diagnosis, act_tests;
     ListView lv_selected_icd10, lv_selected_tests, lv_selected_drugs;
     Switch swich_poc_pending;
@@ -82,8 +81,8 @@ public class DoctorPlanofCareActivity extends Activity {
     Context context;
     private String TAG = "DoctorPlanOfCareActivity";
     String visitType, visitNumber;
-    String documentId, formData, phoneNumber;
-    public String CALLER_URL= AllConstants.CALLING_URL;
+    String documentId, formData, phoneNumber, caseId;
+    public String CALLER_URL = AllConstants.CALLING_URL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +90,7 @@ public class DoctorPlanofCareActivity extends Activity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null && bundle.getString(AllConstants.DRUG_INFO_RESULT) != null && bundle.getString(DoctorFormDataConstants.documentId) != null && bundle.getString("formData") != null) {
             String resultData = bundle.getString(AllConstants.DRUG_INFO_RESULT);
+            caseId = bundle.getString("visitId");
             documentId = bundle.getString(DoctorFormDataConstants.documentId);
             phoneNumber = bundle.getString(DoctorFormDataConstants.phoneNumber);
             formData = bundle.getString("formData");
@@ -205,14 +205,15 @@ public class DoctorPlanofCareActivity extends Activity {
                     pocDrugData.setDosage(drugJsonObject.getString("dosage"));
                     pocDrugData.setFrequncy(drugJsonObject.getString("frequency"));
                     pocDrugDatas.add(pocDrugData);
+                    Log.e("sad", drugJsonObject.getString("direction") + pocDrugDirectionsList.contains(drugJsonObject.getString("direction").trim()));
 
                     pocDrugNamesList.add(drugJsonObject.getString("name"));
-                    if (!pocDrugDirectionsList.contains(drugJsonObject.getString("direction")))
+                    if (!pocDrugDirectionsList.contains(drugJsonObject.getString("direction").trim()))
                         pocDrugDirectionsList.add(drugJsonObject.getString("direction").trim());
-                    if (!pocDrugDosagesList.contains(drugJsonObject.getString("dosage")))
-                        pocDrugDosagesList.add(drugJsonObject.getString("dosage"));
-                    if (!pocDrugFrequenciesList.contains(drugJsonObject.getString("frequency")))
-                        pocDrugFrequenciesList.add(drugJsonObject.getString("frequency"));
+                    if (!pocDrugDosagesList.contains(drugJsonObject.getString("dosage").trim()))
+                        pocDrugDosagesList.add(drugJsonObject.getString("dosage").trim());
+                    if (!pocDrugFrequenciesList.contains(drugJsonObject.getString("frequency").trim()))
+                        pocDrugFrequenciesList.add(drugJsonObject.getString("frequency").trim());
 
                 }
                 final String doc_name = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
@@ -253,10 +254,19 @@ public class DoctorPlanofCareActivity extends Activity {
                 ib_anm_logo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String caller_url = String.format(CALLER_URL,doc_name,nus_name);
-                        Uri url = Uri.parse(caller_url);
-                        Intent _broswer = new Intent(Intent.ACTION_VIEW,url);
-                        startActivity(_broswer);
+//                        startActivity(new Intent(DoctorPlanofCareActivity.this, VideoActivity.class));
+                        try {
+                            Intent intent = new Intent(Intent.ACTION_MAIN);
+                            intent.setComponent(new ComponentName("org.appspot.apprtc",
+                                    "org.appspot.apprtc.ConnectActivity"));
+                            startActivity(intent);
+                        } catch (Exception e) {
+                            Toast.makeText(DoctorPlanofCareActivity.this, "Please install Apprtc APK", Toast.LENGTH_SHORT).show();
+                        }
+//                        String caller_url = String.format(CALLER_URL,doc_name,nus_name);
+//                        Uri url = Uri.parse(caller_url);
+//                        Intent _broswer = new Intent(Intent.ACTION_VIEW,url);
+//                        startActivity(_broswer);
                     }
                 });
 
@@ -553,7 +563,8 @@ public class DoctorPlanofCareActivity extends Activity {
                     public void onEvent(String resultData) {
                         if (resultData != null) {
                             if (pocPendingReason.length() == 0) {
-                                context.allDoctorRepository().deleteUseCaseId(documentID);
+                                Log.e("Case Id", documentID + "------------" + caseId);
+                                context.allDoctorRepository().deleteUseCaseId(caseId);
                             }
                             Toast.makeText(DoctorPlanofCareActivity.this, "Plan of care is submitted", Toast.LENGTH_SHORT).show();
                             gotoHome();
