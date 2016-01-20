@@ -16,3 +16,4 @@ To run test classes
 7. Select with the name created
 8. Select the device from "Device Chooser"
 9. Look for the result in run console
+
