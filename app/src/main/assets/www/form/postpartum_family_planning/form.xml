@@ -85,6 +85,9 @@
     </fieldset>
     <label class="question non-select ">
         <span class="question-label active" lang="">Date she started FP method?</span>
+        <span class="or-hint active" lang="">Future dates are not allowed
+        </span>
+
         <span class="required">*</span>
         <input name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method_start_date" autocomplete="off"
             data-constraint=".&lt;= /Postpartum_FamilyPlanning_EngKan/today " data-type-xml="date"
@@ -254,26 +257,32 @@
     </fieldset>
     <label class="question or-branch pre-init non-select ">
         <span class="question-label active" lang="">Number of OCP strips given?</span>
+        <span class="or-hint active" lang="">between 0-99
+        </span>
         <span class="required">*</span>
         <input name="/Postpartum_FamilyPlanning_EngKan/num_ocp_strips" autocomplete="off"
-            data-constraint=".&gt;=0" data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'ocp'"
+            data-constraint=".&gt;=0 and .&lt; 100" data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'ocp'"
             data-type-xml="int"
             required="required"
             type="number" />
     </label>
     <label class="question or-branch pre-init non-select ">
         <span class="question-label active" lang="">Number of condoms given?</span>
+        <span class="or-hint active" lang="">between 0-99
+        </span>
         <span class="required">*</span>
-        <input name="/Postpartum_FamilyPlanning_EngKan/num_condoms" autocomplete="off" data-constraint=".&gt;=0"
+        <input name="/Postpartum_FamilyPlanning_EngKan/num_condoms" autocomplete="off" data-constraint=".&gt;=0 and .&lt; 100"
             data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'condom'" data-type-xml="int"
             required="required"
             type="number" />
     </label>
     <label class="question or-branch pre-init non-select ">
         <span class="question-label active" lang="">Number of Centchroman strips given?</span>
+        <span class="or-hint active" lang="">between 0-99
+        </span>
         <span class="required">*</span>
         <input name="/Postpartum_FamilyPlanning_EngKan/num_centchroman_pills" autocomplete="off"
-            data-constraint=".&gt;=0" data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'centchroman'"
+            data-constraint=".&gt;=0 and .&lt; 100" data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'centchroman'"
             data-type-xml="int"
             required="required"
             type="number" />

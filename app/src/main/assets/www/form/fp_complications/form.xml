@@ -20,8 +20,9 @@
     </label>
 
     <label class="question non-select ">
-        <span lang="" class="question-label active">Date of FP problem? 
-        </span>
+        <span lang="" class="question-label active">Date of FP problem?
+        </span><span class="or-hint active" lang="">Future dates are not allowed
+    </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Family_Planning_Complications_EngKan/complication_date"
                required="required" data-constraint=".&lt;= /Family_Planning_Complications_EngKan/today "
@@ -30,7 +31,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Report sterilization failure? 
+                <span lang="" class="question-label active">Report sterilization failure?
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -56,7 +57,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">What are the problems? 
+                <span lang="" class="question-label active">What are the problems?
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -80,7 +81,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">What are the problems? 
+                <span lang="" class="question-label active">What are the problems?
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -134,7 +135,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">What are the problems? 
+                <span lang="" class="question-label active">What are the problems?
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -172,7 +173,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">What are the problems? 
+                <span lang="" class="question-label active">What are the problems?
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -216,7 +217,7 @@
         </fieldset>
     </fieldset>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">What are the problems? 
+        <span lang="" class="question-label active">What are the problems?
         </span>
         <input autocomplete="off" type="text" name="/Family_Planning_Complications_EngKan/injectable_sideeffect"
                data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'dmpa_injectable'"
@@ -225,7 +226,7 @@
     <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Do you want to refer the couple for treatment? 
+                <span lang="" class="question-label active">Do you want to refer the couple for treatment?
                 </span>
                 <span class="required">*</span>
             </legend>
@@ -250,7 +251,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Referral place? 
+                <span lang="" class="question-label active">Referral place?
                 </span>
                 <span class="required">*</span>
             </legend>
@@ -288,7 +289,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">How do you want to treat this couple? 
+                <span lang="" class="question-label active">How do you want to treat this couple?
                 </span>
                 <span class="required">*</span>
             </legend>
@@ -334,7 +335,7 @@
         </fieldset>
     </fieldset>
     <label class="note or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Please go to register and update FP method selection. 
+        <span lang="" class="question-label active">Please go to register and update FP method selection.
         </span>
         <input autocomplete="off" type="text" name="/Family_Planning_Complications_EngKan/instructions"
                data-relevant=" /Family_Planning_Complications_EngKan/fp_method_complication_treatment_plan  = 'stop_fp_method' or  /Family_Planning_Complications_EngKan/fp_method_complication_treatment_plan  = 'change_fp_method'"

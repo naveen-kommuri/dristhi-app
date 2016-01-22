@@ -58,6 +58,8 @@
     <label class="question non-select ">
         <span class="question-label active" lang="">Vitamin A date?
         </span>
+        <span class="or-hint active" lang="">Future dates are not allowed
+        </span>
         <span class="required">*</span>
         <input name="/Child_Vitamin_A_EngKan/vit_a_date" autocomplete="off"
             data-constraint=".&gt;=  /Child_Vitamin_A_EngKan/eight_months  and .&lt;= /Child_Vitamin_A_EngKan/today "

@@ -16,6 +16,9 @@
 
     <label class="question or-branch pre-init non-select ">
         <span class="question-label active" lang="">Discharge date from delivery facility?</span>
+        <span class="or-hint active" lang="">Future dates are not allowed
+        </span>
+
         <span class="required">*</span>
         <input name="/PNC_Visit_EngKan/discharge_date"
             data-constraint=".&lt;= /PNC_Visit_EngKan/today "
@@ -24,6 +27,9 @@
     </label>
     <label class="question non-select ">
         <span class="question-label active" lang="">PNC visit date?</span>
+        <span class="or-hint active" lang="">Future dates are not allowed
+        </span>
+
         <span class="required">*</span>
         <input name="/PNC_Visit_EngKan/pnc_visit_date"
             data-constraint=".&lt;= /PNC_Visit_EngKan/today " data-type-xml="date"

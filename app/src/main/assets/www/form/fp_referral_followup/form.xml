@@ -27,6 +27,8 @@
     <label class="question non-select ">
         <span class="question-label active" lang="">Date of referral follow-up?
         </span>
+        <span class="or-hint active" lang="">Future dates are not allowed
+        </span>
         <span class="required">*</span>
         <input name="/Family_Planning_Referral_Followup_EngKan/referral_followup_date" autocomplete="off"
             data-constraint=".&lt;= /Family_Planning_Referral_Followup_EngKan/today "

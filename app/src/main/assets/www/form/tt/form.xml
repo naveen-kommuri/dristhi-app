@@ -58,6 +58,8 @@
     </label>
     <label class="question non-select ">
         <span class="question-label active" lang="">Date of TT injection?</span>
+        <span class="or-hint active" lang="">Future dates are not allowed
+        </span>
         <span class="required">*</span>
         <input name="/TT_EngKan/tt_date" autocomplete="off" data-constraint=".&lt;= /TT_EngKan/today " data-type-xml="date"
             required="required" type="date" />

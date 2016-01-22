@@ -31,6 +31,8 @@
     <label class="question non-select ">
         <span class="question-label active" lang="">Registration date
         </span>
+        <span class="or-hint active" lang="">Future dates are not allowed.
+        </span>
         <span class="required">*</span>
         <input name="/ANC_Registration_OA_EngKan/out_of_area_reg_date"
             data-constraint=".&lt;= /ANC_Registration_OA_EngKan/today " data-type-xml="date"
@@ -100,6 +102,12 @@
     <label class="question or-branch pre-init non-select">
         <span class="question-label active" lang="">Woman age in years
         </span>
+        <span class="or-hint active" lang="">
+            Age limit
+            <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/wife_min_age " />
+            -
+            <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/wife_max_age " />
+        </span>
         <span class="required">*</span>
         <input name="/ANC_Registration_OA_EngKan/wife_age1" autocomplete="off"
             data-constraint=".&lt;=(/ANC_Registration_OA_EngKan/wife_max_age) and .&gt;=(/ANC_Registration_OA_EngKan/wife_min_age)"
@@ -109,6 +117,8 @@
 
     <label class="question or-branch pre-init non-select ">
         <span class="question-label active" lang="">Date of Birth?
+        </span>
+        <span class="or-hint active" lang="">Future dates are not allowed.
         </span>
         <span class="required">*</span>
         <input name="/ANC_Registration_OA_EngKan/wife_dob" autocomplete="off"
@@ -122,6 +132,7 @@
             <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/woman_age ">Years
             </span>
         </span>
+
         <input name="/ANC_Registration_OA_EngKan/wife_age_note" autocomplete="off"
             data-relevant=" /ANC_Registration_OA_EngKan/wife_dob  &gt; 0 " data-type-xml="string"
             readonly="readonly" type="text" />
@@ -153,6 +164,12 @@
 
     <label class="question non-select ">
         <span class="question-label active" lang="">Husband's age</span>
+        <span class="or-hint active" lang="">
+            Age limit
+            <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/husband_min_age " />
+            -
+            <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/husband_max_age " />
+        </span>
         <input name="/ANC_Registration_OA_EngKan/husband_age"
             data-constraint=".&gt;=/ANC_Registration_OA_EngKan/husband_min_age and .&lt;=/ANC_Registration_OA_EngKan/husband_max_age"
             data-type-xml="int" type="number" />
@@ -365,9 +382,9 @@
     <label class="question non-select ">
         <span class="question-label active" lang="">ANC number</span>
         <span class="required">*</span>
-        <input name="/ANC_Registration_OA_EngKan/anc_number1" data-constraint=".&gt; 0"
-            data-calculate="/ANC_Registration_OA_EngKan/reg_no" disabled="disabled"
-            data-type-xml="int" required="required" type="number" />
+        <input name="/ANC_Registration_OA_EngKan/anc_number1"
+            data-calculate="/ANC_Registration_OA_EngKan/reg_no" data-constraint=".&gt; 0"
+            data-type-xml="int" disabled="disabled" required="required" type="number" />
     </label>
 
     <fieldset class="question">
@@ -397,6 +414,8 @@
 
     <label class="question or-branch">
         <span class="question-label active" lang="">LMP Date
+        </span>
+        <span class="or-hint active" lang="">Future dates are not allowed
         </span>
         <span class="required">*</span>
         <input name="/ANC_Registration_OA_EngKan/lmp_in_date" autocomplete="off"
@@ -719,8 +738,8 @@
             <div class="option-wrapper">
                 <label class="">
                     <input name="/ANC_Registration_OA_EngKan/is_high_risk"
-                        data-name="/ANC_Registration_OA_EngKan/is_high_risk"
-                        data-type-xml="select1" type="radio" value="yes" />
+                        data-name="/ANC_Registration_OA_EngKan/is_high_risk" data-type-xml="select1"
+                        type="radio" value="yes" />
                     <span class="option-label active" lang="">Yes</span>
                 </label>
                 <label class="">

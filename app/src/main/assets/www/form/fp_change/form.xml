@@ -10,7 +10,9 @@
     </label>
 
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">IUCD removal date? 
+        <span lang="" class="question-label active">IUCD removal date?
+        </span>
+        <span class="or-hint active" lang="">Future dates are not allowed
         </span>
         <input autocomplete="off" type="date" name="/Family_Planning_Change_Method_EngKan/iud_removal_date"
                data-constraint=".&lt;= /Family_Planning_Change_Method_EngKan/today "
@@ -20,7 +22,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Place of IUCD removal? 
+                <span lang="" class="question-label active">Place of IUCD removal?
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -77,7 +79,7 @@
     <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Which method will the couple accept? 
+                <span lang="" class="question-label active">Which method will the couple accept?
                 </span>
                 <span class="required">*</span>
             </legend>
@@ -102,7 +104,7 @@
                            data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method" value="iud"
                            required="required" data-type-xml="select1"/>
                     <span lang="" class="option-label active">IUCD
-                        
+
                     </span>
                 </label>
                 <label class="">
@@ -158,7 +160,9 @@
         </fieldset>
     </fieldset>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Date FP method started? 
+        <span lang="" class="question-label active">Date FP method started?
+        </span>
+        <span class="or-hint active" lang="">Future dates are not allowed
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Family_Planning_Change_Method_EngKan/date_familyplanningstart1"
@@ -177,7 +181,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">UPT result? 
+                <span lang="" class="question-label active">UPT result?
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -201,7 +205,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Place where IUCD was given? 
+                <span lang="" class="question-label active">Place where IUCD was given?
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -231,7 +235,7 @@
         </fieldset>
     </fieldset>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Name of facility where IUCD was given? 
+        <span lang="" class="question-label active">Name of facility where IUCD was given?
         </span>
         <input autocomplete="off" type="text" name="/Family_Planning_Change_Method_EngKan/iud_place_name"
                data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
@@ -240,7 +244,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Who inserted IUCD? 
+                <span lang="" class="question-label active">Who inserted IUCD?
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -291,7 +295,7 @@
                data-type-xml="string"/>
     </label>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Name of doctor who did sterilization? 
+        <span lang="" class="question-label active">Name of doctor who did sterilization?
         </span>
         <input autocomplete="off" type="text" name="/Family_Planning_Change_Method_EngKan/sterilization_doctor_name"
                data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'male_sterilization' or  /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'female_sterilization'"
@@ -300,7 +304,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Type of sterilization? 
+                <span lang="" class="question-label active">Type of sterilization?
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -327,7 +331,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Type of sterilization? 
+                <span lang="" class="question-label active">Type of sterilization?
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -356,7 +360,7 @@
              data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'male_sterilization'">
         <label class="note or-branch pre-init non-select ">
             <span lang="" class="question-label active">Pregnancy can still happen up to 3 months after male
-                sterilization. Tell the couple to use back-up FP method until 3 months from sterilization date, 
+                sterilization. Tell the couple to use back-up FP method until 3 months from sterilization date,
                 <span class="or-output"
                       data-value=" /Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date_formatted ">
                 </span>
@@ -369,29 +373,34 @@
     </section>
     <!--end of group -->
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Number of condoms given? 
-        </span>
+        <span lang="" class="question-label active">Number of condoms given?
+        </span> <span class="or-hint active" lang="">between 0-99
+    </span>
         <span class="required">*</span>
         <input autocomplete="off" type="number" name="/Family_Planning_Change_Method_EngKan/num_condoms"
-               required="required" data-constraint=".&gt;= 0"
+               required="required" data-constraint=".&gt;= 0 and .&lt; 100"
                data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'condom'"
                data-type-xml="int"/>
     </label>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Number of OCP strips given? 
+        <span lang="" class="question-label active">Number of OCP strips given?
+        </span>
+        <span class="or-hint active" lang="">between 0-99
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="number" name="/Family_Planning_Change_Method_EngKan/num_ocp_strips"
-               required="required" data-constraint=".&gt;= 0"
+               required="required" data-constraint=".&gt;= 0 and .&lt; 100"
                data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'ocp'"
                data-type-xml="int"/>
     </label>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Number of Centchroman strips given? 
+        <span lang="" class="question-label active">Number of Centchroman strips given?
+        </span>
+        <span class="or-hint active" lang="">between 0-99
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="number" name="/Family_Planning_Change_Method_EngKan/num_centchroman_pills"
-               required="required" data-constraint=".&gt;= 0"
+               required="required" data-constraint=".&gt;= 0 and .&lt; 100"
                data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'centchroman'"
                data-type-xml="int"/>
     </label>

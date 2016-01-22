@@ -97,6 +97,8 @@
         <label class="question non-select ">
             <span class="question-label active" lang="">Date of spontaneous abortion?
             </span>
+            <span class="or-hint active" lang="">Future dates are not allowed.
+            </span>
             <input name="/ANC_Close_EngKan/spontaneous_abortion_group/date_spontaneous"
                 autocomplete="off" data-constraint=".&lt;= /ANC_Close_EngKan/today "
                 data-type-xml="date" type="date" />
@@ -290,6 +292,8 @@
         <label class="question non-select ">
             <span class="question-label active" lang="">Date of abortion?
             </span>
+            <span class="or-hint active" lang="">Future dates are not allowed.
+            </span>
             <input name="/ANC_Close_EngKan/induced_abortion_group/date_induced" autocomplete="off"
                 data-constraint=".&lt;= /ANC_Close_EngKan/today " data-type-xml="date"
                 type="date" />
@@ -334,6 +338,8 @@
         data-relevant=" /ANC_Close_EngKan/maternal_death  = 'yes'">
         <label class="question non-select ">
             <span class="question-label active" lang="">Date of maternal death?
+            </span>
+            <span class="or-hint active" lang="">Future dates are not allowed.
             </span>
             <span class="required">*</span>
             <input name="/ANC_Close_EngKan/maternal_death_group/date_maternal_death"

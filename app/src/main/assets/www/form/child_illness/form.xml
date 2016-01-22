@@ -47,6 +47,8 @@
         <label class="question non-select ">
             <span class="question-label active" lang="">Date of sickness visit?
             </span>
+            <span class="or-hint active" lang="">Future dates are not allowed
+            </span>
             <span class="required">*</span>
             <input name="/Child_Sick_Visit_EngKan/child_sickness_management_group/sick_visit_date"
                 autocomplete="off"
@@ -462,6 +464,8 @@
         </label>
         <label class="question non-select ">
             <span class="question-label active" lang="">Reporting date?
+            </span>
+            <span class="or-hint active" lang="">Future dates are not allowed
             </span>
             <span class="required">*</span>
             <input

@@ -26,6 +26,8 @@
 
     <label class="question non-select ">
         <span class="question-label active" lang="">Delivery date?</span>
+        <span class="or-hint active" lang="">Future dates are not allowed
+        </span>
         <span class="required">*</span>
         <input name="/PNC_Registration_EngKan/delivery_date" autocomplete="off"
             data-constraint=".&lt;= /PNC_Registration_EngKan/today " data-type-xml="date"
@@ -33,6 +35,8 @@
     </label>
     <label class="question non-select ">
         <span class="question-label active" lang="">PNC registration date?
+        </span>
+        <span class="or-hint active" lang="">Future dates are not allowed
         </span>
         <span class="required">*</span>
         <input name="/PNC_Registration_EngKan/delivery_reg_date" autocomplete="off"

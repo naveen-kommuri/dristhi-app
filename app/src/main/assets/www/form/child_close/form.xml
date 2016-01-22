@@ -192,6 +192,8 @@
         <label class="question non-select ">
             <span lang="" class="question-label active">Date of child's death?
             </span>
+            <span class="or-hint active" lang="">Future dates are not allowed
+            </span>
             <span class="required">*</span>
             <input autocomplete="off" type="date" name="/Child_Close_EngKan/death_child_group/child_death_date"
                    required="required" data-constraint=".&lt;= /Child_Close_EngKan/today " data-type-xml="date"/>

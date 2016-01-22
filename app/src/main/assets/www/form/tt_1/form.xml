@@ -27,6 +27,8 @@
     </label>
     <label class="question non-select ">
         <span lang="" class="question-label active">Date of TT1 injection? </span>
+        <span class="or-hint active" lang="">Future dates are not allowed
+        </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/TT1_EngKan/tt1_date" required="required"
                data-constraint=".&lt;= /TT1_EngKan/today " data-type-xml="date"/>

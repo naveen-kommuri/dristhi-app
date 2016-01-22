@@ -38,6 +38,8 @@
 
         <label class="question non-select ">
             <span class="question-label active" lang="">Registration date?</span>
+            <span class="or-hint active" lang="">Future dates are not allowed
+            </span>
             <span class="required">*</span>
             <input name="/PNC_Child_Registration_EngKan/pnc_edit_group/pnc_reg_date"
                 data-constraint=".&lt;= /PNC_Child_Registration_EngKan/today " data-type-xml="date"
@@ -111,6 +113,14 @@
         <label class="question or-branch pre-init non-select">
             <span class="question-label active" lang="">Woman age in years
             </span>
+            <span class="or-hint active" lang="">
+                Age limit
+                <span class="or-output"
+                    data-value=" /PNC_Child_Registration_EngKan/pnc_edit_group/wife_min_age " />
+                -
+                <span class="or-output"
+                    data-value=" /PNC_Child_Registration_EngKan/pnc_edit_group/wife_max_age " />
+            </span>
             <span class="required">*</span>
             <input name="/PNC_Child_Registration_EngKan/pnc_edit_group/wife_age1" autocomplete="off"
                 data-constraint=".&lt;=(/PNC_Child_Registration_EngKan/pnc_edit_group/wife_max_age) and .&gt;=(/PNC_Child_Registration_EngKan/pnc_edit_group/wife_min_age)"
@@ -120,6 +130,8 @@
 
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Date of Birth?
+            </span>
+            <span class="or-hint active" lang="">Future dates are not allowed
             </span>
             <span class="required">*</span>
             <input name="/PNC_Child_Registration_EngKan/pnc_edit_group/wife_dob" autocomplete="off"
@@ -243,6 +255,8 @@
 
         <label class="question non-select ">
             <span class="question-label active" lang="">Delivery date?</span>
+            <span class="or-hint active" lang="">Without country code.
+            </span>
             <span class="required">*</span>
             <input name="/PNC_Child_Registration_EngKan/pnc_edit_group/delivery_date"
                 data-constraint=".&lt;= /PNC_Child_Registration_EngKan/today " data-type-xml="date"
