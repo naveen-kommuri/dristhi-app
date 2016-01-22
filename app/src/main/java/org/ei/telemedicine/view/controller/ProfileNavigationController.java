@@ -3,11 +3,7 @@ package org.ei.telemedicine.view.controller;
 import android.content.Intent;
 
 import org.ei.telemedicine.AllConstants;
-import org.ei.telemedicine.view.activity.ANCDetailActivity;
-import org.ei.telemedicine.view.activity.ChildDetailActivity;
-import org.ei.telemedicine.view.activity.EligibleCoupleDetailActivity;
 import org.ei.telemedicine.view.activity.NativeOverviewActivity;
-import org.ei.telemedicine.view.activity.PNCDetailActivity;
 
 import static org.ei.telemedicine.AllConstants.ALLFORMDATA;
 import static org.ei.telemedicine.AllConstants.CASE_ID;

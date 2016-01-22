@@ -35,9 +35,10 @@ public class TimelineEventTest {
     private Map<String, String> detailsWithoutData;
 
     @Before
-    public void setUps(){
+    public void setUps() {
         timelineEvent = new TimelineEvent("147", "pnc", localDate, "PNC", "kphb", "kukatpally");
     }
+
     @Before
     public void setUp() throws Exception {
         detailsWithData = new HashMap<String, String>();
@@ -56,10 +57,11 @@ public class TimelineEventTest {
     }
 
     @Test
-    public void casIdTest(){
+    public void casIdTest() {
         String s = timelineEvent.caseId();
         Assert.assertEquals("147", s);
     }
+
     @Test
     public void shouldCreateTimelineEventForANCVisitWithDetails() throws Exception {
         TimelineEvent timelineEvent = TimelineEvent.forANCCareProvided("CASE A", "1", "2012-01-01", detailsWithData);
