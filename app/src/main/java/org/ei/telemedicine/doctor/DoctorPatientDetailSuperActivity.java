@@ -21,16 +21,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.net.URLConnection;
 
-import static android.R.drawable.ic_media_pause;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.formData;
 
 /**
@@ -258,16 +252,17 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
     }
 
     public String getDatafromJsonArray(String jsonArrayStr) {
-        try {
-            String result = "";
-            JSONArray jsonArray = new JSONArray(jsonArrayStr);
-            for (int i = 0; i < jsonArray.length(); i++) {
-                result = !result.equals("") ? result + jsonArray.getString(i).trim().replace("_", " ") + "," : jsonArray.getString(i).trim().replace("_", " ") + ",";
+        if (jsonArrayStr.trim().length() != 0)
+            try {
+                String result = "";
+                JSONArray jsonArray = new JSONArray(jsonArrayStr);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    result = !result.equals("") ? result + jsonArray.getString(i).trim().replace("_", " ") + "," : jsonArray.getString(i).trim().replace("_", " ") + ",";
+                }
+                return result;
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-            return result;
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
         return "";
     }
 

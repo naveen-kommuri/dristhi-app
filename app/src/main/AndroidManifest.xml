@@ -53,7 +53,7 @@
 
     <uses-sdk
         android:minSdkVersion="16"
-        android:targetSdkVersion="16" />
+        android:targetSdkVersion="21" />
 
     <application
         android:name=".view.activity.DrishtiApplication"
@@ -73,9 +73,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".view.activity.HomeActivity"
-            android:screenOrientation="landscape" />
+
         <activity
             android:name=".view.activity.ReportsInfoActivity"
             android:screenOrientation="landscape"
@@ -84,62 +82,12 @@
             android:name=".view.activity.NativeReportsActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-        <activity
-            android:name=".view.activity.ReportsActivity"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-        <activity
-            android:name=".view.activity.ReportIndicatorListViewActivity"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-        <activity
-            android:name=".view.activity.ReportIndicatorDetailActivity"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-        <activity
-            android:name=".view.activity.ReportIndicatorCaseListActivity"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-        <activity
-            android:name=".view.activity.EligibleCoupleDetailActivity"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-        <activity
-            android:name=".view.activity.ANCDetailActivity"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-        <activity
-            android:name=".view.activity.PNCDetailActivity"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-        <activity
-            android:name=".view.activity.ChildDetailActivity"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
+
         <activity
             android:name=".view.activity.CameraLaunchActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Holo.NoActionBar" />
-        <activity
-            android:name=".view.activity.ECSmartRegisterActivity"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-        <activity
-            android:name=".view.activity.FPSmartRegisterActivity"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-        <activity
-            android:name=".view.activity.ANCSmartRegisterActivity"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-        <activity
-            android:name=".view.activity.PNCSmartRegisterActivity"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-        <activity
-            android:name=".view.activity.ChildSmartRegisterActivity"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
+
         <activity
             android:name=".view.activity.FormActivity"
             android:screenOrientation="landscape"

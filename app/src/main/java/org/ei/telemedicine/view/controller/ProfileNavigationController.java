@@ -2,7 +2,6 @@ package org.ei.telemedicine.view.controller;
 
 import android.content.Intent;
 
-import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.view.activity.NativeOverviewActivity;
 
 import static org.ei.telemedicine.AllConstants.ALLFORMDATA;

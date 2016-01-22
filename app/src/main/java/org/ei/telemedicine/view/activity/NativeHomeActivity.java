@@ -1,22 +1,17 @@
 package org.ei.telemedicine.view.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +19,6 @@ import org.apache.commons.lang3.text.WordUtils;
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
-import org.ei.telemedicine.doctor.NativeGraphActivity;
 import org.ei.telemedicine.domain.ANM;
 import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.repository.AllSharedPreferences;
@@ -39,11 +33,6 @@ import org.ei.telemedicine.view.controller.NativeUpdateANMDetailsTask;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
 import static java.lang.String.valueOf;
@@ -134,6 +123,7 @@ public class NativeHomeActivity extends SecuredActivity {
         initialize();
     }
 
+
     private void visibleRegisters() {
         AllSharedPreferences allSharedPreferences = Context.getInstance().allSharedPreferences();
         ec_register.setVisibility(allSharedPreferences.registerState(AllConstants.EC_REGISTERS_KEY) ? View.VISIBLE : View.GONE);
@@ -191,7 +181,7 @@ public class NativeHomeActivity extends SecuredActivity {
         Log.e("Resume", "resume");
         context.allSharedPreferences().saveCurrent(AllConstants.HOME_SCREEN);
         visibleRegisters();
-//        updateRegisterCounts();
+        updateRegisterCounts();
         updateSyncIndicator();
         updateRemainingFormsToSyncCount();
         try {
