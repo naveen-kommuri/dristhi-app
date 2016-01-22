@@ -33,7 +33,7 @@ public class DrishtiApplication extends Application {
 
         context = Context.getInstance();
         context.updateApplicationContext(getApplicationContext());
-        applyUserLanguagePreference();
+//        applyUserLanguagePreference();
         cleanUpSyncState();
     }
 
