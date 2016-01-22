@@ -2,12 +2,16 @@ package org.ei.telemedicine.test.service;
 
 import com.google.gson.Gson;
 
+import org.ei.telemedicine.AllConstants;
+import org.ei.telemedicine.Context;
 import org.ei.telemedicine.DristhiConfiguration;
+import org.ei.telemedicine.doctor.DoctorData;
 import org.ei.telemedicine.domain.FetchStatus;
 import org.ei.telemedicine.domain.Response;
 import org.ei.telemedicine.domain.ResponseStatus;
 import org.ei.telemedicine.domain.form.FormSubmission;
 import org.ei.telemedicine.dto.form.FormSubmissionDTO;
+import org.ei.telemedicine.repository.AllDoctorRepository;
 import org.ei.telemedicine.repository.AllSettings;
 import org.ei.telemedicine.repository.AllSharedPreferences;
 import org.ei.telemedicine.repository.FormDataRepository;
@@ -43,6 +47,8 @@ import static org.mockito.MockitoAnnotations.initMocks;
 @RunWith(MockitoJUnitRunner.class)
 public class FormSubmissionSyncServiceTest {
     @Mock
+    private DoctorData doctorData;
+    @Mock
     private FormDataRepository repository;
     @Mock
     private HTTPAgent httpAgent;
@@ -56,7 +62,10 @@ public class FormSubmissionSyncServiceTest {
     private DristhiConfiguration configuration;
     @Mock
     private JSONObject jsonObject;
-
+    @Mock
+    private AllDoctorRepository allDoctorRepository;
+    @Mock
+    private Context context;
     @Mock
     private FormSubmission formSubmission;
 
@@ -182,5 +191,32 @@ public class FormSubmissionSyncServiceTest {
 
         assertEquals(FetchStatus.fetchedFailed, fetchStatus);
         verifyZeroInteractions(formSubmissionService);
+    }
+
+    @Test
+    public void testShouldNotDelegateToProcessingIfPullDoctorData() throws Exception {
+        Context.setInstance(context);
+        doctorData = new DoctorData();
+        doctorData.setAnmId("demo2");
+//        doctorData.setCaseId();
+        when(configuration.syncDownloadBatchSize()).thenReturn(1);
+        when(allSettings.fetchPreviousFormSyncIndex()).thenReturn("122");
+        String dummyData = "[{\"anmId\": \"demo2\", \"riskinfo\": [{\"visit_type\": \"CHILD\", \"sickVisitDate\": null, \"daysOfDiarrhea\": null, \"breathsPerMinute\": null, \"id\": \"8e691e6973617e14dd98631d4f634de4\", \"edd\": \"14-Jul-2016\", \"childSigns\": null, \"vommitEveryThing\": null, \"childReferral\": null, \"dateOfBirth\": \"2016-01-12\", \"immediateReferralReason\": null, \"isHighRisk\": \"\", \"reportChildDiseasePlace\": null, \"reportChildDiseaseOther\": null, \"numberOfORSGiven\": null, \"lmp\": \"08-Oct-2015\", \"numberOfDaysCough\": null, \"reportChildDisease\": \"measles\", \"immediateReferral\": null, \"childTemperature\": \"222-F\", \"bloodInStool\": null, \"daysOfFever\": null, \"submissionDate\": \"2016-01-12\", \"reportChildDiseaseDate\": \"2016-01-12\", \"childSignsOther\": null, \"entityid\": \"0135fde6-6a1d-4dfc-816a-5aec1e329738\", \"anmPoc\": \"\"}], \"district\": null, \"entityidec\": \"15f46603-9f36-41d8-a8ba-b7e89e1adc84\", \"phoneNumber\": \"2548121337675\", \"wifeName\": \"demores\", \"village\": \"Chemoinoi\", \"husbandName\": null, \"pending\": \" \", \"wifeAge\": \"\"}]";
+
+        FetchStatus fetchStatus = FetchStatus.fetched;
+        //service.pullFromServer(null);
+        when(allSharedPreferences.getUserRole()).thenReturn(AllConstants.DOCTOR_ROLE);
+        when(allSharedPreferences.fetchRegisteredANM()).thenReturn("anm id 1");
+        when(allSharedPreferences.getPwd()).thenReturn("122");
+        when(configuration.dristhiDjangoBaseURL()).thenReturn("http://django_url");
+        when(httpAgent.fetch("http://django_url/docinfo?docname=anm id 1&pwd=122"))
+                .thenReturn(new Response<String>(success, dummyData));
+        when(context.allDoctorRepository()).thenReturn(allDoctorRepository);
+        allDoctorRepository.addData(doctorData);
+        verify(allDoctorRepository).addData(doctorData);
+        formSubmissionService.processDoctorRecords(dummyData);
+        service.pullFromServer("");
+        assertEquals(FetchStatus.fetched, fetchStatus);
+
     }
 }

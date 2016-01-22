@@ -28,7 +28,6 @@ import org.ei.telemedicine.service.formSubmissionHandler.PNCRegistrationOAHandle
 import org.ei.telemedicine.service.formSubmissionHandler.PNCVisitHandler;
 import org.ei.telemedicine.service.formSubmissionHandler.RenewFPProductHandler;
 import org.ei.telemedicine.service.formSubmissionHandler.TTHandler;
-import org.ei.telemedicine.service.formSubmissionHandler.TestSubmissionHandler;
 import org.ei.telemedicine.service.formSubmissionHandler.VitaminAHandler;
 import org.junit.Before;
 import org.junit.Test;
@@ -100,8 +99,6 @@ public class FormSubmissionRouterTest {
     private ANCInvestigationsHandler ancInvestigationsHandler;
     @Mock
     private Listener<String> formSubmittedListener;
-    @Mock
-    private TestSubmissionHandler testSubmissionHandler;
 
     private FormSubmissionRouter router;
 
@@ -126,7 +123,7 @@ public class FormSubmissionRouterTest {
                 pncCloseHandler,
                 pncVisitHandler,
                 childImmunizationsHandler, childRegistrationECHandler, childRegistrationOAHandler, childCloseHandler,
-                childIllnessHandler, vitaminAHandler, deliveryPlanHandler, ecEditHandler, ancInvestigationsHandler, testSubmissionHandler);
+                childIllnessHandler, vitaminAHandler, deliveryPlanHandler, ecEditHandler, ancInvestigationsHandler);
     }
 
     @Test
@@ -451,7 +448,7 @@ public class FormSubmissionRouterTest {
         router.route("instance id 1");
 
         verify(formDataRepository).fetchFromSubmission("instance id 1");
-        verify(testSubmissionHandler).handle(formSubmission);
+
     }
 
     @Test

@@ -2,7 +2,9 @@ package org.ei.telemedicine.test.service;
 
 import com.google.gson.Gson;
 
+import org.ei.telemedicine.Context;
 import org.ei.telemedicine.domain.form.FormSubmission;
+import org.ei.telemedicine.repository.AllDoctorRepository;
 import org.ei.telemedicine.repository.AllSettings;
 import org.ei.telemedicine.repository.FormDataRepository;
 import org.ei.telemedicine.service.FormSubmissionService;
@@ -29,6 +31,10 @@ import static org.mockito.MockitoAnnotations.initMocks;
 public class FormSubmissionServiceTest {
     @Mock
     private ZiggyService ziggyService;
+    @Mock
+    private Context context;
+    @Mock
+    private AllDoctorRepository allDoctorRepository;
     @Mock
     private AllSettings allSettings;
     @Mock
@@ -103,5 +109,14 @@ public class FormSubmissionServiceTest {
         inOrder.verify(ziggyService).saveForm(paramsForSecondSubmission, "{}");
         inOrder.verify(formDataRepository).updateServerVersion("instance id 2", "1", "");
         inOrder.verify(allSettings).savePreviousFormSyncIndex("1");
+    }
+
+    @Test
+    public void testDoctorData() throws Exception {
+        String dummyData = "[{\"anmId\": \"demo2\", \"riskinfo\": [{\"visit_type\": \"CHILD\", \"sickVisitDate\": \"\", \"daysOfDiarrhea\": \"\", \"breathsPerMinute\": \"\", \"id\": \"8e691e6973617e14dd98631d4f634de4\", \"edd\": \"14-Jul-2016\", \"childSigns\": \"\", \"vommitEveryThing\": \"\", \"childReferral\": \"\", \"dateOfBirth\": \"2016-01-12\", \"immediateReferralReason\": \"\", \"isHighRisk\": \"\", \"reportChildDiseasePlace\": \"\", \"reportChildDiseaseOther\": \"\", \"numberOfORSGiven\": \"\", \"lmp\": \"08-Oct-2015\", \"numberOfDaysCough\": \"\", \"reportChildDisease\": \"measles\", \"immediateReferral\": \"\", \"childTemperature\": \"222-F\", \"bloodInStool\": \"\", \"daysOfFever\": \"\", \"submissionDate\": \"2016-01-12\", \"reportChildDiseaseDate\": \"2016-01-12\", \"childSignsOther\": \"\", \"entityid\": \"0135fde6-6a1d-4dfc-816a-5aec1e329738\", \"anmPoc\": \"\"}], \"district\": \"\", \"entityidec\": \"15f46603-9f36-41d8-a8ba-b7e89e1adc84\", \"phoneNumber\": \"2548121337675\", \"wifeName\": \"demores\", \"village\": \"Chemoinoi\", \"husbandName\": \"\", \"pending\": \" \", \"wifeAge\": \"\"}]";
+        Context.setInstance(context);
+        when(context.allDoctorRepository()).thenReturn(allDoctorRepository);
+        service.processDoctorRecords(dummyData);
+
     }
 }

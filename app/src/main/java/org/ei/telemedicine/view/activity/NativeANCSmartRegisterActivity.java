@@ -1,11 +1,7 @@
 package org.ei.telemedicine.view.activity;
 
-import static com.google.common.collect.Iterables.concat;
-import static com.google.common.collect.Iterables.toArray;
-import static java.util.Arrays.asList;
-import static org.ei.telemedicine.AllConstants.FormNames.*;
-
-import java.util.List;
+import android.util.Log;
+import android.view.View;
 
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
@@ -38,8 +34,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
-import android.view.View;
+import java.util.List;
+
+import static com.google.common.collect.Iterables.concat;
+import static com.google.common.collect.Iterables.toArray;
+import static java.util.Arrays.asList;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_CLOSE;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_INVESTIGATIONS;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT;
+import static org.ei.telemedicine.AllConstants.FormNames.DELIVERY_OUTCOME;
+import static org.ei.telemedicine.AllConstants.FormNames.DELIVERY_PLAN;
+import static org.ei.telemedicine.AllConstants.FormNames.HB_TEST;
+import static org.ei.telemedicine.AllConstants.FormNames.IFA;
+import static org.ei.telemedicine.AllConstants.FormNames.TT;
 
 public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
@@ -130,8 +137,9 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     private DialogOption[] getEditOptions() {
         return new DialogOption[]{
                 new OpenFormOption(getString(R.string.str_register_anc_visit_form), ANC_VISIT, formController),
+//                new OpenFormOption("ANC Visit Edit", ANC_VISIT_EDIT, formController),
 //                new OpenFormOption("ANC Reg Edit", "anc_reg_edit", formController),
-                new OpenFormOption("ANC Edit", ANC_EDIT, formController),
+//                new OpenFormOption("ANC Edit", ANC_EDIT, formController),
                 new OpenFormOption(getString(R.string.str_register_hb_test_form), HB_TEST, formController),
                 new OpenFormOption(getString(R.string.str_register_ifa_form), IFA, formController),
                 new OpenFormOption(getString(R.string.str_register_tt_form), TT, formController),
