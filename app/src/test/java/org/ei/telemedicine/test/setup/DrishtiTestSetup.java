@@ -7,8 +7,8 @@
 //    @Override
 //    public boolean shouldInstrument(ClassInfo classInfo) {
 //        return super.shouldInstrument(classInfo)
-//                || classInfo.getName().equals("org.ei.drishti.Context")
-//                || classInfo.getName().equals("org.ei.drishti.view.controller.ECSmartRegisterController")
-//                || classInfo.getName().equals("org.ei.drishti.view.controller.VillageController");
+//                || classInfo.getName().equals("org.ei.telemedicine.Context")
+//                || classInfo.getName().equals("org.ei.telemedicine.view.controller.ECSmartRegisterController")
+//                || classInfo.getName().equals("org.ei.telemedicine.view.controller.VillageController");
 //    }
 //}

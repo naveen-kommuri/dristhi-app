@@ -2,7 +2,9 @@ package org.ei.telemedicine.test.shadows;
 
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.repository.AllBeneficiaries;
+import org.ei.telemedicine.repository.AllDoctorRepository;
 import org.ei.telemedicine.repository.AllEligibleCouples;
+import org.ei.telemedicine.repository.AllSharedPreferences;
 import org.ei.telemedicine.repository.Repository;
 import org.ei.telemedicine.service.PendingFormSubmissionService;
 import org.ei.telemedicine.view.controller.ANMController;
@@ -26,6 +28,10 @@ public class ShadowContext {
     @Mock
     AllBeneficiaries allBeneficiaries;
     @Mock
+    AllSharedPreferences allSharedPreferences;
+    @Mock
+    AllDoctorRepository allDoctorRepository;
+    @Mock
     ANMLocationController anmLocationController;
     @Mock
     private PendingFormSubmissionService pendingFormSubmissionService;
@@ -46,8 +52,18 @@ public class ShadowContext {
     }
 
     @Implementation
+    public AllSharedPreferences allSharedPreferences() {
+        return allSharedPreferences;
+    }
+
+    @Implementation
     public AllBeneficiaries allBeneficiaries() {
         return allBeneficiaries;
+    }
+
+    @Implementation
+    public AllDoctorRepository allDoctorsRepository() {
+        return allDoctorRepository;
     }
 
     @Implementation

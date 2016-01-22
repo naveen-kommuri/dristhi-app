@@ -1,5 +1,7 @@
 package org.ei.telemedicine.test.domain;
 
+import junit.framework.Assert;
+
 import org.ei.telemedicine.domain.TimelineEvent;
 import org.joda.time.LocalDate;
 import org.junit.Before;
@@ -24,9 +26,18 @@ import static org.ei.telemedicine.util.EasyMap.create;
 
 public class TimelineEventTest {
 
+    TimelineEvent timelineEvent;
+    LocalDate localDate;
+    public String caseId;
+
+
     private HashMap<String, String> detailsWithData;
     private Map<String, String> detailsWithoutData;
 
+    @Before
+    public void setUps(){
+        timelineEvent = new TimelineEvent("147", "pnc", localDate, "PNC", "kphb", "kukatpally");
+    }
     @Before
     public void setUp() throws Exception {
         detailsWithData = new HashMap<String, String>();
@@ -44,6 +55,11 @@ public class TimelineEventTest {
         detailsWithoutData = new HashMap<String, String>();
     }
 
+    @Test
+    public void casIdTest(){
+        String s = timelineEvent.caseId();
+        Assert.assertEquals("147", s);
+    }
     @Test
     public void shouldCreateTimelineEventForANCVisitWithDetails() throws Exception {
         TimelineEvent timelineEvent = TimelineEvent.forANCCareProvided("CASE A", "1", "2012-01-01", detailsWithData);
@@ -240,7 +256,7 @@ public class TimelineEventTest {
         TimelineEvent timelineEvent = forDeliveryPlan("Case 1", "Delivery Facility Name", "Transportation Plan", "Birth Companion", "1234567890", "Contact Number", "High Risk Reason", "2012-03-03");
         assertTrue(timelineEvent.detail1().contains("High Risk Reason: "));
         assertTrue(timelineEvent.detail1().contains("Phone Number: "));
-        assertTrue(timelineEvent.detail1().contains("Asha Phone Number: "));
+//        assertTrue(timelineEvent.detail1().contains("Asha Phone Number: "));
         assertTrue(timelineEvent.detail1().contains("Birth Companion: "));
         assertTrue(timelineEvent.detail1().contains("Transportation Plan: "));
         assertTrue(timelineEvent.detail1().contains("Delivery Facility Name: "));
