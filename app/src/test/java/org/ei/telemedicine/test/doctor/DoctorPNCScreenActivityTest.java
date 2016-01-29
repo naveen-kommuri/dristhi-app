@@ -63,8 +63,8 @@ public class DoctorPNCScreenActivityTest extends ActivityUnitTestCase<DoctorPNCS
     @Before
     public void setUp() throws Exception {
        super.setUp();
-        startActivity(new Intent(getInstrumentation().getTargetContext(), DoctorPNCScreenActivity.class), null, null);
-        doctorPNCScreenActivity =  getActivity();
+        //startActivity(new Intent(getInstrumentation().getTargetContext(), DoctorPNCScreenActivity.class), null, null);
+        //doctorPNCScreenActivity =  getActivity();
 
         //setUpViews();
 
