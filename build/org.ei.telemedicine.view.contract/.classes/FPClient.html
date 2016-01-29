@@ -1,0 +1,652 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: FPClient</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.contract</a> ]
+</div>
+
+<h1>Coverage Summary for Class: FPClient (org.ei.telemedicine.view.contract)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FPClient</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    52.3%
+  </span>
+  <span class="absValue">
+    (46/ 88)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    74.1%
+  </span>
+  <span class="absValue">
+    (123/ 166)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.contract;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static org.ei.telemedicine.AllConstants.COMMA_WITH_SPACE;
+<i>4</i>&nbsp;import static org.ei.telemedicine.AllConstants.SPACE;
+<i>5</i>&nbsp;import static org.ei.telemedicine.AllConstants.ECRegistrationFields.BPL_VALUE;
+<i>6</i>&nbsp;import static org.ei.telemedicine.AllConstants.ECRegistrationFields.SC_VALUE;
+<i>7</i>&nbsp;import static org.ei.telemedicine.AllConstants.ECRegistrationFields.ST_VALUE;
+<i>8</i>&nbsp;import static org.ei.telemedicine.Context.getInstance;
+<i>9</i>&nbsp;import static org.ei.telemedicine.util.DateUtil.formatDate;
+<i>10</i>&nbsp;import static org.ei.telemedicine.util.StringUtil.humanize;
+<i>11</i>&nbsp;import static org.ei.telemedicine.util.StringUtil.humanizeAndDoUPPERCASE;
+<i>12</i>&nbsp;import static org.ei.telemedicine.util.StringUtil.replaceAndHumanize;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;import java.util.Arrays;
+<i>15</i>&nbsp;import java.util.HashMap;
+<i>16</i>&nbsp;import java.util.List;
+<i>17</i>&nbsp;import java.util.Locale;
+<i>18</i>&nbsp;import java.util.Map;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;import org.apache.commons.lang3.StringUtils;
+<i>21</i>&nbsp;import org.apache.commons.lang3.builder.EqualsBuilder;
+<i>22</i>&nbsp;import org.apache.commons.lang3.builder.HashCodeBuilder;
+<i>23</i>&nbsp;import org.apache.commons.lang3.builder.ToStringBuilder;
+<i>24</i>&nbsp;import org.ei.telemedicine.R;
+<i>25</i>&nbsp;import org.ei.telemedicine.domain.FPMethod;
+<i>26</i>&nbsp;import org.ei.telemedicine.util.IntegerUtil;
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;public class FPClient implements FPSmartRegisterClient {
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    public static final String CONDOM_REFILL = &quot;Condom Refill&quot;;
+<i>31</i>&nbsp;    public static final String DPMA_INJECTABLE_REFILL = &quot;DMPA Injectable Refill&quot;;
+<i>32</i>&nbsp;    public static final String OCP_REFILL = &quot;OCP Refill&quot;;
+<i>33</i>&nbsp;    public static final String MALE_STERILIZATION_FOLLOW_UP_1 = &quot;Male sterilization Followup 1&quot;;
+<i>34</i>&nbsp;    public static final String MALE_STERILIZATION_FOLLOW_UP_2 = &quot;Male sterilization Followup 2&quot;;
+<i>35</i>&nbsp;    public static final String FEMALE_STERILIZATION_FOLLOW_UP_1 = &quot;Female sterilization Followup 1&quot;;
+<i>36</i>&nbsp;    public static final String FEMALE_STERILIZATION_FOLLOW_UP_2 = &quot;Female sterilization Followup 2&quot;;
+<i>37</i>&nbsp;    public static final String FEMALE_STERILIZATION_FOLLOW_UP_3 = &quot;Female sterilization Followup 3&quot;;
+<i>38</i>&nbsp;    public static final String IUD_FOLLOW_UP_1 = &quot;IUD Followup 1&quot;;
+<i>39</i>&nbsp;    public static final String IUD_FOLLOW_UP_2 = &quot;IUD Followup 2&quot;;
+<i>40</i>&nbsp;    public static final String FP_FOLLOW_UP = &quot;FP Followup&quot;;
+<i>41</i>&nbsp;    public static final String REFERRAL_FOLLOW_UP = &quot;FP Referral Followup&quot;;
+<i>42</i>&nbsp;
+<b class="fc"><i>43</i>&nbsp;    private static final String[] refillTypes = {CONDOM_REFILL, DPMA_INJECTABLE_REFILL, OCP_REFILL};</b>
+<i>44</i>&nbsp;
+<b class="fc"><i>45</i>&nbsp;    private static final String[] followUpTypes = {MALE_STERILIZATION_FOLLOW_UP_1,</b>
+<i>46</i>&nbsp;            MALE_STERILIZATION_FOLLOW_UP_2,
+<i>47</i>&nbsp;            FEMALE_STERILIZATION_FOLLOW_UP_1,
+<i>48</i>&nbsp;            FEMALE_STERILIZATION_FOLLOW_UP_2,
+<i>49</i>&nbsp;            FEMALE_STERILIZATION_FOLLOW_UP_3,
+<i>50</i>&nbsp;            IUD_FOLLOW_UP_1,
+<i>51</i>&nbsp;            IUD_FOLLOW_UP_2};
+<i>52</i>&nbsp;
+<b class="fc"><i>53</i>&nbsp;    private static Map&lt;String, String&gt; alertNameToFPMethodMap = new HashMap&lt;String, String&gt;();</b>
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;    static {
+<b class="fc"><i>56</i>&nbsp;        alertNameToFPMethodMap.put(CONDOM_REFILL, &quot;condom&quot;);</b>
+<b class="fc"><i>57</i>&nbsp;        alertNameToFPMethodMap.put(DPMA_INJECTABLE_REFILL, &quot;dmpa_injectable&quot;);</b>
+<b class="fc"><i>58</i>&nbsp;        alertNameToFPMethodMap.put(OCP_REFILL, &quot;ocp&quot;);</b>
+<b class="fc"><i>59</i>&nbsp;        alertNameToFPMethodMap.put(MALE_STERILIZATION_FOLLOW_UP_1, &quot;male_sterilization&quot;);</b>
+<b class="fc"><i>60</i>&nbsp;        alertNameToFPMethodMap.put(MALE_STERILIZATION_FOLLOW_UP_2, &quot;male_sterilization&quot;);</b>
+<b class="fc"><i>61</i>&nbsp;        alertNameToFPMethodMap.put(FEMALE_STERILIZATION_FOLLOW_UP_1, &quot;female_sterilization&quot;);</b>
+<b class="fc"><i>62</i>&nbsp;        alertNameToFPMethodMap.put(FEMALE_STERILIZATION_FOLLOW_UP_2, &quot;female_sterilization&quot;);</b>
+<b class="fc"><i>63</i>&nbsp;        alertNameToFPMethodMap.put(FEMALE_STERILIZATION_FOLLOW_UP_3, &quot;female_sterilization&quot;);</b>
+<b class="fc"><i>64</i>&nbsp;        alertNameToFPMethodMap.put(IUD_FOLLOW_UP_1, &quot;iud&quot;);</b>
+<b class="fc"><i>65</i>&nbsp;        alertNameToFPMethodMap.put(IUD_FOLLOW_UP_2, &quot;iud&quot;);</b>
+<i>66</i>&nbsp;
+<b class="fc"><i>67</i>&nbsp;    }</b>
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;    private String entityId;
+<i>70</i>&nbsp;    private String entityIdToSavePhoto;
+<i>71</i>&nbsp;    private String name;
+<i>72</i>&nbsp;    private String husbandName;
+<i>73</i>&nbsp;    private String age;
+<i>74</i>&nbsp;    private String ec_number;
+<i>75</i>&nbsp;    private String village;
+<i>76</i>&nbsp;    private String fp_method;
+<i>77</i>&nbsp;    private String num_pregnancies;
+<i>78</i>&nbsp;    private String parity;
+<i>79</i>&nbsp;    private String num_living_children;
+<i>80</i>&nbsp;    private String num_stillbirths;
+<i>81</i>&nbsp;    private String num_abortions;
+<i>82</i>&nbsp;    private boolean isHighPriority;
+<i>83</i>&nbsp;    private String family_planning_method_change_date;
+<i>84</i>&nbsp;    private String photo_path;
+<i>85</i>&nbsp;    private boolean is_youngest_child_under_two;
+<i>86</i>&nbsp;    private String youngest_child_age;
+<i>87</i>&nbsp;    private List&lt;AlertDTO&gt; alerts;
+<i>88</i>&nbsp;    private String complication_date;
+<i>89</i>&nbsp;    private String caste;
+<i>90</i>&nbsp;    private String economicStatus;
+<i>91</i>&nbsp;    private String fp_method_followup_date;
+<i>92</i>&nbsp;    private String iudPlace;
+<i>93</i>&nbsp;    private String iudPerson;
+<i>94</i>&nbsp;    private String numberOfCondomsSupplied;
+<i>95</i>&nbsp;    private String numberOfCentchromanPillsDelivered;
+<i>96</i>&nbsp;    private String numberOfOCPDelivered;
+<i>97</i>&nbsp;    private String condomSideEffect;
+<i>98</i>&nbsp;    private String iudSidEffect;
+<i>99</i>&nbsp;    private String ocpSideEffect;
+<i>100</i>&nbsp;    private String sterilizationSideEffect;
+<i>101</i>&nbsp;    private String injectableSideEffect;
+<i>102</i>&nbsp;    private String otherSideEffect;
+<i>103</i>&nbsp;    private String highPriorityReason;
+<i>104</i>&nbsp;    private RefillFollowUps refillFollowUps;
+<i>105</i>&nbsp;
+<i>106</i>&nbsp;
+<b class="fc"><i>107</i>&nbsp;    public FPClient(String entityId, String name, String husbandName, String village, String ecNumber) {</b>
+<b class="fc"><i>108</i>&nbsp;        this.entityId = entityId;</b>
+<b class="fc"><i>109</i>&nbsp;        this.entityIdToSavePhoto = entityId;</b>
+<b class="fc"><i>110</i>&nbsp;        this.name = name;</b>
+<b class="fc"><i>111</i>&nbsp;        this.husbandName = husbandName;</b>
+<b class="fc"><i>112</i>&nbsp;        this.village = village;</b>
+<b class="fc"><i>113</i>&nbsp;        this.ec_number = ecNumber;</b>
+<b class="fc"><i>114</i>&nbsp;    }</b>
+<i>115</i>&nbsp;
+<i>116</i>&nbsp;
+<i>117</i>&nbsp;    public FPClient preprocess() {
+<b class="fc"><i>118</i>&nbsp;        return setRefillFollowUp();</b>
+<i>119</i>&nbsp;    }
+<i>120</i>&nbsp;
+<i>121</i>&nbsp;    public FPClient setRefillFollowUp() {
+<b class="fc"><i>122</i>&nbsp;        List&lt;AlertDTO&gt; alerts = alerts();</b>
+<b class="fc"><i>123</i>&nbsp;        AlertDTO fpReferralFollowUpAlert = getFPReferralFollowUpAlert(alerts);</b>
+<b class="fc"><i>124</i>&nbsp;        AlertDTO fpFollowUpAlert = getFPFollowUpAlert(alerts);</b>
+<b class="fc"><i>125</i>&nbsp;        if (fpReferralFollowUpAlert != null) {</b>
+<b class="fc"><i>126</i>&nbsp;            this.withRefillFollowUps(new RefillFollowUps(REFERRAL_FOLLOW_UP, fpReferralFollowUpAlert, getInstance().getStringResource(R.string.str_referral)));</b>
+<b class="fc"><i>127</i>&nbsp;        } else if (fpFollowUpAlert != null) {</b>
+<b class="fc"><i>128</i>&nbsp;            this.withRefillFollowUps(new RefillFollowUps(FP_FOLLOW_UP, fpFollowUpAlert, getInstance().getStringResource(R.string.str_follow_up)));</b>
+<i>129</i>&nbsp;        } else {
+<b class="fc"><i>130</i>&nbsp;            this.withRefillFollowUps(getOtherFPMethod(alerts));</b>
+<i>131</i>&nbsp;        }
+<b class="fc"><i>132</i>&nbsp;        return this;</b>
+<i>133</i>&nbsp;    }
+<i>134</i>&nbsp;
+<i>135</i>&nbsp;    private RefillFollowUps getOtherFPMethod(List&lt;AlertDTO&gt; alerts) {
+<b class="fc"><i>136</i>&nbsp;        for (AlertDTO alert : alerts) {</b>
+<b class="fc"><i>137</i>&nbsp;            if (isOtherFPMethodAlert(alert) &amp;&amp; isAlertBelongsTo(alert, followUpTypes)) {</b>
+<b class="fc"><i>138</i>&nbsp;                return new RefillFollowUps(alert.name(), alert, getInstance().getStringResource(R.string.str_follow_up));</b>
+<b class="fc"><i>139</i>&nbsp;            } else if (isOtherFPMethodAlert(alert) &amp;&amp; isAlertBelongsTo(alert, refillTypes)) {</b>
+<b class="fc"><i>140</i>&nbsp;                return new RefillFollowUps(alert.name(), alert, getInstance().getStringResource(R.string.str_refill));</b>
+<i>141</i>&nbsp;            }
+<b class="fc"><i>142</i>&nbsp;        }</b>
+<b class="fc"><i>143</i>&nbsp;        return null;</b>
+<i>144</i>&nbsp;    }
+<i>145</i>&nbsp;
+<i>146</i>&nbsp;
+<i>147</i>&nbsp;    private AlertDTO getFPFollowUpAlert(List&lt;AlertDTO&gt; alerts) {
+<b class="fc"><i>148</i>&nbsp;        for (AlertDTO alert : alerts) {</b>
+<b class="fc"><i>149</i>&nbsp;            if (isFPFollowUpAlert(alert)) {</b>
+<b class="fc"><i>150</i>&nbsp;                return alert;</b>
+<i>151</i>&nbsp;            }
+<b class="fc"><i>152</i>&nbsp;        }</b>
+<b class="fc"><i>153</i>&nbsp;        return null;</b>
+<i>154</i>&nbsp;    }
+<i>155</i>&nbsp;
+<i>156</i>&nbsp;    private AlertDTO getFPReferralFollowUpAlert(List&lt;AlertDTO&gt; alerts) {
+<b class="fc"><i>157</i>&nbsp;        for (AlertDTO alert : alerts) {</b>
+<b class="fc"><i>158</i>&nbsp;            if (isFPReferralFollowUpAlert(alert)) {</b>
+<b class="fc"><i>159</i>&nbsp;                return alert;</b>
+<i>160</i>&nbsp;            }
+<b class="fc"><i>161</i>&nbsp;        }</b>
+<b class="fc"><i>162</i>&nbsp;        return null;</b>
+<i>163</i>&nbsp;    }
+<i>164</i>&nbsp;
+<i>165</i>&nbsp;    private boolean isAlertBelongsTo(AlertDTO alert, String[] types) {
+<b class="fc"><i>166</i>&nbsp;        return Arrays.asList(types).contains(alert.name());</b>
+<i>167</i>&nbsp;    }
+<i>168</i>&nbsp;
+<i>169</i>&nbsp;    private boolean isOtherFPMethodAlert(AlertDTO alert) {
+<b class="fc"><i>170</i>&nbsp;        return this.fpMethod().name().equalsIgnoreCase(alertNameToFPMethodMap.get(alert.name()));</b>
+<i>171</i>&nbsp;    }
+<i>172</i>&nbsp;
+<i>173</i>&nbsp;    private boolean isFPFollowUpAlert(AlertDTO alert) {
+<b class="fc"><i>174</i>&nbsp;        return alert.name().equalsIgnoreCase(FP_FOLLOW_UP);</b>
+<i>175</i>&nbsp;    }
+<i>176</i>&nbsp;
+<i>177</i>&nbsp;    private boolean isFPReferralFollowUpAlert(AlertDTO alert) {
+<b class="fc"><i>178</i>&nbsp;        return alert.name().equalsIgnoreCase(REFERRAL_FOLLOW_UP);</b>
+<i>179</i>&nbsp;    }
+<i>180</i>&nbsp;
+<i>181</i>&nbsp;    @Override
+<i>182</i>&nbsp;    public RefillFollowUps refillFollowUps() {
+<b class="fc"><i>183</i>&nbsp;        return refillFollowUps;</b>
+<i>184</i>&nbsp;    }
+<i>185</i>&nbsp;
+<i>186</i>&nbsp;    @Override
+<i>187</i>&nbsp;    public String highPriorityReason() {
+<b class="nc"><i>188</i>&nbsp;        return humanize(highPriorityReason);</b>
+<i>189</i>&nbsp;    }
+<i>190</i>&nbsp;
+<i>191</i>&nbsp;    public FPClient withRefillFollowUps(RefillFollowUps refillFollowUps) {
+<b class="fc"><i>192</i>&nbsp;        this.refillFollowUps = refillFollowUps;</b>
+<b class="fc"><i>193</i>&nbsp;        return this;</b>
+<i>194</i>&nbsp;    }
+<i>195</i>&nbsp;
+<i>196</i>&nbsp;
+<i>197</i>&nbsp;    @Override
+<i>198</i>&nbsp;    public String entityId() {
+<b class="nc"><i>199</i>&nbsp;        return entityId;</b>
+<i>200</i>&nbsp;    }
+<i>201</i>&nbsp;
+<i>202</i>&nbsp;    @Override
+<i>203</i>&nbsp;    public String name() {
+<b class="fc"><i>204</i>&nbsp;        return humanize(name);</b>
+<i>205</i>&nbsp;    }
+<i>206</i>&nbsp;
+<i>207</i>&nbsp;    @Override
+<i>208</i>&nbsp;    public String displayName() {
+<b class="nc"><i>209</i>&nbsp;        return name();</b>
+<i>210</i>&nbsp;    }
+<i>211</i>&nbsp;
+<i>212</i>&nbsp;    @Override
+<i>213</i>&nbsp;    public String village() {
+<b class="nc"><i>214</i>&nbsp;        return humanize(village);</b>
+<i>215</i>&nbsp;    }
+<i>216</i>&nbsp;
+<i>217</i>&nbsp;    public String wifeName() {
+<b class="nc"><i>218</i>&nbsp;        return name;</b>
+<i>219</i>&nbsp;    }
+<i>220</i>&nbsp;
+<i>221</i>&nbsp;    @Override
+<i>222</i>&nbsp;    public String husbandName() {
+<b class="nc"><i>223</i>&nbsp;        return humanize(husbandName);</b>
+<i>224</i>&nbsp;    }
+<i>225</i>&nbsp;
+<i>226</i>&nbsp;    @Override
+<i>227</i>&nbsp;    public int age() {
+<b class="nc"><i>228</i>&nbsp;        return IntegerUtil.tryParse(age, 0);</b>
+<i>229</i>&nbsp;    }
+<i>230</i>&nbsp;
+<i>231</i>&nbsp;    @Override
+<i>232</i>&nbsp;    public int ageInDays() {
+<b class="nc"><i>233</i>&nbsp;        return IntegerUtil.tryParse(age, 0) * 365;</b>
+<i>234</i>&nbsp;    }
+<i>235</i>&nbsp;
+<i>236</i>&nbsp;    @Override
+<i>237</i>&nbsp;    public String ageInString() {
+<b class="nc"><i>238</i>&nbsp;        return &quot;(&quot; + age + &quot;)&quot;;</b>
+<i>239</i>&nbsp;    }
+<i>240</i>&nbsp;
+<i>241</i>&nbsp;    @Override
+<i>242</i>&nbsp;    public boolean isSC() {
+<b class="nc"><i>243</i>&nbsp;        return caste != null &amp;&amp; caste.equalsIgnoreCase(SC_VALUE);</b>
+<i>244</i>&nbsp;    }
+<i>245</i>&nbsp;
+<i>246</i>&nbsp;    @Override
+<i>247</i>&nbsp;    public boolean isST() {
+<b class="nc"><i>248</i>&nbsp;        return caste != null &amp;&amp; caste.equalsIgnoreCase(ST_VALUE);</b>
+<i>249</i>&nbsp;    }
+<i>250</i>&nbsp;
+<i>251</i>&nbsp;    @Override
+<i>252</i>&nbsp;    public boolean isHighRisk() {
+<b class="nc"><i>253</i>&nbsp;        return false;</b>
+<i>254</i>&nbsp;    }
+<i>255</i>&nbsp;
+<i>256</i>&nbsp;    @Override
+<i>257</i>&nbsp;    public boolean isHighPriority() {
+<b class="nc"><i>258</i>&nbsp;        return isHighPriority;</b>
+<i>259</i>&nbsp;    }
+<i>260</i>&nbsp;
+<i>261</i>&nbsp;    @Override
+<i>262</i>&nbsp;    public boolean isBPL() {
+<b class="nc"><i>263</i>&nbsp;        return economicStatus != null &amp;&amp; economicStatus.equalsIgnoreCase(BPL_VALUE);</b>
+<i>264</i>&nbsp;    }
+<i>265</i>&nbsp;
+<i>266</i>&nbsp;    @Override
+<i>267</i>&nbsp;    public boolean isPOC() {
+<b class="nc"><i>268</i>&nbsp;        return false;</b>
+<i>269</i>&nbsp;    }
+<i>270</i>&nbsp;
+<i>271</i>&nbsp;    @Override
+<i>272</i>&nbsp;    public boolean isPocPending() {
+<b class="nc"><i>273</i>&nbsp;        return false;</b>
+<i>274</i>&nbsp;    }
+<i>275</i>&nbsp;
+<i>276</i>&nbsp;    @Override
+<i>277</i>&nbsp;    public String profilePhotoPath() {
+<b class="nc"><i>278</i>&nbsp;        return photo_path;</b>
+<i>279</i>&nbsp;    }
+<i>280</i>&nbsp;
+<i>281</i>&nbsp;    @Override
+<i>282</i>&nbsp;    public String locationStatus() {
+<b class="nc"><i>283</i>&nbsp;        return null;</b>
+<i>284</i>&nbsp;    }
+<i>285</i>&nbsp;
+<i>286</i>&nbsp;    @Override
+<i>287</i>&nbsp;    public boolean satisfiesFilter(String filter) {
+<b class="nc"><i>288</i>&nbsp;        return name.toLowerCase(Locale.getDefault()).startsWith(filter.toLowerCase())</b>
+<b class="nc"><i>289</i>&nbsp;                || String.valueOf(ec_number).startsWith(filter);</b>
+<i>290</i>&nbsp;    }
+<i>291</i>&nbsp;
+<i>292</i>&nbsp;
+<i>293</i>&nbsp;    @Override
+<i>294</i>&nbsp;    public int compareName(SmartRegisterClient client) {
+<b class="nc"><i>295</i>&nbsp;        return this.name().compareToIgnoreCase(client.name());</b>
+<i>296</i>&nbsp;    }
+<i>297</i>&nbsp;
+<i>298</i>&nbsp;    public FPClient withAge(String age) {
+<b class="fc"><i>299</i>&nbsp;        this.age = age;</b>
+<b class="fc"><i>300</i>&nbsp;        return this;</b>
+<i>301</i>&nbsp;    }
+<i>302</i>&nbsp;
+<i>303</i>&nbsp;    public FPClient withFPMethod(String fp_method) {
+<b class="fc"><i>304</i>&nbsp;        this.fp_method = fp_method;</b>
+<b class="fc"><i>305</i>&nbsp;        return this;</b>
+<i>306</i>&nbsp;    }
+<i>307</i>&nbsp;
+<i>308</i>&nbsp;    public FPClient withNumberOfPregnancies(String num_pregnancies) {
+<b class="fc"><i>309</i>&nbsp;        Integer value = IntegerUtil.tryParse(num_pregnancies, 0);</b>
+<b class="fc"><i>310</i>&nbsp;        this.num_pregnancies = value &gt; 8 ? &quot;8+&quot; : value.toString();</b>
+<b class="fc"><i>311</i>&nbsp;        return this;</b>
+<i>312</i>&nbsp;    }
+<i>313</i>&nbsp;
+<i>314</i>&nbsp;    public FPClient withParity(String parity) {
+<b class="fc"><i>315</i>&nbsp;        Integer value = IntegerUtil.tryParse(parity, 0);</b>
+<b class="fc"><i>316</i>&nbsp;        this.parity = value &gt; 8 ? &quot;8+&quot; : value.toString();</b>
+<b class="fc"><i>317</i>&nbsp;        return this;</b>
+<i>318</i>&nbsp;    }
+<i>319</i>&nbsp;
+<i>320</i>&nbsp;    public FPClient withNumberOfLivingChildren(String num_living_children) {
+<b class="fc"><i>321</i>&nbsp;        Integer value = IntegerUtil.tryParse(num_living_children, 0);</b>
+<b class="fc"><i>322</i>&nbsp;        this.num_living_children = value &gt; 8 ? &quot;8+&quot; : value.toString();</b>
+<b class="fc"><i>323</i>&nbsp;        return this;</b>
+<i>324</i>&nbsp;    }
+<i>325</i>&nbsp;
+<i>326</i>&nbsp;    public FPClient withNumberOfStillBirths(String num_stillbirths) {
+<b class="fc"><i>327</i>&nbsp;        Integer value = IntegerUtil.tryParse(num_stillbirths, 0);</b>
+<b class="fc"><i>328</i>&nbsp;        this.num_stillbirths = value &gt; 8 ? &quot;8+&quot; : value.toString();</b>
+<b class="fc"><i>329</i>&nbsp;        return this;</b>
+<i>330</i>&nbsp;    }
+<i>331</i>&nbsp;
+<i>332</i>&nbsp;    public FPClient withNumberOfAbortions(String num_abortions) {
+<b class="fc"><i>333</i>&nbsp;        Integer value = IntegerUtil.tryParse(num_abortions, 0);</b>
+<b class="fc"><i>334</i>&nbsp;        this.num_abortions = value &gt; 8 ? &quot;8+&quot; : value.toString();</b>
+<b class="fc"><i>335</i>&nbsp;        return this;</b>
+<i>336</i>&nbsp;    }
+<i>337</i>&nbsp;
+<i>338</i>&nbsp;    public FPClient withIsHighPriority(boolean highPriority) {
+<b class="fc"><i>339</i>&nbsp;        isHighPriority = highPriority;</b>
+<b class="fc"><i>340</i>&nbsp;        return this;</b>
+<i>341</i>&nbsp;    }
+<i>342</i>&nbsp;
+<i>343</i>&nbsp;    public FPClient withFamilyPlanningMethodChangeDate(String family_planning_method_change_date) {
+<b class="fc"><i>344</i>&nbsp;        this.family_planning_method_change_date = family_planning_method_change_date;</b>
+<b class="fc"><i>345</i>&nbsp;        return this;</b>
+<i>346</i>&nbsp;    }
+<i>347</i>&nbsp;
+<i>348</i>&nbsp;    public FPClient withPhotoPath(String photo_path) {
+<b class="fc"><i>349</i>&nbsp;        this.photo_path = photo_path;</b>
+<b class="fc"><i>350</i>&nbsp;        return this;</b>
+<i>351</i>&nbsp;    }
+<i>352</i>&nbsp;
+<i>353</i>&nbsp;    public FPClient withIsYoungestChildUnderTwo(boolean is_youngest_child_under_two) {
+<b class="fc"><i>354</i>&nbsp;        this.is_youngest_child_under_two = is_youngest_child_under_two;</b>
+<b class="fc"><i>355</i>&nbsp;        return this;</b>
+<i>356</i>&nbsp;    }
+<i>357</i>&nbsp;
+<i>358</i>&nbsp;    public FPClient withYoungestChildAge(String youngest_child_age) {
+<b class="fc"><i>359</i>&nbsp;        this.youngest_child_age = youngest_child_age;</b>
+<b class="fc"><i>360</i>&nbsp;        return this;</b>
+<i>361</i>&nbsp;    }
+<i>362</i>&nbsp;
+<i>363</i>&nbsp;    public FPClient withAlerts(List&lt;AlertDTO&gt; alerts) {
+<b class="fc"><i>364</i>&nbsp;        this.alerts = alerts;</b>
+<b class="fc"><i>365</i>&nbsp;        return this;</b>
+<i>366</i>&nbsp;    }
+<i>367</i>&nbsp;
+<i>368</i>&nbsp;    public FPClient withComplicationDate(String complication_date) {
+<b class="fc"><i>369</i>&nbsp;        this.complication_date = complication_date;</b>
+<b class="fc"><i>370</i>&nbsp;        return this;</b>
+<i>371</i>&nbsp;    }
+<i>372</i>&nbsp;
+<i>373</i>&nbsp;    public FPClient withCaste(String caste) {
+<b class="fc"><i>374</i>&nbsp;        this.caste = caste;</b>
+<b class="fc"><i>375</i>&nbsp;        return this;</b>
+<i>376</i>&nbsp;    }
+<i>377</i>&nbsp;
+<i>378</i>&nbsp;    public FPClient withEconomicStatus(String economicStatus) {
+<b class="fc"><i>379</i>&nbsp;        this.economicStatus = economicStatus;</b>
+<b class="fc"><i>380</i>&nbsp;        return this;</b>
+<i>381</i>&nbsp;    }
+<i>382</i>&nbsp;
+<i>383</i>&nbsp;    public FPClient withFPMethodFollowupDate(String fp_method_followup_date) {
+<b class="fc"><i>384</i>&nbsp;        this.fp_method_followup_date = fp_method_followup_date;</b>
+<b class="fc"><i>385</i>&nbsp;        return this;</b>
+<i>386</i>&nbsp;    }
+<i>387</i>&nbsp;
+<i>388</i>&nbsp;    public FPClient withIUDPlace(String iudPlace) {
+<b class="fc"><i>389</i>&nbsp;        this.iudPlace = iudPlace;</b>
+<b class="fc"><i>390</i>&nbsp;        return this;</b>
+<i>391</i>&nbsp;    }
+<i>392</i>&nbsp;
+<i>393</i>&nbsp;    public FPClient withIUDPerson(String iudPerson) {
+<b class="fc"><i>394</i>&nbsp;        this.iudPerson = iudPerson;</b>
+<b class="fc"><i>395</i>&nbsp;        return this;</b>
+<i>396</i>&nbsp;    }
+<i>397</i>&nbsp;
+<i>398</i>&nbsp;    public FPClient withNumberOfCondomsSupplied(String numberOfCondomsSupplied) {
+<b class="fc"><i>399</i>&nbsp;        this.numberOfCondomsSupplied = numberOfCondomsSupplied;</b>
+<b class="fc"><i>400</i>&nbsp;        return this;</b>
+<i>401</i>&nbsp;    }
+<i>402</i>&nbsp;
+<i>403</i>&nbsp;    public FPClient withNumberOfCentchromanPillsDelivered(String numberOfCentchromanPillsDelivered) {
+<b class="fc"><i>404</i>&nbsp;        this.numberOfCentchromanPillsDelivered = numberOfCentchromanPillsDelivered;</b>
+<b class="fc"><i>405</i>&nbsp;        return this;</b>
+<i>406</i>&nbsp;    }
+<i>407</i>&nbsp;
+<i>408</i>&nbsp;    public FPClient withNumberOfOCPDelivered(String numberOfOCPDelivered) {
+<b class="fc"><i>409</i>&nbsp;        this.numberOfOCPDelivered = numberOfOCPDelivered;</b>
+<b class="fc"><i>410</i>&nbsp;        return this;</b>
+<i>411</i>&nbsp;    }
+<i>412</i>&nbsp;
+<i>413</i>&nbsp;    public FPClient withCondomSideEffect(String condomSideEffect) {
+<b class="fc"><i>414</i>&nbsp;        this.condomSideEffect = condomSideEffect;</b>
+<b class="fc"><i>415</i>&nbsp;        return this;</b>
+<i>416</i>&nbsp;    }
+<i>417</i>&nbsp;
+<i>418</i>&nbsp;    public FPClient withIUDSidEffect(String iudSidEffect) {
+<b class="fc"><i>419</i>&nbsp;        this.iudSidEffect = iudSidEffect;</b>
+<b class="fc"><i>420</i>&nbsp;        return this;</b>
+<i>421</i>&nbsp;    }
+<i>422</i>&nbsp;
+<i>423</i>&nbsp;    public FPClient withOCPSideEffect(String ocpSideEffect) {
+<b class="fc"><i>424</i>&nbsp;        this.ocpSideEffect = ocpSideEffect;</b>
+<b class="fc"><i>425</i>&nbsp;        return this;</b>
+<i>426</i>&nbsp;    }
+<i>427</i>&nbsp;
+<i>428</i>&nbsp;    public FPClient withSterilizationSideEffect(String sterilizationSideEffect) {
+<b class="fc"><i>429</i>&nbsp;        this.sterilizationSideEffect = sterilizationSideEffect;</b>
+<b class="fc"><i>430</i>&nbsp;        return this;</b>
+<i>431</i>&nbsp;    }
+<i>432</i>&nbsp;
+<i>433</i>&nbsp;    public FPClient withInjectableSideEffect(String injectableSideEffect) {
+<b class="fc"><i>434</i>&nbsp;        this.injectableSideEffect = injectableSideEffect;</b>
+<b class="fc"><i>435</i>&nbsp;        return this;</b>
+<i>436</i>&nbsp;    }
+<i>437</i>&nbsp;
+<i>438</i>&nbsp;    public FPClient withOtherSideEffect(String otherSideEffect) {
+<b class="fc"><i>439</i>&nbsp;        this.otherSideEffect = otherSideEffect;</b>
+<b class="fc"><i>440</i>&nbsp;        return this;</b>
+<i>441</i>&nbsp;    }
+<i>442</i>&nbsp;
+<i>443</i>&nbsp;    public FPClient withHighPriorityReason(String highPriorityReason) {
+<b class="fc"><i>444</i>&nbsp;        this.highPriorityReason = highPriorityReason;</b>
+<b class="fc"><i>445</i>&nbsp;        return this;</b>
+<i>446</i>&nbsp;    }
+<i>447</i>&nbsp;
+<i>448</i>&nbsp;    public String numberOfPregnancies() {
+<b class="nc"><i>449</i>&nbsp;        return num_pregnancies;</b>
+<i>450</i>&nbsp;    }
+<i>451</i>&nbsp;
+<i>452</i>&nbsp;    public String parity() {
+<b class="nc"><i>453</i>&nbsp;        return parity;</b>
+<i>454</i>&nbsp;    }
+<i>455</i>&nbsp;
+<i>456</i>&nbsp;    public String numberOfLivingChildren() {
+<b class="nc"><i>457</i>&nbsp;        return num_living_children;</b>
+<i>458</i>&nbsp;    }
+<i>459</i>&nbsp;
+<i>460</i>&nbsp;    public String numberOfStillbirths() {
+<b class="nc"><i>461</i>&nbsp;        return num_stillbirths;</b>
+<i>462</i>&nbsp;    }
+<i>463</i>&nbsp;
+<i>464</i>&nbsp;    public String numberOfAbortions() {
+<b class="nc"><i>465</i>&nbsp;        return num_abortions;</b>
+<i>466</i>&nbsp;    }
+<i>467</i>&nbsp;
+<i>468</i>&nbsp;    @Override
+<i>469</i>&nbsp;    public String familyPlanningMethodChangeDate() {
+<b class="nc"><i>470</i>&nbsp;        return formatDate(family_planning_method_change_date, &quot;dd/MM/YYYY&quot;);</b>
+<i>471</i>&nbsp;    }
+<i>472</i>&nbsp;
+<i>473</i>&nbsp;    @Override
+<i>474</i>&nbsp;    public String numberOfOCPDelivered() {
+<b class="nc"><i>475</i>&nbsp;        return numberOfOCPDelivered;</b>
+<i>476</i>&nbsp;    }
+<i>477</i>&nbsp;
+<i>478</i>&nbsp;    @Override
+<i>479</i>&nbsp;    public String numberOfCondomsSupplied() {
+<b class="nc"><i>480</i>&nbsp;        return numberOfCondomsSupplied;</b>
+<i>481</i>&nbsp;    }
+<i>482</i>&nbsp;
+<i>483</i>&nbsp;    @Override
+<i>484</i>&nbsp;    public String numberOfCentchromanPillsDelivered() {
+<b class="nc"><i>485</i>&nbsp;        return numberOfCentchromanPillsDelivered;</b>
+<i>486</i>&nbsp;    }
+<i>487</i>&nbsp;
+<i>488</i>&nbsp;    @Override
+<i>489</i>&nbsp;    public String iudPerson() {
+<b class="nc"><i>490</i>&nbsp;        return humanizeAndDoUPPERCASE(iudPerson);</b>
+<i>491</i>&nbsp;    }
+<i>492</i>&nbsp;
+<i>493</i>&nbsp;    @Override
+<i>494</i>&nbsp;    public String iudPlace() {
+<b class="nc"><i>495</i>&nbsp;        return humanizeAndDoUPPERCASE(iudPlace);</b>
+<i>496</i>&nbsp;    }
+<i>497</i>&nbsp;
+<i>498</i>&nbsp;    @Override
+<i>499</i>&nbsp;    public Long ecNumber() {
+<b class="nc"><i>500</i>&nbsp;        return Long.parseLong(ec_number);</b>
+<i>501</i>&nbsp;    }
+<i>502</i>&nbsp;
+<i>503</i>&nbsp;    @Override
+<i>504</i>&nbsp;    public FPMethod fpMethod() {
+<b class="fc"><i>505</i>&nbsp;        return FPMethod.tryParse(this.fp_method, FPMethod.NONE);</b>
+<i>506</i>&nbsp;    }
+<i>507</i>&nbsp;
+<i>508</i>&nbsp;    @Override
+<i>509</i>&nbsp;    public String youngestChildAge() {
+<b class="nc"><i>510</i>&nbsp;        return StringUtils.isBlank(youngest_child_age) ? null : (youngest_child_age + &quot;m&quot;);</b>
+<i>511</i>&nbsp;    }
+<i>512</i>&nbsp;
+<i>513</i>&nbsp;    @Override
+<i>514</i>&nbsp;    public String complicationDate() {
+<b class="nc"><i>515</i>&nbsp;        return formatDate(complication_date, &quot;dd/MM/YYYY&quot;);</b>
+<i>516</i>&nbsp;    }
+<i>517</i>&nbsp;
+<i>518</i>&nbsp;    @Override
+<i>519</i>&nbsp;    public String condomSideEffect() {
+<b class="nc"><i>520</i>&nbsp;        return replaceAndHumanize(condomSideEffect, SPACE, COMMA_WITH_SPACE);</b>
+<i>521</i>&nbsp;    }
+<i>522</i>&nbsp;
+<i>523</i>&nbsp;    @Override
+<i>524</i>&nbsp;    public String iudSidEffect() {
+<b class="nc"><i>525</i>&nbsp;        return replaceAndHumanize(iudSidEffect, SPACE, COMMA_WITH_SPACE);</b>
+<i>526</i>&nbsp;    }
+<i>527</i>&nbsp;
+<i>528</i>&nbsp;    @Override
+<i>529</i>&nbsp;    public String ocpSideEffect() {
+<b class="nc"><i>530</i>&nbsp;        return replaceAndHumanize(ocpSideEffect, SPACE, COMMA_WITH_SPACE);</b>
+<i>531</i>&nbsp;    }
+<i>532</i>&nbsp;
+<i>533</i>&nbsp;    @Override
+<i>534</i>&nbsp;    public String sterilizationSideEffect() {
+<b class="nc"><i>535</i>&nbsp;        return replaceAndHumanize(sterilizationSideEffect, SPACE, COMMA_WITH_SPACE);</b>
+<i>536</i>&nbsp;    }
+<i>537</i>&nbsp;
+<i>538</i>&nbsp;    @Override
+<i>539</i>&nbsp;    public String injectableSideEffect() {
+<b class="nc"><i>540</i>&nbsp;        return replaceAndHumanize(injectableSideEffect, SPACE, COMMA_WITH_SPACE);</b>
+<i>541</i>&nbsp;    }
+<i>542</i>&nbsp;
+<i>543</i>&nbsp;    @Override
+<i>544</i>&nbsp;    public String otherSideEffect() {
+<b class="nc"><i>545</i>&nbsp;        return replaceAndHumanize(otherSideEffect, SPACE, COMMA_WITH_SPACE);</b>
+<i>546</i>&nbsp;    }
+<i>547</i>&nbsp;
+<i>548</i>&nbsp;    @Override
+<i>549</i>&nbsp;    public boolean equals(Object o) {
+<b class="fc"><i>550</i>&nbsp;        return EqualsBuilder.reflectionEquals(this, o);</b>
+<i>551</i>&nbsp;    }
+<i>552</i>&nbsp;
+<i>553</i>&nbsp;    @Override
+<i>554</i>&nbsp;    public int hashCode() {
+<b class="nc"><i>555</i>&nbsp;        return HashCodeBuilder.reflectionHashCode(this);</b>
+<i>556</i>&nbsp;    }
+<i>557</i>&nbsp;
+<i>558</i>&nbsp;    @Override
+<i>559</i>&nbsp;    public String toString() {
+<b class="nc"><i>560</i>&nbsp;        return ToStringBuilder.reflectionToString(this);</b>
+<i>561</i>&nbsp;    }
+<i>562</i>&nbsp;
+<i>563</i>&nbsp;    @Override
+<i>564</i>&nbsp;    public List&lt;AlertDTO&gt; alerts() {
+<b class="fc"><i>565</i>&nbsp;        return alerts;</b>
+<i>566</i>&nbsp;    }
+<i>567</i>&nbsp;
+<i>568</i>&nbsp;
+<i>569</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

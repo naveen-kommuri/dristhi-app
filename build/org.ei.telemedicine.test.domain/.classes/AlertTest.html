@@ -1,0 +1,129 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AlertTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.domain</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AlertTest (org.ei.telemedicine.test.domain)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AlertTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/ 12)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.domain;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.domain.Alert;
+<i>4</i>&nbsp;import org.ei.telemedicine.dto.AlertStatus;
+<i>5</i>&nbsp;import org.junit.Before;
+<i>6</i>&nbsp;import org.junit.Test;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import static junit.framework.Assert.assertEquals;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;//import org.ei.telemedicine.view.contract.AlertStatus;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;/**
+<i>13</i>&nbsp; * Created by naveen on 12/24/15.
+<i>14</i>&nbsp; */
+<b class="fc"><i>15</i>&nbsp;public class AlertTest {</b>
+<i>16</i>&nbsp;    Alert alert;
+<i>17</i>&nbsp;    AlertStatus alertStatus;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    @Before
+<i>20</i>&nbsp;    public void setUp() {
+<b class="fc"><i>21</i>&nbsp;        alert = new Alert(&quot;123&quot;, &quot;anm1&quot;, &quot;454&quot;, alertStatus, &quot;12/08/2015&quot;, &quot;18/09/2015&quot;);</b>
+<b class="fc"><i>22</i>&nbsp;    }</b>
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    @Test
+<i>25</i>&nbsp;    public void caseIdTest() {
+<b class="fc"><i>26</i>&nbsp;        assertEquals(&quot;123&quot;, alert.caseId());</b>
+<b class="fc"><i>27</i>&nbsp;    }</b>
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    @Test
+<i>31</i>&nbsp;    public void expiryDateTest() {
+<b class="fc"><i>32</i>&nbsp;        assertEquals(&quot;18/09/2015&quot;, alert.expiryDate());</b>
+<b class="fc"><i>33</i>&nbsp;    }</b>
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    @Test
+<i>36</i>&nbsp;    public void scheduleDateTest() {
+<i>37</i>&nbsp;
+<b class="fc"><i>38</i>&nbsp;        assertEquals(&quot;anm1&quot;, alert.scheduleName());</b>
+<b class="fc"><i>39</i>&nbsp;    }</b>
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;    @Test
+<i>42</i>&nbsp;    public void completionDateTest() {
+<b class="fc"><i>43</i>&nbsp;        alert.withCompletionDate(&quot;25/10/2016&quot;);</b>
+<b class="fc"><i>44</i>&nbsp;        assertEquals(&quot;25/10/2016&quot;, alert.completionDate());</b>
+<b class="fc"><i>45</i>&nbsp;    }</b>
+<i>46</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-20 13:39</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: VillageFilter</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.dialog</a> ]
+</div>
+
+<h1>Coverage Summary for Class: VillageFilter (org.ei.telemedicine.view.dialog)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">VillageFilter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (3/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    62.5%
+  </span>
+  <span class="absValue">
+    (5/ 8)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.dialog;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.apache.commons.lang3.builder.EqualsBuilder;
+<i>4</i>&nbsp;import org.apache.commons.lang3.builder.HashCodeBuilder;
+<i>5</i>&nbsp;import org.apache.commons.lang3.builder.ToStringBuilder;
+<i>6</i>&nbsp;import org.ei.telemedicine.view.contract.SmartRegisterClient;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;public class VillageFilter implements FilterOption {
+<i>9</i>&nbsp;    private final String filter;
+<i>10</i>&nbsp;
+<b class="fc"><i>11</i>&nbsp;    public VillageFilter(String filter) {</b>
+<b class="fc"><i>12</i>&nbsp;        this.filter = filter;</b>
+<b class="fc"><i>13</i>&nbsp;    }</b>
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    @Override
+<i>16</i>&nbsp;    public String name() {
+<b class="nc"><i>17</i>&nbsp;        return filter;</b>
+<i>18</i>&nbsp;    }
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    @Override
+<i>21</i>&nbsp;    public boolean filter(SmartRegisterClient client) {
+<b class="fc"><i>22</i>&nbsp;        return client.village().equalsIgnoreCase(filter);</b>
+<i>23</i>&nbsp;    }
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    @Override
+<i>26</i>&nbsp;    public boolean equals(Object o) {
+<b class="fc"><i>27</i>&nbsp;        return EqualsBuilder.reflectionEquals(this, o);</b>
+<i>28</i>&nbsp;    }
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    @Override
+<i>31</i>&nbsp;    public int hashCode() {
+<b class="nc"><i>32</i>&nbsp;        return HashCodeBuilder.reflectionHashCode(this);</b>
+<i>33</i>&nbsp;    }
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    @Override
+<i>36</i>&nbsp;    public String toString() {
+<b class="nc"><i>37</i>&nbsp;        return ToStringBuilder.reflectionToString(this);</b>
+<i>38</i>&nbsp;    }
+<i>39</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

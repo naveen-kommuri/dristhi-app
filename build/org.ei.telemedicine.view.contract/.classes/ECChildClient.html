@@ -1,0 +1,150 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ECChildClient</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.contract</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ECChildClient (org.ei.telemedicine.view.contract)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ECChildClient</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    55.6%
+  </span>
+  <span class="absValue">
+    (5/ 9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    81.8%
+  </span>
+  <span class="absValue">
+    (18/ 22)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.contract;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.apache.commons.lang3.StringUtils;
+<i>4</i>&nbsp;import org.apache.commons.lang3.builder.EqualsBuilder;
+<i>5</i>&nbsp;import org.apache.commons.lang3.builder.HashCodeBuilder;
+<i>6</i>&nbsp;import org.apache.commons.lang3.builder.ToStringBuilder;
+<i>7</i>&nbsp;import org.ei.telemedicine.util.DateUtil;
+<i>8</i>&nbsp;import org.joda.time.Days;
+<i>9</i>&nbsp;import org.joda.time.LocalDate;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;public class ECChildClient {
+<i>12</i>&nbsp;    private final String entityId;
+<i>13</i>&nbsp;    private final String gender;
+<i>14</i>&nbsp;    private final String dateOfBirth;
+<i>15</i>&nbsp;
+<b class="fc"><i>16</i>&nbsp;    public ECChildClient(String entityId, String gender, String dateOfBirth) {</b>
+<b class="fc"><i>17</i>&nbsp;        this.entityId = entityId;</b>
+<b class="fc"><i>18</i>&nbsp;        this.gender = gender;</b>
+<b class="fc"><i>19</i>&nbsp;        this.dateOfBirth = dateOfBirth;</b>
+<b class="fc"><i>20</i>&nbsp;    }</b>
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    public boolean isMale() {
+<b class="nc"><i>23</i>&nbsp;        return gender != null &amp;&amp; gender.equalsIgnoreCase(&quot;Male&quot;);</b>
+<i>24</i>&nbsp;    }
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    public boolean isFemale() {
+<b class="nc"><i>27</i>&nbsp;        return !isMale();</b>
+<i>28</i>&nbsp;    }
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    public int getAgeInDays() {
+<b class="fc"><i>31</i>&nbsp;        return StringUtils.isBlank(dateOfBirth) ? 0 : Days.daysBetween(LocalDate.parse(dateOfBirth), DateUtil.today()).getDays();</b>
+<i>32</i>&nbsp;    }
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    public String getAgeInString() {
+<b class="fc"><i>35</i>&nbsp;        return format(getAgeInDays());</b>
+<i>36</i>&nbsp;    }
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    public String format(int days_since) {
+<b class="fc"><i>39</i>&nbsp;        int DAYS_THRESHOLD = 28;</b>
+<b class="fc"><i>40</i>&nbsp;        int WEEKS_THRESHOLD = 119;</b>
+<b class="fc"><i>41</i>&nbsp;        int MONTHS_THRESHOLD = 720;</b>
+<b class="fc"><i>42</i>&nbsp;        if (days_since &lt; DAYS_THRESHOLD) {</b>
+<b class="fc"><i>43</i>&nbsp;            return (int)Math.floor(days_since) + &quot;d&quot;;</b>
+<b class="fc"><i>44</i>&nbsp;        } else if (days_since &lt; WEEKS_THRESHOLD) {</b>
+<b class="fc"><i>45</i>&nbsp;            return (int)Math.floor(days_since / 7) + &quot;w&quot;;</b>
+<b class="fc"><i>46</i>&nbsp;        } else if (days_since &lt; MONTHS_THRESHOLD) {</b>
+<b class="fc"><i>47</i>&nbsp;            return (int)Math.floor(days_since / 30) + &quot;m&quot;;</b>
+<i>48</i>&nbsp;        } else {
+<b class="fc"><i>49</i>&nbsp;            return (int)Math.floor(days_since / 365) + &quot;y&quot;;</b>
+<i>50</i>&nbsp;        }
+<i>51</i>&nbsp;    }
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    @Override
+<i>54</i>&nbsp;    public boolean equals(Object o) {
+<b class="fc"><i>55</i>&nbsp;        return EqualsBuilder.reflectionEquals(this, o);</b>
+<i>56</i>&nbsp;    }
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    @Override
+<i>59</i>&nbsp;    public int hashCode() {
+<b class="nc"><i>60</i>&nbsp;        return HashCodeBuilder.reflectionHashCode(this);</b>
+<i>61</i>&nbsp;    }
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    @Override
+<i>64</i>&nbsp;    public String toString() {
+<b class="nc"><i>65</i>&nbsp;        return ToStringBuilder.reflectionToString(this);</b>
+<i>66</i>&nbsp;    }
+<i>67</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

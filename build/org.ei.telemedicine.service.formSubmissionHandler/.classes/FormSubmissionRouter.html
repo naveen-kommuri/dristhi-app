@@ -1,0 +1,178 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: FormSubmissionRouter</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.service.formSubmissionHandler</a> ]
+</div>
+
+<h1>Coverage Summary for Class: FormSubmissionRouter (org.ei.telemedicine.service.formSubmissionHandler)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FormSubmissionRouter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    91.3%
+  </span>
+  <span class="absValue">
+    (42/ 46)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.service.formSubmissionHandler;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.apache.commons.lang3.exception.ExceptionUtils;
+<i>4</i>&nbsp;import org.ei.telemedicine.domain.form.FormSubmission;
+<i>5</i>&nbsp;import org.ei.telemedicine.repository.FormDataRepository;
+<i>6</i>&nbsp;import org.ei.telemedicine.util.Log;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import java.util.HashMap;
+<i>9</i>&nbsp;import java.util.Map;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import static java.text.MessageFormat.format;
+<i>12</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.*;
+<i>13</i>&nbsp;import static org.ei.telemedicine.event.Event.FORM_SUBMITTED;
+<i>14</i>&nbsp;import static org.ei.telemedicine.util.Log.logWarn;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;public class FormSubmissionRouter {
+<i>18</i>&nbsp;    private final Map&lt;String, FormSubmissionHandler&gt; handlerMap;
+<i>19</i>&nbsp;    private FormDataRepository formDataRepository;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    public FormSubmissionRouter(FormDataRepository formDataRepository,
+<i>22</i>&nbsp;                                ECRegistrationHandler ecRegistrationHandler,
+<i>23</i>&nbsp;                                FPComplicationsHandler fpComplicationsHandler,
+<i>24</i>&nbsp;                                FPChangeHandler fpChangeHandler,
+<i>25</i>&nbsp;                                RenewFPProductHandler renewFPProductHandler,
+<i>26</i>&nbsp;                                ECCloseHandler ecCloseHandler,
+<i>27</i>&nbsp;                                ANCRegistrationHandler ancRegistrationHandler,
+<i>28</i>&nbsp;                                ANCRegistrationOAHandler ancRegistrationOAHandler,
+<i>29</i>&nbsp;                                ANCVisitHandler ancVisitHandler,
+<i>30</i>&nbsp;                                ANCCloseHandler ancCloseHandler,
+<i>31</i>&nbsp;                                TTHandler ttHandler,
+<i>32</i>&nbsp;                                IFAHandler ifaHandler,
+<i>33</i>&nbsp;                                HBTestHandler hbTestHandler,
+<i>34</i>&nbsp;                                DeliveryOutcomeHandler deliveryOutcomeHandler,
+<i>35</i>&nbsp;                                PNCRegistrationOAHandler pncRegistrationOAHandler,
+<i>36</i>&nbsp;                                PNCCloseHandler pncCloseHandler,
+<i>37</i>&nbsp;                                PNCVisitHandler pncVisitHandler,
+<i>38</i>&nbsp;                                ChildImmunizationsHandler childImmunizationsHandler,
+<i>39</i>&nbsp;                                ChildRegistrationECHandler childRegistrationECHandler,
+<i>40</i>&nbsp;                                ChildRegistrationOAHandler childRegistrationOAHandler,
+<i>41</i>&nbsp;                                ChildCloseHandler childCloseHandler, ChildIllnessHandler childIllnessHandler,
+<i>42</i>&nbsp;                                VitaminAHandler vitaminAHandler, DeliveryPlanHandler deliveryPlanHandler,
+<b class="fc"><i>43</i>&nbsp;                                ECEditHandler ecEditHandler, ANCInvestigationsHandler ancInvestigationsHandler,TestSubmissionHandler testSubmissionHandler) {</b>
+<b class="fc"><i>44</i>&nbsp;        this.formDataRepository = formDataRepository;</b>
+<b class="fc"><i>45</i>&nbsp;        handlerMap = new HashMap&lt;String, FormSubmissionHandler&gt;();</b>
+<b class="fc"><i>46</i>&nbsp;        handlerMap.put(EC_REGISTRATION, ecRegistrationHandler);</b>
+<b class="fc"><i>47</i>&nbsp;        handlerMap.put(FP_COMPLICATIONS, fpComplicationsHandler);</b>
+<b class="fc"><i>48</i>&nbsp;        handlerMap.put(FP_CHANGE, fpChangeHandler);</b>
+<b class="fc"><i>49</i>&nbsp;        handlerMap.put(RENEW_FP_PRODUCT, renewFPProductHandler);</b>
+<b class="fc"><i>50</i>&nbsp;        handlerMap.put(EC_CLOSE, ecCloseHandler);</b>
+<b class="fc"><i>51</i>&nbsp;        handlerMap.put(ANC_REGISTRATION, ancRegistrationHandler);</b>
+<b class="fc"><i>52</i>&nbsp;        handlerMap.put(ANC_REGISTRATION_OA, ancRegistrationOAHandler);</b>
+<b class="fc"><i>53</i>&nbsp;        handlerMap.put(ANC_VISIT, ancVisitHandler);</b>
+<b class="fc"><i>54</i>&nbsp;        handlerMap.put(ANC_VISIT_EDIT, ancVisitHandler);</b>
+<b class="fc"><i>55</i>&nbsp;        handlerMap.put(ANC_CLOSE, ancCloseHandler);</b>
+<b class="fc"><i>56</i>&nbsp;        handlerMap.put(TT, ttHandler);</b>
+<b class="fc"><i>57</i>&nbsp;        handlerMap.put(TT_BOOSTER, ttHandler);</b>
+<b class="fc"><i>58</i>&nbsp;        handlerMap.put(TT_1, ttHandler);</b>
+<b class="fc"><i>59</i>&nbsp;        handlerMap.put(TT_2, ttHandler);</b>
+<b class="fc"><i>60</i>&nbsp;        handlerMap.put(IFA, ifaHandler);</b>
+<b class="fc"><i>61</i>&nbsp;        handlerMap.put(HB_TEST, hbTestHandler);</b>
+<b class="fc"><i>62</i>&nbsp;        handlerMap.put(DELIVERY_OUTCOME, deliveryOutcomeHandler);</b>
+<b class="fc"><i>63</i>&nbsp;        handlerMap.put(PNC_REGISTRATION_OA, pncRegistrationOAHandler);</b>
+<b class="fc"><i>64</i>&nbsp;        handlerMap.put(PNC_CLOSE, pncCloseHandler);</b>
+<b class="fc"><i>65</i>&nbsp;        handlerMap.put(PNC_VISIT, pncVisitHandler);</b>
+<b class="fc"><i>66</i>&nbsp;        handlerMap.put(CHILD_IMMUNIZATIONS, childImmunizationsHandler);</b>
+<b class="fc"><i>67</i>&nbsp;        handlerMap.put(CHILD_REGISTRATION_EC, childRegistrationECHandler);</b>
+<b class="fc"><i>68</i>&nbsp;        handlerMap.put(CHILD_REGISTRATION_OA, childRegistrationOAHandler);</b>
+<b class="fc"><i>69</i>&nbsp;        handlerMap.put(CHILD_CLOSE, childCloseHandler);</b>
+<b class="fc"><i>70</i>&nbsp;        handlerMap.put(CHILD_ILLNESS, childIllnessHandler);</b>
+<b class="fc"><i>71</i>&nbsp;        handlerMap.put(VITAMIN_A, vitaminAHandler);</b>
+<b class="fc"><i>72</i>&nbsp;        handlerMap.put(DELIVERY_PLAN, deliveryPlanHandler);</b>
+<b class="fc"><i>73</i>&nbsp;        handlerMap.put(EC_EDIT, ecEditHandler);</b>
+<b class="fc"><i>74</i>&nbsp;        handlerMap.put(ANC_INVESTIGATIONS, ancInvestigationsHandler);</b>
+<i>75</i>&nbsp;        //New Content
+<b class="fc"><i>76</i>&nbsp;        handlerMap.put(&quot;cus_reg_form&quot;, testSubmissionHandler);</b>
+<b class="fc"><i>77</i>&nbsp;    }</b>
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    public void route(String instanceId) throws Exception {
+<b class="fc"><i>80</i>&nbsp;        FormSubmission submission = formDataRepository.fetchFromSubmission(instanceId);</b>
+<b class="fc"><i>81</i>&nbsp;        FormSubmissionHandler handler = handlerMap.get(submission.formName());</b>
+<b class="fc"><i>82</i>&nbsp;        if (handler == null) {</b>
+<b class="fc"><i>83</i>&nbsp;            logWarn(&quot;Could not find a handler due to unknown form submission: &quot; + submission);</b>
+<i>84</i>&nbsp;        } else {
+<i>85</i>&nbsp;            try {
+<b class="fc"><i>86</i>&nbsp;                handler.handle(submission);</b>
+<b class="nc"><i>87</i>&nbsp;            } catch (Exception e) {</b>
+<b class="nc"><i>88</i>&nbsp;                Log.logError(format(&quot;Handling {0} form submission with instance Id: {1} for entity: {2} failed with exception : {3}&quot;,</b>
+<b class="nc"><i>89</i>&nbsp;                        submission.formName(), submission.instanceId(), submission.entityId(), ExceptionUtils.getStackTrace(e)));</b>
+<b class="nc"><i>90</i>&nbsp;                throw e;</b>
+<b class="fc"><i>91</i>&nbsp;            }</b>
+<i>92</i>&nbsp;        }
+<b class="fc"><i>93</i>&nbsp;        FORM_SUBMITTED.notifyListeners(instanceId);</b>
+<b class="fc"><i>94</i>&nbsp;    }</b>
+<i>95</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,258 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: FPAllMethodsServiceMode</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.dialog</a> ]
+</div>
+
+<h1>Coverage Summary for Class: FPAllMethodsServiceMode (org.ei.telemedicine.view.dialog)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FPAllMethodsServiceMode</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 49)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">FPAllMethodsServiceMode$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 54)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.dialog;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static android.view.View.VISIBLE;
+<i>4</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.FP_COMPLICATIONS;
+<i>5</i>&nbsp;import static org.ei.telemedicine.Context.getInstance;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import org.ei.telemedicine.R;
+<i>8</i>&nbsp;import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
+<i>9</i>&nbsp;import org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+<i>10</i>&nbsp;import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
+<i>11</i>&nbsp;import org.ei.telemedicine.view.contract.AlertStatus;
+<i>12</i>&nbsp;import org.ei.telemedicine.view.contract.ChildSmartRegisterClient;
+<i>13</i>&nbsp;import org.ei.telemedicine.view.contract.FPAlertType;
+<i>14</i>&nbsp;import org.ei.telemedicine.view.contract.FPSmartRegisterClient;
+<i>15</i>&nbsp;import org.ei.telemedicine.view.contract.RefillFollowUps;
+<i>16</i>&nbsp;import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
+<i>17</i>&nbsp;import org.ei.telemedicine.view.viewHolder.NativeANCSmartRegisterViewHolder;
+<i>18</i>&nbsp;import org.ei.telemedicine.view.viewHolder.NativeChildSmartRegisterViewHolder;
+<i>19</i>&nbsp;import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
+<i>20</i>&nbsp;import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
+<i>21</i>&nbsp;import org.ei.telemedicine.view.viewHolder.OnClickFormLauncher;
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;import android.view.View;
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;public class FPAllMethodsServiceMode extends ServiceModeOption {
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    public FPAllMethodsServiceMode(SmartRegisterClientsProvider provider) {
+<b class="nc"><i>28</i>&nbsp;        super(provider);</b>
+<b class="nc"><i>29</i>&nbsp;    }</b>
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    @Override
+<i>32</i>&nbsp;    public String name() {
+<b class="nc"><i>33</i>&nbsp;        return getInstance().getStringResource(R.string.fp_register_service_mode_all_methods);</b>
+<i>34</i>&nbsp;    }
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;    @Override
+<i>37</i>&nbsp;    public ClientsHeaderProvider getHeaderProvider() {
+<b class="nc"><i>38</i>&nbsp;        return new ClientsHeaderProvider() {</b>
+<i>39</i>&nbsp;            @Override
+<i>40</i>&nbsp;            public int count() {
+<b class="nc"><i>41</i>&nbsp;                return 6;</b>
+<i>42</i>&nbsp;            }
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;            @Override
+<i>45</i>&nbsp;            public int weightSum() {
+<b class="nc"><i>46</i>&nbsp;                return 100;</b>
+<i>47</i>&nbsp;            }
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;            @Override
+<i>50</i>&nbsp;            public int[] weights() {
+<b class="nc"><i>51</i>&nbsp;                return new int[]{24, 6, 11, 20, 20, 19};</b>
+<i>52</i>&nbsp;            }
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;            @Override
+<i>55</i>&nbsp;            public int[] headerTextResourceIds() {
+<b class="nc"><i>56</i>&nbsp;                return new int[]{</b>
+<i>57</i>&nbsp;                        R.string.header_name, R.string.header_ec_no, R.string.header_gplsa,
+<i>58</i>&nbsp;                        R.string.header_method, R.string.header_side_effects, R.string.header_followup_refill};
+<i>59</i>&nbsp;            }
+<i>60</i>&nbsp;        };
+<i>61</i>&nbsp;    }
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    @Override
+<i>64</i>&nbsp;    public void setupListView(FPSmartRegisterClient client,
+<i>65</i>&nbsp;                              NativeFPSmartRegisterViewHolder viewHolder,
+<i>66</i>&nbsp;                              View.OnClickListener onClickListener) {
+<b class="nc"><i>67</i>&nbsp;        viewHolder.serviceModeFPMethod().setVisibility(VISIBLE);</b>
+<i>68</i>&nbsp;
+<b class="nc"><i>69</i>&nbsp;        setupSideEffectsView(client, viewHolder);</b>
+<b class="nc"><i>70</i>&nbsp;        setupSideEffectsButtonView(client, viewHolder);</b>
+<b class="nc"><i>71</i>&nbsp;        setupUpdateButtonView(client, viewHolder, onClickListener);</b>
+<b class="nc"><i>72</i>&nbsp;        setupFPMethodView(client, viewHolder, getInstance().getColorResource(R.color.text_black));</b>
+<b class="nc"><i>73</i>&nbsp;        setupAlertView(client, viewHolder);</b>
+<b class="nc"><i>74</i>&nbsp;    }</b>
+<i>75</i>&nbsp;
+<i>76</i>&nbsp;    private void setupSideEffectsButtonView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder) {
+<b class="nc"><i>77</i>&nbsp;        viewHolder.btnSideEffectsView().setOnClickListener(launchForm(FP_COMPLICATIONS, client.entityId(), null));</b>
+<b class="nc"><i>78</i>&nbsp;        viewHolder.btnSideEffectsView().setTag(client);</b>
+<b class="nc"><i>79</i>&nbsp;    }</b>
+<i>80</i>&nbsp;
+<i>81</i>&nbsp;    private void setupSideEffectsView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder) {
+<b class="nc"><i>82</i>&nbsp;        viewHolder.clientSideEffectsView().bindData(client);</b>
+<b class="nc"><i>83</i>&nbsp;    }</b>
+<i>84</i>&nbsp;
+<i>85</i>&nbsp;    private void setupUpdateButtonView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder,
+<i>86</i>&nbsp;                                       View.OnClickListener onClickListener) {
+<b class="nc"><i>87</i>&nbsp;        viewHolder.btnUpdateView().setOnClickListener(onClickListener);</b>
+<b class="nc"><i>88</i>&nbsp;        viewHolder.btnUpdateView().setTag(client);</b>
+<b class="nc"><i>89</i>&nbsp;    }</b>
+<i>90</i>&nbsp;
+<i>91</i>&nbsp;    private void setupFPMethodView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder, int txtColorBlack) {
+<b class="nc"><i>92</i>&nbsp;        viewHolder.fpMethodView().bindData(client, txtColorBlack);</b>
+<b class="nc"><i>93</i>&nbsp;        viewHolder.fpMethodView().setTag(client);</b>
+<b class="nc"><i>94</i>&nbsp;    }</b>
+<i>95</i>&nbsp;
+<i>96</i>&nbsp;    private void setupAlertView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder) {
+<b class="nc"><i>97</i>&nbsp;        viewHolder.txtAlertTypeView().setTag(client);</b>
+<b class="nc"><i>98</i>&nbsp;        refreshAlertView(viewHolder);</b>
+<b class="nc"><i>99</i>&nbsp;        bindAlertData(client, viewHolder);</b>
+<b class="nc"><i>100</i>&nbsp;    }</b>
+<i>101</i>&nbsp;
+<i>102</i>&nbsp;    private void refreshAlertView(NativeFPSmartRegisterViewHolder viewHolder) {
+<b class="nc"><i>103</i>&nbsp;        viewHolder.txtAlertTypeView().setText(&quot;&quot;);</b>
+<b class="nc"><i>104</i>&nbsp;        viewHolder.txtAlertTypeView().setTextColor(0);</b>
+<b class="nc"><i>105</i>&nbsp;        viewHolder.fpAlertLayout().setBackgroundResource(0);</b>
+<b class="nc"><i>106</i>&nbsp;        viewHolder.txtAlertDateView().setTextColor(0);</b>
+<b class="nc"><i>107</i>&nbsp;        viewHolder.txtAlertDateView().setText(&quot;&quot;);</b>
+<b class="nc"><i>108</i>&nbsp;        viewHolder.fpAlertLayout().setOnClickListener(null);</b>
+<b class="nc"><i>109</i>&nbsp;    }</b>
+<i>110</i>&nbsp;
+<i>111</i>&nbsp;    //#TODO: REMOVE THE HARDCODED METADATA
+<i>112</i>&nbsp;    private void bindAlertData(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder) {
+<b class="nc"><i>113</i>&nbsp;        RefillFollowUps refillFollowUps = client.refillFollowUps();</b>
+<b class="nc"><i>114</i>&nbsp;        if (refillFollowUps == null) {</b>
+<b class="nc"><i>115</i>&nbsp;            return;</b>
+<i>116</i>&nbsp;        }
+<b class="nc"><i>117</i>&nbsp;        AlertStatus alertStatus = refillFollowUps.alert().alertStatus();</b>
+<i>118</i>&nbsp;
+<b class="nc"><i>119</i>&nbsp;        viewHolder.txtAlertTypeView().setText(FPAlertType.from(refillFollowUps.type()).getAlertType());</b>
+<b class="nc"><i>120</i>&nbsp;        viewHolder.txtAlertTypeView().setTextColor(alertStatus.fontColor());</b>
+<b class="nc"><i>121</i>&nbsp;        viewHolder.fpAlertLayout().setBackgroundResource(alertStatus.backgroundColorResourceId());</b>
+<b class="nc"><i>122</i>&nbsp;        viewHolder.txtAlertDateView().setTextColor(alertStatus.fontColor());</b>
+<b class="nc"><i>123</i>&nbsp;        viewHolder.txtAlertDateView().setText(getInstance().getStringResource(R.string.str_due) + refillFollowUps.alert().shortDate());</b>
+<b class="nc"><i>124</i>&nbsp;        viewHolder.fpAlertLayout().setOnClickListener(launchForm(FPAlertType.from(refillFollowUps.type()).getFormName(),</b>
+<b class="nc"><i>125</i>&nbsp;                client.entityId(), &quot;{\&quot;entityId\&quot;: \&quot;&quot; + client.entityId() + &quot;\&quot;, \&quot;alertName\&quot;:\&quot;&quot; + client.refillFollowUps().name() + &quot;\&quot;}&quot;));</b>
+<b class="nc"><i>126</i>&nbsp;    }</b>
+<i>127</i>&nbsp;
+<i>128</i>&nbsp;    private OnClickFormLauncher launchForm(String formName, String entityId, String metaData) {
+<b class="nc"><i>129</i>&nbsp;        return provider().newFormLauncher(formName, entityId, metaData);</b>
+<i>130</i>&nbsp;    }
+<i>131</i>&nbsp;
+<i>132</i>&nbsp;    @Override
+<i>133</i>&nbsp;    public void setupListView(ChildSmartRegisterClient client,
+<i>134</i>&nbsp;                              NativeChildSmartRegisterViewHolder viewHolder,
+<i>135</i>&nbsp;                              View.OnClickListener clientSectionClickListener) {
+<i>136</i>&nbsp;
+<b class="nc"><i>137</i>&nbsp;    }</b>
+<i>138</i>&nbsp;
+<i>139</i>&nbsp;    @Override
+<i>140</i>&nbsp;    public void setupListView(ANCSmartRegisterClient client, NativeANCSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
+<i>141</i>&nbsp;
+<b class="nc"><i>142</i>&nbsp;    }</b>
+<i>143</i>&nbsp;
+<i>144</i>&nbsp;    @Override
+<i>145</i>&nbsp;    public void setupListView(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
+<i>146</i>&nbsp;
+<b class="nc"><i>147</i>&nbsp;    }</b>
+<i>148</i>&nbsp;
+<i>149</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

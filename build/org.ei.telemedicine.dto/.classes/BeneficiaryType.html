@@ -1,0 +1,137 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: BeneficiaryType</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.dto</a> ]
+</div>
+
+<h1>Coverage Summary for Class: BeneficiaryType (org.ei.telemedicine.dto)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BeneficiaryType</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/ 7)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.dto;
+<i>2</i>&nbsp;
+<b class="fc"><i>3</i>&nbsp;public enum BeneficiaryType {</b>
+<b class="fc"><i>4</i>&nbsp;	child(&quot;child&quot;), mother(&quot;mother&quot;), ec(&quot;ec&quot;);</b>
+<i>5</i>&nbsp;	private String value;
+<i>6</i>&nbsp;
+<b class="fc"><i>7</i>&nbsp;	private BeneficiaryType(String paramString) {</b>
+<b class="fc"><i>8</i>&nbsp;		this.value = paramString;</b>
+<b class="fc"><i>9</i>&nbsp;	}</b>
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;	public static BeneficiaryType from(String paramString) {
+<b class="fc"><i>12</i>&nbsp;		return valueOf(paramString);</b>
+<i>13</i>&nbsp;	}
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;	public String value() {
+<b class="fc"><i>16</i>&nbsp;		return this.value;</b>
+<i>17</i>&nbsp;	}
+<i>18</i>&nbsp;}
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;// package org.ei.drishti.dto;
+<i>21</i>&nbsp;//
+<i>22</i>&nbsp;// public enum BeneficiaryType
+<i>23</i>&nbsp;// {
+<i>24</i>&nbsp;// private String value;
+<i>25</i>&nbsp;//
+<i>26</i>&nbsp;// static
+<i>27</i>&nbsp;// {
+<i>28</i>&nbsp;// ec = new BeneficiaryType(&quot;ec&quot;, 2, &quot;ec&quot;);
+<i>29</i>&nbsp;// BeneficiaryType[] arrayOfBeneficiaryType = new BeneficiaryType[3];
+<i>30</i>&nbsp;// arrayOfBeneficiaryType[0] = child;
+<i>31</i>&nbsp;// arrayOfBeneficiaryType[1] = mother;
+<i>32</i>&nbsp;// arrayOfBeneficiaryType[2] = ec;
+<i>33</i>&nbsp;// $VALUES = arrayOfBeneficiaryType;
+<i>34</i>&nbsp;// }
+<i>35</i>&nbsp;//
+<i>36</i>&nbsp;// private BeneficiaryType(String paramString)
+<i>37</i>&nbsp;// {
+<i>38</i>&nbsp;// this.value = paramString;
+<i>39</i>&nbsp;// }
+<i>40</i>&nbsp;//
+<i>41</i>&nbsp;// public static BeneficiaryType from(String paramString)
+<i>42</i>&nbsp;// {
+<i>43</i>&nbsp;// return valueOf(paramString);
+<i>44</i>&nbsp;// }
+<i>45</i>&nbsp;//
+<i>46</i>&nbsp;// public String value()
+<i>47</i>&nbsp;// {
+<i>48</i>&nbsp;// return this.value;
+<i>49</i>&nbsp;// }
+<i>50</i>&nbsp;// }
+<i>51</i>&nbsp;//
+<i>52</i>&nbsp;//
+<i>53</i>&nbsp;//
+<i>54</i>&nbsp;//
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,188 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: EligibleCoupleServiceTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.service</a> ]
+</div>
+
+<h1>Coverage Summary for Class: EligibleCoupleServiceTest (org.ei.telemedicine.test.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">EligibleCoupleServiceTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/ 7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (40/ 40)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.service;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.domain.TimelineEvent;
+<i>4</i>&nbsp;import org.ei.telemedicine.domain.form.FormSubmission;
+<i>5</i>&nbsp;import org.ei.telemedicine.repository.AllBeneficiaries;
+<i>6</i>&nbsp;import org.ei.telemedicine.repository.AllEligibleCouples;
+<i>7</i>&nbsp;import org.ei.telemedicine.repository.AllTimelineEvents;
+<i>8</i>&nbsp;import org.ei.telemedicine.repository.EligibleCoupleRepository;
+<i>9</i>&nbsp;import org.ei.telemedicine.repository.TimelineEventRepository;
+<i>10</i>&nbsp;import org.ei.telemedicine.service.EligibleCoupleService;
+<i>11</i>&nbsp;import org.junit.Before;
+<i>12</i>&nbsp;import org.junit.Test;
+<i>13</i>&nbsp;import org.junit.runner.RunWith;
+<i>14</i>&nbsp;import org.mockito.Mock;
+<i>15</i>&nbsp;import org.mockito.runners.MockitoJUnitRunner;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;import static org.ei.telemedicine.util.EasyMap.mapOf;
+<i>18</i>&nbsp;import static org.mockito.Mockito.mock;
+<i>19</i>&nbsp;import static org.mockito.Mockito.verify;
+<i>20</i>&nbsp;import static org.mockito.Mockito.verifyZeroInteractions;
+<i>21</i>&nbsp;import static org.mockito.Mockito.when;
+<i>22</i>&nbsp;import static org.mockito.MockitoAnnotations.initMocks;
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;@RunWith(MockitoJUnitRunner.class)
+<b class="fc"><i>25</i>&nbsp;public class EligibleCoupleServiceTest {</b>
+<i>26</i>&nbsp;    @Mock
+<i>27</i>&nbsp;    private EligibleCoupleRepository eligibleCoupleRepository;
+<i>28</i>&nbsp;    @Mock
+<i>29</i>&nbsp;    private TimelineEventRepository timelineEventRepository;
+<i>30</i>&nbsp;    @Mock
+<i>31</i>&nbsp;    private AllTimelineEvents allTimelineEvents;
+<i>32</i>&nbsp;    @Mock
+<i>33</i>&nbsp;    private AllEligibleCouples allEligibleCouples;
+<i>34</i>&nbsp;    @Mock
+<i>35</i>&nbsp;    private AllBeneficiaries allBeneficiaries;
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    private EligibleCoupleService service;
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    @Before
+<i>40</i>&nbsp;    public void setUp() throws Exception {
+<b class="fc"><i>41</i>&nbsp;        initMocks(this);</b>
+<b class="fc"><i>42</i>&nbsp;        service = new EligibleCoupleService(allEligibleCouples, allTimelineEvents, allBeneficiaries);</b>
+<b class="fc"><i>43</i>&nbsp;    }</b>
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;    @Test
+<i>46</i>&nbsp;    public void testShouldCreateTimelineEventWhenECIsRegistered() throws Exception {
+<b class="fc"><i>47</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<b class="fc"><i>48</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;entity id 1&quot;);</b>
+<b class="fc"><i>49</i>&nbsp;        when(submission.getFieldValue(&quot;submissionDate&quot;)).thenReturn(&quot;2012-01-01&quot;);</b>
+<i>50</i>&nbsp;
+<b class="fc"><i>51</i>&nbsp;        service.register(submission);</b>
+<i>52</i>&nbsp;
+<b class="fc"><i>53</i>&nbsp;        verify(allTimelineEvents).add(TimelineEvent.forECRegistered(&quot;entity id 1&quot;, &quot;2012-01-01&quot;));</b>
+<b class="fc"><i>54</i>&nbsp;    }</b>
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;    @Test
+<i>57</i>&nbsp;    public void testShouldCloseEC() throws Exception {
+<b class="fc"><i>58</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<b class="fc"><i>59</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;entity id 1&quot;);</b>
+<i>60</i>&nbsp;
+<b class="fc"><i>61</i>&nbsp;        service.closeEligibleCouple(submission);</b>
+<i>62</i>&nbsp;
+<b class="fc"><i>63</i>&nbsp;        verify(allEligibleCouples).close(&quot;entity id 1&quot;);</b>
+<b class="fc"><i>64</i>&nbsp;        verify(allBeneficiaries).closeAllMothersForEC(&quot;entity id 1&quot;);</b>
+<b class="fc"><i>65</i>&nbsp;    }</b>
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;    @Test
+<i>68</i>&nbsp;    public void testShouldNotCreateTimelineEventWhenECIsRegisteredWithoutSubmissionDate() throws Exception {
+<b class="fc"><i>69</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<b class="fc"><i>70</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;entity id 1&quot;);</b>
+<b class="fc"><i>71</i>&nbsp;        when(submission.getFieldValue(&quot;submissionDate&quot;)).thenReturn(null);</b>
+<i>72</i>&nbsp;
+<b class="fc"><i>73</i>&nbsp;        service.register(submission);</b>
+<i>74</i>&nbsp;
+<b class="fc"><i>75</i>&nbsp;        verifyZeroInteractions(allTimelineEvents);</b>
+<b class="fc"><i>76</i>&nbsp;    }</b>
+<i>77</i>&nbsp;
+<i>78</i>&nbsp;    @Test
+<i>79</i>&nbsp;    public void testShouldCreateTimelineEventAndUpdateEntityWhenFPChangeIsReported() throws Exception {
+<b class="fc"><i>80</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<b class="fc"><i>81</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;entity id 1&quot;);</b>
+<b class="fc"><i>82</i>&nbsp;        when(submission.getFieldValue(&quot;currentMethod&quot;)).thenReturn(&quot;condom&quot;);</b>
+<b class="fc"><i>83</i>&nbsp;        when(submission.getFieldValue(&quot;newMethod&quot;)).thenReturn(&quot;ocp&quot;);</b>
+<b class="fc"><i>84</i>&nbsp;        when(submission.getFieldValue(&quot;familyPlanningMethodChangeDate&quot;)).thenReturn(&quot;2012-01-01&quot;);</b>
+<i>85</i>&nbsp;
+<b class="fc"><i>86</i>&nbsp;        service.fpChange(submission);</b>
+<i>87</i>&nbsp;
+<b class="fc"><i>88</i>&nbsp;        verify(allTimelineEvents).add(TimelineEvent.forChangeOfFPMethod(&quot;entity id 1&quot;, &quot;condom&quot;, &quot;ocp&quot;, &quot;2012-01-01&quot;));</b>
+<b class="fc"><i>89</i>&nbsp;        verify(allEligibleCouples).mergeDetails(&quot;entity id 1&quot;, mapOf(&quot;currentMethod&quot;, &quot;ocp&quot;));</b>
+<b class="fc"><i>90</i>&nbsp;    }</b>
+<i>91</i>&nbsp;
+<i>92</i>&nbsp;    @Test
+<i>93</i>&nbsp;    public void testShouldUseFormSubmissionDateAsChangeDateWhenFPMethodIsChangedAndChangeDateIsBlank() throws Exception {
+<b class="fc"><i>94</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<b class="fc"><i>95</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;entity id 1&quot;);</b>
+<b class="fc"><i>96</i>&nbsp;        when(submission.getFieldValue(&quot;currentMethod&quot;)).thenReturn(&quot;condom&quot;);</b>
+<b class="fc"><i>97</i>&nbsp;        when(submission.getFieldValue(&quot;newMethod&quot;)).thenReturn(&quot;none&quot;);</b>
+<b class="fc"><i>98</i>&nbsp;        when(submission.getFieldValue(&quot;submissionDate&quot;)).thenReturn(&quot;2012-02-01&quot;);</b>
+<i>99</i>&nbsp;
+<b class="fc"><i>100</i>&nbsp;        service.fpChange(submission);</b>
+<i>101</i>&nbsp;
+<b class="fc"><i>102</i>&nbsp;        verify(allTimelineEvents).add(TimelineEvent.forChangeOfFPMethod(&quot;entity id 1&quot;, &quot;condom&quot;, &quot;none&quot;, &quot;2012-02-01&quot;));</b>
+<b class="fc"><i>103</i>&nbsp;        verify(allEligibleCouples).mergeDetails(&quot;entity id 1&quot;, mapOf(&quot;currentMethod&quot;, &quot;none&quot;));</b>
+<b class="fc"><i>104</i>&nbsp;    }</b>
+<i>105</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-26 16:42</div>
+</div>
+</body>
+</html>

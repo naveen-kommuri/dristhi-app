@@ -1,0 +1,222 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: DoctorChildScreenActivity</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.doctor</a> ]
+</div>
+
+<h1>Coverage Summary for Class: DoctorChildScreenActivity (org.ei.telemedicine.doctor)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DoctorChildScreenActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 74)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.doctor;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.util.Log;
+<i>4</i>&nbsp;import android.view.View;
+<i>5</i>&nbsp;import android.widget.Button;
+<i>6</i>&nbsp;import android.widget.EditText;
+<i>7</i>&nbsp;import android.widget.ImageButton;
+<i>8</i>&nbsp;import android.widget.LinearLayout;
+<i>9</i>&nbsp;import android.widget.TextView;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import org.ei.telemedicine.AllConstants;
+<i>12</i>&nbsp;import org.ei.telemedicine.Context;
+<i>13</i>&nbsp;import org.ei.telemedicine.R;
+<i>14</i>&nbsp;import org.ei.telemedicine.view.customControls.CustomFontTextView;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;/**
+<i>17</i>&nbsp; * Created by naveen on 6/20/15.
+<i>18</i>&nbsp; */
+<b class="nc"><i>19</i>&nbsp;public class DoctorChildScreenActivity extends DoctorPatientDetailSuperActivity implements View.OnClickListener {</b>
+<i>20</i>&nbsp;    EditText et_mother_name, et_child_name, et_reporting_date, et_temperature, et_days_of_cough, et_breaths_per_minute, et_days_of_diarrhea, et_blood_in_stool, et_vommit_every_thing, et_number_of_days_fever;
+<i>21</i>&nbsp;    CustomFontTextView tv_child_disease_report, tv_breathing_problems, tv_child_dob, tv_days_of_cough;
+<i>22</i>&nbsp;    Button bt_poc, bt_doc_refer;
+<b class="nc"><i>23</i>&nbsp;    String documentId = null, phoneNumber = null, visitId = null, entityId = null, wifeName = null, tempFormat = &quot;&quot;, tempVal = &quot;&quot;;</b>
+<i>24</i>&nbsp;    TextView tv_temp_format;
+<i>25</i>&nbsp;    ImageButton ib_temp_graph;
+<i>26</i>&nbsp;    LinearLayout ll_number_of_days_fever, ll_vommit_every_thing, ll_blood_in_stool, ll_days_of_diarrhea, ll_breaths_per_minute, ll_days_of_cough;
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    @Override
+<i>29</i>&nbsp;    protected String[] setDatatoViews(String formInfo) {
+<b class="nc"><i>30</i>&nbsp;        documentId = getDatafromJson(formInfo, DoctorFormDataConstants.documentId);</b>
+<b class="nc"><i>31</i>&nbsp;        phoneNumber = getDatafromJson(formInfo, DoctorFormDataConstants.phoneNumber);</b>
+<i>32</i>&nbsp;
+<b class="nc"><i>33</i>&nbsp;        visitId = getDatafromJson(formInfo, DoctorFormDataConstants.pnc_entityId);</b>
+<b class="nc"><i>34</i>&nbsp;        entityId = getDatafromJson(formInfo, DoctorFormDataConstants.entityId);</b>
+<b class="nc"><i>35</i>&nbsp;        wifeName = getDatafromJson(formInfo, DoctorFormDataConstants.wife_name);</b>
+<i>36</i>&nbsp;
+<b class="nc"><i>37</i>&nbsp;        et_mother_name.setText(getDatafromJson(formInfo, DoctorFormDataConstants.wife_name));</b>
+<b class="nc"><i>38</i>&nbsp;        et_child_name.setText(isBlank(getDatafromJson(formInfo, DoctorFormDataConstants.child_name)) ? &quot;B/o &quot; + getDatafromJson(formInfo, DoctorFormDataConstants.wife_name) : getDatafromJson(formInfo, DoctorFormDataConstants.child_name));</b>
+<b class="nc"><i>39</i>&nbsp;        et_reporting_date.setText(isBlank(getDatafromJson(formInfo, DoctorFormDataConstants.child_report_child_disease_date)) ? getDatafromJson(formInfo, DoctorFormDataConstants.child_sick_visit_date) : getDatafromJson(formInfo, DoctorFormDataConstants.child_report_child_disease_date));</b>
+<b class="nc"><i>40</i>&nbsp;        tv_child_disease_report.setText(childSigns(formInfo));</b>
+<b class="nc"><i>41</i>&nbsp;        tv_child_dob.setText(getDatafromJson(formInfo, DoctorFormDataConstants.child_dob));</b>
+<i>42</i>&nbsp;
+<b class="nc"><i>43</i>&nbsp;        ll_days_of_cough.setVisibility(getDatafromJson(formInfo, DoctorFormDataConstants.child_days_of_cough).length() != 0 ? View.VISIBLE : View.GONE);</b>
+<b class="nc"><i>44</i>&nbsp;        ll_number_of_days_fever.setVisibility(getDatafromJson(formInfo, DoctorFormDataConstants.child_number_of_days_fever).length() != 0 ? View.VISIBLE : View.GONE);</b>
+<b class="nc"><i>45</i>&nbsp;        ll_vommit_every_thing.setVisibility(getDatafromJson(formInfo, DoctorFormDataConstants.child_vommit_every_thing).length() != 0 ? View.VISIBLE : View.GONE);</b>
+<b class="nc"><i>46</i>&nbsp;        ll_blood_in_stool.setVisibility(getDatafromJson(formInfo, DoctorFormDataConstants.child_blood_in_stool).length() != 0 ? View.VISIBLE : View.GONE);</b>
+<b class="nc"><i>47</i>&nbsp;        ll_days_of_diarrhea.setVisibility(getDatafromJson(formInfo, DoctorFormDataConstants.child_days_of_diarrhea).length() != 0 ? View.VISIBLE : View.GONE);</b>
+<b class="nc"><i>48</i>&nbsp;        ll_breaths_per_minute.setVisibility(getDatafromJson(formInfo, DoctorFormDataConstants.child_breaths_per_minute).length() != 0 ? View.VISIBLE : View.GONE);</b>
+<i>49</i>&nbsp;
+<b class="nc"><i>50</i>&nbsp;        et_days_of_cough.setText(getDatafromJson(formInfo, DoctorFormDataConstants.child_days_of_cough));</b>
+<b class="nc"><i>51</i>&nbsp;        et_breaths_per_minute.setText(getDatafromJson(formInfo, DoctorFormDataConstants.child_breaths_per_minute));</b>
+<b class="nc"><i>52</i>&nbsp;        et_days_of_diarrhea.setText(getDatafromJson(formInfo, DoctorFormDataConstants.child_days_of_diarrhea));</b>
+<b class="nc"><i>53</i>&nbsp;        et_blood_in_stool.setText(getDatafromJson(formInfo, DoctorFormDataConstants.child_blood_in_stool));</b>
+<b class="nc"><i>54</i>&nbsp;        et_vommit_every_thing.setText(getDatafromJson(formInfo, DoctorFormDataConstants.child_vommit_every_thing));</b>
+<b class="nc"><i>55</i>&nbsp;        et_number_of_days_fever.setText(getDatafromJson(formInfo, DoctorFormDataConstants.child_number_of_days_fever));</b>
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;//        tv_referral.setText(getDatafromJson(formInfo, DoctorFormDataConstants.child_immediateReferral));
+<i>58</i>&nbsp;//        tv_referral_reason.setText(getDatafromJson(formInfo, DoctorFormDataConstants.child_immediateReferral_reason));
+<i>59</i>&nbsp;
+<b class="nc"><i>60</i>&nbsp;        String tempStr = getDatafromJson(formInfo, DoctorFormDataConstants.temp_data);</b>
+<b class="nc"><i>61</i>&nbsp;        Log.e(&quot;Teme&quot;, tempStr);</b>
+<b class="nc"><i>62</i>&nbsp;        if (!tempStr.equals(&quot;&quot;) &amp;&amp; tempStr.contains(&quot;-&quot;)) {</b>
+<b class="nc"><i>63</i>&nbsp;            String[] temp = tempStr.split(&quot;-&quot;);</b>
+<b class="nc"><i>64</i>&nbsp;            tempFormat = temp[temp.length - 1];</b>
+<b class="nc"><i>65</i>&nbsp;            tempVal = temp[0];</b>
+<b class="nc"><i>66</i>&nbsp;        } else {</b>
+<b class="nc"><i>67</i>&nbsp;            tempVal = &quot;Not Captured&quot;;</b>
+<i>68</i>&nbsp;        }
+<b class="nc"><i>69</i>&nbsp;        tv_temp_format.setText(tempFormat);</b>
+<b class="nc"><i>70</i>&nbsp;        et_temperature.setText(tempVal);</b>
+<i>71</i>&nbsp;
+<b class="nc"><i>72</i>&nbsp;        return new String[]{documentId, phoneNumber, visitId};</b>
+<i>73</i>&nbsp;    }
+<i>74</i>&nbsp;
+<i>75</i>&nbsp;    private boolean isBlank(String str) {
+<b class="nc"><i>76</i>&nbsp;        return str.trim().length() == 0;</b>
+<i>77</i>&nbsp;    }
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    private String childSigns(String formInfo) {
+<b class="nc"><i>80</i>&nbsp;        if (getDatafromJson(formInfo, DoctorFormDataConstants.child_report_child_disease_date).equals(&quot;&quot;)) {</b>
+<b class="nc"><i>81</i>&nbsp;            return getDatafromJson(formInfo, DoctorFormDataConstants.child_signs).trim().replace(&quot; &quot;, &quot;,&quot;).replace(&quot;_&quot;, &quot; &quot;) + (!isBlank(getDatafromJson(formInfo, DoctorFormDataConstants.child_signs_other)) ? &quot;\nOther:&quot; + getDatafromJson(formInfo, DoctorFormDataConstants.child_signs_other) : &quot;&quot;);</b>
+<i>82</i>&nbsp;        } else
+<b class="nc"><i>83</i>&nbsp;            return getDatafromJson(formInfo, DoctorFormDataConstants.child_report_child_disease).trim().replace(&quot; &quot;, &quot;,&quot;).replace(&quot;_&quot;, &quot; &quot;) + (!isBlank(getDatafromJson(formInfo, DoctorFormDataConstants.child_signs_other)) ? &quot;\nOther:&quot; + getDatafromJson(formInfo, DoctorFormDataConstants.child_report_child_disease_other) : &quot;&quot;);</b>
+<i>84</i>&nbsp;    }
+<i>85</i>&nbsp;
+<i>86</i>&nbsp;    @Override
+<i>87</i>&nbsp;    protected void setupViews() {
+<b class="nc"><i>88</i>&nbsp;        setContentView(R.layout.doctor_child_info);</b>
+<i>89</i>&nbsp;
+<b class="nc"><i>90</i>&nbsp;        et_mother_name = (EditText) findViewById(R.id.et_mother_name);</b>
+<b class="nc"><i>91</i>&nbsp;        et_reporting_date = (EditText) findViewById(R.id.et_reporting_date);</b>
+<b class="nc"><i>92</i>&nbsp;        et_child_name = (EditText) findViewById(R.id.et_child_name);</b>
+<b class="nc"><i>93</i>&nbsp;        et_temperature = (EditText) findViewById(R.id.et_temperature);</b>
+<b class="nc"><i>94</i>&nbsp;        tv_temp_format = (TextView) findViewById(R.id.tv_temp_format);</b>
+<b class="nc"><i>95</i>&nbsp;        ib_temp_graph = (ImageButton) findViewById(R.id.ib_temp_graph);</b>
+<i>96</i>&nbsp;
+<b class="nc"><i>97</i>&nbsp;        et_days_of_cough = (EditText) findViewById(R.id.et_days_of_cough);</b>
+<b class="nc"><i>98</i>&nbsp;        tv_days_of_cough = (CustomFontTextView) findViewById(R.id.tv_days_of_cough);</b>
+<b class="nc"><i>99</i>&nbsp;        et_breaths_per_minute = (EditText) findViewById(R.id.et_breaths_per_minute);</b>
+<b class="nc"><i>100</i>&nbsp;        et_days_of_diarrhea = (EditText) findViewById(R.id.et_days_of_diarrhea);</b>
+<b class="nc"><i>101</i>&nbsp;        et_blood_in_stool = (EditText) findViewById(R.id.et_blood_in_stool);</b>
+<b class="nc"><i>102</i>&nbsp;        et_vommit_every_thing = (EditText) findViewById(R.id.et_vommit_every_thing);</b>
+<b class="nc"><i>103</i>&nbsp;        et_number_of_days_fever = (EditText) findViewById(R.id.et_number_of_days_fever);</b>
+<i>104</i>&nbsp;
+<i>105</i>&nbsp;
+<b class="nc"><i>106</i>&nbsp;        ll_number_of_days_fever = (LinearLayout) findViewById(R.id.ll_number_of_days_fever);</b>
+<b class="nc"><i>107</i>&nbsp;        ll_vommit_every_thing = (LinearLayout) findViewById(R.id.ll_vommit_every_thing);</b>
+<b class="nc"><i>108</i>&nbsp;        ll_blood_in_stool = (LinearLayout) findViewById(R.id.ll_blood_in_stool);</b>
+<b class="nc"><i>109</i>&nbsp;        ll_days_of_diarrhea = (LinearLayout) findViewById(R.id.ll_days_of_diarrhea);</b>
+<b class="nc"><i>110</i>&nbsp;        ll_breaths_per_minute = (LinearLayout) findViewById(R.id.ll_breaths_per_minute);</b>
+<b class="nc"><i>111</i>&nbsp;        ll_days_of_cough = (LinearLayout) findViewById(R.id.ll_days_of_cough);</b>
+<i>112</i>&nbsp;
+<b class="nc"><i>113</i>&nbsp;        tv_child_disease_report = (CustomFontTextView) findViewById(R.id.tv_child_disease_report);</b>
+<b class="nc"><i>114</i>&nbsp;        tv_child_dob = (CustomFontTextView) findViewById(R.id.tv_child_dob);</b>
+<b class="nc"><i>115</i>&nbsp;        bt_poc = (Button) findViewById(R.id.bt_plan_of_care);</b>
+<b class="nc"><i>116</i>&nbsp;        bt_poc.setOnClickListener(this);</b>
+<b class="nc"><i>117</i>&nbsp;        bt_doc_refer = (Button) findViewById(R.id.bt_refer);</b>
+<b class="nc"><i>118</i>&nbsp;        bt_doc_refer.setOnClickListener(this);</b>
+<i>119</i>&nbsp;//        tv_referral = (CustomFontTextView) findViewById(R.id.tv_referral);
+<i>120</i>&nbsp;//        tv_referral_reason = (CustomFontTextView) findViewById(R.id.tv_referral_reason);
+<b class="nc"><i>121</i>&nbsp;        ib_temp_graph.setOnClickListener(this);</b>
+<i>122</i>&nbsp;
+<b class="nc"><i>123</i>&nbsp;    }</b>
+<i>124</i>&nbsp;
+<i>125</i>&nbsp;    @Override
+<i>126</i>&nbsp;    public void onClick(View v) {
+<b class="nc"><i>127</i>&nbsp;        switch (v.getId()) {</b>
+<i>128</i>&nbsp;            case R.id.bt_plan_of_care:
+<b class="nc"><i>129</i>&nbsp;                getDrugData();</b>
+<b class="nc"><i>130</i>&nbsp;                break;</b>
+<i>131</i>&nbsp;            case R.id.ib_temp_graph:
+<b class="nc"><i>132</i>&nbsp;                getVitalsData(AllConstants.GraphFields.BP, visitId);</b>
+<b class="nc"><i>133</i>&nbsp;                break;</b>
+<i>134</i>&nbsp;            case R.id.bt_refer:
+<b class="nc"><i>135</i>&nbsp;                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId, documentId, &quot;CHILD&quot;, wifeName);</b>
+<i>136</i>&nbsp;                break;
+<i>137</i>&nbsp;        }
+<b class="nc"><i>138</i>&nbsp;    }</b>
+<i>139</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

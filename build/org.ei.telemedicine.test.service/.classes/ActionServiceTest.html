@@ -1,0 +1,223 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ActionServiceTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.service</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ActionServiceTest (org.ei.telemedicine.test.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ActionServiceTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (45/ 45)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.service;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.domain.Response;
+<i>4</i>&nbsp;import org.ei.telemedicine.domain.ResponseStatus;
+<i>5</i>&nbsp;import org.ei.telemedicine.dto.Action;
+<i>6</i>&nbsp;import org.ei.telemedicine.repository.AllEligibleCouples;
+<i>7</i>&nbsp;import org.ei.telemedicine.repository.AllReports;
+<i>8</i>&nbsp;import org.ei.telemedicine.repository.AllSettings;
+<i>9</i>&nbsp;import org.ei.telemedicine.repository.AllSharedPreferences;
+<i>10</i>&nbsp;import org.ei.telemedicine.router.ActionRouter;
+<i>11</i>&nbsp;import org.ei.telemedicine.service.ActionService;
+<i>12</i>&nbsp;import org.ei.telemedicine.service.DrishtiService;
+<i>13</i>&nbsp;import org.junit.Before;
+<i>14</i>&nbsp;import org.junit.Test;
+<i>15</i>&nbsp;import org.junit.runner.RunWith;
+<i>16</i>&nbsp;import org.mockito.InOrder;
+<i>17</i>&nbsp;import org.mockito.Mock;
+<i>18</i>&nbsp;import org.mockito.runners.MockitoJUnitRunner;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;import java.util.ArrayList;
+<i>21</i>&nbsp;import java.util.List;
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;import static java.util.Arrays.asList;
+<i>24</i>&nbsp;import static junit.framework.TestCase.assertEquals;
+<i>25</i>&nbsp;import static org.ei.telemedicine.domain.FetchStatus.fetched;
+<i>26</i>&nbsp;import static org.ei.telemedicine.domain.FetchStatus.fetchedFailed;
+<i>27</i>&nbsp;import static org.ei.telemedicine.domain.FetchStatus.nothingFetched;
+<i>28</i>&nbsp;import static org.ei.telemedicine.domain.ResponseStatus.failure;
+<i>29</i>&nbsp;import static org.ei.telemedicine.domain.ResponseStatus.success;
+<i>30</i>&nbsp;import static org.ei.telemedicine.test.util.ActionBuilder.actionForCloseAlert;
+<i>31</i>&nbsp;import static org.ei.telemedicine.test.util.ActionBuilder.actionForCloseMother;
+<i>32</i>&nbsp;import static org.ei.telemedicine.test.util.ActionBuilder.actionForCreateAlert;
+<i>33</i>&nbsp;import static org.ei.telemedicine.test.util.ActionBuilder.actionForReport;
+<i>34</i>&nbsp;import static org.mockito.Mockito.inOrder;
+<i>35</i>&nbsp;import static org.mockito.Mockito.verify;
+<i>36</i>&nbsp;import static org.mockito.Mockito.verifyNoMoreInteractions;
+<i>37</i>&nbsp;import static org.mockito.Mockito.when;
+<i>38</i>&nbsp;import static org.mockito.MockitoAnnotations.initMocks;
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;@RunWith(MockitoJUnitRunner.class)
+<b class="fc"><i>41</i>&nbsp;public class ActionServiceTest {</b>
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    @Mock
+<i>44</i>&nbsp;    private DrishtiService drishtiService;
+<i>45</i>&nbsp;    @Mock
+<i>46</i>&nbsp;    private AllSettings allSettings;
+<i>47</i>&nbsp;    @Mock
+<i>48</i>&nbsp;    private AllSharedPreferences allSharedPreferences;
+<i>49</i>&nbsp;   @Mock
+<i>50</i>&nbsp;    private AllEligibleCouples allEligibleCouples;
+<i>51</i>&nbsp;    @Mock
+<i>52</i>&nbsp;    private AllReports allReports;
+<i>53</i>&nbsp;    @Mock
+<i>54</i>&nbsp;    private ActionRouter actionRouter;
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;    private ActionService service;
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;    @Before
+<i>62</i>&nbsp;    public void setUp() throws Exception {
+<b class="fc"><i>63</i>&nbsp;        initMocks(this);</b>
+<b class="fc"><i>64</i>&nbsp;        service = new ActionService(drishtiService, allSettings, allSharedPreferences, allReports, actionRouter);</b>
+<b class="fc"><i>65</i>&nbsp;    }</b>
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;    @Test
+<i>68</i>&nbsp;    public void testShouldFetchAlertActionsAndNotSaveAnythingIfThereIsNothingNewToSave() throws Exception {
+<b class="fc"><i>69</i>&nbsp;        setupActions(success, new ArrayList&lt;Action&gt;());</b>
+<i>70</i>&nbsp;
+<b class="fc"><i>71</i>&nbsp;        assertEquals(nothingFetched, service.fetchNewActions());</b>
+<i>72</i>&nbsp;
+<b class="fc"><i>73</i>&nbsp;        verify(drishtiService).fetchNewActions(&quot;ANM X&quot;, &quot;1234&quot;);</b>
+<b class="fc"><i>74</i>&nbsp;        verifyNoMoreInteractions(drishtiService);</b>
+<b class="fc"><i>75</i>&nbsp;        verifyNoMoreInteractions(actionRouter);</b>
+<b class="fc"><i>76</i>&nbsp;    }</b>
+<i>77</i>&nbsp;
+<i>78</i>&nbsp;    @Test
+<i>79</i>&nbsp;    public void testShouldNotSaveAnythingIfTheDrishtiResponseStatusIsFailure() throws Exception {
+<b class="fc"><i>80</i>&nbsp;        setupActions(failure, asList(actionForCloseAlert(&quot;Case X&quot;, &quot;ANC 1&quot;, &quot;2012-01-01&quot;, &quot;0&quot;)));</b>
+<i>81</i>&nbsp;
+<b class="fc"><i>82</i>&nbsp;        assertEquals(fetchedFailed, service.fetchNewActions());</b>
+<i>83</i>&nbsp;
+<b class="fc"><i>84</i>&nbsp;        verify(drishtiService).fetchNewActions(&quot;ANM X&quot;, &quot;1234&quot;);</b>
+<b class="fc"><i>85</i>&nbsp;        verifyNoMoreInteractions(drishtiService);</b>
+<b class="fc"><i>86</i>&nbsp;        verifyNoMoreInteractions(actionRouter);</b>
+<b class="fc"><i>87</i>&nbsp;    }</b>
+<i>88</i>&nbsp;
+<i>89</i>&nbsp;    @Test
+<i>90</i>&nbsp;    public void testShouldFetchAlertActionsAndSaveThemToRepository() throws Exception {
+<b class="fc"><i>91</i>&nbsp;        Action action = actionForCreateAlert(&quot;Case X&quot;, &quot;normal&quot;, &quot;mother&quot;, &quot;Ante Natal Care - Normal&quot;, &quot;ANC 1&quot;, &quot;2012-01-01&quot;, null, &quot;0&quot;);</b>
+<b class="fc"><i>92</i>&nbsp;        setupActions(success, asList(action));</b>
+<i>93</i>&nbsp;
+<b class="fc"><i>94</i>&nbsp;        assertEquals(fetched, service.fetchNewActions());</b>
+<i>95</i>&nbsp;
+<b class="fc"><i>96</i>&nbsp;        verify(drishtiService).fetchNewActions(&quot;ANM X&quot;, &quot;1234&quot;);</b>
+<b class="fc"><i>97</i>&nbsp;        verify(actionRouter).directAlertAction(action);</b>
+<i>98</i>&nbsp;
+<b class="fc"><i>99</i>&nbsp;    }</b>
+<i>100</i>&nbsp;
+<i>101</i>&nbsp;    @Test
+<i>102</i>&nbsp;    public void testShouldUpdatePreviousIndexWithIndexOfEachActionThatIsHandled() throws Exception {
+<i>103</i>&nbsp;
+<b class="fc"><i>104</i>&nbsp;        Action firstAction = actionForCreateAlert(&quot;Case X&quot;, &quot;normal&quot;, &quot;mother&quot;, &quot;Ante Natal Care - Normal&quot;, &quot;ANC 1&quot;, &quot;2012-01-01&quot;, &quot;2012-01-22&quot;, &quot;11111&quot;);</b>
+<b class="fc"><i>105</i>&nbsp;        Action secondAction = actionForCreateAlert(&quot;Case Y&quot;, &quot;normal&quot;, &quot;mother&quot;, &quot;Ante Natal Care - Normal&quot;, &quot;ANC 2&quot;, &quot;2012-01-01&quot;, &quot;2012-01-11&quot;, &quot;12345&quot;);</b>
+<i>106</i>&nbsp;
+<b class="fc"><i>107</i>&nbsp;        setupActions(success, asList(firstAction, secondAction));</b>
+<i>108</i>&nbsp;
+<b class="fc"><i>109</i>&nbsp;        service.fetchNewActions();</b>
+<i>110</i>&nbsp;
+<b class="fc"><i>111</i>&nbsp;        InOrder inOrder = inOrder(actionRouter, allSettings);</b>
+<b class="fc"><i>112</i>&nbsp;        inOrder.verify(actionRouter).directAlertAction(firstAction);</b>
+<b class="fc"><i>113</i>&nbsp;        inOrder.verify(allSettings).savePreviousFetchIndex(&quot;11111&quot;);</b>
+<b class="fc"><i>114</i>&nbsp;        inOrder.verify(actionRouter).directAlertAction(secondAction);</b>
+<b class="fc"><i>115</i>&nbsp;        inOrder.verify(allSettings).savePreviousFetchIndex(&quot;12345&quot;);</b>
+<b class="fc"><i>116</i>&nbsp;    }</b>
+<i>117</i>&nbsp;
+<i>118</i>&nbsp;    @Test
+<i>119</i>&nbsp;    public void testShouldHandleDifferentKindsOfActions() throws Exception {
+<b class="fc"><i>120</i>&nbsp;        Action reportAction = actionForReport(&quot;Case X&quot;, &quot;annual target&quot;);</b>
+<b class="fc"><i>121</i>&nbsp;        Action alertAction = actionForCreateAlert(&quot;Case X&quot;, &quot;normal&quot;, &quot;mother&quot;, &quot;Ante Natal Care - Normal&quot;, &quot;ANC 1&quot;, &quot;2012-01-01&quot;, null, &quot;0&quot;);</b>
+<b class="fc"><i>122</i>&nbsp;        Action closeMotherAction = actionForCloseMother(&quot;Case X&quot;);</b>
+<b class="fc"><i>123</i>&nbsp;        setupActions(success, asList(reportAction, alertAction, closeMotherAction));</b>
+<i>124</i>&nbsp;
+<b class="fc"><i>125</i>&nbsp;        service.fetchNewActions();</b>
+<i>126</i>&nbsp;
+<b class="fc"><i>127</i>&nbsp;        verify(allReports).handleAction(reportAction);</b>
+<b class="fc"><i>128</i>&nbsp;        verify(actionRouter).directAlertAction(alertAction);</b>
+<b class="fc"><i>129</i>&nbsp;        verify(actionRouter).directMotherAction(closeMotherAction);</b>
+<b class="fc"><i>130</i>&nbsp;    }</b>
+<i>131</i>&nbsp;
+<i>132</i>&nbsp;    private void setupActions(ResponseStatus status, List&lt;Action&gt; list) {
+<i>133</i>&nbsp;
+<i>134</i>&nbsp;        //AllSettings allSettings = Mockito.mock(AllSettings.class);
+<i>135</i>&nbsp;
+<b class="fc"><i>136</i>&nbsp;        when(allSettings.fetchPreviousFetchIndex()).thenReturn(&quot;1234&quot;);</b>
+<b class="fc"><i>137</i>&nbsp;        when(allSharedPreferences.fetchRegisteredANM()).thenReturn(&quot;ANM X&quot;);</b>
+<b class="fc"><i>138</i>&nbsp;        when(drishtiService.fetchNewActions(&quot;ANM X&quot;, &quot;1234&quot;)).thenReturn(new Response&lt;List&lt;Action&gt;&gt;(status, list));</b>
+<b class="fc"><i>139</i>&nbsp;    }</b>
+<i>140</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-20 13:39</div>
+</div>
+</body>
+</html>

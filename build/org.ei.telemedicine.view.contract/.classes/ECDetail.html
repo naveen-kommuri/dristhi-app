@@ -1,0 +1,142 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ECDetail</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.contract</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ECDetail (org.ei.telemedicine.view.contract)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ECDetail</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    60%
+  </span>
+  <span class="absValue">
+    (3/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    88.9%
+  </span>
+  <span class="absValue">
+    (16/ 18)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.contract;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.apache.commons.lang3.builder.EqualsBuilder;
+<i>4</i>&nbsp;import org.apache.commons.lang3.builder.HashCodeBuilder;
+<i>5</i>&nbsp;import org.apache.commons.lang3.builder.ToStringBuilder;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.util.ArrayList;
+<i>8</i>&nbsp;import java.util.List;
+<i>9</i>&nbsp;import java.util.Map;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;public class ECDetail {
+<i>12</i>&nbsp;    private String caseId;
+<i>13</i>&nbsp;    private CoupleDetails coupleDetails;
+<i>14</i>&nbsp;    private String village;
+<i>15</i>&nbsp;    private String subcenter;
+<i>16</i>&nbsp;    private String ecNumber;
+<i>17</i>&nbsp;    private boolean isHighPriority;
+<i>18</i>&nbsp;    private String address;
+<i>19</i>&nbsp;    private String photoPath;
+<i>20</i>&nbsp;    private List&lt;Child&gt; children;
+<i>21</i>&nbsp;    private List&lt;TimelineEvent&gt; timelineEvents;
+<i>22</i>&nbsp;    private Map&lt;String, String&gt; details;
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    public ECDetail(String caseId, String village, String subcenter, String ecNumber, boolean isHighPriority, String address,
+<b class="fc"><i>25</i>&nbsp;                    String photoPath, List&lt;Child&gt; children, CoupleDetails coupleDetails, Map&lt;String, String&gt; details) {</b>
+<b class="fc"><i>26</i>&nbsp;        this.caseId = caseId;</b>
+<b class="fc"><i>27</i>&nbsp;        this.coupleDetails = coupleDetails;</b>
+<b class="fc"><i>28</i>&nbsp;        this.village = village;</b>
+<b class="fc"><i>29</i>&nbsp;        this.subcenter = subcenter;</b>
+<b class="fc"><i>30</i>&nbsp;        this.ecNumber = ecNumber;</b>
+<b class="fc"><i>31</i>&nbsp;        this.isHighPriority = isHighPriority;</b>
+<b class="fc"><i>32</i>&nbsp;        this.address = address;</b>
+<b class="fc"><i>33</i>&nbsp;        this.photoPath = photoPath;</b>
+<b class="fc"><i>34</i>&nbsp;        this.children = children;</b>
+<b class="fc"><i>35</i>&nbsp;        this.details = details;</b>
+<i>36</i>&nbsp;
+<b class="fc"><i>37</i>&nbsp;        this.timelineEvents = new ArrayList&lt;TimelineEvent&gt;();</b>
+<b class="fc"><i>38</i>&nbsp;    }</b>
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;    public ECDetail addTimelineEvents(List&lt;TimelineEvent&gt; events) {
+<b class="fc"><i>41</i>&nbsp;        this.timelineEvents = events;</b>
+<b class="fc"><i>42</i>&nbsp;        return this;</b>
+<i>43</i>&nbsp;    }
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;    @Override
+<i>46</i>&nbsp;    public boolean equals(Object o) {
+<b class="fc"><i>47</i>&nbsp;        return EqualsBuilder.reflectionEquals(this, o);</b>
+<i>48</i>&nbsp;    }
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;    @Override
+<i>51</i>&nbsp;    public int hashCode() {
+<b class="nc"><i>52</i>&nbsp;        return HashCodeBuilder.reflectionHashCode(this);</b>
+<i>53</i>&nbsp;    }
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;    @Override
+<i>56</i>&nbsp;    public String toString() {
+<b class="nc"><i>57</i>&nbsp;        return ToStringBuilder.reflectionToString(this);</b>
+<i>58</i>&nbsp;    }
+<i>59</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

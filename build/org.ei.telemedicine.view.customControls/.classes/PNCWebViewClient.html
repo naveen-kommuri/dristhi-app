@@ -1,0 +1,107 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: PNCWebViewClient</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.customControls</a> ]
+</div>
+
+<h1>Coverage Summary for Class: PNCWebViewClient (org.ei.telemedicine.view.customControls)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PNCWebViewClient</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 7)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.customControls;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;
+<i>4</i>&nbsp;import android.net.http.SslError;
+<i>5</i>&nbsp;import android.webkit.SslErrorHandler;
+<i>6</i>&nbsp;import android.webkit.WebView;
+<i>7</i>&nbsp;import android.webkit.WebViewClient;
+<i>8</i>&nbsp;
+<b class="nc"><i>9</i>&nbsp;public class PNCWebViewClient extends WebViewClient {</b>
+<i>10</i>&nbsp;    @Override
+<i>11</i>&nbsp;    public void onPageFinished(WebView view, String url) {
+<b class="nc"><i>12</i>&nbsp;        super.onPageFinished(view, url);</b>
+<b class="nc"><i>13</i>&nbsp;    }</b>
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    @Override
+<i>16</i>&nbsp;    public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+<b class="nc"><i>17</i>&nbsp;        view.loadUrl(&quot;file:///android_asset/www/pnc_graph/pnc_visit_graph_error.html&quot;);</b>
+<b class="nc"><i>18</i>&nbsp;    }</b>
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    @Override
+<i>21</i>&nbsp;    public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+<b class="nc"><i>22</i>&nbsp;        super.onReceivedSslError(view, handler, error);</b>
+<b class="nc"><i>23</i>&nbsp;    }</b>
+<i>24</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

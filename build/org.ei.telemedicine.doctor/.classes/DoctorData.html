@@ -1,0 +1,247 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: DoctorData</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.doctor</a> ]
+</div>
+
+<h1>Coverage Summary for Class: DoctorData (org.ei.telemedicine.doctor)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DoctorData</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 24)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 35)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">DoctorData$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 10)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 26)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 45)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.doctor;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.json.JSONException;
+<i>4</i>&nbsp;import org.json.JSONObject;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import java.util.Comparator;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;/**
+<i>9</i>&nbsp; * Created by naveen on 5/20/15.
+<i>10</i>&nbsp; */
+<b class="nc"><i>11</i>&nbsp;public class DoctorData {</b>
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;    private String anmId;
+<i>15</i>&nbsp;    private String FormInformation;
+<i>16</i>&nbsp;    private String FormTime;
+<i>17</i>&nbsp;    private String POCInformation;
+<i>18</i>&nbsp;    private String PocStatus;
+<i>19</i>&nbsp;    private String PocTime;
+<i>20</i>&nbsp;    private String SyncStatus;
+<i>21</i>&nbsp;    private String VisitType;
+<i>22</i>&nbsp;    private String villageName;
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    private String imgUrl;
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    public String getVisitType() {
+<b class="nc"><i>27</i>&nbsp;        return VisitType;</b>
+<i>28</i>&nbsp;    }
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    public void setVisitType(String visitType) {
+<b class="nc"><i>31</i>&nbsp;        VisitType = visitType;</b>
+<b class="nc"><i>32</i>&nbsp;    }</b>
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    public String getCaseId() {
+<b class="nc"><i>35</i>&nbsp;        return CaseId;</b>
+<i>36</i>&nbsp;    }
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    public void setCaseId(String caseId) {
+<b class="nc"><i>39</i>&nbsp;        CaseId = caseId;</b>
+<b class="nc"><i>40</i>&nbsp;    }</b>
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    public String CaseId;
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;    public String getAnmId() {
+<b class="nc"><i>45</i>&nbsp;        return anmId;</b>
+<i>46</i>&nbsp;    }
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    public void setAnmId(String anmId) {
+<b class="nc"><i>49</i>&nbsp;        this.anmId = anmId;</b>
+<b class="nc"><i>50</i>&nbsp;    }</b>
+<i>51</i>&nbsp;
+<i>52</i>&nbsp;    public String getFormInformation() {
+<b class="nc"><i>53</i>&nbsp;        return FormInformation;</b>
+<i>54</i>&nbsp;    }
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;    public void setFormInformation(String formInformation) {
+<b class="nc"><i>57</i>&nbsp;        FormInformation = formInformation;</b>
+<b class="nc"><i>58</i>&nbsp;    }</b>
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;    public String getFormTime() {
+<b class="nc"><i>61</i>&nbsp;        return FormTime;</b>
+<i>62</i>&nbsp;    }
+<i>63</i>&nbsp;
+<i>64</i>&nbsp;    public void setFormTime(String formTime) {
+<b class="nc"><i>65</i>&nbsp;        FormTime = formTime;</b>
+<b class="nc"><i>66</i>&nbsp;    }</b>
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;    public String getPOCInformation() {
+<b class="nc"><i>69</i>&nbsp;        return POCInformation;</b>
+<i>70</i>&nbsp;    }
+<i>71</i>&nbsp;
+<i>72</i>&nbsp;    public void setPOCInformation(String POCInformation) {
+<b class="nc"><i>73</i>&nbsp;        this.POCInformation = POCInformation;</b>
+<b class="nc"><i>74</i>&nbsp;    }</b>
+<i>75</i>&nbsp;
+<i>76</i>&nbsp;    public String getPocStatus() {
+<b class="nc"><i>77</i>&nbsp;        return PocStatus;</b>
+<i>78</i>&nbsp;    }
+<i>79</i>&nbsp;
+<i>80</i>&nbsp;    public void setPocStatus(String pocStatus) {
+<b class="nc"><i>81</i>&nbsp;        PocStatus = pocStatus;</b>
+<b class="nc"><i>82</i>&nbsp;    }</b>
+<i>83</i>&nbsp;
+<i>84</i>&nbsp;    public String getPocTime() {
+<b class="nc"><i>85</i>&nbsp;        return PocTime;</b>
+<i>86</i>&nbsp;    }
+<i>87</i>&nbsp;
+<i>88</i>&nbsp;    public void setPocTime(String pocTime) {
+<b class="nc"><i>89</i>&nbsp;        PocTime = pocTime;</b>
+<b class="nc"><i>90</i>&nbsp;    }</b>
+<i>91</i>&nbsp;
+<i>92</i>&nbsp;    public String getSyncStatus() {
+<b class="nc"><i>93</i>&nbsp;        return SyncStatus;</b>
+<i>94</i>&nbsp;    }
+<i>95</i>&nbsp;
+<i>96</i>&nbsp;    public void setSyncStatus(String syncStatus) {
+<b class="nc"><i>97</i>&nbsp;        SyncStatus = syncStatus;</b>
+<b class="nc"><i>98</i>&nbsp;    }</b>
+<i>99</i>&nbsp;
+<i>100</i>&nbsp;    public String getVillageName() {
+<b class="nc"><i>101</i>&nbsp;        return villageName;</b>
+<i>102</i>&nbsp;    }
+<i>103</i>&nbsp;
+<i>104</i>&nbsp;    public void setVillageName(String villageName) {
+<b class="nc"><i>105</i>&nbsp;        this.villageName = villageName;</b>
+<b class="nc"><i>106</i>&nbsp;    }</b>
+<i>107</i>&nbsp;
+<i>108</i>&nbsp;
+<b class="nc"><i>109</i>&nbsp;    public static Comparator&lt;DoctorData&gt; womanNameComparator = new Comparator&lt;DoctorData&gt;() {</b>
+<i>110</i>&nbsp;
+<i>111</i>&nbsp;        public int compare(DoctorData s1, DoctorData s2) {
+<b class="nc"><i>112</i>&nbsp;            JSONObject compareformInfoJson = null;</b>
+<i>113</i>&nbsp;            try {
+<b class="nc"><i>114</i>&nbsp;                compareformInfoJson = new JSONObject(s1.getFormInformation());</b>
+<b class="nc"><i>115</i>&nbsp;                JSONObject currentformInfoJson = new JSONObject(s2.getFormInformation());</b>
+<b class="nc"><i>116</i>&nbsp;                String compareWomanName = compareformInfoJson.has(DoctorFormDataConstants.wife_name) ? compareformInfoJson.getString((DoctorFormDataConstants.wife_name)).toUpperCase() : &quot;&quot;;</b>
+<b class="nc"><i>117</i>&nbsp;                String currentWomanName = currentformInfoJson.has(DoctorFormDataConstants.wife_name) ? currentformInfoJson.getString((DoctorFormDataConstants.wife_name)).toUpperCase() : &quot;&quot;;</b>
+<b class="nc"><i>118</i>&nbsp;                return compareWomanName.compareTo(currentWomanName);</b>
+<b class="nc"><i>119</i>&nbsp;            } catch (JSONException e) {</b>
+<b class="nc"><i>120</i>&nbsp;                e.printStackTrace();</b>
+<i>121</i>&nbsp;            }
+<i>122</i>&nbsp;
+<b class="nc"><i>123</i>&nbsp;            return 0;</b>
+<i>124</i>&nbsp;            //descending order
+<i>125</i>&nbsp;            //return StudentName2.compareTo(StudentName1);
+<i>126</i>&nbsp;        }
+<i>127</i>&nbsp;    };
+<i>128</i>&nbsp;
+<i>129</i>&nbsp;
+<i>130</i>&nbsp;    public String getImgUrl() {
+<b class="nc"><i>131</i>&nbsp;        return imgUrl;</b>
+<i>132</i>&nbsp;    }
+<i>133</i>&nbsp;
+<i>134</i>&nbsp;    public void setImgUrl(String imgUrl) {
+<b class="nc"><i>135</i>&nbsp;        this.imgUrl = imgUrl;</b>
+<b class="nc"><i>136</i>&nbsp;    }</b>
+<i>137</i>&nbsp;
+<i>138</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

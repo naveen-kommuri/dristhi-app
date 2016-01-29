@@ -1,0 +1,219 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ECClientTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.view.contract</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ECClientTest (org.ei.telemedicine.test.view.contract)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ECClientTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/ 17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (54/ 54)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.view.contract;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.util.DateUtil;
+<i>4</i>&nbsp;import org.ei.telemedicine.view.contract.ECClient;
+<i>5</i>&nbsp;import org.joda.time.LocalDate;
+<i>6</i>&nbsp;import org.junit.Test;
+<i>7</i>&nbsp;import org.junit.runner.RunWith;
+<i>8</i>&nbsp;import org.mockito.runners.MockitoJUnitRunner;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import static junit.framework.Assert.assertEquals;
+<i>11</i>&nbsp;import static junit.framework.Assert.assertFalse;
+<i>12</i>&nbsp;import static junit.framework.Assert.assertTrue;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;@RunWith(MockitoJUnitRunner.class)
+<b class="fc"><i>15</i>&nbsp;public class ECClientTest {</b>
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    @Test
+<i>19</i>&nbsp;    public void testShouldReturnTrueForIsBPLWhenEconomicStatusIsBPL() throws Exception {
+<b class="fc"><i>20</i>&nbsp;        ECClient client = getClient().withEconomicStatus(&quot;BPL&quot;);</b>
+<i>21</i>&nbsp;
+<b class="fc"><i>22</i>&nbsp;        assertTrue(client.isBPL());</b>
+<b class="fc"><i>23</i>&nbsp;    }</b>
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    @Test
+<i>26</i>&nbsp;    public void testShouldReturnFalseForIsBPLWhenEconomicStatusIsAPLOrNothing() throws Exception {
+<b class="fc"><i>27</i>&nbsp;        ECClient client = getClient().withEconomicStatus(&quot;APL&quot;);</b>
+<b class="fc"><i>28</i>&nbsp;        assertFalse(client.isBPL());</b>
+<i>29</i>&nbsp;
+<b class="fc"><i>30</i>&nbsp;        client = getClient();</b>
+<b class="fc"><i>31</i>&nbsp;        assertFalse(client.isBPL());</b>
+<b class="fc"><i>32</i>&nbsp;    }</b>
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    @Test
+<i>35</i>&nbsp;    public void testShouldReturnTrueWhenClientContainsCasteAsSC() throws Exception {
+<b class="fc"><i>36</i>&nbsp;        ECClient SCClient = getClient().withCaste(&quot;SC&quot;);</b>
+<i>37</i>&nbsp;
+<b class="fc"><i>38</i>&nbsp;        assertTrue(SCClient.isSC());</b>
+<b class="fc"><i>39</i>&nbsp;        assertFalse(SCClient.isST());</b>
+<b class="fc"><i>40</i>&nbsp;    }</b>
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    @Test
+<i>43</i>&nbsp;    public void testShouldReturnTrueWhenClientContainsCasteAsST() throws Exception {
+<b class="fc"><i>44</i>&nbsp;        ECClient STClient = getClient().withCaste(&quot;ST&quot;);</b>
+<i>45</i>&nbsp;
+<b class="fc"><i>46</i>&nbsp;        assertFalse(STClient.isSC());</b>
+<b class="fc"><i>47</i>&nbsp;        assertTrue(STClient.isST());</b>
+<b class="fc"><i>48</i>&nbsp;    }</b>
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;    @Test
+<i>51</i>&nbsp;    public void testShouldReturn34YearsWhenDOBIs4_4_1980() {
+<b class="fc"><i>52</i>&nbsp;        DateUtil.fakeIt(LocalDate.parse(&quot;2014-04-18&quot;));</b>
+<i>53</i>&nbsp;
+<b class="fc"><i>54</i>&nbsp;        final int age = getClient().withDateOfBirth(new LocalDate(1980, 4, 4).toString()).age();</b>
+<i>55</i>&nbsp;
+<b class="fc"><i>56</i>&nbsp;        assertEquals(35, age);</b>
+<b class="fc"><i>57</i>&nbsp;    }</b>
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;    @Test
+<i>60</i>&nbsp;    public void testShouldReturn0YearsWhenDOBIs4_4_2014() {
+<b class="fc"><i>61</i>&nbsp;        DateUtil.fakeIt(LocalDate.parse(&quot;2014-04-18&quot;));</b>
+<i>62</i>&nbsp;
+<b class="fc"><i>63</i>&nbsp;        int age = getClient().withDateOfBirth(new LocalDate(2014, 4, 4).toString()).age();</b>
+<i>64</i>&nbsp;
+<b class="fc"><i>65</i>&nbsp;        assertEquals(1, age);</b>
+<b class="fc"><i>66</i>&nbsp;    }</b>
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;    @Test
+<i>69</i>&nbsp;    public void testShouldReturn1YearsWhenDOBIs18_4_2013() {
+<b class="fc"><i>70</i>&nbsp;        DateUtil.fakeIt(LocalDate.parse(&quot;2014-04-18&quot;));</b>
+<i>71</i>&nbsp;
+<b class="fc"><i>72</i>&nbsp;        final int age = getClient().withDateOfBirth(new LocalDate(2013, 4, 18).toString()).age();</b>
+<i>73</i>&nbsp;
+<b class="fc"><i>74</i>&nbsp;        assertEquals(2, age);</b>
+<b class="fc"><i>75</i>&nbsp;    }</b>
+<i>76</i>&nbsp;
+<i>77</i>&nbsp;    @Test
+<i>78</i>&nbsp;    public void testShouldReturnUpperCaseIUDPerson() {
+<b class="fc"><i>79</i>&nbsp;        String iudPerson = getClient().withIUDPerson(&quot;iudperson&quot;).iudPerson();</b>
+<i>80</i>&nbsp;
+<b class="fc"><i>81</i>&nbsp;        assertEquals(iudPerson, &quot;IUDPERSON&quot;);</b>
+<b class="fc"><i>82</i>&nbsp;    }</b>
+<i>83</i>&nbsp;
+<i>84</i>&nbsp;    @Test
+<i>85</i>&nbsp;    public void testShouldReturnUpperCaseIUDPlace() {
+<b class="fc"><i>86</i>&nbsp;        String iudPerson = getClient().withIUDPerson(&quot;iudplace&quot;).iudPerson();</b>
+<i>87</i>&nbsp;
+<b class="fc"><i>88</i>&nbsp;        assertEquals(iudPerson, &quot;IUDPLACE&quot;);</b>
+<b class="fc"><i>89</i>&nbsp;    }</b>
+<i>90</i>&nbsp;
+<i>91</i>&nbsp;    @Test
+<i>92</i>&nbsp;    public void testShouldSatisfyFilterForNameStartingWithSameCharacters() {
+<b class="fc"><i>93</i>&nbsp;        boolean filterMatches = getClient().satisfiesFilter(&quot;Dr&quot;);</b>
+<i>94</i>&nbsp;
+<b class="fc"><i>95</i>&nbsp;        assertTrue(filterMatches);</b>
+<b class="fc"><i>96</i>&nbsp;    }</b>
+<i>97</i>&nbsp;
+<i>98</i>&nbsp;    @Test
+<i>99</i>&nbsp;    public void testShouldSatisfyFilterForECNumberStartingWithSameCharacters() {
+<b class="fc"><i>100</i>&nbsp;        boolean filterMatches = getClient().satisfiesFilter(&quot;12&quot;);</b>
+<i>101</i>&nbsp;
+<b class="fc"><i>102</i>&nbsp;        assertTrue(filterMatches);</b>
+<b class="fc"><i>103</i>&nbsp;    }</b>
+<i>104</i>&nbsp;
+<i>105</i>&nbsp;    @Test
+<i>106</i>&nbsp;    public void testShouldNotSatisfyFilterForNameNotStartingWithSameCharacters() {
+<b class="fc"><i>107</i>&nbsp;        boolean filterMatches = getClient().satisfiesFilter(&quot;shti&quot;);</b>
+<i>108</i>&nbsp;
+<b class="fc"><i>109</i>&nbsp;        assertFalse(filterMatches);</b>
+<b class="fc"><i>110</i>&nbsp;    }</b>
+<i>111</i>&nbsp;
+<i>112</i>&nbsp;    @Test
+<i>113</i>&nbsp;    public void testShouldSatisfyFilterForBlankName() {
+<b class="fc"><i>114</i>&nbsp;        boolean filterMatches = getClient().satisfiesFilter(&quot;&quot;);</b>
+<i>115</i>&nbsp;
+<b class="fc"><i>116</i>&nbsp;        assertTrue(filterMatches);</b>
+<b class="fc"><i>117</i>&nbsp;    }</b>
+<i>118</i>&nbsp;
+<i>119</i>&nbsp;    @Test
+<i>120</i>&nbsp;    public void testShouldNotSatisfyFilterForECNumberNotStartingWithSameCharacters() {
+<b class="fc"><i>121</i>&nbsp;        boolean filterMatches = getClient().satisfiesFilter(&quot;23&quot;);</b>
+<i>122</i>&nbsp;
+<b class="fc"><i>123</i>&nbsp;        assertFalse(filterMatches);</b>
+<b class="fc"><i>124</i>&nbsp;    }</b>
+<i>125</i>&nbsp;
+<i>126</i>&nbsp;    @Test
+<i>127</i>&nbsp;    public void testShouldSatisfyFilterForBlankECNumber() {
+<b class="fc"><i>128</i>&nbsp;        boolean filterMatches = getClient().satisfiesFilter(&quot;&quot;);</b>
+<i>129</i>&nbsp;
+<b class="fc"><i>130</i>&nbsp;        assertTrue(filterMatches);</b>
+<b class="fc"><i>131</i>&nbsp;    }</b>
+<i>132</i>&nbsp;
+<i>133</i>&nbsp;    private ECClient getClient() {
+<b class="fc"><i>134</i>&nbsp;        return new ECClient(&quot;abcd&quot;, &quot;Drishti&quot;, &quot;husband1&quot;, &quot;village1&quot;, 123);</b>
+<i>135</i>&nbsp;    }
+<i>136</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-20 13:39</div>
+</div>
+</body>
+</html>

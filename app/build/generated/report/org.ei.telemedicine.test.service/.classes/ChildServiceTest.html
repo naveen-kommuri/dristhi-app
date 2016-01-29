@@ -1,0 +1,502 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ChildServiceTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.service</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ChildServiceTest (org.ei.telemedicine.test.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ChildServiceTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (19/ 19)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (266/ 266)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.service;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.domain.Child;
+<i>4</i>&nbsp;import org.ei.telemedicine.domain.Mother;
+<i>5</i>&nbsp;import org.ei.telemedicine.domain.ServiceProvided;
+<i>6</i>&nbsp;import org.ei.telemedicine.domain.TimelineEvent;
+<i>7</i>&nbsp;import org.ei.telemedicine.domain.form.FormSubmission;
+<i>8</i>&nbsp;import org.ei.telemedicine.domain.form.SubForm;
+<i>9</i>&nbsp;import org.ei.telemedicine.repository.AllAlerts;
+<i>10</i>&nbsp;import org.ei.telemedicine.repository.AllBeneficiaries;
+<i>11</i>&nbsp;import org.ei.telemedicine.repository.AllTimelineEvents;
+<i>12</i>&nbsp;import org.ei.telemedicine.repository.ChildRepository;
+<i>13</i>&nbsp;import org.ei.telemedicine.repository.MotherRepository;
+<i>14</i>&nbsp;import org.ei.telemedicine.service.ChildService;
+<i>15</i>&nbsp;import org.ei.telemedicine.service.ServiceProvidedService;
+<i>16</i>&nbsp;import org.ei.telemedicine.util.EasyMap;
+<i>17</i>&nbsp;import org.junit.Before;
+<i>18</i>&nbsp;import org.junit.Test;
+<i>19</i>&nbsp;import org.junit.runner.RunWith;
+<i>20</i>&nbsp;import org.mockito.Mock;
+<i>21</i>&nbsp;import org.mockito.runners.MockitoJUnitRunner;
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;import java.util.ArrayList;
+<i>24</i>&nbsp;import java.util.Map;
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;import static java.util.Arrays.asList;
+<i>27</i>&nbsp;import static org.ei.telemedicine.domain.ServiceProvided.forChildIllnessVisit;
+<i>28</i>&nbsp;import static org.ei.telemedicine.domain.ServiceProvided.forChildImmunization;
+<i>29</i>&nbsp;import static org.ei.telemedicine.domain.ServiceProvided.forVitaminAProvided;
+<i>30</i>&nbsp;import static org.ei.telemedicine.domain.TimelineEvent.forChildBirthInChildProfile;
+<i>31</i>&nbsp;import static org.ei.telemedicine.domain.TimelineEvent.forChildBirthInECProfile;
+<i>32</i>&nbsp;import static org.ei.telemedicine.domain.TimelineEvent.forChildBirthInMotherProfile;
+<i>33</i>&nbsp;import static org.ei.telemedicine.util.EasyMap.create;
+<i>34</i>&nbsp;import static org.ei.telemedicine.util.EasyMap.mapOf;
+<i>35</i>&nbsp;import static org.mockito.Mockito.mock;
+<i>36</i>&nbsp;import static org.mockito.Mockito.times;
+<i>37</i>&nbsp;import static org.mockito.Mockito.verify;
+<i>38</i>&nbsp;import static org.mockito.Mockito.verifyNoMoreInteractions;
+<i>39</i>&nbsp;import static org.mockito.Mockito.when;
+<i>40</i>&nbsp;import static org.mockito.MockitoAnnotations.initMocks;
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;@RunWith(MockitoJUnitRunner.class)
+<b class="fc"><i>43</i>&nbsp;public class ChildServiceTest {</b>
+<i>44</i>&nbsp;    @Mock
+<i>45</i>&nbsp;    private AllTimelineEvents allTimelineEvents;
+<i>46</i>&nbsp;    @Mock
+<i>47</i>&nbsp;    private ChildRepository childRepository;
+<i>48</i>&nbsp;    @Mock
+<i>49</i>&nbsp;    private MotherRepository motherRepository;
+<i>50</i>&nbsp;    @Mock
+<i>51</i>&nbsp;    private ServiceProvidedService serviceProvidedService;
+<i>52</i>&nbsp;    @Mock
+<i>53</i>&nbsp;    private AllAlerts allAlerts;
+<i>54</i>&nbsp;    @Mock
+<i>55</i>&nbsp;    private AllBeneficiaries allBeneficiaries;
+<i>56</i>&nbsp;    @Mock
+<i>57</i>&nbsp;    private Child child;
+<i>58</i>&nbsp;    private ChildService service;
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;    @Before
+<i>61</i>&nbsp;    public void setUp() throws Exception {
+<b class="fc"><i>62</i>&nbsp;        initMocks(this);</b>
+<b class="fc"><i>63</i>&nbsp;        service = new ChildService(allBeneficiaries, motherRepository, childRepository, allTimelineEvents, serviceProvidedService, allAlerts);</b>
+<b class="fc"><i>64</i>&nbsp;    }</b>
+<i>65</i>&nbsp;
+<i>66</i>&nbsp;    @Test
+<i>67</i>&nbsp;    public void testShouldUpdateEveryOnlyNewlyBornChildrenWhileRegistering() throws Exception {
+<b class="fc"><i>68</i>&nbsp;        Child firstChild = new Child(&quot;Child X&quot;, &quot;Mother X&quot;, &quot;female&quot;, create(&quot;weight&quot;, &quot;3&quot;).put(&quot;immunizationsGiven&quot;, &quot;bcg opv_0&quot;).map());</b>
+<b class="fc"><i>69</i>&nbsp;        Child secondChild = new Child(&quot;Child Y&quot;, &quot;Mother X&quot;, &quot;female&quot;, create(&quot;weight&quot;, &quot;4&quot;).put(&quot;immunizationsGiven&quot;, &quot;bcg&quot;).map());</b>
+<b class="fc"><i>70</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<b class="fc"><i>71</i>&nbsp;        SubForm subForm = mock(SubForm.class);</b>
+<b class="fc"><i>72</i>&nbsp;        when(motherRepository.findById(&quot;Mother X&quot;)).thenReturn(new Mother(&quot;Mother X&quot;, &quot;EC 1&quot;, &quot;TC 1&quot;, &quot;2012-01-01&quot;));</b>
+<b class="fc"><i>73</i>&nbsp;        when(childRepository.find(&quot;Child X&quot;)).thenReturn(firstChild);</b>
+<b class="fc"><i>74</i>&nbsp;        when(childRepository.find(&quot;Child Y&quot;)).thenReturn(secondChild);</b>
+<b class="fc"><i>75</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;Mother X&quot;);</b>
+<b class="fc"><i>76</i>&nbsp;        when(submission.getFieldValue(&quot;referenceDate&quot;)).thenReturn(&quot;2012-01-01&quot;);</b>
+<b class="fc"><i>77</i>&nbsp;        when(submission.getFieldValue(&quot;deliveryPlace&quot;)).thenReturn(&quot;phc&quot;);</b>
+<b class="fc"><i>78</i>&nbsp;        when(submission.getSubFormByName(&quot;child_registration&quot;)).thenReturn(subForm);</b>
+<b class="fc"><i>79</i>&nbsp;        when(subForm.instances()).thenReturn(asList(mapOf(&quot;id&quot;, &quot;Child X&quot;), mapOf(&quot;id&quot;, &quot;Child Y&quot;)));</b>
+<i>80</i>&nbsp;
+<b class="fc"><i>81</i>&nbsp;        service.register(submission);</b>
+<i>82</i>&nbsp;
+<b class="fc"><i>83</i>&nbsp;        verify(childRepository).find(&quot;Child X&quot;);</b>
+<b class="fc"><i>84</i>&nbsp;        verify(childRepository).find(&quot;Child Y&quot;);</b>
+<b class="fc"><i>85</i>&nbsp;        verify(childRepository).update(firstChild.setIsClosed(false).setDateOfBirth(&quot;2012-01-01&quot;).setThayiCardNumber(&quot;TC 1&quot;));</b>
+<b class="fc"><i>86</i>&nbsp;        verify(childRepository).update(secondChild.setIsClosed(false).setDateOfBirth(&quot;2012-01-01&quot;).setThayiCardNumber(&quot;TC 1&quot;));</b>
+<b class="fc"><i>87</i>&nbsp;        verify(allTimelineEvents).add(forChildBirthInChildProfile(&quot;Child X&quot;, &quot;2012-01-01&quot;, &quot;3&quot;, &quot;bcg opv_0&quot;));</b>
+<b class="fc"><i>88</i>&nbsp;        verify(allTimelineEvents).add(forChildBirthInChildProfile(&quot;Child Y&quot;, &quot;2012-01-01&quot;, &quot;4&quot;, &quot;bcg&quot;));</b>
+<b class="fc"><i>89</i>&nbsp;        verify(allTimelineEvents, times(2)).add(forChildBirthInMotherProfile(&quot;Mother X&quot;, &quot;2012-01-01&quot;, &quot;female&quot;, &quot;2012-01-01&quot;, &quot;phc&quot;));</b>
+<b class="fc"><i>90</i>&nbsp;        verify(allTimelineEvents, times(2)).add(forChildBirthInECProfile(&quot;EC 1&quot;, &quot;2012-01-01&quot;, &quot;female&quot;, &quot;2012-01-01&quot;));</b>
+<b class="fc"><i>91</i>&nbsp;        verify(serviceProvidedService).add(ServiceProvided.forChildImmunization(&quot;Child X&quot;, &quot;bcg&quot;, &quot;2012-01-01&quot;));</b>
+<b class="fc"><i>92</i>&nbsp;        verify(serviceProvidedService).add(ServiceProvided.forChildImmunization(&quot;Child X&quot;, &quot;opv_0&quot;, &quot;2012-01-01&quot;));</b>
+<b class="fc"><i>93</i>&nbsp;        verify(serviceProvidedService).add(ServiceProvided.forChildImmunization(&quot;Child Y&quot;, &quot;bcg&quot;, &quot;2012-01-01&quot;));</b>
+<b class="fc"><i>94</i>&nbsp;        verifyNoMoreInteractions(childRepository);</b>
+<b class="fc"><i>95</i>&nbsp;        verifyNoMoreInteractions(allTimelineEvents);</b>
+<b class="fc"><i>96</i>&nbsp;    }</b>
+<i>97</i>&nbsp;
+<i>98</i>&nbsp;    @Test
+<i>99</i>&nbsp;    public void testShouldDeleteRegisteredChildWhenDeliveryOutcomeIsStillBirth() throws Exception {
+<b class="fc"><i>100</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<b class="fc"><i>101</i>&nbsp;        SubForm subForm = mock(SubForm.class);</b>
+<b class="fc"><i>102</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;Mother X&quot;);</b>
+<b class="fc"><i>103</i>&nbsp;        when(submission.getFieldValue(&quot;referenceDate&quot;)).thenReturn(&quot;2012-01-01&quot;);</b>
+<b class="fc"><i>104</i>&nbsp;        when(submission.getFieldValue(&quot;deliveryPlace&quot;)).thenReturn(&quot;phc&quot;);</b>
+<b class="fc"><i>105</i>&nbsp;        when(submission.getFieldValue(&quot;deliveryOutcome&quot;)).thenReturn(&quot;still_birth&quot;);</b>
+<b class="fc"><i>106</i>&nbsp;        when(submission.getSubFormByName(&quot;child_registration&quot;)).thenReturn(subForm);</b>
+<b class="fc"><i>107</i>&nbsp;        when(subForm.instances()).thenReturn(asList(mapOf(&quot;id&quot;, &quot;Child X&quot;)));</b>
+<i>108</i>&nbsp;
+<b class="fc"><i>109</i>&nbsp;        service.register(submission);</b>
+<i>110</i>&nbsp;
+<b class="fc"><i>111</i>&nbsp;        verify(childRepository).delete(&quot;Child X&quot;);</b>
+<b class="fc"><i>112</i>&nbsp;        verifyNoMoreInteractions(childRepository);</b>
+<b class="fc"><i>113</i>&nbsp;        verifyNoMoreInteractions(allTimelineEvents);</b>
+<b class="fc"><i>114</i>&nbsp;        verifyNoMoreInteractions(serviceProvidedService);</b>
+<b class="fc"><i>115</i>&nbsp;    }</b>
+<i>116</i>&nbsp;
+<i>117</i>&nbsp;    @Test
+<i>118</i>&nbsp;    public void testShouldUpdateNewlyRegisteredChildrenDuringPNCRegistrationOA() throws Exception {
+<b class="fc"><i>119</i>&nbsp;        Child firstChild = new Child(&quot;Child X&quot;, &quot;Mother X&quot;, &quot;female&quot;, create(&quot;weight&quot;, &quot;3&quot;).put(&quot;immunizationsGiven&quot;, &quot;bcg opv_0&quot;).map());</b>
+<b class="fc"><i>120</i>&nbsp;        Child secondChild = new Child(&quot;Child Y&quot;, &quot;Mother X&quot;, &quot;female&quot;, create(&quot;weight&quot;, &quot;4&quot;).put(&quot;immunizationsGiven&quot;, &quot;bcg&quot;).map());</b>
+<b class="fc"><i>121</i>&nbsp;        Mother mother = new Mother(&quot;Mother X&quot;, &quot;EC X&quot;, &quot;TC 1&quot;, &quot;2012-01-02&quot;);</b>
+<b class="fc"><i>122</i>&nbsp;        when(motherRepository.findAllCasesForEC(&quot;EC X&quot;)).thenReturn(asList(mother));</b>
+<b class="fc"><i>123</i>&nbsp;        when(childRepository.find(&quot;Child X&quot;)).thenReturn(firstChild);</b>
+<b class="fc"><i>124</i>&nbsp;        when(childRepository.find(&quot;Child Y&quot;)).thenReturn(secondChild);</b>
+<b class="fc"><i>125</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<b class="fc"><i>126</i>&nbsp;        SubForm subForm = mock(SubForm.class);</b>
+<b class="fc"><i>127</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;EC X&quot;);</b>
+<b class="fc"><i>128</i>&nbsp;        when(submission.getFieldValue(&quot;referenceDate&quot;)).thenReturn(&quot;2012-01-01&quot;);</b>
+<b class="fc"><i>129</i>&nbsp;        when(submission.getFieldValue(&quot;deliveryPlace&quot;)).thenReturn(&quot;subcenter&quot;);</b>
+<b class="fc"><i>130</i>&nbsp;        when(submission.getSubFormByName(&quot;child_registration_oa&quot;)).thenReturn(subForm);</b>
+<b class="fc"><i>131</i>&nbsp;        when(subForm.instances()).thenReturn(asList(mapOf(&quot;id&quot;, &quot;Child X&quot;), mapOf(&quot;id&quot;, &quot;Child Y&quot;)));</b>
+<i>132</i>&nbsp;
+<b class="fc"><i>133</i>&nbsp;        service.pncRegistrationOA(submission);</b>
+<i>134</i>&nbsp;
+<b class="fc"><i>135</i>&nbsp;        verify(childRepository).find(&quot;Child X&quot;);</b>
+<b class="fc"><i>136</i>&nbsp;        verify(childRepository).find(&quot;Child Y&quot;);</b>
+<b class="fc"><i>137</i>&nbsp;        verify(childRepository).update(firstChild.setIsClosed(false).setDateOfBirth(&quot;2012-01-01&quot;).setThayiCardNumber(&quot;TC 1&quot;));</b>
+<b class="fc"><i>138</i>&nbsp;        verify(childRepository).update(secondChild.setIsClosed(false).setDateOfBirth(&quot;2012-01-01&quot;).setThayiCardNumber(&quot;TC 1&quot;));</b>
+<b class="fc"><i>139</i>&nbsp;        verify(allTimelineEvents).add(forChildBirthInChildProfile(&quot;Child X&quot;, &quot;2012-01-01&quot;, &quot;3&quot;, &quot;bcg opv_0&quot;));</b>
+<b class="fc"><i>140</i>&nbsp;        verify(allTimelineEvents).add(forChildBirthInChildProfile(&quot;Child Y&quot;, &quot;2012-01-01&quot;, &quot;4&quot;, &quot;bcg&quot;));</b>
+<b class="fc"><i>141</i>&nbsp;        verify(allTimelineEvents, times(2)).add(forChildBirthInMotherProfile(&quot;Mother X&quot;, &quot;2012-01-01&quot;, &quot;female&quot;, &quot;2012-01-01&quot;, &quot;subcenter&quot;));</b>
+<b class="fc"><i>142</i>&nbsp;        verify(allTimelineEvents, times(2)).add(forChildBirthInECProfile(&quot;EC X&quot;, &quot;2012-01-01&quot;, &quot;female&quot;, &quot;2012-01-01&quot;));</b>
+<i>143</i>&nbsp;
+<b class="fc"><i>144</i>&nbsp;        verify(serviceProvidedService).add(forChildImmunization(&quot;Child X&quot;, &quot;bcg&quot;, &quot;2012-01-01&quot;));</b>
+<b class="fc"><i>145</i>&nbsp;        verify(serviceProvidedService).add(forChildImmunization(&quot;Child X&quot;, &quot;opv_0&quot;, &quot;2012-01-01&quot;));</b>
+<b class="fc"><i>146</i>&nbsp;        verify(serviceProvidedService).add(forChildImmunization(&quot;Child Y&quot;, &quot;bcg&quot;, &quot;2012-01-01&quot;));</b>
+<b class="fc"><i>147</i>&nbsp;        verifyNoMoreInteractions(childRepository);</b>
+<b class="fc"><i>148</i>&nbsp;    }</b>
+<i>149</i>&nbsp;
+<i>150</i>&nbsp;    @Test
+<i>151</i>&nbsp;    public void testShouldDeleteRegisteredChildWhenPNCRegistrationOAIsHandledAndDeliveryOutcomeIsStillBirth() throws Exception {
+<b class="fc"><i>152</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<b class="fc"><i>153</i>&nbsp;        SubForm subForm = mock(SubForm.class);</b>
+<b class="fc"><i>154</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;Mother X&quot;);</b>
+<b class="fc"><i>155</i>&nbsp;        when(submission.getFieldValue(&quot;referenceDate&quot;)).thenReturn(&quot;2012-01-01&quot;);</b>
+<b class="fc"><i>156</i>&nbsp;        when(submission.getFieldValue(&quot;deliveryPlace&quot;)).thenReturn(&quot;phc&quot;);</b>
+<b class="fc"><i>157</i>&nbsp;        when(submission.getFieldValue(&quot;deliveryOutcome&quot;)).thenReturn(&quot;still_birth&quot;);</b>
+<b class="fc"><i>158</i>&nbsp;        when(submission.getSubFormByName(&quot;child_registration_oa&quot;)).thenReturn(subForm);</b>
+<b class="fc"><i>159</i>&nbsp;        when(subForm.instances()).thenReturn(asList(mapOf(&quot;id&quot;, &quot;Child X&quot;)));</b>
+<i>160</i>&nbsp;
+<b class="fc"><i>161</i>&nbsp;        service.pncRegistrationOA(submission);</b>
+<i>162</i>&nbsp;
+<b class="fc"><i>163</i>&nbsp;        verify(childRepository).delete(&quot;Child X&quot;);</b>
+<b class="fc"><i>164</i>&nbsp;        verifyNoMoreInteractions(childRepository);</b>
+<b class="fc"><i>165</i>&nbsp;        verifyNoMoreInteractions(allTimelineEvents);</b>
+<b class="fc"><i>166</i>&nbsp;        verifyNoMoreInteractions(serviceProvidedService);</b>
+<b class="fc"><i>167</i>&nbsp;    }</b>
+<i>168</i>&nbsp;
+<i>169</i>&nbsp;    @Test
+<i>170</i>&nbsp;    public void testShouldCheckForEmptyInstanceInTheCaseOfStillBirth() throws Exception {
+<b class="fc"><i>171</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<b class="fc"><i>172</i>&nbsp;        SubForm subForm = mock(SubForm.class);</b>
+<b class="fc"><i>173</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;Mother X&quot;);</b>
+<b class="fc"><i>174</i>&nbsp;        when(submission.getFieldValue(&quot;referenceDate&quot;)).thenReturn(&quot;2012-01-01&quot;);</b>
+<b class="fc"><i>175</i>&nbsp;        when(submission.getFieldValue(&quot;deliveryPlace&quot;)).thenReturn(&quot;phc&quot;);</b>
+<b class="fc"><i>176</i>&nbsp;        when(submission.getFieldValue(&quot;deliveryOutcome&quot;)).thenReturn(&quot;still_birth&quot;);</b>
+<b class="fc"><i>177</i>&nbsp;        when(submission.getSubFormByName(&quot;child_registration_oa&quot;)).thenReturn(subForm);</b>
+<b class="fc"><i>178</i>&nbsp;        when(subForm.instances()).thenReturn(new ArrayList&lt;Map&lt;String, String&gt;&gt;());</b>
+<i>179</i>&nbsp;
+<b class="fc"><i>180</i>&nbsp;        service.pncRegistrationOA(submission);</b>
+<i>181</i>&nbsp;
+<b class="fc"><i>182</i>&nbsp;        verifyNoMoreInteractions(childRepository);</b>
+<b class="fc"><i>183</i>&nbsp;        verifyNoMoreInteractions(allTimelineEvents);</b>
+<b class="fc"><i>184</i>&nbsp;        verifyNoMoreInteractions(serviceProvidedService);</b>
+<b class="fc"><i>185</i>&nbsp;    }</b>
+<i>186</i>&nbsp;
+<i>187</i>&nbsp;    @Test
+<i>188</i>&nbsp;    public void testShouldAddTimelineEventsWhenChildImmunizationsAreUpdated() throws Exception {
+<b class="fc"><i>189</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<b class="fc"><i>190</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;child id 1&quot;);</b>
+<b class="fc"><i>191</i>&nbsp;        when(submission.getFieldValue(&quot;previousImmunizations&quot;)).thenReturn(&quot;bcg&quot;);</b>
+<b class="fc"><i>192</i>&nbsp;        when(submission.getFieldValue(&quot;immunizationsGiven&quot;)).thenReturn(&quot;bcg opv_0 pentavalent_0&quot;);</b>
+<b class="fc"><i>193</i>&nbsp;        when(submission.getFieldValue(&quot;immunizationDate&quot;)).thenReturn(&quot;2013-01-01&quot;);</b>
+<i>194</i>&nbsp;
+<b class="fc"><i>195</i>&nbsp;        service.updateImmunizations(submission);</b>
+<i>196</i>&nbsp;
+<b class="fc"><i>197</i>&nbsp;        verify(allTimelineEvents).add(TimelineEvent.forChildImmunization(&quot;child id 1&quot;, &quot;opv_0&quot;, &quot;2013-01-01&quot;));</b>
+<b class="fc"><i>198</i>&nbsp;        verify(allTimelineEvents).add(TimelineEvent.forChildImmunization(&quot;child id 1&quot;, &quot;pentavalent_0&quot;, &quot;2013-01-01&quot;));</b>
+<b class="fc"><i>199</i>&nbsp;        verifyNoMoreInteractions(allTimelineEvents);</b>
+<b class="fc"><i>200</i>&nbsp;    }</b>
+<i>201</i>&nbsp;
+<i>202</i>&nbsp;    @Test
+<i>203</i>&nbsp;    public void testShouldAddServiceProvidedWhenChildImmunizationsAreUpdated() throws Exception {
+<b class="fc"><i>204</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<b class="fc"><i>205</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;child id 1&quot;);</b>
+<b class="fc"><i>206</i>&nbsp;        when(submission.getFieldValue(&quot;previousImmunizations&quot;)).thenReturn(&quot;bcg&quot;);</b>
+<b class="fc"><i>207</i>&nbsp;        when(submission.getFieldValue(&quot;immunizationsGiven&quot;)).thenReturn(&quot;bcg opv_0 pentavalent_0&quot;);</b>
+<b class="fc"><i>208</i>&nbsp;        when(submission.getFieldValue(&quot;immunizationDate&quot;)).thenReturn(&quot;2013-01-01&quot;);</b>
+<i>209</i>&nbsp;
+<b class="fc"><i>210</i>&nbsp;        service.updateImmunizations(submission);</b>
+<i>211</i>&nbsp;
+<b class="fc"><i>212</i>&nbsp;        verify(serviceProvidedService).add(new ServiceProvided(&quot;child id 1&quot;, &quot;opv_0&quot;, &quot;2013-01-01&quot;, null));</b>
+<b class="fc"><i>213</i>&nbsp;        verify(serviceProvidedService).add(new ServiceProvided(&quot;child id 1&quot;, &quot;pentavalent_0&quot;, &quot;2013-01-01&quot;, null));</b>
+<b class="fc"><i>214</i>&nbsp;        verifyNoMoreInteractions(serviceProvidedService);</b>
+<b class="fc"><i>215</i>&nbsp;    }</b>
+<i>216</i>&nbsp;
+<i>217</i>&nbsp;    @Test
+<i>218</i>&nbsp;    public void testShouldMarkRemindersAsInProcessWhenImmunizationsAreProvided() throws Exception {
+<b class="fc"><i>219</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<b class="fc"><i>220</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;child id 1&quot;);</b>
+<b class="fc"><i>221</i>&nbsp;        when(submission.getFieldValue(&quot;previousImmunizations&quot;)).thenReturn(&quot;bcg&quot;);</b>
+<b class="fc"><i>222</i>&nbsp;        when(submission.getFieldValue(&quot;immunizationsGiven&quot;)).thenReturn(&quot;bcg opv_0 pentavalent_0&quot;);</b>
+<b class="fc"><i>223</i>&nbsp;        when(submission.getFieldValue(&quot;immunizationDate&quot;)).thenReturn(&quot;2013-01-01&quot;);</b>
+<i>224</i>&nbsp;
+<b class="fc"><i>225</i>&nbsp;        service.updateImmunizations(submission);</b>
+<i>226</i>&nbsp;
+<b class="fc"><i>227</i>&nbsp;        verify(allAlerts).changeAlertStatusToInProcess(&quot;child id 1&quot;, &quot;opv_0&quot;);</b>
+<b class="fc"><i>228</i>&nbsp;        verify(allAlerts).changeAlertStatusToInProcess(&quot;child id 1&quot;, &quot;pentavalent_0&quot;);</b>
+<b class="fc"><i>229</i>&nbsp;        verifyNoMoreInteractions(allAlerts);</b>
+<b class="fc"><i>230</i>&nbsp;    }</b>
+<i>231</i>&nbsp;
+<i>232</i>&nbsp;    @Test
+<i>233</i>&nbsp;    public void testShouldAddTimelineEventWhenChildIsRegisteredForEC() throws Exception {
+<b class="fc"><i>234</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<b class="fc"><i>235</i>&nbsp;        Mother mother = new Mother(&quot;mother id 1&quot;, &quot;ec id 1&quot;, &quot;thayi card number&quot;, &quot;2013-01-01&quot;);</b>
+<b class="fc"><i>236</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;ec id 1&quot;);</b>
+<b class="fc"><i>237</i>&nbsp;        when(submission.getFieldValue(&quot;motherId&quot;)).thenReturn(&quot;mother id 1&quot;);</b>
+<b class="fc"><i>238</i>&nbsp;        when(submission.getFieldValue(&quot;childId&quot;)).thenReturn(&quot;child id 1&quot;);</b>
+<b class="fc"><i>239</i>&nbsp;        when(submission.getFieldValue(&quot;dateOfBirth&quot;)).thenReturn(&quot;2013-01-02&quot;);</b>
+<b class="fc"><i>240</i>&nbsp;        when(submission.getFieldValue(&quot;gender&quot;)).thenReturn(&quot;female&quot;);</b>
+<b class="fc"><i>241</i>&nbsp;        when(submission.getFieldValue(&quot;weight&quot;)).thenReturn(&quot;3&quot;);</b>
+<b class="fc"><i>242</i>&nbsp;        when(submission.getFieldValue(&quot;immunizationsGiven&quot;)).thenReturn(&quot;bcg opv_0&quot;);</b>
+<b class="fc"><i>243</i>&nbsp;        when(submission.getFieldValue(&quot;bcgDate&quot;)).thenReturn(&quot;2012-01-06&quot;);</b>
+<b class="fc"><i>244</i>&nbsp;        when(submission.getFieldValue(&quot;opv0Date&quot;)).thenReturn(&quot;2012-01-07&quot;);</b>
+<b class="fc"><i>245</i>&nbsp;        when(submission.getFieldValue(&quot;shouldCloseMother&quot;)).thenReturn(&quot;&quot;);</b>
+<b class="fc"><i>246</i>&nbsp;        when(allBeneficiaries.findMother(&quot;mother id 1&quot;)).thenReturn(mother);</b>
+<i>247</i>&nbsp;
+<b class="fc"><i>248</i>&nbsp;        service.registerForEC(submission);</b>
+<i>249</i>&nbsp;
+<b class="fc"><i>250</i>&nbsp;        verify(allBeneficiaries).updateMother(mother.setIsClosed(true));</b>
+<b class="fc"><i>251</i>&nbsp;        verify(allTimelineEvents).add(forChildBirthInChildProfile(&quot;child id 1&quot;, &quot;2013-01-02&quot;, &quot;3&quot;, &quot;bcg opv_0&quot;));</b>
+<b class="fc"><i>252</i>&nbsp;        verify(allTimelineEvents).add(forChildBirthInMotherProfile(&quot;mother id 1&quot;, &quot;2013-01-02&quot;, &quot;female&quot;, null, null));</b>
+<b class="fc"><i>253</i>&nbsp;        verify(allTimelineEvents).add(forChildBirthInECProfile(&quot;ec id 1&quot;, &quot;2013-01-02&quot;, &quot;female&quot;, null));</b>
+<i>254</i>&nbsp;
+<b class="fc"><i>255</i>&nbsp;        verify(serviceProvidedService).add(forChildImmunization(&quot;child id 1&quot;, &quot;bcg&quot;, &quot;2012-01-06&quot;));</b>
+<b class="fc"><i>256</i>&nbsp;        verify(serviceProvidedService).add(forChildImmunization(&quot;child id 1&quot;, &quot;opv_0&quot;, &quot;2012-01-07&quot;));</b>
+<b class="fc"><i>257</i>&nbsp;    }</b>
+<i>258</i>&nbsp;
+<i>259</i>&nbsp;    @Test
+<i>260</i>&nbsp;    public void testShouldNotCloseMotherWhenAnOpenANCAlreadyExistWhileRegisteringAChildForEC() throws Exception {
+<b class="fc"><i>261</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<b class="fc"><i>262</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;ec id 1&quot;);</b>
+<b class="fc"><i>263</i>&nbsp;        when(submission.getFieldValue(&quot;motherId&quot;)).thenReturn(&quot;mother id 1&quot;);</b>
+<b class="fc"><i>264</i>&nbsp;        when(submission.getFieldValue(&quot;childId&quot;)).thenReturn(&quot;child id 1&quot;);</b>
+<b class="fc"><i>265</i>&nbsp;        when(submission.getFieldValue(&quot;dateOfBirth&quot;)).thenReturn(&quot;2013-01-02&quot;);</b>
+<b class="fc"><i>266</i>&nbsp;        when(submission.getFieldValue(&quot;gender&quot;)).thenReturn(&quot;female&quot;);</b>
+<b class="fc"><i>267</i>&nbsp;        when(submission.getFieldValue(&quot;weight&quot;)).thenReturn(&quot;3&quot;);</b>
+<b class="fc"><i>268</i>&nbsp;        when(submission.getFieldValue(&quot;immunizationsGiven&quot;)).thenReturn(&quot;bcg opv_0&quot;);</b>
+<b class="fc"><i>269</i>&nbsp;        when(submission.getFieldValue(&quot;bcgDate&quot;)).thenReturn(&quot;2012-01-06&quot;);</b>
+<b class="fc"><i>270</i>&nbsp;        when(submission.getFieldValue(&quot;opv0Date&quot;)).thenReturn(&quot;2012-01-07&quot;);</b>
+<b class="fc"><i>271</i>&nbsp;        when(submission.getFieldValue(&quot;shouldCloseMother&quot;)).thenReturn(&quot;false&quot;);</b>
+<i>272</i>&nbsp;
+<b class="fc"><i>273</i>&nbsp;        service.registerForEC(submission);</b>
+<i>274</i>&nbsp;
+<b class="fc"><i>275</i>&nbsp;        verify(allTimelineEvents).add(forChildBirthInChildProfile(&quot;child id 1&quot;, &quot;2013-01-02&quot;, &quot;3&quot;, &quot;bcg opv_0&quot;));</b>
+<b class="fc"><i>276</i>&nbsp;        verify(allTimelineEvents).add(forChildBirthInMotherProfile(&quot;mother id 1&quot;, &quot;2013-01-02&quot;, &quot;female&quot;, null, null));</b>
+<b class="fc"><i>277</i>&nbsp;        verify(allTimelineEvents).add(forChildBirthInECProfile(&quot;ec id 1&quot;, &quot;2013-01-02&quot;, &quot;female&quot;, null));</b>
+<i>278</i>&nbsp;
+<b class="fc"><i>279</i>&nbsp;        verify(serviceProvidedService).add(forChildImmunization(&quot;child id 1&quot;, &quot;bcg&quot;, &quot;2012-01-06&quot;));</b>
+<b class="fc"><i>280</i>&nbsp;        verify(serviceProvidedService).add(forChildImmunization(&quot;child id 1&quot;, &quot;opv_0&quot;, &quot;2012-01-07&quot;));</b>
+<b class="fc"><i>281</i>&nbsp;    }</b>
+<i>282</i>&nbsp;
+<i>283</i>&nbsp;    @Test
+<i>284</i>&nbsp;    public void testShouldAddPNCVisitTimelineEventWhenPNCVisitHappens() throws Exception {
+<b class="fc"><i>285</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<b class="fc"><i>286</i>&nbsp;        SubForm subForm = mock(SubForm.class);</b>
+<b class="fc"><i>287</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;mother id 1&quot;);</b>
+<b class="fc"><i>288</i>&nbsp;        when(submission.getFieldValue(&quot;pncVisitDay&quot;)).thenReturn(&quot;2&quot;);</b>
+<b class="fc"><i>289</i>&nbsp;        when(submission.getFieldValue(&quot;pncVisitDate&quot;)).thenReturn(&quot;2012-01-01&quot;);</b>
+<b class="fc"><i>290</i>&nbsp;        when(submission.getSubFormByName(&quot;child_pnc_visit&quot;)).thenReturn(subForm);</b>
+<b class="fc"><i>291</i>&nbsp;        when(subForm.instances()).thenReturn(</b>
+<b class="fc"><i>292</i>&nbsp;                asList(</b>
+<b class="fc"><i>293</i>&nbsp;                        create(&quot;id&quot;, &quot;child id 1&quot;)</b>
+<b class="fc"><i>294</i>&nbsp;                                .put(&quot;weight&quot;, &quot;3&quot;)</b>
+<b class="fc"><i>295</i>&nbsp;                                .put(&quot;temperature&quot;, &quot;98&quot;)</b>
+<b class="fc"><i>296</i>&nbsp;                                .map(),</b>
+<b class="fc"><i>297</i>&nbsp;                        create(&quot;id&quot;, &quot;child id 2&quot;)</b>
+<b class="fc"><i>298</i>&nbsp;                                .put(&quot;weight&quot;, &quot;4&quot;)</b>
+<b class="fc"><i>299</i>&nbsp;                                .put(&quot;temperature&quot;, &quot;98.1&quot;)</b>
+<b class="fc"><i>300</i>&nbsp;                                .map()));</b>
+<i>301</i>&nbsp;
+<b class="fc"><i>302</i>&nbsp;        service.pncVisitHappened(submission);</b>
+<i>303</i>&nbsp;
+<b class="fc"><i>304</i>&nbsp;        verify(allTimelineEvents).add(TimelineEvent.forChildPNCVisit(&quot;child id 1&quot;, &quot;2&quot;, &quot;2012-01-01&quot;, &quot;3&quot;, &quot;98&quot;));</b>
+<b class="fc"><i>305</i>&nbsp;        verify(allTimelineEvents).add(TimelineEvent.forChildPNCVisit(&quot;child id 2&quot;, &quot;2&quot;, &quot;2012-01-01&quot;, &quot;4&quot;, &quot;98.1&quot;));</b>
+<b class="fc"><i>306</i>&nbsp;    }</b>
+<i>307</i>&nbsp;
+<i>308</i>&nbsp;    @Test
+<i>309</i>&nbsp;    public void testShouldHandleStillBirthWhenPNCVisitHappens() throws Exception {
+<b class="fc"><i>310</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<b class="fc"><i>311</i>&nbsp;        SubForm subForm = mock(SubForm.class);</b>
+<b class="fc"><i>312</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;mother id 1&quot;);</b>
+<b class="fc"><i>313</i>&nbsp;        when(submission.getFieldValue(&quot;pncVisitDay&quot;)).thenReturn(&quot;2&quot;);</b>
+<b class="fc"><i>314</i>&nbsp;        when(submission.getFieldValue(&quot;pncVisitDate&quot;)).thenReturn(&quot;2012-01-01&quot;);</b>
+<b class="fc"><i>315</i>&nbsp;        when(submission.getFieldValue(&quot;deliveryOutcome&quot;)).thenReturn(&quot;still_birth&quot;);</b>
+<b class="fc"><i>316</i>&nbsp;        when(submission.getSubFormByName(&quot;child_pnc_visit&quot;)).thenReturn(subForm);</b>
+<b class="fc"><i>317</i>&nbsp;        when(subForm.instances()).thenReturn(asList(create(&quot;id&quot;, &quot;child id 1&quot;).map()));</b>
+<i>318</i>&nbsp;
+<b class="fc"><i>319</i>&nbsp;        service.pncVisitHappened(submission);</b>
+<i>320</i>&nbsp;
+<b class="fc"><i>321</i>&nbsp;        verify(childRepository).delete(&quot;child id 1&quot;);</b>
+<b class="fc"><i>322</i>&nbsp;        verifyNoMoreInteractions(allTimelineEvents);</b>
+<b class="fc"><i>323</i>&nbsp;    }</b>
+<i>324</i>&nbsp;
+<i>325</i>&nbsp;    @Test
+<i>326</i>&nbsp;    public void testShouldAddPNCVisitServiceProvidedWhenPNCVisitHappens() throws Exception {
+<b class="fc"><i>327</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<b class="fc"><i>328</i>&nbsp;        SubForm subForm = mock(SubForm.class);</b>
+<b class="fc"><i>329</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;mother id 1&quot;);</b>
+<b class="fc"><i>330</i>&nbsp;        when(submission.getFieldValue(&quot;pncVisitDay&quot;)).thenReturn(&quot;2&quot;);</b>
+<b class="fc"><i>331</i>&nbsp;        when(submission.getFieldValue(&quot;pncVisitDate&quot;)).thenReturn(&quot;2012-01-01&quot;);</b>
+<b class="fc"><i>332</i>&nbsp;        when(submission.getSubFormByName(&quot;child_pnc_visit&quot;)).thenReturn(subForm);</b>
+<b class="fc"><i>333</i>&nbsp;        when(subForm.instances()).thenReturn(</b>
+<b class="fc"><i>334</i>&nbsp;                asList(mapOf(&quot;id&quot;, &quot;child id 1&quot;), mapOf(&quot;id&quot;, &quot;child id 2&quot;)));</b>
+<i>335</i>&nbsp;
+<b class="fc"><i>336</i>&nbsp;        service.pncVisitHappened(submission);</b>
+<i>337</i>&nbsp;
+<b class="fc"><i>338</i>&nbsp;        verify(serviceProvidedService).add(new ServiceProvided(&quot;child id 1&quot;, &quot;PNC&quot;, &quot;2012-01-01&quot;, mapOf(&quot;day&quot;, &quot;2&quot;)));</b>
+<b class="fc"><i>339</i>&nbsp;        verify(serviceProvidedService).add(new ServiceProvided(&quot;child id 2&quot;, &quot;PNC&quot;, &quot;2012-01-01&quot;, mapOf(&quot;day&quot;, &quot;2&quot;)));</b>
+<b class="fc"><i>340</i>&nbsp;    }</b>
+<i>341</i>&nbsp;
+<i>342</i>&nbsp;    @Test
+<i>343</i>&nbsp;    public void testShouldCloseChildRecordForDeleteChildAction() throws Exception {
+<b class="fc"><i>344</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<b class="fc"><i>345</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;child id 1&quot;);</b>
+<i>346</i>&nbsp;
+<b class="fc"><i>347</i>&nbsp;        service.close(submission);</b>
+<i>348</i>&nbsp;
+<b class="fc"><i>349</i>&nbsp;        verify(allBeneficiaries).closeChild(&quot;child id 1&quot;);</b>
+<b class="fc"><i>350</i>&nbsp;    }</b>
+<i>351</i>&nbsp;
+<i>352</i>&nbsp;    @Test
+<i>353</i>&nbsp;    public void testShouldUpdateIllnessForUpdateIllnessAction() throws Exception {
+<b class="fc"><i>354</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<i>355</i>&nbsp;
+<b class="fc"><i>356</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;child id 1&quot;);</b>
+<b class="fc"><i>357</i>&nbsp;        when(submission.getFieldValue(&quot;submissionDate&quot;)).thenReturn(&quot;2012-01-01&quot;);</b>
+<b class="fc"><i>358</i>&nbsp;        when(submission.getFieldValue(&quot;sickVisitDate&quot;)).thenReturn(&quot;2012-01-01&quot;);</b>
+<b class="fc"><i>359</i>&nbsp;        when(submission.getFieldValue(&quot;childSigns&quot;)).thenReturn(&quot;child signs&quot;);</b>
+<b class="fc"><i>360</i>&nbsp;        when(submission.getFieldValue(&quot;childSignsOther&quot;)).thenReturn(&quot;child signs other&quot;);</b>
+<b class="fc"><i>361</i>&nbsp;        when(submission.getFieldValue(&quot;reportChildDisease&quot;)).thenReturn(&quot;report child disease&quot;);</b>
+<b class="fc"><i>362</i>&nbsp;        when(submission.getFieldValue(&quot;reportChildDiseaseOther&quot;)).thenReturn(&quot;report child disease other&quot;);</b>
+<b class="fc"><i>363</i>&nbsp;        when(submission.getFieldValue(&quot;reportChildDiseaseDate&quot;)).thenReturn(&quot;report child disease date&quot;);</b>
+<b class="fc"><i>364</i>&nbsp;        when(submission.getFieldValue(&quot;reportChildDiseasePlace&quot;)).thenReturn(&quot;report child disease place&quot;);</b>
+<b class="fc"><i>365</i>&nbsp;        when(submission.getFieldValue(&quot;childReferral&quot;)).thenReturn(&quot;child referral&quot;);</b>
+<i>366</i>&nbsp;
+<b class="fc"><i>367</i>&nbsp;        service.updateIllnessStatus(submission);</b>
+<i>368</i>&nbsp;
+<b class="fc"><i>369</i>&nbsp;        Map&lt;String, String&gt; map = EasyMap.create(&quot;sickVisitDate&quot;, &quot;2012-01-01&quot;)</b>
+<b class="fc"><i>370</i>&nbsp;                .put(&quot;childSignsOther&quot;, &quot;child signs other&quot;)</b>
+<b class="fc"><i>371</i>&nbsp;                .put(&quot;childSigns&quot;, &quot;child signs&quot;)</b>
+<b class="fc"><i>372</i>&nbsp;                .put(&quot;reportChildDisease&quot;, &quot;report child disease&quot;)</b>
+<b class="fc"><i>373</i>&nbsp;                .put(&quot;reportChildDiseaseOther&quot;, &quot;report child disease other&quot;)</b>
+<b class="fc"><i>374</i>&nbsp;                .put(&quot;reportChildDiseaseDate&quot;, &quot;report child disease date&quot;)</b>
+<b class="fc"><i>375</i>&nbsp;                .put(&quot;reportChildDiseasePlace&quot;, &quot;report child disease place&quot;)</b>
+<b class="fc"><i>376</i>&nbsp;                .put(&quot;childReferral&quot;, &quot;child referral&quot;).map();</b>
+<i>377</i>&nbsp;
+<b class="fc"><i>378</i>&nbsp;        verify(serviceProvidedService).add(forChildIllnessVisit(&quot;child id 1&quot;, &quot;2012-01-01&quot;, map));</b>
+<b class="fc"><i>379</i>&nbsp;    }</b>
+<i>380</i>&nbsp;
+<i>381</i>&nbsp;    @Test
+<i>382</i>&nbsp;    public void testShouldUpdateVitaminADosagesForUpdateVitaminAProvidedAction() throws Exception {
+<b class="fc"><i>383</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<i>384</i>&nbsp;
+<b class="fc"><i>385</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;child id 1&quot;);</b>
+<b class="fc"><i>386</i>&nbsp;        when(submission.getFieldValue(&quot;vitaminADate&quot;)).thenReturn(&quot;2012-01-01&quot;);</b>
+<b class="fc"><i>387</i>&nbsp;        when(submission.getFieldValue(&quot;vitaminADose&quot;)).thenReturn(&quot;1&quot;);</b>
+<b class="fc"><i>388</i>&nbsp;        when(submission.getFieldValue(&quot;vitaminAPlace&quot;)).thenReturn(&quot;PHC&quot;);</b>
+<i>389</i>&nbsp;
+<b class="fc"><i>390</i>&nbsp;        service.updateVitaminAProvided(submission);</b>
+<i>391</i>&nbsp;
+<b class="fc"><i>392</i>&nbsp;        verify(serviceProvidedService).add(forVitaminAProvided(&quot;child id 1&quot;, &quot;2012-01-01&quot;, &quot;1&quot;, &quot;PHC&quot;));</b>
+<b class="fc"><i>393</i>&nbsp;    }</b>
+<i>394</i>&nbsp;
+<i>395</i>&nbsp;    @Test
+<i>396</i>&nbsp;    public void testShouldAddTimelineEventWhenChildIsRegisteredForOA() throws Exception {
+<b class="fc"><i>397</i>&nbsp;        FormSubmission submission = mock(FormSubmission.class);</b>
+<b class="fc"><i>398</i>&nbsp;        when(submission.entityId()).thenReturn(&quot;ec id 1&quot;);</b>
+<b class="fc"><i>399</i>&nbsp;        when(submission.getFieldValue(&quot;motherId&quot;)).thenReturn(&quot;mother id 1&quot;);</b>
+<b class="fc"><i>400</i>&nbsp;        when(submission.getFieldValue(&quot;id&quot;)).thenReturn(&quot;child id 1&quot;);</b>
+<b class="fc"><i>401</i>&nbsp;        when(submission.getFieldValue(&quot;dateOfBirth&quot;)).thenReturn(&quot;2013-01-02&quot;);</b>
+<b class="fc"><i>402</i>&nbsp;        when(submission.getFieldValue(&quot;gender&quot;)).thenReturn(&quot;female&quot;);</b>
+<b class="fc"><i>403</i>&nbsp;        when(submission.getFieldValue(&quot;weight&quot;)).thenReturn(&quot;3&quot;);</b>
+<b class="fc"><i>404</i>&nbsp;        when(submission.getFieldValue(&quot;immunizationsGiven&quot;)).thenReturn(&quot;bcg opv_0&quot;);</b>
+<b class="fc"><i>405</i>&nbsp;        when(submission.getFieldValue(&quot;bcgDate&quot;)).thenReturn(&quot;2012-01-06&quot;);</b>
+<b class="fc"><i>406</i>&nbsp;        when(submission.getFieldValue(&quot;opv0Date&quot;)).thenReturn(&quot;2012-01-07&quot;);</b>
+<b class="fc"><i>407</i>&nbsp;        when(submission.getFieldValue(&quot;thayiCardNumber&quot;)).thenReturn(&quot;1234567&quot;);</b>
+<b class="fc"><i>408</i>&nbsp;        when(allBeneficiaries.findChild(&quot;child id 1&quot;)).thenReturn(child);</b>
+<i>409</i>&nbsp;
+<b class="fc"><i>410</i>&nbsp;        service.registerForOA(submission);</b>
+<i>411</i>&nbsp;
+<b class="fc"><i>412</i>&nbsp;        verify(child).setThayiCardNumber(&quot;1234567&quot;);</b>
+<b class="fc"><i>413</i>&nbsp;        verify(allBeneficiaries).updateChild(child);</b>
+<b class="fc"><i>414</i>&nbsp;        verify(allTimelineEvents).add(forChildBirthInChildProfile(&quot;child id 1&quot;, &quot;2013-01-02&quot;, &quot;3&quot;, &quot;bcg opv_0&quot;));</b>
+<i>415</i>&nbsp;
+<b class="fc"><i>416</i>&nbsp;        verify(serviceProvidedService).add(forChildImmunization(&quot;ec id 1&quot;, &quot;bcg&quot;, &quot;2012-01-06&quot;));</b>
+<b class="fc"><i>417</i>&nbsp;        verify(serviceProvidedService).add(forChildImmunization(&quot;ec id 1&quot;, &quot;opv_0&quot;, &quot;2012-01-07&quot;));</b>
+<b class="fc"><i>418</i>&nbsp;    }</b>
+<i>419</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-26 16:42</div>
+</div>
+</body>
+</html>

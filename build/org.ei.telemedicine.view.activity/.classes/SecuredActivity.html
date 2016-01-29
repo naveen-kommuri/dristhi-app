@@ -1,0 +1,439 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: SecuredActivity</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.activity</a> ]
+</div>
+
+<h1>Coverage Summary for Class: SecuredActivity (org.ei.telemedicine.view.activity)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SecuredActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 129)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">SecuredActivity$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">SecuredActivity$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">SecuredActivity$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 24)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 134)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.activity;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.app.Activity;
+<i>4</i>&nbsp;import android.app.AlertDialog;
+<i>5</i>&nbsp;import android.content.DialogInterface;
+<i>6</i>&nbsp;import android.content.Intent;
+<i>7</i>&nbsp;import android.os.Bundle;
+<i>8</i>&nbsp;import android.util.Log;
+<i>9</i>&nbsp;import android.view.Menu;
+<i>10</i>&nbsp;import android.view.MenuInflater;
+<i>11</i>&nbsp;import android.view.MenuItem;
+<i>12</i>&nbsp;import android.widget.Toast;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;import com.google.gson.Gson;
+<i>15</i>&nbsp;import com.google.gson.reflect.TypeToken;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;import org.ei.telemedicine.AllConstants;
+<i>18</i>&nbsp;import org.ei.telemedicine.Context;
+<i>19</i>&nbsp;import org.ei.telemedicine.R;
+<i>20</i>&nbsp;import org.ei.telemedicine.bluetooth.BlueToothInfoActivity;
+<i>21</i>&nbsp;import org.ei.telemedicine.domain.ANM;
+<i>22</i>&nbsp;import org.ei.telemedicine.domain.ProfileImage;
+<i>23</i>&nbsp;import org.ei.telemedicine.domain.form.FormSubmission;
+<i>24</i>&nbsp;import org.ei.telemedicine.domain.form.SubForm;
+<i>25</i>&nbsp;import org.ei.telemedicine.event.CapturedPhotoInformation;
+<i>26</i>&nbsp;import org.ei.telemedicine.event.Event;
+<i>27</i>&nbsp;import org.ei.telemedicine.event.Listener;
+<i>28</i>&nbsp;import org.ei.telemedicine.repository.ImageRepository;
+<i>29</i>&nbsp;import org.ei.telemedicine.sync.DrishtiSyncScheduler;
+<i>30</i>&nbsp;import org.ei.telemedicine.view.contract.HomeContext;
+<i>31</i>&nbsp;import org.ei.telemedicine.view.controller.ANMController;
+<i>32</i>&nbsp;import org.ei.telemedicine.view.controller.FormController;
+<i>33</i>&nbsp;import org.ei.telemedicine.view.controller.NavigationController;
+<i>34</i>&nbsp;import org.json.JSONArray;
+<i>35</i>&nbsp;import org.json.JSONException;
+<i>36</i>&nbsp;import org.json.JSONObject;
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;import java.util.Map;
+<i>39</i>&nbsp;import java.util.UUID;
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;import static org.ei.telemedicine.AllConstants.*;
+<i>42</i>&nbsp;import static org.ei.telemedicine.AllConstants.ALERT_NAME_PARAM;
+<i>43</i>&nbsp;import static org.ei.telemedicine.AllConstants.ENTITY_ID;
+<i>44</i>&nbsp;import static org.ei.telemedicine.AllConstants.ENTITY_ID_PARAM;
+<i>45</i>&nbsp;import static org.ei.telemedicine.AllConstants.FIELD_OVERRIDES_PARAM;
+<i>46</i>&nbsp;import static org.ei.telemedicine.AllConstants.FORM_NAME_PARAM;
+<i>47</i>&nbsp;import static org.ei.telemedicine.AllConstants.FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE;
+<i>48</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.ANC_INVESTIGATIONS;
+<i>49</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT;
+<i>50</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT_EDIT;
+<i>51</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.CHILD_ILLNESS;
+<i>52</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.PNC_VISIT;
+<i>53</i>&nbsp;import static org.ei.telemedicine.AllConstants.VIEW_FORM;
+<i>54</i>&nbsp;import static org.ei.telemedicine.R.string.no_button_label;
+<i>55</i>&nbsp;import static org.ei.telemedicine.R.string.yes_button_label;
+<i>56</i>&nbsp;import static org.ei.telemedicine.event.Event.ON_LOGOUT;
+<i>57</i>&nbsp;import static org.ei.telemedicine.util.Log.logError;
+<i>58</i>&nbsp;import static org.ei.telemedicine.util.Log.logInfo;
+<i>59</i>&nbsp;
+<b class="nc"><i>60</i>&nbsp;public abstract class SecuredActivity extends Activity {</b>
+<i>61</i>&nbsp;    protected Context context;
+<i>62</i>&nbsp;    protected Listener&lt;Boolean&gt; logoutListener;
+<i>63</i>&nbsp;    protected Listener&lt;CapturedPhotoInformation&gt; photoCaptureListener;
+<i>64</i>&nbsp;    protected FormController formController;
+<i>65</i>&nbsp;    protected ANMController anmController;
+<i>66</i>&nbsp;    protected NavigationController navigationController;
+<i>67</i>&nbsp;    private String metaData;
+<b class="nc"><i>68</i>&nbsp;    private String TAG = &quot;SecuredActivity&quot;;</b>
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;    @Override
+<i>71</i>&nbsp;    protected void onCreate(Bundle savedInstanceState) {
+<b class="nc"><i>72</i>&nbsp;        super.onCreate(savedInstanceState);</b>
+<i>73</i>&nbsp;
+<b class="nc"><i>74</i>&nbsp;        context = Context.getInstance().updateApplicationContext(this.getApplicationContext());</b>
+<i>75</i>&nbsp;
+<i>76</i>&nbsp;
+<b class="nc"><i>77</i>&nbsp;        logoutListener = new Listener&lt;Boolean&gt;() {</b>
+<i>78</i>&nbsp;            public void onEvent(Boolean data) {
+<b class="nc"><i>79</i>&nbsp;                finish();</b>
+<b class="nc"><i>80</i>&nbsp;            }</b>
+<i>81</i>&nbsp;        };
+<b class="nc"><i>82</i>&nbsp;        ON_LOGOUT.addListener(logoutListener);</b>
+<i>83</i>&nbsp;
+<b class="nc"><i>84</i>&nbsp;        if (context.IsUserLoggedOut()) {</b>
+<b class="nc"><i>85</i>&nbsp;            startActivity(new Intent(this, LoginActivity.class));</b>
+<b class="nc"><i>86</i>&nbsp;            context.userService().logoutSession();</b>
+<b class="nc"><i>87</i>&nbsp;            return;</b>
+<i>88</i>&nbsp;        }
+<b class="nc"><i>89</i>&nbsp;        formController = new FormController(this);</b>
+<b class="nc"><i>90</i>&nbsp;        anmController = context.anmController();</b>
+<b class="nc"><i>91</i>&nbsp;        navigationController = new NavigationController(this, anmController);</b>
+<b class="nc"><i>92</i>&nbsp;        onCreation();</b>
+<b class="nc"><i>93</i>&nbsp;    }</b>
+<i>94</i>&nbsp;
+<i>95</i>&nbsp;    @Override
+<i>96</i>&nbsp;    protected void onResume() {
+<b class="nc"><i>97</i>&nbsp;        super.onResume();</b>
+<b class="nc"><i>98</i>&nbsp;        if (context.IsUserLoggedOut()) {</b>
+<b class="nc"><i>99</i>&nbsp;            context.userService().logoutSession();</b>
+<b class="nc"><i>100</i>&nbsp;            startActivity(new Intent(this, LoginActivity.class));</b>
+<b class="nc"><i>101</i>&nbsp;            return;</b>
+<i>102</i>&nbsp;        }
+<i>103</i>&nbsp;
+<b class="nc"><i>104</i>&nbsp;        onResumption();</b>
+<b class="nc"><i>105</i>&nbsp;    }</b>
+<i>106</i>&nbsp;
+<i>107</i>&nbsp;    @Override
+<i>108</i>&nbsp;    public boolean onOptionsItemSelected(MenuItem item) {
+<b class="nc"><i>109</i>&nbsp;        switch (item.getItemId()) {</b>
+<i>110</i>&nbsp;//            case R.id.switchLanguageMenuItem: {
+<i>111</i>&nbsp;//                String newLanguagePreference = context.userService().switchLanguagePreference();
+<i>112</i>&nbsp;//                Toast.makeText(this, &quot;Language preference set to &quot; + newLanguagePreference + &quot;. Please restart the application.&quot;, LENGTH_SHORT).show();
+<i>113</i>&nbsp;//            }
+<i>114</i>&nbsp;            default:
+<b class="nc"><i>115</i>&nbsp;                return super.onOptionsItemSelected(item);</b>
+<i>116</i>&nbsp;        }
+<i>117</i>&nbsp;    }
+<i>118</i>&nbsp;
+<i>119</i>&nbsp;    public void saveimagereference(String bindobject, String entityid, Map&lt;String, String&gt; details) {
+<i>120</i>&nbsp;//        Context.getInstance().allBeneficiaries().mergeDetails(entityid, details);
+<b class="nc"><i>121</i>&nbsp;        String anmId = Context.getInstance().allSharedPreferences().fetchRegisteredANM();</b>
+<b class="nc"><i>122</i>&nbsp;        ProfileImage profileImage = new ProfileImage(UUID.randomUUID().toString(), anmId, entityid, &quot;Image&quot;, details.get(&quot;profilepic&quot;), ImageRepository.TYPE_Unsynced);</b>
+<b class="nc"><i>123</i>&nbsp;        ((ImageRepository) Context.getInstance().imageRepository()).add(profileImage);</b>
+<b class="nc"><i>124</i>&nbsp;        Context.getInstance().allEligibleCouples().updatePhotoPath(entityid, details.get(&quot;profilepic&quot;));</b>
+<b class="nc"><i>125</i>&nbsp;        Toast.makeText(this, entityid, Toast.LENGTH_LONG).show();</b>
+<b class="nc"><i>126</i>&nbsp;    }</b>
+<i>127</i>&nbsp;
+<i>128</i>&nbsp;    public void logoutUser() {
+<b class="nc"><i>129</i>&nbsp;        context.userService().logout();</b>
+<i>130</i>&nbsp;
+<i>131</i>&nbsp;
+<b class="nc"><i>132</i>&nbsp;        this.finish();</b>
+<b class="nc"><i>133</i>&nbsp;        startActivity(new Intent(this, LoginActivity.class));</b>
+<b class="nc"><i>134</i>&nbsp;    }</b>
+<i>135</i>&nbsp;
+<i>136</i>&nbsp;    @Override
+<i>137</i>&nbsp;    public boolean onCreateOptionsMenu(Menu menu) {
+<b class="nc"><i>138</i>&nbsp;        MenuInflater inflater = getMenuInflater();</b>
+<b class="nc"><i>139</i>&nbsp;        inflater.inflate(R.menu.main_menu, menu);</b>
+<b class="nc"><i>140</i>&nbsp;        return true;</b>
+<i>141</i>&nbsp;    }
+<i>142</i>&nbsp;
+<i>143</i>&nbsp;    public abstract void onCreation();
+<i>144</i>&nbsp;
+<i>145</i>&nbsp;    public abstract void onResumption();
+<i>146</i>&nbsp;
+<i>147</i>&nbsp;    public void startFormActivity(String formName, String entityId, String metaData) {
+<b class="nc"><i>148</i>&nbsp;        launchForm(formName, entityId, metaData, FormActivity.class);</b>
+<b class="nc"><i>149</i>&nbsp;    }</b>
+<i>150</i>&nbsp;
+<i>151</i>&nbsp;    public void viewPOCActivity(String visitType, String entityId) {
+<b class="nc"><i>152</i>&nbsp;        Intent intent = new Intent(this, ViewPlanOfCareActivity.class);</b>
+<b class="nc"><i>153</i>&nbsp;        intent.putExtra(ENTITY_ID, entityId);</b>
+<b class="nc"><i>154</i>&nbsp;        intent.putExtra(VISIT_TYPE, visitType);</b>
+<b class="nc"><i>155</i>&nbsp;        startActivity(intent);</b>
+<b class="nc"><i>156</i>&nbsp;    }</b>
+<i>157</i>&nbsp;
+<i>158</i>&nbsp;    public void startFormActivity(String formName, String entityId, String metaData, boolean isViewForm) {
+<b class="nc"><i>159</i>&nbsp;        Log.e(&quot;View Form Entity Id&quot;, entityId);</b>
+<b class="nc"><i>160</i>&nbsp;        viewForm(formName, entityId, metaData, FormActivity.class, isViewForm);</b>
+<b class="nc"><i>161</i>&nbsp;    }</b>
+<i>162</i>&nbsp;
+<i>163</i>&nbsp;    private void viewForm(String formName, String entityId, String metaData, Class formActivityClass, boolean isViewForm) {
+<b class="nc"><i>164</i>&nbsp;        this.metaData = metaData;</b>
+<b class="nc"><i>165</i>&nbsp;        Log.e(&quot;EntityId&quot;, entityId);</b>
+<b class="nc"><i>166</i>&nbsp;        Intent intent = new Intent(this, formActivityClass);</b>
+<b class="nc"><i>167</i>&nbsp;        intent.putExtra(FORM_NAME_PARAM, formName);</b>
+<b class="nc"><i>168</i>&nbsp;        intent.putExtra(ENTITY_ID_PARAM, entityId);</b>
+<b class="nc"><i>169</i>&nbsp;        intent.putExtra(VIEW_FORM, true);</b>
+<b class="nc"><i>170</i>&nbsp;        addFieldOverridesIfExist(intent);</b>
+<b class="nc"><i>171</i>&nbsp;        startActivity(intent);</b>
+<b class="nc"><i>172</i>&nbsp;    }</b>
+<i>173</i>&nbsp;
+<i>174</i>&nbsp;    public void startMicroFormActivity(String formName, String entityId, String metaData) {
+<b class="nc"><i>175</i>&nbsp;        launchForm(formName, entityId, metaData, MicroFormActivity.class);</b>
+<b class="nc"><i>176</i>&nbsp;    }</b>
+<i>177</i>&nbsp;
+<i>178</i>&nbsp;    private void launchForm(String formName, String entityId, String metaData, Class formType) {
+<b class="nc"><i>179</i>&nbsp;        this.metaData = metaData;</b>
+<b class="nc"><i>180</i>&nbsp;        Log.e(&quot;Launching form&quot;, formName + &quot;===&quot; + entityId);</b>
+<i>181</i>&nbsp;
+<b class="nc"><i>182</i>&nbsp;        Intent intent = new Intent(this, formType);</b>
+<b class="nc"><i>183</i>&nbsp;        intent.putExtra(FORM_NAME_PARAM, formName);</b>
+<b class="nc"><i>184</i>&nbsp;        intent.putExtra(ENTITY_ID_PARAM, entityId);</b>
+<b class="nc"><i>185</i>&nbsp;        addFieldOverridesIfExist(intent);</b>
+<b class="nc"><i>186</i>&nbsp;        startActivityForResult(intent, FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE);</b>
+<b class="nc"><i>187</i>&nbsp;    }</b>
+<i>188</i>&nbsp;
+<i>189</i>&nbsp;    private void addFieldOverridesIfExist(Intent intent) {
+<b class="nc"><i>190</i>&nbsp;        if (hasMetadata()) {</b>
+<b class="nc"><i>191</i>&nbsp;            Map&lt;String, String&gt; metaDataMap = new Gson().fromJson(</b>
+<b class="nc"><i>192</i>&nbsp;                    this.metaData, new TypeToken&lt;Map&lt;String, String&gt;&gt;() {</b>
+<b class="nc"><i>193</i>&nbsp;                    }.getType());</b>
+<b class="nc"><i>194</i>&nbsp;            if (metaDataMap.containsKey(FIELD_OVERRIDES_PARAM)) {</b>
+<b class="nc"><i>195</i>&nbsp;                intent.putExtra(FIELD_OVERRIDES_PARAM, metaDataMap.get(FIELD_OVERRIDES_PARAM));</b>
+<i>196</i>&nbsp;            }
+<i>197</i>&nbsp;        }
+<b class="nc"><i>198</i>&nbsp;    }</b>
+<i>199</i>&nbsp;
+<i>200</i>&nbsp;    @Override
+<i>201</i>&nbsp;    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+<b class="nc"><i>202</i>&nbsp;        super.onActivityResult(requestCode, resultCode, data);</b>
+<b class="nc"><i>203</i>&nbsp;        Log.e(&quot;Res&quot;, resultCode + &quot;&quot;);</b>
+<b class="nc"><i>204</i>&nbsp;        if (isSuccessfulFormSubmission(resultCode)) {</b>
+<b class="nc"><i>205</i>&nbsp;            logInfo(&quot;Form successfully saved. MetaData: &quot; + metaData);</b>
+<b class="nc"><i>206</i>&nbsp;            if (hasMetadata()) {</b>
+<b class="nc"><i>207</i>&nbsp;                Map&lt;String, String&gt; metaDataMap = new Gson().fromJson(metaData, new TypeToken&lt;Map&lt;String, String&gt;&gt;() {</b>
+<b class="nc"><i>208</i>&nbsp;                }.getType());</b>
+<b class="nc"><i>209</i>&nbsp;                if (metaDataMap.containsKey(ENTITY_ID) &amp;&amp; metaDataMap.containsKey(ALERT_NAME_PARAM)) {</b>
+<b class="nc"><i>210</i>&nbsp;                    Context.getInstance().alertService().changeAlertStatusToInProcess(metaDataMap.get(ENTITY_ID), metaDataMap.get(ALERT_NAME_PARAM));</b>
+<i>211</i>&nbsp;                }
+<i>212</i>&nbsp;            }
+<b class="nc"><i>213</i>&nbsp;            if (context.userService().getFormName().equals(ANC_VISIT) || context.userService().getFormName().equals(ANC_INVESTIGATIONS) || context.userService().getFormName().equals(PNC_VISIT) || context.userService().getFormName().equals(ANC_VISIT_EDIT) || context.userService().getFormName().equals(CHILD_ILLNESS)) {</b>
+<b class="nc"><i>214</i>&nbsp;                DrishtiSyncScheduler.stop(SecuredActivity.this);</b>
+<b class="nc"><i>215</i>&nbsp;                FormSubmission formSubmission = context.formDataRepository().fetchFromSubmissionUseEntity(context.userService().getEntityId());</b>
+<b class="nc"><i>216</i>&nbsp;                int subFormCount = 0;</b>
+<b class="nc"><i>217</i>&nbsp;                String deliveryOutcome = &quot;&quot;, risks = &quot;&quot;, pncRisks = &quot;&quot;, childSigns = &quot;&quot;;</b>
+<i>218</i>&nbsp;                try {
+<b class="nc"><i>219</i>&nbsp;                    childSigns = formSubmission.getFieldValue(AllConstants.ChildIllnessFields.CHILD_SIGNS);</b>
+<b class="nc"><i>220</i>&nbsp;                    pncRisks = formSubmission.getFieldValue(&quot;immediateReferralReason&quot;);</b>
+<b class="nc"><i>221</i>&nbsp;                    risks = formSubmission.getFieldValue(AllConstants.ANCVisitFields.RISKS);</b>
+<b class="nc"><i>222</i>&nbsp;                    deliveryOutcome = formSubmission.getFieldValue(&quot;deliveryOutcome&quot;);</b>
+<b class="nc"><i>223</i>&nbsp;                    SubForm subForm = formSubmission.getSubFormByName(AllConstants.PNCVisitFields.CHILD_PNC_VISIT_SUB_FORM_NAME);</b>
+<b class="nc"><i>224</i>&nbsp;                    subFormCount = subForm.instances().size();</b>
+<b class="nc"><i>225</i>&nbsp;                    if (!deliveryOutcome.equals(&quot;&quot;) &amp;&amp; deliveryOutcome.equalsIgnoreCase(&quot;still_birth&quot;)) {</b>
+<b class="nc"><i>226</i>&nbsp;                        subFormCount = 0;</b>
+<i>227</i>&nbsp;                    }
+<b class="nc"><i>228</i>&nbsp;                } catch (Exception e) {</b>
+<b class="nc"><i>229</i>&nbsp;                    Log.e(&quot;No Subforms&quot;, &quot;No Subforms&quot;);</b>
+<b class="nc"><i>230</i>&nbsp;                }</b>
+<i>231</i>&nbsp;
+<b class="nc"><i>232</i>&nbsp;                Log.e(TAG, &quot;Form Data&quot; + formSubmission.instance());</b>
+<b class="nc"><i>233</i>&nbsp;                showBluetooth(formSubmission.entityId(), formSubmission.instanceId(), context.userService().getFormName(), formSubmission, subFormCount, risks, pncRisks, childSigns);</b>
+<i>234</i>&nbsp;            }
+<i>235</i>&nbsp;        }
+<b class="nc"><i>236</i>&nbsp;    }</b>
+<i>237</i>&nbsp;
+<i>238</i>&nbsp;    private void showBluetooth(final String entityId, final String instanceId, final String formName, FormSubmission formSubmission, int subFormCount, String risks, String pncRisks, String childSigns) {
+<i>239</i>&nbsp;
+<b class="nc"><i>240</i>&nbsp;        Intent intent = new Intent(SecuredActivity.this, BlueToothInfoActivity.class);</b>
+<b class="nc"><i>241</i>&nbsp;        intent.putExtra(ENTITY_ID, entityId);</b>
+<b class="nc"><i>242</i>&nbsp;        intent.putExtra(INSTANCE_ID_PARAM, instanceId);</b>
+<b class="nc"><i>243</i>&nbsp;        intent.putExtra(FORM_NAME_PARAM, formName);</b>
+<b class="nc"><i>244</i>&nbsp;        intent.putExtra(SUB_FORM_COUNT, subFormCount);</b>
+<b class="nc"><i>245</i>&nbsp;        intent.putExtra(AllConstants.ANCVisitFields.RISKS, risks != null &amp;&amp; risks.trim().length() != 0 ? risks : &quot;&quot;);</b>
+<b class="nc"><i>246</i>&nbsp;        intent.putExtra(AllConstants.PNCVisitFields.PNC_RISKS, pncRisks != null &amp;&amp; pncRisks.trim().length() != 0 ? pncRisks : &quot;&quot;);</b>
+<b class="nc"><i>247</i>&nbsp;        intent.putExtra(AllConstants.ChildIllnessFields.CHILD_SIGNS, childSigns != null &amp;&amp; childSigns.trim().length() != 0 ? childSigns : &quot;&quot;);</b>
+<i>248</i>&nbsp;
+<b class="nc"><i>249</i>&nbsp;        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);</b>
+<b class="nc"><i>250</i>&nbsp;        startActivity(intent);</b>
+<i>251</i>&nbsp;
+<b class="nc"><i>252</i>&nbsp;    }</b>
+<i>253</i>&nbsp;
+<i>254</i>&nbsp;    private boolean isSuccessfulFormSubmission(int resultCode) {
+<b class="nc"><i>255</i>&nbsp;        return resultCode == FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE;</b>
+<i>256</i>&nbsp;    }
+<i>257</i>&nbsp;
+<i>258</i>&nbsp;    private boolean hasMetadata() {
+<b class="nc"><i>259</i>&nbsp;        return this.metaData != null &amp;&amp; !this.metaData.equalsIgnoreCase(&quot;undefined&quot;);</b>
+<i>260</i>&nbsp;    }
+<i>261</i>&nbsp;
+<i>262</i>&nbsp;    public String getDataFromJson(String jsonData, String keyValue) {
+<b class="nc"><i>263</i>&nbsp;        if (jsonData != null &amp;&amp; !jsonData.equals(&quot;&quot;)) {</b>
+<i>264</i>&nbsp;            try {
+<b class="nc"><i>265</i>&nbsp;                JSONObject jsonObject = new JSONObject(jsonData);</b>
+<b class="nc"><i>266</i>&nbsp;                return jsonObject.has(keyValue) &amp;&amp; !jsonObject.getString(keyValue).equalsIgnoreCase(&quot;none&quot;) &amp;&amp; !jsonObject.getString(keyValue).equalsIgnoreCase(&quot;null&quot;) ? jsonObject.getString(keyValue) : &quot;&quot;;</b>
+<b class="nc"><i>267</i>&nbsp;            } catch (JSONException e) {</b>
+<b class="nc"><i>268</i>&nbsp;                e.printStackTrace();</b>
+<i>269</i>&nbsp;            }
+<i>270</i>&nbsp;
+<i>271</i>&nbsp;        }
+<b class="nc"><i>272</i>&nbsp;        return &quot;&quot;;</b>
+<i>273</i>&nbsp;    }
+<i>274</i>&nbsp;
+<i>275</i>&nbsp;    public String getDatafromArray(String jsonArray) {
+<i>276</i>&nbsp;        try {
+<b class="nc"><i>277</i>&nbsp;            String result = &quot;&quot;;</b>
+<b class="nc"><i>278</i>&nbsp;            if (jsonArray != null) {</b>
+<b class="nc"><i>279</i>&nbsp;                JSONArray jsonArray1 = new JSONArray(jsonArray);</b>
+<b class="nc"><i>280</i>&nbsp;                for (int i = 0; i &lt; jsonArray1.length(); i++) {</b>
+<b class="nc"><i>281</i>&nbsp;                    result = result + (!result.equals(&quot;&quot;) ? &quot;,&quot; : &quot;&quot;) + jsonArray1.getString(i);</b>
+<i>282</i>&nbsp;                }
+<b class="nc"><i>283</i>&nbsp;                return result;</b>
+<i>284</i>&nbsp;            }
+<b class="nc"><i>285</i>&nbsp;        } catch (Exception e) {</b>
+<b class="nc"><i>286</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>287</i>&nbsp;        }</b>
+<b class="nc"><i>288</i>&nbsp;        return &quot;&quot;;</b>
+<i>289</i>&nbsp;    }
+<i>290</i>&nbsp;
+<i>291</i>&nbsp;
+<i>292</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

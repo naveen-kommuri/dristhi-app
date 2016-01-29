@@ -1,0 +1,157 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: UpdateController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.controller</a> ]
+</div>
+
+<h1>Coverage Summary for Class: UpdateController (org.ei.telemedicine.view.controller)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UpdateController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 19)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">UpdateController$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 23)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.controller;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.webkit.WebView;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import org.ei.telemedicine.Context;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.util.ArrayList;
+<i>8</i>&nbsp;import java.util.List;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;public class UpdateController {
+<i>11</i>&nbsp;    private WebView webView;
+<b class="nc"><i>12</i>&nbsp;    private boolean pageHasFinishedLoading = false;</b>
+<i>13</i>&nbsp;    private List&lt;String&gt; urlsToLoad;
+<i>14</i>&nbsp;
+<b class="nc"><i>15</i>&nbsp;    public UpdateController(WebView webView) {</b>
+<b class="nc"><i>16</i>&nbsp;        this.webView = webView;</b>
+<b class="nc"><i>17</i>&nbsp;        urlsToLoad = new ArrayList&lt;String&gt;();</b>
+<b class="nc"><i>18</i>&nbsp;    }</b>
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    public void pageHasFinishedLoading() {
+<b class="nc"><i>21</i>&nbsp;        pageHasFinishedLoading = true;</b>
+<b class="nc"><i>22</i>&nbsp;        flushUrlLoads();</b>
+<b class="nc"><i>23</i>&nbsp;    }</b>
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    private void flushUrlLoads() {
+<b class="nc"><i>26</i>&nbsp;        if (pageHasFinishedLoading) {</b>
+<b class="nc"><i>27</i>&nbsp;            for (String url : urlsToLoad) {</b>
+<b class="nc"><i>28</i>&nbsp;                if (webView != null)</b>
+<b class="nc"><i>29</i>&nbsp;                    webView.loadUrl(url);</b>
+<b class="nc"><i>30</i>&nbsp;            }</b>
+<i>31</i>&nbsp;        }
+<b class="nc"><i>32</i>&nbsp;    }</b>
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    public void destroy() {
+<b class="nc"><i>35</i>&nbsp;        webView = null;</b>
+<b class="nc"><i>36</i>&nbsp;    }</b>
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    public void updateANMDetails() {
+<b class="nc"><i>39</i>&nbsp;        UpdateANMDetailsTask task = new UpdateANMDetailsTask(Context.getInstance().anmController());</b>
+<b class="nc"><i>40</i>&nbsp;        task.fetch(new AfterANMDetailsFetchListener() {</b>
+<i>41</i>&nbsp;            @Override
+<i>42</i>&nbsp;            public void afterFetch(String anmDetails) {
+<b class="nc"><i>43</i>&nbsp;                if (webView != null)</b>
+<b class="nc"><i>44</i>&nbsp;                    webView.loadUrl(&quot;javascript:pageView.updateANMDetails(&#39;&quot; + anmDetails + &quot;&#39;)&quot;);</b>
+<b class="nc"><i>45</i>&nbsp;            }</b>
+<i>46</i>&nbsp;        });
+<b class="nc"><i>47</i>&nbsp;    }</b>
+<i>48</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

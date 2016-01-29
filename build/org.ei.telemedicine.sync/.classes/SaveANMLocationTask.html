@@ -1,0 +1,168 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: SaveANMLocationTask</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.sync</a> ]
+</div>
+
+<h1>Coverage Summary for Class: SaveANMLocationTask (org.ei.telemedicine.sync)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SaveANMLocationTask</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 6)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">SaveANMLocationTask$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">SaveANMLocationTask$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 14)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.sync;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.repository.AllSettings;
+<i>4</i>&nbsp;import org.ei.telemedicine.util.Log;
+<i>5</i>&nbsp;import org.ei.telemedicine.view.BackgroundAction;
+<i>6</i>&nbsp;import org.ei.telemedicine.view.LockingBackgroundTask;
+<i>7</i>&nbsp;import org.ei.telemedicine.view.ProgressIndicator;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;public class SaveANMLocationTask {
+<i>10</i>&nbsp;    private final LockingBackgroundTask task;
+<i>11</i>&nbsp;    private AllSettings allSettings;
+<i>12</i>&nbsp;
+<b class="nc"><i>13</i>&nbsp;    public SaveANMLocationTask(AllSettings allSettings) {</b>
+<b class="nc"><i>14</i>&nbsp;        this.allSettings = allSettings;</b>
+<b class="nc"><i>15</i>&nbsp;        task = new LockingBackgroundTask(new ProgressIndicator() {</b>
+<i>16</i>&nbsp;            @Override
+<i>17</i>&nbsp;            public void setVisible() {
+<b class="nc"><i>18</i>&nbsp;            }</b>
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;            @Override
+<i>21</i>&nbsp;            public void setInvisible() {
+<b class="nc"><i>22</i>&nbsp;                Log.logInfo(&quot;Successfully saved ANM Location information&quot;);</b>
+<b class="nc"><i>23</i>&nbsp;            }</b>
+<i>24</i>&nbsp;        });
+<b class="nc"><i>25</i>&nbsp;    }</b>
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    public void save(final String anmLocation, final String anmDrugs, final String anmConfig, final String anmCountryCode, final String formFields) {
+<b class="nc"><i>28</i>&nbsp;        task.doActionInBackground(new BackgroundAction&lt;String&gt;() {</b>
+<i>29</i>&nbsp;            @Override
+<i>30</i>&nbsp;            public String actionToDoInBackgroundThread() {
+<b class="nc"><i>31</i>&nbsp;                allSettings.saveANMInfo(anmLocation, anmDrugs, anmConfig, anmCountryCode, formFields);</b>
+<b class="nc"><i>32</i>&nbsp;                return anmLocation;</b>
+<i>33</i>&nbsp;            }
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;            @Override
+<i>36</i>&nbsp;            public void postExecuteInUIThread(String result) {
+<b class="nc"><i>37</i>&nbsp;            }</b>
+<i>38</i>&nbsp;        });
+<b class="nc"><i>39</i>&nbsp;    }</b>
+<i>40</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

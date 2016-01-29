@@ -1,0 +1,365 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: NativeChildSmartRegisterActivity</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.activity</a> ]
+</div>
+
+<h1>Coverage Summary for Class: NativeChildSmartRegisterActivity (org.ei.telemedicine.view.activity)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">NativeChildSmartRegisterActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 41)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">NativeChildSmartRegisterActivity$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NativeChildSmartRegisterActivity$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 10)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NativeChildSmartRegisterActivity$ClientActionHandler</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 8)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NativeChildSmartRegisterActivity$EditDialogOptionModel</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 25)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 68)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.activity;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static com.google.common.collect.Iterables.concat;
+<i>4</i>&nbsp;import static com.google.common.collect.Iterables.toArray;
+<i>5</i>&nbsp;import static java.util.Arrays.asList;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.util.List;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import org.ei.telemedicine.AllConstants;
+<i>10</i>&nbsp;import org.ei.telemedicine.R;
+<i>11</i>&nbsp;import org.ei.telemedicine.adapter.SmartRegisterPaginatedAdapter;
+<i>12</i>&nbsp;import org.ei.telemedicine.domain.form.FieldOverrides;
+<i>13</i>&nbsp;import org.ei.telemedicine.provider.ChildSmartRegisterClientsProvider;
+<i>14</i>&nbsp;import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
+<i>15</i>&nbsp;import org.ei.telemedicine.view.contract.SmartRegisterClient;
+<i>16</i>&nbsp;import org.ei.telemedicine.view.controller.ChildSmartRegisterController;
+<i>17</i>&nbsp;import org.ei.telemedicine.view.controller.VillageController;
+<i>18</i>&nbsp;import org.ei.telemedicine.view.dialog.AllClientsFilter;
+<i>19</i>&nbsp;import org.ei.telemedicine.view.dialog.ChildAgeSort;
+<i>20</i>&nbsp;import org.ei.telemedicine.view.dialog.ChildHighRiskSort;
+<i>21</i>&nbsp;import org.ei.telemedicine.view.dialog.ChildImmunization0to9ServiceMode;
+<i>22</i>&nbsp;import org.ei.telemedicine.view.dialog.ChildImmunization9PlusServiceMode;
+<i>23</i>&nbsp;import org.ei.telemedicine.view.dialog.ChildOverviewServiceMode;
+<i>24</i>&nbsp;import org.ei.telemedicine.view.dialog.DialogOption;
+<i>25</i>&nbsp;import org.ei.telemedicine.view.dialog.DialogOptionMapper;
+<i>26</i>&nbsp;import org.ei.telemedicine.view.dialog.DialogOptionModel;
+<i>27</i>&nbsp;import org.ei.telemedicine.view.dialog.EditOption;
+<i>28</i>&nbsp;import org.ei.telemedicine.view.dialog.FilterOption;
+<i>29</i>&nbsp;import org.ei.telemedicine.view.dialog.NameSort;
+<i>30</i>&nbsp;import org.ei.telemedicine.view.dialog.OpenFormOption;
+<i>31</i>&nbsp;import org.ei.telemedicine.view.dialog.OutOfAreaFilter;
+<i>32</i>&nbsp;import org.ei.telemedicine.view.dialog.ServiceModeOption;
+<i>33</i>&nbsp;import org.ei.telemedicine.view.dialog.SortOption;
+<i>34</i>&nbsp;import org.json.JSONArray;
+<i>35</i>&nbsp;import org.json.JSONException;
+<i>36</i>&nbsp;import org.json.JSONObject;
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;import android.view.View;
+<i>39</i>&nbsp;
+<b class="nc"><i>40</i>&nbsp;public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {</b>
+<i>41</i>&nbsp;
+<b class="nc"><i>42</i>&nbsp;    private SmartRegisterClientsProvider clientProvider = null;</b>
+<i>43</i>&nbsp;    private ChildSmartRegisterController controller;
+<i>44</i>&nbsp;    private VillageController villageController;
+<i>45</i>&nbsp;    private DialogOptionMapper dialogOptionMapper;
+<b class="nc"><i>46</i>&nbsp;    public static final List&lt;? extends DialogOption&gt; DEFAULT_CHILD_FILTER_OPTIONS =</b>
+<b class="nc"><i>47</i>&nbsp;            asList(new OutOfAreaFilter());</b>
+<i>48</i>&nbsp;
+<b class="nc"><i>49</i>&nbsp;    private final ClientActionHandler clientActionHandler = new ClientActionHandler();</b>
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;    @Override
+<i>52</i>&nbsp;    protected SmartRegisterPaginatedAdapter adapter() {
+<b class="nc"><i>53</i>&nbsp;        return new SmartRegisterPaginatedAdapter(clientsProvider());</b>
+<i>54</i>&nbsp;    }
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;    @Override
+<i>57</i>&nbsp;    protected SmartRegisterClientsProvider clientsProvider() {
+<b class="nc"><i>58</i>&nbsp;        if (clientProvider == null) {</b>
+<b class="nc"><i>59</i>&nbsp;            clientProvider = new ChildSmartRegisterClientsProvider(</b>
+<i>60</i>&nbsp;                    this, clientActionHandler, controller);
+<i>61</i>&nbsp;        }
+<b class="nc"><i>62</i>&nbsp;        return clientProvider;</b>
+<i>63</i>&nbsp;    }
+<i>64</i>&nbsp;
+<i>65</i>&nbsp;    @Override
+<i>66</i>&nbsp;    protected DefaultOptionsProvider getDefaultOptionsProvider() {
+<b class="nc"><i>67</i>&nbsp;        return new DefaultOptionsProvider() {</b>
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;            @Override
+<i>70</i>&nbsp;            public ServiceModeOption serviceMode() {
+<b class="nc"><i>71</i>&nbsp;                return new ChildOverviewServiceMode(clientsProvider());</b>
+<i>72</i>&nbsp;            }
+<i>73</i>&nbsp;
+<i>74</i>&nbsp;            @Override
+<i>75</i>&nbsp;            public FilterOption villageFilter() {
+<b class="nc"><i>76</i>&nbsp;                return new AllClientsFilter();</b>
+<i>77</i>&nbsp;            }
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;            @Override
+<i>80</i>&nbsp;            public SortOption sortOption() {
+<b class="nc"><i>81</i>&nbsp;                return new NameSort();</b>
+<i>82</i>&nbsp;            }
+<i>83</i>&nbsp;
+<i>84</i>&nbsp;            @Override
+<i>85</i>&nbsp;            public String nameInShortFormForTitle() {
+<b class="nc"><i>86</i>&nbsp;                return getResources().getString(R.string.child_register_title_in_short);</b>
+<i>87</i>&nbsp;            }
+<i>88</i>&nbsp;        };
+<i>89</i>&nbsp;    }
+<i>90</i>&nbsp;
+<i>91</i>&nbsp;    @Override
+<i>92</i>&nbsp;    protected NavBarOptionsProvider getNavBarOptionsProvider() {
+<b class="nc"><i>93</i>&nbsp;        return new NavBarOptionsProvider() {</b>
+<i>94</i>&nbsp;
+<i>95</i>&nbsp;            @Override
+<i>96</i>&nbsp;            public DialogOption[] filterOptions() {
+<b class="nc"><i>97</i>&nbsp;                Iterable&lt;? extends DialogOption&gt; villageFilterOptions =</b>
+<b class="nc"><i>98</i>&nbsp;                        dialogOptionMapper.mapToVillageFilterOptions(villageController.getVillages());</b>
+<b class="nc"><i>99</i>&nbsp;                return toArray(concat(DEFAULT_FILTER_OPTIONS, DEFAULT_CHILD_FILTER_OPTIONS, villageFilterOptions), DialogOption.class);</b>
+<i>100</i>&nbsp;            }
+<i>101</i>&nbsp;
+<i>102</i>&nbsp;            @Override
+<i>103</i>&nbsp;            public DialogOption[] serviceModeOptions() {
+<b class="nc"><i>104</i>&nbsp;                return new DialogOption[]{</b>
+<b class="nc"><i>105</i>&nbsp;                        new ChildOverviewServiceMode(clientsProvider()),</b>
+<b class="nc"><i>106</i>&nbsp;                        new ChildImmunization0to9ServiceMode(clientsProvider()),</b>
+<b class="nc"><i>107</i>&nbsp;                        new ChildImmunization9PlusServiceMode(clientsProvider())</b>
+<i>108</i>&nbsp;                };
+<i>109</i>&nbsp;            }
+<i>110</i>&nbsp;
+<i>111</i>&nbsp;            @Override
+<i>112</i>&nbsp;            public DialogOption[] sortingOptions() {
+<b class="nc"><i>113</i>&nbsp;                return new DialogOption[]{new NameSort(), new ChildAgeSort(),</b>
+<i>114</i>&nbsp;                        new ChildHighRiskSort()};
+<i>115</i>&nbsp;            }
+<i>116</i>&nbsp;
+<i>117</i>&nbsp;            @Override
+<i>118</i>&nbsp;            public String searchHint() {
+<b class="nc"><i>119</i>&nbsp;                return getString(R.string.str_child_search_hint);</b>
+<i>120</i>&nbsp;            }
+<i>121</i>&nbsp;        };
+<i>122</i>&nbsp;    }
+<i>123</i>&nbsp;
+<i>124</i>&nbsp;    private DialogOption[] getEditOptions() {
+<b class="nc"><i>125</i>&nbsp;        return new DialogOption[]{</b>
+<i>126</i>&nbsp;//                new OpenFormOption(&quot;Child Edit&quot;, AllConstants.FormNames.CHILD_EDIT, formController),
+<b class="nc"><i>127</i>&nbsp;                new OpenFormOption(getString(R.string.str_child_immunizations), AllConstants.FormNames.CHILD_IMMUNIZATIONS, formController),</b>
+<b class="nc"><i>128</i>&nbsp;                new OpenFormOption(getString(R.string.str_child_illness), AllConstants.FormNames.CHILD_ILLNESS, formController),</b>
+<b class="nc"><i>129</i>&nbsp;                new OpenFormOption(getString(R.string.str_anc_plan_of_care), AllConstants.VIEW_CHILD_PLAN_OF_CARE, formController, NativeChildSmartRegisterActivity.this),</b>
+<b class="nc"><i>130</i>&nbsp;                new OpenFormOption(getString(R.string.str_child_close), AllConstants.FormNames.CHILD_CLOSE, formController),</b>
+<b class="nc"><i>131</i>&nbsp;                new OpenFormOption(getString(R.string.str_vitamin_a), AllConstants.FormNames.VITAMIN_A, formController)</b>
+<i>132</i>&nbsp;        };
+<i>133</i>&nbsp;    }
+<i>134</i>&nbsp;
+<i>135</i>&nbsp;    @Override
+<i>136</i>&nbsp;    protected void onInitialization() {
+<b class="nc"><i>137</i>&nbsp;        controller = new ChildSmartRegisterController(</b>
+<b class="nc"><i>138</i>&nbsp;                context.serviceProvidedService(),</b>
+<b class="nc"><i>139</i>&nbsp;                context.alertService(),</b>
+<b class="nc"><i>140</i>&nbsp;                context.allBeneficiaries(),</b>
+<b class="nc"><i>141</i>&nbsp;                context.listCache(),</b>
+<b class="nc"><i>142</i>&nbsp;                context.smartRegisterClientsCache());</b>
+<i>143</i>&nbsp;
+<b class="nc"><i>144</i>&nbsp;        villageController = new VillageController(</b>
+<b class="nc"><i>145</i>&nbsp;                context.allEligibleCouples(),</b>
+<b class="nc"><i>146</i>&nbsp;                context.listCache(),</b>
+<b class="nc"><i>147</i>&nbsp;                context.villagesCache());</b>
+<i>148</i>&nbsp;
+<b class="nc"><i>149</i>&nbsp;        dialogOptionMapper = new DialogOptionMapper();</b>
+<i>150</i>&nbsp;
+<b class="nc"><i>151</i>&nbsp;        clientsProvider().onServiceModeSelected(new ChildOverviewServiceMode(clientsProvider()));</b>
+<b class="nc"><i>152</i>&nbsp;    }</b>
+<i>153</i>&nbsp;
+<i>154</i>&nbsp;    @Override
+<i>155</i>&nbsp;    protected void startRegistration(String village) throws JSONException {
+<b class="nc"><i>156</i>&nbsp;        String locationJSON = context.anmLocationController().getFormInfoJSON();</b>
+<b class="nc"><i>157</i>&nbsp;        JSONObject jsonFormInfo = new JSONObject(locationJSON);</b>
+<b class="nc"><i>158</i>&nbsp;        jsonFormInfo.put(&quot;village&quot;, village.trim().replace(&quot; &quot;, &quot;%20&quot;));</b>
+<b class="nc"><i>159</i>&nbsp;        String customFields = context.allSettings().fetchFieldLabels(&quot;ChildRegistration&quot;);</b>
+<b class="nc"><i>160</i>&nbsp;        if (customFields != null &amp;&amp; !customFields.equals(&quot;&quot;)) {</b>
+<b class="nc"><i>161</i>&nbsp;            JSONArray customFieldsArray = new JSONArray(customFields);</b>
+<b class="nc"><i>162</i>&nbsp;            for (int i = 0; i &lt; customFieldsArray.length(); i++) {</b>
+<b class="nc"><i>163</i>&nbsp;                jsonFormInfo.put(&quot;field&quot; + (i + 1), customFieldsArray.getString(i).trim().replace(&quot; &quot;, &quot;%20&quot;));</b>
+<i>164</i>&nbsp;            }
+<i>165</i>&nbsp;        }
+<b class="nc"><i>166</i>&nbsp;        FieldOverrides fieldOverrides = new FieldOverrides(jsonFormInfo.toString());</b>
+<b class="nc"><i>167</i>&nbsp;        startFormActivity(AllConstants.FormNames.CHILD_REGISTRATION_OA, null, fieldOverrides.getJSONString());</b>
+<b class="nc"><i>168</i>&nbsp;    }</b>
+<i>169</i>&nbsp;
+<b class="nc"><i>170</i>&nbsp;    private class ClientActionHandler implements View.OnClickListener {</b>
+<i>171</i>&nbsp;        @Override
+<i>172</i>&nbsp;        public void onClick(View view) {
+<b class="nc"><i>173</i>&nbsp;            switch (view.getId()) {</b>
+<i>174</i>&nbsp;                case R.id.profile_info_layout:
+<b class="nc"><i>175</i>&nbsp;                    showProfileView((SmartRegisterClient) view.getTag());</b>
+<b class="nc"><i>176</i>&nbsp;                    break;</b>
+<i>177</i>&nbsp;                case R.id.btn_edit:
+<b class="nc"><i>178</i>&nbsp;                    showFragmentDialog(new EditDialogOptionModel(), view.getTag());</b>
+<i>179</i>&nbsp;                    break;
+<i>180</i>&nbsp;            }
+<b class="nc"><i>181</i>&nbsp;        }</b>
+<i>182</i>&nbsp;
+<i>183</i>&nbsp;        private void showProfileView(SmartRegisterClient client) {
+<b class="nc"><i>184</i>&nbsp;            navigationController.startChild(client.entityId());</b>
+<b class="nc"><i>185</i>&nbsp;        }</b>
+<i>186</i>&nbsp;    }
+<i>187</i>&nbsp;
+<b class="nc"><i>188</i>&nbsp;    private class EditDialogOptionModel implements DialogOptionModel {</b>
+<i>189</i>&nbsp;        @Override
+<i>190</i>&nbsp;        public DialogOption[] getDialogOptions() {
+<b class="nc"><i>191</i>&nbsp;            return getEditOptions();</b>
+<i>192</i>&nbsp;        }
+<i>193</i>&nbsp;
+<i>194</i>&nbsp;        @Override
+<i>195</i>&nbsp;        public void onDialogOptionSelection(DialogOption option, Object tag) {
+<b class="nc"><i>196</i>&nbsp;            onEditSelection((EditOption) option, (SmartRegisterClient) tag);</b>
+<b class="nc"><i>197</i>&nbsp;        }</b>
+<i>198</i>&nbsp;    }
+<i>199</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

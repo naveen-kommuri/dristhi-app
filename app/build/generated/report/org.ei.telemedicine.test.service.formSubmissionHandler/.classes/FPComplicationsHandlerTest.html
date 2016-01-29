@@ -1,0 +1,121 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: FPComplicationsHandlerTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.service.formSubmissionHandler</a> ]
+</div>
+
+<h1>Coverage Summary for Class: FPComplicationsHandlerTest (org.ei.telemedicine.test.service.formSubmissionHandler)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FPComplicationsHandlerTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/ 8)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.service.formSubmissionHandler;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.domain.form.FormSubmission;
+<i>4</i>&nbsp;import org.ei.telemedicine.service.EligibleCoupleService;
+<i>5</i>&nbsp;import org.ei.telemedicine.service.formSubmissionHandler.FPComplicationsHandler;
+<i>6</i>&nbsp;import org.junit.Before;
+<i>7</i>&nbsp;import org.junit.Test;
+<i>8</i>&nbsp;import org.junit.runner.RunWith;
+<i>9</i>&nbsp;import org.mockito.Mock;
+<i>10</i>&nbsp;import org.mockito.runners.MockitoJUnitRunner;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;import static org.ei.telemedicine.util.FormSubmissionBuilder.create;
+<i>13</i>&nbsp;import static org.mockito.Mockito.verify;
+<i>14</i>&nbsp;import static org.mockito.MockitoAnnotations.initMocks;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;@RunWith(MockitoJUnitRunner.class)
+<b class="fc"><i>17</i>&nbsp;public class FPComplicationsHandlerTest {</b>
+<i>18</i>&nbsp;    @Mock
+<i>19</i>&nbsp;    private EligibleCoupleService ecService;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    private FPComplicationsHandler handler;
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    @Before
+<i>24</i>&nbsp;    public void setUp() throws Exception {
+<b class="fc"><i>25</i>&nbsp;        initMocks(this);</b>
+<b class="fc"><i>26</i>&nbsp;        handler = new FPComplicationsHandler(ecService);</b>
+<b class="fc"><i>27</i>&nbsp;    }</b>
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    @Test
+<i>30</i>&nbsp;    public void testShouldDelegateFormSubmissionHandlingToECService() throws Exception {
+<b class="fc"><i>31</i>&nbsp;        FormSubmission submission = create().withFormName(&quot;ec_registration&quot;).withInstanceId(&quot;instance id 1&quot;).withVersion(&quot;122&quot;).build();</b>
+<i>32</i>&nbsp;
+<b class="fc"><i>33</i>&nbsp;        handler.handle(submission);</b>
+<i>34</i>&nbsp;
+<b class="fc"><i>35</i>&nbsp;        verify(ecService).fpComplications(submission);</b>
+<b class="fc"><i>36</i>&nbsp;    }</b>
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-26 16:42</div>
+</div>
+</body>
+</html>

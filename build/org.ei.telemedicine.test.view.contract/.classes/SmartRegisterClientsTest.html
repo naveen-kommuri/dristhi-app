@@ -1,0 +1,397 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: SmartRegisterClientsTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.view.contract</a> ]
+</div>
+
+<h1>Coverage Summary for Class: SmartRegisterClientsTest (org.ei.telemedicine.test.view.contract)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SmartRegisterClientsTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (20/ 20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (135/ 135)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.view.contract;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.Context;
+<i>4</i>&nbsp;import org.ei.telemedicine.R;
+<i>5</i>&nbsp;import org.ei.telemedicine.view.contract.ECClient;
+<i>6</i>&nbsp;import org.ei.telemedicine.view.contract.ECClients;
+<i>7</i>&nbsp;import org.ei.telemedicine.view.contract.FPClient;
+<i>8</i>&nbsp;import org.ei.telemedicine.view.contract.FPClients;
+<i>9</i>&nbsp;import org.ei.telemedicine.view.contract.SmartRegisterClients;
+<i>10</i>&nbsp;import org.ei.telemedicine.view.dialog.AllClientsFilter;
+<i>11</i>&nbsp;import org.ei.telemedicine.view.dialog.AllEligibleCoupleServiceMode;
+<i>12</i>&nbsp;import org.ei.telemedicine.view.dialog.BPLSort;
+<i>13</i>&nbsp;import org.ei.telemedicine.view.dialog.ECNumberSort;
+<i>14</i>&nbsp;import org.ei.telemedicine.view.dialog.ECSearchOption;
+<i>15</i>&nbsp;import org.ei.telemedicine.view.dialog.FPAllMethodsServiceMode;
+<i>16</i>&nbsp;import org.ei.telemedicine.view.dialog.FPMethodFilter;
+<i>17</i>&nbsp;import org.ei.telemedicine.view.dialog.HighPrioritySort;
+<i>18</i>&nbsp;import org.ei.telemedicine.view.dialog.NameSort;
+<i>19</i>&nbsp;import org.ei.telemedicine.view.dialog.OutOfAreaFilter;
+<i>20</i>&nbsp;import org.ei.telemedicine.view.dialog.SCSort;
+<i>21</i>&nbsp;import org.ei.telemedicine.view.dialog.STSort;
+<i>22</i>&nbsp;import org.ei.telemedicine.view.dialog.VillageFilter;
+<i>23</i>&nbsp;import org.junit.Before;
+<i>24</i>&nbsp;import org.junit.Test;
+<i>25</i>&nbsp;import org.junit.runner.RunWith;
+<i>26</i>&nbsp;import org.mockito.Mock;
+<i>27</i>&nbsp;import org.mockito.runners.MockitoJUnitRunner;
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;import static java.util.Arrays.asList;
+<i>30</i>&nbsp;import static junit.framework.Assert.assertEquals;
+<i>31</i>&nbsp;import static junit.framework.Assert.assertTrue;
+<i>32</i>&nbsp;import static org.mockito.Mockito.when;
+<i>33</i>&nbsp;import static org.mockito.MockitoAnnotations.initMocks;
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;@RunWith(MockitoJUnitRunner.class)
+<b class="fc"><i>36</i>&nbsp;public class SmartRegisterClientsTest {</b>
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    @Mock
+<i>39</i>&nbsp;    AllEligibleCoupleServiceMode allEligibleCoupleServiceMode;
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;    @Mock
+<i>42</i>&nbsp;    FPAllMethodsServiceMode fpAllMethodsServiceMode;
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;    @Mock
+<i>45</i>&nbsp;    Context context;
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;    @Mock
+<i>48</i>&nbsp;    private android.content.Context applicationContext;
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;    @Before
+<i>51</i>&nbsp;    public void setUp() throws Exception {
+<b class="fc"><i>52</i>&nbsp;        initMocks(this);</b>
+<b class="fc"><i>53</i>&nbsp;        when(context.applicationContext()).thenReturn(applicationContext);</b>
+<b class="fc"><i>54</i>&nbsp;        Context.setInstance(context);</b>
+<b class="fc"><i>55</i>&nbsp;    }</b>
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;    @Test
+<i>58</i>&nbsp;    public void emptyStringSearchShouldReturnAllTheResults() {
+<i>59</i>&nbsp;
+<b class="fc"><i>60</i>&nbsp;        SmartRegisterClients originalClients = getUniformSmartRegisterClients(10);</b>
+<b class="fc"><i>61</i>&nbsp;        SmartRegisterClients filteredClients = originalClients.applyFilter(</b>
+<i>62</i>&nbsp;                new AllClientsFilter(),
+<i>63</i>&nbsp;                allEligibleCoupleServiceMode,
+<i>64</i>&nbsp;                new ECSearchOption(&quot;&quot;),
+<i>65</i>&nbsp;                new NameSort());
+<i>66</i>&nbsp;
+<b class="fc"><i>67</i>&nbsp;        assertEquals(originalClients, filteredClients);</b>
+<b class="fc"><i>68</i>&nbsp;    }</b>
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;    @Test
+<i>71</i>&nbsp;    public void ShouldReturnFilteredResultsForSearchString() {
+<b class="fc"><i>72</i>&nbsp;        SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();</b>
+<i>73</i>&nbsp;
+<b class="fc"><i>74</i>&nbsp;        SmartRegisterClients filteredClients = originalClients.applyFilter(</b>
+<i>75</i>&nbsp;                new AllClientsFilter(),
+<i>76</i>&nbsp;                allEligibleCoupleServiceMode,
+<i>77</i>&nbsp;                new ECSearchOption(&quot;a&quot;),
+<i>78</i>&nbsp;                new NameSort());
+<i>79</i>&nbsp;
+<b class="fc"><i>80</i>&nbsp;        assertEquals(3, filteredClients.size());</b>
+<b class="fc"><i>81</i>&nbsp;        for (int i = 0; i &lt; 3; i++) {</b>
+<b class="fc"><i>82</i>&nbsp;            assertTrue(filteredClients.get(i).name().startsWith(&quot;A&quot;));</b>
+<i>83</i>&nbsp;        }
+<b class="fc"><i>84</i>&nbsp;    }</b>
+<i>85</i>&nbsp;
+<i>86</i>&nbsp;    @Test
+<i>87</i>&nbsp;    public void ShouldReturnSortedResultsForNameSortOption() {
+<b class="fc"><i>88</i>&nbsp;        SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();</b>
+<i>89</i>&nbsp;
+<b class="fc"><i>90</i>&nbsp;        SmartRegisterClients filteredClients = originalClients.applyFilter(</b>
+<i>91</i>&nbsp;                new AllClientsFilter(),
+<i>92</i>&nbsp;                allEligibleCoupleServiceMode,
+<i>93</i>&nbsp;                new ECSearchOption(&quot;&quot;),
+<i>94</i>&nbsp;                new NameSort());
+<i>95</i>&nbsp;
+<b class="fc"><i>96</i>&nbsp;        ECClients expectedClients = new ECClients();</b>
+<b class="fc"><i>97</i>&nbsp;        expectedClients.addAll(</b>
+<b class="fc"><i>98</i>&nbsp;                asList(</b>
+<b class="fc"><i>99</i>&nbsp;                        new ECClient(&quot;abcd1&quot;, &quot;Adhiti&quot;, &quot;Rama&quot;, &quot;Battiganahalli&quot;, 69).withIsHighPriority(true).withIsOutOfArea(true),</b>
+<b class="fc"><i>100</i>&nbsp;                        new ECClient(&quot;abcd2&quot;, &quot;Akshara&quot;, &quot;Rajesh&quot;, &quot;Half bherya&quot;, 500).withCaste(&quot;SC&quot;).withEconomicStatus(&quot;BPL&quot;).withIsHighPriority(true).withFPMethod(&quot;condom&quot;),</b>
+<b class="fc"><i>101</i>&nbsp;                        new ECClient(&quot;abcd3&quot;, &quot;Anitha&quot;, &quot;Chandan&quot;, &quot;Half bherya&quot;, 87).withCaste(&quot;SC&quot;).withIsOutOfArea(true).withFPMethod(&quot;ocp&quot;).withFPMethod(&quot;ocp&quot;),</b>
+<b class="fc"><i>102</i>&nbsp;                        new ECClient(&quot;abcd6&quot;, &quot;Bhagya&quot;, &quot;Ramesh&quot;, &quot;Hosa agrahara&quot;, 93).withIsHighPriority(true).withCaste(&quot;ST&quot;).withFPMethod(&quot;condom&quot;),</b>
+<b class="fc"><i>103</i>&nbsp;                        new ECClient(&quot;abcd4&quot;, &quot;Bhavani&quot;, &quot;Ravi&quot;, &quot;Gowrikoppalu&quot;, 140).withEconomicStatus(&quot;BPL&quot;).withFPMethod(&quot;female_sterilization&quot;),</b>
+<b class="fc"><i>104</i>&nbsp;                        new ECClient(&quot;abcd5&quot;, &quot;Chaitra&quot;, &quot;Rams&quot;, &quot;Somanahalli colony&quot;, 36).withCaste(&quot;ST&quot;).withFPMethod(&quot;ocp&quot;)</b>
+<i>105</i>&nbsp;                ));
+<b class="fc"><i>106</i>&nbsp;        assertEquals(expectedClients.get(0).name(), filteredClients.get(0).name());</b>
+<b class="fc"><i>107</i>&nbsp;    }</b>
+<i>108</i>&nbsp;
+<i>109</i>&nbsp;    @Test
+<i>110</i>&nbsp;    public void ShouldReturnSortedResultsForECNumberSortOption() {
+<b class="fc"><i>111</i>&nbsp;        SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();</b>
+<i>112</i>&nbsp;
+<b class="fc"><i>113</i>&nbsp;        SmartRegisterClients filteredClients = originalClients.applyFilter(</b>
+<i>114</i>&nbsp;                new AllClientsFilter(),
+<i>115</i>&nbsp;                allEligibleCoupleServiceMode,
+<i>116</i>&nbsp;                new ECSearchOption(&quot;&quot;),
+<i>117</i>&nbsp;                new ECNumberSort());
+<i>118</i>&nbsp;
+<b class="fc"><i>119</i>&nbsp;        assertEquals(6, filteredClients.size());</b>
+<b class="fc"><i>120</i>&nbsp;        assertEquals(&quot;Adhiti&quot;, filteredClients.get(1).name());</b>
+<b class="fc"><i>121</i>&nbsp;        assertEquals(&quot;Akshara&quot;, filteredClients.get(5).name());</b>
+<b class="fc"><i>122</i>&nbsp;        assertEquals(&quot;Anitha&quot;, filteredClients.get(2).name());</b>
+<b class="fc"><i>123</i>&nbsp;        assertEquals(&quot;Bhagya&quot;, filteredClients.get(3).name());</b>
+<b class="fc"><i>124</i>&nbsp;        assertEquals(&quot;Bhavani&quot;, filteredClients.get(4).name());</b>
+<b class="fc"><i>125</i>&nbsp;        assertEquals(&quot;Chaitra&quot;, filteredClients.get(0).name());</b>
+<b class="fc"><i>126</i>&nbsp;    }</b>
+<i>127</i>&nbsp;
+<i>128</i>&nbsp;    @Test
+<i>129</i>&nbsp;    public void ShouldReturnSortedResultsForBPLSortOption() {
+<b class="fc"><i>130</i>&nbsp;        SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();</b>
+<b class="fc"><i>131</i>&nbsp;        SmartRegisterClients filteredClients = originalClients.applyFilter(</b>
+<i>132</i>&nbsp;                new AllClientsFilter(),
+<i>133</i>&nbsp;                allEligibleCoupleServiceMode,
+<i>134</i>&nbsp;                new ECSearchOption(&quot;&quot;),
+<i>135</i>&nbsp;                new BPLSort());
+<b class="fc"><i>136</i>&nbsp;        assertEquals(6, filteredClients.size());</b>
+<b class="fc"><i>137</i>&nbsp;        assertEquals(&quot;Adhiti&quot;, filteredClients.get(2).name());</b>
+<b class="fc"><i>138</i>&nbsp;        assertEquals(&quot;Akshara&quot;, filteredClients.get(0).name());</b>
+<b class="fc"><i>139</i>&nbsp;        assertEquals(&quot;Anitha&quot;, filteredClients.get(3).name());</b>
+<b class="fc"><i>140</i>&nbsp;        assertEquals(&quot;Bhagya&quot;, filteredClients.get(4).name());</b>
+<b class="fc"><i>141</i>&nbsp;        assertEquals(&quot;Bhavani&quot;, filteredClients.get(1).name());</b>
+<b class="fc"><i>142</i>&nbsp;        assertEquals(&quot;Chaitra&quot;, filteredClients.get(5).name());</b>
+<b class="fc"><i>143</i>&nbsp;    }</b>
+<i>144</i>&nbsp;
+<i>145</i>&nbsp;    @Test
+<i>146</i>&nbsp;    public void ShouldReturnSortedResultsForHPSortOption() {
+<b class="fc"><i>147</i>&nbsp;        SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();</b>
+<b class="fc"><i>148</i>&nbsp;        SmartRegisterClients filteredClients = originalClients.applyFilter(</b>
+<i>149</i>&nbsp;                new AllClientsFilter(),
+<i>150</i>&nbsp;                allEligibleCoupleServiceMode,
+<i>151</i>&nbsp;                new ECSearchOption(&quot;&quot;),
+<i>152</i>&nbsp;                new HighPrioritySort());
+<b class="fc"><i>153</i>&nbsp;        assertEquals(6, filteredClients.size());</b>
+<b class="fc"><i>154</i>&nbsp;        assertEquals(&quot;Adhiti&quot;, filteredClients.get(0).name());</b>
+<b class="fc"><i>155</i>&nbsp;        assertEquals(&quot;Akshara&quot;, filteredClients.get(1).name());</b>
+<b class="fc"><i>156</i>&nbsp;        assertEquals(&quot;Bhagya&quot;, filteredClients.get(2).name());</b>
+<b class="fc"><i>157</i>&nbsp;        assertEquals(&quot;Chaitra&quot;, filteredClients.get(5).name());</b>
+<b class="fc"><i>158</i>&nbsp;        assertEquals(&quot;Bhavani&quot;, filteredClients.get(4).name());</b>
+<b class="fc"><i>159</i>&nbsp;        assertEquals(&quot;Anitha&quot;, filteredClients.get(3).name());</b>
+<b class="fc"><i>160</i>&nbsp;    }</b>
+<i>161</i>&nbsp;
+<i>162</i>&nbsp;    @Test
+<i>163</i>&nbsp;    public void ShouldReturnSortedResultsForSCSortOption() {
+<b class="fc"><i>164</i>&nbsp;        SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();</b>
+<b class="fc"><i>165</i>&nbsp;        SmartRegisterClients filteredClients = originalClients.applyFilter(</b>
+<i>166</i>&nbsp;                new AllClientsFilter(),
+<i>167</i>&nbsp;                allEligibleCoupleServiceMode,
+<i>168</i>&nbsp;                new ECSearchOption(&quot;&quot;),
+<i>169</i>&nbsp;                new SCSort());
+<b class="fc"><i>170</i>&nbsp;        assertEquals(6, filteredClients.size());</b>
+<b class="fc"><i>171</i>&nbsp;        assertEquals(&quot;Adhiti&quot;, filteredClients.get(2).name());</b>
+<b class="fc"><i>172</i>&nbsp;        assertEquals(&quot;Akshara&quot;, filteredClients.get(0).name());</b>
+<b class="fc"><i>173</i>&nbsp;        assertEquals(&quot;Anitha&quot;, filteredClients.get(1).name());</b>
+<b class="fc"><i>174</i>&nbsp;        assertEquals(&quot;Bhagya&quot;, filteredClients.get(3).name());</b>
+<b class="fc"><i>175</i>&nbsp;        assertEquals(&quot;Bhavani&quot;, filteredClients.get(4).name());</b>
+<b class="fc"><i>176</i>&nbsp;        assertEquals(&quot;Chaitra&quot;, filteredClients.get(5).name());</b>
+<b class="fc"><i>177</i>&nbsp;    }</b>
+<i>178</i>&nbsp;
+<i>179</i>&nbsp;    @Test
+<i>180</i>&nbsp;    public void ShouldReturnSortedResultsForSTSortOption() {
+<b class="fc"><i>181</i>&nbsp;        SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();</b>
+<b class="fc"><i>182</i>&nbsp;        SmartRegisterClients filteredClients = originalClients.applyFilter(</b>
+<i>183</i>&nbsp;                new AllClientsFilter(),
+<i>184</i>&nbsp;                allEligibleCoupleServiceMode,
+<i>185</i>&nbsp;                new ECSearchOption(&quot;&quot;),
+<i>186</i>&nbsp;                new STSort());
+<b class="fc"><i>187</i>&nbsp;        assertEquals(6, filteredClients.size());</b>
+<b class="fc"><i>188</i>&nbsp;        assertEquals(&quot;Adhiti&quot;, filteredClients.get(2).name());</b>
+<b class="fc"><i>189</i>&nbsp;        assertEquals(&quot;Akshara&quot;, filteredClients.get(3).name());</b>
+<b class="fc"><i>190</i>&nbsp;        assertEquals(&quot;Anitha&quot;, filteredClients.get(4).name());</b>
+<b class="fc"><i>191</i>&nbsp;        assertEquals(&quot;Bhagya&quot;, filteredClients.get(0).name());</b>
+<b class="fc"><i>192</i>&nbsp;        assertEquals(&quot;Bhavani&quot;, filteredClients.get(5).name());</b>
+<b class="fc"><i>193</i>&nbsp;        assertEquals(&quot;Chaitra&quot;, filteredClients.get(1).name());</b>
+<b class="fc"><i>194</i>&nbsp;    }</b>
+<i>195</i>&nbsp;
+<i>196</i>&nbsp;    @Test
+<i>197</i>&nbsp;    public void ShouldReturn2ResultsFor_Half_Bherya_VillageFilterOption() {
+<b class="fc"><i>198</i>&nbsp;        SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();</b>
+<b class="fc"><i>199</i>&nbsp;        SmartRegisterClients filteredClients = originalClients.applyFilter(</b>
+<i>200</i>&nbsp;                new VillageFilter(&quot;Half bherya&quot;),
+<i>201</i>&nbsp;                allEligibleCoupleServiceMode,
+<i>202</i>&nbsp;                new ECSearchOption(&quot;&quot;),
+<i>203</i>&nbsp;                new NameSort());
+<b class="fc"><i>204</i>&nbsp;        assertEquals(2, filteredClients.size());</b>
+<b class="fc"><i>205</i>&nbsp;        assertEquals(&quot;Akshara&quot;, filteredClients.get(0).name());</b>
+<b class="fc"><i>206</i>&nbsp;        assertEquals(&quot;Anitha&quot;, filteredClients.get(1).name());</b>
+<b class="fc"><i>207</i>&nbsp;    }</b>
+<i>208</i>&nbsp;
+<i>209</i>&nbsp;    @Test
+<i>210</i>&nbsp;    public void ShouldReturn2ResultsFor_Hosa_agrahara_VillageFilterOption() {
+<b class="fc"><i>211</i>&nbsp;        SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();</b>
+<b class="fc"><i>212</i>&nbsp;        SmartRegisterClients filteredClients = originalClients.applyFilter(</b>
+<i>213</i>&nbsp;                new VillageFilter(&quot;Hosa agrahara&quot;),
+<i>214</i>&nbsp;                allEligibleCoupleServiceMode,
+<i>215</i>&nbsp;                new ECSearchOption(&quot;&quot;),
+<i>216</i>&nbsp;                new NameSort());
+<b class="fc"><i>217</i>&nbsp;        assertEquals(1, filteredClients.size());</b>
+<b class="fc"><i>218</i>&nbsp;        assertEquals(&quot;Bhagya&quot;, filteredClients.get(0).name());</b>
+<b class="fc"><i>219</i>&nbsp;    }</b>
+<i>220</i>&nbsp;
+<i>221</i>&nbsp;    @Test
+<i>222</i>&nbsp;    public void ShouldReturn1ResultsFor_Battiganahalli_VillageFilterOption() {
+<b class="fc"><i>223</i>&nbsp;        SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();</b>
+<b class="fc"><i>224</i>&nbsp;        SmartRegisterClients filteredClients = originalClients.applyFilter(</b>
+<i>225</i>&nbsp;                new VillageFilter(&quot;Battiganahalli&quot;),
+<i>226</i>&nbsp;                allEligibleCoupleServiceMode,
+<i>227</i>&nbsp;                new ECSearchOption(&quot;&quot;),
+<i>228</i>&nbsp;                new NameSort());
+<b class="fc"><i>229</i>&nbsp;        assertEquals(1, filteredClients.size());</b>
+<b class="fc"><i>230</i>&nbsp;        assertEquals(&quot;Adhiti&quot;, filteredClients.get(0).name());</b>
+<b class="fc"><i>231</i>&nbsp;    }</b>
+<i>232</i>&nbsp;
+<i>233</i>&nbsp;    @Test
+<i>234</i>&nbsp;    public void ShouldReturn1ResultsFor_Somanahalli_colony_VillageFilterOption() {
+<b class="fc"><i>235</i>&nbsp;        SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();</b>
+<b class="fc"><i>236</i>&nbsp;        SmartRegisterClients filteredClients = originalClients.applyFilter(</b>
+<i>237</i>&nbsp;                new VillageFilter(&quot;Somanahalli colony&quot;),
+<i>238</i>&nbsp;                allEligibleCoupleServiceMode,
+<i>239</i>&nbsp;                new ECSearchOption(&quot;&quot;),
+<i>240</i>&nbsp;                new NameSort());
+<b class="fc"><i>241</i>&nbsp;        assertEquals(1, filteredClients.size());</b>
+<b class="fc"><i>242</i>&nbsp;        assertEquals(&quot;Chaitra&quot;, filteredClients.get(0).name());</b>
+<b class="fc"><i>243</i>&nbsp;    }</b>
+<i>244</i>&nbsp;
+<i>245</i>&nbsp;    @Test
+<i>246</i>&nbsp;    public void ShouldReturn1ResultsForOutOfAreaFilterOption() {
+<b class="fc"><i>247</i>&nbsp;        SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();</b>
+<b class="fc"><i>248</i>&nbsp;        SmartRegisterClients filteredClients = originalClients.applyFilter(</b>
+<i>249</i>&nbsp;                new OutOfAreaFilter(),
+<i>250</i>&nbsp;                allEligibleCoupleServiceMode,
+<i>251</i>&nbsp;                new ECSearchOption(&quot;&quot;),
+<i>252</i>&nbsp;                new NameSort());
+<b class="fc"><i>253</i>&nbsp;        assertEquals(2, filteredClients.size());</b>
+<b class="fc"><i>254</i>&nbsp;        assertEquals(&quot;Adhiti&quot;, filteredClients.get(0).name());</b>
+<b class="fc"><i>255</i>&nbsp;        assertEquals(&quot;Anitha&quot;, filteredClients.get(1).name());</b>
+<b class="fc"><i>256</i>&nbsp;    }</b>
+<i>257</i>&nbsp;
+<i>258</i>&nbsp;    @Test
+<i>259</i>&nbsp;    public void ShouldReturnCascadedResultsApplyingMultipleFilterOption() {
+<b class="fc"><i>260</i>&nbsp;        SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();</b>
+<i>261</i>&nbsp;
+<b class="fc"><i>262</i>&nbsp;        SmartRegisterClients filteredClients = originalClients.applyFilter(</b>
+<i>263</i>&nbsp;                new VillageFilter(&quot;Hosa agrahara&quot;),
+<i>264</i>&nbsp;                allEligibleCoupleServiceMode,
+<i>265</i>&nbsp;                new ECSearchOption(&quot;bh&quot;),
+<i>266</i>&nbsp;                new NameSort());
+<i>267</i>&nbsp;
+<b class="fc"><i>268</i>&nbsp;        assertEquals(1, filteredClients.size());</b>
+<b class="fc"><i>269</i>&nbsp;        assertEquals(&quot;Bhagya&quot;, filteredClients.get(0).name());</b>
+<b class="fc"><i>270</i>&nbsp;    }</b>
+<i>271</i>&nbsp;
+<i>272</i>&nbsp;    @Test
+<i>273</i>&nbsp;    public void ShouldReturnFilteredListForFP() {
+<b class="fc"><i>274</i>&nbsp;        when(context.getStringResource(R.string.fp_register_service_mode_all_methods)).thenReturn(&quot;All Methods&quot;);</b>
+<i>275</i>&nbsp;
+<b class="fc"><i>276</i>&nbsp;        SmartRegisterClients originalClients = getFPSmartRegisterClientsWithProperDetails();</b>
+<b class="fc"><i>277</i>&nbsp;        SmartRegisterClients filteredClients = originalClients.applyFilterWithFP(fpAllMethodsServiceMode, new NameSort(), new FPMethodFilter(&quot;ocp&quot;));</b>
+<i>278</i>&nbsp;
+<b class="fc"><i>279</i>&nbsp;        assertEquals(0, filteredClients.size());</b>
+<i>280</i>&nbsp;//        assertEquals(&quot;Anitha&quot;, filteredClients.get(0).name());
+<i>281</i>&nbsp;//        assertEquals(&quot;Chaitra&quot;, filteredClients.get(1).name());
+<b class="fc"><i>282</i>&nbsp;    }</b>
+<i>283</i>&nbsp;
+<i>284</i>&nbsp;
+<i>285</i>&nbsp;    public SmartRegisterClients getUniformSmartRegisterClients(int clientCount) {
+<b class="fc"><i>286</i>&nbsp;        SmartRegisterClients clients = new SmartRegisterClients();</b>
+<b class="fc"><i>287</i>&nbsp;        for (int i = 0; i &lt; clientCount; i++) {</b>
+<b class="fc"><i>288</i>&nbsp;            clients.add(new ECClient(&quot;CASE &quot; + i, &quot;Wife&quot; + i, &quot;Husband&quot; + i, &quot;Village&quot; + i, 100 + i));</b>
+<i>289</i>&nbsp;        }
+<b class="fc"><i>290</i>&nbsp;        return clients;</b>
+<i>291</i>&nbsp;    }
+<i>292</i>&nbsp;
+<i>293</i>&nbsp;    public ECClients getSmartRegisterClientsWithProperDetails() {
+<b class="fc"><i>294</i>&nbsp;        ECClients clients = new ECClients();</b>
+<b class="fc"><i>295</i>&nbsp;        clients.add(new ECClient(&quot;abcd2&quot;, &quot;Akshara&quot;, &quot;Rajesh&quot;, &quot;Half bherya&quot;, 500).withCaste(&quot;SC&quot;).withEconomicStatus(&quot;BPL&quot;).withIsHighPriority(true).withFPMethod(&quot;condom&quot;));</b>
+<b class="fc"><i>296</i>&nbsp;        clients.add(new ECClient(&quot;abcd1&quot;, &quot;Adhiti&quot;, &quot;Rama&quot;, &quot;Battiganahalli&quot;, 69).withIsHighPriority(true).withIsOutOfArea(true));</b>
+<b class="fc"><i>297</i>&nbsp;        clients.add(new ECClient(&quot;abcd5&quot;, &quot;Chaitra&quot;, &quot;Rams&quot;, &quot;Somanahalli colony&quot;, 36).withCaste(&quot;ST&quot;).withFPMethod(&quot;ocp&quot;));</b>
+<b class="fc"><i>298</i>&nbsp;        clients.add(new ECClient(&quot;abcd4&quot;, &quot;Bhavani&quot;, &quot;Ravi&quot;, &quot;Gowrikoppalu&quot;, 140).withEconomicStatus(&quot;BPL&quot;).withFPMethod(&quot;female_sterilization&quot;));</b>
+<b class="fc"><i>299</i>&nbsp;        clients.add(new ECClient(&quot;abcd6&quot;, &quot;Bhagya&quot;, &quot;Ramesh&quot;, &quot;Hosa agrahara&quot;, 93).withIsHighPriority(true).withCaste(&quot;ST&quot;).withFPMethod(&quot;Condom&quot;));</b>
+<b class="fc"><i>300</i>&nbsp;        clients.add(new ECClient(&quot;abcd3&quot;, &quot;Anitha&quot;, &quot;Chandan&quot;, &quot;Half bherya&quot;, 87).withCaste(&quot;SC&quot;).withIsOutOfArea(true).withFPMethod(&quot;ocp&quot;));</b>
+<b class="fc"><i>301</i>&nbsp;        return clients;</b>
+<i>302</i>&nbsp;    }
+<i>303</i>&nbsp;
+<i>304</i>&nbsp;    public FPClients getFPSmartRegisterClientsWithProperDetails() {
+<b class="fc"><i>305</i>&nbsp;        FPClients clients = new FPClients();</b>
+<b class="fc"><i>306</i>&nbsp;        clients.add(new FPClient(&quot;abcd2&quot;, &quot;Akshara&quot;, &quot;Rajesh&quot;, &quot;Half bherya&quot;, &quot;500&quot;).withCaste(&quot;SC&quot;).withEconomicStatus(&quot;BPL&quot;).withIsHighPriority(true).withFPMethod(&quot;condom&quot;));</b>
+<b class="fc"><i>307</i>&nbsp;        clients.add(new FPClient(&quot;abcd1&quot;, &quot;Adhiti&quot;, &quot;Rama&quot;, &quot;Battiganahalli&quot;, &quot;69&quot;).withIsHighPriority(true));</b>
+<b class="fc"><i>308</i>&nbsp;        clients.add(new FPClient(&quot;abcd5&quot;, &quot;Chaitra&quot;, &quot;Rams&quot;, &quot;Somanahalli colony&quot;, &quot;36&quot;).withCaste(&quot;ST&quot;).withFPMethod(&quot;ocp&quot;));</b>
+<b class="fc"><i>309</i>&nbsp;        clients.add(new FPClient(&quot;abcd4&quot;, &quot;Bhavani&quot;, &quot;Ravi&quot;, &quot;Gowrikoppalu&quot;, &quot;140&quot;).withEconomicStatus(&quot;BPL&quot;).withFPMethod(&quot;female_sterilization&quot;));</b>
+<b class="fc"><i>310</i>&nbsp;        clients.add(new FPClient(&quot;abcd6&quot;, &quot;Bhagya&quot;, &quot;Ramesh&quot;, &quot;Hosa agrahara&quot;, &quot;93&quot;).withIsHighPriority(true).withCaste(&quot;ST&quot;).withFPMethod(&quot;Condom&quot;));</b>
+<b class="fc"><i>311</i>&nbsp;        clients.add(new FPClient(&quot;abcd3&quot;, &quot;Anitha&quot;, &quot;Chandan&quot;, &quot;Half bherya&quot;, &quot;87&quot;).withFPMethod(&quot;ocp&quot;).withCaste(&quot;SC&quot;));</b>
+<b class="fc"><i>312</i>&nbsp;        return clients;</b>
+<i>313</i>&nbsp;    }
+<i>314</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-20 13:39</div>
+</div>
+</body>
+</html>

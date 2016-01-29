@@ -1,0 +1,1026 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: NativeOverviewActivity</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.activity</a> ]
+</div>
+
+<h1>Coverage Summary for Class: NativeOverviewActivity (org.ei.telemedicine.view.activity)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">NativeOverviewActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 369)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">NativeOverviewActivity$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NativeOverviewActivity$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NativeOverviewActivity$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NativeOverviewActivity$4</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NativeOverviewActivity$5</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NativeOverviewActivity$6</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 7)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NativeOverviewActivity$7</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 29)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 395)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.activity;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.content.Intent;
+<i>4</i>&nbsp;import android.graphics.Bitmap;
+<i>5</i>&nbsp;import android.graphics.BitmapFactory;
+<i>6</i>&nbsp;import android.net.Uri;
+<i>7</i>&nbsp;import android.os.Bundle;
+<i>8</i>&nbsp;import android.os.Environment;
+<i>9</i>&nbsp;import android.provider.MediaStore;
+<i>10</i>&nbsp;import android.util.Log;
+<i>11</i>&nbsp;import android.view.MenuInflater;
+<i>12</i>&nbsp;import android.view.MenuItem;
+<i>13</i>&nbsp;import android.view.View;
+<i>14</i>&nbsp;import android.widget.AdapterView;
+<i>15</i>&nbsp;import android.widget.ImageButton;
+<i>16</i>&nbsp;import android.widget.ImageView;
+<i>17</i>&nbsp;import android.widget.LinearLayout;
+<i>18</i>&nbsp;import android.widget.ListView;
+<i>19</i>&nbsp;import android.widget.PopupMenu;
+<i>20</i>&nbsp;import android.widget.Toast;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;import org.apache.commons.lang3.text.WordUtils;
+<i>23</i>&nbsp;import org.ei.telemedicine.AllConstants;
+<i>24</i>&nbsp;import org.ei.telemedicine.Context;
+<i>25</i>&nbsp;import org.ei.telemedicine.R;
+<i>26</i>&nbsp;import org.ei.telemedicine.adapter.OverviewTimelineAdapter;
+<i>27</i>&nbsp;import org.ei.telemedicine.doctor.DoctorFormDataConstants;
+<i>28</i>&nbsp;import org.ei.telemedicine.doctor.ViewPreVisitScreenActivity;
+<i>29</i>&nbsp;import org.ei.telemedicine.domain.Child;
+<i>30</i>&nbsp;import org.ei.telemedicine.domain.EligibleCouple;
+<i>31</i>&nbsp;import org.ei.telemedicine.domain.Mother;
+<i>32</i>&nbsp;import org.ei.telemedicine.domain.TimelineEvent;
+<i>33</i>&nbsp;import org.ei.telemedicine.domain.form.FieldOverrides;
+<i>34</i>&nbsp;import org.ei.telemedicine.event.CapturedPhotoInformation;
+<i>35</i>&nbsp;import org.ei.telemedicine.event.Listener;
+<i>36</i>&nbsp;import org.ei.telemedicine.image.ImageLoader;
+<i>37</i>&nbsp;import org.ei.telemedicine.view.controller.ANCDetailController;
+<i>38</i>&nbsp;import org.ei.telemedicine.view.controller.ChildDetailController;
+<i>39</i>&nbsp;import org.ei.telemedicine.view.controller.EligibleCoupleDetailController;
+<i>40</i>&nbsp;import org.ei.telemedicine.view.controller.PNCDetailController;
+<i>41</i>&nbsp;import org.ei.telemedicine.view.customControls.CustomFontTextView;
+<i>42</i>&nbsp;import org.joda.time.LocalDate;
+<i>43</i>&nbsp;import org.json.JSONArray;
+<i>44</i>&nbsp;import org.json.JSONException;
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;import java.io.File;
+<i>47</i>&nbsp;import java.io.IOException;
+<i>48</i>&nbsp;import java.text.SimpleDateFormat;
+<i>49</i>&nbsp;import java.util.Collections;
+<i>50</i>&nbsp;import java.util.Comparator;
+<i>51</i>&nbsp;import java.util.Date;
+<i>52</i>&nbsp;import java.util.HashMap;
+<i>53</i>&nbsp;import java.util.List;
+<i>54</i>&nbsp;import java.util.ListIterator;
+<i>55</i>&nbsp;import java.util.Map;
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;import static android.view.View.GONE;
+<i>58</i>&nbsp;import static org.ei.telemedicine.AllConstants.ALLFORMDATA;
+<i>59</i>&nbsp;import static org.ei.telemedicine.AllConstants.ENTITY_ID;
+<i>60</i>&nbsp;import static org.ei.telemedicine.AllConstants.FORMINFO;
+<i>61</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.ANC_CLOSE;
+<i>62</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.ANC_INVESTIGATIONS;
+<i>63</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.ANC_REGISTRATION;
+<i>64</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT;
+<i>65</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT_EDIT;
+<i>66</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.CHILD_CLOSE;
+<i>67</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.CHILD_ILLNESS;
+<i>68</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.CHILD_IMMUNIZATIONS;
+<i>69</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.CHILD_REGISTRATION_EC;
+<i>70</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.DELIVERY_OUTCOME;
+<i>71</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.DELIVERY_PLAN;
+<i>72</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.EC_CLOSE;
+<i>73</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.EC_EDIT;
+<i>74</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.FP_CHANGE;
+<i>75</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.HB_TEST;
+<i>76</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.IFA;
+<i>77</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.PNC_CLOSE;
+<i>78</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.PNC_POSTPARTUM_FAMILY_PLANNING;
+<i>79</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.PNC_VISIT;
+<i>80</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.TT;
+<i>81</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.VIEW_EC_REGISTRATION;
+<i>82</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.VITAMIN_A;
+<i>83</i>&nbsp;import static org.ei.telemedicine.AllConstants.IS_FP;
+<i>84</i>&nbsp;import static org.ei.telemedicine.AllConstants.VISIT_TYPE;
+<i>85</i>&nbsp;import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_gender;
+<i>86</i>&nbsp;import static org.ei.telemedicine.doctor.DoctorFormDataConstants.id_no;
+<i>87</i>&nbsp;import static org.ei.telemedicine.doctor.DoctorFormDataConstants.visit_type;
+<i>88</i>&nbsp;import static org.ei.telemedicine.event.Event.ON_PHOTO_CAPTURED;
+<i>89</i>&nbsp;
+<b class="nc"><i>90</i>&nbsp;public class NativeOverviewActivity extends SecuredActivity implements PopupMenu.OnMenuItemClickListener, View.OnClickListener {</b>
+<i>91</i>&nbsp;    ImageButton ib_overview_options, ib_profile_pic;
+<i>92</i>&nbsp;    ImageView iv_home;
+<i>93</i>&nbsp;    CustomFontTextView tv_wife_name, tv_woman_name, tv_priority, tv_summary_priority, tv_husband_name, tv_id_no, tv_village_name, tv_fp_value, tv_register_type;
+<i>94</i>&nbsp;    CustomFontTextView anc_summary_priority, anc_pregnency_time, anc_edd_summary_date, anc_pregnency_title;
+<i>95</i>&nbsp;    CustomFontTextView pnc_summary_priority, pnc_summary_risks, pnc_postpartum_days, pnc_delivery_date, postpartum_title;
+<i>96</i>&nbsp;    CustomFontTextView tv_child_name, child_summary_priority, child_age, child_date_of_birth;
+<i>97</i>&nbsp;    ListView lv_timeline_events;
+<i>98</i>&nbsp;    List&lt;org.ei.telemedicine.domain.TimelineEvent&gt; timelineEvents;
+<i>99</i>&nbsp;    String caseId, visitType, formData, allFormData;
+<i>100</i>&nbsp;    View ecSummaryLayout, ancSummaryLayout, pncSummaryLayout, childSummaryLayout;
+<i>101</i>&nbsp;    Context context;
+<i>102</i>&nbsp;    LinearLayout ec_summary, anc_summary, pnc_summary, child_summary, anc_pregnency_summary, pnc_pregnency_summary;
+<b class="nc"><i>103</i>&nbsp;    static Boolean isANCOA = false, isFromEC = false;</b>
+<b class="nc"><i>104</i>&nbsp;    Boolean isPoc = false, isFP = false;</b>
+<i>105</i>&nbsp;
+<b class="nc"><i>106</i>&nbsp;    private Listener&lt;CapturedPhotoInformation&gt; photoCaptureListener = new Listener&lt;CapturedPhotoInformation&gt;() {</b>
+<i>107</i>&nbsp;        @Override
+<i>108</i>&nbsp;        public void onEvent(CapturedPhotoInformation data) {
+<b class="nc"><i>109</i>&nbsp;            Log.e(&quot;Cpatu&quot;, &quot;Think pgto is capture.&quot;);</b>
+<i>110</i>&nbsp;
+<b class="nc"><i>111</i>&nbsp;        }</b>
+<i>112</i>&nbsp;    };
+<i>113</i>&nbsp;
+<i>114</i>&nbsp;
+<i>115</i>&nbsp;    private void setupViews() {
+<i>116</i>&nbsp;
+<b class="nc"><i>117</i>&nbsp;        tv_priority = (CustomFontTextView) findViewById(R.id.tv_priority);</b>
+<b class="nc"><i>118</i>&nbsp;        tv_woman_name = (CustomFontTextView) findViewById(R.id.tv_woman_name);</b>
+<b class="nc"><i>119</i>&nbsp;        tv_wife_name = (CustomFontTextView) findViewById(R.id.tv_wife_name);</b>
+<b class="nc"><i>120</i>&nbsp;        tv_husband_name = (CustomFontTextView) findViewById(R.id.tv_husband_name);</b>
+<b class="nc"><i>121</i>&nbsp;        tv_village_name = (CustomFontTextView) findViewById(R.id.tv_village_name);</b>
+<b class="nc"><i>122</i>&nbsp;        tv_id_no = (CustomFontTextView) findViewById(R.id.tv_id_no);</b>
+<b class="nc"><i>123</i>&nbsp;        tv_register_type = (CustomFontTextView) findViewById(R.id.tv_register_type);</b>
+<i>124</i>&nbsp;
+<b class="nc"><i>125</i>&nbsp;        ib_overview_options = (ImageButton) findViewById(R.id.ib_overview_options);</b>
+<b class="nc"><i>126</i>&nbsp;        lv_timeline_events = (ListView) findViewById(R.id.lv_timeline_events);</b>
+<b class="nc"><i>127</i>&nbsp;        iv_home = (ImageView) findViewById(R.id.iv_home);</b>
+<i>128</i>&nbsp;
+<b class="nc"><i>129</i>&nbsp;        ecSummaryLayout = findViewById(R.id.ec_summary_layout);</b>
+<b class="nc"><i>130</i>&nbsp;        ancSummaryLayout = findViewById(R.id.anc_summary_layout);</b>
+<b class="nc"><i>131</i>&nbsp;        pncSummaryLayout = findViewById(R.id.pnc_summary_layout);</b>
+<b class="nc"><i>132</i>&nbsp;        childSummaryLayout = findViewById(R.id.child_summary_layout);</b>
+<i>133</i>&nbsp;
+<b class="nc"><i>134</i>&nbsp;        ec_summary = (LinearLayout) findViewById(R.id.ec_summary);</b>
+<b class="nc"><i>135</i>&nbsp;        anc_summary = (LinearLayout) findViewById(R.id.anc_summary);</b>
+<b class="nc"><i>136</i>&nbsp;        pnc_summary = (LinearLayout) findViewById(R.id.pnc_summary);</b>
+<b class="nc"><i>137</i>&nbsp;        child_summary = (LinearLayout) findViewById(R.id.child_summary);</b>
+<i>138</i>&nbsp;
+<b class="nc"><i>139</i>&nbsp;        tv_summary_priority = (CustomFontTextView) ecSummaryLayout.findViewById(R.id.summary_priority);</b>
+<b class="nc"><i>140</i>&nbsp;        tv_fp_value = (CustomFontTextView) ecSummaryLayout.findViewById(R.id.tv_fp_value);</b>
+<i>141</i>&nbsp;
+<i>142</i>&nbsp;
+<b class="nc"><i>143</i>&nbsp;        anc_summary_priority = (CustomFontTextView) ancSummaryLayout.findViewById(R.id.anc_summary_priority);</b>
+<b class="nc"><i>144</i>&nbsp;        anc_pregnency_time = (CustomFontTextView) ancSummaryLayout.findViewById(R.id.anc_pregnency_time);</b>
+<b class="nc"><i>145</i>&nbsp;        anc_edd_summary_date = (CustomFontTextView) ancSummaryLayout.findViewById(R.id.anc_edd_summary_date);</b>
+<b class="nc"><i>146</i>&nbsp;        anc_pregnency_title = (CustomFontTextView) ancSummaryLayout.findViewById(R.id.anc_pregnency_title);</b>
+<b class="nc"><i>147</i>&nbsp;        anc_pregnency_summary = (LinearLayout) ancSummaryLayout.findViewById(R.id.anc_pregnency_summary);</b>
+<i>148</i>&nbsp;
+<b class="nc"><i>149</i>&nbsp;        pnc_pregnency_summary = (LinearLayout) pncSummaryLayout.findViewById(R.id.pnc_pregnency_summary);</b>
+<b class="nc"><i>150</i>&nbsp;        pnc_summary_priority = (CustomFontTextView) pncSummaryLayout.findViewById(R.id.pnc_summary_priority);</b>
+<b class="nc"><i>151</i>&nbsp;        pnc_summary_risks = (CustomFontTextView) pncSummaryLayout.findViewById(R.id.pnc_summary_risks);</b>
+<b class="nc"><i>152</i>&nbsp;        pnc_postpartum_days = (CustomFontTextView) pncSummaryLayout.findViewById(R.id.pnc_postpartum_days);</b>
+<b class="nc"><i>153</i>&nbsp;        pnc_delivery_date = (CustomFontTextView) pncSummaryLayout.findViewById(R.id.pnc_delivery_date);</b>
+<b class="nc"><i>154</i>&nbsp;        postpartum_title = (CustomFontTextView) pncSummaryLayout.findViewById(R.id.postpartum_title);</b>
+<i>155</i>&nbsp;
+<b class="nc"><i>156</i>&nbsp;        tv_child_name = (CustomFontTextView) findViewById(R.id.tv_child_name);</b>
+<b class="nc"><i>157</i>&nbsp;        child_summary_priority = (CustomFontTextView) childSummaryLayout.findViewById(R.id.child_summary_priority);</b>
+<b class="nc"><i>158</i>&nbsp;        child_age = (CustomFontTextView) childSummaryLayout.findViewById(R.id.child_age);</b>
+<b class="nc"><i>159</i>&nbsp;        child_date_of_birth = (CustomFontTextView) childSummaryLayout.findViewById(R.id.child_date_of_birth);</b>
+<b class="nc"><i>160</i>&nbsp;        ib_profile_pic = (ImageButton) findViewById(R.id.ib_profile_pic);</b>
+<i>161</i>&nbsp;
+<b class="nc"><i>162</i>&nbsp;        ib_overview_options.setOnClickListener(this);</b>
+<b class="nc"><i>163</i>&nbsp;        iv_home.setOnClickListener(this);</b>
+<b class="nc"><i>164</i>&nbsp;    }</b>
+<i>165</i>&nbsp;
+<i>166</i>&nbsp;    private boolean isExist(String title, String referDate, List&lt;org.ei.telemedicine.domain.TimelineEvent&gt; timelineEventslist) {
+<b class="nc"><i>167</i>&nbsp;        if (timelineEventslist.size() != 0) {</b>
+<b class="nc"><i>168</i>&nbsp;            ListIterator&lt;TimelineEvent&gt; listIterator = timelineEventslist.listIterator();</b>
+<b class="nc"><i>169</i>&nbsp;            while (listIterator.hasNext()) {</b>
+<b class="nc"><i>170</i>&nbsp;                TimelineEvent event = listIterator.next();</b>
+<b class="nc"><i>171</i>&nbsp;                if (title.equalsIgnoreCase(event.title()) &amp;&amp; referDate.equalsIgnoreCase(event.referenceDate().toString())) {</b>
+<b class="nc"><i>172</i>&nbsp;                    return true;</b>
+<i>173</i>&nbsp;                }
+<b class="nc"><i>174</i>&nbsp;            }</b>
+<i>175</i>&nbsp;        }
+<b class="nc"><i>176</i>&nbsp;        return false;</b>
+<i>177</i>&nbsp;    }
+<i>178</i>&nbsp;
+<i>179</i>&nbsp;    @Override
+<i>180</i>&nbsp;    public void onCreation() {
+<i>181</i>&nbsp;        {
+<b class="nc"><i>182</i>&nbsp;            setContentView(R.layout.overview_layout);</b>
+<i>183</i>&nbsp;
+<b class="nc"><i>184</i>&nbsp;            Bundle bundle = getIntent().getExtras();</b>
+<b class="nc"><i>185</i>&nbsp;            if (bundle != null) {</b>
+<b class="nc"><i>186</i>&nbsp;                caseId = bundle.getString(&quot;caseId&quot;);</b>
+<b class="nc"><i>187</i>&nbsp;                formData = bundle.containsKey(FORMINFO) ? bundle.getString(FORMINFO) : &quot;&quot;;</b>
+<b class="nc"><i>188</i>&nbsp;                allFormData = bundle.containsKey(ALLFORMDATA) ? bundle.getString(ALLFORMDATA) : &quot;&quot;;</b>
+<b class="nc"><i>189</i>&nbsp;                isFP = bundle.containsKey(IS_FP) ? bundle.getBoolean(IS_FP) : false;</b>
+<b class="nc"><i>190</i>&nbsp;                visitType = bundle.getString(VISIT_TYPE);</b>
+<b class="nc"><i>191</i>&nbsp;                context = Context.getInstance();</b>
+<b class="nc"><i>192</i>&nbsp;                setupViews();</b>
+<b class="nc"><i>193</i>&nbsp;                timelineEvents = context.allTimelineEvents().forCase(caseId);</b>
+<i>194</i>&nbsp;
+<b class="nc"><i>195</i>&nbsp;                if (isFP)</b>
+<b class="nc"><i>196</i>&nbsp;                    ib_overview_options.setVisibility(GONE);</b>
+<i>197</i>&nbsp;
+<b class="nc"><i>198</i>&nbsp;                switch (visitType.toLowerCase()) {</b>
+<i>199</i>&nbsp;                    case &quot;ec&quot;:
+<b class="nc"><i>200</i>&nbsp;                        ec_summary.setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>201</i>&nbsp;                        isFromEC = true;</b>
+<b class="nc"><i>202</i>&nbsp;                        ib_profile_pic.setOnClickListener(new View.OnClickListener() {</b>
+<i>203</i>&nbsp;                            @Override
+<i>204</i>&nbsp;                            public void onClick(View v) {
+<i>205</i>&nbsp;//                                takePhoto(WOMAN_TYPE);
+<b class="nc"><i>206</i>&nbsp;                                dispatchTakePictureIntent(ib_profile_pic, caseId);</b>
+<b class="nc"><i>207</i>&nbsp;                            }</b>
+<i>208</i>&nbsp;                        });
+<b class="nc"><i>209</i>&nbsp;                        String ecData = new EligibleCoupleDetailController(this, caseId, context.allEligibleCouples(), context.allTimelineEvents()).get();</b>
+<b class="nc"><i>210</i>&nbsp;                        String coupleDetails = getDataFromJson(ecData, &quot;coupleDetails&quot;);</b>
+<b class="nc"><i>211</i>&nbsp;                        String details = getDataFromJson(ecData, &quot;details&quot;);</b>
+<b class="nc"><i>212</i>&nbsp;                        EligibleCouple byCaseID = context.allEligibleCouples().findByCaseID(caseId);</b>
+<b class="nc"><i>213</i>&nbsp;                        if (byCaseID.photoPath() != null &amp;&amp; byCaseID.photoPath().equals(&quot;&quot;) &amp;&amp; byCaseID.photoPath().toLowerCase().startsWith(&quot;http&quot;))</b>
+<b class="nc"><i>214</i>&nbsp;                            new ImageLoader(NativeOverviewActivity.this).DisplayImage(byCaseID.photoPath(), ib_profile_pic, getResources().getDrawable(R.drawable.woman_placeholder));</b>
+<i>215</i>&nbsp;                        else
+<b class="nc"><i>216</i>&nbsp;                            ib_profile_pic.setImageBitmap(getImageBitmap(byCaseID.photoPath()));</b>
+<b class="nc"><i>217</i>&nbsp;                        if (byCaseID.photoPath() == null)</b>
+<b class="nc"><i>218</i>&nbsp;                            ib_profile_pic.setImageDrawable(getResources().getDrawable(R.drawable.woman_placeholder));</b>
+<b class="nc"><i>219</i>&nbsp;                        Mother motherData = context.allBeneficiaries().findMotherByECCaseId(caseId);</b>
+<b class="nc"><i>220</i>&nbsp;                        if (motherData != null) {</b>
+<b class="nc"><i>221</i>&nbsp;                            android.util.Log.e(&quot;ecData&quot;, ecData + &quot;------------&quot; + motherData.caseId());</b>
+<b class="nc"><i>222</i>&nbsp;                            timelineEvents.addAll(context.allTimelineEvents().forCase(motherData.caseId()));</b>
+<i>223</i>&nbsp;                        }
+<i>224</i>&nbsp;
+<b class="nc"><i>225</i>&nbsp;                        tv_register_type.setText(isFP ? &quot;FP&quot; : visitType.toUpperCase());</b>
+<b class="nc"><i>226</i>&nbsp;                        tv_woman_name.setText(WordUtils.capitalize(getDataFromJson(coupleDetails, &quot;wifeName&quot;)));</b>
+<b class="nc"><i>227</i>&nbsp;                        tv_wife_name.setText(WordUtils.capitalize(getDataFromJson(coupleDetails, &quot;wifeName&quot;)));</b>
+<b class="nc"><i>228</i>&nbsp;                        tv_husband_name.setText(WordUtils.capitalize(getDataFromJson(coupleDetails, &quot;husbandName&quot;)));</b>
+<b class="nc"><i>229</i>&nbsp;                        tv_id_no.setText(&quot;No: &quot; + WordUtils.capitalize(getDataFromJson(coupleDetails, &quot;ecNumber&quot;)));</b>
+<b class="nc"><i>230</i>&nbsp;                        tv_village_name.setText(WordUtils.capitalize(getDataFromJson(ecData, &quot;village&quot;)));</b>
+<i>231</i>&nbsp;
+<b class="nc"><i>232</i>&nbsp;                        tv_priority.setText(getDataFromJson(details, &quot;isHighPriority&quot;).equals(&quot;yes&quot;) ? &quot;High Priority&quot; : &quot;Normal Priority&quot;);</b>
+<b class="nc"><i>233</i>&nbsp;                        tv_priority.setTextColor(getDataFromJson(details, &quot;isHighPriority&quot;).equals(&quot;yes&quot;) ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));</b>
+<i>234</i>&nbsp;
+<b class="nc"><i>235</i>&nbsp;                        tv_summary_priority.setText(getDataFromJson(details, &quot;isHighPriority&quot;).equals(&quot;yes&quot;) ? &quot;High Priority&quot; : &quot;Normal Priority&quot;);</b>
+<b class="nc"><i>236</i>&nbsp;                        tv_summary_priority.setTextColor(getDataFromJson(details, &quot;isHighPriority&quot;).equals(&quot;yes&quot;) ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));</b>
+<b class="nc"><i>237</i>&nbsp;                        tv_fp_value.setText(WordUtils.capitalize(!getDataFromJson(details, &quot;currentMethod&quot;).equals(&quot;&quot;) ? getDataFromJson(details, &quot;currentMethod&quot;) : &quot;none&quot;));</b>
+<b class="nc"><i>238</i>&nbsp;                        break;</b>
+<i>239</i>&nbsp;                    case &quot;anc&quot;:
+<i>240</i>&nbsp;//                        ImageLoader imageLoader = new ImageLoader(this);
+<i>241</i>&nbsp;//                        imageLoader.DisplayImage(&quot;http://media.mediatemple.netdna-cdn.com/wp-content/uploads/2013/01/1.jpg&quot;, ib_profile_pic);
+<b class="nc"><i>242</i>&nbsp;                        anc_summary.setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>243</i>&nbsp;                        final Mother mother = context.allBeneficiaries().findMother(caseId);</b>
+<b class="nc"><i>244</i>&nbsp;                        ib_profile_pic.setOnClickListener(new View.OnClickListener() {</b>
+<i>245</i>&nbsp;                            @Override
+<i>246</i>&nbsp;                            public void onClick(View v) {
+<i>247</i>&nbsp;//                                takePhoto(WOMAN_TYPE);
+<b class="nc"><i>248</i>&nbsp;                                dispatchTakePictureIntent(ib_profile_pic, mother != null ? mother.ecCaseId() : caseId);</b>
+<b class="nc"><i>249</i>&nbsp;                            }</b>
+<i>250</i>&nbsp;                        });
+<b class="nc"><i>251</i>&nbsp;                        if (mother != null) {</b>
+<b class="nc"><i>252</i>&nbsp;                            String pocInfo = mother.getDetail(&quot;docPocInfo&quot;) != null ? mother.getDetail(&quot;docPocInfo&quot;) : &quot;&quot;;</b>
+<b class="nc"><i>253</i>&nbsp;                            if (!pocInfo.equals(&quot;&quot;)) {</b>
+<b class="nc"><i>254</i>&nbsp;                                isPoc = true;</b>
+<i>255</i>&nbsp;                            }
+<i>256</i>&nbsp;                        }
+<b class="nc"><i>257</i>&nbsp;                        String ancData = new ANCDetailController(this, caseId, context.allEligibleCouples(), context.allBeneficiaries(), context.allTimelineEvents()).get();</b>
+<b class="nc"><i>258</i>&nbsp;                        String anccoupleDetails = getDataFromJson(ancData, &quot;coupleDetails&quot;);</b>
+<b class="nc"><i>259</i>&nbsp;                        String ancDetails = getDataFromJson(ancData, &quot;details&quot;);</b>
+<b class="nc"><i>260</i>&nbsp;                        String locationDetails = getDataFromJson(ancData, &quot;location&quot;);</b>
+<b class="nc"><i>261</i>&nbsp;                        String pregnancyDetails = getDataFromJson(ancData, &quot;pregnancyDetails&quot;);</b>
+<i>262</i>&nbsp;
+<b class="nc"><i>263</i>&nbsp;                        android.util.Log.e(&quot;anc Data&quot;, ancData);</b>
+<b class="nc"><i>264</i>&nbsp;                        tv_register_type.setText(visitType.toUpperCase());</b>
+<b class="nc"><i>265</i>&nbsp;                        tv_woman_name.setText(WordUtils.capitalize(getDataFromJson(anccoupleDetails, &quot;wifeName&quot;)));</b>
+<b class="nc"><i>266</i>&nbsp;                        tv_wife_name.setText(WordUtils.capitalize(getDataFromJson(anccoupleDetails, &quot;wifeName&quot;)));</b>
+<b class="nc"><i>267</i>&nbsp;                        tv_husband_name.setText(WordUtils.capitalize(getDataFromJson(anccoupleDetails, &quot;husbandName&quot;)));</b>
+<i>268</i>&nbsp;//                        isANCOA = getDataFromJson(ancDetails, &quot;ancNumber&quot;).toLowerCase().contains(&quot;oa&quot;);
+<b class="nc"><i>269</i>&nbsp;                        tv_id_no.setText(&quot;ANC No: &quot; + WordUtils.capitalize(getDataFromJson(ancDetails, &quot;ancNumber&quot;)));</b>
+<b class="nc"><i>270</i>&nbsp;                        tv_village_name.setText(WordUtils.capitalize(getDataFromJson(locationDetails, &quot;villageName&quot;)));</b>
+<i>271</i>&nbsp;
+<b class="nc"><i>272</i>&nbsp;                        tv_priority.setText(getDataFromJson(ancDetails, &quot;isHighRisk&quot;).equals(&quot;yes&quot;) ? &quot;High Risk&quot; : &quot;Normal Risk&quot;);</b>
+<b class="nc"><i>273</i>&nbsp;                        tv_priority.setTextColor(getDataFromJson(ancDetails, &quot;isHighRisk&quot;).equals(&quot;yes&quot;) ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));</b>
+<i>274</i>&nbsp;
+<b class="nc"><i>275</i>&nbsp;                        anc_summary_priority.setText(getDataFromJson(ancDetails, &quot;isHighRisk&quot;).equals(&quot;yes&quot;) ? &quot;High Risk&quot; : &quot;Normal Risk&quot;);</b>
+<b class="nc"><i>276</i>&nbsp;                        anc_summary_priority.setTextColor(getDataFromJson(ancDetails, &quot;isHighRisk&quot;).equals(&quot;yes&quot;) ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));</b>
+<b class="nc"><i>277</i>&nbsp;                        anc_pregnency_time.setText(getDataFromJson(pregnancyDetails, &quot;monthsPregnant&quot;));</b>
+<b class="nc"><i>278</i>&nbsp;                        anc_edd_summary_date.setText(getDataFromJson(ancDetails, &quot;edd&quot;).replace(&quot; 00:00:00 GMT&quot;, &quot;&quot;));</b>
+<i>279</i>&nbsp;
+<b class="nc"><i>280</i>&nbsp;                        break;</b>
+<i>281</i>&nbsp;                    case &quot;pnc&quot;:
+<i>282</i>&nbsp;
+<b class="nc"><i>283</i>&nbsp;                        pnc_summary.setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>284</i>&nbsp;                        final Mother pncMother = context.allBeneficiaries().findMother(caseId);</b>
+<b class="nc"><i>285</i>&nbsp;                        ib_profile_pic.setOnClickListener(new View.OnClickListener() {</b>
+<i>286</i>&nbsp;                            @Override
+<i>287</i>&nbsp;                            public void onClick(View v) {
+<i>288</i>&nbsp;//                                takePhoto(WOMAN_TYPE);
+<b class="nc"><i>289</i>&nbsp;                                dispatchTakePictureIntent(ib_profile_pic, pncMother != null ? pncMother.ecCaseId() : caseId);</b>
+<b class="nc"><i>290</i>&nbsp;                            }</b>
+<i>291</i>&nbsp;                        });
+<b class="nc"><i>292</i>&nbsp;                        if (pncMother != null) {</b>
+<b class="nc"><i>293</i>&nbsp;                            String pocInfo = pncMother.getDetail(&quot;docPocInfo&quot;) != null ? pncMother.getDetail(&quot;docPocInfo&quot;) : &quot;&quot;;</b>
+<b class="nc"><i>294</i>&nbsp;                            if (!pocInfo.equals(&quot;&quot;)) {</b>
+<b class="nc"><i>295</i>&nbsp;                                isPoc = true;</b>
+<i>296</i>&nbsp;                            }
+<i>297</i>&nbsp;                        }
+<i>298</i>&nbsp;//                                try {
+<i>299</i>&nbsp;//                                isPoc = true;
+<i>300</i>&nbsp;//                                    JSONArray pocJsonArray = new JSONArray(pocInfo);
+<i>301</i>&nbsp;//                                    for (int i = 0; i &lt; pocJsonArray.length(); i++) {
+<i>302</i>&nbsp;//                                        String pocData = getDataFromJson(pocJsonArray.getJSONObject(i).toString(), &quot;poc&quot;);
+<i>303</i>&nbsp;//                                        String title = &quot;Plan of care for &quot; + getDataFromJson(pocData, &quot;visitType&quot;);
+<i>304</i>&nbsp;//                                        timelineEvents.add(new TimelineEvent(caseId, &quot;Plan Of Care&quot;, LocalDate.parse(changeDateFormat(getDataFromJson(pocData, &quot;planofCareDate&quot;))), title, &quot;&quot;, &quot;&quot;));
+<i>305</i>&nbsp;//                                    }
+<i>306</i>&nbsp;//                                } catch (JSONException e) {
+<i>307</i>&nbsp;//                                    e.printStackTrace();
+<i>308</i>&nbsp;//                                }
+<i>309</i>&nbsp;//                            }
+<i>310</i>&nbsp;//                        }
+<b class="nc"><i>311</i>&nbsp;                        String pncData = new PNCDetailController(this, caseId, context.allEligibleCouples(), context.allBeneficiaries(), context.allTimelineEvents()).get();</b>
+<b class="nc"><i>312</i>&nbsp;                        String pnccoupleDetails = getDataFromJson(pncData, &quot;coupleDetails&quot;);</b>
+<b class="nc"><i>313</i>&nbsp;                        String pncDetails = getDataFromJson(pncData, &quot;details&quot;);</b>
+<b class="nc"><i>314</i>&nbsp;                        String pncLocationDetails = getDataFromJson(pncData, &quot;location&quot;);</b>
+<b class="nc"><i>315</i>&nbsp;                        String pncDelieveryDetails = getDataFromJson(pncData, &quot;pncDetails&quot;);</b>
+<i>316</i>&nbsp;
+<b class="nc"><i>317</i>&nbsp;                        android.util.Log.e(&quot;pncData&quot;, pncData);</b>
+<i>318</i>&nbsp;
+<b class="nc"><i>319</i>&nbsp;                        tv_register_type.setText(visitType.toUpperCase());</b>
+<b class="nc"><i>320</i>&nbsp;                        tv_woman_name.setText(WordUtils.capitalize(getDataFromJson(pnccoupleDetails, &quot;wifeName&quot;)));</b>
+<b class="nc"><i>321</i>&nbsp;                        tv_wife_name.setText(WordUtils.capitalize(getDataFromJson(pnccoupleDetails, &quot;wifeName&quot;)));</b>
+<b class="nc"><i>322</i>&nbsp;                        tv_husband_name.setText(WordUtils.capitalize(getDataFromJson(pnccoupleDetails, &quot;husbandName&quot;)));</b>
+<b class="nc"><i>323</i>&nbsp;                        tv_id_no.setText(&quot;PNC No: &quot; + WordUtils.capitalize(getDataFromJson(pncDetails, &quot;pncNumber&quot;)));</b>
+<b class="nc"><i>324</i>&nbsp;                        tv_village_name.setText(WordUtils.capitalize(getDataFromJson(pncLocationDetails, &quot;villageName&quot;)));</b>
+<i>325</i>&nbsp;
+<b class="nc"><i>326</i>&nbsp;                        tv_priority.setText(getDataFromJson(pncDetails, &quot;isHighRisk&quot;).equals(&quot;yes&quot;) ? &quot;High Risk&quot; : &quot;Normal Risk&quot;);</b>
+<b class="nc"><i>327</i>&nbsp;                        tv_priority.setTextColor(getDataFromJson(pncDetails, &quot;isHighRisk&quot;).equals(&quot;yes&quot;) ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));</b>
+<b class="nc"><i>328</i>&nbsp;                        pnc_summary_priority.setText(getDataFromJson(pncDetails, &quot;isHighRisk&quot;).equals(&quot;yes&quot;) ? &quot;High Risk&quot; : &quot;Normal Risk&quot;);</b>
+<b class="nc"><i>329</i>&nbsp;                        pnc_summary_priority.setTextColor(getDataFromJson(pncDetails, &quot;isHighRisk&quot;).equals(&quot;yes&quot;) ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));</b>
+<i>330</i>&nbsp;
+<b class="nc"><i>331</i>&nbsp;                        pnc_summary_risks.setText(getDataFromJson(pncDetails, &quot;complications&quot;));</b>
+<b class="nc"><i>332</i>&nbsp;                        pnc_postpartum_days.setVisibility(GONE);</b>
+<b class="nc"><i>333</i>&nbsp;                        pnc_delivery_date.setText(getDataFromJson(pncDelieveryDetails, &quot;dateOfDelivery&quot;));</b>
+<i>334</i>&nbsp;
+<b class="nc"><i>335</i>&nbsp;                        break;</b>
+<i>336</i>&nbsp;                    case &quot;child&quot;:
+<b class="nc"><i>337</i>&nbsp;                        child_summary.setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>338</i>&nbsp;                        tv_child_name.setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>339</i>&nbsp;                        String childData = new ChildDetailController(this, caseId, context.allEligibleCouples(), context.allBeneficiaries(), context.allTimelineEvents()).get();</b>
+<i>340</i>&nbsp;
+<b class="nc"><i>341</i>&nbsp;                        final Child child = context.allBeneficiaries().findChild(caseId);</b>
+<b class="nc"><i>342</i>&nbsp;                        Toast.makeText(this, &quot;sda&quot; + child.motherCaseId(), Toast.LENGTH_SHORT).show();</b>
+<b class="nc"><i>343</i>&nbsp;                        final Mother childMother = context.allBeneficiaries().findMother(child.motherCaseId());</b>
+<b class="nc"><i>344</i>&nbsp;                        ib_profile_pic.setOnClickListener(new View.OnClickListener() {</b>
+<i>345</i>&nbsp;                            @Override
+<i>346</i>&nbsp;                            public void onClick(View v) {
+<i>347</i>&nbsp;//                                takePhoto(CHILD_TYPE);
+<b class="nc"><i>348</i>&nbsp;                                dispatchTakePictureIntent(ib_profile_pic, childMother != null ? child.motherCaseId() : caseId);</b>
+<b class="nc"><i>349</i>&nbsp;                            }</b>
+<i>350</i>&nbsp;                        });
+<i>351</i>&nbsp;
+<b class="nc"><i>352</i>&nbsp;                        if (childMother != null) {</b>
+<b class="nc"><i>353</i>&nbsp;                            String pocInfo = childMother.getDetail(&quot;docPocInfo&quot;) != null ? childMother.getDetail(&quot;docPocInfo&quot;) : &quot;&quot;;</b>
+<b class="nc"><i>354</i>&nbsp;                            if (!pocInfo.equals(&quot;&quot;)) {</b>
+<b class="nc"><i>355</i>&nbsp;                                isPoc = true;</b>
+<i>356</i>&nbsp;                            }
+<i>357</i>&nbsp;                        }
+<i>358</i>&nbsp;//                        try {
+<i>359</i>&nbsp;//                            isPoc = true;
+<i>360</i>&nbsp;//                                    JSONArray pocJsonArray = new JSONArray(pocInfo);
+<i>361</i>&nbsp;//                                    for (int i = 0; i &lt; pocJsonArray.length(); i++) {
+<i>362</i>&nbsp;//                                        String pocData = getDataFromJson(pocJsonArray.getJSONObject(i).toString(), &quot;poc&quot;);
+<i>363</i>&nbsp;//                                        String title = &quot;Plan of care for child&quot;;
+<i>364</i>&nbsp;//                                        timelineEvents.add(new TimelineEvent(caseId, &quot;Plan Of Care&quot;, LocalDate.parse(changeDateFormat(getDataFromJson(pocData, &quot;planofCareDate&quot;))), title, &quot;&quot;, &quot;&quot;));
+<i>365</i>&nbsp;//                                    }
+<i>366</i>&nbsp;//                                } catch (JSONException e) {
+<i>367</i>&nbsp;//                                    e.printStackTrace();
+<i>368</i>&nbsp;//                                }
+<i>369</i>&nbsp;//                            }
+<i>370</i>&nbsp;//                        }
+<i>371</i>&nbsp;
+<i>372</i>&nbsp;
+<b class="nc"><i>373</i>&nbsp;                        String childCoupleDetails = getDataFromJson(childData, &quot;coupleDetails&quot;);</b>
+<b class="nc"><i>374</i>&nbsp;                        String childDetails = getDataFromJson(childData, &quot;details&quot;);</b>
+<b class="nc"><i>375</i>&nbsp;                        String childLocationDetails = getDataFromJson(childData, &quot;location&quot;);</b>
+<b class="nc"><i>376</i>&nbsp;                        String childInfoDetails = getDataFromJson(childData, &quot;childDetails&quot;);</b>
+<i>377</i>&nbsp;
+<i>378</i>&nbsp;
+<b class="nc"><i>379</i>&nbsp;                        tv_register_type.setText(visitType.toUpperCase());</b>
+<i>380</i>&nbsp;
+<b class="nc"><i>381</i>&nbsp;                        tv_child_name.setText(getDataFromJson(childDetails, &quot;name&quot;));</b>
+<b class="nc"><i>382</i>&nbsp;                        tv_woman_name.setText(WordUtils.capitalize(getDataFromJson(childCoupleDetails, &quot;wifeName&quot;)));</b>
+<b class="nc"><i>383</i>&nbsp;                        tv_wife_name.setText(WordUtils.capitalize(getDataFromJson(childCoupleDetails, &quot;wifeName&quot;)));</b>
+<b class="nc"><i>384</i>&nbsp;                        tv_husband_name.setText(WordUtils.capitalize(getDataFromJson(childCoupleDetails, &quot;husbandName&quot;)));</b>
+<b class="nc"><i>385</i>&nbsp;                        tv_id_no.setText(&quot;EC No: &quot; + WordUtils.capitalize(getDataFromJson(childCoupleDetails, &quot;ecNumber&quot;)));</b>
+<b class="nc"><i>386</i>&nbsp;                        tv_village_name.setText(WordUtils.capitalize(getDataFromJson(childLocationDetails, &quot;villageName&quot;)));</b>
+<i>387</i>&nbsp;
+<b class="nc"><i>388</i>&nbsp;                        tv_priority.setText(getDataFromJson(childDetails, &quot;childReferral&quot;).equals(&quot;yes&quot;) ? &quot;High Risk&quot; : &quot;Normal Risk&quot;);</b>
+<b class="nc"><i>389</i>&nbsp;                        tv_priority.setTextColor(getDataFromJson(childDetails, &quot;childReferral&quot;).equals(&quot;yes&quot;) ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));</b>
+<b class="nc"><i>390</i>&nbsp;                        child_summary_priority.setText(getDataFromJson(childDetails, &quot;childReferral&quot;).equals(&quot;yes&quot;) ? &quot;High Risk&quot; : &quot;Normal Risk&quot;);</b>
+<b class="nc"><i>391</i>&nbsp;                        child_summary_priority.setTextColor(getDataFromJson(childDetails, &quot;childReferral&quot;).equals(&quot;yes&quot;) ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));</b>
+<b class="nc"><i>392</i>&nbsp;                        ib_profile_pic.setImageResource(getDataFromJson(childInfoDetails, &quot;gender&quot;).equalsIgnoreCase(&quot;female&quot;) ? R.drawable.child_girl_infant : R.drawable.child_boy_infant);</b>
+<b class="nc"><i>393</i>&nbsp;                        child_age.setText(getDataFromJson(childInfoDetails, &quot;age&quot;));</b>
+<b class="nc"><i>394</i>&nbsp;                        child_date_of_birth.setText(getDataFromJson(childInfoDetails, &quot;dateOfBirth&quot;));</b>
+<b class="nc"><i>395</i>&nbsp;                        break;</b>
+<i>396</i>&nbsp;                    case &quot;doctor&quot;:
+<i>397</i>&nbsp;//                        ImageLoader imageLoader2 = new ImageLoader(this);
+<i>398</i>&nbsp;//                        imageLoader2.DisplayImage(&quot;http://media.mediatemple.netdna-cdn.com/wp-content/uploads/2013/01/1.jpg&quot;, ib_profile_pic);
+<b class="nc"><i>399</i>&nbsp;                        ib_overview_options.setVisibility(GONE);</b>
+<b class="nc"><i>400</i>&nbsp;                        pnc_pregnency_summary.setVisibility(GONE);</b>
+<b class="nc"><i>401</i>&nbsp;                        anc_pregnency_summary.setVisibility(GONE);</b>
+<i>402</i>&nbsp;
+<b class="nc"><i>403</i>&nbsp;                        tv_register_type.setText(visitType);</b>
+<b class="nc"><i>404</i>&nbsp;                        tv_woman_name.setText(WordUtils.capitalize(getDataFromJson(formData, &quot;wifeName&quot;)));</b>
+<b class="nc"><i>405</i>&nbsp;                        tv_wife_name.setText(WordUtils.capitalize(getDataFromJson(formData, &quot;wifeName&quot;)));</b>
+<b class="nc"><i>406</i>&nbsp;                        tv_husband_name.setText(WordUtils.capitalize(getDataFromJson(formData, &quot;husbandName&quot;)));</b>
+<b class="nc"><i>407</i>&nbsp;                        tv_village_name.setText(WordUtils.capitalize(getDataFromJson(formData, &quot;villageName&quot;)));</b>
+<b class="nc"><i>408</i>&nbsp;                        tv_id_no.setText(getDataFromJson(formData, id_no));</b>
+<b class="nc"><i>409</i>&nbsp;                        String visitType = getDataFromJson(formData, visit_type);</b>
+<i>410</i>&nbsp;
+<b class="nc"><i>411</i>&nbsp;                        switch (visitType) {</b>
+<i>412</i>&nbsp;                            case DoctorFormDataConstants.childVisit:
+<b class="nc"><i>413</i>&nbsp;                                ib_profile_pic.setImageResource(getDataFromJson(formData, child_gender).equalsIgnoreCase(&quot;female&quot;) ? R.drawable.child_girl_infant : R.drawable.child_boy_infant);</b>
+<b class="nc"><i>414</i>&nbsp;                                child_summary.setVisibility(View.VISIBLE);</b>
+<i>415</i>&nbsp;
+<b class="nc"><i>416</i>&nbsp;                                child_summary_priority.setText(getDataFromJson(formData, &quot;childReferral&quot;).equals(&quot;yes&quot;) ? &quot;High Risk&quot; : &quot;Normal Risk&quot;);</b>
+<b class="nc"><i>417</i>&nbsp;                                child_summary_priority.setTextColor(getDataFromJson(formData, &quot;childReferral&quot;).equals(&quot;yes&quot;) ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));</b>
+<i>418</i>&nbsp;
+<b class="nc"><i>419</i>&nbsp;                                break;</b>
+<i>420</i>&nbsp;                            case DoctorFormDataConstants.ancvisit:
+<b class="nc"><i>421</i>&nbsp;                                ib_profile_pic.setImageResource(R.drawable.woman_placeholder);</b>
+<b class="nc"><i>422</i>&nbsp;                                anc_summary.setVisibility(View.VISIBLE);</b>
+<i>423</i>&nbsp;
+<b class="nc"><i>424</i>&nbsp;                                anc_summary_priority.setText(getDataFromJson(formData, &quot;isHighRisk&quot;).equals(&quot;yes&quot;) ? &quot;High Risk&quot; : &quot;Normal Risk&quot;);</b>
+<b class="nc"><i>425</i>&nbsp;                                anc_summary_priority.setTextColor(getDataFromJson(formData, &quot;isHighRisk&quot;).equals(&quot;yes&quot;) ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));</b>
+<b class="nc"><i>426</i>&nbsp;                                anc_pregnency_time.setVisibility(GONE);</b>
+<b class="nc"><i>427</i>&nbsp;                                anc_edd_summary_date.setText(getDataFromJson(formData, &quot;edd&quot;).replace(&quot; 00:00:00 GMT&quot;, &quot;&quot;));</b>
+<i>428</i>&nbsp;
+<i>429</i>&nbsp;
+<b class="nc"><i>430</i>&nbsp;                                break;</b>
+<i>431</i>&nbsp;                            case DoctorFormDataConstants.pncVisit:
+<b class="nc"><i>432</i>&nbsp;                                ib_profile_pic.setImageResource(R.drawable.woman_placeholder);</b>
+<b class="nc"><i>433</i>&nbsp;                                pnc_summary.setVisibility(View.VISIBLE);</b>
+<i>434</i>&nbsp;
+<b class="nc"><i>435</i>&nbsp;                                pnc_summary_priority.setText(getDataFromJson(formData, &quot;isHighRisk&quot;).equals(&quot;yes&quot;) ? &quot;High Risk&quot; : &quot;Normal Risk&quot;);</b>
+<b class="nc"><i>436</i>&nbsp;                                pnc_summary_priority.setTextColor(getDataFromJson(formData, &quot;isHighRisk&quot;).equals(&quot;yes&quot;) ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));</b>
+<i>437</i>&nbsp;
+<i>438</i>&nbsp;                                break;
+<i>439</i>&nbsp;
+<i>440</i>&nbsp;                        }
+<b class="nc"><i>441</i>&nbsp;                        tv_summary_priority.setText(getDataFromJson(formData, &quot;isHighPriority&quot;).equals(&quot;yes&quot;) ? &quot;High Priority&quot; : &quot;Normal Priority&quot;);</b>
+<b class="nc"><i>442</i>&nbsp;                        tv_summary_priority.setTextColor(getDataFromJson(formData, &quot;isHighPriority&quot;).equals(&quot;yes&quot;) ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));</b>
+<i>443</i>&nbsp;
+<b class="nc"><i>444</i>&nbsp;                        tv_priority.setText(getDataFromJson(formData, &quot;isHighRisk&quot;).equals(&quot;yes&quot;) ? &quot;High Risk&quot; : &quot;Normal Risk&quot;);</b>
+<b class="nc"><i>445</i>&nbsp;                        tv_priority.setTextColor(getDataFromJson(formData, &quot;isHighRisk&quot;).equals(&quot;yes&quot;) ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));</b>
+<i>446</i>&nbsp;                        try {
+<b class="nc"><i>447</i>&nbsp;                            JSONArray visitsArray = new JSONArray(allFormData);</b>
+<i>448</i>&nbsp;//                            android.util.Log.e(&quot;size&quot;, allFormInfo.length() + &quot;&quot;);
+<i>449</i>&nbsp;//                            JSONArray visitsArray = new JSONArray(getDataFromJson(allFormInfo.getJSONObject(0).toString(), &quot;riskinfo&quot;));
+<b class="nc"><i>450</i>&nbsp;                            timelineEvents.clear();</b>
+<b class="nc"><i>451</i>&nbsp;                            for (int i = 0; i &lt; visitsArray.length(); i++) {</b>
+<b class="nc"><i>452</i>&nbsp;                                String jsonData = visitsArray.getJSONObject(i).toString();</b>
+<b class="nc"><i>453</i>&nbsp;                                String caseId = getDataFromJson(formData, entityId);</b>
+<b class="nc"><i>454</i>&nbsp;                                String title = &quot;&quot;;</b>
+<b class="nc"><i>455</i>&nbsp;                                String date = getDataFromJson(formData, &quot;visitDate&quot;);</b>
+<b class="nc"><i>456</i>&nbsp;                                LocalDate referDate = new LocalDate();</b>
+<b class="nc"><i>457</i>&nbsp;                                if (!date.equals(&quot;&quot;))</b>
+<b class="nc"><i>458</i>&nbsp;                                    referDate = LocalDate.parse(changeDateFormat(date));</b>
+<b class="nc"><i>459</i>&nbsp;                                switch (getDataFromJson(jsonData, &quot;visit_type&quot;)) {</b>
+<i>460</i>&nbsp;                                    case DoctorFormDataConstants.ancvisit:
+<b class="nc"><i>461</i>&nbsp;                                        title = &quot;ANC &quot; + (!getDataFromJson(jsonData, &quot;visitNumber&quot;).equals(&quot;&quot;) ? (&quot; - &quot; + getDataFromJson(jsonData, &quot;visitNumber&quot;)) : &quot;&quot;);</b>
+<b class="nc"><i>462</i>&nbsp;                                        break;</b>
+<i>463</i>&nbsp;                                    case DoctorFormDataConstants.pncVisit:
+<b class="nc"><i>464</i>&nbsp;                                        title = &quot;PNC Visit&quot;;</b>
+<b class="nc"><i>465</i>&nbsp;                                        break;</b>
+<i>466</i>&nbsp;                                    case DoctorFormDataConstants.childVisit:
+<b class="nc"><i>467</i>&nbsp;                                        title = &quot;Child Illness&quot;;</b>
+<i>468</i>&nbsp;                                        break;
+<i>469</i>&nbsp;                                }
+<i>470</i>&nbsp;
+<b class="nc"><i>471</i>&nbsp;                                String type = &quot;doctorOverview&quot;;</b>
+<b class="nc"><i>472</i>&nbsp;                                String details2 = jsonData;</b>
+<b class="nc"><i>473</i>&nbsp;                                String details1 = (!getDataFromJson(jsonData, &quot;bpDiastolic&quot;).equals(&quot;&quot;) ? &quot;Bp Dia :&quot; + getDataFromJson(jsonData, &quot;bpDiastolic&quot;) + &quot; &quot; : &quot;&quot;) +</b>
+<b class="nc"><i>474</i>&nbsp;                                        (!getDataFromJson(jsonData, &quot;bpSystolic&quot;).equals(&quot;&quot;) ? &quot;Bp Sys :&quot; + getDataFromJson(jsonData, &quot;bpSystolic&quot;) + &quot; &quot; : &quot;&quot;) +</b>
+<b class="nc"><i>475</i>&nbsp;                                        (!getDataFromJson(jsonData, &quot;temperature&quot;).equals(&quot;&quot;) ? &quot;Temperature :&quot; + getDataFromJson(jsonData, &quot;temperature&quot;) + &quot; &quot; : &quot;&quot;) +</b>
+<b class="nc"><i>476</i>&nbsp;                                        (!getDataFromJson(jsonData, &quot;pulseRate&quot;).equals(&quot;&quot;) ? &quot;Pulse :&quot; + getDataFromJson(jsonData, &quot;pulseRate&quot;) : &quot;&quot;) + &quot; &quot; +</b>
+<b class="nc"><i>477</i>&nbsp;                                        (!getDataFromJson(jsonData, &quot;bloodGlucoseData&quot;).equals(&quot;&quot;) ? &quot;BGM :&quot; + getDataFromJson(jsonData, &quot;bloodGlucoseData&quot;) + &quot; &quot; : &quot;&quot;);</b>
+<b class="nc"><i>478</i>&nbsp;                                timelineEvents.add(new TimelineEvent(caseId, type, referDate, title, details1, details2));</b>
+<i>479</i>&nbsp;                            }
+<b class="nc"><i>480</i>&nbsp;                        } catch (JSONException e) {</b>
+<b class="nc"><i>481</i>&nbsp;                            e.printStackTrace();</b>
+<b class="nc"><i>482</i>&nbsp;                        }</b>
+<i>483</i>&nbsp;
+<i>484</i>&nbsp;                        break;
+<i>485</i>&nbsp;                }
+<i>486</i>&nbsp;
+<b class="nc"><i>487</i>&nbsp;                lv_timeline_events.setAdapter(new OverviewTimelineAdapter(this, distinctTimelines(timelineEvents)));</b>
+<b class="nc"><i>488</i>&nbsp;                lv_timeline_events.setOnItemClickListener(new AdapterView.OnItemClickListener() {</b>
+<i>489</i>&nbsp;                    @Override
+<i>490</i>&nbsp;                    public void onItemClick(AdapterView parent, View view, int position, long id) {
+<b class="nc"><i>491</i>&nbsp;                        switch (timelineEvents.get(position).type()) {</b>
+<i>492</i>&nbsp;                            case &quot;doctorOverview&quot;:
+<b class="nc"><i>493</i>&nbsp;                                android.util.Log.e(&quot;Detail2&quot;, timelineEvents.get(position).detail2());</b>
+<i>494</i>&nbsp;//                                Toast.makeText(NativeOverviewActivity.this, timelineEvents.get(position).detail2(), Toast.LENGTH_SHORT).show();
+<b class="nc"><i>495</i>&nbsp;                                Intent intent = new Intent(NativeOverviewActivity.this, ViewPreVisitScreenActivity.class);</b>
+<b class="nc"><i>496</i>&nbsp;                                intent.putExtra(&quot;formInfo&quot;, timelineEvents.get(position).detail2());</b>
+<b class="nc"><i>497</i>&nbsp;                                startActivity(intent);</b>
+<i>498</i>&nbsp;                                break;
+<i>499</i>&nbsp;//                            case &quot;ECREGISTERED&quot;:
+<i>500</i>&nbsp;//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+<i>501</i>&nbsp;//                                break;
+<i>502</i>&nbsp;//                            case &quot;PREGNANCY&quot;:
+<i>503</i>&nbsp;//                                if (isANCOA)
+<i>504</i>&nbsp;//                                    startFormActivity(VIEW_ANC_REGISTRATION, caseId, null, true);
+<i>505</i>&nbsp;//                                else {
+<i>506</i>&nbsp;//                                    if (!isFromEC) {
+<i>507</i>&nbsp;//                                        startFormActivity(AllConstants.FormNames.VIEW_ANC_REGISTRATION_EC, context.allBeneficiaries().findMother(caseId).ecCaseId(), null, true);
+<i>508</i>&nbsp;//                                    } else
+<i>509</i>&nbsp;//                                        startFormActivity(AllConstants.FormNames.VIEW_ANC_REGISTRATION_EC, caseId, null, true);
+<i>510</i>&nbsp;//                                }
+<i>511</i>&nbsp;//                                break;
+<i>512</i>&nbsp;//                            case &quot;CHILD-BIRTH&quot;:
+<i>513</i>&nbsp;//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+<i>514</i>&nbsp;//                                break;
+<i>515</i>&nbsp;//                            case &quot;CHILD-DELIVERYPLAN&quot;:
+<i>516</i>&nbsp;//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+<i>517</i>&nbsp;//                                break;
+<i>518</i>&nbsp;//                            case &quot;FPCHANGE&quot;:
+<i>519</i>&nbsp;//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+<i>520</i>&nbsp;//                                break;
+<i>521</i>&nbsp;//                            case &quot;ANCVISIT&quot;:
+<i>522</i>&nbsp;//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+<i>523</i>&nbsp;//                                break;
+<i>524</i>&nbsp;//                            case &quot;IFAPROVIDED&quot;:
+<i>525</i>&nbsp;//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+<i>526</i>&nbsp;//                                break;
+<i>527</i>&nbsp;//                            case &quot;TTSHOTPROVIDED&quot;:
+<i>528</i>&nbsp;//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+<i>529</i>&nbsp;//                                break;
+<i>530</i>&nbsp;//                            case &quot;PNCVISIT&quot;:
+<i>531</i>&nbsp;//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+<i>532</i>&nbsp;//                                break;
+<i>533</i>&nbsp;//                            case &quot;IMMUNIZATIONSGIVEN&quot;:
+<i>534</i>&nbsp;//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+<i>535</i>&nbsp;//                                break;
+<i>536</i>&nbsp;//                            case &quot;FPRENEW&quot;:
+<i>537</i>&nbsp;//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+<i>538</i>&nbsp;//                                break;
+<i>539</i>&nbsp;//                            default:
+<i>540</i>&nbsp;//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+<i>541</i>&nbsp;//                                break;
+<i>542</i>&nbsp;                        }
+<b class="nc"><i>543</i>&nbsp;                    }</b>
+<i>544</i>&nbsp;                });
+<i>545</i>&nbsp;            }
+<i>546</i>&nbsp;        }
+<b class="nc"><i>547</i>&nbsp;    }</b>
+<i>548</i>&nbsp;
+<i>549</i>&nbsp;    String mCurrentPhotoPath;
+<i>550</i>&nbsp;
+<i>551</i>&nbsp;    private File createImageFile() throws IOException {
+<i>552</i>&nbsp;        // Create an image file name
+<b class="nc"><i>553</i>&nbsp;        String timeStamp = new SimpleDateFormat(&quot;yyyyMMdd_HHmmss&quot;).format(new Date());</b>
+<b class="nc"><i>554</i>&nbsp;        String imageFileName = &quot;JPEG_&quot; + timeStamp + &quot;_&quot;;</b>
+<b class="nc"><i>555</i>&nbsp;        File storageDir = Environment.getExternalStoragePublicDirectory(</b>
+<i>556</i>&nbsp;                Environment.DIRECTORY_PICTURES);
+<b class="nc"><i>557</i>&nbsp;        File image = File.createTempFile(</b>
+<i>558</i>&nbsp;                imageFileName,  /* prefix */
+<i>559</i>&nbsp;                &quot;.jpg&quot;,         /* suffix */
+<i>560</i>&nbsp;                storageDir      /* directory */
+<i>561</i>&nbsp;        );
+<i>562</i>&nbsp;
+<i>563</i>&nbsp;        // Save a file: path for use with ACTION_VIEW intents
+<b class="nc"><i>564</i>&nbsp;        mCurrentPhotoPath = &quot;file:&quot; + image.getAbsolutePath();</b>
+<b class="nc"><i>565</i>&nbsp;        return image;</b>
+<i>566</i>&nbsp;    }
+<i>567</i>&nbsp;
+<i>568</i>&nbsp;    static final int REQUEST_TAKE_PHOTO = 1;
+<i>569</i>&nbsp;    static ImageView mImageView;
+<i>570</i>&nbsp;    static File currentfile;
+<i>571</i>&nbsp;    static String bindobject;
+<i>572</i>&nbsp;    static String entityId;
+<i>573</i>&nbsp;
+<i>574</i>&nbsp;    private void dispatchTakePictureIntent(ImageView imageView, String entityid) {
+<b class="nc"><i>575</i>&nbsp;        mImageView = imageView;</b>
+<b class="nc"><i>576</i>&nbsp;        entityId = entityid;</b>
+<b class="nc"><i>577</i>&nbsp;        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);</b>
+<i>578</i>&nbsp;        // Ensure that there&#39;s a camera activity to handle the intent
+<b class="nc"><i>579</i>&nbsp;        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {</b>
+<i>580</i>&nbsp;            // Create the File where the photo should go
+<b class="nc"><i>581</i>&nbsp;            File photoFile = null;</b>
+<i>582</i>&nbsp;            try {
+<b class="nc"><i>583</i>&nbsp;                photoFile = createImageFile();</b>
+<b class="nc"><i>584</i>&nbsp;            } catch (IOException ex) {</b>
+<i>585</i>&nbsp;                // Error occurred while creating the File
+<i>586</i>&nbsp;
+<b class="nc"><i>587</i>&nbsp;            }</b>
+<i>588</i>&nbsp;            // Continue only if the File was successfully created
+<b class="nc"><i>589</i>&nbsp;            if (photoFile != null) {</b>
+<b class="nc"><i>590</i>&nbsp;                currentfile = photoFile;</b>
+<b class="nc"><i>591</i>&nbsp;                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,</b>
+<b class="nc"><i>592</i>&nbsp;                        Uri.fromFile(photoFile));</b>
+<b class="nc"><i>593</i>&nbsp;                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);</b>
+<i>594</i>&nbsp;            }
+<i>595</i>&nbsp;        }
+<b class="nc"><i>596</i>&nbsp;    }</b>
+<i>597</i>&nbsp;
+<i>598</i>&nbsp;    private Bitmap getImageBitmap(String path) {
+<b class="nc"><i>599</i>&nbsp;        BitmapFactory.Options options = new BitmapFactory.Options();</b>
+<b class="nc"><i>600</i>&nbsp;        options.inPreferredConfig = Bitmap.Config.ARGB_8888;</b>
+<b class="nc"><i>601</i>&nbsp;        Bitmap bitmap = BitmapFactory.decodeFile(path, options);</b>
+<b class="nc"><i>602</i>&nbsp;        return bitmap;</b>
+<i>603</i>&nbsp;    }
+<i>604</i>&nbsp;
+<i>605</i>&nbsp;    @Override
+<i>606</i>&nbsp;    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+<b class="nc"><i>607</i>&nbsp;        super.onActivityResult(requestCode, resultCode, data);</b>
+<i>608</i>&nbsp;
+<b class="nc"><i>609</i>&nbsp;        if (requestCode == REQUEST_TAKE_PHOTO &amp;&amp; resultCode == RESULT_OK) {</b>
+<b class="nc"><i>610</i>&nbsp;            HashMap&lt;String, String&gt; details = new HashMap&lt;String, String&gt;();</b>
+<b class="nc"><i>611</i>&nbsp;            details.put(&quot;profilepic&quot;, currentfile.getAbsolutePath());</b>
+<b class="nc"><i>612</i>&nbsp;            saveimagereference(bindobject, entityId, details);</b>
+<b class="nc"><i>613</i>&nbsp;            ON_PHOTO_CAPTURED.notifyListeners(new CapturedPhotoInformation(entityId, currentfile.getAbsolutePath()));</b>
+<i>614</i>&nbsp;//            BitmapFactory.Options options = new BitmapFactory.Options();
+<i>615</i>&nbsp;//            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+<i>616</i>&nbsp;//            Bitmap bitmap = BitmapFactory.decodeFile(currentfile.getPath(), options);
+<b class="nc"><i>617</i>&nbsp;            mImageView.setImageBitmap(getImageBitmap(currentfile.getPath()));</b>
+<i>618</i>&nbsp;        }
+<b class="nc"><i>619</i>&nbsp;    }</b>
+<i>620</i>&nbsp;
+<i>621</i>&nbsp;    public List&lt;TimelineEvent&gt; distinctTimelines(List&lt;TimelineEvent&gt; timelineEvents) {
+<b class="nc"><i>622</i>&nbsp;        Map&lt;String, TimelineEvent&gt; timelineEventsMap = new HashMap&lt;String, TimelineEvent&gt;();</b>
+<b class="nc"><i>623</i>&nbsp;        for (TimelineEvent timelineEvent : timelineEvents) {</b>
+<b class="nc"><i>624</i>&nbsp;            timelineEventsMap.put(timelineEvent.title(), timelineEvent);</b>
+<b class="nc"><i>625</i>&nbsp;        }</b>
+<b class="nc"><i>626</i>&nbsp;        timelineEvents.clear();</b>
+<b class="nc"><i>627</i>&nbsp;        for (Map.Entry&lt;String, TimelineEvent&gt; entry : timelineEventsMap.entrySet()) {</b>
+<b class="nc"><i>628</i>&nbsp;            timelineEvents.add(entry.getValue());</b>
+<b class="nc"><i>629</i>&nbsp;        }</b>
+<i>630</i>&nbsp;
+<b class="nc"><i>631</i>&nbsp;        for (TimelineEvent t : timelineEvents) {</b>
+<b class="nc"><i>632</i>&nbsp;            Log.e(&quot;Beof sort&quot;, t.referenceDate() + &quot;-------------&quot; + t.title().toString());</b>
+<b class="nc"><i>633</i>&nbsp;        }</b>
+<b class="nc"><i>634</i>&nbsp;        Collections.sort(timelineEvents, new Comparator&lt;TimelineEvent&gt;() {</b>
+<i>635</i>&nbsp;            @Override
+<i>636</i>&nbsp;            public int compare(TimelineEvent timelineEvent, TimelineEvent t1) {
+<b class="nc"><i>637</i>&nbsp;                if (timelineEvent.referenceDate() == null || t1.referenceDate() == null)</b>
+<b class="nc"><i>638</i>&nbsp;                    return 0;</b>
+<b class="nc"><i>639</i>&nbsp;                return timelineEvent.referenceDate().compareTo(t1.referenceDate());</b>
+<i>640</i>&nbsp;            }
+<i>641</i>&nbsp;        });
+<b class="nc"><i>642</i>&nbsp;        for (TimelineEvent t : timelineEvents) {</b>
+<b class="nc"><i>643</i>&nbsp;            Log.e(&quot;After sort&quot;, t.referenceDate() + &quot;-------------&quot; + t.title().toString());</b>
+<b class="nc"><i>644</i>&nbsp;        }</b>
+<b class="nc"><i>645</i>&nbsp;        return timelineEvents;</b>
+<i>646</i>&nbsp;    }
+<i>647</i>&nbsp;
+<i>648</i>&nbsp;    public String changeDateFormat(String date) {
+<b class="nc"><i>649</i>&nbsp;        if (!date.equals(&quot;&quot;)) {</b>
+<b class="nc"><i>650</i>&nbsp;            String vdate[] = date.split(&quot;-&quot;);</b>
+<b class="nc"><i>651</i>&nbsp;            return vdate[2] + &quot;-&quot; + vdate[1] + &quot;-&quot; + vdate[0];</b>
+<i>652</i>&nbsp;        }
+<b class="nc"><i>653</i>&nbsp;        return &quot;&quot;;</b>
+<i>654</i>&nbsp;    }
+<i>655</i>&nbsp;
+<i>656</i>&nbsp;    public void takePhoto(String type) {
+<b class="nc"><i>657</i>&nbsp;        ON_PHOTO_CAPTURED.addListener(photoCaptureListener);</b>
+<b class="nc"><i>658</i>&nbsp;        Intent intent = new Intent(this, CameraLaunchActivity.class);</b>
+<b class="nc"><i>659</i>&nbsp;        intent.putExtra(AllConstants.TYPE, type);</b>
+<b class="nc"><i>660</i>&nbsp;        intent.putExtra(ENTITY_ID, caseId);</b>
+<b class="nc"><i>661</i>&nbsp;        startActivity(intent);</b>
+<b class="nc"><i>662</i>&nbsp;    }</b>
+<i>663</i>&nbsp;
+<i>664</i>&nbsp;
+<i>665</i>&nbsp;    @Override
+<i>666</i>&nbsp;    public void onResumption() {
+<b class="nc"><i>667</i>&nbsp;    }</b>
+<i>668</i>&nbsp;
+<i>669</i>&nbsp;
+<i>670</i>&nbsp;    @Override
+<i>671</i>&nbsp;    public boolean onMenuItemClick(MenuItem item) {
+<b class="nc"><i>672</i>&nbsp;        String formInfo = new FieldOverrides(context.anmLocationController().getFormInfoJSON()).getJSONString();</b>
+<b class="nc"><i>673</i>&nbsp;        switch (item.getItemId()) {</b>
+<i>674</i>&nbsp;            //Overview Ec Menu
+<i>675</i>&nbsp;            case R.id.register_anc_through_ec:
+<b class="nc"><i>676</i>&nbsp;                if (null == context.allBeneficiaries().findMotherByECCaseId(caseId)) {</b>
+<b class="nc"><i>677</i>&nbsp;                    formController.startFormActivity(ANC_REGISTRATION, caseId, formInfo);</b>
+<i>678</i>&nbsp;                } else
+<b class="nc"><i>679</i>&nbsp;                    Toast.makeText(NativeOverviewActivity.this, &quot;ANC Registration is already completed&quot;, Toast.LENGTH_SHORT).show();</b>
+<b class="nc"><i>680</i>&nbsp;                return true;</b>
+<i>681</i>&nbsp;            case R.id.register_fp_through_ec:
+<b class="nc"><i>682</i>&nbsp;                startFormActivity(FP_CHANGE, caseId, formInfo);</b>
+<b class="nc"><i>683</i>&nbsp;                return true;</b>
+<i>684</i>&nbsp;            case R.id.register_child_through_ec:
+<b class="nc"><i>685</i>&nbsp;                startFormActivity(CHILD_REGISTRATION_EC, caseId, formInfo);</b>
+<b class="nc"><i>686</i>&nbsp;                return true;</b>
+<i>687</i>&nbsp;            case R.id.edit_ec:
+<b class="nc"><i>688</i>&nbsp;                startFormActivity(EC_EDIT, caseId, formInfo);</b>
+<b class="nc"><i>689</i>&nbsp;                return true;</b>
+<i>690</i>&nbsp;            case R.id.view_ec:
+<b class="nc"><i>691</i>&nbsp;                startFormActivity(VIEW_EC_REGISTRATION, caseId, formInfo);</b>
+<b class="nc"><i>692</i>&nbsp;                return true;</b>
+<i>693</i>&nbsp;            case R.id.close_ec:
+<b class="nc"><i>694</i>&nbsp;                startFormActivity(EC_CLOSE, caseId, formInfo);</b>
+<b class="nc"><i>695</i>&nbsp;                return true;</b>
+<i>696</i>&nbsp;
+<i>697</i>&nbsp;            //Overview ANC Menu
+<i>698</i>&nbsp;            case R.id.anc_visit:
+<i>699</i>&nbsp;//                new OpenFormOption(getString(R.string.str_register_anc_visit_form), ANC_VISIT, new FormController(this)).doEdit(client);
+<b class="nc"><i>700</i>&nbsp;                formController.startFormActivity(ANC_VISIT, caseId, formInfo);</b>
+<b class="nc"><i>701</i>&nbsp;                return true;</b>
+<i>702</i>&nbsp;            case R.id.anc_visit_edit:
+<b class="nc"><i>703</i>&nbsp;                if (!isPoc)</b>
+<i>704</i>&nbsp;//                    startFormActivity(ANC_VISIT_EDIT, caseId, formInfo);
+<i>705</i>&nbsp;//                    new OpenFormOption(ANC_VISIT_EDIT, ANC_VISIT_EDIT, new FormController(this)).doEdit(client);
+<b class="nc"><i>706</i>&nbsp;                    formController.startFormActivity(ANC_VISIT_EDIT, caseId, formInfo);</b>
+<i>707</i>&nbsp;                else
+<b class="nc"><i>708</i>&nbsp;                    Toast.makeText(this, &quot;Already Poc given for this visit&quot;, Toast.LENGTH_SHORT).show();</b>
+<b class="nc"><i>709</i>&nbsp;                return true;</b>
+<i>710</i>&nbsp;            case R.id.hb_test:
+<b class="nc"><i>711</i>&nbsp;                startFormActivity(HB_TEST, caseId, formInfo);</b>
+<b class="nc"><i>712</i>&nbsp;                return true;</b>
+<i>713</i>&nbsp;            case R.id.view_poc_anc:
+<b class="nc"><i>714</i>&nbsp;                viewPOCActivity(AllConstants.VisitTypes.ANC_VISIT, caseId);</b>
+<b class="nc"><i>715</i>&nbsp;                return true;</b>
+<i>716</i>&nbsp;            case R.id.ifa:
+<b class="nc"><i>717</i>&nbsp;                startFormActivity(IFA, caseId, formInfo);</b>
+<b class="nc"><i>718</i>&nbsp;                return true;</b>
+<i>719</i>&nbsp;            case R.id.tt:
+<b class="nc"><i>720</i>&nbsp;                startFormActivity(TT, caseId, formInfo);</b>
+<b class="nc"><i>721</i>&nbsp;                return true;</b>
+<i>722</i>&nbsp;            case R.id.delivery_plan:
+<b class="nc"><i>723</i>&nbsp;                startFormActivity(DELIVERY_PLAN, caseId, formInfo);</b>
+<b class="nc"><i>724</i>&nbsp;                return true;</b>
+<i>725</i>&nbsp;            case R.id.pnc_registration:
+<b class="nc"><i>726</i>&nbsp;                startFormActivity(DELIVERY_OUTCOME, caseId, formInfo);</b>
+<b class="nc"><i>727</i>&nbsp;                return true;</b>
+<i>728</i>&nbsp;            case R.id.anc_investigations:
+<b class="nc"><i>729</i>&nbsp;                startFormActivity(ANC_INVESTIGATIONS, caseId, formInfo);</b>
+<b class="nc"><i>730</i>&nbsp;                return true;</b>
+<i>731</i>&nbsp;            case R.id.anc_close:
+<b class="nc"><i>732</i>&nbsp;                startFormActivity(ANC_CLOSE, caseId, formInfo);</b>
+<b class="nc"><i>733</i>&nbsp;                return true;</b>
+<i>734</i>&nbsp;
+<i>735</i>&nbsp;            //Overview PNC Menu
+<i>736</i>&nbsp;            case R.id.pnc_visit:
+<b class="nc"><i>737</i>&nbsp;                startFormActivity(PNC_VISIT, caseId, formInfo);</b>
+<b class="nc"><i>738</i>&nbsp;                return true;</b>
+<i>739</i>&nbsp;            case R.id.view_poc_pnc:
+<b class="nc"><i>740</i>&nbsp;                viewPOCActivity(AllConstants.VisitTypes.PNC_VISIT, caseId);</b>
+<b class="nc"><i>741</i>&nbsp;                return true;</b>
+<i>742</i>&nbsp;
+<i>743</i>&nbsp;            case R.id.postpartum_family_planning:
+<b class="nc"><i>744</i>&nbsp;                startFormActivity(PNC_POSTPARTUM_FAMILY_PLANNING, caseId, formInfo);</b>
+<b class="nc"><i>745</i>&nbsp;                return true;</b>
+<i>746</i>&nbsp;            case R.id.pnc_close:
+<b class="nc"><i>747</i>&nbsp;                startFormActivity(PNC_CLOSE, caseId, formInfo);</b>
+<b class="nc"><i>748</i>&nbsp;                return true;</b>
+<i>749</i>&nbsp;
+<i>750</i>&nbsp;            //Overview CHILD Menu
+<i>751</i>&nbsp;            case R.id.child_immunizations:
+<b class="nc"><i>752</i>&nbsp;                startFormActivity(CHILD_IMMUNIZATIONS, caseId, formInfo);</b>
+<b class="nc"><i>753</i>&nbsp;                return true;</b>
+<i>754</i>&nbsp;            case R.id.view_poc_child:
+<b class="nc"><i>755</i>&nbsp;                viewPOCActivity(AllConstants.VisitTypes.CHILD_VISIT, caseId);</b>
+<b class="nc"><i>756</i>&nbsp;                return true;</b>
+<i>757</i>&nbsp;            case R.id.child_illness:
+<b class="nc"><i>758</i>&nbsp;                startFormActivity(CHILD_ILLNESS, caseId, formInfo);</b>
+<b class="nc"><i>759</i>&nbsp;                return true;</b>
+<i>760</i>&nbsp;            case R.id.vitamin_a:
+<b class="nc"><i>761</i>&nbsp;                startFormActivity(VITAMIN_A, caseId, formInfo);</b>
+<b class="nc"><i>762</i>&nbsp;                return true;</b>
+<i>763</i>&nbsp;            case R.id.child_close:
+<b class="nc"><i>764</i>&nbsp;                startFormActivity(CHILD_CLOSE, caseId, formInfo);</b>
+<b class="nc"><i>765</i>&nbsp;                return true;</b>
+<i>766</i>&nbsp;
+<i>767</i>&nbsp;            default:
+<b class="nc"><i>768</i>&nbsp;                return true;</b>
+<i>769</i>&nbsp;        }
+<i>770</i>&nbsp;
+<i>771</i>&nbsp;    }
+<i>772</i>&nbsp;
+<i>773</i>&nbsp;    @Override
+<i>774</i>&nbsp;    public void onClick(View v) {
+<b class="nc"><i>775</i>&nbsp;        switch (v.getId()) {</b>
+<i>776</i>&nbsp;            case R.id.ib_overview_options:
+<b class="nc"><i>777</i>&nbsp;                PopupMenu popup = new PopupMenu(this, v);</b>
+<b class="nc"><i>778</i>&nbsp;                MenuInflater inflater = popup.getMenuInflater();</b>
+<b class="nc"><i>779</i>&nbsp;                switch (visitType.toLowerCase()) {</b>
+<i>780</i>&nbsp;                    case &quot;ec&quot;:
+<b class="nc"><i>781</i>&nbsp;                        inflater.inflate(R.menu.overview_ec_menu, popup.getMenu());</b>
+<b class="nc"><i>782</i>&nbsp;                        break;</b>
+<i>783</i>&nbsp;                    case &quot;anc&quot;:
+<b class="nc"><i>784</i>&nbsp;                        inflater.inflate(R.menu.overview_anc_menu, popup.getMenu());</b>
+<b class="nc"><i>785</i>&nbsp;                        break;</b>
+<i>786</i>&nbsp;                    case &quot;pnc&quot;:
+<b class="nc"><i>787</i>&nbsp;                        inflater.inflate(R.menu.overview_pnc_menu, popup.getMenu());</b>
+<b class="nc"><i>788</i>&nbsp;                        break;</b>
+<i>789</i>&nbsp;                    case &quot;child&quot;:
+<b class="nc"><i>790</i>&nbsp;                        inflater.inflate(R.menu.overview_child_menu, popup.getMenu());</b>
+<i>791</i>&nbsp;                        break;
+<i>792</i>&nbsp;                }
+<b class="nc"><i>793</i>&nbsp;                popup.show();</b>
+<b class="nc"><i>794</i>&nbsp;                popup.setOnMenuItemClickListener(this);</b>
+<b class="nc"><i>795</i>&nbsp;                break;</b>
+<i>796</i>&nbsp;            case R.id.iv_home:
+<b class="nc"><i>797</i>&nbsp;                this.finish();</b>
+<i>798</i>&nbsp;                break;
+<i>799</i>&nbsp;        }
+<b class="nc"><i>800</i>&nbsp;    }</b>
+<i>801</i>&nbsp;
+<i>802</i>&nbsp;
+<i>803</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

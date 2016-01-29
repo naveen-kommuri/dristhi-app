@@ -1,0 +1,193 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ServiceProvidedDTO</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.contract</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ServiceProvidedDTO (org.ei.telemedicine.view.contract)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ServiceProvidedDTO</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    55%
+  </span>
+  <span class="absValue">
+    (11/ 20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    70%
+  </span>
+  <span class="absValue">
+    (21/ 30)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.contract;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.apache.commons.lang3.builder.EqualsBuilder;
+<i>4</i>&nbsp;import org.apache.commons.lang3.builder.HashCodeBuilder;
+<i>5</i>&nbsp;import org.apache.commons.lang3.builder.ToStringBuilder;
+<i>6</i>&nbsp;import org.ei.telemedicine.domain.ANCServiceType;
+<i>7</i>&nbsp;import org.ei.telemedicine.domain.ChildServiceType;
+<i>8</i>&nbsp;import org.joda.time.LocalDate;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import java.util.HashMap;
+<i>11</i>&nbsp;import java.util.Map;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;import static org.ei.telemedicine.util.DateUtil.formatDate;
+<i>14</i>&nbsp;import static org.ei.telemedicine.util.DateUtil.getLocalDateFromISOString;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;public class ServiceProvidedDTO implements Comparable&lt;ServiceProvidedDTO&gt; {
+<i>17</i>&nbsp;
+<b class="fc"><i>18</i>&nbsp;    public static ServiceProvidedDTO emptyService = new ServiceProvidedDTO(&quot;&quot;, &quot;&quot;, null);</b>
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    private String name;
+<i>21</i>&nbsp;    private String date;
+<i>22</i>&nbsp;    private int day;
+<b class="fc"><i>23</i>&nbsp;    private Map&lt;String, String&gt; data = new HashMap&lt;String, String&gt;();</b>
+<i>24</i>&nbsp;
+<b class="fc"><i>25</i>&nbsp;    public ServiceProvidedDTO(String name, String date, Map&lt;String, String&gt; data) {</b>
+<b class="fc"><i>26</i>&nbsp;        this.name = name;</b>
+<b class="fc"><i>27</i>&nbsp;        this.date = date;</b>
+<b class="fc"><i>28</i>&nbsp;        this.data = data;</b>
+<b class="fc"><i>29</i>&nbsp;    }</b>
+<i>30</i>&nbsp;
+<b class="fc"><i>31</i>&nbsp;    public ServiceProvidedDTO(String name, Integer visitDay, String date) {</b>
+<b class="fc"><i>32</i>&nbsp;        this.name = name;</b>
+<b class="fc"><i>33</i>&nbsp;        day = visitDay;</b>
+<b class="fc"><i>34</i>&nbsp;        this.date = date;</b>
+<b class="fc"><i>35</i>&nbsp;    }</b>
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    public ChildServiceType type() {
+<b class="nc"><i>38</i>&nbsp;        return ChildServiceType.tryParse(name, ChildServiceType.EMPTY);</b>
+<i>39</i>&nbsp;    }
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;    public ANCServiceType ancServiceType() {
+<b class="fc"><i>42</i>&nbsp;        return ANCServiceType.tryParse(name, ANCServiceType.EMPTY);</b>
+<i>43</i>&nbsp;    }
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;    public String name() {
+<b class="fc"><i>46</i>&nbsp;        return name;</b>
+<i>47</i>&nbsp;    }
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    public String date() {
+<b class="fc"><i>50</i>&nbsp;        return formatDate(date);</b>
+<i>51</i>&nbsp;    }
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    public String dateForDisplay() {
+<b class="nc"><i>54</i>&nbsp;        return formatDate(date, &quot;dd/MM&quot;);</b>
+<i>55</i>&nbsp;    }
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;    public int day() {
+<b class="fc"><i>58</i>&nbsp;        return day;</b>
+<i>59</i>&nbsp;    }
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;    public LocalDate localDate() {
+<b class="fc"><i>62</i>&nbsp;        return getLocalDateFromISOString(date);</b>
+<i>63</i>&nbsp;    }
+<i>64</i>&nbsp;
+<i>65</i>&nbsp;    public String shortDate() {
+<b class="nc"><i>66</i>&nbsp;        return formatDate(date, &quot;dd/MM&quot;);</b>
+<i>67</i>&nbsp;    }
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;    public String servicedOn() {
+<b class="nc"><i>70</i>&nbsp;        return type().shortName() + &quot;: &quot; + shortDate();</b>
+<i>71</i>&nbsp;    }
+<i>72</i>&nbsp;
+<i>73</i>&nbsp;
+<i>74</i>&nbsp;    public String servicedOnWithServiceName() {
+<b class="nc"><i>75</i>&nbsp;        return ancServiceType().serviceDisplayName() + &quot;: &quot; + shortDate();</b>
+<i>76</i>&nbsp;    }
+<i>77</i>&nbsp;
+<i>78</i>&nbsp;    public String ancServicedOn() {
+<b class="nc"><i>79</i>&nbsp;        return shortDate();</b>
+<i>80</i>&nbsp;    }
+<i>81</i>&nbsp;
+<i>82</i>&nbsp;    public Map&lt;String, String&gt; data() {
+<b class="nc"><i>83</i>&nbsp;        return data == null ? new HashMap&lt;String, String&gt;() : data;</b>
+<i>84</i>&nbsp;    }
+<i>85</i>&nbsp;
+<i>86</i>&nbsp;    public ServiceProvidedDTO withDay(int day) {
+<b class="fc"><i>87</i>&nbsp;        this.day = day;</b>
+<b class="fc"><i>88</i>&nbsp;        return this;</b>
+<i>89</i>&nbsp;    }
+<i>90</i>&nbsp;
+<i>91</i>&nbsp;    @Override
+<i>92</i>&nbsp;    public boolean equals(Object o) {
+<b class="fc"><i>93</i>&nbsp;        return EqualsBuilder.reflectionEquals(this, o);</b>
+<i>94</i>&nbsp;    }
+<i>95</i>&nbsp;
+<i>96</i>&nbsp;    @Override
+<i>97</i>&nbsp;    public int hashCode() {
+<b class="fc"><i>98</i>&nbsp;        return HashCodeBuilder.reflectionHashCode(this);</b>
+<i>99</i>&nbsp;    }
+<i>100</i>&nbsp;
+<i>101</i>&nbsp;    @Override
+<i>102</i>&nbsp;    public String toString() {
+<b class="nc"><i>103</i>&nbsp;        return ToStringBuilder.reflectionToString(this);</b>
+<i>104</i>&nbsp;    }
+<i>105</i>&nbsp;
+<i>106</i>&nbsp;    @Override
+<i>107</i>&nbsp;    public int compareTo(ServiceProvidedDTO another) {
+<b class="nc"><i>108</i>&nbsp;        return this.localDate().isAfter(another.localDate()) ? 1 : 0;</b>
+<i>109</i>&nbsp;    }
+<i>110</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

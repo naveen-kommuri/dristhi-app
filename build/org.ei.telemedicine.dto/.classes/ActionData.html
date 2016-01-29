@@ -1,0 +1,193 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ActionData</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.dto</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ActionData (org.ei.telemedicine.dto)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ActionData</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    46.7%
+  </span>
+  <span class="absValue">
+    (7/ 15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    52%
+  </span>
+  <span class="absValue">
+    (13/ 25)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.dto;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.HashMap;
+<i>4</i>&nbsp;import java.util.Map;
+<i>5</i>&nbsp;import org.apache.commons.lang3.builder.EqualsBuilder;
+<i>6</i>&nbsp;import org.apache.commons.lang3.builder.HashCodeBuilder;
+<i>7</i>&nbsp;import org.apache.commons.lang3.builder.ToStringBuilder;
+<i>8</i>&nbsp;import org.joda.time.DateTime;
+<i>9</i>&nbsp;import org.joda.time.LocalDate;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;public class ActionData
+<i>12</i>&nbsp;{
+<i>13</i>&nbsp;  private Map&lt;String, String&gt; data;
+<i>14</i>&nbsp;  private Map&lt;String, String&gt; details;
+<i>15</i>&nbsp;  private String target;
+<i>16</i>&nbsp;  private String type;
+<i>17</i>&nbsp;  
+<i>18</i>&nbsp;  private ActionData(String paramString1, String paramString2)
+<b class="fc"><i>19</i>&nbsp;  {</b>
+<b class="fc"><i>20</i>&nbsp;    this.target = paramString1;</b>
+<b class="fc"><i>21</i>&nbsp;    this.type = paramString2;</b>
+<b class="fc"><i>22</i>&nbsp;    this.data = new HashMap();</b>
+<b class="fc"><i>23</i>&nbsp;    this.details = new HashMap();</b>
+<b class="fc"><i>24</i>&nbsp;  }</b>
+<i>25</i>&nbsp;  
+<i>26</i>&nbsp;  public static ActionData closeMother(String paramString)
+<i>27</i>&nbsp;  {
+<b class="fc"><i>28</i>&nbsp;    return new ActionData(&quot;mother&quot;, &quot;close&quot;).with(&quot;reasonForClose&quot;, paramString);</b>
+<i>29</i>&nbsp;  }
+<i>30</i>&nbsp;  
+<i>31</i>&nbsp;  public static ActionData createAlert(BeneficiaryType paramBeneficiaryType, String paramString1, String paramString2, AlertStatus paramAlertStatus, DateTime paramDateTime1, DateTime paramDateTime2)
+<i>32</i>&nbsp;  {
+<b class="fc"><i>33</i>&nbsp;    return new ActionData(&quot;alert&quot;, &quot;createAlert&quot;).with(&quot;beneficiaryType&quot;, paramBeneficiaryType.value()).with(&quot;scheduleName&quot;, paramString1).with(&quot;visitCode&quot;, paramString2).with(&quot;alertStatus&quot;, paramAlertStatus.value()).with(&quot;startDate&quot;, paramDateTime1.toLocalDate().toString()).with(&quot;expiryDate&quot;, paramDateTime2.toLocalDate().toString());</b>
+<i>34</i>&nbsp;  }
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;  public static ActionData from(String paramString1, String paramString2, Map&lt;String, String&gt; paramMap1, Map&lt;String, String&gt; paramMap2)
+<i>37</i>&nbsp;  {
+<b class="nc"><i>38</i>&nbsp;    ActionData localActionData = new ActionData(paramString2, paramString1);</b>
+<b class="nc"><i>39</i>&nbsp;    localActionData.data.putAll(paramMap1);</b>
+<b class="nc"><i>40</i>&nbsp;    localActionData.details.putAll(paramMap2);</b>
+<b class="nc"><i>41</i>&nbsp;    return localActionData;</b>
+<i>42</i>&nbsp;  }
+<i>43</i>&nbsp;  
+<i>44</i>&nbsp;  public static ActionData markAlertAsClosed(String paramString1, String paramString2)
+<i>45</i>&nbsp;  {
+<b class="fc"><i>46</i>&nbsp;    return new ActionData(&quot;alert&quot;, &quot;closeAlert&quot;).with(&quot;visitCode&quot;, paramString1).with(&quot;completionDate&quot;, paramString2);</b>
+<i>47</i>&nbsp;  }
+<i>48</i>&nbsp;  
+<i>49</i>&nbsp;  public static ActionData reportForIndicator(String paramString1, String paramString2, String paramString3)
+<i>50</i>&nbsp;  {
+<b class="fc"><i>51</i>&nbsp;    return new ActionData(&quot;report&quot;, paramString1).with(&quot;annualTarget&quot;, paramString2).with(&quot;monthlySummaries&quot;, paramString3);</b>
+<i>52</i>&nbsp;  }
+<i>53</i>&nbsp;  
+<i>54</i>&nbsp;  private ActionData with(String paramString1, String paramString2)
+<i>55</i>&nbsp;  {
+<b class="fc"><i>56</i>&nbsp;    this.data.put(paramString1, paramString2);</b>
+<b class="fc"><i>57</i>&nbsp;    return this;</b>
+<i>58</i>&nbsp;  }
+<i>59</i>&nbsp;  
+<i>60</i>&nbsp;  private ActionData withDetails(Map&lt;String, String&gt; paramMap)
+<i>61</i>&nbsp;  {
+<b class="nc"><i>62</i>&nbsp;    this.details.putAll(paramMap);</b>
+<b class="nc"><i>63</i>&nbsp;    return this;</b>
+<i>64</i>&nbsp;  }
+<i>65</i>&nbsp;  
+<i>66</i>&nbsp;  public Map&lt;String, String&gt; data()
+<i>67</i>&nbsp;  {
+<b class="fc"><i>68</i>&nbsp;    return this.data;</b>
+<i>69</i>&nbsp;  }
+<i>70</i>&nbsp;  
+<i>71</i>&nbsp;  public Map&lt;String, String&gt; details()
+<i>72</i>&nbsp;  {
+<b class="nc"><i>73</i>&nbsp;    return this.details;</b>
+<i>74</i>&nbsp;  }
+<i>75</i>&nbsp;  
+<i>76</i>&nbsp;  public boolean equals(Object paramObject)
+<i>77</i>&nbsp;  {
+<b class="nc"><i>78</i>&nbsp;    return EqualsBuilder.reflectionEquals(this, paramObject, new String[0]);</b>
+<i>79</i>&nbsp;  }
+<i>80</i>&nbsp;  
+<i>81</i>&nbsp;  public int hashCode()
+<i>82</i>&nbsp;  {
+<b class="nc"><i>83</i>&nbsp;    return HashCodeBuilder.reflectionHashCode(this, new String[0]);</b>
+<i>84</i>&nbsp;  }
+<i>85</i>&nbsp;  
+<i>86</i>&nbsp;  public String target()
+<i>87</i>&nbsp;  {
+<b class="nc"><i>88</i>&nbsp;    return this.target;</b>
+<i>89</i>&nbsp;  }
+<i>90</i>&nbsp;  
+<i>91</i>&nbsp;  public String toString()
+<i>92</i>&nbsp;  {
+<b class="nc"><i>93</i>&nbsp;    return ToStringBuilder.reflectionToString(this);</b>
+<i>94</i>&nbsp;  }
+<i>95</i>&nbsp;  
+<i>96</i>&nbsp;  public String type()
+<i>97</i>&nbsp;  {
+<b class="nc"><i>98</i>&nbsp;    return this.type;</b>
+<i>99</i>&nbsp;  }
+<i>100</i>&nbsp;}
+<i>101</i>&nbsp;
+<i>102</i>&nbsp;
+<i>103</i>&nbsp;
+<i>104</i>&nbsp;/* Location:           C:\Users\appaji.r\Downloads\classes-dex2.jar
+<i>105</i>&nbsp;
+<i>106</i>&nbsp; * Qualified Name:     org.ei.drishti.dto.ActionData
+<i>107</i>&nbsp;
+<i>108</i>&nbsp; * JD-Core Version:    0.7.0.1
+<i>109</i>&nbsp;
+<i>110</i>&nbsp; */
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,139 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AllEligibleCouplesTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.repository</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AllEligibleCouplesTest (org.ei.telemedicine.test.repository)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AllEligibleCouplesTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/ 14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.repository;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.domain.EligibleCouple;
+<i>4</i>&nbsp;import org.ei.telemedicine.repository.AlertRepository;
+<i>5</i>&nbsp;import org.ei.telemedicine.repository.AllEligibleCouples;
+<i>6</i>&nbsp;import org.ei.telemedicine.repository.EligibleCoupleRepository;
+<i>7</i>&nbsp;import org.ei.telemedicine.repository.TimelineEventRepository;
+<i>8</i>&nbsp;import org.junit.Before;
+<i>9</i>&nbsp;import org.junit.Test;
+<i>10</i>&nbsp;import org.mockito.Mock;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;import java.util.Arrays;
+<i>13</i>&nbsp;import java.util.HashMap;
+<i>14</i>&nbsp;import java.util.List;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;import static junit.framework.Assert.assertEquals;
+<i>17</i>&nbsp;import static org.mockito.Mockito.verify;
+<i>18</i>&nbsp;import static org.mockito.Mockito.when;
+<i>19</i>&nbsp;import static org.mockito.MockitoAnnotations.initMocks;
+<i>20</i>&nbsp;
+<b class="fc"><i>21</i>&nbsp;public class AllEligibleCouplesTest {</b>
+<i>22</i>&nbsp;    @Mock
+<i>23</i>&nbsp;    private EligibleCoupleRepository eligibleCoupleRepository;
+<i>24</i>&nbsp;    @Mock
+<i>25</i>&nbsp;    private TimelineEventRepository timelineEventRepository;
+<i>26</i>&nbsp;    @Mock
+<i>27</i>&nbsp;    private AlertRepository alertRepository;
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    private AllEligibleCouples allEligibleCouples;
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    @Before
+<i>32</i>&nbsp;    public void setUp() throws Exception {
+<b class="fc"><i>33</i>&nbsp;        initMocks(this);</b>
+<b class="fc"><i>34</i>&nbsp;        allEligibleCouples = new AllEligibleCouples(eligibleCoupleRepository, alertRepository, timelineEventRepository);</b>
+<b class="fc"><i>35</i>&nbsp;    }</b>
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    @Test
+<i>38</i>&nbsp;    public void shouldFetchAllAlertsFromRepository() throws Exception {
+<b class="fc"><i>39</i>&nbsp;        List&lt;EligibleCouple&gt; expectedCouples = Arrays.asList(new EligibleCouple(&quot;Case X&quot;, &quot;Wife 1&quot;, &quot;Husband 1&quot;, &quot;EC Number 1&quot;, &quot;village&quot;, &quot;subcenter&quot;, new HashMap&lt;String, String&gt;()),</b>
+<i>40</i>&nbsp;                new EligibleCouple(&quot;Case Y&quot;, &quot;Wife 2&quot;, &quot;Husband 2&quot;, &quot;EC Number 2&quot;, &quot;village&quot;, &quot;subcenter&quot;, new HashMap&lt;String, String&gt;()));
+<b class="fc"><i>41</i>&nbsp;        when(eligibleCoupleRepository.allEligibleCouples()).thenReturn(expectedCouples);</b>
+<i>42</i>&nbsp;
+<b class="fc"><i>43</i>&nbsp;        List&lt;EligibleCouple&gt; couples = allEligibleCouples.all();</b>
+<i>44</i>&nbsp;
+<b class="fc"><i>45</i>&nbsp;        assertEquals(expectedCouples, couples);</b>
+<b class="fc"><i>46</i>&nbsp;    }</b>
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    @Test
+<i>49</i>&nbsp;    public void shouldCloseEC() throws Exception {
+<b class="fc"><i>50</i>&nbsp;        allEligibleCouples.close(&quot;entity id 1&quot;);</b>
+<i>51</i>&nbsp;
+<b class="fc"><i>52</i>&nbsp;        verify(alertRepository).deleteAllAlertsForEntity(&quot;entity id 1&quot;);</b>
+<b class="fc"><i>53</i>&nbsp;        verify(eligibleCoupleRepository).close(&quot;entity id 1&quot;);</b>
+<b class="fc"><i>54</i>&nbsp;        verify(timelineEventRepository).deleteAllTimelineEventsForEntity(&quot;entity id 1&quot;);</b>
+<b class="fc"><i>55</i>&nbsp;    }</b>
+<i>56</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-20 13:39</div>
+</div>
+</body>
+</html>

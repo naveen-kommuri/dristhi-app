@@ -1,0 +1,191 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ChildRegisterEntryDTO</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.dto.register</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ChildRegisterEntryDTO (org.ei.telemedicine.dto.register)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ChildRegisterEntryDTO</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 22)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.dto.register;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.Map;
+<i>4</i>&nbsp;import org.apache.commons.lang3.builder.EqualsBuilder;
+<i>5</i>&nbsp;import org.apache.commons.lang3.builder.HashCodeBuilder;
+<i>6</i>&nbsp;import org.apache.commons.lang3.builder.ToStringBuilder;
+<i>7</i>&nbsp;import org.codehaus.jackson.annotate.JsonProperty;
+<i>8</i>&nbsp;
+<b class="nc"><i>9</i>&nbsp;public class ChildRegisterEntryDTO</b>
+<i>10</i>&nbsp;{
+<i>11</i>&nbsp;  @JsonProperty
+<i>12</i>&nbsp;  private String dob;
+<i>13</i>&nbsp;  @JsonProperty
+<i>14</i>&nbsp;  private String husbandName;
+<i>15</i>&nbsp;  @JsonProperty
+<i>16</i>&nbsp;  private Map&lt;String, String&gt; immunizations;
+<i>17</i>&nbsp;  @JsonProperty
+<i>18</i>&nbsp;  private String subCenter;
+<i>19</i>&nbsp;  @JsonProperty
+<i>20</i>&nbsp;  private String thayiCardNumber;
+<i>21</i>&nbsp;  @JsonProperty
+<i>22</i>&nbsp;  private String village;
+<i>23</i>&nbsp;  @JsonProperty
+<i>24</i>&nbsp;  private Map&lt;String, String&gt; vitaminADoses;
+<i>25</i>&nbsp;  @JsonProperty
+<i>26</i>&nbsp;  private String wifeDOB;
+<i>27</i>&nbsp;  @JsonProperty
+<i>28</i>&nbsp;  private String wifeName;
+<i>29</i>&nbsp;  
+<i>30</i>&nbsp;  public boolean equals(Object paramObject)
+<i>31</i>&nbsp;  {
+<b class="nc"><i>32</i>&nbsp;    return EqualsBuilder.reflectionEquals(this, paramObject, new String[0]);</b>
+<i>33</i>&nbsp;  }
+<i>34</i>&nbsp;  
+<i>35</i>&nbsp;  public int hashCode()
+<i>36</i>&nbsp;  {
+<b class="nc"><i>37</i>&nbsp;    return HashCodeBuilder.reflectionHashCode(this, new String[0]);</b>
+<i>38</i>&nbsp;  }
+<i>39</i>&nbsp;  
+<i>40</i>&nbsp;  public String toString()
+<i>41</i>&nbsp;  {
+<b class="nc"><i>42</i>&nbsp;    return ToStringBuilder.reflectionToString(this);</b>
+<i>43</i>&nbsp;  }
+<i>44</i>&nbsp;  
+<i>45</i>&nbsp;  public ChildRegisterEntryDTO withDOB(String paramString)
+<i>46</i>&nbsp;  {
+<b class="nc"><i>47</i>&nbsp;    this.dob = paramString;</b>
+<b class="nc"><i>48</i>&nbsp;    return this;</b>
+<i>49</i>&nbsp;  }
+<i>50</i>&nbsp;  
+<i>51</i>&nbsp;  public ChildRegisterEntryDTO withHusbandName(String paramString)
+<i>52</i>&nbsp;  {
+<b class="nc"><i>53</i>&nbsp;    this.husbandName = paramString;</b>
+<b class="nc"><i>54</i>&nbsp;    return this;</b>
+<i>55</i>&nbsp;  }
+<i>56</i>&nbsp;  
+<i>57</i>&nbsp;  public ChildRegisterEntryDTO withImmunizations(Map&lt;String, String&gt; paramMap)
+<i>58</i>&nbsp;  {
+<b class="nc"><i>59</i>&nbsp;    this.immunizations = paramMap;</b>
+<b class="nc"><i>60</i>&nbsp;    return this;</b>
+<i>61</i>&nbsp;  }
+<i>62</i>&nbsp;  
+<i>63</i>&nbsp;  public ChildRegisterEntryDTO withSubCenter(String paramString)
+<i>64</i>&nbsp;  {
+<b class="nc"><i>65</i>&nbsp;    this.subCenter = paramString;</b>
+<b class="nc"><i>66</i>&nbsp;    return this;</b>
+<i>67</i>&nbsp;  }
+<i>68</i>&nbsp;  
+<i>69</i>&nbsp;  public ChildRegisterEntryDTO withThayiCardNumber(String paramString)
+<i>70</i>&nbsp;  {
+<b class="nc"><i>71</i>&nbsp;    this.thayiCardNumber = paramString;</b>
+<b class="nc"><i>72</i>&nbsp;    return this;</b>
+<i>73</i>&nbsp;  }
+<i>74</i>&nbsp;  
+<i>75</i>&nbsp;  public ChildRegisterEntryDTO withVillage(String paramString)
+<i>76</i>&nbsp;  {
+<b class="nc"><i>77</i>&nbsp;    this.village = paramString;</b>
+<b class="nc"><i>78</i>&nbsp;    return this;</b>
+<i>79</i>&nbsp;  }
+<i>80</i>&nbsp;  
+<i>81</i>&nbsp;  public ChildRegisterEntryDTO withVitaminADoses(Map&lt;String, String&gt; paramMap)
+<i>82</i>&nbsp;  {
+<b class="nc"><i>83</i>&nbsp;    this.vitaminADoses = paramMap;</b>
+<b class="nc"><i>84</i>&nbsp;    return this;</b>
+<i>85</i>&nbsp;  }
+<i>86</i>&nbsp;  
+<i>87</i>&nbsp;  public ChildRegisterEntryDTO withWifeDOB(String paramString)
+<i>88</i>&nbsp;  {
+<b class="nc"><i>89</i>&nbsp;    this.wifeDOB = paramString;</b>
+<b class="nc"><i>90</i>&nbsp;    return this;</b>
+<i>91</i>&nbsp;  }
+<i>92</i>&nbsp;  
+<i>93</i>&nbsp;  public ChildRegisterEntryDTO withWifeName(String paramString)
+<i>94</i>&nbsp;  {
+<b class="nc"><i>95</i>&nbsp;    this.wifeName = paramString;</b>
+<b class="nc"><i>96</i>&nbsp;    return this;</b>
+<i>97</i>&nbsp;  }
+<i>98</i>&nbsp;}
+<i>99</i>&nbsp;
+<i>100</i>&nbsp;
+<i>101</i>&nbsp;
+<i>102</i>&nbsp;/* Location:           C:\Users\appaji.r\Downloads\classes-dex2.jar
+<i>103</i>&nbsp;
+<i>104</i>&nbsp; * Qualified Name:     org.ei.drishti.dto.register.ChildRegisterEntryDTO
+<i>105</i>&nbsp;
+<i>106</i>&nbsp; * JD-Core Version:    0.7.0.1
+<i>107</i>&nbsp;
+<i>108</i>&nbsp; */
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

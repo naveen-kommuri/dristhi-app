@@ -1,0 +1,170 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: NavigationController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.controller</a> ]
+</div>
+
+<h1>Coverage Summary for Class: NavigationController (org.ei.telemedicine.view.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">NavigationController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 31)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.controller;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.app.Activity;
+<i>4</i>&nbsp;import android.content.Intent;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import org.ei.telemedicine.view.activity.NativeANCSmartRegisterActivity;
+<i>7</i>&nbsp;import org.ei.telemedicine.view.activity.NativeChildSmartRegisterActivity;
+<i>8</i>&nbsp;import org.ei.telemedicine.view.activity.NativeECSmartRegisterActivity;
+<i>9</i>&nbsp;import org.ei.telemedicine.view.activity.NativeFPSmartRegisterActivity;
+<i>10</i>&nbsp;import org.ei.telemedicine.view.activity.NativePNCSmartRegisterActivity;
+<i>11</i>&nbsp;import org.ei.telemedicine.view.activity.NativeReportsActivity;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;import static org.ei.telemedicine.view.controller.ProfileNavigationController.navigateToANCProfile;
+<i>14</i>&nbsp;import static org.ei.telemedicine.view.controller.ProfileNavigationController.navigateToChildProfile;
+<i>15</i>&nbsp;import static org.ei.telemedicine.view.controller.ProfileNavigationController.navigateToECProfile;
+<i>16</i>&nbsp;import static org.ei.telemedicine.view.controller.ProfileNavigationController.navigateToFPProfile;
+<i>17</i>&nbsp;import static org.ei.telemedicine.view.controller.ProfileNavigationController.navigateToPNCProfile;
+<i>18</i>&nbsp;import static org.ei.telemedicine.view.controller.ProfileNavigationController.navigateToProfile;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;public class NavigationController {
+<i>21</i>&nbsp;    private Activity activity;
+<i>22</i>&nbsp;    private ANMController anmController;
+<i>23</i>&nbsp;
+<b class="nc"><i>24</i>&nbsp;    public NavigationController(Activity activity, ANMController anmController) {</b>
+<b class="nc"><i>25</i>&nbsp;        this.activity = activity;</b>
+<b class="nc"><i>26</i>&nbsp;        this.anmController = anmController;</b>
+<b class="nc"><i>27</i>&nbsp;    }</b>
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    public void startReports() {
+<b class="nc"><i>30</i>&nbsp;        activity.startActivity(new Intent(activity, NativeReportsActivity.class));</b>
+<b class="nc"><i>31</i>&nbsp;    }</b>
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    public void startECSmartRegistry() {
+<b class="nc"><i>35</i>&nbsp;        activity.startActivity(new Intent(activity, NativeECSmartRegisterActivity.class));</b>
+<b class="nc"><i>36</i>&nbsp;    }</b>
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    public void startFPSmartRegistry() {
+<b class="nc"><i>39</i>&nbsp;        activity.startActivity(new Intent(activity, NativeFPSmartRegisterActivity.class));</b>
+<b class="nc"><i>40</i>&nbsp;    }</b>
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    public void startANCSmartRegistry() {
+<b class="nc"><i>43</i>&nbsp;        activity.startActivity(new Intent(activity, NativeANCSmartRegisterActivity.class));</b>
+<b class="nc"><i>44</i>&nbsp;    }</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    public void startPNCSmartRegistry() {
+<b class="nc"><i>47</i>&nbsp;        activity.startActivity(new Intent(activity, NativePNCSmartRegisterActivity.class));</b>
+<b class="nc"><i>48</i>&nbsp;    }</b>
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;    public void startChildSmartRegistry() {
+<b class="nc"><i>51</i>&nbsp;        activity.startActivity(new Intent(activity, NativeChildSmartRegisterActivity.class));</b>
+<b class="nc"><i>52</i>&nbsp;    }</b>
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;    public String get() {
+<b class="nc"><i>55</i>&nbsp;        return anmController.get();</b>
+<i>56</i>&nbsp;    }
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    public void goBack() {
+<b class="nc"><i>59</i>&nbsp;        activity.finish();</b>
+<b class="nc"><i>60</i>&nbsp;    }</b>
+<i>61</i>&nbsp;
+<i>62</i>&nbsp;    public void startEC(String entityId) {
+<b class="nc"><i>63</i>&nbsp;        navigateToECProfile(activity, entityId);</b>
+<i>64</i>&nbsp;//        navigateToProfile(activity, entityId);
+<b class="nc"><i>65</i>&nbsp;    }</b>
+<i>66</i>&nbsp;    public void startFP(String entityId) {
+<b class="nc"><i>67</i>&nbsp;        navigateToFPProfile(activity, entityId);</b>
+<i>68</i>&nbsp;//        navigateToProfile(activity, entityId);
+<b class="nc"><i>69</i>&nbsp;    }</b>
+<i>70</i>&nbsp;    public void startDoctor(String formallData, String formData) {
+<b class="nc"><i>71</i>&nbsp;        navigateToProfile(activity, formallData, formData);</b>
+<b class="nc"><i>72</i>&nbsp;    }</b>
+<i>73</i>&nbsp;
+<i>74</i>&nbsp;    public void startANC(String entityId) {
+<i>75</i>&nbsp;//        navigateToProfile(activity, entityId);
+<b class="nc"><i>76</i>&nbsp;        navigateToANCProfile(activity, entityId);</b>
+<b class="nc"><i>77</i>&nbsp;    }</b>
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    public void startPNC(String entityId) {
+<b class="nc"><i>80</i>&nbsp;        navigateToPNCProfile(activity, entityId);</b>
+<b class="nc"><i>81</i>&nbsp;    }</b>
+<i>82</i>&nbsp;
+<i>83</i>&nbsp;    public void startChild(String entityId) {
+<b class="nc"><i>84</i>&nbsp;        navigateToChildProfile(activity, entityId);</b>
+<b class="nc"><i>85</i>&nbsp;    }</b>
+<i>86</i>&nbsp;
+<i>87</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: GZipEncodingHttpClient</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.client</a> ]
+</div>
+
+<h1>Coverage Summary for Class: GZipEncodingHttpClient (org.ei.telemedicine.client)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GZipEncodingHttpClient</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 13)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.client;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.apache.http.HttpResponse;
+<i>4</i>&nbsp;import org.apache.http.client.CredentialsProvider;
+<i>5</i>&nbsp;import org.apache.http.client.methods.HttpGet;
+<i>6</i>&nbsp;import org.apache.http.client.methods.HttpPost;
+<i>7</i>&nbsp;import org.apache.http.impl.client.DefaultHttpClient;
+<i>8</i>&nbsp;import org.ei.telemedicine.util.HttpResponseUtil;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import java.io.IOException;
+<i>11</i>&nbsp;import java.io.InputStream;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;import static org.apache.http.HttpStatus.SC_OK;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;public class GZipEncodingHttpClient {
+<i>16</i>&nbsp;    private DefaultHttpClient httpClient;
+<i>17</i>&nbsp;
+<b class="nc"><i>18</i>&nbsp;    public GZipEncodingHttpClient(DefaultHttpClient httpClient) {</b>
+<b class="nc"><i>19</i>&nbsp;        this.httpClient = httpClient;</b>
+<b class="nc"><i>20</i>&nbsp;    }</b>
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    public InputStream fetchContent(HttpGet request) throws IOException {
+<b class="nc"><i>23</i>&nbsp;        if (!request.containsHeader(&quot;Accept-Encoding&quot;)) {</b>
+<b class="nc"><i>24</i>&nbsp;            request.addHeader(&quot;Accept-Encoding&quot;, &quot;gzip&quot;);</b>
+<i>25</i>&nbsp;        }
+<i>26</i>&nbsp;
+<b class="nc"><i>27</i>&nbsp;        HttpResponse response = httpClient.execute(request);</b>
+<b class="nc"><i>28</i>&nbsp;        if (response.getStatusLine().getStatusCode() != SC_OK) {</b>
+<b class="nc"><i>29</i>&nbsp;            throw new IOException(&quot;Invalid status code: &quot; + response.getStatusLine().getStatusCode());</b>
+<i>30</i>&nbsp;        }
+<i>31</i>&nbsp;
+<b class="nc"><i>32</i>&nbsp;        return HttpResponseUtil.getResponseStream(response);</b>
+<i>33</i>&nbsp;    }
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    public HttpResponse execute(HttpGet request) throws IOException {
+<b class="nc"><i>36</i>&nbsp;        return httpClient.execute(request);</b>
+<i>37</i>&nbsp;    }
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    public CredentialsProvider getCredentialsProvider() {
+<b class="nc"><i>40</i>&nbsp;        return httpClient.getCredentialsProvider();</b>
+<i>41</i>&nbsp;    }
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    public HttpResponse postContent(HttpPost request) throws IOException {
+<b class="nc"><i>44</i>&nbsp;        HttpResponse response = httpClient.execute(request);</b>
+<b class="nc"><i>45</i>&nbsp;        return response;</b>
+<i>46</i>&nbsp;    }
+<i>47</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

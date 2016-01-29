@@ -1,0 +1,151 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: NativeHomeActivityTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.view.activity</a> ]
+</div>
+
+<h1>Coverage Summary for Class: NativeHomeActivityTest (org.ei.telemedicine.test.view.activity)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">NativeHomeActivityTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    25%
+  </span>
+  <span class="absValue">
+    (2/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    11.1%
+  </span>
+  <span class="absValue">
+    (2/ 18)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.view.activity;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.R;
+<i>4</i>&nbsp;import org.ei.telemedicine.view.activity.NativeANCSmartRegisterActivity;
+<i>5</i>&nbsp;import org.ei.telemedicine.view.activity.NativeChildSmartRegisterActivity;
+<i>6</i>&nbsp;import org.ei.telemedicine.view.activity.NativeECSmartRegisterActivity;
+<i>7</i>&nbsp;import org.ei.telemedicine.view.activity.NativeFPSmartRegisterActivity;
+<i>8</i>&nbsp;import org.ei.telemedicine.view.activity.NativeHomeActivity;
+<i>9</i>&nbsp;import org.ei.telemedicine.view.activity.NativePNCSmartRegisterActivity;
+<i>10</i>&nbsp;import org.junit.Before;
+<i>11</i>&nbsp;import org.junit.Test;
+<i>12</i>&nbsp;import org.junit.runner.RunWith;
+<i>13</i>&nbsp;import org.robolectric.Robolectric;
+<i>14</i>&nbsp;import org.robolectric.RobolectricTestRunner;
+<i>15</i>&nbsp;import org.robolectric.shadows.ShadowActivity;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;import static org.junit.Assert.assertEquals;
+<i>18</i>&nbsp;import static org.robolectric.Shadows.shadowOf;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;@RunWith(RobolectricTestRunner.class)
+<b class="fc"><i>21</i>&nbsp;public class NativeHomeActivityTest {</b>
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    private NativeHomeActivity homeActivity;
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    @Before
+<i>26</i>&nbsp;    public void setup() {
+<b class="fc"><i>27</i>&nbsp;        homeActivity =  Robolectric.setupActivity(NativeHomeActivity.class);</b>
+<b class="nc"><i>28</i>&nbsp;    }</b>
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    @Test
+<i>31</i>&nbsp;    public void shouldLaunchEcRegisterOnPressingEcRegisterButton() {
+<b class="nc"><i>32</i>&nbsp;        verifyLaunchOfActivityOnPressingButton(R.id.btn_ec_register, NativeECSmartRegisterActivity.class);</b>
+<b class="nc"><i>33</i>&nbsp;    }</b>
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    @Test
+<i>36</i>&nbsp;    public void shouldLaunchAncRegisterOnPressingAncRegisterButton() {
+<b class="nc"><i>37</i>&nbsp;        verifyLaunchOfActivityOnPressingButton(R.id.btn_anc_register, NativeANCSmartRegisterActivity.class);</b>
+<b class="nc"><i>38</i>&nbsp;    }</b>
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;    @Test
+<i>41</i>&nbsp;    public void shouldLaunchPncRegisterOnPressingPncRegisterButton() {
+<b class="nc"><i>42</i>&nbsp;        verifyLaunchOfActivityOnPressingButton(R.id.btn_pnc_register, NativePNCSmartRegisterActivity.class);</b>
+<b class="nc"><i>43</i>&nbsp;    }</b>
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;    @Test
+<i>46</i>&nbsp;    public void shouldLaunchFpRegisterOnPressingFpRegisterButton() {
+<b class="nc"><i>47</i>&nbsp;        verifyLaunchOfActivityOnPressingButton(R.id.btn_fp_register, NativeFPSmartRegisterActivity.class);</b>
+<b class="nc"><i>48</i>&nbsp;    }</b>
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;    @Test
+<i>51</i>&nbsp;    public void shouldLaunchChildRegisterOnPressingChildRegisterButton() {
+<b class="nc"><i>52</i>&nbsp;        verifyLaunchOfActivityOnPressingButton(R.id.btn_child_register, NativeChildSmartRegisterActivity.class);</b>
+<i>53</i>&nbsp;
+<b class="nc"><i>54</i>&nbsp;    }</b>
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    public &lt;T&gt; void verifyLaunchOfActivityOnPressingButton(int buttonId, Class&lt;T&gt; clazz) {
+<b class="nc"><i>59</i>&nbsp;        ShadowActivity shadowHome = shadowOf(homeActivity);</b>
+<i>60</i>&nbsp;
+<b class="nc"><i>61</i>&nbsp;        homeActivity.findViewById(buttonId).performClick();</b>
+<i>62</i>&nbsp;
+<b class="nc"><i>63</i>&nbsp;        assertEquals(clazz.getName(),</b>
+<b class="nc"><i>64</i>&nbsp;                shadowHome.getNextStartedActivity().getComponent().getClassName());</b>
+<b class="nc"><i>65</i>&nbsp;    }</b>
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-20 13:39</div>
+</div>
+</body>
+</html>

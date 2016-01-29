@@ -1,0 +1,233 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Cache</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.util</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Cache (org.ei.telemedicine.util)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Cache</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    93.8%
+  </span>
+  <span class="absValue">
+    (15/ 16)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Cache$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (1/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    20%
+  </span>
+  <span class="absValue">
+    (1/ 5)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Cache$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (1/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    25%
+  </span>
+  <span class="absValue">
+    (1/ 4)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Cache$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (1/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    33.3%
+  </span>
+  <span class="absValue">
+    (1/ 3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Cache$4</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (1/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    25%
+  </span>
+  <span class="absValue">
+    (1/ 4)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    60%
+  </span>
+  <span class="absValue">
+    (6/ 10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    59.4%
+  </span>
+  <span class="absValue">
+    (19/ 32)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.util;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.domain.FetchStatus;
+<i>4</i>&nbsp;import org.ei.telemedicine.event.CapturedPhotoInformation;
+<i>5</i>&nbsp;import org.ei.telemedicine.event.Listener;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.util.HashMap;
+<i>8</i>&nbsp;import java.util.Map;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import static java.text.MessageFormat.format;
+<i>11</i>&nbsp;import static org.ei.telemedicine.domain.FetchStatus.fetched;
+<i>12</i>&nbsp;import static org.ei.telemedicine.event.Event.*;
+<i>13</i>&nbsp;import static org.ei.telemedicine.util.Log.logWarn;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;public class Cache&lt;T&gt; {
+<b class="fc"><i>16</i>&nbsp;    private Map&lt;String, T&gt; value = new HashMap&lt;String, T&gt;();</b>
+<i>17</i>&nbsp;    private final Listener&lt;String&gt; formSubmittedListener;
+<i>18</i>&nbsp;    private final Listener&lt;FetchStatus&gt; actionsFetchedListener;
+<i>19</i>&nbsp;    private final Listener&lt;CapturedPhotoInformation&gt; photoCapturedListener;
+<i>20</i>&nbsp;    private final Listener&lt;String&gt; actionHandledListener;
+<i>21</i>&nbsp;
+<b class="fc"><i>22</i>&nbsp;    public Cache() {</b>
+<b class="fc"><i>23</i>&nbsp;        actionsFetchedListener = new Listener&lt;FetchStatus&gt;() {</b>
+<i>24</i>&nbsp;            @Override
+<i>25</i>&nbsp;            public void onEvent(FetchStatus data) {
+<b class="nc"><i>26</i>&nbsp;                if (fetched.equals(data)) {</b>
+<b class="nc"><i>27</i>&nbsp;                    logWarn(&quot;List cache invalidated as new data was fetched from server.&quot;);</b>
+<b class="nc"><i>28</i>&nbsp;                    value.clear();</b>
+<i>29</i>&nbsp;                }
+<b class="nc"><i>30</i>&nbsp;            }</b>
+<i>31</i>&nbsp;        };
+<b class="fc"><i>32</i>&nbsp;        formSubmittedListener = new Listener&lt;String&gt;() {</b>
+<i>33</i>&nbsp;            @Override
+<i>34</i>&nbsp;            public void onEvent(String reason) {
+<b class="nc"><i>35</i>&nbsp;                logWarn(format(&quot;List cache invalidated: {0}.&quot;, reason));</b>
+<b class="nc"><i>36</i>&nbsp;                value.clear();</b>
+<b class="nc"><i>37</i>&nbsp;            }</b>
+<i>38</i>&nbsp;        };
+<b class="fc"><i>39</i>&nbsp;        photoCapturedListener = new Listener&lt;CapturedPhotoInformation&gt;() {</b>
+<i>40</i>&nbsp;            @Override
+<i>41</i>&nbsp;            public void onEvent(CapturedPhotoInformation data) {
+<b class="nc"><i>42</i>&nbsp;                value.clear();</b>
+<b class="nc"><i>43</i>&nbsp;            }</b>
+<i>44</i>&nbsp;        };
+<b class="fc"><i>45</i>&nbsp;        actionHandledListener = new Listener&lt;String&gt;() {</b>
+<i>46</i>&nbsp;            @Override
+<i>47</i>&nbsp;            public void onEvent(String data) {
+<b class="nc"><i>48</i>&nbsp;                logWarn(format(&quot;List cache invalidated as Action handled: {0}&quot;, data));</b>
+<b class="nc"><i>49</i>&nbsp;                value.clear();</b>
+<b class="nc"><i>50</i>&nbsp;            }</b>
+<i>51</i>&nbsp;        };
+<b class="fc"><i>52</i>&nbsp;        ON_DATA_FETCHED.addListener(actionsFetchedListener);</b>
+<b class="fc"><i>53</i>&nbsp;        FORM_SUBMITTED.addListener(formSubmittedListener);</b>
+<b class="fc"><i>54</i>&nbsp;        ON_PHOTO_CAPTURED.addListener(photoCapturedListener);</b>
+<b class="fc"><i>55</i>&nbsp;        ACTION_HANDLED.addListener(actionHandledListener);</b>
+<b class="fc"><i>56</i>&nbsp;    }</b>
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    public T get(String key, CacheableData&lt;T&gt; cacheableData) {
+<b class="fc"><i>59</i>&nbsp;        if (value.get(key) != null) {</b>
+<b class="nc"><i>60</i>&nbsp;            return value.get(key);</b>
+<i>61</i>&nbsp;        }
+<b class="fc"><i>62</i>&nbsp;        T fetchedData = cacheableData.fetch();</b>
+<b class="fc"><i>63</i>&nbsp;        value.put(key, fetchedData);</b>
+<b class="fc"><i>64</i>&nbsp;        return fetchedData;</b>
+<i>65</i>&nbsp;    }
+<i>66</i>&nbsp;}
+<i>67</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

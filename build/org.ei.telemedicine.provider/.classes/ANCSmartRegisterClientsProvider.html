@@ -1,0 +1,203 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ANCSmartRegisterClientsProvider</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.provider</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ANCSmartRegisterClientsProvider (org.ei.telemedicine.provider)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ANCSmartRegisterClientsProvider</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 38)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.provider;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import org.ei.telemedicine.R;
+<i>7</i>&nbsp;import org.ei.telemedicine.view.activity.SecuredActivity;
+<i>8</i>&nbsp;import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
+<i>9</i>&nbsp;import org.ei.telemedicine.view.contract.SmartRegisterClient;
+<i>10</i>&nbsp;import org.ei.telemedicine.view.contract.SmartRegisterClients;
+<i>11</i>&nbsp;import org.ei.telemedicine.view.controller.ANCSmartRegisterController;
+<i>12</i>&nbsp;import org.ei.telemedicine.view.dialog.FilterOption;
+<i>13</i>&nbsp;import org.ei.telemedicine.view.dialog.ServiceModeOption;
+<i>14</i>&nbsp;import org.ei.telemedicine.view.dialog.SortOption;
+<i>15</i>&nbsp;import org.ei.telemedicine.view.viewHolder.ECProfilePhotoLoader;
+<i>16</i>&nbsp;import org.ei.telemedicine.view.viewHolder.NativeANCSmartRegisterViewHolder;
+<i>17</i>&nbsp;import org.ei.telemedicine.view.viewHolder.OnClickFormLauncher;
+<i>18</i>&nbsp;import org.ei.telemedicine.view.viewHolder.ProfilePhotoLoader;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;import android.content.Context;
+<i>21</i>&nbsp;import android.view.LayoutInflater;
+<i>22</i>&nbsp;import android.view.View;
+<i>23</i>&nbsp;import android.view.ViewGroup;
+<i>24</i>&nbsp;import android.widget.AbsListView;
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;public class ANCSmartRegisterClientsProvider implements SmartRegisterClientsProvider {
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    private final LayoutInflater inflater;
+<i>29</i>&nbsp;    private final SecuredActivity activity;
+<i>30</i>&nbsp;    private final View.OnClickListener onClickListener;
+<i>31</i>&nbsp;    private final ProfilePhotoLoader photoLoader;
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    private final AbsListView.LayoutParams clientViewLayoutParams;
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    protected ANCSmartRegisterController controller;
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    private ServiceModeOption currentServiceModeOption;
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    public ANCSmartRegisterClientsProvider(SecuredActivity activity,
+<i>40</i>&nbsp;                                           View.OnClickListener onClickListener,
+<b class="nc"><i>41</i>&nbsp;                                           ANCSmartRegisterController controller) {</b>
+<b class="nc"><i>42</i>&nbsp;        this.onClickListener = onClickListener;</b>
+<b class="nc"><i>43</i>&nbsp;        this.controller = controller;</b>
+<b class="nc"><i>44</i>&nbsp;        this.activity = activity;</b>
+<b class="nc"><i>45</i>&nbsp;        this.inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);</b>
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;
+<b class="nc"><i>48</i>&nbsp;        photoLoader = new ECProfilePhotoLoader(activity.getResources(),</b>
+<b class="nc"><i>49</i>&nbsp;                activity.getResources().getDrawable(R.drawable.woman_placeholder));</b>
+<i>50</i>&nbsp;
+<b class="nc"><i>51</i>&nbsp;        clientViewLayoutParams = new AbsListView.LayoutParams(MATCH_PARENT,</b>
+<b class="nc"><i>52</i>&nbsp;                (int) activity.getResources().getDimension(R.dimen.list_item_height));</b>
+<b class="nc"><i>53</i>&nbsp;    }</b>
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;    @Override
+<i>56</i>&nbsp;    public View getView(SmartRegisterClient smartRegisterClient, View convertView, ViewGroup viewGroup) {
+<i>57</i>&nbsp;        ViewGroup itemView;
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;        NativeANCSmartRegisterViewHolder viewHolder;
+<b class="nc"><i>60</i>&nbsp;        if (convertView == null) {</b>
+<b class="nc"><i>61</i>&nbsp;            itemView = (ViewGroup) inflater().inflate(R.layout.smart_register_anc_client, null);</b>
+<b class="nc"><i>62</i>&nbsp;            viewHolder = new NativeANCSmartRegisterViewHolder(itemView);</b>
+<b class="nc"><i>63</i>&nbsp;            itemView.setTag(viewHolder);</b>
+<i>64</i>&nbsp;        } else {
+<b class="nc"><i>65</i>&nbsp;            itemView = (ViewGroup) convertView;</b>
+<b class="nc"><i>66</i>&nbsp;            viewHolder = (NativeANCSmartRegisterViewHolder) itemView.getTag();</b>
+<i>67</i>&nbsp;        }
+<i>68</i>&nbsp;
+<b class="nc"><i>69</i>&nbsp;        ANCSmartRegisterClient client = (ANCSmartRegisterClient) smartRegisterClient;</b>
+<b class="nc"><i>70</i>&nbsp;        setupClientProfileView(client, viewHolder);</b>
+<b class="nc"><i>71</i>&nbsp;        setupClientIdDetailsView(viewHolder, client);</b>
+<b class="nc"><i>72</i>&nbsp;        setupANCStatusView(viewHolder, client);</b>
+<i>73</i>&nbsp;
+<b class="nc"><i>74</i>&nbsp;        viewHolder.hideAllServiceModeOptions();</b>
+<b class="nc"><i>75</i>&nbsp;        currentServiceModeOption.setupListView(client, viewHolder, onClickListener);</b>
+<i>76</i>&nbsp;
+<b class="nc"><i>77</i>&nbsp;        itemView.setLayoutParams(clientViewLayoutParams);</b>
+<b class="nc"><i>78</i>&nbsp;        return itemView;</b>
+<i>79</i>&nbsp;    }
+<i>80</i>&nbsp;
+<i>81</i>&nbsp;    private void setupANCStatusView(NativeANCSmartRegisterViewHolder viewHolder, ANCSmartRegisterClient client) {
+<b class="nc"><i>82</i>&nbsp;        viewHolder.ancStatusView().bindData(client);</b>
+<b class="nc"><i>83</i>&nbsp;    }</b>
+<i>84</i>&nbsp;
+<i>85</i>&nbsp;    private void setupClientIdDetailsView(NativeANCSmartRegisterViewHolder viewHolder, ANCSmartRegisterClient client) {
+<b class="nc"><i>86</i>&nbsp;        viewHolder.ancClientIdDetailsView().bindData(client);</b>
+<b class="nc"><i>87</i>&nbsp;    }</b>
+<i>88</i>&nbsp;
+<i>89</i>&nbsp;    private void setupClientProfileView(SmartRegisterClient client, NativeANCSmartRegisterViewHolder viewHolder) {
+<b class="nc"><i>90</i>&nbsp;        viewHolder.profileInfoLayout().bindData(client, photoLoader);</b>
+<b class="nc"><i>91</i>&nbsp;        viewHolder.profileInfoLayout().setOnClickListener(onClickListener);</b>
+<b class="nc"><i>92</i>&nbsp;        viewHolder.profileInfoLayout().setTag(client);</b>
+<b class="nc"><i>93</i>&nbsp;    }</b>
+<i>94</i>&nbsp;
+<i>95</i>&nbsp;    @Override
+<i>96</i>&nbsp;    public SmartRegisterClients getClients() {
+<b class="nc"><i>97</i>&nbsp;        return controller.getClients();</b>
+<i>98</i>&nbsp;    }
+<i>99</i>&nbsp;
+<i>100</i>&nbsp;    @Override
+<i>101</i>&nbsp;    public SmartRegisterClients updateClients(FilterOption villageFilter, ServiceModeOption serviceModeOption,
+<i>102</i>&nbsp;                                              FilterOption searchFilter, SortOption sortOption) {
+<b class="nc"><i>103</i>&nbsp;        return getClients().applyFilter(villageFilter, serviceModeOption, searchFilter, sortOption);</b>
+<i>104</i>&nbsp;    }
+<i>105</i>&nbsp;
+<i>106</i>&nbsp;    @Override
+<i>107</i>&nbsp;    public void onServiceModeSelected(ServiceModeOption serviceModeOption) {
+<b class="nc"><i>108</i>&nbsp;        currentServiceModeOption = serviceModeOption;</b>
+<b class="nc"><i>109</i>&nbsp;    }</b>
+<i>110</i>&nbsp;
+<i>111</i>&nbsp;    public LayoutInflater inflater() {
+<b class="nc"><i>112</i>&nbsp;        return inflater;</b>
+<i>113</i>&nbsp;    }
+<i>114</i>&nbsp;
+<i>115</i>&nbsp;    @Override
+<i>116</i>&nbsp;    public OnClickFormLauncher newFormLauncher(String formName, String entityId, String metaData) {
+<b class="nc"><i>117</i>&nbsp;        return new OnClickFormLauncher(activity, formName, entityId, metaData);</b>
+<i>118</i>&nbsp;    }
+<i>119</i>&nbsp;
+<i>120</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

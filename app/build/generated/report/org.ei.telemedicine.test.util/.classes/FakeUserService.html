@@ -1,0 +1,184 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: FakeUserService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.util</a> ]
+</div>
+
+<h1>Coverage Summary for Class: FakeUserService (org.ei.telemedicine.test.util)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FakeUserService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    15.4%
+  </span>
+  <span class="absValue">
+    (2/ 13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    16.7%
+  </span>
+  <span class="absValue">
+    (7/ 42)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.util;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;
+<i>4</i>&nbsp;import org.ei.telemedicine.domain.LoginResponse;
+<i>5</i>&nbsp;import org.ei.telemedicine.service.UserService;
+<i>6</i>&nbsp;import org.ei.telemedicine.util.Session;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import java.util.ArrayList;
+<i>9</i>&nbsp;import java.util.List;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import static java.util.Arrays.asList;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;public class FakeUserService extends UserService {
+<i>14</i>&nbsp;    private boolean shouldSucceedLocalLogin;
+<i>15</i>&nbsp;    private LoginResponse shouldSucceedRemoteLogin;
+<b class="fc"><i>16</i>&nbsp;    private String expectedUserName = &quot;&quot;;</b>
+<b class="fc"><i>17</i>&nbsp;    private String expectedPassword = &quot;&quot;;</b>
+<b class="fc"><i>18</i>&nbsp;    private List&lt;String&gt; actualCalls = new ArrayList&lt;String&gt;();</b>
+<i>19</i>&nbsp;    private boolean hasARegisteredUser;
+<i>20</i>&nbsp;    private Session session;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    public FakeUserService() {
+<b class="fc"><i>23</i>&nbsp;        super(null, null, null, null, null, null, null);</b>
+<b class="fc"><i>24</i>&nbsp;    }</b>
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    @Override
+<i>27</i>&nbsp;    public boolean isValidLocalLogin(String userName, String password) {
+<b class="nc"><i>28</i>&nbsp;        assertExpectedCredentials(userName, password);</b>
+<b class="nc"><i>29</i>&nbsp;        actualCalls.add(&quot;local&quot;);</b>
+<b class="nc"><i>30</i>&nbsp;        return shouldSucceedLocalLogin;</b>
+<i>31</i>&nbsp;    }
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    @Override
+<i>34</i>&nbsp;    public LoginResponse isValidRemoteLogin(String userName, String password) {
+<b class="nc"><i>35</i>&nbsp;        assertExpectedCredentials(userName, password);</b>
+<b class="nc"><i>36</i>&nbsp;        actualCalls.add(&quot;remote&quot;);</b>
+<b class="nc"><i>37</i>&nbsp;        return shouldSucceedRemoteLogin;</b>
+<i>38</i>&nbsp;    }
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;    @Override
+<i>41</i>&nbsp;    public void localLogin(String userName, String password) {
+<b class="nc"><i>42</i>&nbsp;        super.setupContextForLogin(userName, password);</b>
+<b class="nc"><i>43</i>&nbsp;        actualCalls.add(&quot;login&quot;);</b>
+<b class="nc"><i>44</i>&nbsp;        assertExpectedCredentials(userName, password);</b>
+<b class="nc"><i>45</i>&nbsp;    }</b>
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    public void remoteLogin(String userName, String password, String anmLocation) {
+<b class="nc"><i>49</i>&nbsp;        super.setupContextForLogin(userName, password);</b>
+<b class="nc"><i>50</i>&nbsp;        actualCalls.add(&quot;login&quot;);</b>
+<b class="nc"><i>51</i>&nbsp;        assertExpectedCredentials(userName, password);</b>
+<b class="nc"><i>52</i>&nbsp;    }</b>
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;    @Override
+<i>55</i>&nbsp;    public boolean hasARegisteredUser() {
+<b class="nc"><i>56</i>&nbsp;        return hasARegisteredUser;</b>
+<i>57</i>&nbsp;    }
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;    @Override
+<i>60</i>&nbsp;    public void logout() {
+<b class="nc"><i>61</i>&nbsp;        super.logoutSession();</b>
+<b class="nc"><i>62</i>&nbsp;        actualCalls.add(&quot;logout&quot;);</b>
+<b class="nc"><i>63</i>&nbsp;    }</b>
+<i>64</i>&nbsp;
+<i>65</i>&nbsp;    @Override
+<i>66</i>&nbsp;    public void logoutSession() {
+<b class="nc"><i>67</i>&nbsp;        super.logoutSession();</b>
+<b class="nc"><i>68</i>&nbsp;    }</b>
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;    private void assertExpectedCredentials(String userName, String password) {
+<b class="nc"><i>71</i>&nbsp;        if (!expectedUserName.equals(userName)) {</b>
+<b class="nc"><i>72</i>&nbsp;            throw new RuntimeException(&quot;Expected user: &quot; + expectedUserName + &quot;. Actual: &quot; + userName);</b>
+<i>73</i>&nbsp;        }
+<b class="nc"><i>74</i>&nbsp;        if (!expectedPassword.equals(password)) {</b>
+<b class="nc"><i>75</i>&nbsp;            throw new RuntimeException(&quot;Expected user: &quot; + expectedUserName + &quot;. Actual: &quot; + password);</b>
+<i>76</i>&nbsp;        }
+<b class="nc"><i>77</i>&nbsp;    }</b>
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    public void setupFor(String userName, String password, boolean hasARegisteredUser, boolean shouldSucceedLocalLogin, LoginResponse shouldSucceedRemoteLogin) {
+<b class="nc"><i>80</i>&nbsp;        this.expectedUserName = userName;</b>
+<b class="nc"><i>81</i>&nbsp;        this.expectedPassword = password;</b>
+<b class="nc"><i>82</i>&nbsp;        this.hasARegisteredUser = hasARegisteredUser;</b>
+<b class="nc"><i>83</i>&nbsp;        this.shouldSucceedLocalLogin = shouldSucceedLocalLogin;</b>
+<b class="nc"><i>84</i>&nbsp;        this.shouldSucceedRemoteLogin = shouldSucceedRemoteLogin;</b>
+<b class="nc"><i>85</i>&nbsp;    }</b>
+<i>86</i>&nbsp;
+<i>87</i>&nbsp;    public void assertOrderOfCalls(String... calls) {
+<b class="nc"><i>88</i>&nbsp;        if (!actualCalls.equals(asList(calls))) {</b>
+<b class="nc"><i>89</i>&nbsp;            throw new RuntimeException(&quot;Expected calls: &quot; + asList(calls) + &quot;. Actual: &quot; + actualCalls);</b>
+<i>90</i>&nbsp;        }
+<b class="nc"><i>91</i>&nbsp;    }</b>
+<i>92</i>&nbsp;
+<i>93</i>&nbsp;    public void setSession(Session session) {
+<b class="fc"><i>94</i>&nbsp;        this.session = session;</b>
+<b class="fc"><i>95</i>&nbsp;    }</b>
+<i>96</i>&nbsp;
+<i>97</i>&nbsp;    @Override
+<i>98</i>&nbsp;    protected Session session() {
+<b class="nc"><i>99</i>&nbsp;        return session;</b>
+<i>100</i>&nbsp;    }
+<i>101</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-26 16:42</div>
+</div>
+</body>
+</html>

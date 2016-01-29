@@ -1,0 +1,264 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ReportsInfoActivity</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.activity</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ReportsInfoActivity (org.ei.telemedicine.view.activity)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ReportsInfoActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 40)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ReportsInfoActivity$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 13)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ReportsInfoActivity$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 17)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 70)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.activity;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.app.Activity;
+<i>4</i>&nbsp;import android.app.ProgressDialog;
+<i>5</i>&nbsp;import android.os.AsyncTask;
+<i>6</i>&nbsp;import android.os.Bundle;
+<i>7</i>&nbsp;import android.util.Log;
+<i>8</i>&nbsp;import android.widget.ListView;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import org.ei.telemedicine.AllConstants;
+<i>11</i>&nbsp;import org.ei.telemedicine.Context;
+<i>12</i>&nbsp;import org.ei.telemedicine.R;
+<i>13</i>&nbsp;import org.ei.telemedicine.adapter.ReportsInfoAdapter;
+<i>14</i>&nbsp;import org.ei.telemedicine.domain.ReportInfo;
+<i>15</i>&nbsp;import org.ei.telemedicine.event.Listener;
+<i>16</i>&nbsp;import org.ei.telemedicine.view.customControls.CustomFontTextView;
+<i>17</i>&nbsp;import org.json.JSONArray;
+<i>18</i>&nbsp;import org.json.JSONException;
+<i>19</i>&nbsp;import org.json.JSONObject;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;import java.util.ArrayList;
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;/**
+<i>24</i>&nbsp; * Created by naveen on 1/6/16.
+<i>25</i>&nbsp; */
+<b class="nc"><i>26</i>&nbsp;public class ReportsInfoActivity extends Activity {</b>
+<i>27</i>&nbsp;    org.ei.telemedicine.view.customControls.CustomFontTextView tv_heading;
+<i>28</i>&nbsp;    ListView lv_services;
+<i>29</i>&nbsp;    String service;
+<i>30</i>&nbsp;    ProgressDialog progressDialog;
+<i>31</i>&nbsp;    ArrayList&lt;ReportInfo&gt; reports;
+<i>32</i>&nbsp;    ReportsInfoAdapter infoAdapter;
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    @Override
+<i>35</i>&nbsp;    protected void onCreate(Bundle savedInstanceState) {
+<b class="nc"><i>36</i>&nbsp;        super.onCreate(savedInstanceState);</b>
+<b class="nc"><i>37</i>&nbsp;        setContentView(R.layout.reports);</b>
+<b class="nc"><i>38</i>&nbsp;        tv_heading = (CustomFontTextView) findViewById(R.id.tv_heading);</b>
+<b class="nc"><i>39</i>&nbsp;        reports = new ArrayList&lt;ReportInfo&gt;();</b>
+<b class="nc"><i>40</i>&nbsp;        lv_services = (ListView) findViewById(R.id.lv_services);</b>
+<b class="nc"><i>41</i>&nbsp;        infoAdapter = new ReportsInfoAdapter(ReportsInfoActivity.this, reports);</b>
+<b class="nc"><i>42</i>&nbsp;        lv_services.setAdapter(infoAdapter);</b>
+<b class="nc"><i>43</i>&nbsp;        if (getIntent().getExtras() != null) {</b>
+<b class="nc"><i>44</i>&nbsp;            service = getIntent().getExtras().getString(&quot;service&quot;);</b>
+<b class="nc"><i>45</i>&nbsp;            tv_heading.setText(service);</b>
+<b class="nc"><i>46</i>&nbsp;            reports.clear();</b>
+<b class="nc"><i>47</i>&nbsp;            switch (service) {</b>
+<i>48</i>&nbsp;                case AllConstants.Reports.FP_SERVICES:
+<b class="nc"><i>49</i>&nbsp;                    reports = getReports(&quot;fp&quot;);</b>
+<i>50</i>&nbsp;//                    reports.add(new ReportInfo(&quot;Sample&quot;, &quot;12&quot;, &quot;34&quot;, &quot;234&quot;));
+<b class="nc"><i>51</i>&nbsp;                    infoAdapter.notifyDataSetChanged();</b>
+<b class="nc"><i>52</i>&nbsp;                    break;</b>
+<i>53</i>&nbsp;                case AllConstants.Reports.ANC_SERVICES:
+<b class="nc"><i>54</i>&nbsp;                    reports = getReports(&quot;anc&quot;);</b>
+<b class="nc"><i>55</i>&nbsp;                    infoAdapter.notifyDataSetChanged();</b>
+<b class="nc"><i>56</i>&nbsp;                    break;</b>
+<i>57</i>&nbsp;                case AllConstants.Reports.PREGNANCY:
+<b class="nc"><i>58</i>&nbsp;                    reports = getReports(&quot;pregnancy&quot;);</b>
+<b class="nc"><i>59</i>&nbsp;                    infoAdapter.notifyDataSetChanged();</b>
+<b class="nc"><i>60</i>&nbsp;                    break;</b>
+<i>61</i>&nbsp;                case AllConstants.Reports.PNC_SERVICES:
+<b class="nc"><i>62</i>&nbsp;                    reports = getReports(&quot;pnc&quot;);</b>
+<b class="nc"><i>63</i>&nbsp;                    infoAdapter.notifyDataSetChanged();</b>
+<b class="nc"><i>64</i>&nbsp;                    break;</b>
+<i>65</i>&nbsp;                case AllConstants.Reports.CHILD_SERVICES:
+<b class="nc"><i>66</i>&nbsp;                    reports = getReports(&quot;child&quot;);</b>
+<b class="nc"><i>67</i>&nbsp;                    infoAdapter.notifyDataSetChanged();</b>
+<b class="nc"><i>68</i>&nbsp;                    break;</b>
+<i>69</i>&nbsp;                case AllConstants.Reports.MORTALITY:
+<b class="nc"><i>70</i>&nbsp;                    reports = getReports(&quot;mortality&quot;);</b>
+<b class="nc"><i>71</i>&nbsp;                    infoAdapter.notifyDataSetChanged();</b>
+<i>72</i>&nbsp;                    break;
+<i>73</i>&nbsp;
+<i>74</i>&nbsp;            }
+<i>75</i>&nbsp;        }
+<b class="nc"><i>76</i>&nbsp;    }</b>
+<i>77</i>&nbsp;
+<i>78</i>&nbsp;    private ArrayList&lt;ReportInfo&gt; getReports(final String serviceType) {
+<b class="nc"><i>79</i>&nbsp;        final ArrayList&lt;ReportInfo&gt; reports = new ArrayList&lt;ReportInfo&gt;();</b>
+<b class="nc"><i>80</i>&nbsp;        String reporingUrl = String.format(AllConstants.REPORTS_URL, serviceType, Context.getInstance().allSharedPreferences().fetchRegisteredANM());</b>
+<i>81</i>&nbsp;//        String reporingUrl = &quot;http://10.10.11.6:8000/reporting/?activity=fp&amp;anmid=anm333&quot;;
+<b class="nc"><i>82</i>&nbsp;        getData(reporingUrl, new Listener&lt;String&gt;() {</b>
+<i>83</i>&nbsp;            @Override
+<i>84</i>&nbsp;            public void onEvent(String data) {
+<b class="nc"><i>85</i>&nbsp;                reports.clear();</b>
+<b class="nc"><i>86</i>&nbsp;                if (data != null) {</b>
+<i>87</i>&nbsp;                    try {
+<b class="nc"><i>88</i>&nbsp;                        Log.e(&quot;Dat&quot;, data);</b>
+<b class="nc"><i>89</i>&nbsp;                        JSONArray reportsArray = new JSONArray(data);</b>
+<b class="nc"><i>90</i>&nbsp;                        for (int i = 0; i &lt; reportsArray.length(); i++) {</b>
+<b class="nc"><i>91</i>&nbsp;                            JSONObject jsonObject = reportsArray.getJSONObject(i);</b>
+<b class="nc"><i>92</i>&nbsp;                            reports.add(new ReportInfo(jsonObject.getString(&quot;name&quot;), jsonObject.getString(&quot;annual_target&quot;), jsonObject.getString(&quot;month&quot;), jsonObject.getString(&quot;year&quot;)));</b>
+<i>93</i>&nbsp;                        }
+<b class="nc"><i>94</i>&nbsp;                        lv_services.setAdapter(new ReportsInfoAdapter(ReportsInfoActivity.this, reports));</b>
+<b class="nc"><i>95</i>&nbsp;                    } catch (JSONException e) {</b>
+<b class="nc"><i>96</i>&nbsp;                        e.printStackTrace();</b>
+<b class="nc"><i>97</i>&nbsp;                    }</b>
+<i>98</i>&nbsp;                }
+<b class="nc"><i>99</i>&nbsp;            }</b>
+<i>100</i>&nbsp;        });
+<b class="nc"><i>101</i>&nbsp;        Log.e(&quot;Data&quot;, reports.size() + &quot;&quot;);</b>
+<b class="nc"><i>102</i>&nbsp;        infoAdapter.notifyDataSetChanged();</b>
+<b class="nc"><i>103</i>&nbsp;        return reports;</b>
+<i>104</i>&nbsp;    }
+<i>105</i>&nbsp;
+<i>106</i>&nbsp;    private void getData(final String url, final Listener&lt;String&gt; afterResult) {
+<b class="nc"><i>107</i>&nbsp;        new AsyncTask&lt;Void, Void, String&gt;() {</b>
+<i>108</i>&nbsp;
+<i>109</i>&nbsp;            @Override
+<i>110</i>&nbsp;            protected String doInBackground(Void... params) {
+<b class="nc"><i>111</i>&nbsp;                Context context = Context.getInstance();</b>
+<b class="nc"><i>112</i>&nbsp;                String callingUrl = context.configuration().dristhiDjangoBaseURL() + url;</b>
+<b class="nc"><i>113</i>&nbsp;                Log.e(&quot;URL&quot;, callingUrl);</b>
+<b class="nc"><i>114</i>&nbsp;                String result = context.userService().gettingFromRemoteURL(callingUrl);</b>
+<b class="nc"><i>115</i>&nbsp;                return result;</b>
+<i>116</i>&nbsp;            }
+<i>117</i>&nbsp;
+<i>118</i>&nbsp;            @Override
+<i>119</i>&nbsp;            protected void onPreExecute() {
+<b class="nc"><i>120</i>&nbsp;                super.onPreExecute();</b>
+<b class="nc"><i>121</i>&nbsp;                progressDialog = new ProgressDialog(ReportsInfoActivity.this);</b>
+<b class="nc"><i>122</i>&nbsp;                progressDialog.setCancelable(false);</b>
+<b class="nc"><i>123</i>&nbsp;                progressDialog.setMessage(getString(R.string.dialog_message));</b>
+<b class="nc"><i>124</i>&nbsp;                progressDialog.show();</b>
+<b class="nc"><i>125</i>&nbsp;            }</b>
+<i>126</i>&nbsp;
+<i>127</i>&nbsp;            @Override
+<i>128</i>&nbsp;            protected void onPostExecute(String resultData) {
+<b class="nc"><i>129</i>&nbsp;                super.onPostExecute(resultData);</b>
+<b class="nc"><i>130</i>&nbsp;                if (progressDialog.isShowing())</b>
+<b class="nc"><i>131</i>&nbsp;                    progressDialog.hide();</b>
+<b class="nc"><i>132</i>&nbsp;                afterResult.onEvent(resultData);</b>
+<b class="nc"><i>133</i>&nbsp;            }</b>
+<b class="nc"><i>134</i>&nbsp;        }.execute();</b>
+<b class="nc"><i>135</i>&nbsp;    }</b>
+<i>136</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

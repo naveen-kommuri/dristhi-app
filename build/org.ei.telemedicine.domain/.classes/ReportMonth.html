@@ -1,0 +1,175 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ReportMonth</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.domain</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ReportMonth (org.ei.telemedicine.domain)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ReportMonth</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 30)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.domain;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.util.DateUtil;
+<i>4</i>&nbsp;import org.joda.time.LocalDate;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import java.util.Date;
+<i>7</i>&nbsp;
+<b class="nc"><i>8</i>&nbsp;public class ReportMonth {</b>
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;    public static final int FIRST_REPORT_MONTH_OF_YEAR = 3;
+<i>11</i>&nbsp;    public static final int REPORTING_MONTH_START_DAY = 26;
+<i>12</i>&nbsp;    public static final int REPORTING_MONTH_END_DAY = 25;
+<i>13</i>&nbsp;    private static final int JANUARY = 1;
+<i>14</i>&nbsp;    private static final int DECEMBER = 12;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    public Date startDateOfReportingYear() {
+<b class="nc"><i>17</i>&nbsp;        int reportingYear = reportingYear();</b>
+<b class="nc"><i>18</i>&nbsp;        return new LocalDate().withDayOfMonth(REPORTING_MONTH_START_DAY).withMonthOfYear(FIRST_REPORT_MONTH_OF_YEAR).withYear(reportingYear).toDate();</b>
+<i>19</i>&nbsp;    }
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    public int reportingYear() {
+<b class="nc"><i>22</i>&nbsp;        LocalDate now = DateUtil.today();</b>
+<b class="nc"><i>23</i>&nbsp;        LocalDate beginningOfReportingYear = DateUtil.today().withMonthOfYear(FIRST_REPORT_MONTH_OF_YEAR).withDayOfMonth(REPORTING_MONTH_START_DAY);</b>
+<b class="nc"><i>24</i>&nbsp;        return now.isBefore(beginningOfReportingYear) ? previousYear(now) : now.getYear();</b>
+<i>25</i>&nbsp;    }
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    public LocalDate startDateOfNextReportingMonth(LocalDate date) {
+<b class="nc"><i>28</i>&nbsp;        if (date.getDayOfMonth() &lt; REPORTING_MONTH_START_DAY) {</b>
+<b class="nc"><i>29</i>&nbsp;            return new LocalDate(date.getYear(), date.getMonthOfYear(), REPORTING_MONTH_START_DAY);</b>
+<i>30</i>&nbsp;        }
+<b class="nc"><i>31</i>&nbsp;        if (date.getMonthOfYear() == DECEMBER) {</b>
+<b class="nc"><i>32</i>&nbsp;            return new LocalDate(date.plusYears(1).getYear(), JANUARY, REPORTING_MONTH_START_DAY);</b>
+<i>33</i>&nbsp;        }
+<b class="nc"><i>34</i>&nbsp;        return new LocalDate(date.getYear(), date.plusMonths(1).getMonthOfYear(), REPORTING_MONTH_START_DAY);</b>
+<i>35</i>&nbsp;    }
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    public LocalDate endDateOfReportingMonthGivenStartDate(LocalDate startDate) {
+<b class="nc"><i>38</i>&nbsp;        return startDate.plusMonths(1).minusDays(1);</b>
+<i>39</i>&nbsp;    }
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;    public LocalDate startOfCurrentReportMonth(LocalDate date) {
+<b class="nc"><i>42</i>&nbsp;        if (date.getDayOfMonth() &gt;= REPORTING_MONTH_START_DAY) {</b>
+<b class="nc"><i>43</i>&nbsp;            return new LocalDate(date.getYear(), date.getMonthOfYear(), REPORTING_MONTH_START_DAY);</b>
+<i>44</i>&nbsp;        }
+<b class="nc"><i>45</i>&nbsp;        if (date.getMonthOfYear() == JANUARY) {</b>
+<b class="nc"><i>46</i>&nbsp;            return new LocalDate(previousYear(date), DECEMBER, REPORTING_MONTH_START_DAY);</b>
+<i>47</i>&nbsp;        }
+<b class="nc"><i>48</i>&nbsp;        return new LocalDate(date.getYear(), previousMonth(date), REPORTING_MONTH_START_DAY);</b>
+<i>49</i>&nbsp;    }
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;    public LocalDate endOfCurrentReportMonth(LocalDate date) {
+<b class="nc"><i>52</i>&nbsp;        if (date.getDayOfMonth() &gt; REPORTING_MONTH_END_DAY) {</b>
+<b class="nc"><i>53</i>&nbsp;            if (date.getMonthOfYear() == DECEMBER) {</b>
+<b class="nc"><i>54</i>&nbsp;                return new LocalDate(nextYear(date), JANUARY, REPORTING_MONTH_END_DAY);</b>
+<i>55</i>&nbsp;            } else {
+<b class="nc"><i>56</i>&nbsp;                return new LocalDate(date.getYear(), nextMonth(date), REPORTING_MONTH_END_DAY);</b>
+<i>57</i>&nbsp;            }
+<i>58</i>&nbsp;        } else {
+<b class="nc"><i>59</i>&nbsp;            return new LocalDate(date.getYear(), date.getMonthOfYear(), REPORTING_MONTH_END_DAY);</b>
+<i>60</i>&nbsp;        }
+<i>61</i>&nbsp;    }
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    public boolean isDateWithinCurrentReportMonth(LocalDate lastReportedDate) {
+<b class="nc"><i>64</i>&nbsp;        return !(lastReportedDate.isBefore(startOfCurrentReportMonth(DateUtil.today())) ||</b>
+<b class="nc"><i>65</i>&nbsp;                lastReportedDate.isAfter(endOfCurrentReportMonth(DateUtil.today())));</b>
+<i>66</i>&nbsp;    }
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;    private int previousMonth(LocalDate today) {
+<b class="nc"><i>69</i>&nbsp;        return today.getMonthOfYear() - 1;</b>
+<i>70</i>&nbsp;    }
+<i>71</i>&nbsp;
+<i>72</i>&nbsp;    private int nextMonth(LocalDate today) {
+<b class="nc"><i>73</i>&nbsp;        return today.getMonthOfYear() + 1;</b>
+<i>74</i>&nbsp;    }
+<i>75</i>&nbsp;
+<i>76</i>&nbsp;    private int previousYear(LocalDate today) {
+<b class="nc"><i>77</i>&nbsp;        return today.getYear() - 1;</b>
+<i>78</i>&nbsp;    }
+<i>79</i>&nbsp;
+<i>80</i>&nbsp;    private int nextYear(LocalDate today) {
+<b class="nc"><i>81</i>&nbsp;        return today.getYear() + 1;</b>
+<i>82</i>&nbsp;    }
+<i>83</i>&nbsp;
+<i>84</i>&nbsp;    public int reportingMonth(LocalDate date) {
+<b class="nc"><i>85</i>&nbsp;        return endOfCurrentReportMonth(date).getMonthOfYear();</b>
+<i>86</i>&nbsp;    }
+<i>87</i>&nbsp;
+<i>88</i>&nbsp;    public int reportingYear(LocalDate date) {
+<b class="nc"><i>89</i>&nbsp;        return endOfCurrentReportMonth(date).getYear();</b>
+<i>90</i>&nbsp;    }
+<i>91</i>&nbsp;}
+<i>92</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

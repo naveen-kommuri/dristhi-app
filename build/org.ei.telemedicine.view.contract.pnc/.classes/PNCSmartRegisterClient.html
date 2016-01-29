@@ -1,0 +1,173 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: PNCSmartRegisterClient</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.contract.pnc</a> ]
+</div>
+
+<h1>Coverage Summary for Class: PNCSmartRegisterClient (org.ei.telemedicine.view.contract.pnc)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PNCSmartRegisterClient</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">PNCSmartRegisterClient$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.contract.pnc;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;
+<i>4</i>&nbsp;import org.ei.telemedicine.domain.ANCServiceType;
+<i>5</i>&nbsp;import org.ei.telemedicine.view.contract.*;
+<i>6</i>&nbsp;import org.joda.time.LocalDate;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import java.util.Comparator;
+<i>9</i>&nbsp;import java.util.List;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;public interface PNCSmartRegisterClient extends BaseFPSmartRegisterClient {
+<i>12</i>&nbsp;
+<b class="nc"><i>13</i>&nbsp;    Comparator&lt;SmartRegisterClient&gt; DATE_OF_DELIVERY_COMPARATOR = new Comparator&lt;SmartRegisterClient&gt;() {</b>
+<i>14</i>&nbsp;        @Override
+<i>15</i>&nbsp;        public int compare(SmartRegisterClient lhs, SmartRegisterClient rhs) {
+<b class="nc"><i>16</i>&nbsp;            return ((PNCSmartRegisterClient) rhs).deliveryDate().compareTo(((PNCSmartRegisterClient) lhs).deliveryDate());</b>
+<i>17</i>&nbsp;        }
+<i>18</i>&nbsp;    };
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;//    public String thayiNumber();
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    public String pncNumber();
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    public String deliveryDateForDisplay();
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    public String deliveryShortDate();
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    public LocalDate deliveryDate();
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    public String deliveryPlace();
+<i>31</i>&nbsp;
+<i>32</i>&nbsp;    public String deliveryType();
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    public String deliveryComplications();
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;    public String womanDOB();
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    public List&lt;ChildClient&gt; children();
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;    public List&lt;PNCCircleDatum&gt; pncCircleData();
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    public List&lt;PNCStatusDatum&gt; pncStatusData();
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;    public PNCStatusColor pncVisitStatusColor();
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    public List&lt;PNCTickDatum&gt; pncTickData();
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    public List&lt;PNCLineDatum&gt; pncLineData();
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;    public List&lt;PNCVisitDaysDatum&gt; visitDaysData();
+<i>51</i>&nbsp;
+<i>52</i>&nbsp;    public PNCFirstSevenDaysVisits firstSevenDaysVisits();
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;    public List&lt;ServiceProvidedDTO&gt; recentlyProvidedServices();
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;    boolean isVisitsDone();
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    public String visitDoneDateWithVisitName();
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;    public AlertDTO getAlert(ANCServiceType serviceType);
+<i>61</i>&nbsp;
+<i>62</i>&nbsp;    public String pncComplications();
+<i>63</i>&nbsp;}
+<i>64</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

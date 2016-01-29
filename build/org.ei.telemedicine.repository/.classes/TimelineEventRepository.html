@@ -1,0 +1,158 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: TimelineEventRepository</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.repository</a> ]
+</div>
+
+<h1>Coverage Summary for Class: TimelineEventRepository (org.ei.telemedicine.repository)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TimelineEventRepository</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    12.5%
+  </span>
+  <span class="absValue">
+    (1/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    3.2%
+  </span>
+  <span class="absValue">
+    (1/ 31)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.repository;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.content.ContentValues;
+<i>4</i>&nbsp;import android.database.Cursor;
+<i>5</i>&nbsp;import android.util.Log;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import net.sqlcipher.database.SQLiteDatabase;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import org.ei.telemedicine.domain.TimelineEvent;
+<i>10</i>&nbsp;import org.joda.time.LocalDate;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;import java.util.ArrayList;
+<i>13</i>&nbsp;import java.util.HashMap;
+<i>14</i>&nbsp;import java.util.List;
+<i>15</i>&nbsp;import java.util.Map;
+<i>16</i>&nbsp;
+<b class="nc"><i>17</i>&nbsp;public class TimelineEventRepository extends DrishtiRepository {</b>
+<i>18</i>&nbsp;    private static final String TIMELINEEVENT_SQL = &quot;CREATE TABLE timelineEvent(caseID VARCHAR, type VARCHAR, referenceDate VARCHAR, title VARCHAR, detail1 VARCHAR, detail2 VARCHAR)&quot;;
+<i>19</i>&nbsp;    private static final String TIMELINEVENT_CASEID_INDEX_SQL = &quot;CREATE INDEX timelineEvent_caseID_index ON timelineEvent(caseID);&quot;;
+<i>20</i>&nbsp;    private static final String TIMELINEEVENT_TABLE_NAME = &quot;timelineEvent&quot;;
+<i>21</i>&nbsp;    private static final String CASEID_COLUMN = &quot;caseId&quot;;
+<i>22</i>&nbsp;    private static final String TYPE_COLUMN = &quot;type&quot;;
+<i>23</i>&nbsp;    private static final String REF_DATE_COLUMN = &quot;referenceDate&quot;;
+<i>24</i>&nbsp;    private static final String TITLE_COLUMN = &quot;title&quot;;
+<i>25</i>&nbsp;    private static final String DETAIL1_COLUMN = &quot;detail1&quot;;
+<i>26</i>&nbsp;    private static final String DETAIL2_COLUMN = &quot;detail2&quot;;
+<b class="fc"><i>27</i>&nbsp;    private static final String[] TIMELINEEVENT_TABLE_COLUMNS = {CASEID_COLUMN, TYPE_COLUMN, REF_DATE_COLUMN, TITLE_COLUMN, DETAIL1_COLUMN, DETAIL2_COLUMN};</b>
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    @Override
+<i>30</i>&nbsp;    protected void onCreate(SQLiteDatabase database) {
+<b class="nc"><i>31</i>&nbsp;        database.execSQL(TIMELINEEVENT_SQL);</b>
+<b class="nc"><i>32</i>&nbsp;        database.execSQL(TIMELINEVENT_CASEID_INDEX_SQL);</b>
+<b class="nc"><i>33</i>&nbsp;    }</b>
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    public void add(TimelineEvent timelineEvent) {
+<b class="nc"><i>36</i>&nbsp;        Log.e(&quot;Timeline&quot;, &quot; Created &quot; + timelineEvent.caseId() + &quot;--&quot; + timelineEvent.title());</b>
+<b class="nc"><i>37</i>&nbsp;        SQLiteDatabase database = masterRepository.getWritableDatabase();</b>
+<b class="nc"><i>38</i>&nbsp;        database.insert(TIMELINEEVENT_TABLE_NAME, null, createValuesFor(timelineEvent));</b>
+<b class="nc"><i>39</i>&nbsp;    }</b>
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;    public List&lt;TimelineEvent&gt; allFor(String caseId) {
+<b class="nc"><i>42</i>&nbsp;        SQLiteDatabase database = masterRepository.getReadableDatabase();</b>
+<b class="nc"><i>43</i>&nbsp;        Cursor cursor = database.query(TIMELINEEVENT_TABLE_NAME, TIMELINEEVENT_TABLE_COLUMNS, CASEID_COLUMN + &quot; = ?&quot;, new String[]{caseId}, null, null, null);</b>
+<b class="nc"><i>44</i>&nbsp;        return readAllTimelineEvents(cursor);</b>
+<i>45</i>&nbsp;    }
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;    public void deleteAllTimelineEventsForEntity(String caseId) {
+<b class="nc"><i>48</i>&nbsp;        SQLiteDatabase database = masterRepository.getWritableDatabase();</b>
+<b class="nc"><i>49</i>&nbsp;        database.delete(TIMELINEEVENT_TABLE_NAME, CASEID_COLUMN + &quot; = ?&quot;, new String[]{caseId});</b>
+<b class="nc"><i>50</i>&nbsp;    }</b>
+<i>51</i>&nbsp;
+<i>52</i>&nbsp;    private List&lt;TimelineEvent&gt; readAllTimelineEvents(Cursor cursor) {
+<b class="nc"><i>53</i>&nbsp;        cursor.moveToFirst();</b>
+<b class="nc"><i>54</i>&nbsp;        List&lt;TimelineEvent&gt; timelineEvents = new ArrayList&lt;TimelineEvent&gt;();</b>
+<b class="nc"><i>55</i>&nbsp;        while (!cursor.isAfterLast()) {</b>
+<b class="nc"><i>56</i>&nbsp;            Log.e(cursor.getString(0), cursor.getString(1) + &quot;====&quot; + cursor.getString(3));</b>
+<b class="nc"><i>57</i>&nbsp;            timelineEvents.add(new TimelineEvent(cursor.getString(0), cursor.getString(1), LocalDate.parse(cursor.getString(2)), cursor.getString(3), cursor.getString(4), cursor.getString(5)));</b>
+<b class="nc"><i>58</i>&nbsp;            cursor.moveToNext();</b>
+<i>59</i>&nbsp;        }
+<b class="nc"><i>60</i>&nbsp;        cursor.close();</b>
+<b class="nc"><i>61</i>&nbsp;        return timelineEvents;</b>
+<i>62</i>&nbsp;    }
+<i>63</i>&nbsp;
+<i>64</i>&nbsp;    private ContentValues createValuesFor(TimelineEvent timelineEvent) {
+<b class="nc"><i>65</i>&nbsp;        ContentValues values = new ContentValues();</b>
+<b class="nc"><i>66</i>&nbsp;        values.put(CASEID_COLUMN, timelineEvent.caseId());</b>
+<b class="nc"><i>67</i>&nbsp;        values.put(TYPE_COLUMN, timelineEvent.type());</b>
+<b class="nc"><i>68</i>&nbsp;        values.put(REF_DATE_COLUMN, timelineEvent.referenceDate().toString());</b>
+<b class="nc"><i>69</i>&nbsp;        values.put(TITLE_COLUMN, timelineEvent.title());</b>
+<b class="nc"><i>70</i>&nbsp;        values.put(DETAIL1_COLUMN, timelineEvent.detail1());</b>
+<b class="nc"><i>71</i>&nbsp;        values.put(DETAIL2_COLUMN, timelineEvent.detail2());</b>
+<b class="nc"><i>72</i>&nbsp;        return values;</b>
+<i>73</i>&nbsp;    }
+<i>74</i>&nbsp;
+<i>75</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

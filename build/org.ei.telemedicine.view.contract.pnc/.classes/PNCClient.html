@@ -1,0 +1,675 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: PNCClient</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.contract.pnc</a> ]
+</div>
+
+<h1>Coverage Summary for Class: PNCClient (org.ei.telemedicine.view.contract.pnc)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PNCClient</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    24%
+  </span>
+  <span class="absValue">
+    (23/ 96)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    32.4%
+  </span>
+  <span class="absValue">
+    (57/ 176)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.contract.pnc;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.google.gson.annotations.SerializedName;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import org.apache.commons.lang3.StringUtils;
+<i>6</i>&nbsp;import org.apache.commons.lang3.builder.EqualsBuilder;
+<i>7</i>&nbsp;import org.apache.commons.lang3.builder.HashCodeBuilder;
+<i>8</i>&nbsp;import org.apache.commons.lang3.builder.ToStringBuilder;
+<i>9</i>&nbsp;import org.ei.telemedicine.domain.ANCServiceType;
+<i>10</i>&nbsp;import org.ei.telemedicine.domain.FPMethod;
+<i>11</i>&nbsp;import org.ei.telemedicine.util.IntegerUtil;
+<i>12</i>&nbsp;import org.ei.telemedicine.view.contract.*;
+<i>13</i>&nbsp;import org.joda.time.LocalDate;
+<i>14</i>&nbsp;import org.joda.time.LocalDateTime;
+<i>15</i>&nbsp;import org.joda.time.format.ISODateTimeFormat;
+<i>16</i>&nbsp;import org.json.JSONArray;
+<i>17</i>&nbsp;import org.json.JSONException;
+<i>18</i>&nbsp;import org.json.JSONObject;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;import java.util.*;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;import static org.ei.telemedicine.AllConstants.ECRegistrationFields.*;
+<i>23</i>&nbsp;import static org.ei.telemedicine.AllConstants.*;
+<i>24</i>&nbsp;import static org.ei.telemedicine.domain.ANCServiceType.PNC;
+<i>25</i>&nbsp;import static org.ei.telemedicine.util.DateUtil.*;
+<i>26</i>&nbsp;import static org.ei.telemedicine.util.StringUtil.*;
+<i>27</i>&nbsp;import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
+<i>28</i>&nbsp;import static org.ei.telemedicine.view.contract.ServiceProvidedDTO.emptyService;
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;public class PNCClient implements PNCSmartRegisterClient {
+<i>31</i>&nbsp;    private static final String CATEGORY_PNC = &quot;pnc&quot;;
+<b class="fc"><i>32</i>&nbsp;    private static final String[] SERVICE_CATEGORIES = {CATEGORY_PNC};</b>
+<b class="fc"><i>33</i>&nbsp;    private static Map&lt;String, List&lt;ANCServiceType&gt;&gt; categoriesToServiceTypeMap = new HashMap&lt;String, List&lt;ANCServiceType&gt;&gt;();</b>
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    static {
+<b class="fc"><i>36</i>&nbsp;        categoriesToServiceTypeMap.put(CATEGORY_PNC, Arrays.asList(PNC));</b>
+<b class="fc"><i>37</i>&nbsp;    }</b>
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    private String entityId;
+<i>40</i>&nbsp;    private String ec_number;
+<i>41</i>&nbsp;    private String village;
+<i>42</i>&nbsp;    private String name;
+<i>43</i>&nbsp;    private String pncNumber;
+<i>44</i>&nbsp;    private String thayi;
+<i>45</i>&nbsp;    private String age;
+<i>46</i>&nbsp;    private String womanDOB;
+<i>47</i>&nbsp;    private String husbandName;
+<i>48</i>&nbsp;    private String photo_path;
+<i>49</i>&nbsp;    private Boolean isHighPriority;
+<i>50</i>&nbsp;    private Boolean isHighRisk;
+<i>51</i>&nbsp;    private String locationStatus;
+<i>52</i>&nbsp;    private String economicStatus;
+<i>53</i>&nbsp;    private String pocInfo;
+<i>54</i>&nbsp;    private String caste;
+<i>55</i>&nbsp;    private String fp_method;
+<i>56</i>&nbsp;    private String iudPlace;
+<i>57</i>&nbsp;    private String iudPerson;
+<i>58</i>&nbsp;    private String family_planning_method_change_date;
+<i>59</i>&nbsp;    private String numberOfCondomsSupplied;
+<i>60</i>&nbsp;    private String numberOfOCPDelivered;
+<i>61</i>&nbsp;    private String numberOfCentchromanPillsDelivered;
+<i>62</i>&nbsp;    private String deliveryDate;
+<i>63</i>&nbsp;    private String deliveryPlace;
+<i>64</i>&nbsp;    private String deliveryType;
+<i>65</i>&nbsp;    private String deliveryComplications;
+<i>66</i>&nbsp;    private String pncComplications;
+<i>67</i>&nbsp;    private String otherDeliveryComplications;
+<i>68</i>&nbsp;    private List&lt;AlertDTO&gt; alerts;
+<i>69</i>&nbsp;    private List&lt;ServiceProvidedDTO&gt; services_provided;
+<i>70</i>&nbsp;    private List&lt;ChildClient&gt; children;
+<i>71</i>&nbsp;    private String entityIdToSavePhoto;
+<i>72</i>&nbsp;    private List&lt;ServiceProvidedDTO&gt; expectedVisits;
+<i>73</i>&nbsp;    @SerializedName(&quot;first_7_days&quot;)
+<i>74</i>&nbsp;    private PNCFirstSevenDaysVisits pncFirstSevenDaysVisits;
+<i>75</i>&nbsp;    private List&lt;ServiceProvidedDTO&gt; recentlyProvidedServices;
+<i>76</i>&nbsp;    private Map&lt;String, Visits&gt; serviceToVisitsMap;
+<i>77</i>&nbsp;
+<b class="fc"><i>78</i>&nbsp;    public PNCClient(String entityId, String village, String name, String thayi, String deliveryDate) {</b>
+<b class="fc"><i>79</i>&nbsp;        this.entityId = entityId;</b>
+<b class="fc"><i>80</i>&nbsp;        this.village = village;</b>
+<b class="fc"><i>81</i>&nbsp;        this.name = name;</b>
+<b class="fc"><i>82</i>&nbsp;        this.thayi = thayi;</b>
+<b class="fc"><i>83</i>&nbsp;        this.deliveryDate = LocalDateTime.parse(deliveryDate).toString(ISODateTimeFormat.dateTime());</b>
+<b class="fc"><i>84</i>&nbsp;        this.serviceToVisitsMap = new HashMap&lt;String, Visits&gt;();</b>
+<b class="fc"><i>85</i>&nbsp;    }</b>
+<i>86</i>&nbsp;
+<i>87</i>&nbsp;    @Override
+<i>88</i>&nbsp;    public String entityId() {
+<b class="nc"><i>89</i>&nbsp;        return entityId;</b>
+<i>90</i>&nbsp;    }
+<i>91</i>&nbsp;
+<i>92</i>&nbsp;    @Override
+<i>93</i>&nbsp;    public String name() {
+<b class="nc"><i>94</i>&nbsp;        return humanize(name);</b>
+<i>95</i>&nbsp;    }
+<i>96</i>&nbsp;
+<i>97</i>&nbsp;    @Override
+<i>98</i>&nbsp;    public String displayName() {
+<b class="nc"><i>99</i>&nbsp;        return name();</b>
+<i>100</i>&nbsp;    }
+<i>101</i>&nbsp;
+<i>102</i>&nbsp;    @Override
+<i>103</i>&nbsp;    public String village() {
+<b class="nc"><i>104</i>&nbsp;        return humanize(village);</b>
+<i>105</i>&nbsp;    }
+<i>106</i>&nbsp;
+<i>107</i>&nbsp;    public String wifeName() {
+<b class="nc"><i>108</i>&nbsp;        return name;</b>
+<i>109</i>&nbsp;    }
+<i>110</i>&nbsp;
+<i>111</i>&nbsp;    @Override
+<i>112</i>&nbsp;    public String husbandName() {
+<b class="nc"><i>113</i>&nbsp;        return humanize(husbandName);</b>
+<i>114</i>&nbsp;    }
+<i>115</i>&nbsp;
+<i>116</i>&nbsp;    @Override
+<i>117</i>&nbsp;    public int age() {
+<b class="nc"><i>118</i>&nbsp;        return IntegerUtil.tryParse(age, 0);</b>
+<i>119</i>&nbsp;    }
+<i>120</i>&nbsp;
+<i>121</i>&nbsp;    @Override
+<i>122</i>&nbsp;    public int ageInDays() {
+<b class="nc"><i>123</i>&nbsp;        return IntegerUtil.tryParse(age, 0) * 365;</b>
+<i>124</i>&nbsp;    }
+<i>125</i>&nbsp;
+<i>126</i>&nbsp;    @Override
+<i>127</i>&nbsp;    public String ageInString() {
+<b class="nc"><i>128</i>&nbsp;        return &quot;(&quot; + age + &quot;)&quot;;</b>
+<i>129</i>&nbsp;    }
+<i>130</i>&nbsp;
+<i>131</i>&nbsp;    @Override
+<i>132</i>&nbsp;    public boolean isSC() {
+<b class="nc"><i>133</i>&nbsp;        return caste != null &amp;&amp; caste.equalsIgnoreCase(SC_VALUE);</b>
+<i>134</i>&nbsp;    }
+<i>135</i>&nbsp;
+<i>136</i>&nbsp;    @Override
+<i>137</i>&nbsp;    public boolean isST() {
+<b class="nc"><i>138</i>&nbsp;        return caste != null &amp;&amp; caste.equalsIgnoreCase(ST_VALUE);</b>
+<i>139</i>&nbsp;    }
+<i>140</i>&nbsp;
+<i>141</i>&nbsp;    @Override
+<i>142</i>&nbsp;    public boolean isHighRisk() {
+<b class="nc"><i>143</i>&nbsp;        return isHighRisk;</b>
+<i>144</i>&nbsp;    }
+<i>145</i>&nbsp;
+<i>146</i>&nbsp;    @Override
+<i>147</i>&nbsp;    public boolean isHighPriority() {
+<b class="nc"><i>148</i>&nbsp;        return isHighPriority;</b>
+<i>149</i>&nbsp;    }
+<i>150</i>&nbsp;
+<i>151</i>&nbsp;    @Override
+<i>152</i>&nbsp;    public boolean isBPL() {
+<b class="nc"><i>153</i>&nbsp;        return economicStatus != null &amp;&amp; economicStatus.equalsIgnoreCase(BPL_VALUE);</b>
+<i>154</i>&nbsp;    }
+<i>155</i>&nbsp;
+<i>156</i>&nbsp;    @Override
+<i>157</i>&nbsp;    public boolean isPOC() {
+<b class="nc"><i>158</i>&nbsp;        return pocInfo != null &amp;&amp; !pocInfo.equals(&quot;&quot;);</b>
+<i>159</i>&nbsp;    }
+<i>160</i>&nbsp;
+<i>161</i>&nbsp;    @Override
+<i>162</i>&nbsp;    public boolean isPocPending() {
+<i>163</i>&nbsp;        try {
+<b class="nc"><i>164</i>&nbsp;            if (pocInfo != null &amp;&amp; !pocInfo.equals(&quot;&quot;)) {</b>
+<b class="nc"><i>165</i>&nbsp;                JSONArray docPocInfoArray = new JSONArray(pocInfo);</b>
+<b class="nc"><i>166</i>&nbsp;                JSONObject pocInfo = docPocInfoArray.length() != 0 ? docPocInfoArray.getJSONObject(docPocInfoArray.length() - 1)</b>
+<i>167</i>&nbsp;                        : new JSONObject();
+<b class="nc"><i>168</i>&nbsp;                if (pocInfo.getString(&quot;pending&quot;).length() != 0) {</b>
+<b class="nc"><i>169</i>&nbsp;                    return true;</b>
+<i>170</i>&nbsp;                }
+<i>171</i>&nbsp;            }
+<b class="nc"><i>172</i>&nbsp;        } catch (JSONException e) {</b>
+<b class="nc"><i>173</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>174</i>&nbsp;        }</b>
+<i>175</i>&nbsp;
+<b class="nc"><i>176</i>&nbsp;        return false;</b>
+<i>177</i>&nbsp;    }
+<i>178</i>&nbsp;
+<i>179</i>&nbsp;
+<i>180</i>&nbsp;    @Override
+<i>181</i>&nbsp;    public String profilePhotoPath() {
+<b class="nc"><i>182</i>&nbsp;        return photo_path;</b>
+<i>183</i>&nbsp;    }
+<i>184</i>&nbsp;
+<i>185</i>&nbsp;    @Override
+<i>186</i>&nbsp;    public String locationStatus() {
+<b class="nc"><i>187</i>&nbsp;        return locationStatus;</b>
+<i>188</i>&nbsp;    }
+<i>189</i>&nbsp;
+<i>190</i>&nbsp;    @Override
+<i>191</i>&nbsp;    public boolean satisfiesFilter(String filter) {
+<b class="nc"><i>192</i>&nbsp;        return name.toLowerCase(Locale.getDefault()).startsWith(filter.toLowerCase())</b>
+<b class="nc"><i>193</i>&nbsp;                || String.valueOf(ec_number).startsWith(filter)</b>
+<b class="nc"><i>194</i>&nbsp;                || String.valueOf(thayi).startsWith(filter);</b>
+<i>195</i>&nbsp;    }
+<i>196</i>&nbsp;
+<i>197</i>&nbsp;    @Override
+<i>198</i>&nbsp;    public int compareName(SmartRegisterClient client) {
+<b class="nc"><i>199</i>&nbsp;        return this.name().compareToIgnoreCase(client.name());</b>
+<i>200</i>&nbsp;    }
+<i>201</i>&nbsp;
+<i>202</i>&nbsp;    @Override
+<i>203</i>&nbsp;    public String pncNumber() {
+<b class="nc"><i>204</i>&nbsp;        return pncNumber;</b>
+<i>205</i>&nbsp;    }
+<i>206</i>&nbsp;
+<i>207</i>&nbsp;    @Override
+<i>208</i>&nbsp;    public String deliveryDateForDisplay() {
+<b class="nc"><i>209</i>&nbsp;        return formatFromISOString(deliveryDate, &quot;dd/MM/YY&quot;);</b>
+<i>210</i>&nbsp;    }
+<i>211</i>&nbsp;
+<i>212</i>&nbsp;    @Override
+<i>213</i>&nbsp;    public String deliveryShortDate() {
+<b class="nc"><i>214</i>&nbsp;        return formatFromISOString(deliveryDate, &quot;dd/MM&quot;);</b>
+<i>215</i>&nbsp;    }
+<i>216</i>&nbsp;
+<i>217</i>&nbsp;    @Override
+<i>218</i>&nbsp;    public LocalDate deliveryDate() {
+<b class="fc"><i>219</i>&nbsp;        return getLocalDateFromISOString(deliveryDate);</b>
+<i>220</i>&nbsp;    }
+<i>221</i>&nbsp;
+<i>222</i>&nbsp;    @Override
+<i>223</i>&nbsp;    public String deliveryPlace() {
+<b class="nc"><i>224</i>&nbsp;        return humanizeAndDoUPPERCASE(deliveryPlace);</b>
+<i>225</i>&nbsp;    }
+<i>226</i>&nbsp;
+<i>227</i>&nbsp;    @Override
+<i>228</i>&nbsp;    public String deliveryType() {
+<b class="nc"><i>229</i>&nbsp;        return humanize(deliveryType);</b>
+<i>230</i>&nbsp;    }
+<i>231</i>&nbsp;
+<i>232</i>&nbsp;    @Override
+<i>233</i>&nbsp;    public String deliveryComplications() {
+<b class="nc"><i>234</i>&nbsp;        return replaceAndHumanizeWithInitCapText(deliveryComplications, SPACE, COMMA_WITH_SPACE);</b>
+<i>235</i>&nbsp;    }
+<i>236</i>&nbsp;
+<i>237</i>&nbsp;    @Override
+<i>238</i>&nbsp;    public FPMethod fpMethod() {
+<b class="nc"><i>239</i>&nbsp;        return FPMethod.tryParse(this.fp_method, FPMethod.NONE);</b>
+<i>240</i>&nbsp;    }
+<i>241</i>&nbsp;
+<i>242</i>&nbsp;    @Override
+<i>243</i>&nbsp;    public String familyPlanningMethodChangeDate() {
+<b class="nc"><i>244</i>&nbsp;        return formatDate(family_planning_method_change_date, &quot;dd/MM/YYYY&quot;);</b>
+<i>245</i>&nbsp;    }
+<i>246</i>&nbsp;
+<i>247</i>&nbsp;    @Override
+<i>248</i>&nbsp;    public String numberOfOCPDelivered() {
+<b class="nc"><i>249</i>&nbsp;        return numberOfOCPDelivered;</b>
+<i>250</i>&nbsp;    }
+<i>251</i>&nbsp;
+<i>252</i>&nbsp;    @Override
+<i>253</i>&nbsp;    public String numberOfCondomsSupplied() {
+<b class="nc"><i>254</i>&nbsp;        return numberOfCondomsSupplied;</b>
+<i>255</i>&nbsp;    }
+<i>256</i>&nbsp;
+<i>257</i>&nbsp;    @Override
+<i>258</i>&nbsp;    public String numberOfCentchromanPillsDelivered() {
+<b class="nc"><i>259</i>&nbsp;        return numberOfCentchromanPillsDelivered;</b>
+<i>260</i>&nbsp;    }
+<i>261</i>&nbsp;
+<i>262</i>&nbsp;
+<i>263</i>&nbsp;    @Override
+<i>264</i>&nbsp;    public String iudPerson() {
+<b class="nc"><i>265</i>&nbsp;        return humanizeAndDoUPPERCASE(iudPerson);</b>
+<i>266</i>&nbsp;    }
+<i>267</i>&nbsp;
+<i>268</i>&nbsp;    @Override
+<i>269</i>&nbsp;    public String iudPlace() {
+<b class="nc"><i>270</i>&nbsp;        return humanizeAndDoUPPERCASE(iudPlace);</b>
+<i>271</i>&nbsp;    }
+<i>272</i>&nbsp;
+<i>273</i>&nbsp;    @Override
+<i>274</i>&nbsp;    public String womanDOB() {
+<b class="nc"><i>275</i>&nbsp;        return formatDate(womanDOB, &quot;dd/MM/YYYY&quot;);</b>
+<i>276</i>&nbsp;    }
+<i>277</i>&nbsp;
+<i>278</i>&nbsp;    public List&lt;ChildClient&gt; children() {
+<b class="nc"><i>279</i>&nbsp;        return children;</b>
+<i>280</i>&nbsp;    }
+<i>281</i>&nbsp;
+<i>282</i>&nbsp;    public PNCClient withDeliveryPlace(String deliveryPlace) {
+<b class="nc"><i>283</i>&nbsp;        this.deliveryPlace = deliveryPlace;</b>
+<b class="nc"><i>284</i>&nbsp;        return this;</b>
+<i>285</i>&nbsp;    }
+<i>286</i>&nbsp;
+<i>287</i>&nbsp;    public PNCClient withDeliveryType(String deliveryType) {
+<b class="nc"><i>288</i>&nbsp;        this.deliveryType = deliveryType;</b>
+<b class="nc"><i>289</i>&nbsp;        return this;</b>
+<i>290</i>&nbsp;    }
+<i>291</i>&nbsp;
+<i>292</i>&nbsp;    public PNCClient withHusbandName(String husbandName) {
+<b class="nc"><i>293</i>&nbsp;        this.husbandName = husbandName;</b>
+<b class="nc"><i>294</i>&nbsp;        return this;</b>
+<i>295</i>&nbsp;    }
+<i>296</i>&nbsp;
+<i>297</i>&nbsp;    public PNCClient withAge(String age) {
+<b class="nc"><i>298</i>&nbsp;        this.age = age;</b>
+<b class="nc"><i>299</i>&nbsp;        return this;</b>
+<i>300</i>&nbsp;    }
+<i>301</i>&nbsp;
+<i>302</i>&nbsp;    public PNCClient withWomanDOB(String womanDOB) {
+<b class="nc"><i>303</i>&nbsp;        this.womanDOB = womanDOB;</b>
+<b class="nc"><i>304</i>&nbsp;        return this;</b>
+<i>305</i>&nbsp;    }
+<i>306</i>&nbsp;
+<i>307</i>&nbsp;    public PNCClient withECNumber(String ecNumber) {
+<b class="nc"><i>308</i>&nbsp;        this.ec_number = ecNumber;</b>
+<b class="nc"><i>309</i>&nbsp;        return this;</b>
+<i>310</i>&nbsp;    }
+<i>311</i>&nbsp;
+<i>312</i>&nbsp;    public PNCClient withPNCNumber(String pncNumber) {
+<b class="nc"><i>313</i>&nbsp;        this.pncNumber = pncNumber;</b>
+<b class="nc"><i>314</i>&nbsp;        return this;</b>
+<i>315</i>&nbsp;    }
+<i>316</i>&nbsp;
+<i>317</i>&nbsp;
+<i>318</i>&nbsp;    public PNCClient withIsHighPriority(boolean highPriority) {
+<b class="nc"><i>319</i>&nbsp;        this.isHighPriority = highPriority;</b>
+<b class="nc"><i>320</i>&nbsp;        return this;</b>
+<i>321</i>&nbsp;    }
+<i>322</i>&nbsp;
+<i>323</i>&nbsp;    public PNCClient withIsHighRisk(boolean highRisk) {
+<b class="nc"><i>324</i>&nbsp;        this.isHighRisk = highRisk;</b>
+<b class="nc"><i>325</i>&nbsp;        return this;</b>
+<i>326</i>&nbsp;    }
+<i>327</i>&nbsp;
+<i>328</i>&nbsp;    public PNCClient withIsOutOfArea(boolean outOfArea) {
+<b class="nc"><i>329</i>&nbsp;        this.locationStatus = outOfArea ? OUT_OF_AREA : IN_AREA;</b>
+<b class="nc"><i>330</i>&nbsp;        return this;</b>
+<i>331</i>&nbsp;    }
+<i>332</i>&nbsp;
+<i>333</i>&nbsp;    public PNCClient withCaste(String caste) {
+<b class="nc"><i>334</i>&nbsp;        this.caste = caste;</b>
+<b class="nc"><i>335</i>&nbsp;        return this;</b>
+<i>336</i>&nbsp;    }
+<i>337</i>&nbsp;
+<i>338</i>&nbsp;    public PNCClient withEconomicStatus(String economicStatus) {
+<b class="nc"><i>339</i>&nbsp;        this.economicStatus = economicStatus;</b>
+<b class="nc"><i>340</i>&nbsp;        return this;</b>
+<i>341</i>&nbsp;    }
+<i>342</i>&nbsp;
+<i>343</i>&nbsp;    public PNCClient withFPMethod(String fpMethod) {
+<b class="nc"><i>344</i>&nbsp;        this.fp_method = fpMethod;</b>
+<b class="nc"><i>345</i>&nbsp;        return this;</b>
+<i>346</i>&nbsp;    }
+<i>347</i>&nbsp;
+<i>348</i>&nbsp;    public PNCClient withPhotoPath(String photoPath) {
+<b class="nc"><i>349</i>&nbsp;        this.photo_path = photoPath;</b>
+<b class="nc"><i>350</i>&nbsp;        return this;</b>
+<i>351</i>&nbsp;    }
+<i>352</i>&nbsp;
+<i>353</i>&nbsp;    public PNCClient withIUDPlace(String iudPlace) {
+<b class="nc"><i>354</i>&nbsp;        this.iudPlace = iudPlace;</b>
+<b class="nc"><i>355</i>&nbsp;        return this;</b>
+<i>356</i>&nbsp;    }
+<i>357</i>&nbsp;
+<i>358</i>&nbsp;    public PNCClient withIUDPerson(String iudPerson) {
+<b class="nc"><i>359</i>&nbsp;        this.iudPerson = iudPerson;</b>
+<b class="nc"><i>360</i>&nbsp;        return this;</b>
+<i>361</i>&nbsp;    }
+<i>362</i>&nbsp;
+<i>363</i>&nbsp;    public PNCClient withFamilyPlanningMethodChangeDate(String family_planning_method_change_date) {
+<b class="nc"><i>364</i>&nbsp;        this.family_planning_method_change_date = family_planning_method_change_date;</b>
+<b class="nc"><i>365</i>&nbsp;        return this;</b>
+<i>366</i>&nbsp;    }
+<i>367</i>&nbsp;
+<i>368</i>&nbsp;    public PNCClient withNumberOfCondomsSupplied(String numberOfCondomsSupplied) {
+<b class="nc"><i>369</i>&nbsp;        this.numberOfCondomsSupplied = numberOfCondomsSupplied;</b>
+<b class="nc"><i>370</i>&nbsp;        return this;</b>
+<i>371</i>&nbsp;    }
+<i>372</i>&nbsp;
+<i>373</i>&nbsp;    public PNCClient withNumberOfOCPDelivered(String numberOfOCPDelivered) {
+<b class="nc"><i>374</i>&nbsp;        this.numberOfOCPDelivered = numberOfOCPDelivered;</b>
+<b class="nc"><i>375</i>&nbsp;        return this;</b>
+<i>376</i>&nbsp;    }
+<i>377</i>&nbsp;
+<i>378</i>&nbsp;    public PNCClient withNumberOfCentchromanPillsDelivered(String numberOfCentchromanPillsDelivered) {
+<b class="nc"><i>379</i>&nbsp;        this.numberOfCentchromanPillsDelivered = numberOfCentchromanPillsDelivered;</b>
+<b class="nc"><i>380</i>&nbsp;        return this;</b>
+<i>381</i>&nbsp;    }
+<i>382</i>&nbsp;
+<i>383</i>&nbsp;    public PNCClient withDeliveryComplications(String deliveryComplications) {
+<b class="nc"><i>384</i>&nbsp;        this.deliveryComplications = deliveryComplications;</b>
+<b class="nc"><i>385</i>&nbsp;        return this;</b>
+<i>386</i>&nbsp;    }
+<i>387</i>&nbsp;
+<i>388</i>&nbsp;    public PNCClient withPNCComplications(String pncComplications) {
+<b class="nc"><i>389</i>&nbsp;        this.pncComplications = pncComplications;</b>
+<b class="nc"><i>390</i>&nbsp;        return this;</b>
+<i>391</i>&nbsp;    }
+<i>392</i>&nbsp;
+<i>393</i>&nbsp;    public PNCClient withAlerts(List&lt;AlertDTO&gt; alerts) {
+<b class="fc"><i>394</i>&nbsp;        this.alerts = alerts;</b>
+<b class="fc"><i>395</i>&nbsp;        return this;</b>
+<i>396</i>&nbsp;    }
+<i>397</i>&nbsp;
+<i>398</i>&nbsp;    public PNCClient withServicesProvided(List&lt;ServiceProvidedDTO&gt; servicesProvided) {
+<b class="fc"><i>399</i>&nbsp;        this.services_provided = servicesProvided;</b>
+<b class="fc"><i>400</i>&nbsp;        return this;</b>
+<i>401</i>&nbsp;    }
+<i>402</i>&nbsp;
+<i>403</i>&nbsp;    public PNCClient withOtherDeliveryComplications(String otherDeliveryComplications) {
+<b class="nc"><i>404</i>&nbsp;        this.otherDeliveryComplications = otherDeliveryComplications;</b>
+<b class="nc"><i>405</i>&nbsp;        return this;</b>
+<i>406</i>&nbsp;    }
+<i>407</i>&nbsp;
+<i>408</i>&nbsp;    public PNCClient withChildren(List&lt;ChildClient&gt; children) {
+<b class="nc"><i>409</i>&nbsp;        this.children = children;</b>
+<b class="nc"><i>410</i>&nbsp;        return this;</b>
+<i>411</i>&nbsp;    }
+<i>412</i>&nbsp;
+<i>413</i>&nbsp;    public PNCClient withEntityIdToSavePhoto(String entityIdToSavePhoto) {
+<b class="nc"><i>414</i>&nbsp;        this.entityIdToSavePhoto = entityIdToSavePhoto;</b>
+<b class="nc"><i>415</i>&nbsp;        return this;</b>
+<i>416</i>&nbsp;    }
+<i>417</i>&nbsp;
+<i>418</i>&nbsp;    public PNCClient withExpectedVisits(List&lt;ServiceProvidedDTO&gt; visits) {
+<b class="fc"><i>419</i>&nbsp;        this.expectedVisits = visits;</b>
+<b class="fc"><i>420</i>&nbsp;        return this;</b>
+<i>421</i>&nbsp;    }
+<i>422</i>&nbsp;
+<i>423</i>&nbsp;    public PNCClient withFirstSevenDaysVisit(PNCFirstSevenDaysVisits pncFirstSevenDaysVisits) {
+<b class="fc"><i>424</i>&nbsp;        this.pncFirstSevenDaysVisits = pncFirstSevenDaysVisits;</b>
+<b class="fc"><i>425</i>&nbsp;        return this;</b>
+<i>426</i>&nbsp;    }
+<i>427</i>&nbsp;
+<i>428</i>&nbsp;    public PNCClient withRecentlyProvidedServices(List&lt;ServiceProvidedDTO&gt; recentlyProvidedServices) {
+<b class="fc"><i>429</i>&nbsp;        this.recentlyProvidedServices = recentlyProvidedServices;</b>
+<b class="fc"><i>430</i>&nbsp;        return this;</b>
+<i>431</i>&nbsp;    }
+<i>432</i>&nbsp;
+<i>433</i>&nbsp;    public PNCClient withServiceToVisitMap(Map&lt;String, Visits&gt; serviceToVisitsMap) {
+<b class="nc"><i>434</i>&nbsp;        this.serviceToVisitsMap = serviceToVisitsMap;</b>
+<b class="nc"><i>435</i>&nbsp;        return this;</b>
+<i>436</i>&nbsp;    }
+<i>437</i>&nbsp;
+<i>438</i>&nbsp;    public PNCClient withPoc(String pocInfo) {
+<b class="nc"><i>439</i>&nbsp;        this.pocInfo = pocInfo;</b>
+<b class="nc"><i>440</i>&nbsp;        return this;</b>
+<i>441</i>&nbsp;    }
+<i>442</i>&nbsp;
+<i>443</i>&nbsp;    public PNCClient withPreProcess() {
+<b class="fc"><i>444</i>&nbsp;        initialize(SERVICE_CATEGORIES, serviceToVisitsMap);</b>
+<b class="fc"><i>445</i>&nbsp;        initializeAllServiceToProvideAndProvided(categoriesToServiceTypeMap);</b>
+<b class="fc"><i>446</i>&nbsp;        return this;</b>
+<i>447</i>&nbsp;    }
+<i>448</i>&nbsp;
+<i>449</i>&nbsp;    @Override
+<i>450</i>&nbsp;    public boolean equals(Object o) {
+<b class="nc"><i>451</i>&nbsp;        return EqualsBuilder.reflectionEquals(this, o);</b>
+<i>452</i>&nbsp;    }
+<i>453</i>&nbsp;
+<i>454</i>&nbsp;    @Override
+<i>455</i>&nbsp;    public int hashCode() {
+<b class="nc"><i>456</i>&nbsp;        return HashCodeBuilder.reflectionHashCode(this);</b>
+<i>457</i>&nbsp;    }
+<i>458</i>&nbsp;
+<i>459</i>&nbsp;    @Override
+<i>460</i>&nbsp;    public String toString() {
+<b class="nc"><i>461</i>&nbsp;        return ToStringBuilder.reflectionToString(this);</b>
+<i>462</i>&nbsp;    }
+<i>463</i>&nbsp;
+<i>464</i>&nbsp;    @Override
+<i>465</i>&nbsp;    public List&lt;PNCCircleDatum&gt; pncCircleData() {
+<b class="fc"><i>466</i>&nbsp;        return pncFirstSevenDaysVisits.pncCircleData();</b>
+<i>467</i>&nbsp;    }
+<i>468</i>&nbsp;
+<i>469</i>&nbsp;    @Override
+<i>470</i>&nbsp;    public List&lt;PNCStatusDatum&gt; pncStatusData() {
+<b class="fc"><i>471</i>&nbsp;        return pncFirstSevenDaysVisits.pncStatusData();</b>
+<i>472</i>&nbsp;    }
+<i>473</i>&nbsp;
+<i>474</i>&nbsp;    @Override
+<i>475</i>&nbsp;    public PNCStatusColor pncVisitStatusColor() {
+<b class="fc"><i>476</i>&nbsp;        return pncFirstSevenDaysVisits.pncVisitStatusColor();</b>
+<i>477</i>&nbsp;    }
+<i>478</i>&nbsp;
+<i>479</i>&nbsp;    @Override
+<i>480</i>&nbsp;    public List&lt;PNCTickDatum&gt; pncTickData() {
+<b class="fc"><i>481</i>&nbsp;        return pncFirstSevenDaysVisits.pncTickData();</b>
+<i>482</i>&nbsp;    }
+<i>483</i>&nbsp;
+<i>484</i>&nbsp;    @Override
+<i>485</i>&nbsp;    public List&lt;PNCLineDatum&gt; pncLineData() {
+<b class="fc"><i>486</i>&nbsp;        return pncFirstSevenDaysVisits.pncLineData();</b>
+<i>487</i>&nbsp;    }
+<i>488</i>&nbsp;
+<i>489</i>&nbsp;    @Override
+<i>490</i>&nbsp;    public List&lt;PNCVisitDaysDatum&gt; visitDaysData() {
+<b class="fc"><i>491</i>&nbsp;        return pncFirstSevenDaysVisits.visitDaysData();</b>
+<i>492</i>&nbsp;    }
+<i>493</i>&nbsp;
+<i>494</i>&nbsp;    @Override
+<i>495</i>&nbsp;    public PNCFirstSevenDaysVisits firstSevenDaysVisits() {
+<b class="nc"><i>496</i>&nbsp;        return pncFirstSevenDaysVisits;</b>
+<i>497</i>&nbsp;    }
+<i>498</i>&nbsp;
+<i>499</i>&nbsp;    @Override
+<i>500</i>&nbsp;    public List&lt;ServiceProvidedDTO&gt; recentlyProvidedServices() {
+<b class="fc"><i>501</i>&nbsp;        return recentlyProvidedServices;</b>
+<i>502</i>&nbsp;    }
+<i>503</i>&nbsp;
+<i>504</i>&nbsp;    @Override
+<i>505</i>&nbsp;    public boolean isVisitsDone() {
+<b class="nc"><i>506</i>&nbsp;        return isServiceProvided(CATEGORY_PNC);</b>
+<i>507</i>&nbsp;    }
+<i>508</i>&nbsp;
+<i>509</i>&nbsp;    @Override
+<i>510</i>&nbsp;    public String visitDoneDateWithVisitName() {
+<b class="nc"><i>511</i>&nbsp;        return serviceProvidedToACategory(CATEGORY_PNC).servicedOnWithServiceName();</b>
+<i>512</i>&nbsp;    }
+<i>513</i>&nbsp;
+<i>514</i>&nbsp;    @Override
+<i>515</i>&nbsp;    public AlertDTO getAlert(ANCServiceType type) {
+<b class="nc"><i>516</i>&nbsp;        return serviceToProvide(type.category());</b>
+<i>517</i>&nbsp;    }
+<i>518</i>&nbsp;
+<i>519</i>&nbsp;    private AlertDTO serviceToProvide(String category) {
+<b class="nc"><i>520</i>&nbsp;        if (StringUtils.isBlank(category)) {</b>
+<b class="nc"><i>521</i>&nbsp;            return emptyAlert;</b>
+<i>522</i>&nbsp;        }
+<b class="nc"><i>523</i>&nbsp;        return serviceToVisitsMap.get(category).toProvide;</b>
+<i>524</i>&nbsp;    }
+<i>525</i>&nbsp;
+<i>526</i>&nbsp;    public ServiceProvidedDTO serviceProvidedToACategory(String category) {
+<b class="nc"><i>527</i>&nbsp;        if (StringUtils.isBlank(category)) {</b>
+<b class="nc"><i>528</i>&nbsp;            return emptyService;</b>
+<i>529</i>&nbsp;        }
+<b class="nc"><i>530</i>&nbsp;        return serviceToVisitsMap.get(category).provided;</b>
+<i>531</i>&nbsp;    }
+<i>532</i>&nbsp;
+<i>533</i>&nbsp;    public Map&lt;String, Visits&gt; serviceToVisitsMap() {
+<b class="fc"><i>534</i>&nbsp;        return serviceToVisitsMap;</b>
+<i>535</i>&nbsp;    }
+<i>536</i>&nbsp;
+<i>537</i>&nbsp;    public List&lt;ServiceProvidedDTO&gt; expectedVisits() {
+<b class="fc"><i>538</i>&nbsp;        return expectedVisits;</b>
+<i>539</i>&nbsp;    }
+<i>540</i>&nbsp;
+<i>541</i>&nbsp;    public List&lt;ServiceProvidedDTO&gt; servicesProvided() {
+<b class="fc"><i>542</i>&nbsp;        return services_provided;</b>
+<i>543</i>&nbsp;    }
+<i>544</i>&nbsp;
+<i>545</i>&nbsp;    private void initialize(String[] serviceCategories, Map&lt;String, Visits&gt; serviceToVisitsMap) {
+<b class="fc"><i>546</i>&nbsp;        for (String type : serviceCategories) {</b>
+<b class="fc"><i>547</i>&nbsp;            serviceToVisitsMap.put(type, new Visits());</b>
+<i>548</i>&nbsp;        }
+<b class="fc"><i>549</i>&nbsp;    }</b>
+<i>550</i>&nbsp;
+<i>551</i>&nbsp;    private void initializeAllServiceToProvideAndProvided(Map&lt;String, List&lt;ANCServiceType&gt;&gt; categoriesToServiceTypeMap) {
+<b class="fc"><i>552</i>&nbsp;        Set&lt;String&gt; keys = categoriesToServiceTypeMap.keySet();</b>
+<b class="fc"><i>553</i>&nbsp;        for (String key : keys) {</b>
+<b class="fc"><i>554</i>&nbsp;            initializeServiceToProvideAndProvided(categoriesToServiceTypeMap.get(key));</b>
+<b class="fc"><i>555</i>&nbsp;        }</b>
+<b class="fc"><i>556</i>&nbsp;    }</b>
+<i>557</i>&nbsp;
+<i>558</i>&nbsp;    private void initializeServiceToProvideAndProvided(List&lt;ANCServiceType&gt; types) {
+<b class="fc"><i>559</i>&nbsp;        for (ANCServiceType type : types) {</b>
+<b class="fc"><i>560</i>&nbsp;            initializeServiceToProvideAndProvided(type);</b>
+<b class="fc"><i>561</i>&nbsp;        }</b>
+<b class="fc"><i>562</i>&nbsp;    }</b>
+<i>563</i>&nbsp;
+<i>564</i>&nbsp;    private void initializeServiceToProvideAndProvided(ANCServiceType type) {
+<b class="fc"><i>565</i>&nbsp;        for (AlertDTO alert : alerts) {</b>
+<b class="fc"><i>566</i>&nbsp;            if (type.equals(alert.ancServiceType())) {</b>
+<b class="fc"><i>567</i>&nbsp;                serviceToVisitsMap.get(type.category()).toProvide = alert;</b>
+<i>568</i>&nbsp;            }
+<b class="fc"><i>569</i>&nbsp;        }</b>
+<i>570</i>&nbsp;
+<b class="fc"><i>571</i>&nbsp;        for (ServiceProvidedDTO service : services_provided) {</b>
+<b class="fc"><i>572</i>&nbsp;            if (type.equals(service.ancServiceType())) {</b>
+<b class="fc"><i>573</i>&nbsp;                serviceToVisitsMap.get(type.category()).provided = service;</b>
+<i>574</i>&nbsp;            }
+<b class="fc"><i>575</i>&nbsp;        }</b>
+<b class="fc"><i>576</i>&nbsp;    }</b>
+<i>577</i>&nbsp;
+<i>578</i>&nbsp;    private boolean isServiceProvided(String category) {
+<b class="nc"><i>579</i>&nbsp;        if (StringUtils.isBlank(category)) {</b>
+<b class="nc"><i>580</i>&nbsp;            return false;</b>
+<i>581</i>&nbsp;        }
+<b class="nc"><i>582</i>&nbsp;        ServiceProvidedDTO serviceProvided = serviceToVisitsMap.get(category).provided;</b>
+<b class="nc"><i>583</i>&nbsp;        return serviceProvided != null &amp;&amp; !serviceProvided.equals(emptyService);</b>
+<i>584</i>&nbsp;    }
+<i>585</i>&nbsp;
+<i>586</i>&nbsp;    @Override
+<i>587</i>&nbsp;    public String pncComplications() {
+<b class="nc"><i>588</i>&nbsp;        if (StringUtils.isNotEmpty(pncComplications))</b>
+<b class="nc"><i>589</i>&nbsp;            return replaceAndHumanizeWithInitCapText(pncComplications.trim(), SPACE, COMMA_WITH_SPACE);</b>
+<b class="nc"><i>590</i>&nbsp;        return null;</b>
+<i>591</i>&nbsp;    }
+<i>592</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

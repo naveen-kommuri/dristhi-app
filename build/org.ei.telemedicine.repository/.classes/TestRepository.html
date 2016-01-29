@@ -1,0 +1,210 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: TestRepository</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.repository</a> ]
+</div>
+
+<h1>Coverage Summary for Class: TestRepository (org.ei.telemedicine.repository)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TestRepository</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    33.3%
+  </span>
+  <span class="absValue">
+    (1/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    25%
+  </span>
+  <span class="absValue">
+    (1/ 4)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.repository;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static net.sqlcipher.DatabaseUtils.longForQuery;
+<i>4</i>&nbsp;import static org.apache.commons.lang3.StringUtils.repeat;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import java.util.ArrayList;
+<i>7</i>&nbsp;import java.util.HashMap;
+<i>8</i>&nbsp;import java.util.List;
+<i>9</i>&nbsp;import java.util.Map;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import net.sqlcipher.database.SQLiteDatabase;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;import org.ei.telemedicine.doctor.DoctorData;
+<i>14</i>&nbsp;import org.ei.telemedicine.domain.Mother;
+<i>15</i>&nbsp;import org.ei.telemedicine.domain.TestDomain;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;import android.content.ContentValues;
+<i>18</i>&nbsp;import android.database.Cursor;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;import com.google.gson.Gson;
+<i>21</i>&nbsp;import com.google.gson.reflect.TypeToken;
+<i>22</i>&nbsp;
+<b class="nc"><i>23</i>&nbsp;public class TestRepository extends DrishtiRepository {</b>
+<i>24</i>&nbsp;    static final String DOCTORS_INFO_SQL = &quot;CREATE TABLE consultants(SNo INTEGER PRIMARY KEY AUTOINCREMENT,AnmId VARCHAR, FormInformation BLOB,FormTime VARCHAR,POCInformation BLOB,POCTime VARCHAR,PocStatus VARCHAR,SyncStatus VARCHAR)&quot;;
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    public static final String DOCTORS_INFO_TABLE_NAME = &quot;doctor&quot;;
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    public static final String SNO_COLUMN = &quot;SNo&quot;;
+<i>29</i>&nbsp;    public static final String ANMID_COLUMN = &quot;AnmId&quot;;
+<i>30</i>&nbsp;    public static final String CASE_ID_COLUMN = &quot;CaseId&quot;;
+<i>31</i>&nbsp;    public static final String FORMINFORMATION_COLUMN = &quot;FormInformation&quot;;
+<i>32</i>&nbsp;    public static final String FORMTIME_COLUMN = &quot;FormTime&quot;;
+<i>33</i>&nbsp;    public static final String POCINFORMATION_COL = &quot;POCInformation&quot;;
+<i>34</i>&nbsp;    public static final String POCSTATUS_COL = &quot;PocStatus&quot;;
+<i>35</i>&nbsp;    public static final String POCTIME_COL = &quot;PocTime&quot;;
+<i>36</i>&nbsp;    public static final String SYNCSTATUS_COL = &quot;SyncStatus&quot;;
+<i>37</i>&nbsp;    public static final String VISIT_TYPE_COL = &quot;VisitType&quot;;
+<i>38</i>&nbsp;
+<b class="fc"><i>39</i>&nbsp;    public static final String[] DOCTOR_TABLE_COLUMNS = new String[]{SNO_COLUMN, ANMID_COLUMN, CASE_ID_COLUMN, FORMINFORMATION_COLUMN, FORMTIME_COLUMN, POCINFORMATION_COL, POCSTATUS_COL, POCTIME_COL, SYNCSTATUS_COL, VISIT_TYPE_COL};</b>
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    @Override
+<i>43</i>&nbsp;    protected void onCreate(SQLiteDatabase database) {
+<b class="nc"><i>44</i>&nbsp;        database.execSQL(DOCTORS_INFO_SQL);</b>
+<b class="nc"><i>45</i>&nbsp;    }</b>
+<i>46</i>&nbsp;//
+<i>47</i>&nbsp;//    public List&lt;DoctorData&gt; allConsultantsData() {
+<i>48</i>&nbsp;//        SQLiteDatabase database = masterRepository.getReadableDatabase();
+<i>49</i>&nbsp;//        Cursor cursor = database.query(DOCTORS_INFO_TABLE_NAME, DOCTOR_TABLE_COLUMNS, POCINFORMATION_COL + &quot; = null &quot;, null, null, null, null, null);
+<i>50</i>&nbsp;//        return readAllConstultansData(cursor);
+<i>51</i>&nbsp;//    }
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;//    private List&lt;DoctorData&gt; readAllConstultansData(Cursor cursor) {
+<i>54</i>&nbsp;//        cursor.moveToFirst();
+<i>55</i>&nbsp;//        List&lt;DoctorData&gt; doctorDatas = new ArrayList&lt;DoctorData&gt;();
+<i>56</i>&nbsp;//        while (!cursor.isAfterLast()) {
+<i>57</i>&nbsp;//            DoctorData doctorData = new DoctorData();
+<i>58</i>&nbsp;//
+<i>59</i>&nbsp;//            doctorData.setCaseId(cursor.getString(cursor.getColumnIndex(CASE_ID_COLUMN)));
+<i>60</i>&nbsp;//            doctorData.setAnmId(cursor.getString(cursor.getColumnIndex(ANMID_COLUMN)));
+<i>61</i>&nbsp;//            doctorData.setFormInformation(cursor.getString(cursor.getColumnIndex(FORMINFORMATION_COLUMN)));
+<i>62</i>&nbsp;//            doctorData.setFormTime(cursor.getString(cursor.getColumnIndex(FORMTIME_COLUMN)));
+<i>63</i>&nbsp;//            doctorData.setPOCInformation(cursor.getString(cursor.getColumnIndex(POCINFORMATION_COL)));
+<i>64</i>&nbsp;//            doctorData.setPocStatus(cursor.getString(cursor.getColumnIndex(POCSTATUS_COL)));
+<i>65</i>&nbsp;//            doctorData.setPocTime(cursor.getString(cursor.getColumnIndex(POCTIME_COL)));
+<i>66</i>&nbsp;//            doctorData.setSyncStatus(cursor.getString(cursor.getColumnIndex(SYNCSTATUS_COL)));
+<i>67</i>&nbsp;//            doctorData.setVisitType(cursor.getString(cursor.getColumnIndex(VISIT_TYPE_COL)));
+<i>68</i>&nbsp;//
+<i>69</i>&nbsp;//            doctorDatas.add(doctorData);
+<i>70</i>&nbsp;//            cursor.moveToNext();
+<i>71</i>&nbsp;//        }
+<i>72</i>&nbsp;//        cursor.close();
+<i>73</i>&nbsp;//        return doctorDatas;
+<i>74</i>&nbsp;//    }
+<i>75</i>&nbsp;//
+<i>76</i>&nbsp;//    public void add(DoctorData doctorData) {
+<i>77</i>&nbsp;//        SQLiteDatabase database = masterRepository.getWritableDatabase();
+<i>78</i>&nbsp;//        database.insert(DOCTORS_INFO_TABLE_NAME, null, createValuesFor(doctorData));
+<i>79</i>&nbsp;//    }
+<i>80</i>&nbsp;//
+<i>81</i>&nbsp;//
+<i>82</i>&nbsp;//    private ContentValues createValuesFor(DoctorData doctorData) {
+<i>83</i>&nbsp;//        ContentValues values = new ContentValues();
+<i>84</i>&nbsp;//        values.put(CASE_ID_COLUMN, doctorData.getCaseId());
+<i>85</i>&nbsp;//        values.put(ANMID_COLUMN, doctorData.getAnmId());
+<i>86</i>&nbsp;//        values.put(FORMINFORMATION_COLUMN, doctorData.getFormInformation());
+<i>87</i>&nbsp;//        values.put(POCINFORMATION_COL, doctorData.getPOCInformation());
+<i>88</i>&nbsp;//        values.put(FORMTIME_COLUMN, doctorData.getFormTime());
+<i>89</i>&nbsp;//        values.put(POCSTATUS_COL, doctorData.getPocStatus());
+<i>90</i>&nbsp;//        values.put(POCTIME_COL, doctorData.getPocTime());
+<i>91</i>&nbsp;//        values.put(SYNCSTATUS_COL, doctorData.getSyncStatus());
+<i>92</i>&nbsp;//        values.put(VISIT_TYPE_COL, doctorData.getVisitType());
+<i>93</i>&nbsp;//        return values;
+<i>94</i>&nbsp;//    }
+<i>95</i>&nbsp;//
+<i>96</i>&nbsp;//    public void updateDetails(String caseId, String pocInformation) {
+<i>97</i>&nbsp;//        SQLiteDatabase database = masterRepository.getWritableDatabase();
+<i>98</i>&nbsp;//        ContentValues valuesToUpdate = new ContentValues();
+<i>99</i>&nbsp;//        valuesToUpdate.put(POCINFORMATION_COL, pocInformation);
+<i>100</i>&nbsp;//        database.update(DOCTORS_INFO_TABLE_NAME, valuesToUpdate, CASE_ID_COLUMN + &quot; = ?&quot;, new String[]{caseId});
+<i>101</i>&nbsp;//    }
+<i>102</i>&nbsp;//
+<i>103</i>&nbsp;//    public void deleteAll() {
+<i>104</i>&nbsp;////        SQLiteDatabase database = masterRepository.getWritableDatabase();
+<i>105</i>&nbsp;////        database.execSQL(&quot;TRUNCATE table&quot; + DOCTORS_INFO_TABLE_NAME);
+<i>106</i>&nbsp;//    }
+<i>107</i>&nbsp;//
+<i>108</i>&nbsp;//
+<i>109</i>&nbsp;//    public int getCountByType(String type) {
+<i>110</i>&nbsp;//        SQLiteDatabase database = masterRepository.getWritableDatabase();
+<i>111</i>&nbsp;////        Cursor cursor = database.rawQuery(&quot;select count(*) from mother where type=?&quot;, new String[]{type});
+<i>112</i>&nbsp;//        Cursor cursor = database.rawQuery(&quot;select * from mother where isClosed=?&quot;, new String[]{&quot;false&quot;});
+<i>113</i>&nbsp;//        return cursor.getCount();
+<i>114</i>&nbsp;//    }
+<i>115</i>&nbsp;//
+<i>116</i>&nbsp;//    public Cursor allmotherData() {
+<i>117</i>&nbsp;//        SQLiteDatabase database = masterRepository.getWritableDatabase();
+<i>118</i>&nbsp;//        Cursor cursor = null;
+<i>119</i>&nbsp;//        if (database != null) {
+<i>120</i>&nbsp;//            cursor = database.rawQuery(&quot;select * from mother where isClosed=?&quot;, new String[]{&quot;false&quot;});
+<i>121</i>&nbsp;//        } else {
+<i>122</i>&nbsp;//
+<i>123</i>&nbsp;//        }
+<i>124</i>&nbsp;//        return cursor;
+<i>125</i>&nbsp;//    }
+<i>126</i>&nbsp;
+<i>127</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

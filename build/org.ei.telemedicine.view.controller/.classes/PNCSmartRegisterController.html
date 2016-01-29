@@ -1,0 +1,308 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: PNCSmartRegisterController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.controller</a> ]
+</div>
+
+<h1>Coverage Summary for Class: PNCSmartRegisterController (org.ei.telemedicine.view.controller)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PNCSmartRegisterController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 38)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">PNCSmartRegisterController$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 42)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">PNCSmartRegisterController$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 82)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.controller;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static java.lang.String.valueOf;
+<i>4</i>&nbsp;import static java.util.Collections.sort;
+<i>5</i>&nbsp;import static org.apache.commons.lang3.StringUtils.isBlank;
+<i>6</i>&nbsp;import static org.ei.telemedicine.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
+<i>7</i>&nbsp;import static org.ei.telemedicine.AllConstants.ECRegistrationFields.CASTE;
+<i>8</i>&nbsp;import static org.ei.telemedicine.AllConstants.ECRegistrationFields.CURRENT_FP_METHOD;
+<i>9</i>&nbsp;import static org.ei.telemedicine.AllConstants.ECRegistrationFields.ECONOMIC_STATUS;
+<i>10</i>&nbsp;import static org.ei.telemedicine.AllConstants.ECRegistrationFields.FAMILY_PLANNING_METHOD_CHANGE_DATE;
+<i>11</i>&nbsp;import static org.ei.telemedicine.AllConstants.ECRegistrationFields.IUD_PERSON;
+<i>12</i>&nbsp;import static org.ei.telemedicine.AllConstants.ECRegistrationFields.IUD_PLACE;
+<i>13</i>&nbsp;import static org.ei.telemedicine.AllConstants.ECRegistrationFields.NUMBER_OF_CENTCHROMAN_PILLS_DELIVERED;
+<i>14</i>&nbsp;import static org.ei.telemedicine.AllConstants.ECRegistrationFields.NUMBER_OF_CONDOMS_SUPPLIED;
+<i>15</i>&nbsp;import static org.ei.telemedicine.AllConstants.ECRegistrationFields.NUMBER_OF_OCP_DELIVERED;
+<i>16</i>&nbsp;import static org.ei.telemedicine.AllConstants.ECRegistrationFields.WOMAN_DOB;
+<i>17</i>&nbsp;import static org.ei.telemedicine.AllConstants.PNCRegistrationFields.DELIVERY_COMPLICATIONS;
+<i>18</i>&nbsp;import static org.ei.telemedicine.AllConstants.PNCRegistrationFields.DELIVERY_PLACE;
+<i>19</i>&nbsp;import static org.ei.telemedicine.AllConstants.PNCRegistrationFields.DELIVERY_TYPE;
+<i>20</i>&nbsp;import static org.ei.telemedicine.AllConstants.PNCRegistrationFields.IMMEDIATE_REFERRAL_REASON;
+<i>21</i>&nbsp;import static org.ei.telemedicine.AllConstants.PNCRegistrationFields.OTHER_DELIVERY_COMPLICATIONS;
+<i>22</i>&nbsp;import static org.ei.telemedicine.domain.ServiceProvided.PNC_SERVICE_PROVIDED_NAME;
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;import java.util.ArrayList;
+<i>25</i>&nbsp;import java.util.Comparator;
+<i>26</i>&nbsp;import java.util.List;
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;import org.apache.commons.lang3.tuple.Pair;
+<i>29</i>&nbsp;import org.ei.telemedicine.AllConstants;
+<i>30</i>&nbsp;import org.ei.telemedicine.domain.Alert;
+<i>31</i>&nbsp;import org.ei.telemedicine.domain.Child;
+<i>32</i>&nbsp;import org.ei.telemedicine.domain.EligibleCouple;
+<i>33</i>&nbsp;import org.ei.telemedicine.domain.Mother;
+<i>34</i>&nbsp;import org.ei.telemedicine.domain.ServiceProvided;
+<i>35</i>&nbsp;import org.ei.telemedicine.repository.AllBeneficiaries;
+<i>36</i>&nbsp;import org.ei.telemedicine.repository.AllEligibleCouples;
+<i>37</i>&nbsp;import org.ei.telemedicine.service.AlertService;
+<i>38</i>&nbsp;import org.ei.telemedicine.service.ServiceProvidedService;
+<i>39</i>&nbsp;import org.ei.telemedicine.util.Cache;
+<i>40</i>&nbsp;import org.ei.telemedicine.util.CacheableData;
+<i>41</i>&nbsp;import org.ei.telemedicine.view.contract.AlertDTO;
+<i>42</i>&nbsp;import org.ei.telemedicine.view.contract.ChildClient;
+<i>43</i>&nbsp;import org.ei.telemedicine.view.contract.ServiceProvidedDTO;
+<i>44</i>&nbsp;import org.ei.telemedicine.view.contract.SmartRegisterClient;
+<i>45</i>&nbsp;import org.ei.telemedicine.view.contract.Village;
+<i>46</i>&nbsp;import org.ei.telemedicine.view.contract.pnc.PNCClient;
+<i>47</i>&nbsp;import org.ei.telemedicine.view.contract.pnc.PNCClients;
+<i>48</i>&nbsp;import org.ei.telemedicine.view.preProcessor.PNCClientPreProcessor;
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;import com.google.gson.Gson;
+<i>51</i>&nbsp;
+<i>52</i>&nbsp;public class PNCSmartRegisterController {
+<i>53</i>&nbsp;    private static final String PNC_1_ALERT_NAME = &quot;PNC 1&quot;;
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;    private static final String PNC_CLIENTS_LIST = &quot;PNCClientList&quot;;
+<i>56</i>&nbsp;    private AllEligibleCouples allEligibleCouples;
+<i>57</i>&nbsp;    private AllBeneficiaries allBeneficiaries;
+<i>58</i>&nbsp;    private AlertService alertService;
+<i>59</i>&nbsp;    private Cache&lt;String&gt; cache;
+<i>60</i>&nbsp;    private Cache&lt;PNCClients&gt; pncClientsCache;
+<i>61</i>&nbsp;    private final ServiceProvidedService serviceProvidedService;
+<i>62</i>&nbsp;    private PNCClientPreProcessor pncClientPreProcessor;
+<i>63</i>&nbsp;
+<i>64</i>&nbsp;    public PNCSmartRegisterController(ServiceProvidedService serviceProvidedService, AlertService alertService,
+<i>65</i>&nbsp;                                      AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries,
+<i>66</i>&nbsp;                                      Cache&lt;String&gt; cache, Cache&lt;PNCClients&gt; pncClientsCache) {
+<b class="nc"><i>67</i>&nbsp;        this(serviceProvidedService, alertService, allEligibleCouples, allBeneficiaries, cache, pncClientsCache, new PNCClientPreProcessor());</b>
+<b class="nc"><i>68</i>&nbsp;    }</b>
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;    public PNCSmartRegisterController(ServiceProvidedService serviceProvidedService, AlertService alertService,
+<i>71</i>&nbsp;                                      AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries,
+<b class="nc"><i>72</i>&nbsp;                                      Cache&lt;String&gt; cache, Cache&lt;PNCClients&gt; pncClientsCache, PNCClientPreProcessor pncClientPreProcessor) {</b>
+<b class="nc"><i>73</i>&nbsp;        this.allEligibleCouples = allEligibleCouples;</b>
+<b class="nc"><i>74</i>&nbsp;        this.allBeneficiaries = allBeneficiaries;</b>
+<b class="nc"><i>75</i>&nbsp;        this.alertService = alertService;</b>
+<b class="nc"><i>76</i>&nbsp;        this.serviceProvidedService = serviceProvidedService;</b>
+<b class="nc"><i>77</i>&nbsp;        this.cache = cache;</b>
+<b class="nc"><i>78</i>&nbsp;        this.pncClientsCache = pncClientsCache;</b>
+<b class="nc"><i>79</i>&nbsp;        this.pncClientPreProcessor = pncClientPreProcessor;</b>
+<b class="nc"><i>80</i>&nbsp;    }</b>
+<i>81</i>&nbsp;
+<i>82</i>&nbsp;    public PNCClients getClients() {
+<b class="nc"><i>83</i>&nbsp;        return pncClientsCache.get(PNC_CLIENTS_LIST, new CacheableData&lt;PNCClients&gt;() {</b>
+<i>84</i>&nbsp;            @Override
+<i>85</i>&nbsp;            public PNCClients fetch() {
+<b class="nc"><i>86</i>&nbsp;                PNCClients pncClients = new PNCClients();</b>
+<b class="nc"><i>87</i>&nbsp;                List&lt;Pair&lt;Mother, EligibleCouple&gt;&gt; pncsWithEcs = allBeneficiaries.allPNCsWithEC();</b>
+<i>88</i>&nbsp;
+<b class="nc"><i>89</i>&nbsp;                for (Pair&lt;Mother, EligibleCouple&gt; pncWithEc : pncsWithEcs) {</b>
+<b class="nc"><i>90</i>&nbsp;                    Mother pnc = pncWithEc.getLeft();</b>
+<b class="nc"><i>91</i>&nbsp;                    EligibleCouple ec = pncWithEc.getRight();</b>
+<b class="nc"><i>92</i>&nbsp;                    String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();</b>
+<i>93</i>&nbsp;
+<b class="nc"><i>94</i>&nbsp;                    List&lt;ServiceProvidedDTO&gt; servicesProvided = getServicesProvided(pnc.caseId());</b>
+<b class="nc"><i>95</i>&nbsp;                    List&lt;AlertDTO&gt; alerts = getAlerts(pnc.caseId());</b>
+<b class="nc"><i>96</i>&nbsp;                    PNCClient client = new PNCClient(pnc.caseId(), ec.village(), ec.wifeName(), pnc.thayiCardNumber(), pnc.referenceDate())</b>
+<b class="nc"><i>97</i>&nbsp;                            .withHusbandName(ec.husbandName())</b>
+<b class="nc"><i>98</i>&nbsp;                            .withAge(ec.age())</b>
+<b class="nc"><i>99</i>&nbsp;                            .withWomanDOB(ec.getDetail(WOMAN_DOB))</b>
+<b class="nc"><i>100</i>&nbsp;                            .withECNumber(ec.ecNumber()).withPNCNumber(pnc.pncNumber())</b>
+<b class="nc"><i>101</i>&nbsp;                            .withIsHighPriority(ec.isHighPriority())</b>
+<b class="nc"><i>102</i>&nbsp;                            .withIsHighRisk(pnc.isHighRisk())</b>
+<b class="nc"><i>103</i>&nbsp;                            .withEconomicStatus(ec.getDetail(ECONOMIC_STATUS))</b>
+<b class="nc"><i>104</i>&nbsp;                            .withIsOutOfArea(ec.isOutOfArea())</b>
+<b class="nc"><i>105</i>&nbsp;                            .withCaste(ec.getDetail(CASTE))</b>
+<b class="nc"><i>106</i>&nbsp;                            .withPoc(pnc.getDetail(AllConstants.PNCRegistrationFields.PNC_POC_INFO))</b>
+<b class="nc"><i>107</i>&nbsp;                            .withPhotoPath(photoPath)</b>
+<b class="nc"><i>108</i>&nbsp;                            .withFPMethod(ec.getDetail(CURRENT_FP_METHOD))</b>
+<b class="nc"><i>109</i>&nbsp;                            .withIUDPlace(ec.getDetail(IUD_PLACE))</b>
+<b class="nc"><i>110</i>&nbsp;                            .withIUDPerson(ec.getDetail(IUD_PERSON))</b>
+<b class="nc"><i>111</i>&nbsp;                            .withNumberOfCondomsSupplied(ec.getDetail(NUMBER_OF_CONDOMS_SUPPLIED))</b>
+<b class="nc"><i>112</i>&nbsp;                            .withFamilyPlanningMethodChangeDate(ec.getDetail(FAMILY_PLANNING_METHOD_CHANGE_DATE))</b>
+<b class="nc"><i>113</i>&nbsp;                            .withNumberOfOCPDelivered(ec.getDetail(NUMBER_OF_OCP_DELIVERED))</b>
+<b class="nc"><i>114</i>&nbsp;                            .withNumberOfCentchromanPillsDelivered(ec.getDetail(NUMBER_OF_CENTCHROMAN_PILLS_DELIVERED))</b>
+<b class="nc"><i>115</i>&nbsp;                            .withDeliveryPlace(pnc.getDetail(DELIVERY_PLACE))</b>
+<b class="nc"><i>116</i>&nbsp;                            .withDeliveryType(pnc.getDetail(DELIVERY_TYPE))</b>
+<b class="nc"><i>117</i>&nbsp;                            .withDeliveryComplications(pnc.getDetail(DELIVERY_COMPLICATIONS))</b>
+<b class="nc"><i>118</i>&nbsp;                            .withPNCComplications(pnc.getDetail(IMMEDIATE_REFERRAL_REASON))</b>
+<b class="nc"><i>119</i>&nbsp;                            .withOtherDeliveryComplications(pnc.getDetail(OTHER_DELIVERY_COMPLICATIONS))</b>
+<b class="nc"><i>120</i>&nbsp;                            .withEntityIdToSavePhoto(ec.caseId())</b>
+<b class="nc"><i>121</i>&nbsp;                            .withAlerts(alerts)</b>
+<b class="nc"><i>122</i>&nbsp;                            .withServicesProvided(servicesProvided)</b>
+<b class="nc"><i>123</i>&nbsp;                            .withChildren(findChildren(pnc))</b>
+<b class="nc"><i>124</i>&nbsp;                            .withPreProcess();</b>
+<b class="nc"><i>125</i>&nbsp;                    pncClients.add(pncClientPreProcessor.preProcess(client));</b>
+<b class="nc"><i>126</i>&nbsp;                }</b>
+<b class="nc"><i>127</i>&nbsp;                sortByName(pncClients);</b>
+<b class="nc"><i>128</i>&nbsp;                return pncClients;</b>
+<i>129</i>&nbsp;            }
+<i>130</i>&nbsp;        });
+<i>131</i>&nbsp;    }
+<i>132</i>&nbsp;
+<i>133</i>&nbsp;    public String villages() {
+<b class="nc"><i>134</i>&nbsp;        List&lt;Village&gt; villagesList = new ArrayList&lt;Village&gt;();</b>
+<b class="nc"><i>135</i>&nbsp;        List&lt;String&gt; villages = allEligibleCouples.villages();</b>
+<b class="nc"><i>136</i>&nbsp;        for (String village : villages) {</b>
+<b class="nc"><i>137</i>&nbsp;            villagesList.add(new Village(village));</b>
+<b class="nc"><i>138</i>&nbsp;        }</b>
+<b class="nc"><i>139</i>&nbsp;        return new Gson().toJson(villagesList);</b>
+<i>140</i>&nbsp;    }
+<i>141</i>&nbsp;
+<i>142</i>&nbsp;    private List&lt;ServiceProvidedDTO&gt; getServicesProvided(String entityId) {
+<b class="nc"><i>143</i>&nbsp;        List&lt;ServiceProvided&gt; servicesProvided = serviceProvidedService.findByEntityIdAndServiceNames(entityId,</b>
+<i>144</i>&nbsp;                PNC_SERVICE_PROVIDED_NAME);
+<b class="nc"><i>145</i>&nbsp;        List&lt;ServiceProvidedDTO&gt; serviceProvidedDTOs = new ArrayList&lt;ServiceProvidedDTO&gt;();</b>
+<b class="nc"><i>146</i>&nbsp;        for (ServiceProvided serviceProvided : servicesProvided) {</b>
+<b class="nc"><i>147</i>&nbsp;            serviceProvidedDTOs.add(new ServiceProvidedDTO(serviceProvided.name(), serviceProvided.date(), serviceProvided.data()));</b>
+<b class="nc"><i>148</i>&nbsp;        }</b>
+<b class="nc"><i>149</i>&nbsp;        return serviceProvidedDTOs;</b>
+<i>150</i>&nbsp;    }
+<i>151</i>&nbsp;
+<i>152</i>&nbsp;    private List&lt;AlertDTO&gt; getAlerts(String entityId) {
+<b class="nc"><i>153</i>&nbsp;        List&lt;Alert&gt; alerts = alertService.findByEntityIdAndAlertNames(entityId,</b>
+<i>154</i>&nbsp;                PNC_1_ALERT_NAME
+<i>155</i>&nbsp;        );
+<b class="nc"><i>156</i>&nbsp;        List&lt;AlertDTO&gt; alertDTOs = new ArrayList&lt;AlertDTO&gt;();</b>
+<b class="nc"><i>157</i>&nbsp;        for (Alert alert : alerts) {</b>
+<b class="nc"><i>158</i>&nbsp;            alertDTOs.add(new AlertDTO(alert.visitCode(), valueOf(alert.status()), alert.startDate()));</b>
+<b class="nc"><i>159</i>&nbsp;        }</b>
+<b class="nc"><i>160</i>&nbsp;        return alertDTOs;</b>
+<i>161</i>&nbsp;    }
+<i>162</i>&nbsp;
+<i>163</i>&nbsp;    private void sortByName(List&lt;? extends SmartRegisterClient&gt; pncClients) {
+<b class="nc"><i>164</i>&nbsp;        sort(pncClients, new Comparator&lt;SmartRegisterClient&gt;() {</b>
+<i>165</i>&nbsp;            @Override
+<i>166</i>&nbsp;            public int compare(SmartRegisterClient onePNCClient, SmartRegisterClient anotherPNCClient) {
+<b class="nc"><i>167</i>&nbsp;                return onePNCClient.wifeName().compareToIgnoreCase(anotherPNCClient.wifeName());</b>
+<i>168</i>&nbsp;            }
+<i>169</i>&nbsp;        });
+<b class="nc"><i>170</i>&nbsp;    }</b>
+<i>171</i>&nbsp;
+<i>172</i>&nbsp;    private List&lt;ChildClient&gt; findChildren(Mother mother) {
+<b class="nc"><i>173</i>&nbsp;        List&lt;Child&gt; children = allBeneficiaries.findAllChildrenByMotherId(mother.caseId());</b>
+<b class="nc"><i>174</i>&nbsp;        List&lt;ChildClient&gt; childClientList = new ArrayList&lt;ChildClient&gt;();</b>
+<b class="nc"><i>175</i>&nbsp;        for (Child child : children) {</b>
+<b class="nc"><i>176</i>&nbsp;            childClientList.add(new ChildClient(child.caseId(), child.gender(), child.getDetail(&quot;weight&quot;), mother.thayiCardNumber()));</b>
+<b class="nc"><i>177</i>&nbsp;        }</b>
+<b class="nc"><i>178</i>&nbsp;        return childClientList;</b>
+<i>179</i>&nbsp;    }
+<i>180</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

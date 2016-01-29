@@ -1,0 +1,231 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Child</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.domain</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Child (org.ei.telemedicine.domain)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Child</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    84%
+  </span>
+  <span class="absValue">
+    (21/ 25)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    89.1%
+  </span>
+  <span class="absValue">
+    (41/ 46)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.domain;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.apache.commons.lang3.StringUtils;
+<i>4</i>&nbsp;import org.apache.commons.lang3.builder.EqualsBuilder;
+<i>5</i>&nbsp;import org.apache.commons.lang3.builder.HashCodeBuilder;
+<i>6</i>&nbsp;import org.apache.commons.lang3.builder.ToStringBuilder;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import java.util.Arrays;
+<i>9</i>&nbsp;import java.util.HashSet;
+<i>10</i>&nbsp;import java.util.Map;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;import static org.ei.telemedicine.AllConstants.BOOLEAN_TRUE;
+<i>13</i>&nbsp;import static org.ei.telemedicine.AllConstants.SPACE;
+<i>14</i>&nbsp;import static org.ei.telemedicine.AllConstants.ChildRegistrationFields.HIGH_RISK_REASON;
+<i>15</i>&nbsp;import static org.ei.telemedicine.AllConstants.ChildRegistrationFields.IS_CHILD_HIGH_RISK;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;public class Child {
+<i>18</i>&nbsp;    private final String caseId;
+<i>19</i>&nbsp;    private final String motherCaseId;
+<i>20</i>&nbsp;    private String thayiCardNumber;
+<i>21</i>&nbsp;    private String dateOfBirth;
+<i>22</i>&nbsp;    private final String gender;
+<i>23</i>&nbsp;    private final Map&lt;String, String&gt; details;
+<i>24</i>&nbsp;    private boolean isClosed;
+<i>25</i>&nbsp;    private Mother mother;
+<i>26</i>&nbsp;    private EligibleCouple eligibleCouple;
+<i>27</i>&nbsp;    private String photoPath;
+<i>28</i>&nbsp;
+<b class="fc"><i>29</i>&nbsp;    public Child(String caseId, String motherCaseId, String thayiCardNumber, String dateOfBirth, String gender, Map&lt;String, String&gt; details) {</b>
+<b class="fc"><i>30</i>&nbsp;        this.caseId = caseId;</b>
+<b class="fc"><i>31</i>&nbsp;        this.motherCaseId = motherCaseId;</b>
+<b class="fc"><i>32</i>&nbsp;        this.thayiCardNumber = thayiCardNumber;</b>
+<b class="fc"><i>33</i>&nbsp;        this.dateOfBirth = dateOfBirth;</b>
+<b class="fc"><i>34</i>&nbsp;        this.gender = gender;</b>
+<b class="fc"><i>35</i>&nbsp;        this.details = details;</b>
+<b class="fc"><i>36</i>&nbsp;        this.isClosed = false;</b>
+<b class="fc"><i>37</i>&nbsp;    }</b>
+<i>38</i>&nbsp;
+<b class="fc"><i>39</i>&nbsp;    public Child(String caseId, String motherCaseId, String gender, Map&lt;String, String&gt; details) {</b>
+<b class="fc"><i>40</i>&nbsp;        this.caseId = caseId;</b>
+<b class="fc"><i>41</i>&nbsp;        this.motherCaseId = motherCaseId;</b>
+<b class="fc"><i>42</i>&nbsp;        this.gender = gender;</b>
+<b class="fc"><i>43</i>&nbsp;        this.details = details;</b>
+<b class="fc"><i>44</i>&nbsp;    }</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    public String caseId() {
+<b class="fc"><i>47</i>&nbsp;        return caseId;</b>
+<i>48</i>&nbsp;    }
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;    public String motherCaseId() {
+<b class="fc"><i>51</i>&nbsp;        return motherCaseId;</b>
+<i>52</i>&nbsp;    }
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;    public String thayiCardNumber() {
+<b class="fc"><i>55</i>&nbsp;        return thayiCardNumber;</b>
+<i>56</i>&nbsp;    }
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    public String dateOfBirth() {
+<b class="fc"><i>59</i>&nbsp;        return dateOfBirth;</b>
+<i>60</i>&nbsp;    }
+<i>61</i>&nbsp;
+<i>62</i>&nbsp;    public String gender() {
+<b class="fc"><i>63</i>&nbsp;        return gender;</b>
+<i>64</i>&nbsp;    }
+<i>65</i>&nbsp;
+<i>66</i>&nbsp;    public Mother mother() {
+<b class="fc"><i>67</i>&nbsp;        return mother;</b>
+<i>68</i>&nbsp;    }
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;    public EligibleCouple ec() {
+<b class="fc"><i>71</i>&nbsp;        return eligibleCouple;</b>
+<i>72</i>&nbsp;    }
+<i>73</i>&nbsp;
+<i>74</i>&nbsp;    public Map&lt;String, String&gt; details() {
+<b class="fc"><i>75</i>&nbsp;        return details;</b>
+<i>76</i>&nbsp;    }
+<i>77</i>&nbsp;
+<i>78</i>&nbsp;    public boolean isHighRisk() {
+<b class="fc"><i>79</i>&nbsp;        return BOOLEAN_TRUE.equals(details.get(IS_CHILD_HIGH_RISK));</b>
+<i>80</i>&nbsp;    }
+<i>81</i>&nbsp;
+<i>82</i>&nbsp;    public boolean isClosed() {
+<b class="nc"><i>83</i>&nbsp;        return isClosed;</b>
+<i>84</i>&nbsp;    }
+<i>85</i>&nbsp;
+<i>86</i>&nbsp;    public Child setIsClosed(boolean isClosed) {
+<b class="fc"><i>87</i>&nbsp;        this.isClosed = isClosed;</b>
+<b class="fc"><i>88</i>&nbsp;        return this;</b>
+<i>89</i>&nbsp;    }
+<i>90</i>&nbsp;
+<i>91</i>&nbsp;    public String highRiskReason() {
+<b class="nc"><i>92</i>&nbsp;        String highRiskReason = details.get(HIGH_RISK_REASON) == null ? &quot;&quot; : details.get(HIGH_RISK_REASON);</b>
+<b class="nc"><i>93</i>&nbsp;        return StringUtils.join(new HashSet&lt;String&gt;(Arrays.asList(highRiskReason.split(SPACE))).toArray(), SPACE);</b>
+<i>94</i>&nbsp;    }
+<i>95</i>&nbsp;
+<i>96</i>&nbsp;    public Child setThayiCardNumber(String thayiCardNumber) {
+<b class="fc"><i>97</i>&nbsp;        this.thayiCardNumber = thayiCardNumber;</b>
+<b class="fc"><i>98</i>&nbsp;        return this;</b>
+<i>99</i>&nbsp;    }
+<i>100</i>&nbsp;
+<i>101</i>&nbsp;    public Child setDateOfBirth(String dateOfBirth) {
+<b class="fc"><i>102</i>&nbsp;        this.dateOfBirth = dateOfBirth;</b>
+<b class="fc"><i>103</i>&nbsp;        return this;</b>
+<i>104</i>&nbsp;    }
+<i>105</i>&nbsp;
+<i>106</i>&nbsp;    public String getDetail(String name) {
+<b class="fc"><i>107</i>&nbsp;        return details.get(name);</b>
+<i>108</i>&nbsp;    }
+<i>109</i>&nbsp;
+<i>110</i>&nbsp;    public String photoPath() {
+<b class="fc"><i>111</i>&nbsp;        return photoPath;</b>
+<i>112</i>&nbsp;    }
+<i>113</i>&nbsp;
+<i>114</i>&nbsp;    @Override
+<i>115</i>&nbsp;    public boolean equals(Object o) {
+<b class="fc"><i>116</i>&nbsp;        return EqualsBuilder.reflectionEquals(this, o);</b>
+<i>117</i>&nbsp;    }
+<i>118</i>&nbsp;
+<i>119</i>&nbsp;    @Override
+<i>120</i>&nbsp;    public int hashCode() {
+<b class="nc"><i>121</i>&nbsp;        return HashCodeBuilder.reflectionHashCode(this);</b>
+<i>122</i>&nbsp;    }
+<i>123</i>&nbsp;
+<i>124</i>&nbsp;    @Override
+<i>125</i>&nbsp;    public String toString() {
+<b class="nc"><i>126</i>&nbsp;        return ToStringBuilder.reflectionToString(this);</b>
+<i>127</i>&nbsp;    }
+<i>128</i>&nbsp;
+<i>129</i>&nbsp;    public Child withMother(Mother mother) {
+<b class="fc"><i>130</i>&nbsp;        this.mother = mother;</b>
+<b class="fc"><i>131</i>&nbsp;        return this;</b>
+<i>132</i>&nbsp;    }
+<i>133</i>&nbsp;
+<i>134</i>&nbsp;    public Child withEC(EligibleCouple eligibleCouple) {
+<b class="fc"><i>135</i>&nbsp;        this.eligibleCouple = eligibleCouple;</b>
+<b class="fc"><i>136</i>&nbsp;        return this;</b>
+<i>137</i>&nbsp;    }
+<i>138</i>&nbsp;
+<i>139</i>&nbsp;    public Child withPhotoPath(String photoPath) {
+<b class="fc"><i>140</i>&nbsp;        this.photoPath = photoPath;</b>
+<b class="fc"><i>141</i>&nbsp;        return this;</b>
+<i>142</i>&nbsp;    }
+<i>143</i>&nbsp;
+<i>144</i>&nbsp;    public Child withDateOfBirth(String dateOfBirth) {
+<b class="fc"><i>145</i>&nbsp;        this.dateOfBirth = dateOfBirth;</b>
+<b class="fc"><i>146</i>&nbsp;        return this;</b>
+<i>147</i>&nbsp;    }
+<i>148</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

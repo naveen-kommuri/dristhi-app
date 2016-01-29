@@ -1,0 +1,172 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ECChildClientTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.view.contract</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ECChildClientTest (org.ei.telemedicine.test.view.contract)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ECChildClientTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (13/ 13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (37/ 37)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.view.contract;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.util.DateUtil;
+<i>4</i>&nbsp;import org.ei.telemedicine.view.contract.ECChildClient;
+<i>5</i>&nbsp;import org.joda.time.LocalDate;
+<i>6</i>&nbsp;import org.junit.Before;
+<i>7</i>&nbsp;import org.junit.Test;
+<i>8</i>&nbsp;import org.junit.runner.RunWith;
+<i>9</i>&nbsp;import org.mockito.runners.MockitoJUnitRunner;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import static junit.framework.Assert.assertEquals;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;@RunWith(MockitoJUnitRunner.class)
+<b class="fc"><i>14</i>&nbsp;public class ECChildClientTest {</b>
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    private LocalDate today;
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    @Before
+<i>19</i>&nbsp;    public void setup() {
+<b class="fc"><i>20</i>&nbsp;        today = LocalDate.parse(&quot;2014-04-27&quot;);</b>
+<b class="fc"><i>21</i>&nbsp;        DateUtil.fakeIt(today);</b>
+<b class="fc"><i>22</i>&nbsp;    }</b>
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    @Test
+<i>25</i>&nbsp;    public void testShouldReturnZeroDaysForNullCurrentDate() {
+<b class="fc"><i>26</i>&nbsp;        ECChildClient child = new ECChildClient(&quot;abcd1&quot;, &quot;male&quot;, null);</b>
+<b class="fc"><i>27</i>&nbsp;        assertEquals(&quot;0d&quot;, child.getAgeInString());</b>
+<b class="fc"><i>28</i>&nbsp;    }</b>
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    @Test
+<i>31</i>&nbsp;    public void testShouldReturnZeroDaysForEmptyCurrentDate() {
+<b class="fc"><i>32</i>&nbsp;        ECChildClient child = new ECChildClient(&quot;abcd1&quot;, &quot;male&quot;, &quot;&quot;);</b>
+<b class="fc"><i>33</i>&nbsp;        assertEquals(&quot;0d&quot;, child.getAgeInString());</b>
+<b class="fc"><i>34</i>&nbsp;    }</b>
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;    @Test
+<i>37</i>&nbsp;    public void testShouldReturnZeroDaysForCurrentDate() {
+<b class="fc"><i>38</i>&nbsp;        ECChildClient child = new ECChildClient(&quot;abcd1&quot;, &quot;male&quot;, today.toString());</b>
+<b class="fc"><i>39</i>&nbsp;        assertEquals(&quot;0d&quot;, child.getAgeInString());</b>
+<b class="fc"><i>40</i>&nbsp;    }</b>
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    @Test
+<i>43</i>&nbsp;    public void testShouldReturn5DaysForCurrentDateMinus5Days() {
+<b class="fc"><i>44</i>&nbsp;        ECChildClient child = new ECChildClient(&quot;abcd1&quot;, &quot;male&quot;, today.minusDays(5).toString());</b>
+<b class="fc"><i>45</i>&nbsp;        assertEquals(&quot;5d&quot;, child.getAgeInString());</b>
+<b class="fc"><i>46</i>&nbsp;    }</b>
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    @Test
+<i>49</i>&nbsp;    public void testShouldReturn27DaysForCurrentDateMinus27Days() {
+<b class="fc"><i>50</i>&nbsp;        ECChildClient child = new ECChildClient(&quot;abcd1&quot;, &quot;male&quot;, today.minusDays(27).toString());</b>
+<b class="fc"><i>51</i>&nbsp;        assertEquals(&quot;27d&quot;, child.getAgeInString());</b>
+<b class="fc"><i>52</i>&nbsp;    }</b>
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;    @Test
+<i>55</i>&nbsp;    public void testShouldReturn4WeeksForCurrentDateMinus28Days() {
+<b class="fc"><i>56</i>&nbsp;        ECChildClient child = new ECChildClient(&quot;abcd1&quot;, &quot;male&quot;, today.minusDays(28).toString());</b>
+<b class="fc"><i>57</i>&nbsp;        assertEquals(&quot;4w&quot;, child.getAgeInString());</b>
+<b class="fc"><i>58</i>&nbsp;    }</b>
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;    @Test
+<i>61</i>&nbsp;    public void testShouldReturn16WeeksForCurrentDateMinus118Days() {
+<b class="fc"><i>62</i>&nbsp;        ECChildClient child = new ECChildClient(&quot;abcd1&quot;, &quot;male&quot;, today.minusDays(118).toString());</b>
+<b class="fc"><i>63</i>&nbsp;        assertEquals(&quot;16w&quot;, child.getAgeInString());</b>
+<b class="fc"><i>64</i>&nbsp;    }</b>
+<i>65</i>&nbsp;
+<i>66</i>&nbsp;    @Test
+<i>67</i>&nbsp;    public void testShouldReturn3MonthsForCurrentDateMinus119Days() {
+<b class="fc"><i>68</i>&nbsp;        ECChildClient child = new ECChildClient(&quot;abcd1&quot;, &quot;male&quot;, today.minusDays(119).toString());</b>
+<b class="fc"><i>69</i>&nbsp;        assertEquals(&quot;3m&quot;, child.getAgeInString());</b>
+<b class="fc"><i>70</i>&nbsp;    }</b>
+<i>71</i>&nbsp;
+<i>72</i>&nbsp;    @Test
+<i>73</i>&nbsp;    public void testShouldReturn23MonthsForCurrentDateMinus719Days() {
+<b class="fc"><i>74</i>&nbsp;        ECChildClient child = new ECChildClient(&quot;abcd1&quot;, &quot;male&quot;, today.minusDays(719).toString());</b>
+<b class="fc"><i>75</i>&nbsp;        assertEquals(&quot;23m&quot;, child.getAgeInString());</b>
+<b class="fc"><i>76</i>&nbsp;    }</b>
+<i>77</i>&nbsp;
+<i>78</i>&nbsp;    @Test
+<i>79</i>&nbsp;    public void testShouldReturn1YearsForCurrentDateMinus720Days() {
+<b class="fc"><i>80</i>&nbsp;        ECChildClient child = new ECChildClient(&quot;abcd1&quot;, &quot;male&quot;, today.minusDays(720).toString());</b>
+<b class="fc"><i>81</i>&nbsp;        assertEquals(&quot;1y&quot;, child.getAgeInString());</b>
+<b class="fc"><i>82</i>&nbsp;    }</b>
+<i>83</i>&nbsp;
+<i>84</i>&nbsp;    @Test
+<i>85</i>&nbsp;    public void testShouldReturn1YearsForCurrentDateMinus1000Days() {
+<b class="fc"><i>86</i>&nbsp;        ECChildClient child = new ECChildClient(&quot;abcd1&quot;, &quot;male&quot;, today.minusDays(1000).toString());</b>
+<b class="fc"><i>87</i>&nbsp;        assertEquals(&quot;2y&quot;, child.getAgeInString());</b>
+<b class="fc"><i>88</i>&nbsp;    }</b>
+<i>89</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-20 13:39</div>
+</div>
+</body>
+</html>

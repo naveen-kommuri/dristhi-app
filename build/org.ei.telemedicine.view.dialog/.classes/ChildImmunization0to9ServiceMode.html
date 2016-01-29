@@ -1,0 +1,302 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ChildImmunization0to9ServiceMode</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.dialog</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ChildImmunization0to9ServiceMode (org.ei.telemedicine.view.dialog)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ChildImmunization0to9ServiceMode</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 77)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ChildImmunization0to9ServiceMode$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 82)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.dialog;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.CHILD_IMMUNIZATIONS;
+<i>4</i>&nbsp;import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import org.ei.telemedicine.Context;
+<i>7</i>&nbsp;import org.ei.telemedicine.R;
+<i>8</i>&nbsp;import org.ei.telemedicine.domain.ChildServiceType;
+<i>9</i>&nbsp;import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
+<i>10</i>&nbsp;import org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+<i>11</i>&nbsp;import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
+<i>12</i>&nbsp;import org.ei.telemedicine.view.contract.AlertDTO;
+<i>13</i>&nbsp;import org.ei.telemedicine.view.contract.AlertStatus;
+<i>14</i>&nbsp;import org.ei.telemedicine.view.contract.ChildSmartRegisterClient;
+<i>15</i>&nbsp;import org.ei.telemedicine.view.contract.FPSmartRegisterClient;
+<i>16</i>&nbsp;import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
+<i>17</i>&nbsp;import org.ei.telemedicine.view.viewHolder.NativeANCSmartRegisterViewHolder;
+<i>18</i>&nbsp;import org.ei.telemedicine.view.viewHolder.NativeChildSmartRegisterViewHolder;
+<i>19</i>&nbsp;import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
+<i>20</i>&nbsp;import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
+<i>21</i>&nbsp;import org.ei.telemedicine.view.viewHolder.OnClickFormLauncher;
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;import android.view.View;
+<i>24</i>&nbsp;import android.widget.TextView;
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;public class ChildImmunization0to9ServiceMode extends ServiceModeOption {
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    public ChildImmunization0to9ServiceMode(SmartRegisterClientsProvider provider) {
+<b class="nc"><i>29</i>&nbsp;        super(provider);</b>
+<b class="nc"><i>30</i>&nbsp;    }</b>
+<i>31</i>&nbsp;
+<i>32</i>&nbsp;    @Override
+<i>33</i>&nbsp;    public String name() {
+<b class="nc"><i>34</i>&nbsp;        return Context.getInstance().getStringResource(R.string.child_service_mode_immunization_0_to_9);</b>
+<i>35</i>&nbsp;    }
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    @Override
+<i>38</i>&nbsp;    public ClientsHeaderProvider getHeaderProvider() {
+<b class="nc"><i>39</i>&nbsp;        return new ClientsHeaderProvider() {</b>
+<i>40</i>&nbsp;            @Override
+<i>41</i>&nbsp;            public int count() {
+<b class="nc"><i>42</i>&nbsp;                return 6;</b>
+<i>43</i>&nbsp;            }
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;            @Override
+<i>46</i>&nbsp;            public int weightSum() {
+<b class="nc"><i>47</i>&nbsp;                return 100;</b>
+<i>48</i>&nbsp;            }
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;            @Override
+<i>51</i>&nbsp;            public int[] weights() {
+<b class="nc"><i>52</i>&nbsp;                return new int[]{26, 14, 15, 15, 15, 15};</b>
+<i>53</i>&nbsp;            }
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;            @Override
+<i>56</i>&nbsp;            public int[] headerTextResourceIds() {
+<b class="nc"><i>57</i>&nbsp;                return new int[]{</b>
+<i>58</i>&nbsp;                        R.string.header_name, R.string.header_id_no, R.string.header_bcg,
+<i>59</i>&nbsp;                        R.string.header_hep_b_birth, R.string.header_opv, R.string.header_pentavalent};
+<i>60</i>&nbsp;            }
+<i>61</i>&nbsp;        };
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    }
+<i>64</i>&nbsp;
+<i>65</i>&nbsp;    @Override
+<i>66</i>&nbsp;    public void setupListView(ChildSmartRegisterClient client,
+<i>67</i>&nbsp;                              NativeChildSmartRegisterViewHolder viewHolder,
+<i>68</i>&nbsp;                              View.OnClickListener clientSectionClickListener) {
+<b class="nc"><i>69</i>&nbsp;        viewHolder.serviceModeImmunization0to9View().setVisibility(View.VISIBLE);</b>
+<i>70</i>&nbsp;
+<b class="nc"><i>71</i>&nbsp;        setupBcgLayout(client, viewHolder);</b>
+<b class="nc"><i>72</i>&nbsp;        setupHepBLayout(client, viewHolder);</b>
+<b class="nc"><i>73</i>&nbsp;        setupOpvLayout(client, viewHolder);</b>
+<b class="nc"><i>74</i>&nbsp;        setupPentavLayout(client, viewHolder);</b>
+<b class="nc"><i>75</i>&nbsp;    }</b>
+<i>76</i>&nbsp;
+<i>77</i>&nbsp;    @Override
+<i>78</i>&nbsp;    public void setupListView(ANCSmartRegisterClient client, NativeANCSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
+<i>79</i>&nbsp;
+<b class="nc"><i>80</i>&nbsp;    }</b>
+<i>81</i>&nbsp;
+<i>82</i>&nbsp;    @Override
+<i>83</i>&nbsp;    public void setupListView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
+<i>84</i>&nbsp;
+<b class="nc"><i>85</i>&nbsp;    }</b>
+<i>86</i>&nbsp;
+<i>87</i>&nbsp;    @Override
+<i>88</i>&nbsp;    public void setupListView(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
+<i>89</i>&nbsp;
+<b class="nc"><i>90</i>&nbsp;    }</b>
+<i>91</i>&nbsp;
+<i>92</i>&nbsp;
+<i>93</i>&nbsp;    private void setupBcgLayout(ChildSmartRegisterClient client,
+<i>94</i>&nbsp;                                NativeChildSmartRegisterViewHolder viewHolder) {
+<b class="nc"><i>95</i>&nbsp;        if (client.isBcgDone()) {</b>
+<b class="nc"><i>96</i>&nbsp;            viewHolder.bcgDoneLayout().setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>97</i>&nbsp;            viewHolder.bcgDoneOnView().setText(&quot;On &quot; + client.bcgDoneDate());</b>
+<b class="nc"><i>98</i>&nbsp;            viewHolder.bcgPendingView().setVisibility(View.INVISIBLE);</b>
+<i>99</i>&nbsp;        } else {
+<b class="nc"><i>100</i>&nbsp;            viewHolder.bcgDoneLayout().setVisibility(View.INVISIBLE);</b>
+<b class="nc"><i>101</i>&nbsp;            viewHolder.bcgPendingView().setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>102</i>&nbsp;            viewHolder.bcgPendingView().setOnClickListener(launchChildImmunizationForm(client));</b>
+<i>103</i>&nbsp;        }
+<b class="nc"><i>104</i>&nbsp;    }</b>
+<i>105</i>&nbsp;
+<i>106</i>&nbsp;    public void setupHepBLayout(ChildSmartRegisterClient client,
+<i>107</i>&nbsp;                                NativeChildSmartRegisterViewHolder viewHolder) {
+<b class="nc"><i>108</i>&nbsp;        if (client.isHepBDone()) {</b>
+<b class="nc"><i>109</i>&nbsp;            viewHolder.hepBDoneOnView().setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>110</i>&nbsp;            viewHolder.hepBDoneOnView().setText(client.hepBDoneDate());</b>
+<i>111</i>&nbsp;        } else {
+<b class="nc"><i>112</i>&nbsp;            viewHolder.hepBDoneOnView().setVisibility(View.INVISIBLE);</b>
+<i>113</i>&nbsp;        }
+<i>114</i>&nbsp;
+<b class="nc"><i>115</i>&nbsp;        AlertDTO hepBAlert = client.getAlert(ChildServiceType.HEPB_0);</b>
+<b class="nc"><i>116</i>&nbsp;        if (hepBAlert != emptyAlert) {</b>
+<b class="nc"><i>117</i>&nbsp;            viewHolder.addHepBView().setVisibility(View.INVISIBLE);</b>
+<b class="nc"><i>118</i>&nbsp;            viewHolder.layoutHepBAlertView().setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>119</i>&nbsp;            viewHolder.layoutHepBAlertView().setOnClickListener(launchChildImmunizationForm(client));</b>
+<b class="nc"><i>120</i>&nbsp;            setAlertLayout(viewHolder.layoutHepBAlertView(),</b>
+<b class="nc"><i>121</i>&nbsp;                    viewHolder.hepBAlertDueTypeView(),</b>
+<b class="nc"><i>122</i>&nbsp;                    viewHolder.hepBAlertDueOnView(),</b>
+<i>123</i>&nbsp;                    hepBAlert);
+<i>124</i>&nbsp;        } else {
+<b class="nc"><i>125</i>&nbsp;            viewHolder.layoutHepBAlertView().setVisibility(View.INVISIBLE);</b>
+<b class="nc"><i>126</i>&nbsp;            viewHolder.addHepBView().setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>127</i>&nbsp;            viewHolder.addHepBView().setOnClickListener(launchChildImmunizationForm(client));</b>
+<i>128</i>&nbsp;        }
+<b class="nc"><i>129</i>&nbsp;    }</b>
+<i>130</i>&nbsp;
+<i>131</i>&nbsp;    public void setupOpvLayout(ChildSmartRegisterClient client,
+<i>132</i>&nbsp;                               NativeChildSmartRegisterViewHolder viewHolder) {
+<b class="nc"><i>133</i>&nbsp;        if (client.isOpvDone()) {</b>
+<b class="nc"><i>134</i>&nbsp;            viewHolder.opvDoneOnView().setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>135</i>&nbsp;            viewHolder.opvDoneOnView().setText(client.opvDoneDate());</b>
+<i>136</i>&nbsp;        } else {
+<b class="nc"><i>137</i>&nbsp;            viewHolder.opvDoneOnView().setVisibility(View.INVISIBLE);</b>
+<i>138</i>&nbsp;        }
+<i>139</i>&nbsp;
+<b class="nc"><i>140</i>&nbsp;        AlertDTO opvAlert = client.getAlert(ChildServiceType.OPV_0);</b>
+<b class="nc"><i>141</i>&nbsp;        if (opvAlert != emptyAlert) {</b>
+<b class="nc"><i>142</i>&nbsp;            viewHolder.addOpvView().setVisibility(View.INVISIBLE);</b>
+<b class="nc"><i>143</i>&nbsp;            viewHolder.layoutOpvAlertView().setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>144</i>&nbsp;            viewHolder.layoutOpvAlertView().setOnClickListener(launchChildImmunizationForm(client));</b>
+<b class="nc"><i>145</i>&nbsp;            setAlertLayout(viewHolder.layoutOpvAlertView(),</b>
+<b class="nc"><i>146</i>&nbsp;                    viewHolder.opvAlertDueTypeView(),</b>
+<b class="nc"><i>147</i>&nbsp;                    viewHolder.opvAlertDueOnView(),</b>
+<i>148</i>&nbsp;                    opvAlert);
+<i>149</i>&nbsp;        } else {
+<b class="nc"><i>150</i>&nbsp;            viewHolder.layoutOpvAlertView().setVisibility(View.INVISIBLE);</b>
+<b class="nc"><i>151</i>&nbsp;            viewHolder.addOpvView().setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>152</i>&nbsp;            viewHolder.addOpvView().setOnClickListener(launchChildImmunizationForm(client));</b>
+<i>153</i>&nbsp;        }
+<b class="nc"><i>154</i>&nbsp;    }</b>
+<i>155</i>&nbsp;
+<i>156</i>&nbsp;    public void setupPentavLayout(ChildSmartRegisterClient client,
+<i>157</i>&nbsp;                                  NativeChildSmartRegisterViewHolder viewHolder) {
+<b class="nc"><i>158</i>&nbsp;        if (client.isPentavDone()) {</b>
+<b class="nc"><i>159</i>&nbsp;            viewHolder.pentavDoneOnView().setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>160</i>&nbsp;            viewHolder.pentavDoneOnView().setText(client.pentavDoneDate());</b>
+<i>161</i>&nbsp;        } else {
+<b class="nc"><i>162</i>&nbsp;            viewHolder.pentavDoneOnView().setVisibility(View.INVISIBLE);</b>
+<i>163</i>&nbsp;        }
+<i>164</i>&nbsp;
+<b class="nc"><i>165</i>&nbsp;        AlertDTO pentavAlert = client.getAlert(ChildServiceType.PENTAVALENT_1);</b>
+<b class="nc"><i>166</i>&nbsp;        if (pentavAlert != emptyAlert) {</b>
+<b class="nc"><i>167</i>&nbsp;            viewHolder.addPentavView().setVisibility(View.INVISIBLE);</b>
+<b class="nc"><i>168</i>&nbsp;            viewHolder.layoutPentavAlertView().setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>169</i>&nbsp;            viewHolder.layoutPentavAlertView().setOnClickListener(launchChildImmunizationForm(client));</b>
+<b class="nc"><i>170</i>&nbsp;            setAlertLayout(viewHolder.layoutPentavAlertView(),</b>
+<b class="nc"><i>171</i>&nbsp;                    viewHolder.pentavAlertDueTypeView(),</b>
+<b class="nc"><i>172</i>&nbsp;                    viewHolder.pentavAlertDueOnView(),</b>
+<i>173</i>&nbsp;                    pentavAlert);
+<i>174</i>&nbsp;        } else {
+<b class="nc"><i>175</i>&nbsp;            viewHolder.layoutPentavAlertView().setVisibility(View.INVISIBLE);</b>
+<b class="nc"><i>176</i>&nbsp;            viewHolder.addPentavView().setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>177</i>&nbsp;            viewHolder.addPentavView().setOnClickListener(launchChildImmunizationForm(client));</b>
+<i>178</i>&nbsp;        }
+<b class="nc"><i>179</i>&nbsp;    }</b>
+<i>180</i>&nbsp;    private OnClickFormLauncher launchChildImmunizationForm(ChildSmartRegisterClient client) {
+<b class="nc"><i>181</i>&nbsp;        return provider().newFormLauncher(CHILD_IMMUNIZATIONS, client.entityId(), null);</b>
+<i>182</i>&nbsp;    }
+<i>183</i>&nbsp;    private void setAlertLayout(View layout, TextView typeView,
+<i>184</i>&nbsp;                                TextView dateView, AlertDTO alert) {
+<b class="nc"><i>185</i>&nbsp;        typeView.setText(alert.type().shortName());</b>
+<b class="nc"><i>186</i>&nbsp;        dateView.setText(&quot;due &quot; + alert.shortDate());</b>
+<i>187</i>&nbsp;
+<b class="nc"><i>188</i>&nbsp;        final AlertStatus alertStatus = alert.alertStatus();</b>
+<b class="nc"><i>189</i>&nbsp;        layout.setBackgroundResource(alertStatus.backgroundColorResourceId());</b>
+<b class="nc"><i>190</i>&nbsp;        typeView.setTextColor(alertStatus.fontColor());</b>
+<b class="nc"><i>191</i>&nbsp;        dateView.setTextColor(alertStatus.fontColor());</b>
+<b class="nc"><i>192</i>&nbsp;    }</b>
+<i>193</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

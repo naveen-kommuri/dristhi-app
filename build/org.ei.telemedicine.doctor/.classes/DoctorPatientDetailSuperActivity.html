@@ -1,0 +1,508 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: DoctorPatientDetailSuperActivity</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.doctor</a> ]
+</div>
+
+<h1>Coverage Summary for Class: DoctorPatientDetailSuperActivity (org.ei.telemedicine.doctor)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DoctorPatientDetailSuperActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 75)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">DoctorPatientDetailSuperActivity$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">DoctorPatientDetailSuperActivity$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">DoctorPatientDetailSuperActivity$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 7)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">DoctorPatientDetailSuperActivity$4</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">DoctorPatientDetailSuperActivity$5</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 14)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">DoctorPatientDetailSuperActivity$6</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 16)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">DoctorPatientDetailSuperActivity$7</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 29)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 127)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.doctor;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.app.Activity;
+<i>4</i>&nbsp;import android.app.ProgressDialog;
+<i>5</i>&nbsp;import android.content.Intent;
+<i>6</i>&nbsp;import android.media.AudioManager;
+<i>7</i>&nbsp;import android.media.MediaPlayer;
+<i>8</i>&nbsp;import android.os.AsyncTask;
+<i>9</i>&nbsp;import android.os.Bundle;
+<i>10</i>&nbsp;import android.os.Environment;
+<i>11</i>&nbsp;import android.util.Log;
+<i>12</i>&nbsp;import android.view.View;
+<i>13</i>&nbsp;import android.widget.ImageButton;
+<i>14</i>&nbsp;import android.widget.Toast;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;import org.ei.telemedicine.AllConstants;
+<i>17</i>&nbsp;import org.ei.telemedicine.Context;
+<i>18</i>&nbsp;import org.ei.telemedicine.R;
+<i>19</i>&nbsp;import org.ei.telemedicine.event.Listener;
+<i>20</i>&nbsp;import org.json.JSONArray;
+<i>21</i>&nbsp;import org.json.JSONException;
+<i>22</i>&nbsp;import org.json.JSONObject;
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;import java.io.BufferedInputStream;
+<i>25</i>&nbsp;import java.io.File;
+<i>26</i>&nbsp;import java.io.FileOutputStream;
+<i>27</i>&nbsp;import java.io.IOException;
+<i>28</i>&nbsp;import java.io.InputStream;
+<i>29</i>&nbsp;import java.io.OutputStream;
+<i>30</i>&nbsp;import java.net.URL;
+<i>31</i>&nbsp;import java.net.URLConnection;
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;import static android.R.drawable.ic_media_pause;
+<i>34</i>&nbsp;import static org.ei.telemedicine.doctor.DoctorFormDataConstants.formData;
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;/**
+<i>37</i>&nbsp; * Created by naveen on 6/18/15.
+<i>38</i>&nbsp; */
+<b class="nc"><i>39</i>&nbsp;public abstract class DoctorPatientDetailSuperActivity extends Activity implements View.OnClickListener {</b>
+<i>40</i>&nbsp;    private ProgressDialog progressDialog;
+<i>41</i>&nbsp;    private Bundle bundle;
+<i>42</i>&nbsp;    private String formInfo, documentId, phoneNumber, caseId;
+<i>43</i>&nbsp;    private String[] details;
+<i>44</i>&nbsp;    ProgressDialog playProgressDialog;
+<i>45</i>&nbsp;    MediaPlayer player;
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;    @Override
+<i>48</i>&nbsp;    protected void onCreate(Bundle savedInstanceState) {
+<b class="nc"><i>49</i>&nbsp;        super.onCreate(savedInstanceState);</b>
+<i>50</i>&nbsp;
+<b class="nc"><i>51</i>&nbsp;        bundle = getIntent().getExtras();</b>
+<b class="nc"><i>52</i>&nbsp;        if (bundle != null &amp;&amp; bundle.containsKey(formData)) {</b>
+<i>53</i>&nbsp;
+<b class="nc"><i>54</i>&nbsp;            formInfo = bundle.getString(DoctorFormDataConstants.formData);</b>
+<b class="nc"><i>55</i>&nbsp;            setupViews();</b>
+<b class="nc"><i>56</i>&nbsp;            details = setDatatoViews(formInfo);</b>
+<i>57</i>&nbsp;
+<b class="nc"><i>58</i>&nbsp;            documentId = details[0] != null ? details[0] : &quot;&quot;;</b>
+<b class="nc"><i>59</i>&nbsp;            phoneNumber = details[1] != null ? details[1] : &quot;&quot;;</b>
+<b class="nc"><i>60</i>&nbsp;            caseId = details[2] != null ? details[2] : &quot;&quot;;</b>
+<i>61</i>&nbsp;
+<i>62</i>&nbsp;        }
+<b class="nc"><i>63</i>&nbsp;    }</b>
+<i>64</i>&nbsp;
+<i>65</i>&nbsp;    protected abstract String[] setDatatoViews(String formInfo);
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;    protected abstract void setupViews();
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;    @Override
+<i>70</i>&nbsp;    protected void onStop() {
+<b class="nc"><i>71</i>&nbsp;        super.onStop();</b>
+<b class="nc"><i>72</i>&nbsp;        if (player != null) {</b>
+<b class="nc"><i>73</i>&nbsp;            player.release();</b>
+<i>74</i>&nbsp;        }
+<b class="nc"><i>75</i>&nbsp;    }</b>
+<i>76</i>&nbsp;
+<i>77</i>&nbsp;    public void pausePlay() {
+<b class="nc"><i>78</i>&nbsp;        if (player != null) {</b>
+<b class="nc"><i>79</i>&nbsp;            player.stop();</b>
+<b class="nc"><i>80</i>&nbsp;            player.release();</b>
+<i>81</i>&nbsp;        }
+<b class="nc"><i>82</i>&nbsp;    }</b>
+<i>83</i>&nbsp;
+<i>84</i>&nbsp;    public void playData(String url, final ImageButton ib_play_stehoscope, final ImageButton ib_pause_stehoscope) {
+<b class="nc"><i>85</i>&nbsp;        Log.e(&quot;Play pat&quot;, url);</b>
+<i>86</i>&nbsp;        try {
+<b class="nc"><i>87</i>&nbsp;            player = new MediaPlayer();</b>
+<b class="nc"><i>88</i>&nbsp;            player.setAudioStreamType(AudioManager.STREAM_MUSIC);</b>
+<b class="nc"><i>89</i>&nbsp;            player.setDataSource(url);</b>
+<b class="nc"><i>90</i>&nbsp;            player.prepare();</b>
+<i>91</i>&nbsp;//
+<i>92</i>&nbsp;//            playProgressDialog = new ProgressDialog(DoctorPatientDetailSuperActivity.this);
+<i>93</i>&nbsp;//            playProgressDialog.setTitle(&quot;Playing Heartbeat&quot;);
+<i>94</i>&nbsp;////            playProgressDialog.setCancelable(false);
+<i>95</i>&nbsp;//            playProgressDialog.show();
+<i>96</i>&nbsp;
+<b class="nc"><i>97</i>&nbsp;            player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {</b>
+<i>98</i>&nbsp;                @Override
+<i>99</i>&nbsp;                public void onPrepared(MediaPlayer mp) {
+<b class="nc"><i>100</i>&nbsp;                    mp.start();</b>
+<b class="nc"><i>101</i>&nbsp;                }</b>
+<i>102</i>&nbsp;            });
+<i>103</i>&nbsp;
+<b class="nc"><i>104</i>&nbsp;            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {</b>
+<i>105</i>&nbsp;                @Override
+<i>106</i>&nbsp;                public void onCompletion(MediaPlayer mp) {
+<b class="nc"><i>107</i>&nbsp;                    ib_play_stehoscope.setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>108</i>&nbsp;                    ib_pause_stehoscope.setVisibility(View.INVISIBLE);</b>
+<b class="nc"><i>109</i>&nbsp;                }</b>
+<i>110</i>&nbsp;            });
+<i>111</i>&nbsp;
+<b class="nc"><i>112</i>&nbsp;        } catch (</b>
+<i>113</i>&nbsp;                IOException e
+<i>114</i>&nbsp;                )
+<i>115</i>&nbsp;
+<i>116</i>&nbsp;        {
+<b class="nc"><i>117</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>118</i>&nbsp;        }</b>
+<i>119</i>&nbsp;//
+<i>120</i>&nbsp;//
+<i>121</i>&nbsp;//        new AsyncTask&lt;String, Void, Boolean&gt;() {
+<i>122</i>&nbsp;//            @Override
+<i>123</i>&nbsp;//            protected Boolean doInBackground(String... params) {
+<i>124</i>&nbsp;//                try {
+<i>125</i>&nbsp;//
+<i>126</i>&nbsp;//                } catch (Exception e) {
+<i>127</i>&nbsp;//                    e.printStackTrace();
+<i>128</i>&nbsp;//                }
+<i>129</i>&nbsp;//                return false;
+<i>130</i>&nbsp;//            }
+<i>131</i>&nbsp;//
+<i>132</i>&nbsp;//            @Override
+<i>133</i>&nbsp;//            protected void onPreExecute() {
+<i>134</i>&nbsp;//
+<i>135</i>&nbsp;//
+<i>136</i>&nbsp;//            }
+<i>137</i>&nbsp;//
+<i>138</i>&nbsp;//            @Override
+<i>139</i>&nbsp;//            protected void onPostExecute(Boolean isRunning) {
+<i>140</i>&nbsp;//                if (playProgressDialog != null &amp;&amp; !player.isPlaying())
+<i>141</i>&nbsp;//                    playProgressDialog.dismiss();
+<i>142</i>&nbsp;//            }
+<i>143</i>&nbsp;//        }.execute(url);
+<i>144</i>&nbsp;
+<b class="nc"><i>145</i>&nbsp;    }</b>
+<i>146</i>&nbsp;
+<i>147</i>&nbsp;    public void getVitalsData(final String vitalType, final String visitId) {
+<b class="nc"><i>148</i>&nbsp;        getData(AllConstants.VITALS_INFO_URL_PATH + visitId, new Listener&lt;String&gt;() {</b>
+<i>149</i>&nbsp;            @Override
+<i>150</i>&nbsp;            public void onEvent(String data) {
+<b class="nc"><i>151</i>&nbsp;                Log.e(&quot;Result&quot;, visitId);</b>
+<b class="nc"><i>152</i>&nbsp;                Intent intent = new Intent(DoctorPatientDetailSuperActivity.this, NativeGraphActivity.class);</b>
+<b class="nc"><i>153</i>&nbsp;                intent.putExtra(AllConstants.VITALS_INFO_RESULT, data);</b>
+<b class="nc"><i>154</i>&nbsp;                intent.putExtra(AllConstants.VITAL_TYPE, vitalType);</b>
+<b class="nc"><i>155</i>&nbsp;                startActivity(intent);</b>
+<b class="nc"><i>156</i>&nbsp;            }</b>
+<i>157</i>&nbsp;        });
+<b class="nc"><i>158</i>&nbsp;    }</b>
+<i>159</i>&nbsp;
+<i>160</i>&nbsp;    public void referAnotherDoctor(String doctorId, final String visitId, String entityId, final String documentId, final String visitType, final String wifeName) {
+<b class="nc"><i>161</i>&nbsp;        getData(AllConstants.DOCTOR_REFER_URL_PATH + doctorId + &quot;&amp;visitid=&quot; + visitId + &quot;&amp;entityid=&quot; + entityId + &quot;&amp;patientname=&quot; + (visitType.equalsIgnoreCase(&quot;CHILD&quot;) ? &quot;Baby%20of%20&quot; + wifeName : wifeName), new Listener&lt;String&gt;() {</b>
+<i>162</i>&nbsp;            @Override
+<i>163</i>&nbsp;            public void onEvent(String data) {
+<b class="nc"><i>164</i>&nbsp;                Context.getInstance().allDoctorRepository().deleteUseCaseId(visitId);</b>
+<b class="nc"><i>165</i>&nbsp;                startActivity(new Intent(DoctorPatientDetailSuperActivity.this, NativeDoctorActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));</b>
+<i>166</i>&nbsp;
+<b class="nc"><i>167</i>&nbsp;            }</b>
+<i>168</i>&nbsp;        });
+<i>169</i>&nbsp;
+<b class="nc"><i>170</i>&nbsp;    }</b>
+<i>171</i>&nbsp;
+<i>172</i>&nbsp;
+<i>173</i>&nbsp;    public void getDrugData() {
+<b class="nc"><i>174</i>&nbsp;        getData(AllConstants.DRUG_INFO_URL_PATH, new Listener&lt;String&gt;() {</b>
+<i>175</i>&nbsp;            //        getDataFromServer(new Listener&lt;String&gt;() {
+<i>176</i>&nbsp;            public void onEvent(String resultData) {
+<b class="nc"><i>177</i>&nbsp;                if (resultData != null) {</b>
+<i>178</i>&nbsp;//                    Toast.makeText(DoctorPatientDetailSuperActivity.this, &quot;Document Id &quot; + documentId, Toast.LENGTH_SHORT).show();
+<b class="nc"><i>179</i>&nbsp;                    Log.e(&quot;Document Id&quot;, documentId);</b>
+<b class="nc"><i>180</i>&nbsp;                    Context.getInstance().allDoctorRepository().updatePocInLocal(documentId, &quot;&quot;, &quot;&quot;);</b>
+<b class="nc"><i>181</i>&nbsp;                    Intent intent = new Intent(DoctorPatientDetailSuperActivity.this, DoctorPlanofCareActivity.class);</b>
+<b class="nc"><i>182</i>&nbsp;                    intent.putExtra(AllConstants.DRUG_INFO_RESULT, resultData);</b>
+<b class="nc"><i>183</i>&nbsp;                    intent.putExtra(DoctorFormDataConstants.formData, formInfo);</b>
+<b class="nc"><i>184</i>&nbsp;                    intent.putExtra(DoctorFormDataConstants.documentId, documentId);</b>
+<b class="nc"><i>185</i>&nbsp;                    intent.putExtra(DoctorFormDataConstants.phoneNumber, phoneNumber);</b>
+<b class="nc"><i>186</i>&nbsp;                    intent.putExtra(DoctorFormDataConstants.anc_entityId, caseId);</b>
+<b class="nc"><i>187</i>&nbsp;                    startActivity(intent);</b>
+<b class="nc"><i>188</i>&nbsp;                } else {</b>
+<b class="nc"><i>189</i>&nbsp;                    Toast.makeText(DoctorPatientDetailSuperActivity.this, &quot;No Data getting from server&quot;, Toast.LENGTH_SHORT).show();</b>
+<i>190</i>&nbsp;                }
+<b class="nc"><i>191</i>&nbsp;            }</b>
+<i>192</i>&nbsp;        });
+<b class="nc"><i>193</i>&nbsp;    }</b>
+<i>194</i>&nbsp;
+<i>195</i>&nbsp;    private void getData(final String url, final Listener&lt;String&gt; afterResult) {
+<b class="nc"><i>196</i>&nbsp;        new AsyncTask&lt;Void, Void, String&gt;() {</b>
+<i>197</i>&nbsp;
+<i>198</i>&nbsp;            @Override
+<i>199</i>&nbsp;            protected String doInBackground(Void... params) {
+<b class="nc"><i>200</i>&nbsp;                Context context = Context.getInstance();</b>
+<b class="nc"><i>201</i>&nbsp;                Log.e(&quot;URL&quot;, context.configuration().dristhiDjangoBaseURL() + url);</b>
+<b class="nc"><i>202</i>&nbsp;                String result = context.userService().gettingFromRemoteURL(context.configuration().dristhiDjangoBaseURL() + url);</b>
+<i>203</i>&nbsp;
+<b class="nc"><i>204</i>&nbsp;                return result;</b>
+<i>205</i>&nbsp;            }
+<i>206</i>&nbsp;
+<i>207</i>&nbsp;            @Override
+<i>208</i>&nbsp;            protected void onPreExecute() {
+<b class="nc"><i>209</i>&nbsp;                super.onPreExecute();</b>
+<b class="nc"><i>210</i>&nbsp;                progressDialog = new ProgressDialog(DoctorPatientDetailSuperActivity.this);</b>
+<b class="nc"><i>211</i>&nbsp;                progressDialog.setCancelable(false);</b>
+<b class="nc"><i>212</i>&nbsp;                progressDialog.setMessage(getString(R.string.dialog_message));</b>
+<b class="nc"><i>213</i>&nbsp;                progressDialog.show();</b>
+<b class="nc"><i>214</i>&nbsp;            }</b>
+<i>215</i>&nbsp;
+<i>216</i>&nbsp;            @Override
+<i>217</i>&nbsp;            protected void onPostExecute(String resultData) {
+<b class="nc"><i>218</i>&nbsp;                super.onPostExecute(resultData);</b>
+<b class="nc"><i>219</i>&nbsp;                if (progressDialog.isShowing())</b>
+<b class="nc"><i>220</i>&nbsp;                    progressDialog.hide();</b>
+<b class="nc"><i>221</i>&nbsp;                afterResult.onEvent(resultData);</b>
+<b class="nc"><i>222</i>&nbsp;            }</b>
+<b class="nc"><i>223</i>&nbsp;        }.execute();</b>
+<b class="nc"><i>224</i>&nbsp;    }</b>
+<i>225</i>&nbsp;
+<i>226</i>&nbsp;    public void createFileFrombyte(byte[] audioBytes) {
+<i>227</i>&nbsp;        try {
+<b class="nc"><i>228</i>&nbsp;            String path = Environment.getExternalStorageDirectory().getAbsolutePath();</b>
+<b class="nc"><i>229</i>&nbsp;            path += &quot;/audiorecordtest.wav&quot;;</b>
+<b class="nc"><i>230</i>&nbsp;            File dstFile = new File(path);</b>
+<b class="nc"><i>231</i>&nbsp;            if (!dstFile.exists())</b>
+<b class="nc"><i>232</i>&nbsp;                dstFile.createNewFile();</b>
+<b class="nc"><i>233</i>&nbsp;            FileOutputStream fout = new FileOutputStream(dstFile);</b>
+<b class="nc"><i>234</i>&nbsp;            fout.write(audioBytes);</b>
+<b class="nc"><i>235</i>&nbsp;            fout.flush();</b>
+<b class="nc"><i>236</i>&nbsp;            fout.close();</b>
+<b class="nc"><i>237</i>&nbsp;        } catch (IOException e) {</b>
+<b class="nc"><i>238</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>239</i>&nbsp;        }</b>
+<b class="nc"><i>240</i>&nbsp;    }</b>
+<i>241</i>&nbsp;
+<i>242</i>&nbsp;    public void startPlaying(String path) {
+<b class="nc"><i>243</i>&nbsp;        MediaPlayer mPlayer = new MediaPlayer();</b>
+<i>244</i>&nbsp;        try {
+<b class="nc"><i>245</i>&nbsp;            mPlayer.setDataSource(path);</b>
+<b class="nc"><i>246</i>&nbsp;            mPlayer.prepare();</b>
+<b class="nc"><i>247</i>&nbsp;            mPlayer.start();</b>
+<b class="nc"><i>248</i>&nbsp;            mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {</b>
+<i>249</i>&nbsp;                @Override
+<i>250</i>&nbsp;                public void onCompletion(MediaPlayer mp) {
+<b class="nc"><i>251</i>&nbsp;                    mp.stop();</b>
+<b class="nc"><i>252</i>&nbsp;                    mp.release();</b>
+<b class="nc"><i>253</i>&nbsp;                }</b>
+<i>254</i>&nbsp;            });
+<b class="nc"><i>255</i>&nbsp;        } catch (IOException e) {</b>
+<b class="nc"><i>256</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>257</i>&nbsp;        }</b>
+<b class="nc"><i>258</i>&nbsp;    }</b>
+<i>259</i>&nbsp;
+<i>260</i>&nbsp;    public String getDatafromJsonArray(String jsonArrayStr) {
+<i>261</i>&nbsp;        try {
+<b class="nc"><i>262</i>&nbsp;            String result = &quot;&quot;;</b>
+<b class="nc"><i>263</i>&nbsp;            JSONArray jsonArray = new JSONArray(jsonArrayStr);</b>
+<b class="nc"><i>264</i>&nbsp;            for (int i = 0; i &lt; jsonArray.length(); i++) {</b>
+<b class="nc"><i>265</i>&nbsp;                result = !result.equals(&quot;&quot;) ? result + jsonArray.getString(i).trim().replace(&quot;_&quot;, &quot; &quot;) + &quot;,&quot; : jsonArray.getString(i).trim().replace(&quot;_&quot;, &quot; &quot;) + &quot;,&quot;;</b>
+<i>266</i>&nbsp;            }
+<b class="nc"><i>267</i>&nbsp;            return result;</b>
+<b class="nc"><i>268</i>&nbsp;        } catch (JSONException e) {</b>
+<b class="nc"><i>269</i>&nbsp;            e.printStackTrace();</b>
+<i>270</i>&nbsp;        }
+<b class="nc"><i>271</i>&nbsp;        return &quot;&quot;;</b>
+<i>272</i>&nbsp;    }
+<i>273</i>&nbsp;
+<i>274</i>&nbsp;    public String getDatafromJson(String jsonStr, String key) {
+<b class="nc"><i>275</i>&nbsp;        if (jsonStr != null) {</b>
+<i>276</i>&nbsp;            try {
+<b class="nc"><i>277</i>&nbsp;                JSONObject jsonData = new JSONObject(jsonStr);</b>
+<b class="nc"><i>278</i>&nbsp;                return (jsonData.has(key) &amp;&amp; jsonData.getString(key) != null &amp;&amp; !jsonData.getString(key).equalsIgnoreCase(&quot;null&quot;)) ? jsonData.getString(key).trim().replace(&quot; &quot;, &quot;,&quot;).replace(&quot;_&quot;, &quot; &quot;) : &quot;&quot;;</b>
+<b class="nc"><i>279</i>&nbsp;            } catch (JSONException e) {</b>
+<b class="nc"><i>280</i>&nbsp;                e.printStackTrace();</b>
+<i>281</i>&nbsp;            }
+<i>282</i>&nbsp;        }
+<b class="nc"><i>283</i>&nbsp;        return &quot;&quot;;</b>
+<i>284</i>&nbsp;    }
+<i>285</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

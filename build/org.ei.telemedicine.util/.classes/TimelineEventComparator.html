@@ -1,0 +1,101 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: TimelineEventComparator</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.util</a> ]
+</div>
+
+<h1>Coverage Summary for Class: TimelineEventComparator (org.ei.telemedicine.util)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TimelineEventComparator</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (3/ 6)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.util;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.domain.TimelineEvent;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.util.Comparator;
+<i>6</i>&nbsp;
+<b class="fc"><i>7</i>&nbsp;public class TimelineEventComparator implements Comparator&lt;TimelineEvent&gt; {</b>
+<i>8</i>&nbsp;    @Override
+<i>9</i>&nbsp;    public int compare(TimelineEvent timelineEvent, TimelineEvent anotherTimelineEvent) {
+<b class="fc"><i>10</i>&nbsp;        if (timelineEvent.referenceDate().isAfter(anotherTimelineEvent.referenceDate())) {</b>
+<b class="fc"><i>11</i>&nbsp;            return -1;</b>
+<i>12</i>&nbsp;        }
+<b class="nc"><i>13</i>&nbsp;        if (timelineEvent.referenceDate().isBefore(anotherTimelineEvent.referenceDate())) {</b>
+<b class="nc"><i>14</i>&nbsp;            return 1;</b>
+<i>15</i>&nbsp;        }
+<b class="nc"><i>16</i>&nbsp;        return 0;</b>
+<i>17</i>&nbsp;    }
+<i>18</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

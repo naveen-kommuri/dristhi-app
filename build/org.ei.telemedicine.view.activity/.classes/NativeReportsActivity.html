@@ -1,0 +1,186 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: NativeReportsActivity</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.activity</a> ]
+</div>
+
+<h1>Coverage Summary for Class: NativeReportsActivity (org.ei.telemedicine.view.activity)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">NativeReportsActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 14)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">NativeReportsActivity$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 7)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NativeReportsActivity$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 25)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.activity;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.app.Activity;
+<i>4</i>&nbsp;import android.content.Intent;
+<i>5</i>&nbsp;import android.graphics.Color;
+<i>6</i>&nbsp;import android.os.Bundle;
+<i>7</i>&nbsp;import android.view.View;
+<i>8</i>&nbsp;import android.view.ViewGroup;
+<i>9</i>&nbsp;import android.widget.AdapterView;
+<i>10</i>&nbsp;import android.widget.ArrayAdapter;
+<i>11</i>&nbsp;import android.widget.ListView;
+<i>12</i>&nbsp;import android.widget.TextView;
+<i>13</i>&nbsp;import android.widget.Toast;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;import org.ei.telemedicine.AllConstants;
+<i>16</i>&nbsp;import org.ei.telemedicine.R;
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;import java.util.ArrayList;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;/**
+<i>21</i>&nbsp; * Created by naveen on 1/6/16.
+<i>22</i>&nbsp; */
+<b class="nc"><i>23</i>&nbsp;public class NativeReportsActivity extends Activity {</b>
+<i>24</i>&nbsp;    ListView lv_services;
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    @Override
+<i>27</i>&nbsp;    protected void onCreate(Bundle savedInstanceState) {
+<b class="nc"><i>28</i>&nbsp;        super.onCreate(savedInstanceState);</b>
+<b class="nc"><i>29</i>&nbsp;        setContentView(R.layout.reports);</b>
+<b class="nc"><i>30</i>&nbsp;        lv_services = (ListView) findViewById(R.id.lv_services);</b>
+<b class="nc"><i>31</i>&nbsp;        final ArrayList&lt;String&gt; servicesList = new ArrayList&lt;String&gt;();</b>
+<b class="nc"><i>32</i>&nbsp;        servicesList.add(AllConstants.Reports.FP_SERVICES);</b>
+<b class="nc"><i>33</i>&nbsp;        servicesList.add(AllConstants.Reports.ANC_SERVICES);</b>
+<b class="nc"><i>34</i>&nbsp;        servicesList.add(AllConstants.Reports.PREGNANCY);</b>
+<b class="nc"><i>35</i>&nbsp;        servicesList.add(AllConstants.Reports.PNC_SERVICES);</b>
+<b class="nc"><i>36</i>&nbsp;        servicesList.add(AllConstants.Reports.CHILD_SERVICES);</b>
+<b class="nc"><i>37</i>&nbsp;        servicesList.add(AllConstants.Reports.MORTALITY);</b>
+<i>38</i>&nbsp;
+<b class="nc"><i>39</i>&nbsp;        lv_services.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, servicesList) {</b>
+<i>40</i>&nbsp;            @Override
+<i>41</i>&nbsp;            public View getView(int position, View convertView, ViewGroup parent) {
+<b class="nc"><i>42</i>&nbsp;                View view = super.getView(position, convertView, parent);</b>
+<b class="nc"><i>43</i>&nbsp;                TextView text = (TextView) view.findViewById(android.R.id.text1);</b>
+<b class="nc"><i>44</i>&nbsp;                text.setTextColor(Color.BLACK);</b>
+<b class="nc"><i>45</i>&nbsp;                text.setPadding(5, 5, 5, 5);</b>
+<b class="nc"><i>46</i>&nbsp;                text.setTextSize(20);</b>
+<b class="nc"><i>47</i>&nbsp;                return view;</b>
+<i>48</i>&nbsp;            }
+<i>49</i>&nbsp;        });
+<b class="nc"><i>50</i>&nbsp;        lv_services.setOnItemClickListener(new AdapterView.OnItemClickListener() {</b>
+<i>51</i>&nbsp;            @Override
+<i>52</i>&nbsp;            public void onItemClick(AdapterView&lt;?&gt; adapterView, View view, int i, long l) {
+<b class="nc"><i>53</i>&nbsp;                Toast.makeText(NativeReportsActivity.this, servicesList.get(i).toString(), Toast.LENGTH_SHORT).show();</b>
+<b class="nc"><i>54</i>&nbsp;                startActivity(new Intent(NativeReportsActivity.this, ReportsInfoActivity.class).putExtra(&quot;service&quot;, servicesList.get(i).toString()));</b>
+<b class="nc"><i>55</i>&nbsp;            }</b>
+<i>56</i>&nbsp;        });
+<b class="nc"><i>57</i>&nbsp;    }</b>
+<i>58</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

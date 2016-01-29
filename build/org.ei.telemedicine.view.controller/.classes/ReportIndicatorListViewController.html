@@ -1,0 +1,199 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ReportIndicatorListViewController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.controller</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ReportIndicatorListViewController (org.ei.telemedicine.view.controller)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ReportIndicatorListViewController</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    71.9%
+  </span>
+  <span class="absValue">
+    (23/ 32)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ReportIndicatorListViewController$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+  <span class="absValue">
+    (5/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (27/ 36)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.controller;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.content.Context;
+<i>4</i>&nbsp;import android.content.Intent;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import com.google.gson.Gson;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import org.ei.telemedicine.domain.Report;
+<i>9</i>&nbsp;import org.ei.telemedicine.domain.ReportIndicator;
+<i>10</i>&nbsp;import org.ei.telemedicine.domain.ReportsCategory;
+<i>11</i>&nbsp;import org.ei.telemedicine.dto.MonthSummaryDatum;
+<i>12</i>&nbsp;import org.ei.telemedicine.repository.AllReports;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;import org.ei.telemedicine.view.activity.ReportIndicatorCaseListActivity;
+<i>15</i>&nbsp;import org.ei.telemedicine.view.contract.CategoryReports;
+<i>16</i>&nbsp;import org.ei.telemedicine.view.contract.IndicatorReport;
+<i>17</i>&nbsp;import org.joda.time.LocalDate;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;import java.util.ArrayList;
+<i>20</i>&nbsp;import java.util.Collections;
+<i>21</i>&nbsp;import java.util.Comparator;
+<i>22</i>&nbsp;import java.util.List;
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;import static java.lang.Integer.parseInt;
+<i>25</i>&nbsp;import static org.apache.commons.lang3.StringUtils.isBlank;
+<i>26</i>&nbsp;import static org.ei.telemedicine.AllConstants.CATEGORY_DESCRIPTION;
+<i>27</i>&nbsp;import static org.ei.telemedicine.AllConstants.INDICATOR_DETAIL;
+<i>28</i>&nbsp;import static org.ei.telemedicine.util.DateUtil.today;
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;public class ReportIndicatorListViewController {
+<i>31</i>&nbsp;    private final Context context;
+<i>32</i>&nbsp;    private final AllReports allReports;
+<i>33</i>&nbsp;    private final String category;
+<i>34</i>&nbsp;    private List&lt;Report&gt; reports;
+<i>35</i>&nbsp;    private ReportsCategory reportsCategory;
+<i>36</i>&nbsp;
+<b class="fc"><i>37</i>&nbsp;    public ReportIndicatorListViewController(Context context, AllReports allReports, String category) {</b>
+<b class="fc"><i>38</i>&nbsp;        this.context = context;</b>
+<b class="fc"><i>39</i>&nbsp;        this.allReports = allReports;</b>
+<b class="fc"><i>40</i>&nbsp;        this.category = category;</b>
+<b class="fc"><i>41</i>&nbsp;    }</b>
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    public String get() {
+<b class="fc"><i>44</i>&nbsp;        reportsCategory = ReportsCategory.valueOf(category);</b>
+<i>45</i>&nbsp;
+<b class="fc"><i>46</i>&nbsp;        reports = allReports.allFor(reportsCategory.indicators());</b>
+<i>47</i>&nbsp;
+<b class="fc"><i>48</i>&nbsp;        List&lt;IndicatorReport&gt; indicatorReports = new ArrayList&lt;IndicatorReport&gt;();</b>
+<b class="fc"><i>49</i>&nbsp;        for (Report report : reports) {</b>
+<b class="fc"><i>50</i>&nbsp;            ReportIndicator indicator = report.reportIndicator();</b>
+<b class="fc"><i>51</i>&nbsp;            List&lt;MonthSummaryDatum&gt; monthSummaryData = report.monthlySummaries();</b>
+<b class="fc"><i>52</i>&nbsp;            if (monthSummaryData.size() == 0) continue;</b>
+<b class="fc"><i>53</i>&nbsp;            sortMonthlySummaries(monthSummaryData);</b>
+<b class="fc"><i>54</i>&nbsp;            MonthSummaryDatum currentMonthSummary = monthSummaryData.get(0);</b>
+<i>55</i>&nbsp;
+<b class="fc"><i>56</i>&nbsp;            String currentMonth = today().monthOfYear().getAsString();</b>
+<b class="fc"><i>57</i>&nbsp;            String currentProgress = currentMonthSummary.month().equals(currentMonth) ? currentMonthSummary.currentProgress() : &quot;0&quot;;</b>
+<b class="fc"><i>58</i>&nbsp;            String annualTarget = (isBlank(report.annualTarget())) ? &quot;NA&quot; : report.annualTarget();</b>
+<i>59</i>&nbsp;
+<b class="fc"><i>60</i>&nbsp;            indicatorReports.add(new IndicatorReport(indicator.name(), indicator.description(), annualTarget,</b>
+<b class="fc"><i>61</i>&nbsp;                    currentProgress, currentMonth, currentMonthSummary.year(), currentMonthSummary.aggregatedProgress()</b>
+<i>62</i>&nbsp;            ));
+<b class="fc"><i>63</i>&nbsp;        }</b>
+<i>64</i>&nbsp;
+<b class="fc"><i>65</i>&nbsp;        return new Gson().toJson(new CategoryReports(reportsCategory.description(), indicatorReports));</b>
+<i>66</i>&nbsp;    }
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;    public void sortMonthlySummaries(List&lt;MonthSummaryDatum&gt; monthSummaryData) {
+<b class="fc"><i>69</i>&nbsp;        Collections.sort(monthSummaryData, new Comparator&lt;MonthSummaryDatum&gt;() {</b>
+<i>70</i>&nbsp;            @Override
+<i>71</i>&nbsp;            public int compare(MonthSummaryDatum monthSummaryDatum, MonthSummaryDatum anotherMonthSummaryDatum) {
+<b class="fc"><i>72</i>&nbsp;                LocalDate date = new LocalDate().withYear(parseInt(anotherMonthSummaryDatum.year())).withMonthOfYear(parseInt(anotherMonthSummaryDatum.month()));</b>
+<b class="fc"><i>73</i>&nbsp;                LocalDate anotherDate = new LocalDate().withYear(parseInt(monthSummaryDatum.year())).withMonthOfYear(parseInt(monthSummaryDatum.month()));</b>
+<b class="fc"><i>74</i>&nbsp;                return date.compareTo(anotherDate);</b>
+<i>75</i>&nbsp;            }
+<i>76</i>&nbsp;        });
+<b class="fc"><i>77</i>&nbsp;    }</b>
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    public void startReportIndicatorDetail(String indicator) {
+<b class="nc"><i>80</i>&nbsp;        for (Report report : reports) {</b>
+<b class="nc"><i>81</i>&nbsp;            if (report.reportIndicator().name().equals(indicator)) {</b>
+<b class="nc"><i>82</i>&nbsp;                Intent intent = new Intent(context.getApplicationContext(), ReportIndicatorCaseListActivity.class);</b>
+<b class="nc"><i>83</i>&nbsp;                intent.putExtra(INDICATOR_DETAIL, report);</b>
+<b class="nc"><i>84</i>&nbsp;                intent.putExtra(CATEGORY_DESCRIPTION, reportsCategory.description());</b>
+<b class="nc"><i>85</i>&nbsp;                context.startActivity(intent);</b>
+<b class="nc"><i>86</i>&nbsp;                return;</b>
+<i>87</i>&nbsp;            }
+<b class="nc"><i>88</i>&nbsp;        }</b>
+<b class="nc"><i>89</i>&nbsp;    }</b>
+<i>90</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

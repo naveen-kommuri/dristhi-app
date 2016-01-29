@@ -1,0 +1,186 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ClientFpMethodView</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.customControls</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ClientFpMethodView (org.ei.telemedicine.view.customControls)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClientFpMethodView</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 54)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.customControls;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static org.ei.telemedicine.Context.getInstance;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import org.apache.commons.lang3.StringUtils;
+<i>6</i>&nbsp;import org.ei.telemedicine.R;
+<i>7</i>&nbsp;import org.ei.telemedicine.domain.FPMethod;
+<i>8</i>&nbsp;import org.ei.telemedicine.view.contract.BaseFPSmartRegisterClient;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import android.content.Context;
+<i>11</i>&nbsp;import android.graphics.Color;
+<i>12</i>&nbsp;import android.util.AttributeSet;
+<i>13</i>&nbsp;import android.view.View;
+<i>14</i>&nbsp;import android.view.ViewGroup;
+<i>15</i>&nbsp;import android.widget.LinearLayout;
+<i>16</i>&nbsp;import android.widget.TextView;
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;public class ClientFpMethodView extends LinearLayout {
+<i>19</i>&nbsp;    private TextView fpMethodView;
+<i>20</i>&nbsp;    private TextView fpMethodDateView;
+<i>21</i>&nbsp;    private TextView fpMethodQuantityLabelView;
+<i>22</i>&nbsp;    private TextView fpMethodQuantityView;
+<i>23</i>&nbsp;    private TextView iudPlaceView;
+<i>24</i>&nbsp;    private TextView iudPersonView;
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    @SuppressWarnings(&quot;UnusedDeclaration&quot;)
+<i>27</i>&nbsp;    public ClientFpMethodView(Context context) {
+<b class="nc"><i>28</i>&nbsp;        this(context, null, 0);</b>
+<b class="nc"><i>29</i>&nbsp;    }</b>
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    @SuppressWarnings(&quot;UnusedDeclaration&quot;)
+<i>32</i>&nbsp;    public ClientFpMethodView(Context context, AttributeSet attrs) {
+<b class="nc"><i>33</i>&nbsp;        this(context, attrs, 0);</b>
+<b class="nc"><i>34</i>&nbsp;    }</b>
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;    public ClientFpMethodView(Context context, AttributeSet attrs, int defStyle) {
+<b class="nc"><i>37</i>&nbsp;        super(context, attrs, defStyle);</b>
+<b class="nc"><i>38</i>&nbsp;    }</b>
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;    public void initialize() {
+<b class="nc"><i>41</i>&nbsp;        fpMethodView = (TextView) findViewById(R.id.txt_fp_method);</b>
+<b class="nc"><i>42</i>&nbsp;        fpMethodDateView = (TextView) findViewById(R.id.txt_fp_method_date);</b>
+<b class="nc"><i>43</i>&nbsp;        fpMethodQuantityLabelView = (TextView) findViewById(R.id.txt_fp_method_quantity_label);</b>
+<b class="nc"><i>44</i>&nbsp;        fpMethodQuantityView = (TextView) findViewById(R.id.txt_fp_method_quantity);</b>
+<b class="nc"><i>45</i>&nbsp;        iudPlaceView = (TextView) findViewById(R.id.txt_iud_place);</b>
+<b class="nc"><i>46</i>&nbsp;        iudPersonView = (TextView) findViewById(R.id.txt_iud_person);</b>
+<b class="nc"><i>47</i>&nbsp;    }</b>
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    public void setLayoutParams() {
+<b class="nc"><i>50</i>&nbsp;        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(</b>
+<b class="nc"><i>51</i>&nbsp;                (int) getResources().getDimension(R.dimen.list_fp_view_width),</b>
+<i>52</i>&nbsp;                ViewGroup.LayoutParams.FILL_PARENT,
+<b class="nc"><i>53</i>&nbsp;                getResources().getInteger(R.integer.fp_list_method_view_weight));</b>
+<i>54</i>&nbsp;
+<b class="nc"><i>55</i>&nbsp;        this.setLayoutParams(params);</b>
+<b class="nc"><i>56</i>&nbsp;    }</b>
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    public void bindData(BaseFPSmartRegisterClient client, int txtColorBlack) {
+<b class="nc"><i>59</i>&nbsp;        FPMethod fpMethod = client.fpMethod();</b>
+<i>60</i>&nbsp;
+<b class="nc"><i>61</i>&nbsp;        refreshAllFPMethodDetailViews(txtColorBlack);</b>
+<i>62</i>&nbsp;
+<b class="nc"><i>63</i>&nbsp;        fpMethodView.setText(fpMethod.displayName());</b>
+<b class="nc"><i>64</i>&nbsp;        fpMethodDateView.setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>65</i>&nbsp;        fpMethodDateView.setText(client.familyPlanningMethodChangeDate());</b>
+<i>66</i>&nbsp;
+<b class="nc"><i>67</i>&nbsp;        if (fpMethod == FPMethod.NONE) {</b>
+<b class="nc"><i>68</i>&nbsp;            fpMethodView.setTextColor(Color.RED);</b>
+<b class="nc"><i>69</i>&nbsp;            fpMethodDateView.setVisibility(View.GONE);</b>
+<b class="nc"><i>70</i>&nbsp;        } else if (fpMethod == FPMethod.OCP) {</b>
+<b class="nc"><i>71</i>&nbsp;            fpMethodQuantityLabelView.setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>72</i>&nbsp;            fpMethodQuantityView.setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>73</i>&nbsp;            fpMethodQuantityView.setText(client.numberOfOCPDelivered());</b>
+<b class="nc"><i>74</i>&nbsp;        } else if (fpMethod == FPMethod.CONDOM) {</b>
+<b class="nc"><i>75</i>&nbsp;            fpMethodQuantityLabelView.setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>76</i>&nbsp;            fpMethodQuantityLabelView.setText(getInstance().getStringResource(R.string.str_number_given));</b>
+<b class="nc"><i>77</i>&nbsp;            fpMethodQuantityView.setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>78</i>&nbsp;            fpMethodQuantityView.setText(client.numberOfCondomsSupplied());</b>
+<b class="nc"><i>79</i>&nbsp;        } else if (fpMethod == FPMethod.CENTCHROMAN) {</b>
+<b class="nc"><i>80</i>&nbsp;            fpMethodQuantityLabelView.setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>81</i>&nbsp;            fpMethodQuantityView.setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>82</i>&nbsp;            fpMethodQuantityView.setText(client.numberOfCentchromanPillsDelivered());</b>
+<b class="nc"><i>83</i>&nbsp;        } else if (fpMethod == FPMethod.IUD) {</b>
+<b class="nc"><i>84</i>&nbsp;            if (StringUtils.isNotBlank(client.iudPerson())) {</b>
+<b class="nc"><i>85</i>&nbsp;                iudPersonView.setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>86</i>&nbsp;                iudPersonView.setText(client.iudPerson());</b>
+<i>87</i>&nbsp;            }
+<b class="nc"><i>88</i>&nbsp;            if (StringUtils.isNotBlank(client.iudPlace())) {</b>
+<b class="nc"><i>89</i>&nbsp;                iudPlaceView.setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>90</i>&nbsp;                iudPlaceView.setText(client.iudPlace());</b>
+<i>91</i>&nbsp;            }
+<i>92</i>&nbsp;        }
+<b class="nc"><i>93</i>&nbsp;    }</b>
+<i>94</i>&nbsp;
+<i>95</i>&nbsp;    public void refreshAllFPMethodDetailViews(int fpMethodTextColor) {
+<b class="nc"><i>96</i>&nbsp;        fpMethodView.setTextColor(fpMethodTextColor);</b>
+<b class="nc"><i>97</i>&nbsp;        fpMethodDateView.setVisibility(View.GONE);</b>
+<b class="nc"><i>98</i>&nbsp;        fpMethodQuantityLabelView.setVisibility(View.GONE);</b>
+<b class="nc"><i>99</i>&nbsp;        fpMethodQuantityView.setVisibility(View.GONE);</b>
+<b class="nc"><i>100</i>&nbsp;        iudPersonView.setVisibility(View.GONE);</b>
+<b class="nc"><i>101</i>&nbsp;        iudPlaceView.setVisibility(View.GONE);</b>
+<b class="nc"><i>102</i>&nbsp;    }</b>
+<i>103</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

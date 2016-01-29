@@ -1,0 +1,121 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: DialogOptionMapperTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.view.dialogue</a> ]
+</div>
+
+<h1>Coverage Summary for Class: DialogOptionMapperTest (org.ei.telemedicine.test.view.dialogue)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DialogOptionMapperTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/ 11)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.view.dialogue;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.apache.commons.lang3.ArrayUtils;
+<i>4</i>&nbsp;import org.ei.telemedicine.view.contract.Village;
+<i>5</i>&nbsp;import org.ei.telemedicine.view.dialog.DialogOption;
+<i>6</i>&nbsp;import org.ei.telemedicine.view.dialog.DialogOptionMapper;
+<i>7</i>&nbsp;import org.ei.telemedicine.view.dialog.VillageFilter;
+<i>8</i>&nbsp;import org.junit.Before;
+<i>9</i>&nbsp;import org.junit.Test;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import java.util.List;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;import static com.google.common.collect.Iterables.toArray;
+<i>14</i>&nbsp;import static java.util.Arrays.asList;
+<i>15</i>&nbsp;import static org.junit.Assert.assertArrayEquals;
+<i>16</i>&nbsp;
+<b class="fc"><i>17</i>&nbsp;public class DialogOptionMapperTest {</b>
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    private DialogOptionMapper mapper;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    @Before
+<i>22</i>&nbsp;    public void setUp() throws Exception {
+<b class="fc"><i>23</i>&nbsp;        mapper = new DialogOptionMapper();</b>
+<b class="fc"><i>24</i>&nbsp;    }</b>
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    @Test
+<i>27</i>&nbsp;    public void testShouldMapVillagesToVillageFilterOptions() throws Exception {
+<b class="fc"><i>28</i>&nbsp;        List&lt;Village&gt; villages = asList(new Village(&quot;village1&quot;), new Village(&quot;village2&quot;));</b>
+<i>29</i>&nbsp;
+<b class="fc"><i>30</i>&nbsp;        Iterable&lt;? extends DialogOption&gt; villageFilterOptions =</b>
+<b class="fc"><i>31</i>&nbsp;                mapper.mapToVillageFilterOptions(villages);</b>
+<i>32</i>&nbsp;
+<b class="fc"><i>33</i>&nbsp;        VillageFilter[] expectedVillageFilters =</b>
+<b class="fc"><i>34</i>&nbsp;                ArrayUtils.toArray(new VillageFilter(&quot;Village1&quot;), new VillageFilter(&quot;Village2&quot;));</b>
+<b class="fc"><i>35</i>&nbsp;        assertArrayEquals(</b>
+<b class="fc"><i>36</i>&nbsp;                expectedVillageFilters, toArray(villageFilterOptions, DialogOption.class));</b>
+<b class="fc"><i>37</i>&nbsp;    }</b>
+<i>38</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-20 13:39</div>
+</div>
+</body>
+</html>

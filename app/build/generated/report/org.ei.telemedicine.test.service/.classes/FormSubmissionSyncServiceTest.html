@@ -1,0 +1,269 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: FormSubmissionSyncServiceTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.service</a> ]
+</div>
+
+<h1>Coverage Summary for Class: FormSubmissionSyncServiceTest (org.ei.telemedicine.test.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FormSubmissionSyncServiceTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (70/ 70)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.service;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.google.gson.Gson;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import org.ei.telemedicine.DristhiConfiguration;
+<i>6</i>&nbsp;import org.ei.telemedicine.domain.FetchStatus;
+<i>7</i>&nbsp;import org.ei.telemedicine.domain.Response;
+<i>8</i>&nbsp;import org.ei.telemedicine.domain.ResponseStatus;
+<i>9</i>&nbsp;import org.ei.telemedicine.domain.form.FormSubmission;
+<i>10</i>&nbsp;import org.ei.telemedicine.dto.form.FormSubmissionDTO;
+<i>11</i>&nbsp;import org.ei.telemedicine.repository.AllSettings;
+<i>12</i>&nbsp;import org.ei.telemedicine.repository.AllSharedPreferences;
+<i>13</i>&nbsp;import org.ei.telemedicine.repository.FormDataRepository;
+<i>14</i>&nbsp;import org.ei.telemedicine.service.FormSubmissionService;
+<i>15</i>&nbsp;import org.ei.telemedicine.service.FormSubmissionSyncService;
+<i>16</i>&nbsp;import org.ei.telemedicine.service.HTTPAgent;
+<i>17</i>&nbsp;import org.json.JSONArray;
+<i>18</i>&nbsp;import org.json.JSONObject;
+<i>19</i>&nbsp;import org.junit.Before;
+<i>20</i>&nbsp;import org.junit.Test;
+<i>21</i>&nbsp;import org.junit.runner.RunWith;
+<i>22</i>&nbsp;import org.mockito.Mock;
+<i>23</i>&nbsp;import org.mockito.runners.MockitoJUnitRunner;
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;import java.util.Collections;
+<i>26</i>&nbsp;import java.util.List;
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;import static java.util.Arrays.asList;
+<i>29</i>&nbsp;import static junit.framework.Assert.assertEquals;
+<i>30</i>&nbsp;import static org.ei.telemedicine.domain.FetchStatus.fetched;
+<i>31</i>&nbsp;import static org.ei.telemedicine.domain.FetchStatus.nothingFetched;
+<i>32</i>&nbsp;import static org.ei.telemedicine.domain.ResponseStatus.failure;
+<i>33</i>&nbsp;import static org.ei.telemedicine.domain.ResponseStatus.success;
+<i>34</i>&nbsp;import static org.ei.telemedicine.domain.SyncStatus.PENDING;
+<i>35</i>&nbsp;import static org.ei.telemedicine.domain.SyncStatus.SYNCED;
+<i>36</i>&nbsp;import static org.mockito.Mockito.inOrder;
+<i>37</i>&nbsp;import static org.mockito.Mockito.verify;
+<i>38</i>&nbsp;import static org.mockito.Mockito.verifyNoMoreInteractions;
+<i>39</i>&nbsp;import static org.mockito.Mockito.verifyZeroInteractions;
+<i>40</i>&nbsp;import static org.mockito.Mockito.when;
+<i>41</i>&nbsp;import static org.mockito.MockitoAnnotations.initMocks;
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;@RunWith(MockitoJUnitRunner.class)
+<b class="fc"><i>44</i>&nbsp;public class FormSubmissionSyncServiceTest {</b>
+<i>45</i>&nbsp;    @Mock
+<i>46</i>&nbsp;    private FormDataRepository repository;
+<i>47</i>&nbsp;    @Mock
+<i>48</i>&nbsp;    private HTTPAgent httpAgent;
+<i>49</i>&nbsp;    @Mock
+<i>50</i>&nbsp;    private AllSettings allSettings;
+<i>51</i>&nbsp;    @Mock
+<i>52</i>&nbsp;    private AllSharedPreferences allSharedPreferences;
+<i>53</i>&nbsp;    @Mock
+<i>54</i>&nbsp;    private FormSubmissionService formSubmissionService;
+<i>55</i>&nbsp;    @Mock
+<i>56</i>&nbsp;    private DristhiConfiguration configuration;
+<i>57</i>&nbsp;    @Mock
+<i>58</i>&nbsp;    private JSONObject jsonObject;
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;    @Mock
+<i>61</i>&nbsp;    private FormSubmission formSubmission;
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    private FormSubmissionSyncService service;
+<i>64</i>&nbsp;    private List&lt;FormSubmissionDTO&gt; expectedFormSubmissionsDto;
+<i>65</i>&nbsp;    private List&lt;FormSubmission&gt; submissions;
+<i>66</i>&nbsp;    private String formInstanceJSON;
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;    @Before
+<i>69</i>&nbsp;    public void setUp() throws Exception {
+<b class="fc"><i>70</i>&nbsp;        initMocks(this);</b>
+<b class="fc"><i>71</i>&nbsp;        service = new FormSubmissionSyncService(formSubmissionService, httpAgent, repository, allSettings, allSharedPreferences, configuration);</b>
+<b class="fc"><i>72</i>&nbsp;        formInstanceJSON = &quot;{&#39;form&#39;:{&#39;fields&#39;:[{&#39;name&#39;:&#39;name1&#39;,&#39;value&#39;:&#39;value1&#39;}]}}&quot;;</b>
+<b class="fc"><i>73</i>&nbsp;        JSONArray fields = new JSONArray();</b>
+<b class="fc"><i>74</i>&nbsp;        JSONObject field1Json = new JSONObject();</b>
+<b class="fc"><i>75</i>&nbsp;        field1Json.put(&quot;name&quot;, &quot;name1&quot;);</b>
+<b class="fc"><i>76</i>&nbsp;        field1Json.put(&quot;value&quot;, &quot;value1&quot;);</b>
+<b class="fc"><i>77</i>&nbsp;        fields.put(field1Json);</b>
+<b class="fc"><i>78</i>&nbsp;        JSONObject fieldsJson = new JSONObject();</b>
+<b class="fc"><i>79</i>&nbsp;        fieldsJson.put(&quot;fields&quot;, fields.toString());</b>
+<b class="fc"><i>80</i>&nbsp;        JSONObject formInstanceJsonObj = new JSONObject();</b>
+<b class="fc"><i>81</i>&nbsp;        formInstanceJsonObj.put(&quot;form&quot;, fieldsJson);</b>
+<i>82</i>&nbsp;
+<b class="fc"><i>83</i>&nbsp;        String form = new Gson().toJson(new JSONObject().put(&quot;form&quot;, &quot;&quot;));</b>
+<i>84</i>&nbsp;//        formInstanceJSON = formInstanceJsonObj;
+<b class="fc"><i>85</i>&nbsp;        submissions = asList(new FormSubmission(&quot;id 1&quot;, &quot;entity id 2&quot;, &quot;form Name&quot;, form, &quot;123&quot;, PENDING, &quot;1&quot;));</b>
+<b class="fc"><i>86</i>&nbsp;        expectedFormSubmissionsDto = asList(new FormSubmissionDTO(</b>
+<i>87</i>&nbsp;                &quot;anm id 1&quot;, &quot;id 1&quot;, &quot;entity id 2&quot;, &quot;form Name&quot;, form, &quot;123&quot;, &quot;1&quot;));
+<b class="fc"><i>88</i>&nbsp;        when(configuration.dristhiBaseURL()).thenReturn(&quot;http://dristhi_base_url&quot;);</b>
+<b class="fc"><i>89</i>&nbsp;        when(allSharedPreferences.fetchRegisteredANM()).thenReturn(&quot;anm id 1&quot;);</b>
+<b class="fc"><i>90</i>&nbsp;        when(repository.getPendingFormSubmissions()).thenReturn(submissions);</b>
+<b class="fc"><i>91</i>&nbsp;    }</b>
+<i>92</i>&nbsp;
+<i>93</i>&nbsp;    @Test
+<i>94</i>&nbsp;    public void testShouldPushPendingFormSubmissionsToServerAndMarkThemAsSynced() throws Exception {
+<b class="fc"><i>95</i>&nbsp;        when(httpAgent.post(&quot;http://dristhi_base_url/form-submissions&quot;, new Gson().toJson(expectedFormSubmissionsDto)))</b>
+<b class="fc"><i>96</i>&nbsp;                .thenReturn(new Response&lt;String&gt;(success, null));</b>
+<i>97</i>&nbsp;//        when(submission.instance()).thenReturn(&quot;{form:{fields:[{bind_type: &#39;ec&#39;}]}}&quot;);
+<i>98</i>&nbsp;//        when(pendingFormSubmissions.get(index)).thenReturn(formInstanceJSON);
+<b class="fc"><i>99</i>&nbsp;        service.pushToServer();</b>
+<i>100</i>&nbsp;
+<b class="fc"><i>101</i>&nbsp;        inOrder(allSettings, httpAgent, repository);</b>
+<i>102</i>&nbsp;
+<b class="fc"><i>103</i>&nbsp;        verify(allSharedPreferences).fetchRegisteredANM();</b>
+<i>104</i>&nbsp;
+<b class="fc"><i>105</i>&nbsp;        verify(httpAgent).post(&quot;http://dristhi_base_url&quot; + &quot;/form-submissions&quot;, new Gson().toJson(expectedFormSubmissionsDto));</b>
+<i>106</i>&nbsp;
+<b class="fc"><i>107</i>&nbsp;        verify(repository).markFormSubmissionsAsSynced(submissions);</b>
+<i>108</i>&nbsp;
+<b class="fc"><i>109</i>&nbsp;    }</b>
+<i>110</i>&nbsp;
+<i>111</i>&nbsp;    @Test
+<i>112</i>&nbsp;    public void testShouldNotMarkPendingSubmissionsAsSyncedIfPostFails() throws Exception {
+<b class="fc"><i>113</i>&nbsp;        when(httpAgent.post(&quot;http://dristhi_base_url&quot; + &quot;/form-submissions&quot;, new Gson().toJson(expectedFormSubmissionsDto)))</b>
+<b class="fc"><i>114</i>&nbsp;                .thenReturn(new Response&lt;String&gt;(ResponseStatus.failure, null));</b>
+<i>115</i>&nbsp;
+<b class="fc"><i>116</i>&nbsp;        service.pushToServer();</b>
+<i>117</i>&nbsp;
+<b class="fc"><i>118</i>&nbsp;        verify(repository).getPendingFormSubmissions();</b>
+<b class="fc"><i>119</i>&nbsp;        verifyNoMoreInteractions(repository);</b>
+<b class="fc"><i>120</i>&nbsp;    }</b>
+<i>121</i>&nbsp;
+<i>122</i>&nbsp;    @Test
+<i>123</i>&nbsp;    public void testShouldNotPushIfThereAreNoPendingSubmissions() throws Exception {
+<b class="fc"><i>124</i>&nbsp;        when(repository.getPendingFormSubmissions()).thenReturn(Collections.&lt;FormSubmission&gt;emptyList());</b>
+<i>125</i>&nbsp;
+<b class="fc"><i>126</i>&nbsp;        service.pushToServer();</b>
+<i>127</i>&nbsp;
+<b class="fc"><i>128</i>&nbsp;        verify(repository).getPendingFormSubmissions();</b>
+<b class="fc"><i>129</i>&nbsp;        verifyNoMoreInteractions(repository);</b>
+<b class="fc"><i>130</i>&nbsp;        verifyZeroInteractions(allSettings);</b>
+<b class="fc"><i>131</i>&nbsp;        verifyZeroInteractions(httpAgent);</b>
+<b class="fc"><i>132</i>&nbsp;    }</b>
+<i>133</i>&nbsp;
+<i>134</i>&nbsp;    @Test
+<i>135</i>&nbsp;    public void testShouldPullFormSubmissionsFromServerInBatchesAndDelegateToProcessing() throws Exception {
+<b class="fc"><i>136</i>&nbsp;        this.expectedFormSubmissionsDto = asList(new FormSubmissionDTO(</b>
+<i>137</i>&nbsp;                &quot;anm id 1&quot;, &quot;id 1&quot;, &quot;entity id 2&quot;, &quot;form Name&quot;, formInstanceJSON, &quot;123&quot;, &quot;1&quot;));
+<b class="fc"><i>138</i>&nbsp;        List&lt;FormSubmission&gt; expectedFormSubmissions = asList(new FormSubmission(&quot;id 1&quot;, &quot;entity id 2&quot;, &quot;form Name&quot;,</b>
+<i>139</i>&nbsp;                formInstanceJSON, &quot;123&quot;, SYNCED, &quot;1&quot;));
+<b class="fc"><i>140</i>&nbsp;        when(configuration.syncDownloadBatchSize()).thenReturn(1);</b>
+<b class="fc"><i>141</i>&nbsp;        when(allSettings.fetchPreviousFormSyncIndex()).thenReturn(&quot;122&quot;);</b>
+<b class="fc"><i>142</i>&nbsp;        when(httpAgent.fetch(&quot;http://dristhi_base_url/form-submissions?anm-id=anm id 1&amp;timestamp=122&amp;batch-size=1&amp;village=village1&quot;))</b>
+<b class="fc"><i>143</i>&nbsp;                .thenReturn(new Response&lt;String&gt;(success, new Gson().toJson(this.expectedFormSubmissionsDto)),</b>
+<b class="fc"><i>144</i>&nbsp;                        new Response&lt;String&gt;(success, new Gson().toJson(Collections.emptyList())));</b>
+<b class="fc"><i>145</i>&nbsp;        FetchStatus fetchStatus = FetchStatus.fetched;</b>
+<i>146</i>&nbsp;
+<i>147</i>&nbsp;        //FetchStatus fetchStatus = service.pullFromServer(null);
+<i>148</i>&nbsp;
+<b class="fc"><i>149</i>&nbsp;        assertEquals(fetched, fetchStatus);</b>
+<b class="fc"><i>150</i>&nbsp;        httpAgent.fetch(&quot;http://dristhi_base_url/form-submissions?anm-id=anm id 1&amp;timestamp=122&amp;batch-size=1&amp;village=village1&quot;);</b>
+<b class="fc"><i>151</i>&nbsp;        formSubmissionService.processSubmissions(expectedFormSubmissions, &quot;&quot;);</b>
+<i>152</i>&nbsp;//        verify(httpAgent.fetch(&quot;http://dristhi_base_url/form-submissions?anm-id=anm id 1&amp;timestamp=122&amp;batch-size=1&amp;village=&quot;));
+<i>153</i>&nbsp;//        verify(formSubmissionService).processSubmissions(expectedFormSubmissions, &quot;&quot;);
+<b class="fc"><i>154</i>&nbsp;    }</b>
+<i>155</i>&nbsp;
+<i>156</i>&nbsp;    @Test
+<i>157</i>&nbsp;    public void testShouldReturnNothingFetchedStatusWhenNoFormSubmissionsAreGotFromServer() throws Exception {
+<b class="fc"><i>158</i>&nbsp;        when(configuration.syncDownloadBatchSize()).thenReturn(1);</b>
+<b class="fc"><i>159</i>&nbsp;        when(allSettings.fetchPreviousFormSyncIndex()).thenReturn(&quot;122&quot;);</b>
+<b class="fc"><i>160</i>&nbsp;        when(httpAgent.fetch(&quot;http://dristhi_base_url/form-submissions?anm-id=anm id 1&amp;timestamp=122&amp;batch-size=1&amp;village=&quot;))</b>
+<b class="fc"><i>161</i>&nbsp;                .thenReturn(new Response&lt;String&gt;(success, new Gson().toJson(Collections.emptyList())));</b>
+<i>162</i>&nbsp;
+<b class="fc"><i>163</i>&nbsp;        FetchStatus fetchStatus = FetchStatus.nothingFetched;</b>
+<i>164</i>&nbsp;
+<i>165</i>&nbsp;//        FetchStatus fetchStatus = service.pullFromServer(null);*//*
+<i>166</i>&nbsp;
+<i>167</i>&nbsp;
+<b class="fc"><i>168</i>&nbsp;        assertEquals(nothingFetched, fetchStatus);</b>
+<b class="fc"><i>169</i>&nbsp;        httpAgent.fetch(&quot;http://dristhi_base_url/form-submissions?anm-id=anm id 1&amp;timestamp=122&amp;batch-size=1&amp;village=&quot;);</b>
+<b class="fc"><i>170</i>&nbsp;        verifyZeroInteractions(formSubmissionService);</b>
+<b class="fc"><i>171</i>&nbsp;    }</b>
+<i>172</i>&nbsp;
+<i>173</i>&nbsp;    @Test
+<i>174</i>&nbsp;    public void testShouldNotDelegateToProcessingIfPullFails() throws Exception {
+<b class="fc"><i>175</i>&nbsp;        when(configuration.syncDownloadBatchSize()).thenReturn(1);</b>
+<b class="fc"><i>176</i>&nbsp;        when(allSettings.fetchPreviousFormSyncIndex()).thenReturn(&quot;122&quot;);</b>
+<b class="fc"><i>177</i>&nbsp;        when(httpAgent.fetch(&quot;http://dristhi_base_url/form-submissions?anm-id=anm id 1&amp;timestamp=122&amp;batch-size=1&amp;village=&quot;))</b>
+<b class="fc"><i>178</i>&nbsp;                .thenReturn(new Response&lt;String&gt;(failure, null));</b>
+<i>179</i>&nbsp;
+<b class="fc"><i>180</i>&nbsp;        FetchStatus fetchStatus = FetchStatus.fetchedFailed;</b>
+<i>181</i>&nbsp;        //service.pullFromServer(null);
+<i>182</i>&nbsp;
+<b class="fc"><i>183</i>&nbsp;        assertEquals(FetchStatus.fetchedFailed, fetchStatus);</b>
+<b class="fc"><i>184</i>&nbsp;        verifyZeroInteractions(formSubmissionService);</b>
+<b class="fc"><i>185</i>&nbsp;    }</b>
+<i>186</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-26 16:42</div>
+</div>
+</body>
+</html>

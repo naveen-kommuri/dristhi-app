@@ -1,0 +1,1028 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: BlueToothInfoActivity</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.bluetooth</a> ]
+</div>
+
+<h1>Coverage Summary for Class: BlueToothInfoActivity (org.ei.telemedicine.bluetooth)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BlueToothInfoActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 21)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 308)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">BlueToothInfoActivity$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 7)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">BlueToothInfoActivity$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 6)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">BlueToothInfoActivity$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 65)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">BlueToothInfoActivity$4</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">BlueToothInfoActivity$5</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">BlueToothInfoActivity$6</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">BlueToothInfoActivity$7</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 43)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">BlueToothInfoActivity$AsyncTaskRunner</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 20)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 41)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 458)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.bluetooth;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.app.AlertDialog;
+<i>4</i>&nbsp;import android.app.ProgressDialog;
+<i>5</i>&nbsp;import android.bluetooth.BluetoothAdapter;
+<i>6</i>&nbsp;import android.bluetooth.BluetoothDevice;
+<i>7</i>&nbsp;import android.bluetooth.BluetoothSocket;
+<i>8</i>&nbsp;import android.content.BroadcastReceiver;
+<i>9</i>&nbsp;import android.content.Context;
+<i>10</i>&nbsp;import android.content.DialogInterface;
+<i>11</i>&nbsp;import android.content.Intent;
+<i>12</i>&nbsp;import android.content.IntentFilter;
+<i>13</i>&nbsp;import android.media.MediaPlayer;
+<i>14</i>&nbsp;import android.media.MediaRecorder;
+<i>15</i>&nbsp;import android.os.AsyncTask;
+<i>16</i>&nbsp;import android.os.Bundle;
+<i>17</i>&nbsp;import android.os.Environment;
+<i>18</i>&nbsp;import android.text.Editable;
+<i>19</i>&nbsp;import android.text.TextWatcher;
+<i>20</i>&nbsp;import android.util.Log;
+<i>21</i>&nbsp;import android.view.Gravity;
+<i>22</i>&nbsp;import android.view.Menu;
+<i>23</i>&nbsp;import android.view.View;
+<i>24</i>&nbsp;import android.view.View.OnClickListener;
+<i>25</i>&nbsp;import android.view.ViewGroup;
+<i>26</i>&nbsp;import android.widget.EditText;
+<i>27</i>&nbsp;import android.widget.FrameLayout;
+<i>28</i>&nbsp;import android.widget.ImageButton;
+<i>29</i>&nbsp;import android.widget.ImageView;
+<i>30</i>&nbsp;import android.widget.LinearLayout;
+<i>31</i>&nbsp;import android.widget.TextView;
+<i>32</i>&nbsp;import android.widget.Toast;
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;import org.ei.telemedicine.AllConstants;
+<i>35</i>&nbsp;import org.ei.telemedicine.R;
+<i>36</i>&nbsp;import org.ei.telemedicine.bluetooth.blood.BloodBuf;
+<i>37</i>&nbsp;import org.ei.telemedicine.bluetooth.bp.BPBuf;
+<i>38</i>&nbsp;import org.ei.telemedicine.bluetooth.bp.MtBuf;
+<i>39</i>&nbsp;import org.ei.telemedicine.bluetooth.eet.EETBuf;
+<i>40</i>&nbsp;import org.ei.telemedicine.bluetooth.fetal.FetalBuf;
+<i>41</i>&nbsp;import org.ei.telemedicine.bluetooth.pulse.BluetoothService;
+<i>42</i>&nbsp;import org.ei.telemedicine.bluetooth.pulse.CallBack;
+<i>43</i>&nbsp;import org.ei.telemedicine.bluetooth.pulse.ICallBack;
+<i>44</i>&nbsp;import org.ei.telemedicine.bluetooth.pulse.PulseBuf;
+<i>45</i>&nbsp;import org.ei.telemedicine.domain.form.FieldOverrides;
+<i>46</i>&nbsp;import org.ei.telemedicine.domain.form.FormSubmission;
+<i>47</i>&nbsp;import org.ei.telemedicine.sync.DrishtiSyncScheduler;
+<i>48</i>&nbsp;import org.ei.telemedicine.view.activity.NativeANMPlanofCareActivity;
+<i>49</i>&nbsp;import org.ei.telemedicine.view.activity.SecuredActivity;
+<i>50</i>&nbsp;import org.json.JSONArray;
+<i>51</i>&nbsp;import org.json.JSONException;
+<i>52</i>&nbsp;import org.json.JSONObject;
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;import java.io.File;
+<i>55</i>&nbsp;import java.io.IOException;
+<i>56</i>&nbsp;import java.io.UnsupportedEncodingException;
+<i>57</i>&nbsp;import java.util.Arrays;
+<i>58</i>&nbsp;import java.util.Locale;
+<i>59</i>&nbsp;import java.util.Vector;
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;import static android.view.View.GONE;
+<i>62</i>&nbsp;import static android.view.View.INVISIBLE;
+<i>63</i>&nbsp;import static android.view.View.VISIBLE;
+<i>64</i>&nbsp;import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+<i>65</i>&nbsp;import static org.ei.telemedicine.AllConstants.DRUGS;
+<i>66</i>&nbsp;import static org.ei.telemedicine.AllConstants.DRUGS_INFO_RESULT_CODE;
+<i>67</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT_EDIT;
+<i>68</i>&nbsp;
+<b class="nc"><i>69</i>&nbsp;public class BlueToothInfoActivity extends SecuredActivity implements OnClickListener,</b>
+<i>70</i>&nbsp;        ICallBack, OnBluetoothResult, org.ei.telemedicine.bluetooth.bp.ICallBack,
+<i>71</i>&nbsp;        org.ei.telemedicine.bluetooth.eet.ICallBack, org.ei.telemedicine.bluetooth.fetal.ICallBack, org.ei.telemedicine.bluetooth.blood.ICallBack {
+<i>72</i>&nbsp;
+<i>73</i>&nbsp;    org.ei.telemedicine.view.customControls.CustomFontTextView bt_save;
+<b class="nc"><i>74</i>&nbsp;    String entityId, instanceId, formName, risks, pncRisks, childSigns, filePath = &quot;&quot;;</b>
+<i>75</i>&nbsp;    int subFormCount;
+<i>76</i>&nbsp;
+<i>77</i>&nbsp;    ImageView iv_bp, iv_steh, iv_bgm, iv_eet, iv_fetal, iv_poc;
+<i>78</i>&nbsp;    EditText et_bp_sys, et_bp_dia, et_steh, et_bgm, et_bgm_mg, et_fetal, et_eet, et_bp_heart;
+<i>79</i>&nbsp;    TextView tv_eet_cen, tv_fetal;
+<i>80</i>&nbsp;    LinearLayout ll_fetal_data, ll_fetal, ll_eet, ll_bp, ll_bgm, ll_poc, ll_steh, ll_eet_child, ll_eet_child_data;
+<i>81</i>&nbsp;    FrameLayout frame_fetal;
+<i>82</i>&nbsp;
+<i>83</i>&nbsp;    org.ei.telemedicine.bluetooth.pulse.BluetoothService pulseService;
+<i>84</i>&nbsp;    org.ei.telemedicine.bluetooth.pulse.CallBack pulsecall;
+<i>85</i>&nbsp;
+<i>86</i>&nbsp;    org.ei.telemedicine.bluetooth.bp.CallBack bpCall;
+<i>87</i>&nbsp;    org.ei.telemedicine.bluetooth.bp.BluetoothService bpService;
+<i>88</i>&nbsp;
+<i>89</i>&nbsp;    org.ei.telemedicine.bluetooth.eet.BluetoothService eetService;
+<i>90</i>&nbsp;    org.ei.telemedicine.bluetooth.eet.CallBack eetCall;
+<i>91</i>&nbsp;
+<i>92</i>&nbsp;    org.ei.telemedicine.bluetooth.fetal.BluetoothService fetalService;
+<i>93</i>&nbsp;    org.ei.telemedicine.bluetooth.fetal.CallBack fetalCall;
+<i>94</i>&nbsp;
+<i>95</i>&nbsp;    org.ei.telemedicine.bluetooth.blood.BluetoothService bloodService;
+<i>96</i>&nbsp;    org.ei.telemedicine.bluetooth.blood.CallBack bloodCall;
+<i>97</i>&nbsp;
+<i>98</i>&nbsp;    ImageButton ib_record, ib_play;
+<b class="nc"><i>99</i>&nbsp;    private String TAG = &quot;BlueToothInfoActivity&quot;;</b>
+<b class="nc"><i>100</i>&nbsp;    public static String progrs = null;</b>
+<b class="nc"><i>101</i>&nbsp;    private static int device = 0;</b>
+<b class="nc"><i>102</i>&nbsp;    private static int tempartureFor = 0;</b>
+<b class="nc"><i>103</i>&nbsp;    private static int opacity = 128;</b>
+<i>104</i>&nbsp;    BluetoothAdapter bluetoothAdapter;
+<i>105</i>&nbsp;    public static BluetoothSocket btSocket;
+<i>106</i>&nbsp;    ProgressDialog progressDialog, recordProgressDialog;
+<b class="nc"><i>107</i>&nbsp;    public static String bpSystolic = &quot;bpSystolic&quot;;</b>
+<b class="nc"><i>108</i>&nbsp;    public static String bpDiastolic = &quot;bpDiastolic&quot;;</b>
+<b class="nc"><i>109</i>&nbsp;    public static String temperature = &quot;temperature&quot;;</b>
+<b class="nc"><i>110</i>&nbsp;    public static String fetal_data = &quot;fetalData&quot;;</b>
+<b class="nc"><i>111</i>&nbsp;    public static String blood_glucose_data = &quot;bloodGlucoseData&quot;;</b>
+<b class="nc"><i>112</i>&nbsp;    public static String pstechoscope_data = &quot;pstechoscopeData&quot;;</b>
+<b class="nc"><i>113</i>&nbsp;    public static String anm_poc = &quot;anmPoc&quot;;</b>
+<b class="nc"><i>114</i>&nbsp;    static String anmPocInfo = &quot;&quot;;</b>
+<b class="nc"><i>115</i>&nbsp;    private static int time = 10000;</b>
+<i>116</i>&nbsp;    private MediaRecorder mRecorder;
+<i>117</i>&nbsp;    private MediaPlayer mPlayer;
+<i>118</i>&nbsp;
+<i>119</i>&nbsp;    @Override
+<i>120</i>&nbsp;    protected void onStart() {
+<b class="nc"><i>121</i>&nbsp;        super.onStart();</b>
+<b class="nc"><i>122</i>&nbsp;        if (bluetoothAdapter != null &amp;&amp; !bluetoothAdapter.isEnabled()) {</b>
+<b class="nc"><i>123</i>&nbsp;            bluetoothAdapter.enable();</b>
+<i>124</i>&nbsp;        }
+<b class="nc"><i>125</i>&nbsp;        if (pulseService == null) {</b>
+<b class="nc"><i>126</i>&nbsp;            pulsecall = new CallBack(new PulseBuf(), this);</b>
+<b class="nc"><i>127</i>&nbsp;            pulseService = new BluetoothService(BlueToothInfoActivity.this, pulsecall);</b>
+<i>128</i>&nbsp;        }
+<b class="nc"><i>129</i>&nbsp;        if (bpService == null) {</b>
+<b class="nc"><i>130</i>&nbsp;            bpCall = new org.ei.telemedicine.bluetooth.bp.CallBack(new MtBuf(), this);</b>
+<b class="nc"><i>131</i>&nbsp;            bpService = new org.ei.telemedicine.bluetooth.bp.BluetoothService(</b>
+<i>132</i>&nbsp;                    BlueToothInfoActivity.this, bpCall);
+<i>133</i>&nbsp;        }
+<b class="nc"><i>134</i>&nbsp;        if (eetService == null) {</b>
+<b class="nc"><i>135</i>&nbsp;            eetCall = new org.ei.telemedicine.bluetooth.eet.CallBack(new EETBuf(), this);</b>
+<b class="nc"><i>136</i>&nbsp;            eetService = new org.ei.telemedicine.bluetooth.eet.BluetoothService(</b>
+<i>137</i>&nbsp;                    BlueToothInfoActivity.this, eetCall);
+<i>138</i>&nbsp;        }
+<b class="nc"><i>139</i>&nbsp;        if (fetalService == null) {</b>
+<b class="nc"><i>140</i>&nbsp;            fetalCall = new org.ei.telemedicine.bluetooth.fetal.CallBack(new FetalBuf(), this);</b>
+<b class="nc"><i>141</i>&nbsp;            fetalService = new org.ei.telemedicine.bluetooth.fetal.BluetoothService(</b>
+<i>142</i>&nbsp;                    BlueToothInfoActivity.this, fetalCall);
+<i>143</i>&nbsp;        }
+<b class="nc"><i>144</i>&nbsp;        if (bloodService == null) {</b>
+<b class="nc"><i>145</i>&nbsp;            bloodCall = new org.ei.telemedicine.bluetooth.blood.CallBack(new BloodBuf(), this);</b>
+<b class="nc"><i>146</i>&nbsp;            bloodService = new org.ei.telemedicine.bluetooth.blood.BluetoothService(</b>
+<i>147</i>&nbsp;                    BlueToothInfoActivity.this, bloodCall);
+<i>148</i>&nbsp;        }
+<b class="nc"><i>149</i>&nbsp;    }</b>
+<i>150</i>&nbsp;
+<i>151</i>&nbsp;    @Override
+<i>152</i>&nbsp;    public boolean onCreateOptionsMenu(Menu menu) {
+<b class="nc"><i>153</i>&nbsp;        return true;</b>
+<i>154</i>&nbsp;    }
+<i>155</i>&nbsp;
+<i>156</i>&nbsp;    @Override
+<i>157</i>&nbsp;    public void onCreation() {
+<i>158</i>&nbsp;        {
+<b class="nc"><i>159</i>&nbsp;            setContentView(R.layout.bluetooth_info_layout);</b>
+<b class="nc"><i>160</i>&nbsp;            if (getActionBar() != null) {</b>
+<b class="nc"><i>161</i>&nbsp;                getActionBar().setTitle(&quot;Vital Information&quot;);</b>
+<i>162</i>&nbsp;            }
+<b class="nc"><i>163</i>&nbsp;            Bundle extras = getIntent().getExtras();</b>
+<b class="nc"><i>164</i>&nbsp;            if (extras != null &amp;&amp; extras.containsKey(AllConstants.ENTITY_ID) &amp;&amp; extras.containsKey(AllConstants.INSTANCE_ID_PARAM) &amp;&amp; extras.containsKey(AllConstants.ANCVisitFields.RISKS)) {</b>
+<b class="nc"><i>165</i>&nbsp;                entityId = extras.getString(AllConstants.ENTITY_ID, &quot;&quot;);</b>
+<b class="nc"><i>166</i>&nbsp;                instanceId = extras.getString(AllConstants.INSTANCE_ID_PARAM, &quot;&quot;);</b>
+<b class="nc"><i>167</i>&nbsp;                formName = extras.getString(AllConstants.FORM_NAME_PARAM, &quot;&quot;);</b>
+<b class="nc"><i>168</i>&nbsp;                subFormCount = extras.getInt(AllConstants.SUB_FORM_COUNT, 0);</b>
+<b class="nc"><i>169</i>&nbsp;                risks = extras.getString(AllConstants.ANCVisitFields.RISKS, &quot;&quot;);</b>
+<b class="nc"><i>170</i>&nbsp;                pncRisks = extras.getString(AllConstants.PNCVisitFields.PNC_RISKS, &quot;&quot;);</b>
+<b class="nc"><i>171</i>&nbsp;                childSigns = extras.getString(AllConstants.ChildIllnessFields.CHILD_SIGNS, &quot;&quot;);</b>
+<i>172</i>&nbsp;
+<b class="nc"><i>173</i>&nbsp;                iv_eet = (ImageView) findViewById(R.id.iv_eet);</b>
+<b class="nc"><i>174</i>&nbsp;                iv_bgm = (ImageView) findViewById(R.id.iv_bgm);</b>
+<b class="nc"><i>175</i>&nbsp;                iv_fetal = (ImageView) findViewById(R.id.iv_fetal);</b>
+<b class="nc"><i>176</i>&nbsp;                iv_bp = (ImageView) findViewById(R.id.iv_bp);</b>
+<b class="nc"><i>177</i>&nbsp;                iv_steh = (ImageView) findViewById(R.id.iv_steh);</b>
+<b class="nc"><i>178</i>&nbsp;                ib_play = (ImageButton) findViewById(R.id.ib_play);</b>
+<b class="nc"><i>179</i>&nbsp;                ib_record = (ImageButton) findViewById(R.id.ib_record);</b>
+<b class="nc"><i>180</i>&nbsp;                tv_fetal = (TextView) findViewById(R.id.tv_fetal);</b>
+<b class="nc"><i>181</i>&nbsp;                ll_fetal_data = (LinearLayout) findViewById(R.id.ll_fetal_data);</b>
+<b class="nc"><i>182</i>&nbsp;                iv_poc = (ImageView) findViewById(R.id.iv_poc);</b>
+<i>183</i>&nbsp;
+<b class="nc"><i>184</i>&nbsp;                et_bp_heart = (EditText) findViewById(R.id.et_bp_heart);</b>
+<b class="nc"><i>185</i>&nbsp;                et_bgm = (EditText) findViewById(R.id.et_bgm_mmoi);</b>
+<b class="nc"><i>186</i>&nbsp;                et_bgm_mg = (EditText) findViewById(R.id.et_bgm_mg);</b>
+<b class="nc"><i>187</i>&nbsp;                et_bp_sys = (EditText) findViewById(R.id.et_bp_sys);</b>
+<b class="nc"><i>188</i>&nbsp;                et_bp_dia = (EditText) findViewById(R.id.et_bp_dia);</b>
+<b class="nc"><i>189</i>&nbsp;                et_fetal = (EditText) findViewById(R.id.et_fetal);</b>
+<i>190</i>&nbsp;//            et_steh = (EditText) findViewById(R.id.et_steh);
+<b class="nc"><i>191</i>&nbsp;                et_eet = (EditText) findViewById(R.id.et_eet);</b>
+<b class="nc"><i>192</i>&nbsp;                tv_eet_cen = (TextView) findViewById(R.id.tv_eet_cen);</b>
+<b class="nc"><i>193</i>&nbsp;                tv_eet_cen.setText(context.allSettings().fetchANMConfiguration(&quot;temperature&quot;).startsWith(&quot;c&quot;) ? &quot;C&quot; : &quot;F&quot;);</b>
+<b class="nc"><i>194</i>&nbsp;                bt_save = (org.ei.telemedicine.view.customControls.CustomFontTextView) findViewById(R.id.bt_info_save);</b>
+<i>195</i>&nbsp;
+<b class="nc"><i>196</i>&nbsp;                frame_fetal = (FrameLayout) findViewById(R.id.frame_fetal);</b>
+<b class="nc"><i>197</i>&nbsp;                ll_fetal = (LinearLayout) findViewById(R.id.ll_fetal);</b>
+<b class="nc"><i>198</i>&nbsp;                ll_bgm = (LinearLayout) findViewById(R.id.ll_bgm);</b>
+<b class="nc"><i>199</i>&nbsp;                ll_bp = (LinearLayout) findViewById(R.id.ll_bp);</b>
+<b class="nc"><i>200</i>&nbsp;                ll_eet = (LinearLayout) findViewById(R.id.ll_eet);</b>
+<b class="nc"><i>201</i>&nbsp;                ll_steh = (LinearLayout) findViewById(R.id.ll_steh);</b>
+<b class="nc"><i>202</i>&nbsp;                ll_poc = (LinearLayout) findViewById(R.id.ll_poc);</b>
+<b class="nc"><i>203</i>&nbsp;                ll_eet_child = (LinearLayout) findViewById(R.id.ll_eet_child);</b>
+<b class="nc"><i>204</i>&nbsp;                ll_eet_child_data = (LinearLayout) findViewById(R.id.ll_eet_child_data);</b>
+<i>205</i>&nbsp;
+<b class="nc"><i>206</i>&nbsp;                et_bgm.addTextChangedListener(new TextWatcher() {</b>
+<i>207</i>&nbsp;                    @Override
+<i>208</i>&nbsp;                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+<i>209</i>&nbsp;
+<b class="nc"><i>210</i>&nbsp;                    }</b>
+<i>211</i>&nbsp;
+<i>212</i>&nbsp;                    @Override
+<i>213</i>&nbsp;                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+<i>214</i>&nbsp;
+<b class="nc"><i>215</i>&nbsp;                    }</b>
+<i>216</i>&nbsp;
+<i>217</i>&nbsp;                    @Override
+<i>218</i>&nbsp;                    public void afterTextChanged(Editable s) {
+<b class="nc"><i>219</i>&nbsp;                        String text = et_bgm.getText().toString().toLowerCase(Locale.getDefault());</b>
+<b class="nc"><i>220</i>&nbsp;                        if (et_bgm_mg != null &amp;&amp; et_bgm.getText().toString().trim().length() != 0)</b>
+<b class="nc"><i>221</i>&nbsp;                            et_bgm_mg.setText(conversionBGM(text));</b>
+<i>222</i>&nbsp;
+<b class="nc"><i>223</i>&nbsp;                    }</b>
+<i>224</i>&nbsp;                });
+<b class="nc"><i>225</i>&nbsp;                if (formName.equalsIgnoreCase(AllConstants.FormNames.PNC_VISIT)) {</b>
+<b class="nc"><i>226</i>&nbsp;                    ll_fetal.setVisibility(INVISIBLE);</b>
+<b class="nc"><i>227</i>&nbsp;                    ll_eet_child.setVisibility(VISIBLE);</b>
+<b class="nc"><i>228</i>&nbsp;                    if (subFormCount == 0) {</b>
+<b class="nc"><i>229</i>&nbsp;                        ll_eet_child.setVisibility(INVISIBLE);</b>
+<i>230</i>&nbsp;                    }
+<b class="nc"><i>231</i>&nbsp;                    for (int i = 1; i &lt;= subFormCount; i++) {</b>
+<b class="nc"><i>232</i>&nbsp;                        final int value = i;</b>
+<b class="nc"><i>233</i>&nbsp;                        LinearLayout ll_eet_child_dat = new LinearLayout(this);</b>
+<b class="nc"><i>234</i>&nbsp;                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);</b>
+<b class="nc"><i>235</i>&nbsp;                        params.gravity = Gravity.CENTER;</b>
+<b class="nc"><i>236</i>&nbsp;                        ll_eet_child_dat.setWeightSum(4);</b>
+<b class="nc"><i>237</i>&nbsp;                        ll_eet_child_dat.setGravity(Gravity.CENTER);</b>
+<b class="nc"><i>238</i>&nbsp;                        ll_eet_child_dat.setLayoutParams(params);</b>
+<i>239</i>&nbsp;
+<b class="nc"><i>240</i>&nbsp;                        TextView textView = new TextView(this);</b>
+<b class="nc"><i>241</i>&nbsp;                        textView.setLayoutParams(new LinearLayout.LayoutParams(0, WRAP_CONTENT, 1.5f));</b>
+<b class="nc"><i>242</i>&nbsp;                        textView.setText(&quot;Child-&quot; + i + &quot; Temp&quot;);</b>
+<b class="nc"><i>243</i>&nbsp;                        textView.setTextSize(20);</b>
+<i>244</i>&nbsp;
+<b class="nc"><i>245</i>&nbsp;                        final EditText editText = new EditText(this);</b>
+<b class="nc"><i>246</i>&nbsp;                        editText.setLayoutParams(new LinearLayout.LayoutParams(0, WRAP_CONTENT, 1.5f));</b>
+<b class="nc"><i>247</i>&nbsp;                        editText.setTag(&quot;Child temperature&quot;);</b>
+<b class="nc"><i>248</i>&nbsp;                        editText.setId(value);</b>
+<i>249</i>&nbsp;
+<b class="nc"><i>250</i>&nbsp;                        TextView textView2 = new TextView(this);</b>
+<b class="nc"><i>251</i>&nbsp;                        textView2.setLayoutParams(new LinearLayout.LayoutParams(0, WRAP_CONTENT, 0.5f));</b>
+<b class="nc"><i>252</i>&nbsp;                        textView2.setText((context.allSettings().fetchANMConfiguration(&quot;temperature&quot;).startsWith(&quot;c&quot;) ? &quot;C&quot; : &quot;F&quot;));</b>
+<b class="nc"><i>253</i>&nbsp;                        textView2.setTextSize(20);</b>
+<i>254</i>&nbsp;
+<b class="nc"><i>255</i>&nbsp;                        ImageButton imageButton = new ImageButton(this);</b>
+<b class="nc"><i>256</i>&nbsp;                        imageButton.setLayoutParams(new LinearLayout.LayoutParams(0, WRAP_CONTENT, 0.5F));</b>
+<b class="nc"><i>257</i>&nbsp;                        imageButton.setTag(&quot;ib_eet-&quot; + value);</b>
+<b class="nc"><i>258</i>&nbsp;                        imageButton.setId(value);</b>
+<b class="nc"><i>259</i>&nbsp;                        imageButton.setOnClickListener(new OnClickListener() {</b>
+<i>260</i>&nbsp;                            @Override
+<i>261</i>&nbsp;                            public void onClick(View v) {
+<b class="nc"><i>262</i>&nbsp;                                tempartureFor = value;</b>
+<b class="nc"><i>263</i>&nbsp;                                device = Constants.EET_DEVICE_NUM;</b>
+<b class="nc"><i>264</i>&nbsp;                                iv_eet.setImageDrawable(getResources().getDrawable(R.drawable.eet_enable));</b>
+<b class="nc"><i>265</i>&nbsp;                                startDiscovery();</b>
+<b class="nc"><i>266</i>&nbsp;                            }</b>
+<i>267</i>&nbsp;                        });
+<i>268</i>&nbsp;
+<b class="nc"><i>269</i>&nbsp;                        ll_eet_child_dat.addView(textView);</b>
+<b class="nc"><i>270</i>&nbsp;                        ll_eet_child_dat.addView(editText);</b>
+<b class="nc"><i>271</i>&nbsp;                        ll_eet_child_dat.addView(textView2);</b>
+<b class="nc"><i>272</i>&nbsp;                        ll_eet_child_dat.addView(imageButton);</b>
+<i>273</i>&nbsp;
+<b class="nc"><i>274</i>&nbsp;                        ll_eet_child.addView(ll_eet_child_dat);</b>
+<i>275</i>&nbsp;                    }
+<b class="nc"><i>276</i>&nbsp;                } else if (formName.equalsIgnoreCase(AllConstants.FormNames.CHILD_ILLNESS)) {</b>
+<i>277</i>&nbsp;//                    (FrameLayout) findViewById(R.id.frame_fetal).setVisibility(GONE);
+<b class="nc"><i>278</i>&nbsp;                    frame_fetal.setVisibility(GONE);</b>
+<b class="nc"><i>279</i>&nbsp;                    ll_fetal.setVisibility(GONE);</b>
+<b class="nc"><i>280</i>&nbsp;                    ll_bgm.setVisibility(GONE);</b>
+<b class="nc"><i>281</i>&nbsp;                    ll_bp.setVisibility(GONE);</b>
+<b class="nc"><i>282</i>&nbsp;                    ll_steh.setVisibility(GONE);</b>
+<b class="nc"><i>283</i>&nbsp;                    ll_poc.setVisibility(VISIBLE);</b>
+<i>284</i>&nbsp;                }
+<i>285</i>&nbsp;
+<b class="nc"><i>286</i>&nbsp;                iv_eet.setOnClickListener(this);</b>
+<b class="nc"><i>287</i>&nbsp;                iv_fetal.setOnClickListener(this);</b>
+<b class="nc"><i>288</i>&nbsp;                iv_steh.setOnClickListener(this);</b>
+<b class="nc"><i>289</i>&nbsp;                iv_bgm.setOnClickListener(this);</b>
+<b class="nc"><i>290</i>&nbsp;                iv_bp.setOnClickListener(this);</b>
+<b class="nc"><i>291</i>&nbsp;                bt_save.setOnClickListener(this);</b>
+<b class="nc"><i>292</i>&nbsp;                ib_play.setOnClickListener(this);</b>
+<b class="nc"><i>293</i>&nbsp;                ib_record.setOnClickListener(this);</b>
+<b class="nc"><i>294</i>&nbsp;                iv_poc.setOnClickListener(this);</b>
+<i>295</i>&nbsp;//                File file = new File(getFilePath());
+<i>296</i>&nbsp;//                if (file.exists()) {
+<i>297</i>&nbsp;//                    ib_play.setVisibility(VISIBLE);
+<i>298</i>&nbsp;//                }
+<i>299</i>&nbsp;
+<b class="nc"><i>300</i>&nbsp;                progressDialog = new ProgressDialog(BlueToothInfoActivity.this);</b>
+<b class="nc"><i>301</i>&nbsp;                progressDialog.setTitle(&quot;Device Connecting&quot;);</b>
+<b class="nc"><i>302</i>&nbsp;                bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();</b>
+<i>303</i>&nbsp;
+<b class="nc"><i>304</i>&nbsp;                if (bluetoothAdapter != null) {</b>
+<b class="nc"><i>305</i>&nbsp;                    IntentFilter intent = new IntentFilter();</b>
+<b class="nc"><i>306</i>&nbsp;                    intent.addAction(BluetoothDevice.ACTION_FOUND);</b>
+<b class="nc"><i>307</i>&nbsp;                    intent.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);</b>
+<b class="nc"><i>308</i>&nbsp;                    intent.addAction(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);</b>
+<b class="nc"><i>309</i>&nbsp;                    intent.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);</b>
+<b class="nc"><i>310</i>&nbsp;                    registerReceiver(searchDevices, intent);</b>
+<i>311</i>&nbsp;                }
+<i>312</i>&nbsp;            }
+<i>313</i>&nbsp;
+<i>314</i>&nbsp;        }
+<b class="nc"><i>315</i>&nbsp;    }</b>
+<i>316</i>&nbsp;
+<i>317</i>&nbsp;    @Override
+<i>318</i>&nbsp;    public void onResumption() {
+<b class="nc"><i>319</i>&nbsp;    }</b>
+<i>320</i>&nbsp;
+<i>321</i>&nbsp;    @Override
+<i>322</i>&nbsp;    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+<b class="nc"><i>323</i>&nbsp;        super.onActivityResult(requestCode, resultCode, data);</b>
+<b class="nc"><i>324</i>&nbsp;        if (resultCode == DRUGS_INFO_RESULT_CODE) {</b>
+<b class="nc"><i>325</i>&nbsp;            Log.e(&quot;drugs&quot;, data.getExtras().getString(DRUGS));</b>
+<b class="nc"><i>326</i>&nbsp;            anmPocInfo = data.getExtras().getString(DRUGS);</b>
+<i>327</i>&nbsp;        }
+<b class="nc"><i>328</i>&nbsp;    }</b>
+<i>329</i>&nbsp;
+<i>330</i>&nbsp;
+<i>331</i>&nbsp;    @Override
+<i>332</i>&nbsp;    public void onBackPressed() {
+<b class="nc"><i>333</i>&nbsp;        if (bluetoothAdapter != null)</b>
+<b class="nc"><i>334</i>&nbsp;            bluetoothAdapter.cancelDiscovery();</b>
+<b class="nc"><i>335</i>&nbsp;        Log.e(&quot;Form Back press&quot;, formName);</b>
+<b class="nc"><i>336</i>&nbsp;        if (formName.equalsIgnoreCase(AllConstants.FormNames.ANC_VISIT) || formName.equalsIgnoreCase(AllConstants.FormNames.ANC_VISIT_EDIT)) {</b>
+<b class="nc"><i>337</i>&nbsp;            formController.startFormActivity(ANC_VISIT_EDIT, entityId, new FieldOverrides(context.anmLocationController().getFormInfoJSON()).getJSONString());</b>
+<i>338</i>&nbsp;//            this.finish();
+<i>339</i>&nbsp;//            startFormActivity(AllConstants.FormNames.ANC_VISIT_EDIT, entityId, new FieldOverrides(context.anmLocationController().getFormInfoJSON()).getJSONString());
+<i>340</i>&nbsp;        }
+<b class="nc"><i>341</i>&nbsp;    }</b>
+<i>342</i>&nbsp;
+<b class="nc"><i>343</i>&nbsp;    private BroadcastReceiver searchDevices = new BroadcastReceiver() {</b>
+<i>344</i>&nbsp;
+<i>345</i>&nbsp;        public void onReceive(Context context, Intent intent) {
+<b class="nc"><i>346</i>&nbsp;            String action = intent.getAction();</b>
+<b class="nc"><i>347</i>&nbsp;            Bundle b = intent.getExtras();</b>
+<b class="nc"><i>348</i>&nbsp;            Object[] lstName = b.keySet().toArray();</b>
+<i>349</i>&nbsp;
+<b class="nc"><i>350</i>&nbsp;            for (int i = 0; i &lt; lstName.length; i++) {</b>
+<b class="nc"><i>351</i>&nbsp;                String keyName = lstName[i].toString();</b>
+<b class="nc"><i>352</i>&nbsp;                Log.e(TAG, String.valueOf(b.get(keyName)));</b>
+<i>353</i>&nbsp;            }
+<i>354</i>&nbsp;
+<b class="nc"><i>355</i>&nbsp;            if (BluetoothDevice.ACTION_FOUND.equals(action)) {</b>
+<b class="nc"><i>356</i>&nbsp;                BluetoothDevice device = intent</b>
+<b class="nc"><i>357</i>&nbsp;                        .getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);</b>
+<i>358</i>&nbsp;
+<i>359</i>&nbsp;
+<b class="nc"><i>360</i>&nbsp;                if (device.getName() != null</b>
+<b class="nc"><i>361</i>&nbsp;                        &amp;&amp; device.getName().contains(Constants.PULSE_DEVICE)) {</b>
+<i>362</i>&nbsp;
+<b class="nc"><i>363</i>&nbsp;                    if (pulseService != null)</b>
+<b class="nc"><i>364</i>&nbsp;                        pulseService.stop();</b>
+<i>365</i>&nbsp;                    try {
+<b class="nc"><i>366</i>&nbsp;                        Thread.sleep(2000);</b>
+<b class="nc"><i>367</i>&nbsp;                    } catch (InterruptedException e) {</b>
+<b class="nc"><i>368</i>&nbsp;                        e.printStackTrace();</b>
+<b class="nc"><i>369</i>&nbsp;                    }</b>
+<b class="nc"><i>370</i>&nbsp;                    pulseService.start();</b>
+<b class="nc"><i>371</i>&nbsp;                    pulseService.connect(device, context,</b>
+<i>372</i>&nbsp;                            Constants.PULSE_DEVICE_NUM);
+<b class="nc"><i>373</i>&nbsp;                } else if (device.getName() != null</b>
+<b class="nc"><i>374</i>&nbsp;                        &amp;&amp; device.getName().startsWith(Constants.BP_DEVICE)) {</b>
+<b class="nc"><i>375</i>&nbsp;                    Log.e(TAG, &quot;Connect&quot; + &quot;BP Device&quot;);</b>
+<i>376</i>&nbsp;
+<b class="nc"><i>377</i>&nbsp;                    if (bpService != null)</b>
+<b class="nc"><i>378</i>&nbsp;                        bpService.stop();</b>
+<i>379</i>&nbsp;                    try {
+<b class="nc"><i>380</i>&nbsp;                        Thread.sleep(2000);</b>
+<b class="nc"><i>381</i>&nbsp;                    } catch (InterruptedException e) {</b>
+<b class="nc"><i>382</i>&nbsp;                        e.printStackTrace();</b>
+<b class="nc"><i>383</i>&nbsp;                    }</b>
+<b class="nc"><i>384</i>&nbsp;                    bpService.start();</b>
+<b class="nc"><i>385</i>&nbsp;                    bpService.connect(device, BlueToothInfoActivity.this,</b>
+<i>386</i>&nbsp;                            Constants.BP_DEVICE_NUM);
+<b class="nc"><i>387</i>&nbsp;                } else if (device.getName() != null</b>
+<b class="nc"><i>388</i>&nbsp;                        &amp;&amp; device.getName().startsWith(Constants.EET_DEVICE)) {</b>
+<b class="nc"><i>389</i>&nbsp;                    Log.e(TAG, &quot;Connect&quot; + &quot;EET Device&quot;);</b>
+<i>390</i>&nbsp;
+<b class="nc"><i>391</i>&nbsp;                    if (eetService != null)</b>
+<b class="nc"><i>392</i>&nbsp;                        eetService.stop();</b>
+<i>393</i>&nbsp;                    try {
+<b class="nc"><i>394</i>&nbsp;                        Thread.sleep(2000);</b>
+<b class="nc"><i>395</i>&nbsp;                    } catch (InterruptedException e) {</b>
+<b class="nc"><i>396</i>&nbsp;                        e.printStackTrace();</b>
+<b class="nc"><i>397</i>&nbsp;                    }</b>
+<b class="nc"><i>398</i>&nbsp;                    eetService.start();</b>
+<b class="nc"><i>399</i>&nbsp;                    eetService.connect(device, BlueToothInfoActivity.this,</b>
+<i>400</i>&nbsp;                            Constants.EET_DEVICE_NUM);
+<b class="nc"><i>401</i>&nbsp;                } else if (device.getName() != null</b>
+<b class="nc"><i>402</i>&nbsp;                        &amp;&amp; device.getName().startsWith(Constants.FET_DEVICE)) {</b>
+<b class="nc"><i>403</i>&nbsp;                    Log.e(TAG, &quot;Connect&quot; + &quot;FET Device&quot;);</b>
+<i>404</i>&nbsp;
+<b class="nc"><i>405</i>&nbsp;                    if (fetalService != null)</b>
+<b class="nc"><i>406</i>&nbsp;                        fetalService.stop();</b>
+<i>407</i>&nbsp;                    try {
+<b class="nc"><i>408</i>&nbsp;                        Thread.sleep(2000);</b>
+<b class="nc"><i>409</i>&nbsp;                    } catch (InterruptedException e) {</b>
+<b class="nc"><i>410</i>&nbsp;                        e.printStackTrace();</b>
+<b class="nc"><i>411</i>&nbsp;                    }</b>
+<b class="nc"><i>412</i>&nbsp;                    fetalService.start();</b>
+<b class="nc"><i>413</i>&nbsp;                    fetalService.connect(device, BlueToothInfoActivity.this,</b>
+<i>414</i>&nbsp;                            Constants.FET_DEVICE_NUM);
+<b class="nc"><i>415</i>&nbsp;                } else if (device.getName() != null</b>
+<b class="nc"><i>416</i>&nbsp;                        &amp;&amp; device.getName().startsWith(Constants.BLOOD_DEVICE)) {</b>
+<b class="nc"><i>417</i>&nbsp;                    Log.e(TAG, &quot;Connect&quot; + &quot;Blood Device&quot;);</b>
+<i>418</i>&nbsp;
+<b class="nc"><i>419</i>&nbsp;                    if (bloodService != null)</b>
+<b class="nc"><i>420</i>&nbsp;                        bloodService.stop();</b>
+<i>421</i>&nbsp;                    try {
+<b class="nc"><i>422</i>&nbsp;                        Thread.sleep(2000);</b>
+<b class="nc"><i>423</i>&nbsp;                    } catch (InterruptedException e) {</b>
+<b class="nc"><i>424</i>&nbsp;                        e.printStackTrace();</b>
+<b class="nc"><i>425</i>&nbsp;                    }</b>
+<b class="nc"><i>426</i>&nbsp;                    bloodService.start();</b>
+<b class="nc"><i>427</i>&nbsp;                    bloodService.connect(device, BlueToothInfoActivity.this,</b>
+<i>428</i>&nbsp;                            Constants.BLOOD_DEVICE_NUM);
+<i>429</i>&nbsp;                }
+<i>430</i>&nbsp;            } else {
+<i>431</i>&nbsp;//                Toast.makeText(BlueToothInfoActivity.this, &quot;No Device&quot;, Toast.LENGTH_SHORT).show();
+<i>432</i>&nbsp;            }
+<b class="nc"><i>433</i>&nbsp;        }</b>
+<i>434</i>&nbsp;    };
+<i>435</i>&nbsp;
+<i>436</i>&nbsp;    public void startDiscovery() {
+<b class="nc"><i>437</i>&nbsp;        progressDialog.show();</b>
+<i>438</i>&nbsp;//        progressDialog.setCancelable(false);
+<b class="nc"><i>439</i>&nbsp;        bluetoothAdapter.startDiscovery();</b>
+<b class="nc"><i>440</i>&nbsp;    }</b>
+<i>441</i>&nbsp;
+<i>442</i>&nbsp;    @Override
+<i>443</i>&nbsp;    public void onClick(View v) {
+<b class="nc"><i>444</i>&nbsp;        switch (v.getId()) {</b>
+<i>445</i>&nbsp;            case R.id.iv_bp:
+<b class="nc"><i>446</i>&nbsp;                device = Constants.BP_DEVICE_NUM;</b>
+<b class="nc"><i>447</i>&nbsp;                iv_bp.setImageDrawable(getResources().getDrawable(R.drawable.bp_enable));</b>
+<b class="nc"><i>448</i>&nbsp;                startDiscovery();</b>
+<b class="nc"><i>449</i>&nbsp;                break;</b>
+<i>450</i>&nbsp;            case R.id.iv_bgm:
+<b class="nc"><i>451</i>&nbsp;                device = Constants.BLOOD_DEVICE_NUM;</b>
+<b class="nc"><i>452</i>&nbsp;                iv_bgm.setImageDrawable(getResources().getDrawable(R.drawable.bgm_enable));</b>
+<b class="nc"><i>453</i>&nbsp;                startDiscovery();</b>
+<b class="nc"><i>454</i>&nbsp;                break;</b>
+<i>455</i>&nbsp;            case R.id.iv_steh:
+<b class="nc"><i>456</i>&nbsp;                device = 0;</b>
+<b class="nc"><i>457</i>&nbsp;                iv_steh.setImageDrawable(getResources().getDrawable(R.drawable.steh_enable));</b>
+<b class="nc"><i>458</i>&nbsp;                startRecord(getFilePath());</b>
+<b class="nc"><i>459</i>&nbsp;                break;</b>
+<i>460</i>&nbsp;            case R.id.iv_eet:
+<b class="nc"><i>461</i>&nbsp;                tempartureFor = 0;</b>
+<b class="nc"><i>462</i>&nbsp;                device = Constants.EET_DEVICE_NUM;</b>
+<b class="nc"><i>463</i>&nbsp;                iv_eet.setImageDrawable(getResources().getDrawable(R.drawable.eet_enable));</b>
+<b class="nc"><i>464</i>&nbsp;                startDiscovery();</b>
+<b class="nc"><i>465</i>&nbsp;                break;</b>
+<i>466</i>&nbsp;            case R.id.iv_fetal:
+<b class="nc"><i>467</i>&nbsp;                device = Constants.FET_DEVICE_NUM;</b>
+<b class="nc"><i>468</i>&nbsp;                iv_fetal.setImageDrawable(getResources().getDrawable(R.drawable.fetal_enable));</b>
+<b class="nc"><i>469</i>&nbsp;                startDiscovery();</b>
+<b class="nc"><i>470</i>&nbsp;                break;</b>
+<i>471</i>&nbsp;            case R.id.iv_poc:
+<b class="nc"><i>472</i>&nbsp;                Intent intent = new Intent(this, NativeANMPlanofCareActivity.class);</b>
+<b class="nc"><i>473</i>&nbsp;                risks = risks.equals(&quot;&quot;) ? pncRisks : risks;</b>
+<b class="nc"><i>474</i>&nbsp;                risks = risks.equals(&quot;&quot;) ? childSigns : risks;</b>
+<i>475</i>&nbsp;
+<b class="nc"><i>476</i>&nbsp;                intent.putExtra(AllConstants.ANCVisitFields.RISKS, risks.trim().replace(&quot; &quot;, &quot;,&quot;).replace(&quot;_&quot;, &quot; &quot;));</b>
+<b class="nc"><i>477</i>&nbsp;                startActivityForResult(intent, DRUGS_INFO_RESULT_CODE);</b>
+<b class="nc"><i>478</i>&nbsp;                break;</b>
+<i>479</i>&nbsp;            case R.id.bt_info_save:
+<b class="nc"><i>480</i>&nbsp;                if (et_bp_dia.getText().toString().equals(&quot;&quot;) &amp;&amp; et_bp_sys.getText().toString().equals(&quot;&quot;) &amp;&amp; et_eet.getText().toString().equals(&quot;&quot;) &amp;&amp; et_fetal.getText().toString().equals(&quot;&quot;) &amp;&amp; et_bgm.getText().toString().equals(&quot;&quot;)) {</b>
+<b class="nc"><i>481</i>&nbsp;                    new AlertDialog.Builder(this).setTitle(&quot;Do you want save with out vital reading?&quot;).setPositiveButton(&quot;Yes&quot;, new DialogInterface.OnClickListener() {</b>
+<i>482</i>&nbsp;                        @Override
+<i>483</i>&nbsp;                        public void onClick(DialogInterface dialog, int which) {
+<b class="nc"><i>484</i>&nbsp;                            saveData();</b>
+<b class="nc"><i>485</i>&nbsp;                        }</b>
+<b class="nc"><i>486</i>&nbsp;                    }).setNegativeButton(&quot;No&quot;, new DialogInterface.OnClickListener() {</b>
+<i>487</i>&nbsp;                        @Override
+<i>488</i>&nbsp;                        public void onClick(DialogInterface dialog, int which) {
+<b class="nc"><i>489</i>&nbsp;                        }</b>
+<b class="nc"><i>490</i>&nbsp;                    }).show();</b>
+<i>491</i>&nbsp;                } else {
+<b class="nc"><i>492</i>&nbsp;                    saveData();</b>
+<i>493</i>&nbsp;                }
+<i>494</i>&nbsp;
+<b class="nc"><i>495</i>&nbsp;                break;</b>
+<i>496</i>&nbsp;            case R.id.ib_play:
+<b class="nc"><i>497</i>&nbsp;                startPlaying(this.filePath);</b>
+<b class="nc"><i>498</i>&nbsp;                break;</b>
+<i>499</i>&nbsp;            default:
+<i>500</i>&nbsp;
+<i>501</i>&nbsp;                break;
+<i>502</i>&nbsp;        }
+<b class="nc"><i>503</i>&nbsp;    }</b>
+<i>504</i>&nbsp;
+<i>505</i>&nbsp;    private void saveData() {
+<i>506</i>&nbsp;        try {
+<b class="nc"><i>507</i>&nbsp;            if (searchDevices != null)</b>
+<b class="nc"><i>508</i>&nbsp;                unregisterReceiver(searchDevices);</b>
+<b class="nc"><i>509</i>&nbsp;            saveDevicesData(entityId);</b>
+<b class="nc"><i>510</i>&nbsp;        } catch (JSONException e) {</b>
+<b class="nc"><i>511</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>512</i>&nbsp;        } catch (UnsupportedEncodingException e) {</b>
+<b class="nc"><i>513</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>514</i>&nbsp;            Log.e(&quot;Exception&quot;, &quot;UnSupported Encoding Exception&quot;);</b>
+<b class="nc"><i>515</i>&nbsp;        }</b>
+<i>516</i>&nbsp;
+<b class="nc"><i>517</i>&nbsp;    }</b>
+<i>518</i>&nbsp;
+<i>519</i>&nbsp;    private void startPlaying(String filePath) {
+<b class="nc"><i>520</i>&nbsp;        mPlayer = new MediaPlayer();</b>
+<i>521</i>&nbsp;        try {
+<b class="nc"><i>522</i>&nbsp;            mPlayer.setDataSource(filePath);</b>
+<i>523</i>&nbsp;//            mPlayer.setDataSource(&quot;http://www.hrupin.com/wp-content/uploads/mp3/testsong_20_sec.mp3&quot;);
+<b class="nc"><i>524</i>&nbsp;            mPlayer.prepare();</b>
+<b class="nc"><i>525</i>&nbsp;            mPlayer.start();</b>
+<b class="nc"><i>526</i>&nbsp;            mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {</b>
+<i>527</i>&nbsp;                @Override
+<i>528</i>&nbsp;                public void onCompletion(MediaPlayer mp) {
+<b class="nc"><i>529</i>&nbsp;                    mp.stop();</b>
+<b class="nc"><i>530</i>&nbsp;                    mp.release();</b>
+<b class="nc"><i>531</i>&nbsp;                }</b>
+<i>532</i>&nbsp;            });
+<b class="nc"><i>533</i>&nbsp;        } catch (IOException e) {</b>
+<b class="nc"><i>534</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>535</i>&nbsp;        }</b>
+<b class="nc"><i>536</i>&nbsp;    }</b>
+<i>537</i>&nbsp;
+<i>538</i>&nbsp;    private void startRecord(String filePath) {
+<b class="nc"><i>539</i>&nbsp;        this.filePath = filePath;</b>
+<b class="nc"><i>540</i>&nbsp;        File file = new File(filePath);</b>
+<b class="nc"><i>541</i>&nbsp;        if (!file.exists()) {</b>
+<b class="nc"><i>542</i>&nbsp;            new AsyncTaskRunner().execute(filePath);</b>
+<i>543</i>&nbsp;        }
+<b class="nc"><i>544</i>&nbsp;    }</b>
+<i>545</i>&nbsp;
+<i>546</i>&nbsp;    public String getFilePath() {
+<b class="nc"><i>547</i>&nbsp;        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + &quot;/&quot; + AllConstants.DRISTHI_DIRECTORY_NAME;</b>
+<b class="nc"><i>548</i>&nbsp;        File directory = new File(path);</b>
+<b class="nc"><i>549</i>&nbsp;        if (!directory.exists()) {</b>
+<b class="nc"><i>550</i>&nbsp;            directory.mkdir();</b>
+<i>551</i>&nbsp;        }
+<b class="nc"><i>552</i>&nbsp;        path += &quot;/&quot; + System.currentTimeMillis() + &quot;.wav&quot;;</b>
+<b class="nc"><i>553</i>&nbsp;        Log.e(&quot;Audio path&quot;, path);</b>
+<b class="nc"><i>554</i>&nbsp;        return path;</b>
+<i>555</i>&nbsp;    }
+<i>556</i>&nbsp;
+<b class="nc"><i>557</i>&nbsp;    private class AsyncTaskRunner extends AsyncTask&lt;String, Void, String&gt; {</b>
+<i>558</i>&nbsp;
+<i>559</i>&nbsp;        private String resp;
+<i>560</i>&nbsp;
+<i>561</i>&nbsp;        @Override
+<i>562</i>&nbsp;        protected void onPreExecute() {
+<i>563</i>&nbsp;//            progressDialog.setTitle(&quot;Recording Audio&quot;);
+<i>564</i>&nbsp;//            progressDialog.show();
+<b class="nc"><i>565</i>&nbsp;            recordProgressDialog = new ProgressDialog(BlueToothInfoActivity.this);</b>
+<b class="nc"><i>566</i>&nbsp;            recordProgressDialog.setTitle(&quot;Recording Audio&quot;);</b>
+<b class="nc"><i>567</i>&nbsp;            recordProgressDialog.show();</b>
+<b class="nc"><i>568</i>&nbsp;        }</b>
+<i>569</i>&nbsp;
+<i>570</i>&nbsp;
+<i>571</i>&nbsp;        @Override
+<i>572</i>&nbsp;        protected String doInBackground(String... params) {
+<i>573</i>&nbsp;            try {
+<i>574</i>&nbsp;                // Do your long operations here and return the result
+<i>575</i>&nbsp;                // Sleeping for given time period
+<b class="nc"><i>576</i>&nbsp;                startRecording(params[0]);</b>
+<b class="nc"><i>577</i>&nbsp;                Thread.sleep(time);</b>
+<b class="nc"><i>578</i>&nbsp;                resp = &quot;Slept for &quot; + time + &quot; milliseconds&quot;;</b>
+<b class="nc"><i>579</i>&nbsp;            } catch (InterruptedException e) {</b>
+<b class="nc"><i>580</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>581</i>&nbsp;                resp = e.getMessage();</b>
+<b class="nc"><i>582</i>&nbsp;            } catch (Exception e) {</b>
+<b class="nc"><i>583</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>584</i>&nbsp;                resp = e.getMessage();</b>
+<b class="nc"><i>585</i>&nbsp;            }</b>
+<b class="nc"><i>586</i>&nbsp;            return resp;</b>
+<i>587</i>&nbsp;        }
+<i>588</i>&nbsp;
+<i>589</i>&nbsp;        @Override
+<i>590</i>&nbsp;        protected void onPostExecute(String result) {
+<b class="nc"><i>591</i>&nbsp;            recordProgressDialog.dismiss();</b>
+<b class="nc"><i>592</i>&nbsp;            Toast.makeText(BlueToothInfoActivity.this, &quot;Record Completed&quot;, Toast.LENGTH_SHORT).show();</b>
+<b class="nc"><i>593</i>&nbsp;            stopRecording();</b>
+<i>594</i>&nbsp;
+<b class="nc"><i>595</i>&nbsp;        }</b>
+<i>596</i>&nbsp;    }
+<i>597</i>&nbsp;
+<i>598</i>&nbsp;
+<i>599</i>&nbsp;    private void startRecording(String filePath) {
+<b class="nc"><i>600</i>&nbsp;        mRecorder = new MediaRecorder();</b>
+<b class="nc"><i>601</i>&nbsp;        mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);</b>
+<b class="nc"><i>602</i>&nbsp;        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);</b>
+<b class="nc"><i>603</i>&nbsp;        mRecorder.setOutputFile(filePath);</b>
+<b class="nc"><i>604</i>&nbsp;        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);</b>
+<i>605</i>&nbsp;        try {
+<b class="nc"><i>606</i>&nbsp;            mRecorder.prepare();</b>
+<b class="nc"><i>607</i>&nbsp;        } catch (IOException e) {</b>
+<b class="nc"><i>608</i>&nbsp;            Log.e(&quot;Recording&quot;, &quot;prepare() failed&quot;);</b>
+<b class="nc"><i>609</i>&nbsp;        }</b>
+<b class="nc"><i>610</i>&nbsp;        mRecorder.start();</b>
+<b class="nc"><i>611</i>&nbsp;    }</b>
+<i>612</i>&nbsp;
+<i>613</i>&nbsp;    private void stopRecording() {
+<b class="nc"><i>614</i>&nbsp;        if (mRecorder != null) {</b>
+<b class="nc"><i>615</i>&nbsp;            mRecorder.stop();</b>
+<b class="nc"><i>616</i>&nbsp;            mRecorder.release();</b>
+<b class="nc"><i>617</i>&nbsp;            mRecorder = null;</b>
+<i>618</i>&nbsp;        }
+<b class="nc"><i>619</i>&nbsp;        if (ib_play != null)</b>
+<b class="nc"><i>620</i>&nbsp;            ib_play.setVisibility(VISIBLE);</b>
+<b class="nc"><i>621</i>&nbsp;    }</b>
+<i>622</i>&nbsp;
+<i>623</i>&nbsp;
+<i>624</i>&nbsp;    private void saveDevicesData(String entityId) throws JSONException, UnsupportedEncodingException {
+<i>625</i>&nbsp;//        Toast.makeText(BlueToothInfoActivity.this, &quot;cleic&quot;, Toast.LENGTH_SHORT).show();
+<b class="nc"><i>626</i>&nbsp;        org.ei.telemedicine.Context context = org.ei.telemedicine.Context.getInstance();</b>
+<b class="nc"><i>627</i>&nbsp;        Log.e(TAG, &quot;Entity ID----&quot; + entityId);</b>
+<i>628</i>&nbsp;
+<b class="nc"><i>629</i>&nbsp;        if (entityId != null) {</b>
+<b class="nc"><i>630</i>&nbsp;            FormSubmission formSubmission = context.formDataRepository().fetchFromSubmissionUseEntity(entityId);</b>
+<b class="nc"><i>631</i>&nbsp;            Log.e(TAG, &quot;Instance Id &quot; + formSubmission.instanceId());</b>
+<b class="nc"><i>632</i>&nbsp;            Log.e(TAG, &quot;Form Name &quot; + formSubmission.formName());</b>
+<b class="nc"><i>633</i>&nbsp;            JSONObject formData = new JSONObject(formSubmission.instance());</b>
+<b class="nc"><i>634</i>&nbsp;            JSONObject instanceData = formData.getJSONObject(&quot;form&quot;);</b>
+<b class="nc"><i>635</i>&nbsp;            JSONArray fieldsJsonArray = instanceData.getJSONArray(&quot;fields&quot;);</b>
+<b class="nc"><i>636</i>&nbsp;            JSONArray instancesArray = instanceData.has(&quot;sub_forms&quot;) ? instanceData.getJSONArray(&quot;sub_forms&quot;).getJSONObject(0).getJSONArray(&quot;instances&quot;) : null;</b>
+<b class="nc"><i>637</i>&nbsp;            if (instancesArray != null &amp;&amp; subFormCount == 0) {</b>
+<i>638</i>&nbsp;                ;
+<b class="nc"><i>639</i>&nbsp;                for (int i = 1; i &lt;= subFormCount; i++) {</b>
+<b class="nc"><i>640</i>&nbsp;                    int value = i;</b>
+<b class="nc"><i>641</i>&nbsp;                    EditText editText = (EditText) findViewById(value);</b>
+<b class="nc"><i>642</i>&nbsp;                    instancesArray.getJSONObject(i - 1).put(&quot;childTemperature&quot;, editText.getText().toString());</b>
+<i>643</i>&nbsp;                }
+<b class="nc"><i>644</i>&nbsp;                instanceData.getJSONArray(&quot;sub_forms&quot;).getJSONObject(0).put(&quot;instances&quot;, instancesArray);</b>
+<i>645</i>&nbsp;            }
+<b class="nc"><i>646</i>&nbsp;            for (int i = 0; i &lt; fieldsJsonArray.length(); i++) {</b>
+<b class="nc"><i>647</i>&nbsp;                JSONObject jsonObject = new JSONObject(fieldsJsonArray.get(i).toString());</b>
+<i>648</i>&nbsp;
+<b class="nc"><i>649</i>&nbsp;                if (jsonObject.has(&quot;name&quot;)) {</b>
+<b class="nc"><i>650</i>&nbsp;                    if (jsonObject.get(&quot;name&quot;).equals(bpDiastolic))</b>
+<b class="nc"><i>651</i>&nbsp;                        jsonObject.put(&quot;value&quot;, et_bp_dia.getText().toString());</b>
+<b class="nc"><i>652</i>&nbsp;                    else if (jsonObject.get(&quot;name&quot;).equals(bpSystolic))</b>
+<b class="nc"><i>653</i>&nbsp;                        jsonObject.put(&quot;value&quot;, et_bp_sys.getText().toString());</b>
+<b class="nc"><i>654</i>&nbsp;                    else if (jsonObject.get(&quot;name&quot;).equals(&quot;pulseRate&quot;))</b>
+<b class="nc"><i>655</i>&nbsp;                        jsonObject.put(&quot;value&quot;, et_bp_heart.getText().toString());</b>
+<b class="nc"><i>656</i>&nbsp;                    else if (jsonObject.get(&quot;name&quot;).equals(temperature))</b>
+<b class="nc"><i>657</i>&nbsp;                        jsonObject.put(&quot;value&quot;, et_eet.getText().toString() + (context.allSettings().fetchANMConfiguration(&quot;temperature&quot;).startsWith(&quot;c&quot;) ? &quot;-C&quot; : &quot;-F&quot;));</b>
+<b class="nc"><i>658</i>&nbsp;                    else if (jsonObject.get(&quot;name&quot;).equals(AllConstants.PNCVisitFields.CHILD_TEMPERATURE))</b>
+<b class="nc"><i>659</i>&nbsp;                        jsonObject.put(&quot;value&quot;, et_eet.getText().toString() + (context.allSettings().fetchANMConfiguration(&quot;childtemperature&quot;).startsWith(&quot;c&quot;) ? &quot;-C&quot; : &quot;-F&quot;));</b>
+<b class="nc"><i>660</i>&nbsp;                    else if (jsonObject.get(&quot;name&quot;).equals(fetal_data))</b>
+<b class="nc"><i>661</i>&nbsp;                        jsonObject.put(&quot;value&quot;, et_fetal.getText().toString());</b>
+<b class="nc"><i>662</i>&nbsp;                    else if (jsonObject.get(&quot;name&quot;).equals(blood_glucose_data))</b>
+<b class="nc"><i>663</i>&nbsp;                        jsonObject.put(&quot;value&quot;, et_bgm.getText().toString());</b>
+<b class="nc"><i>664</i>&nbsp;                    else if (jsonObject.get(&quot;name&quot;).equals(pstechoscope_data))</b>
+<b class="nc"><i>665</i>&nbsp;                        jsonObject.put(&quot;value&quot;, this.filePath);</b>
+<b class="nc"><i>666</i>&nbsp;                    else if (jsonObject.get(&quot;name&quot;).equals(anm_poc))</b>
+<b class="nc"><i>667</i>&nbsp;                        jsonObject.put(&quot;value&quot;, anmPocInfo);</b>
+<b class="nc"><i>668</i>&nbsp;                    fieldsJsonArray.put(i, jsonObject);</b>
+<i>669</i>&nbsp;                }
+<i>670</i>&nbsp;            }
+<b class="nc"><i>671</i>&nbsp;            Log.e(TAG, &quot;After Putting values ---- &quot; + fieldsJsonArray);</b>
+<b class="nc"><i>672</i>&nbsp;            instanceData.put(&quot;fields&quot;, fieldsJsonArray);</b>
+<b class="nc"><i>673</i>&nbsp;            formData.put(&quot;form&quot;, instanceData);</b>
+<b class="nc"><i>674</i>&nbsp;            context.formDataRepository().updateInstance(instanceId, formData.toString());</b>
+<i>675</i>&nbsp;        }
+<b class="nc"><i>676</i>&nbsp;        Log.e(TAG, &quot;Over&quot;);</b>
+<i>677</i>&nbsp;//        File file = new File(getFilePath());
+<i>678</i>&nbsp;//        if (file.exists()) {
+<i>679</i>&nbsp;//            if (file.delete())
+<i>680</i>&nbsp;//                Toast.makeText(BlueToothInfoActivity.this, &quot;File Deleted&quot;, Toast.LENGTH_SHORT).show();
+<i>681</i>&nbsp;//        }
+<b class="nc"><i>682</i>&nbsp;        Toast.makeText(BlueToothInfoActivity.this, &quot;Record Stored&quot;, Toast.LENGTH_SHORT).show();</b>
+<b class="nc"><i>683</i>&nbsp;        String userRole = context.userService().getUserRole();</b>
+<b class="nc"><i>684</i>&nbsp;        DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);</b>
+<b class="nc"><i>685</i>&nbsp;        this.finish();</b>
+<b class="nc"><i>686</i>&nbsp;    }</b>
+<i>687</i>&nbsp;
+<i>688</i>&nbsp;    @Override
+<i>689</i>&nbsp;    public void call() {
+<b class="nc"><i>690</i>&nbsp;        Vector&lt;Integer&gt; _ver = BPBuf.m_buf;</b>
+<b class="nc"><i>691</i>&nbsp;        for (int i = 0; i &lt; _ver.size(); i++) {</b>
+<b class="nc"><i>692</i>&nbsp;            Log.i(&quot;........&quot;, Integer.toHexString(_ver.get(i) &amp; 0xFF));</b>
+<i>693</i>&nbsp;        }
+<b class="nc"><i>694</i>&nbsp;    }</b>
+<i>695</i>&nbsp;//
+<i>696</i>&nbsp;//    @Override
+<i>697</i>&nbsp;//    protected void onStop() {
+<i>698</i>&nbsp;//        super.onStop();
+<i>699</i>&nbsp;//
+<i>700</i>&nbsp;//    }
+<i>701</i>&nbsp;
+<i>702</i>&nbsp;    @Override
+<i>703</i>&nbsp;    protected void onDestroy() {
+<b class="nc"><i>704</i>&nbsp;        super.onDestroy();</b>
+<b class="nc"><i>705</i>&nbsp;        if (bluetoothAdapter != null &amp; bluetoothAdapter.isEnabled()) {</b>
+<b class="nc"><i>706</i>&nbsp;            bluetoothAdapter.cancelDiscovery();</b>
+<b class="nc"><i>707</i>&nbsp;            bluetoothAdapter.disable();</b>
+<i>708</i>&nbsp;        }
+<b class="nc"><i>709</i>&nbsp;    }</b>
+<i>710</i>&nbsp;
+<i>711</i>&nbsp;    private String conversionBGM(String data) {
+<i>712</i>&nbsp;        try {
+<b class="nc"><i>713</i>&nbsp;            float resultFloat = 18 * Float.parseFloat(data);</b>
+<b class="nc"><i>714</i>&nbsp;            return Float.toString(resultFloat);</b>
+<b class="nc"><i>715</i>&nbsp;        } catch (Exception e) {</b>
+<b class="nc"><i>716</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>717</i>&nbsp;            Toast.makeText(BlueToothInfoActivity.this, &quot;Blood Glucose meter Conversion problem&quot;, Toast.LENGTH_SHORT).show();</b>
+<i>718</i>&nbsp;        }
+<b class="nc"><i>719</i>&nbsp;        return &quot;&quot;;</b>
+<i>720</i>&nbsp;    }
+<i>721</i>&nbsp;
+<i>722</i>&nbsp;    @Override
+<i>723</i>&nbsp;    public void onResult(final byte[] resultData, final int deviceNum) {
+<b class="nc"><i>724</i>&nbsp;        Log.e(TAG, &quot;Coming Interface&quot; + deviceNum);</b>
+<b class="nc"><i>725</i>&nbsp;        this.runOnUiThread(new Runnable() {</b>
+<i>726</i>&nbsp;            @Override
+<i>727</i>&nbsp;            public void run() {
+<b class="nc"><i>728</i>&nbsp;                if (progressDialog.isShowing()) {</b>
+<b class="nc"><i>729</i>&nbsp;                    progressDialog.dismiss();</b>
+<b class="nc"><i>730</i>&nbsp;                    bluetoothAdapter.cancelDiscovery();</b>
+<i>731</i>&nbsp;                }
+<b class="nc"><i>732</i>&nbsp;                if (deviceNum != Constants.NO_DEVICE &amp;&amp; resultData != null) {</b>
+<b class="nc"><i>733</i>&nbsp;                    if (deviceNum == Constants.PULSE_DEVICE_NUM &amp;&amp; deviceNum == BlueToothInfoActivity.device) {</b>
+<b class="nc"><i>734</i>&nbsp;                        Log.e(TAG, &quot;SPO2= &quot; + resultData[6]</b>
+<i>735</i>&nbsp;                                + &quot; BPM= &quot; + resultData[7]);
+<i>736</i>&nbsp;                    }
+<b class="nc"><i>737</i>&nbsp;                    if (deviceNum == Constants.BP_DEVICE_NUM &amp;&amp; deviceNum == BlueToothInfoActivity.device) {</b>
+<b class="nc"><i>738</i>&nbsp;                        Log.e(TAG, &quot;Bp Data=&quot; + new String(resultData));</b>
+<b class="nc"><i>739</i>&nbsp;                        for (int i = 0; i &lt; resultData.length; i++) {</b>
+<b class="nc"><i>740</i>&nbsp;                            Log.e(TAG, &quot;Bp Data&quot; + i + resultData[i] + &quot;&quot;);</b>
+<i>741</i>&nbsp;                        }
+<b class="nc"><i>742</i>&nbsp;                        int sys = (resultData[0] &lt;&lt; 8 | resultData[1]) &amp; 255;</b>
+<i>743</i>&nbsp;
+<b class="nc"><i>744</i>&nbsp;                        et_bp_sys.setText(sys + &quot;&quot;);</b>
+<b class="nc"><i>745</i>&nbsp;                        et_bp_dia.setText(resultData[2] + &quot;&quot;);</b>
+<b class="nc"><i>746</i>&nbsp;                        et_bp_heart.setText(resultData[3] + &quot;&quot;);</b>
+<i>747</i>&nbsp;                    }
+<b class="nc"><i>748</i>&nbsp;                    if (deviceNum == Constants.EET_DEVICE_NUM &amp;&amp; deviceNum == BlueToothInfoActivity.device) {</b>
+<b class="nc"><i>749</i>&nbsp;                        String result = new String(resultData);</b>
+<b class="nc"><i>750</i>&nbsp;                        String result_in_faren = String.format(&quot;%.02f&quot;, (Float.parseFloat(result) * 1.8) + 32);</b>
+<b class="nc"><i>751</i>&nbsp;                        String tempVal = tv_eet_cen.getText().toString().equalsIgnoreCase(&quot;c&quot;) ? result : result_in_faren;</b>
+<b class="nc"><i>752</i>&nbsp;                        Log.e(TAG, &quot;Data EET = &quot; + tempVal);</b>
+<b class="nc"><i>753</i>&nbsp;                        if (tempartureFor == 0)</b>
+<b class="nc"><i>754</i>&nbsp;                            et_eet.setText(tempVal);</b>
+<i>755</i>&nbsp;                        else {
+<b class="nc"><i>756</i>&nbsp;                            EditText editText = (EditText) findViewById(tempartureFor);</b>
+<b class="nc"><i>757</i>&nbsp;                            editText.setText(tempVal);</b>
+<i>758</i>&nbsp;                        }
+<i>759</i>&nbsp;                    }
+<b class="nc"><i>760</i>&nbsp;                    if (deviceNum == Constants.FET_DEVICE_NUM &amp;&amp; deviceNum == BlueToothInfoActivity.device) {</b>
+<b class="nc"><i>761</i>&nbsp;                        Log.e(TAG,</b>
+<b class="nc"><i>762</i>&nbsp;                                &quot;Data FET= &quot; + Arrays.toString(resultData));</b>
+<b class="nc"><i>763</i>&nbsp;                        String fetalStr = resultData[0] + &quot;&quot;;</b>
+<b class="nc"><i>764</i>&nbsp;                        et_fetal.setText(fetalStr.replace(&quot;-&quot;, &quot;&quot;).trim());</b>
+<i>765</i>&nbsp;                    }
+<b class="nc"><i>766</i>&nbsp;                    if (deviceNum == Constants.BLOOD_DEVICE_NUM &amp;&amp; deviceNum == BlueToothInfoActivity.device) {</b>
+<b class="nc"><i>767</i>&nbsp;                        String result = new String(resultData);</b>
+<b class="nc"><i>768</i>&nbsp;                        Log.e(TAG, &quot;Data Blood= &quot; + new String(resultData));</b>
+<b class="nc"><i>769</i>&nbsp;                        if (result.trim().length() != 0)</b>
+<i>770</i>&nbsp;                            try {
+<b class="nc"><i>771</i>&nbsp;                                et_bgm_mg.setText(conversionBGM(result));</b>
+<b class="nc"><i>772</i>&nbsp;                            } catch (Exception e) {</b>
+<b class="nc"><i>773</i>&nbsp;                                e.printStackTrace();</b>
+<b class="nc"><i>774</i>&nbsp;                                Toast.makeText(BlueToothInfoActivity.this, &quot;Blood Conversion not possible&quot;, Toast.LENGTH_SHORT).show();</b>
+<b class="nc"><i>775</i>&nbsp;                            }</b>
+<b class="nc"><i>776</i>&nbsp;                        et_bgm.setText(result + &quot;&quot;);</b>
+<b class="nc"><i>777</i>&nbsp;                    }</b>
+<i>778</i>&nbsp;                } else {
+<b class="nc"><i>779</i>&nbsp;                    Toast.makeText(BlueToothInfoActivity.this, &quot;Device Disconnected&quot;,</b>
+<b class="nc"><i>780</i>&nbsp;                            Toast.LENGTH_SHORT).show();</b>
+<i>781</i>&nbsp;
+<i>782</i>&nbsp;                }
+<b class="nc"><i>783</i>&nbsp;            }</b>
+<i>784</i>&nbsp;        });
+<b class="nc"><i>785</i>&nbsp;    }</b>
+<i>786</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

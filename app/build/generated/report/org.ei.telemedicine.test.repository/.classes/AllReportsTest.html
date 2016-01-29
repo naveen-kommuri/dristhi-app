@@ -1,0 +1,135 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AllReportsTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.repository</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AllReportsTest (org.ei.telemedicine.test.repository)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AllReportsTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (13/ 13)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.repository;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.domain.Report;
+<i>4</i>&nbsp;import org.ei.telemedicine.dto.Action;
+<i>5</i>&nbsp;import org.ei.telemedicine.repository.AllReports;
+<i>6</i>&nbsp;import org.ei.telemedicine.repository.ReportRepository;
+<i>7</i>&nbsp;import org.ei.telemedicine.test.util.ActionBuilder;
+<i>8</i>&nbsp;import org.junit.Before;
+<i>9</i>&nbsp;import org.junit.Test;
+<i>10</i>&nbsp;import org.mockito.Mock;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;import java.util.List;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;import static java.util.Arrays.asList;
+<i>15</i>&nbsp;import static junit.framework.Assert.assertEquals;
+<i>16</i>&nbsp;import static org.ei.telemedicine.domain.ReportIndicator.CONDOM;
+<i>17</i>&nbsp;import static org.ei.telemedicine.domain.ReportIndicator.EARLY_ANC_REGISTRATIONS;
+<i>18</i>&nbsp;import static org.ei.telemedicine.domain.ReportIndicator.IUD;
+<i>19</i>&nbsp;import static org.mockito.Mockito.verify;
+<i>20</i>&nbsp;import static org.mockito.Mockito.when;
+<i>21</i>&nbsp;import static org.mockito.MockitoAnnotations.initMocks;
+<i>22</i>&nbsp;
+<b class="fc"><i>23</i>&nbsp;public class AllReportsTest {</b>
+<i>24</i>&nbsp;    @Mock
+<i>25</i>&nbsp;    private ReportRepository repository;
+<i>26</i>&nbsp;    private AllReports allReports;
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    @Before
+<i>29</i>&nbsp;    public void setUp() throws Exception {
+<b class="fc"><i>30</i>&nbsp;        initMocks(this);</b>
+<b class="fc"><i>31</i>&nbsp;        allReports = new AllReports(repository);</b>
+<b class="fc"><i>32</i>&nbsp;    }</b>
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    @Test
+<i>35</i>&nbsp;    public void shouldDelegateActionToReportRepository() throws Exception {
+<b class="fc"><i>36</i>&nbsp;        Action iudAction = ActionBuilder.actionForReport(&quot;IUD&quot;, &quot;40&quot;);</b>
+<i>37</i>&nbsp;
+<b class="fc"><i>38</i>&nbsp;        allReports.handleAction(iudAction);</b>
+<i>39</i>&nbsp;
+<b class="fc"><i>40</i>&nbsp;        verify(repository).update(new Report(&quot;IUD&quot;, &quot;40&quot;, &quot;some-month-summary-json&quot;));</b>
+<b class="fc"><i>41</i>&nbsp;    }</b>
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    @Test
+<i>44</i>&nbsp;    public void shouldGetReportsForGivenIndicators() throws Exception {
+<b class="fc"><i>45</i>&nbsp;        List&lt;Report&gt; expectedReports = asList(new Report(&quot;IUD&quot;, &quot;40&quot;, &quot;some-month-summary-json&quot;), new Report(&quot;ANC_LT_12&quot;, &quot;30&quot;, &quot;some-month-summary-json&quot;));</b>
+<b class="fc"><i>46</i>&nbsp;        when(repository.allFor(&quot;IUD&quot;, &quot;CONDOM&quot;, &quot;ANC_LT_12&quot;)).thenReturn(expectedReports);</b>
+<i>47</i>&nbsp;
+<b class="fc"><i>48</i>&nbsp;        List&lt;Report&gt; reports = allReports.allFor(asList(IUD, CONDOM, EARLY_ANC_REGISTRATIONS));</b>
+<i>49</i>&nbsp;
+<b class="fc"><i>50</i>&nbsp;        assertEquals(expectedReports, reports);</b>
+<b class="fc"><i>51</i>&nbsp;    }</b>
+<i>52</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-26 16:42</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,559 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: LoginActivity</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.activity</a> ]
+</div>
+
+<h1>Coverage Summary for Class: LoginActivity (org.ei.telemedicine.view.activity)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LoginActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 22)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 118)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">LoginActivity$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 27)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">LoginActivity$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">LoginActivity$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 8)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">LoginActivity$4</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">LoginActivity$5</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 6)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">LoginActivity$6</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 38)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 170)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.activity;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.app.Activity;
+<i>4</i>&nbsp;import android.app.AlertDialog;
+<i>5</i>&nbsp;import android.app.ProgressDialog;
+<i>6</i>&nbsp;import android.content.DialogInterface;
+<i>7</i>&nbsp;import android.content.Intent;
+<i>8</i>&nbsp;import android.content.pm.ApplicationInfo;
+<i>9</i>&nbsp;import android.content.pm.PackageInfo;
+<i>10</i>&nbsp;import android.content.pm.PackageManager;
+<i>11</i>&nbsp;import android.os.Bundle;
+<i>12</i>&nbsp;import android.util.Log;
+<i>13</i>&nbsp;import android.view.KeyEvent;
+<i>14</i>&nbsp;import android.view.View;
+<i>15</i>&nbsp;import android.view.inputmethod.EditorInfo;
+<i>16</i>&nbsp;import android.view.inputmethod.InputMethodManager;
+<i>17</i>&nbsp;import android.widget.Button;
+<i>18</i>&nbsp;import android.widget.EditText;
+<i>19</i>&nbsp;import android.widget.TextView;
+<i>20</i>&nbsp;import android.widget.Toast;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;import org.ei.telemedicine.AllConstants;
+<i>23</i>&nbsp;import org.ei.telemedicine.Context;
+<i>24</i>&nbsp;import org.ei.telemedicine.R;
+<i>25</i>&nbsp;import org.ei.telemedicine.doctor.NativeDoctorActivity;
+<i>26</i>&nbsp;import org.ei.telemedicine.domain.LoginResponse;
+<i>27</i>&nbsp;import org.ei.telemedicine.event.Listener;
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;import org.ei.telemedicine.sync.DrishtiSyncScheduler;
+<i>30</i>&nbsp;import org.ei.telemedicine.view.BackgroundAction;
+<i>31</i>&nbsp;import org.ei.telemedicine.view.LockingBackgroundTask;
+<i>32</i>&nbsp;import org.ei.telemedicine.view.ProgressIndicator;
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;import org.json.JSONException;
+<i>35</i>&nbsp;import org.json.JSONObject;
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;import java.io.IOException;
+<i>38</i>&nbsp;import java.security.PublicKey;
+<i>39</i>&nbsp;import java.text.SimpleDateFormat;
+<i>40</i>&nbsp;import java.util.Locale;
+<i>41</i>&nbsp;import java.util.zip.ZipEntry;
+<i>42</i>&nbsp;import java.util.zip.ZipFile;
+<i>43</i>&nbsp;import org.json.JSONObject;
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;import de.tavendo.autobahn.WebSocketConnection;
+<i>46</i>&nbsp;import de.tavendo.autobahn.WebSocketException;
+<i>47</i>&nbsp;import de.tavendo.autobahn.WebSocketHandler;
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;
+<i>52</i>&nbsp;import static android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS;
+<i>53</i>&nbsp;import static org.ei.telemedicine.domain.LoginResponse.SUCCESS;
+<i>54</i>&nbsp;import static org.ei.telemedicine.util.Log.logError;
+<i>55</i>&nbsp;import static org.ei.telemedicine.util.Log.logVerbose;
+<i>56</i>&nbsp;
+<b class="nc"><i>57</i>&nbsp;public class LoginActivity extends Activity {</b>
+<i>58</i>&nbsp;    private Context context;
+<i>59</i>&nbsp;    private EditText userNameEditText;
+<i>60</i>&nbsp;    private EditText passwordEditText;
+<b class="nc"><i>61</i>&nbsp;    private final String CALLER = &quot;name&quot;;</b>
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    private ProgressDialog progressDialog;
+<b class="nc"><i>64</i>&nbsp;    private String TAG = &quot;LoginActivity&quot;;</b>
+<i>65</i>&nbsp;
+<b class="nc"><i>66</i>&nbsp;    private int waitTime = 5;</b>
+<b class="nc"><i>67</i>&nbsp;    private final WebSocketConnection mConnection = new WebSocketConnection();</b>
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;    public String getUsern()
+<i>70</i>&nbsp;    {
+<b class="nc"><i>71</i>&nbsp;        context = Context.getInstance().updateApplicationContext(this.getApplicationContext());</b>
+<b class="nc"><i>72</i>&nbsp;        return context.allSharedPreferences().fetchRegisteredANM();</b>
+<i>73</i>&nbsp;    }
+<i>74</i>&nbsp;
+<i>75</i>&nbsp;    private void start() {
+<i>76</i>&nbsp;
+<i>77</i>&nbsp;
+<b class="nc"><i>78</i>&nbsp;        final String wsuri = AllConstants.WEBSOCKET;</b>
+<i>79</i>&nbsp;        try {
+<b class="nc"><i>80</i>&nbsp;            mConnection.connect(String.format(wsuri,getUsern()), new WebSocketHandler() {</b>
+<i>81</i>&nbsp;
+<i>82</i>&nbsp;                @Override
+<i>83</i>&nbsp;                public void onOpen() {
+<b class="nc"><i>84</i>&nbsp;                    Log.d(TAG, &quot;Status: Connected to &quot; + wsuri);</b>
+<i>85</i>&nbsp;                    //Toast.makeText(getApplicationContext(),String.format(wsuri,getUsern()), Toast.LENGTH_SHORT).show();
+<i>86</i>&nbsp;                    //mConnection.sendTextMessage(&quot;Hello, world!&quot;);
+<b class="nc"><i>87</i>&nbsp;                }</b>
+<i>88</i>&nbsp;
+<i>89</i>&nbsp;                @Override
+<i>90</i>&nbsp;                public void onTextMessage(String payload) {
+<b class="nc"><i>91</i>&nbsp;                    Log.d(TAG, &quot;Got echo: &quot; + payload);</b>
+<i>92</i>&nbsp;                    try {
+<b class="nc"><i>93</i>&nbsp;                        JSONObject jObject = new JSONObject(payload);</b>
+<b class="nc"><i>94</i>&nbsp;                        String status = jObject.getString(&quot;status&quot;);</b>
+<b class="nc"><i>95</i>&nbsp;                        String msg = jObject.getString(&quot;msg_type&quot;);</b>
+<b class="nc"><i>96</i>&nbsp;                        String caller = jObject.getString(&quot;caller&quot;);</b>
+<i>97</i>&nbsp;                        //Log.d(TAG, check);
+<b class="nc"><i>98</i>&nbsp;                        String match = &quot;INI&quot;;</b>
+<b class="nc"><i>99</i>&nbsp;                        boolean response = (status.equals(match));</b>
+<b class="nc"><i>100</i>&nbsp;                        if (response)</b>
+<i>101</i>&nbsp;                        {
+<i>102</i>&nbsp;                            //Toast.makeText(getApplicationContext(),&quot;call started&quot;,Toast.LENGTH_LONG).show();
+<b class="nc"><i>103</i>&nbsp;                            Intent i = new Intent(getApplicationContext(), ActionActivity.class);</b>
+<b class="nc"><i>104</i>&nbsp;                            i.putExtra(CALLER, caller);</b>
+<b class="nc"><i>105</i>&nbsp;                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</b>
+<b class="nc"><i>106</i>&nbsp;                            startActivity(i);</b>
+<i>107</i>&nbsp;                        }
+<i>108</i>&nbsp;
+<b class="nc"><i>109</i>&nbsp;                    }catch (Exception ex)</b>
+<i>110</i>&nbsp;                    {
+<b class="nc"><i>111</i>&nbsp;                        Log.d(TAG, ex.toString());</b>
+<b class="nc"><i>112</i>&nbsp;                    }</b>
+<b class="nc"><i>113</i>&nbsp;                }</b>
+<i>114</i>&nbsp;
+<i>115</i>&nbsp;                @Override
+<i>116</i>&nbsp;                public void onClose(int code, String reason) {
+<b class="nc"><i>117</i>&nbsp;                    Log.d(TAG, &quot;Connection lost.&quot;);</b>
+<i>118</i>&nbsp;                    //Toast.makeText(getApplicationContext(),&quot;closed&quot;,Toast.LENGTH_SHORT).show();
+<i>119</i>&nbsp;                    try {
+<b class="nc"><i>120</i>&nbsp;                        Thread.sleep(waitTime);</b>
+<b class="nc"><i>121</i>&nbsp;                        waitTime = waitTime*2;</b>
+<b class="nc"><i>122</i>&nbsp;                    } catch (InterruptedException e) {</b>
+<b class="nc"><i>123</i>&nbsp;                        e.printStackTrace();</b>
+<b class="nc"><i>124</i>&nbsp;                    }</b>
+<b class="nc"><i>125</i>&nbsp;                    start();</b>
+<i>126</i>&nbsp;
+<b class="nc"><i>127</i>&nbsp;                }</b>
+<i>128</i>&nbsp;            });
+<b class="nc"><i>129</i>&nbsp;        } catch (WebSocketException e) {</b>
+<i>130</i>&nbsp;
+<b class="nc"><i>131</i>&nbsp;            Log.d(TAG, e.toString());</b>
+<b class="nc"><i>132</i>&nbsp;        }</b>
+<b class="nc"><i>133</i>&nbsp;    }</b>
+<i>134</i>&nbsp;
+<i>135</i>&nbsp;    @Override
+<i>136</i>&nbsp;    public void onCreate(Bundle savedInstanceState) {
+<b class="nc"><i>137</i>&nbsp;        super.onCreate(savedInstanceState);</b>
+<b class="nc"><i>138</i>&nbsp;        logVerbose(&quot;Initializing ...&quot;);</b>
+<b class="nc"><i>139</i>&nbsp;        setContentView(R.layout.login);</b>
+<i>140</i>&nbsp;
+<b class="nc"><i>141</i>&nbsp;        context = Context.getInstance().updateApplicationContext(this.getApplicationContext());</b>
+<b class="nc"><i>142</i>&nbsp;        initializeLoginFields();</b>
+<b class="nc"><i>143</i>&nbsp;        initializeBuildDetails();</b>
+<b class="nc"><i>144</i>&nbsp;        setDoneActionHandlerOnPasswordField();</b>
+<b class="nc"><i>145</i>&nbsp;        initializeProgressDialog();</b>
+<i>146</i>&nbsp;
+<i>147</i>&nbsp;
+<b class="nc"><i>148</i>&nbsp;    }</b>
+<i>149</i>&nbsp;
+<i>150</i>&nbsp;    private void initializeBuildDetails() {
+<b class="nc"><i>151</i>&nbsp;        TextView buildDetailsTextView = (TextView) findViewById(R.id.login_build);</b>
+<i>152</i>&nbsp;        try {
+<b class="nc"><i>153</i>&nbsp;            buildDetailsTextView.setText(&quot;Version &quot; + getVersion() + &quot;, Built on: &quot; + getBuildDate());</b>
+<b class="nc"><i>154</i>&nbsp;        } catch (Exception e) {</b>
+<b class="nc"><i>155</i>&nbsp;            logError(&quot;Error fetching build details: &quot; + e);</b>
+<b class="nc"><i>156</i>&nbsp;        }</b>
+<b class="nc"><i>157</i>&nbsp;    }</b>
+<i>158</i>&nbsp;
+<i>159</i>&nbsp;    @Override
+<i>160</i>&nbsp;    protected void onResume() {
+<b class="nc"><i>161</i>&nbsp;        super.onResume();</b>
+<i>162</i>&nbsp;
+<b class="nc"><i>163</i>&nbsp;        if (!context.IsUserLoggedOut()) {</b>
+<b class="nc"><i>164</i>&nbsp;            goToHome(context.userService().getUserRole());</b>
+<i>165</i>&nbsp;        }
+<i>166</i>&nbsp;
+<b class="nc"><i>167</i>&nbsp;        fillUserIfExists();</b>
+<b class="nc"><i>168</i>&nbsp;    }</b>
+<i>169</i>&nbsp;
+<i>170</i>&nbsp;    public void login(final View view) {
+<b class="nc"><i>171</i>&nbsp;        hideKeyboard();</b>
+<b class="nc"><i>172</i>&nbsp;        view.setClickable(false);</b>
+<i>173</i>&nbsp;
+<b class="nc"><i>174</i>&nbsp;        final String userName = userNameEditText.getText().toString().trim();</b>
+<b class="nc"><i>175</i>&nbsp;        final String password = passwordEditText.getText().toString();</b>
+<i>176</i>&nbsp;
+<b class="nc"><i>177</i>&nbsp;        if (context.userService().hasARegisteredUser()) {</b>
+<b class="nc"><i>178</i>&nbsp;            localLogin(view, userName, password);</b>
+<i>179</i>&nbsp;        } else {
+<b class="nc"><i>180</i>&nbsp;            remoteLogin(view, userName, password);</b>
+<i>181</i>&nbsp;        }
+<b class="nc"><i>182</i>&nbsp;    }</b>
+<i>183</i>&nbsp;
+<i>184</i>&nbsp;    private void initializeLoginFields() {
+<b class="nc"><i>185</i>&nbsp;        userNameEditText = ((EditText) findViewById(R.id.login_userNameText));</b>
+<b class="nc"><i>186</i>&nbsp;        passwordEditText = ((EditText) findViewById(R.id.login_passwordText));</b>
+<b class="nc"><i>187</i>&nbsp;    }</b>
+<i>188</i>&nbsp;
+<i>189</i>&nbsp;    private void setDoneActionHandlerOnPasswordField() {
+<b class="nc"><i>190</i>&nbsp;        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {</b>
+<i>191</i>&nbsp;            @Override
+<i>192</i>&nbsp;            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+<b class="nc"><i>193</i>&nbsp;                if (actionId == EditorInfo.IME_ACTION_DONE) {</b>
+<b class="nc"><i>194</i>&nbsp;                    login(findViewById(R.id.login_loginButton));</b>
+<i>195</i>&nbsp;                }
+<b class="nc"><i>196</i>&nbsp;                return false;</b>
+<i>197</i>&nbsp;            }
+<i>198</i>&nbsp;        });
+<b class="nc"><i>199</i>&nbsp;    }</b>
+<i>200</i>&nbsp;
+<i>201</i>&nbsp;    private void initializeProgressDialog() {
+<b class="nc"><i>202</i>&nbsp;        progressDialog = new ProgressDialog(this);</b>
+<b class="nc"><i>203</i>&nbsp;        progressDialog.setCancelable(false);</b>
+<b class="nc"><i>204</i>&nbsp;        progressDialog.setTitle(getString(R.string.loggin_in_dialog_title));</b>
+<b class="nc"><i>205</i>&nbsp;        progressDialog.setMessage(getString(R.string.loggin_in_dialog_message));</b>
+<b class="nc"><i>206</i>&nbsp;    }</b>
+<i>207</i>&nbsp;
+<i>208</i>&nbsp;    private void localLogin(View view, String userName, String password) {
+<b class="nc"><i>209</i>&nbsp;        if (context.userService().isValidLocalLogin(userName, password)) {</b>
+<b class="nc"><i>210</i>&nbsp;            localLoginWith(userName, password);</b>
+<i>211</i>&nbsp;
+<i>212</i>&nbsp;        } else {
+<b class="nc"><i>213</i>&nbsp;            showErrorDialog(getString(R.string.login_failed_dialog_message));</b>
+<b class="nc"><i>214</i>&nbsp;            view.setClickable(true);</b>
+<i>215</i>&nbsp;        }
+<b class="nc"><i>216</i>&nbsp;    }</b>
+<i>217</i>&nbsp;
+<i>218</i>&nbsp;    private void remoteLogin(final View view, final String userName, final String password) {
+<b class="nc"><i>219</i>&nbsp;        tryRemoteLogin(userName, password, new Listener&lt;LoginResponse&gt;() {</b>
+<i>220</i>&nbsp;            public void onEvent(LoginResponse loginResponse) {
+<b class="nc"><i>221</i>&nbsp;                if (loginResponse == SUCCESS) {</b>
+<b class="nc"><i>222</i>&nbsp;                    remoteLoginWith(userName, password, loginResponse.payload());</b>
+<i>223</i>&nbsp;
+<i>224</i>&nbsp;                } else {
+<b class="nc"><i>225</i>&nbsp;                    if (loginResponse == null) {</b>
+<b class="nc"><i>226</i>&nbsp;                        showErrorDialog(&quot;Login failed. Unknown reason. Try Again&quot;);</b>
+<i>227</i>&nbsp;                    } else {
+<b class="nc"><i>228</i>&nbsp;                        showErrorDialog(loginResponse.message());</b>
+<i>229</i>&nbsp;                    }
+<b class="nc"><i>230</i>&nbsp;                    view.setClickable(true);</b>
+<i>231</i>&nbsp;                }
+<b class="nc"><i>232</i>&nbsp;            }</b>
+<i>233</i>&nbsp;        });
+<b class="nc"><i>234</i>&nbsp;    }</b>
+<i>235</i>&nbsp;
+<i>236</i>&nbsp;    private void showErrorDialog(String message) {
+<b class="nc"><i>237</i>&nbsp;        AlertDialog dialog = new AlertDialog.Builder(this)</b>
+<b class="nc"><i>238</i>&nbsp;                .setTitle(getString(R.string.login_failed_dialog_title))</b>
+<b class="nc"><i>239</i>&nbsp;                .setMessage(message)</b>
+<b class="nc"><i>240</i>&nbsp;                .setPositiveButton(&quot;OK&quot;, new DialogInterface.OnClickListener() {</b>
+<i>241</i>&nbsp;                    @Override
+<i>242</i>&nbsp;                    public void onClick(DialogInterface dialogInterface, int i) {
+<b class="nc"><i>243</i>&nbsp;                    }</b>
+<i>244</i>&nbsp;                })
+<b class="nc"><i>245</i>&nbsp;                .create();</b>
+<b class="nc"><i>246</i>&nbsp;        dialog.show();</b>
+<b class="nc"><i>247</i>&nbsp;    }</b>
+<i>248</i>&nbsp;
+<i>249</i>&nbsp;    private void tryRemoteLogin(final String userName, final String password, final Listener&lt;LoginResponse&gt; afterLoginCheck) {
+<b class="nc"><i>250</i>&nbsp;        LockingBackgroundTask task = new LockingBackgroundTask(new ProgressIndicator() {</b>
+<i>251</i>&nbsp;            @Override
+<i>252</i>&nbsp;            public void setVisible() {
+<b class="nc"><i>253</i>&nbsp;                if (progressDialog != null)</b>
+<b class="nc"><i>254</i>&nbsp;                    progressDialog.show();</b>
+<b class="nc"><i>255</i>&nbsp;            }</b>
+<i>256</i>&nbsp;
+<i>257</i>&nbsp;            @Override
+<i>258</i>&nbsp;            public void setInvisible() {
+<b class="nc"><i>259</i>&nbsp;                progressDialog.dismiss();</b>
+<b class="nc"><i>260</i>&nbsp;            }</b>
+<i>261</i>&nbsp;        });
+<i>262</i>&nbsp;
+<b class="nc"><i>263</i>&nbsp;        task.doActionInBackground(new BackgroundAction&lt;LoginResponse&gt;() {</b>
+<i>264</i>&nbsp;            public LoginResponse actionToDoInBackgroundThread() {
+<b class="nc"><i>265</i>&nbsp;                LoginResponse loginResponse = context.userService().isValidRemoteLogin(userName, password);</b>
+<i>266</i>&nbsp;//                Log.e(TAG, &quot;Payload Data on Login Activity&quot; + loginResponse.payload() != null ? loginResponse.payload() : &quot;No Response&quot;);
+<b class="nc"><i>267</i>&nbsp;                return loginResponse;</b>
+<i>268</i>&nbsp;            }
+<i>269</i>&nbsp;
+<i>270</i>&nbsp;            public void postExecuteInUIThread(LoginResponse result) {
+<b class="nc"><i>271</i>&nbsp;                afterLoginCheck.onEvent(result);</b>
+<b class="nc"><i>272</i>&nbsp;            }</b>
+<i>273</i>&nbsp;        });
+<b class="nc"><i>274</i>&nbsp;    }</b>
+<i>275</i>&nbsp;
+<i>276</i>&nbsp;
+<i>277</i>&nbsp;    private void fillUserIfExists() {
+<b class="nc"><i>278</i>&nbsp;        if (context.userService().hasARegisteredUser()) {</b>
+<b class="nc"><i>279</i>&nbsp;            userNameEditText.setText(context.allSharedPreferences().fetchRegisteredANM());</b>
+<b class="nc"><i>280</i>&nbsp;            userNameEditText.setEnabled(false);</b>
+<i>281</i>&nbsp;        }
+<b class="nc"><i>282</i>&nbsp;    }</b>
+<i>283</i>&nbsp;
+<i>284</i>&nbsp;    private void hideKeyboard() {
+<b class="nc"><i>285</i>&nbsp;        InputMethodManager inputManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);</b>
+<b class="nc"><i>286</i>&nbsp;        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), HIDE_NOT_ALWAYS);</b>
+<b class="nc"><i>287</i>&nbsp;    }</b>
+<i>288</i>&nbsp;
+<i>289</i>&nbsp;    private void localLoginWith(String userName, String password) {
+<b class="nc"><i>290</i>&nbsp;        context.userService().localLogin(userName, password);</b>
+<b class="nc"><i>291</i>&nbsp;        context.allSharedPreferences().updateIsFirstLogin(false);</b>
+<b class="nc"><i>292</i>&nbsp;        String userRole = context.userService().getUserRole();</b>
+<b class="nc"><i>293</i>&nbsp;        goToHome(userRole);</b>
+<b class="nc"><i>294</i>&nbsp;        start();</b>
+<b class="nc"><i>295</i>&nbsp;        DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);</b>
+<i>296</i>&nbsp;        //DrishtiCallScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
+<b class="nc"><i>297</i>&nbsp;    }</b>
+<i>298</i>&nbsp;
+<i>299</i>&nbsp;
+<i>300</i>&nbsp;    private String getFromJson(String jsonStr, String keyValue) {
+<i>301</i>&nbsp;        try {
+<b class="nc"><i>302</i>&nbsp;            JSONObject jsonData = new JSONObject(jsonStr);</b>
+<b class="nc"><i>303</i>&nbsp;            if (jsonData != null) {</b>
+<b class="nc"><i>304</i>&nbsp;                return jsonData.has(keyValue) ? jsonData.getString(keyValue) : &quot;&quot;;</b>
+<i>305</i>&nbsp;            }
+<b class="nc"><i>306</i>&nbsp;        } catch (JSONException e) {</b>
+<b class="nc"><i>307</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>308</i>&nbsp;        }</b>
+<b class="nc"><i>309</i>&nbsp;        return &quot;&quot;;</b>
+<i>310</i>&nbsp;    }
+<i>311</i>&nbsp;
+<i>312</i>&nbsp;
+<i>313</i>&nbsp;    private void remoteLoginWith(String userName, String password, String loginResponse) {
+<b class="nc"><i>314</i>&nbsp;        String userRole = null, personalInfo = null, location = null, drugs = null, configuration = null, countryCode = null, formFields = null;</b>
+<b class="nc"><i>315</i>&nbsp;        if (loginResponse != null) {</b>
+<b class="nc"><i>316</i>&nbsp;            context.allSharedPreferences().updateIsFirstLogin(true);</b>
+<b class="nc"><i>317</i>&nbsp;            userRole = getFromJson(loginResponse, AllConstants.ROLE);</b>
+<b class="nc"><i>318</i>&nbsp;            personalInfo = getFromJson(loginResponse, AllConstants.PERSONAL_INFO);</b>
+<b class="nc"><i>319</i>&nbsp;            location = getFromJson(personalInfo, &quot;location&quot;);</b>
+<b class="nc"><i>320</i>&nbsp;            drugs = getFromJson(personalInfo, &quot;drugs&quot;);</b>
+<b class="nc"><i>321</i>&nbsp;            configuration = getFromJson(personalInfo, &quot;configuration&quot;);</b>
+<b class="nc"><i>322</i>&nbsp;            countryCode = getFromJson(personalInfo, &quot;countryCode&quot;);</b>
+<b class="nc"><i>323</i>&nbsp;            formFields = getFromJson(personalInfo, &quot;formLabels&quot;);</b>
+<b class="nc"><i>324</i>&nbsp;            context.userService()</b>
+<b class="nc"><i>325</i>&nbsp;                    .remoteLogin(userName, password, userRole, location, drugs, configuration, countryCode, formFields);</b>
+<i>326</i>&nbsp;        }
+<b class="nc"><i>327</i>&nbsp;        if (userRole != null &amp;&amp; userRole.equals(AllConstants.DOCTOR_ROLE)) {</b>
+<b class="nc"><i>328</i>&nbsp;            context.allSharedPreferences().savePwd(password);</b>
+<i>329</i>&nbsp;        }
+<b class="nc"><i>330</i>&nbsp;        goToHome(userRole);</b>
+<b class="nc"><i>331</i>&nbsp;        start();</b>
+<b class="nc"><i>332</i>&nbsp;        DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);</b>
+<i>333</i>&nbsp;
+<i>334</i>&nbsp;        //DrishtiCallScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
+<b class="nc"><i>335</i>&nbsp;    }</b>
+<i>336</i>&nbsp;
+<i>337</i>&nbsp;    private void goToHome(String userRole) {
+<b class="nc"><i>338</i>&nbsp;        Intent intent = new Intent(this, (userRole.equals(AllConstants.ANM_ROLE)) ? NativeHomeActivity.class : NativeDoctorActivity.class);</b>
+<b class="nc"><i>339</i>&nbsp;        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);</b>
+<b class="nc"><i>340</i>&nbsp;        startActivity(intent);</b>
+<b class="nc"><i>341</i>&nbsp;        finish();</b>
+<b class="nc"><i>342</i>&nbsp;    }</b>
+<i>343</i>&nbsp;
+<i>344</i>&nbsp;    private String getVersion() throws PackageManager.NameNotFoundException {
+<b class="nc"><i>345</i>&nbsp;        PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);</b>
+<b class="nc"><i>346</i>&nbsp;        return packageInfo.versionName;</b>
+<i>347</i>&nbsp;    }
+<i>348</i>&nbsp;
+<i>349</i>&nbsp;    private String getBuildDate() throws PackageManager.NameNotFoundException, IOException {
+<b class="nc"><i>350</i>&nbsp;        ApplicationInfo applicationInfo = getPackageManager().getApplicationInfo(getPackageName(), 0);</b>
+<b class="nc"><i>351</i>&nbsp;        ZipFile zf = new ZipFile(applicationInfo.sourceDir);</b>
+<b class="nc"><i>352</i>&nbsp;        ZipEntry ze = zf.getEntry(&quot;classes.dex&quot;);</b>
+<b class="nc"><i>353</i>&nbsp;        return new SimpleDateFormat(&quot;dd MMM yyyy&quot;, Locale.getDefault()).format(new java.util.Date(ze.getTime()));</b>
+<i>354</i>&nbsp;    }
+<i>355</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

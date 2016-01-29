@@ -1,0 +1,147 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ClientChildrenView</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.customControls</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ClientChildrenView (org.ei.telemedicine.view.customControls)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClientChildrenView</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 27)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.customControls;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static java.text.MessageFormat.format;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.util.List;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import org.ei.telemedicine.R;
+<i>8</i>&nbsp;import org.ei.telemedicine.view.contract.ECChildClient;
+<i>9</i>&nbsp;import org.ei.telemedicine.view.contract.ECSmartRegisterClient;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import android.content.Context;
+<i>12</i>&nbsp;import android.util.AttributeSet;
+<i>13</i>&nbsp;import android.widget.LinearLayout;
+<i>14</i>&nbsp;import android.widget.TextView;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;public class ClientChildrenView extends LinearLayout {
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    private TextView ageView1;
+<i>19</i>&nbsp;    private TextView ageView2;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    @SuppressWarnings(&quot;UnusedDeclaration&quot;)
+<i>22</i>&nbsp;    public ClientChildrenView(Context context) {
+<b class="nc"><i>23</i>&nbsp;        this(context, null, 0);</b>
+<b class="nc"><i>24</i>&nbsp;    }</b>
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    @SuppressWarnings(&quot;UnusedDeclaration&quot;)
+<i>27</i>&nbsp;    public ClientChildrenView(Context context, AttributeSet attrs) {
+<b class="nc"><i>28</i>&nbsp;        this(context, attrs, 0);</b>
+<b class="nc"><i>29</i>&nbsp;    }</b>
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    public ClientChildrenView(Context context, AttributeSet attrs, int defStyle) {
+<b class="nc"><i>32</i>&nbsp;        super(context, attrs, defStyle);</b>
+<b class="nc"><i>33</i>&nbsp;    }</b>
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    public void initialize() {
+<b class="nc"><i>36</i>&nbsp;        ageView1 = (TextView) findViewById(R.id.txt_children_age_left);</b>
+<b class="nc"><i>37</i>&nbsp;        ageView2 = (TextView) findViewById(R.id.txt_children_age_right);</b>
+<b class="nc"><i>38</i>&nbsp;    }</b>
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;    public void bindData(ECSmartRegisterClient client, String maleChildAgeFormatString, String femaleChildAgeFormatString) {
+<b class="nc"><i>41</i>&nbsp;        List&lt;ECChildClient&gt; children = client.children();</b>
+<b class="nc"><i>42</i>&nbsp;        if (children.size() == 0) {</b>
+<b class="nc"><i>43</i>&nbsp;            ageView1.setVisibility(GONE);</b>
+<b class="nc"><i>44</i>&nbsp;            ageView2.setVisibility(GONE);</b>
+<b class="nc"><i>45</i>&nbsp;        } else if (children.size() == 1) {</b>
+<b class="nc"><i>46</i>&nbsp;            setupChildView(children.get(0), ageView1, maleChildAgeFormatString, femaleChildAgeFormatString);</b>
+<b class="nc"><i>47</i>&nbsp;            ((LinearLayout.LayoutParams) ageView1.getLayoutParams()).weight = 100;</b>
+<b class="nc"><i>48</i>&nbsp;            ageView2.setVisibility(GONE);</b>
+<i>49</i>&nbsp;        } else {
+<b class="nc"><i>50</i>&nbsp;            setupChildView(children.get(0), ageView1, maleChildAgeFormatString, femaleChildAgeFormatString);</b>
+<b class="nc"><i>51</i>&nbsp;            setupChildView(children.get(1), ageView2, maleChildAgeFormatString, femaleChildAgeFormatString);</b>
+<b class="nc"><i>52</i>&nbsp;            ((LinearLayout.LayoutParams) ageView1.getLayoutParams()).weight = 50;</b>
+<b class="nc"><i>53</i>&nbsp;            ((LinearLayout.LayoutParams) ageView2.getLayoutParams()).weight = 50;</b>
+<i>54</i>&nbsp;        }
+<b class="nc"><i>55</i>&nbsp;    }</b>
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;    private void setupChildView(ECChildClient child, TextView ageView,
+<i>58</i>&nbsp;                                String maleChildAgeFormatString, String femaleChildAgeFormatString) {
+<b class="nc"><i>59</i>&nbsp;        ageView.setVisibility(VISIBLE);</b>
+<b class="nc"><i>60</i>&nbsp;        ageView.setText(</b>
+<b class="nc"><i>61</i>&nbsp;                format(child.isMale() ? maleChildAgeFormatString : femaleChildAgeFormatString,</b>
+<b class="nc"><i>62</i>&nbsp;                        child.getAgeInString()));</b>
+<b class="nc"><i>63</i>&nbsp;    }</b>
+<i>64</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,118 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ActionBuilder</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.util</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ActionBuilder (org.ei.telemedicine.test.util)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ActionBuilder</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+  <span class="absValue">
+    (5/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    85.7%
+  </span>
+  <span class="absValue">
+    (6/ 7)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.util;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.dto.Action;
+<i>4</i>&nbsp;import org.ei.telemedicine.dto.ActionData;
+<i>5</i>&nbsp;import org.ei.telemedicine.dto.AlertStatus;
+<i>6</i>&nbsp;import org.ei.telemedicine.dto.BeneficiaryType;
+<i>7</i>&nbsp;import org.joda.time.DateTime;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import java.util.HashMap;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import static org.ei.telemedicine.dto.ActionData.createAlert;
+<i>12</i>&nbsp;import static org.ei.telemedicine.dto.ActionData.markAlertAsClosed;
+<i>13</i>&nbsp;
+<b class="nc"><i>14</i>&nbsp;public class ActionBuilder {</b>
+<i>15</i>&nbsp;    public static Action actionForCreateAlert(String caseID, String alertStatus, String beneficiaryType, String scheduleName, String visitCode, String startDate, String expiryDate, String index) {
+<b class="fc"><i>16</i>&nbsp;        return new Action(caseID, &quot;alert&quot;, &quot;createAlert&quot;, createAlert(BeneficiaryType.from(beneficiaryType), scheduleName, visitCode, AlertStatus.from(alertStatus), new DateTime(startDate), new DateTime(expiryDate)).data(), index, true, new HashMap&lt;String, String&gt;());</b>
+<i>17</i>&nbsp;    }
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    public static Action actionForCloseAlert(String caseID, String visitCode, String completionDate, String index) {
+<b class="fc"><i>20</i>&nbsp;        return new Action(caseID, &quot;alert&quot;, &quot;closeAlert&quot;, markAlertAsClosed(visitCode, completionDate).data(), index, true, new HashMap&lt;String, String&gt;());</b>
+<i>21</i>&nbsp;    }
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    public static Action actionForCloseMother(String caseID) {
+<b class="fc"><i>24</i>&nbsp;        return new Action(caseID, &quot;mother&quot;, &quot;close&quot;, ActionData.closeMother(&quot;close reason&quot;).data(), &quot;0&quot;, true, new HashMap&lt;String, String&gt;());</b>
+<i>25</i>&nbsp;    }
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    public static Action actionForDeleteAllAlert(String caseID) {
+<b class="fc"><i>28</i>&nbsp;        return new Action(caseID, &quot;alert&quot;, &quot;deleteAllAlerts&quot;, new HashMap&lt;String, String&gt;(), &quot;0&quot;, true, new HashMap&lt;String, String&gt;());</b>
+<i>29</i>&nbsp;    }
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    public static Action actionForReport(String indicator, String annualTarget) {
+<b class="fc"><i>32</i>&nbsp;        ActionData actionData = ActionData.reportForIndicator(indicator, annualTarget, &quot;some-month-summary-json&quot;);</b>
+<b class="fc"><i>33</i>&nbsp;        return new Action(&quot;&quot;, &quot;report&quot;, indicator, actionData.data(), &quot;2012-01-01&quot;, true, new HashMap&lt;String, String&gt;());</b>
+<i>34</i>&nbsp;    }
+<i>35</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-26 16:42</div>
+</div>
+</body>
+</html>

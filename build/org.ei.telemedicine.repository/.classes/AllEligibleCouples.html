@@ -1,0 +1,139 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AllEligibleCouples</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.repository</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AllEligibleCouples (org.ei.telemedicine.repository)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AllEligibleCouples</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    30%
+  </span>
+  <span class="absValue">
+    (3/ 10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    52.6%
+  </span>
+  <span class="absValue">
+    (10/ 19)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.repository;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.domain.EligibleCouple;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.util.List;
+<i>6</i>&nbsp;import java.util.Map;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;public class AllEligibleCouples {
+<i>9</i>&nbsp;    private EligibleCoupleRepository eligibleCoupleRepository;
+<i>10</i>&nbsp;    private final TimelineEventRepository timelineEventRepository;
+<i>11</i>&nbsp;    private final AlertRepository alertRepository;
+<i>12</i>&nbsp;
+<b class="fc"><i>13</i>&nbsp;    public AllEligibleCouples(EligibleCoupleRepository eligibleCoupleRepository, AlertRepository alertRepository, TimelineEventRepository timelineEventRepository) {</b>
+<b class="fc"><i>14</i>&nbsp;        this.eligibleCoupleRepository = eligibleCoupleRepository;</b>
+<b class="fc"><i>15</i>&nbsp;        this.timelineEventRepository = timelineEventRepository;</b>
+<b class="fc"><i>16</i>&nbsp;        this.alertRepository = alertRepository;</b>
+<b class="fc"><i>17</i>&nbsp;    }</b>
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    public List&lt;EligibleCouple&gt; all() {
+<b class="fc"><i>20</i>&nbsp;        return eligibleCoupleRepository.allEligibleCouples();</b>
+<i>21</i>&nbsp;    }
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    public EligibleCouple findByCaseID(String caseId) {
+<b class="nc"><i>24</i>&nbsp;        return eligibleCoupleRepository.findByCaseID(caseId);</b>
+<i>25</i>&nbsp;    }
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    public long count() {
+<b class="nc"><i>28</i>&nbsp;        return eligibleCoupleRepository.count();</b>
+<i>29</i>&nbsp;    }
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    public long fpCount() {
+<b class="nc"><i>32</i>&nbsp;        return eligibleCoupleRepository.fpCount();</b>
+<i>33</i>&nbsp;    }
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    public List&lt;String&gt; villages() {
+<b class="nc"><i>36</i>&nbsp;        return eligibleCoupleRepository.villages();</b>
+<i>37</i>&nbsp;    }
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    public List&lt;EligibleCouple&gt; findByCaseIDs(List&lt;String&gt; caseIds) {
+<b class="nc"><i>40</i>&nbsp;        return eligibleCoupleRepository.findByCaseIDs(caseIds.toArray(new String[caseIds.size()]));</b>
+<i>41</i>&nbsp;    }
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    public void updatePhotoPath(String caseId, String imagePath) {
+<b class="nc"><i>44</i>&nbsp;        eligibleCoupleRepository.updatePhotoPath(caseId, imagePath);</b>
+<b class="nc"><i>45</i>&nbsp;    }</b>
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;    public void close(String entityId) {
+<b class="fc"><i>48</i>&nbsp;        alertRepository.deleteAllAlertsForEntity(entityId);</b>
+<b class="fc"><i>49</i>&nbsp;        timelineEventRepository.deleteAllTimelineEventsForEntity(entityId);</b>
+<b class="fc"><i>50</i>&nbsp;        eligibleCoupleRepository.close(entityId);</b>
+<b class="fc"><i>51</i>&nbsp;    }</b>
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    public void mergeDetails(String entityId, Map&lt;String, String&gt; details) {
+<b class="nc"><i>54</i>&nbsp;        eligibleCoupleRepository.mergeDetails(entityId, details);</b>
+<b class="nc"><i>55</i>&nbsp;    }</b>
+<i>56</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

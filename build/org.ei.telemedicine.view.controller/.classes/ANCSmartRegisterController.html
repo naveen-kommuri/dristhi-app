@@ -1,0 +1,281 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ANCSmartRegisterController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.controller</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ANCSmartRegisterController (org.ei.telemedicine.view.controller)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ANCSmartRegisterController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    81.8%
+  </span>
+  <span class="absValue">
+    (18/ 22)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ANCSmartRegisterController$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (31/ 31)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ANCSmartRegisterController$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/ 4)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/ 9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    91.2%
+  </span>
+  <span class="absValue">
+    (52/ 57)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.controller;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.apache.commons.lang3.tuple.Pair;
+<i>4</i>&nbsp;import org.ei.telemedicine.AllConstants;
+<i>5</i>&nbsp;import org.ei.telemedicine.domain.Alert;
+<i>6</i>&nbsp;import org.ei.telemedicine.domain.EligibleCouple;
+<i>7</i>&nbsp;import org.ei.telemedicine.domain.Mother;
+<i>8</i>&nbsp;import org.ei.telemedicine.domain.ServiceProvided;
+<i>9</i>&nbsp;import org.ei.telemedicine.repository.AllBeneficiaries;
+<i>10</i>&nbsp;import org.ei.telemedicine.service.AlertService;
+<i>11</i>&nbsp;import org.ei.telemedicine.service.ServiceProvidedService;
+<i>12</i>&nbsp;import org.ei.telemedicine.util.Cache;
+<i>13</i>&nbsp;import org.ei.telemedicine.util.CacheableData;
+<i>14</i>&nbsp;import org.ei.telemedicine.view.contract.*;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;import java.util.ArrayList;
+<i>17</i>&nbsp;import java.util.Comparator;
+<i>18</i>&nbsp;import java.util.List;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;import static java.lang.String.valueOf;
+<i>21</i>&nbsp;import static java.util.Collections.sort;
+<i>22</i>&nbsp;import static org.apache.commons.lang3.StringUtils.isBlank;
+<i>23</i>&nbsp;import static org.ei.telemedicine.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
+<i>24</i>&nbsp;import static org.ei.telemedicine.domain.ServiceProvided.*;
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;public class ANCSmartRegisterController {
+<i>27</i>&nbsp;    private static final String ANC_1_ALERT_NAME = &quot;ANC 1&quot;;
+<i>28</i>&nbsp;    private static final String ANC_2_ALERT_NAME = &quot;ANC 2&quot;;
+<i>29</i>&nbsp;    private static final String ANC_3_ALERT_NAME = &quot;ANC 3&quot;;
+<i>30</i>&nbsp;    private static final String ANC_4_ALERT_NAME = &quot;ANC 4&quot;;
+<i>31</i>&nbsp;    private static final String IFA_1_ALERT_NAME = &quot;IFA 1&quot;;
+<i>32</i>&nbsp;    private static final String IFA_2_ALERT_NAME = &quot;IFA 2&quot;;
+<i>33</i>&nbsp;    private static final String IFA_3_ALERT_NAME = &quot;IFA 3&quot;;
+<i>34</i>&nbsp;    private static final String LAB_REMINDER_ALERT_NAME = &quot;REMINDER&quot;;
+<i>35</i>&nbsp;    private static final String TT_1_ALERT_NAME = &quot;TT 1&quot;;
+<i>36</i>&nbsp;    private static final String TT_2_ALERT_NAME = &quot;TT 2&quot;;
+<i>37</i>&nbsp;    private static final String HB_TEST_1_ALERT_NAME = &quot;Hb Test 1&quot;;
+<i>38</i>&nbsp;    private static final String HB_TEST_2_ALERT_NAME = &quot;Hb Test 2&quot;;
+<i>39</i>&nbsp;    private static final String HB_FOLLOWUP_TEST_ALERT_NAME = &quot;Hb Followup Test&quot;;
+<i>40</i>&nbsp;    private static final String DELIVERY_PLAN_ALERT_NAME = &quot;Delivery Plan&quot;;
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    private static final String ANC_CLIENTS_LIST = &quot;ANCClientList&quot;;
+<i>43</i>&nbsp;    private AllBeneficiaries allBeneficiaries;
+<i>44</i>&nbsp;    private AlertService alertService;
+<i>45</i>&nbsp;    private Cache&lt;String&gt; cache;
+<i>46</i>&nbsp;    private Cache&lt;ANCClients&gt; ancClientsCache;
+<i>47</i>&nbsp;    private final ServiceProvidedService serviceProvidedService;
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    public ANCSmartRegisterController(ServiceProvidedService serviceProvidedService, AlertService alertService,
+<i>50</i>&nbsp;                                      AllBeneficiaries allBeneficiaries,
+<b class="fc"><i>51</i>&nbsp;                                      Cache&lt;String&gt; cache, Cache&lt;ANCClients&gt; ancClientsCache) {</b>
+<b class="fc"><i>52</i>&nbsp;        this.allBeneficiaries = allBeneficiaries;</b>
+<b class="fc"><i>53</i>&nbsp;        this.alertService = alertService;</b>
+<b class="fc"><i>54</i>&nbsp;        this.serviceProvidedService = serviceProvidedService;</b>
+<b class="fc"><i>55</i>&nbsp;        this.cache = cache;</b>
+<b class="fc"><i>56</i>&nbsp;        this.ancClientsCache = ancClientsCache;</b>
+<b class="fc"><i>57</i>&nbsp;    }</b>
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;    private List&lt;ServiceProvidedDTO&gt; getServicesProvided(String entityId) {
+<b class="fc"><i>61</i>&nbsp;        List&lt;ServiceProvided&gt; servicesProvided = serviceProvidedService.findByEntityIdAndServiceNames(entityId,</b>
+<i>62</i>&nbsp;                IFA_SERVICE_PROVIDED_NAME,
+<i>63</i>&nbsp;                TT_1_SERVICE_PROVIDED_NAME,
+<i>64</i>&nbsp;                TT_2_SERVICE_PROVIDED_NAME,
+<i>65</i>&nbsp;                TT_BOOSTER_SERVICE_PROVIDED_NAME,
+<i>66</i>&nbsp;                HB_TEST_SERVICE_PROVIDED_NAME,
+<i>67</i>&nbsp;                ANC_1_SERVICE_PROVIDED_NAME,
+<i>68</i>&nbsp;                ANC_2_SERVICE_PROVIDED_NAME,
+<i>69</i>&nbsp;                ANC_3_SERVICE_PROVIDED_NAME,
+<i>70</i>&nbsp;                ANC_4_SERVICE_PROVIDED_NAME,
+<i>71</i>&nbsp;                DELIVERY_PLAN_SERVICE_PROVIDED_NAME);
+<b class="fc"><i>72</i>&nbsp;        List&lt;ServiceProvidedDTO&gt; serviceProvidedDTOs = new ArrayList&lt;ServiceProvidedDTO&gt;();</b>
+<b class="fc"><i>73</i>&nbsp;        for (ServiceProvided serviceProvided : servicesProvided) {</b>
+<b class="nc"><i>74</i>&nbsp;            serviceProvidedDTOs.add(new ServiceProvidedDTO(serviceProvided.name(), serviceProvided.date(), serviceProvided.data()));</b>
+<b class="nc"><i>75</i>&nbsp;        }</b>
+<b class="fc"><i>76</i>&nbsp;        return serviceProvidedDTOs;</b>
+<i>77</i>&nbsp;    }
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    private List&lt;AlertDTO&gt; getAlerts(String entityId) {
+<b class="fc"><i>80</i>&nbsp;        List&lt;Alert&gt; alerts = alertService.findByEntityIdAndAlertNames(entityId,</b>
+<i>81</i>&nbsp;                ANC_1_ALERT_NAME,
+<i>82</i>&nbsp;                ANC_2_ALERT_NAME,
+<i>83</i>&nbsp;                ANC_3_ALERT_NAME,
+<i>84</i>&nbsp;                ANC_4_ALERT_NAME,
+<i>85</i>&nbsp;                IFA_1_ALERT_NAME,
+<i>86</i>&nbsp;                IFA_2_ALERT_NAME,
+<i>87</i>&nbsp;                IFA_3_ALERT_NAME,
+<i>88</i>&nbsp;                LAB_REMINDER_ALERT_NAME,
+<i>89</i>&nbsp;                TT_1_ALERT_NAME,
+<i>90</i>&nbsp;                TT_2_ALERT_NAME,
+<i>91</i>&nbsp;                HB_TEST_1_ALERT_NAME,
+<i>92</i>&nbsp;                HB_FOLLOWUP_TEST_ALERT_NAME,
+<i>93</i>&nbsp;                HB_TEST_2_ALERT_NAME,
+<i>94</i>&nbsp;                DELIVERY_PLAN_ALERT_NAME
+<i>95</i>&nbsp;        );
+<b class="fc"><i>96</i>&nbsp;        List&lt;AlertDTO&gt; alertDTOs = new ArrayList&lt;AlertDTO&gt;();</b>
+<b class="fc"><i>97</i>&nbsp;        for (Alert alert : alerts) {</b>
+<b class="nc"><i>98</i>&nbsp;            alertDTOs.add(new AlertDTO(alert.visitCode(), valueOf(alert.status()), alert.startDate()));</b>
+<b class="nc"><i>99</i>&nbsp;        }</b>
+<b class="fc"><i>100</i>&nbsp;        return alertDTOs;</b>
+<i>101</i>&nbsp;    }
+<i>102</i>&nbsp;
+<i>103</i>&nbsp;    public ANCClients getClients() {
+<b class="fc"><i>104</i>&nbsp;        return ancClientsCache.get(ANC_CLIENTS_LIST, new CacheableData&lt;ANCClients&gt;() {</b>
+<i>105</i>&nbsp;            @Override
+<i>106</i>&nbsp;            public ANCClients fetch() {
+<b class="fc"><i>107</i>&nbsp;                ANCClients ancClients = new ANCClients();</b>
+<b class="fc"><i>108</i>&nbsp;                List&lt;Pair&lt;Mother, EligibleCouple&gt;&gt; ancsWithEcs = allBeneficiaries.allANCsWithEC();</b>
+<i>109</i>&nbsp;
+<b class="fc"><i>110</i>&nbsp;                for (Pair&lt;Mother, EligibleCouple&gt; ancWithEc : ancsWithEcs) {</b>
+<b class="fc"><i>111</i>&nbsp;                    Mother anc = ancWithEc.getLeft();</b>
+<b class="fc"><i>112</i>&nbsp;                    EligibleCouple ec = ancWithEc.getRight();</b>
+<b class="fc"><i>113</i>&nbsp;                    String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();</b>
+<i>114</i>&nbsp;
+<b class="fc"><i>115</i>&nbsp;                    List&lt;ServiceProvidedDTO&gt; servicesProvided = getServicesProvided(anc.caseId());</b>
+<b class="fc"><i>116</i>&nbsp;                    List&lt;AlertDTO&gt; alerts = getAlerts(anc.caseId());</b>
+<b class="fc"><i>117</i>&nbsp;                    ANCClient ancClient = new ANCClient(anc.caseId(), ec.village(), ec.wifeName(), anc.thayiCardNumber(), anc.getDetail(AllConstants.ANCRegistrationFields.EDD), anc.referenceDate())</b>
+<b class="fc"><i>118</i>&nbsp;                            .withHusbandName(ec.husbandName())</b>
+<b class="fc"><i>119</i>&nbsp;                            .withAge(ec.age())</b>
+<b class="fc"><i>120</i>&nbsp;                            .withECNumber(ec.ecNumber())</b>
+<b class="fc"><i>121</i>&nbsp;                            .withANCNumber(anc.getDetail(AllConstants.ANCRegistrationFields.ANC_NUMBER))</b>
+<b class="fc"><i>122</i>&nbsp;                            .withIsHighPriority(ec.isHighPriority())</b>
+<b class="fc"><i>123</i>&nbsp;                            .withIsHighRisk(anc.isHighRisk())</b>
+<b class="fc"><i>124</i>&nbsp;                            .withIsOutOfArea(ec.isOutOfArea())</b>
+<b class="fc"><i>125</i>&nbsp;                            .withHighRiskReason(anc.highRiskReason())</b>
+<b class="fc"><i>126</i>&nbsp;                            .withPoc(anc.getDetail(AllConstants.ANCRegistrationFields.ANC_POC_INFO))</b>
+<b class="fc"><i>127</i>&nbsp;                            .withCaste(ec.getDetail(AllConstants.ECRegistrationFields.CASTE))</b>
+<b class="fc"><i>128</i>&nbsp;                            .withEconomicStatus(ec.getDetail(AllConstants.ECRegistrationFields.ECONOMIC_STATUS))</b>
+<b class="fc"><i>129</i>&nbsp;                            .withPhotoPath(photoPath)</b>
+<b class="fc"><i>130</i>&nbsp;                            .withEntityIdToSavePhoto(ec.caseId())</b>
+<b class="fc"><i>131</i>&nbsp;                            .withAlerts(alerts)</b>
+<b class="fc"><i>132</i>&nbsp;                            .withAshaPhoneNumber(anc.getDetail(AllConstants.ANCRegistrationFields.ASHA_PHONE_NUMBER))</b>
+<b class="fc"><i>133</i>&nbsp;                            .withServicesProvided(servicesProvided)</b>
+<b class="fc"><i>134</i>&nbsp;                            .withPreProcess();</b>
+<b class="fc"><i>135</i>&nbsp;                    ancClients.add(ancClient);</b>
+<b class="fc"><i>136</i>&nbsp;                }</b>
+<b class="fc"><i>137</i>&nbsp;                sortByName(ancClients);</b>
+<b class="fc"><i>138</i>&nbsp;                return ancClients;</b>
+<i>139</i>&nbsp;            }
+<i>140</i>&nbsp;        });
+<i>141</i>&nbsp;    }
+<i>142</i>&nbsp;
+<i>143</i>&nbsp;    private void sortByName(ANCClients ancClients) {
+<b class="fc"><i>144</i>&nbsp;        sort(ancClients, new Comparator&lt;SmartRegisterClient&gt;() {</b>
+<i>145</i>&nbsp;            @Override
+<i>146</i>&nbsp;            public int compare(SmartRegisterClient oneANCClient, SmartRegisterClient anotherANCClient) {
+<b class="fc"><i>147</i>&nbsp;                if (oneANCClient.wifeName() != null &amp;&amp; anotherANCClient.wifeName() != null)</b>
+<b class="fc"><i>148</i>&nbsp;                    return oneANCClient.wifeName().compareToIgnoreCase(anotherANCClient.wifeName());</b>
+<b class="nc"><i>149</i>&nbsp;                return -1;</b>
+<i>150</i>&nbsp;            }
+<i>151</i>&nbsp;        });
+<b class="fc"><i>152</i>&nbsp;    }</b>
+<i>153</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

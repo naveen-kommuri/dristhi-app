@@ -1,0 +1,123 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: PNCStatusDatum</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.contract.pnc</a> ]
+</div>
+
+<h1>Coverage Summary for Class: PNCStatusDatum (org.ei.telemedicine.view.contract.pnc)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PNCStatusDatum</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    33.3%
+  </span>
+  <span class="absValue">
+    (2/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    55.6%
+  </span>
+  <span class="absValue">
+    (5/ 9)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.contract.pnc;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.apache.commons.lang3.builder.EqualsBuilder;
+<i>4</i>&nbsp;import org.apache.commons.lang3.builder.HashCodeBuilder;
+<i>5</i>&nbsp;import org.apache.commons.lang3.builder.ToStringBuilder;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;public class PNCStatusDatum {
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;    private int day;
+<i>10</i>&nbsp;    private PNCVisitStatus status;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;
+<b class="fc"><i>13</i>&nbsp;    public PNCStatusDatum(int day, PNCVisitStatus status) {</b>
+<b class="fc"><i>14</i>&nbsp;        this.day = day;</b>
+<b class="fc"><i>15</i>&nbsp;        this.status = status;</b>
+<b class="fc"><i>16</i>&nbsp;    }</b>
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    public int day() {
+<b class="nc"><i>19</i>&nbsp;        return day;</b>
+<i>20</i>&nbsp;    }
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    public PNCVisitStatus status() {
+<b class="nc"><i>23</i>&nbsp;        return status;</b>
+<i>24</i>&nbsp;    }
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    @Override
+<i>27</i>&nbsp;    public boolean equals(Object o) {
+<b class="fc"><i>28</i>&nbsp;        return EqualsBuilder.reflectionEquals(this, o);</b>
+<i>29</i>&nbsp;    }
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    @Override
+<i>32</i>&nbsp;    public int hashCode() {
+<b class="nc"><i>33</i>&nbsp;        return HashCodeBuilder.reflectionHashCode(this);</b>
+<i>34</i>&nbsp;    }
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;    @Override
+<i>37</i>&nbsp;    public String toString() {
+<b class="nc"><i>38</i>&nbsp;        return ToStringBuilder.reflectionToString(this);</b>
+<i>39</i>&nbsp;    }
+<i>40</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

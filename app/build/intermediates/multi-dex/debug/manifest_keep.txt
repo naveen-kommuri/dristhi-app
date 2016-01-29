@@ -1,0 +1,51 @@
+-keep class org.ei.telemedicine.view.activity.DrishtiApplication {
+    <init>();
+    void attachBaseContext(android.content.Context);
+}
+-keep class org.ei.telemedicine.view.activity.LoginActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.HomeActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.ReportsInfoActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.NativeReportsActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.ReportsActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.ReportIndicatorListViewActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.ReportIndicatorDetailActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.ReportIndicatorCaseListActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.EligibleCoupleDetailActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.ANCDetailActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.PNCDetailActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.ChildDetailActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.CameraLaunchActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.ECSmartRegisterActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.FPSmartRegisterActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.ANCSmartRegisterActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.PNCSmartRegisterActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.ChildSmartRegisterActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.FormActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.MicroFormActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.NativeECSmartRegisterActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.NativeChildSmartRegisterActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.NativeFPSmartRegisterActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.NativeANCSmartRegisterActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.NativePNCSmartRegisterActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.NativeHomeActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.NativeSettingsActivity { <init>(); }
+-keep class org.ei.telemedicine.bluetooth.BlueToothInfoActivity { <init>(); }
+-keep class org.ei.telemedicine.doctor.DoctorANCScreenActivity { <init>(); }
+-keep class org.ei.telemedicine.doctor.DoctorPNCScreenActivity { <init>(); }
+-keep class org.ei.telemedicine.doctor.DoctorChildScreenActivity { <init>(); }
+-keep class org.ei.telemedicine.doctor.DoctorPlanofCareActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.ViewPlanOfCareActivity { <init>(); }
+-keep class org.ei.telemedicine.doctor.NativeDoctorActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.NativeOverviewActivity { <init>(); }
+-keep class org.ei.telemedicine.doctor.NativeGraphActivity { <init>(); }
+-keep class org.ei.telemedicine.view.activity.NativeANMPlanofCareActivity { <init>(); }
+-keep class org.ei.telemedicine.doctor.ViewPreVisitScreenActivity { <init>(); }
+-keep class org.ei.telemedicine.view.receiver.SyncBroadcastReceiver { <init>(); }
+-keep class org.ei.telemedicine.view.receiver.ConnectivityChangeReceiver { <init>(); }
+-keep class org.ei.telemedicine.view.activity.ActionActivity { <init>(); }
+-keep public class * extends android.app.backup.BackupAgent {
+    <init>();
+}
+-keep public class * extends java.lang.annotation.Annotation {
+    *;
+}

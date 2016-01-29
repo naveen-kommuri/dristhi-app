@@ -1,0 +1,263 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: PNCSmartRegisterControllerTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.view.controller</a> ]
+</div>
+
+<h1>Coverage Summary for Class: PNCSmartRegisterControllerTest (org.ei.telemedicine.test.view.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PNCSmartRegisterControllerTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 8)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.view.controller;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.repository.AllBeneficiaries;
+<i>4</i>&nbsp;import org.ei.telemedicine.repository.AllEligibleCouples;
+<i>5</i>&nbsp;import org.ei.telemedicine.service.AlertService;
+<i>6</i>&nbsp;import org.ei.telemedicine.service.ServiceProvidedService;
+<i>7</i>&nbsp;import org.ei.telemedicine.view.contract.AlertDTO;
+<i>8</i>&nbsp;import org.ei.telemedicine.view.contract.ServiceProvidedDTO;
+<i>9</i>&nbsp;import org.ei.telemedicine.view.contract.pnc.PNCClient;
+<i>10</i>&nbsp;import org.ei.telemedicine.view.controller.PNCSmartRegisterController;
+<i>11</i>&nbsp;import org.mockito.Mock;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;import java.util.Collections;
+<i>14</i>&nbsp;import java.util.Map;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;//@RunWith(MockitoJUnitRunner.class)
+<b class="nc"><i>17</i>&nbsp;public class PNCSmartRegisterControllerTest {</b>
+<b class="nc"><i>18</i>&nbsp;    public static final String[] PNC_ALERTS = new String[]{</b>
+<i>19</i>&nbsp;            &quot;PNC 1&quot;
+<i>20</i>&nbsp;    };
+<b class="nc"><i>21</i>&nbsp;    public static final String[] PNC_SERVICES = new String[]{</b>
+<i>22</i>&nbsp;            &quot;PNC&quot;
+<i>23</i>&nbsp;    };
+<i>24</i>&nbsp;    @Mock
+<i>25</i>&nbsp;    private AllEligibleCouples allEligibleCouples;
+<i>26</i>&nbsp;    @Mock
+<i>27</i>&nbsp;    private AllBeneficiaries allBeneficiaries;
+<i>28</i>&nbsp;    @Mock
+<i>29</i>&nbsp;    private AlertService alertService;
+<i>30</i>&nbsp;    @Mock
+<i>31</i>&nbsp;    private ServiceProvidedService serviceProvidedService;
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    private PNCSmartRegisterController controller;
+<i>34</i>&nbsp;    private Map&lt;String, String&gt; emptyMap;
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;    /*@Before
+<i>37</i>&nbsp;    public void setUp() throws Exception {
+<i>38</i>&nbsp;        initMocks(this);
+<i>39</i>&nbsp;        emptyMap = Collections.emptyMap();
+<i>40</i>&nbsp;        controller = new PNCSmartRegisterController(serviceProvidedService, alertService, allEligibleCouples, allBeneficiaries, new Cache&lt;String&gt;());
+<i>41</i>&nbsp;    }
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    @Test
+<i>44</i>&nbsp;    public void shouldSortPNCsByWifeName() throws Exception {
+<i>45</i>&nbsp;        Map&lt;String, String&gt; details = mapOf(&quot;edd&quot;, &quot;Tue, 25 Feb 2014 00:00:00 GMT&quot;);
+<i>46</i>&nbsp;        EligibleCouple ec2 = new EligibleCouple(&quot;EC Case 2&quot;, &quot;Woman B&quot;, &quot;Husband B&quot;, &quot;EC Number 2&quot;, &quot;kavalu_hosur&quot;, &quot;Bherya SC&quot;, emptyMap);
+<i>47</i>&nbsp;        EligibleCouple ec3 = new EligibleCouple(&quot;EC Case 3&quot;, &quot;Woman C&quot;, &quot;Husband C&quot;, &quot;EC Number 3&quot;, &quot;Bherya&quot;, &quot;Bherya SC&quot;, emptyMap);
+<i>48</i>&nbsp;        EligibleCouple ec1 = new EligibleCouple(&quot;EC Case 1&quot;, &quot;Woman A&quot;, &quot;Husband A&quot;, &quot;EC Number 1&quot;, &quot;Bherya&quot;, null, emptyMap);
+<i>49</i>&nbsp;        Mother m1 = new Mother(&quot;Entity X&quot;, &quot;EC Case 2&quot;, &quot;thayi 1&quot;, &quot;2013-05-25&quot;).withDetails(details);
+<i>50</i>&nbsp;        Mother m2 = new Mother(&quot;Entity Y&quot;, &quot;EC Case 3&quot;, &quot;thayi 2&quot;, &quot;2013-05-25&quot;).withDetails(details);
+<i>51</i>&nbsp;        Mother m3 = new Mother(&quot;Entity Z&quot;, &quot;EC Case 1&quot;, &quot;thayi 3&quot;, &quot;2013-05-25&quot;).withDetails(details);
+<i>52</i>&nbsp;        PNCClient expectedClient1 = createPNCClient(&quot;Entity Z&quot;, &quot;Woman A&quot;, &quot;Bherya&quot;, &quot;thayi 3&quot;, &quot;2013-05-25&quot;).withECNumber(&quot;EC Number 1&quot;).withHusbandName(&quot;Husband A&quot;).withChildren(EMPTY_LIST).withEntityIdToSavePhoto(&quot;EC Case 1&quot;);
+<i>53</i>&nbsp;        PNCClient expectedClient2 = createPNCClient(&quot;Entity X&quot;, &quot;Woman B&quot;, &quot;kavalu_hosur&quot;, &quot;thayi 1&quot;, &quot;2013-05-25&quot;).withECNumber(&quot;EC Number 2&quot;).withHusbandName(&quot;Husband B&quot;).withChildren(EMPTY_LIST).withEntityIdToSavePhoto(&quot;EC Case 2&quot;);
+<i>54</i>&nbsp;        PNCClient expectedClient3 = createPNCClient(&quot;Entity Y&quot;, &quot;Woman C&quot;, &quot;Bherya&quot;, &quot;thayi 2&quot;, &quot;2013-05-25&quot;).withECNumber(&quot;EC Number 3&quot;).withHusbandName(&quot;Husband C&quot;).withChildren(EMPTY_LIST).withEntityIdToSavePhoto(&quot;EC Case 3&quot;);
+<i>55</i>&nbsp;        when(allBeneficiaries.allPNCsWithEC()).thenReturn(asList(Pair.of(m1, ec2), Pair.of(m2, ec3), Pair.of(m3, ec1)));
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;        String clients = controller.get();
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;        List&lt;PNCClient&gt; actualClients = new Gson().fromJson(clients, new TypeToken&lt;List&lt;PNCClient&gt;&gt;() {
+<i>60</i>&nbsp;        }.getType());
+<i>61</i>&nbsp;        assertEquals(asList(expectedClient1, expectedClient2, expectedClient3), actualClients);
+<i>62</i>&nbsp;    }
+<i>63</i>&nbsp;
+<i>64</i>&nbsp;    @Test
+<i>65</i>&nbsp;    public void shouldMapPNCToPNCClient() throws Exception {
+<i>66</i>&nbsp;        Map&lt;String, String&gt; ecDetails = create(&quot;wifeAge&quot;, &quot;22&quot;)
+<i>67</i>&nbsp;                .put(&quot;currentMethod&quot;, &quot;condom&quot;)
+<i>68</i>&nbsp;                .put(&quot;familyPlanningMethodChangeDate&quot;, &quot;2013-01-02&quot;)
+<i>69</i>&nbsp;                .put(&quot;isHighPriority&quot;, Boolean.toString(false))
+<i>70</i>&nbsp;                .put(&quot;deliveryDate&quot;, &quot;2011-05-05&quot;)
+<i>71</i>&nbsp;                .put(&quot;womanDOB&quot;, &quot;2011-05-05&quot;)
+<i>72</i>&nbsp;                .put(&quot;caste&quot;, &quot;sc&quot;)
+<i>73</i>&nbsp;                .put(&quot;economicStatus&quot;, &quot;bpl&quot;)
+<i>74</i>&nbsp;                .put(&quot;iudPlace&quot;, &quot;iudPlace&quot;)
+<i>75</i>&nbsp;                .put(&quot;iudPerson&quot;, &quot;iudPerson&quot;)
+<i>76</i>&nbsp;                .put(&quot;numberOfCondomsSupplied&quot;, &quot;20&quot;)
+<i>77</i>&nbsp;                .put(&quot;numberOfCentchromanPillsDelivered&quot;, &quot;10&quot;)
+<i>78</i>&nbsp;                .put(&quot;numberOfOCPDelivered&quot;, &quot;5&quot;)
+<i>79</i>&nbsp;                .map();
+<i>80</i>&nbsp;        Map&lt;String, String&gt; motherDetails = create(&quot;deliveryPlace&quot;, &quot;PHC&quot;)
+<i>81</i>&nbsp;                .put(&quot;deliveryType&quot;, &quot;live_birth&quot;)
+<i>82</i>&nbsp;                .put(&quot;deliveryComplications&quot;, &quot;Headache&quot;)
+<i>83</i>&nbsp;                .put(&quot;otherDeliveryComplications&quot;, &quot;Vomiting&quot;)
+<i>84</i>&nbsp;                .map();
+<i>85</i>&nbsp;        EligibleCouple eligibleCouple = new EligibleCouple(&quot;entity id 1&quot;, &quot;Woman A&quot;, &quot;Husband A&quot;, &quot;EC Number 1&quot;, &quot;Bherya&quot;, null, ecDetails).asOutOfArea();
+<i>86</i>&nbsp;        Mother mother = new Mother(&quot;Entity X&quot;, &quot;entity id 1&quot;, &quot;thayi 1&quot;, &quot;2013-05-25&quot;).withDetails(motherDetails);
+<i>87</i>&nbsp;        when(allBeneficiaries.allPNCsWithEC()).thenReturn(asList(Pair.of(mother, eligibleCouple)));
+<i>88</i>&nbsp;        when(allBeneficiaries.findAllChildrenByMotherId(&quot;Entity X&quot;)).thenReturn(asList(new Child(&quot;child id 1&quot;, &quot;Entity X&quot;, &quot;male&quot;, mapOf(&quot;weight&quot;, &quot;2.4&quot;)),
+<i>89</i>&nbsp;                new Child(&quot;child id 2&quot;, &quot;Entity X&quot;, &quot;female&quot;, mapOf(&quot;weight&quot;, &quot;2.5&quot;))));
+<i>90</i>&nbsp;        PNCClient expectedPNCClient = new PNCClient(&quot;Entity X&quot;, &quot;Bherya&quot;, &quot;Woman A&quot;, &quot;thayi 1&quot;, &quot;2013-05-25&quot;)
+<i>91</i>&nbsp;                .withECNumber(&quot;EC Number 1&quot;)
+<i>92</i>&nbsp;                .withIsHighPriority(false)
+<i>93</i>&nbsp;                .withAge(&quot;22&quot;)
+<i>94</i>&nbsp;                .withWomanDOB(&quot;2011-05-05&quot;)
+<i>95</i>&nbsp;                .withEconomicStatus(&quot;bpl&quot;)
+<i>96</i>&nbsp;                .withIUDPerson(&quot;iudPerson&quot;)
+<i>97</i>&nbsp;                .withIUDPlace(&quot;iudPlace&quot;)
+<i>98</i>&nbsp;                .withHusbandName(&quot;Husband A&quot;)
+<i>99</i>&nbsp;                .withIsOutOfArea(true)
+<i>100</i>&nbsp;                .withIsHighRisk(false)
+<i>101</i>&nbsp;                .withCaste(&quot;sc&quot;)
+<i>102</i>&nbsp;                .withFPMethod(&quot;condom&quot;)
+<i>103</i>&nbsp;                .withFamilyPlanningMethodChangeDate(&quot;2013-01-02&quot;)
+<i>104</i>&nbsp;                .withNumberOfCondomsSupplied(&quot;20&quot;)
+<i>105</i>&nbsp;                .withNumberOfCentchromanPillsDelivered(&quot;10&quot;)
+<i>106</i>&nbsp;                .withNumberOfOCPDelivered(&quot;5&quot;)
+<i>107</i>&nbsp;                .withDeliveryPlace(&quot;PHC&quot;)
+<i>108</i>&nbsp;                .withDeliveryType(&quot;live_birth&quot;)
+<i>109</i>&nbsp;                .withDeliveryComplications(&quot;Headache&quot;)
+<i>110</i>&nbsp;                .withOtherDeliveryComplications(&quot;Vomiting&quot;)
+<i>111</i>&nbsp;                .withPhotoPath(&quot;../../img/woman-placeholder.png&quot;)
+<i>112</i>&nbsp;                .withEntityIdToSavePhoto(&quot;entity id 1&quot;)
+<i>113</i>&nbsp;                .withAlerts(Collections.&lt;AlertDTO&gt;emptyList())
+<i>114</i>&nbsp;                .withChildren(asList(new ChildClient(&quot;child id 1&quot;, &quot;male&quot;, &quot;2.4&quot;, &quot;thayi 1&quot;), new ChildClient(&quot;child id 2&quot;, &quot;female&quot;, &quot;2.5&quot;, &quot;thayi 1&quot;)))
+<i>115</i>&nbsp;                .withServicesProvided(Collections.&lt;ServiceProvidedDTO&gt;emptyList());
+<i>116</i>&nbsp;
+<i>117</i>&nbsp;        String clients = controller.get();
+<i>118</i>&nbsp;
+<i>119</i>&nbsp;        List&lt;PNCClient&gt; actualClients = new Gson().fromJson(clients, new TypeToken&lt;List&lt;PNCClient&gt;&gt;() {
+<i>120</i>&nbsp;        }.getType());
+<i>121</i>&nbsp;        assertEquals(asList(expectedPNCClient), actualClients);
+<i>122</i>&nbsp;    }
+<i>123</i>&nbsp;
+<i>124</i>&nbsp;    @Test
+<i>125</i>&nbsp;    public void shouldCreatePNCClientsWithPNC1Alert() throws Exception {
+<i>126</i>&nbsp;        EligibleCouple ec = new EligibleCouple(&quot;entity id 1&quot;, &quot;Woman C&quot;, &quot;Husband C&quot;, &quot;EC Number 1&quot;, &quot;Bherya&quot;, &quot;Bherya SC&quot;, emptyMap);
+<i>127</i>&nbsp;        Mother mother = new Mother(&quot;Entity X&quot;, &quot;entity id 1&quot;, &quot;thayi 1&quot;, &quot;2013-05-25&quot;);
+<i>128</i>&nbsp;        Alert pnc1Alert = new Alert(&quot;entity id 1&quot;, &quot;PNC&quot;, &quot;PNC 1&quot;, normal, &quot;2013-01-01&quot;, &quot;2013-02-01&quot;);
+<i>129</i>&nbsp;        when(allBeneficiaries.allPNCsWithEC()).thenReturn(asList(Pair.of(mother, ec)));
+<i>130</i>&nbsp;        when(alertService.findByEntityIdAndAlertNames(&quot;Entity X&quot;, PNC_ALERTS)).thenReturn(asList(pnc1Alert));
+<i>131</i>&nbsp;
+<i>132</i>&nbsp;        String clients = controller.get();
+<i>133</i>&nbsp;
+<i>134</i>&nbsp;        List&lt;PNCClient&gt; actualClients = new Gson().fromJson(clients, new TypeToken&lt;List&lt;PNCClient&gt;&gt;() {
+<i>135</i>&nbsp;        }.getType());
+<i>136</i>&nbsp;        verify(alertService).findByEntityIdAndAlertNames(&quot;Entity X&quot;, PNC_ALERTS);
+<i>137</i>&nbsp;        AlertDTO expectedAlertDto = new AlertDTO(&quot;PNC 1&quot;, &quot;normal&quot;, &quot;2013-01-01&quot;);
+<i>138</i>&nbsp;        PNCClient expectedEC = createPNCClient(&quot;Entity X&quot;, &quot;Woman C&quot;, &quot;Bherya&quot;, &quot;thayi 1&quot;, &quot;2013-05-25&quot;)
+<i>139</i>&nbsp;                .withECNumber(&quot;EC Number 1&quot;)
+<i>140</i>&nbsp;                .withHusbandName(&quot;Husband C&quot;)
+<i>141</i>&nbsp;                .withEntityIdToSavePhoto(&quot;entity id 1&quot;)
+<i>142</i>&nbsp;                .withAlerts(asList(expectedAlertDto))
+<i>143</i>&nbsp;                .withChildren(EMPTY_LIST);
+<i>144</i>&nbsp;        assertEquals(asList(expectedEC), actualClients);
+<i>145</i>&nbsp;    }
+<i>146</i>&nbsp;
+<i>147</i>&nbsp;    @Test
+<i>148</i>&nbsp;    public void shouldCreatePNCClientsWithServicesProvided() throws Exception {
+<i>149</i>&nbsp;        EligibleCouple ec = new EligibleCouple(&quot;entity id 1&quot;, &quot;Woman C&quot;, &quot;Husband C&quot;, &quot;EC Number 1&quot;, &quot;Bherya&quot;, &quot;Bherya SC&quot;, emptyMap);
+<i>150</i>&nbsp;        Mother mother = new Mother(&quot;Entity X&quot;, &quot;entity id 1&quot;, &quot;thayi 1&quot;, &quot;2013-05-25&quot;);
+<i>151</i>&nbsp;        when(allBeneficiaries.allPNCsWithEC()).thenReturn(asList(Pair.of(mother, ec)));
+<i>152</i>&nbsp;        when(alertService.findByEntityIdAndAlertNames(&quot;Entity X&quot;, PNC_ALERTS)).thenReturn(Collections.&lt;Alert&gt;emptyList());
+<i>153</i>&nbsp;        when(serviceProvidedService.findByEntityIdAndServiceNames(&quot;Entity X&quot;, PNC_SERVICES))
+<i>154</i>&nbsp;                .thenReturn(asList(new ServiceProvided(&quot;entity id 1&quot;, &quot;PNC 1&quot;, &quot;2013-01-01&quot;, mapOf(&quot;dose&quot;, &quot;100&quot;)), new ServiceProvided(&quot;entity id 1&quot;, &quot;PNC 1&quot;, &quot;2013-02-01&quot;, emptyMap)));
+<i>155</i>&nbsp;
+<i>156</i>&nbsp;        String clients = controller.get();
+<i>157</i>&nbsp;
+<i>158</i>&nbsp;        List&lt;PNCClient&gt; actualClients = new Gson().fromJson(clients, new TypeToken&lt;List&lt;PNCClient&gt;&gt;() {
+<i>159</i>&nbsp;        }.getType());
+<i>160</i>&nbsp;        verify(alertService).findByEntityIdAndAlertNames(&quot;Entity X&quot;, PNC_ALERTS);
+<i>161</i>&nbsp;        verify(serviceProvidedService).findByEntityIdAndServiceNames(&quot;Entity X&quot;, PNC_SERVICES);
+<i>162</i>&nbsp;        List&lt;ServiceProvidedDTO&gt; expectedServicesProvided = asList(new ServiceProvidedDTO(&quot;PNC 1&quot;, &quot;2013-01-01&quot;, mapOf(&quot;dose&quot;, &quot;100&quot;)),
+<i>163</i>&nbsp;                new ServiceProvidedDTO(&quot;PNC 1&quot;, &quot;2013-02-01&quot;, emptyMap));
+<i>164</i>&nbsp;        PNCClient expectedEC = createPNCClient(&quot;Entity X&quot;, &quot;Woman C&quot;, &quot;Bherya&quot;, &quot;thayi 1&quot;, &quot;2013-05-25&quot;)
+<i>165</i>&nbsp;                .withECNumber(&quot;EC Number 1&quot;)
+<i>166</i>&nbsp;                .withHusbandName(&quot;Husband C&quot;)
+<i>167</i>&nbsp;                .withEntityIdToSavePhoto(&quot;entity id 1&quot;)
+<i>168</i>&nbsp;                .withServicesProvided(expectedServicesProvided)
+<i>169</i>&nbsp;                .withChildren(EMPTY_LIST);
+<i>170</i>&nbsp;        assertEquals(asList(expectedEC), actualClients);
+<i>171</i>&nbsp;    }*/
+<i>172</i>&nbsp;
+<i>173</i>&nbsp;    private PNCClient createPNCClient(String entityId, String name, String village, String thayi, String deliveryDate) {
+<b class="nc"><i>174</i>&nbsp;        return new PNCClient(entityId, village, name, thayi, deliveryDate)</b>
+<b class="nc"><i>175</i>&nbsp;                .withPhotoPath(&quot;../../img/woman-placeholder.png&quot;)</b>
+<b class="nc"><i>176</i>&nbsp;                .withIsOutOfArea(false)</b>
+<b class="nc"><i>177</i>&nbsp;                .withAlerts(Collections.&lt;AlertDTO&gt;emptyList())</b>
+<b class="nc"><i>178</i>&nbsp;                .withServicesProvided(Collections.&lt;ServiceProvidedDTO&gt;emptyList());</b>
+<i>179</i>&nbsp;    }
+<i>180</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-20 13:39</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,180 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ChildDetailController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.controller</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ChildDetailController (org.ei.telemedicine.view.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ChildDetailController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    86.5%
+  </span>
+  <span class="absValue">
+    (32/ 37)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.controller;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.content.Context;
+<i>4</i>&nbsp;import android.content.Intent;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import com.google.gson.Gson;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import org.ei.telemedicine.AllConstants;
+<i>9</i>&nbsp;import org.ei.telemedicine.domain.Child;
+<i>10</i>&nbsp;import org.ei.telemedicine.domain.EligibleCouple;
+<i>11</i>&nbsp;import org.ei.telemedicine.domain.Mother;
+<i>12</i>&nbsp;import org.ei.telemedicine.repository.AllBeneficiaries;
+<i>13</i>&nbsp;import org.ei.telemedicine.repository.AllEligibleCouples;
+<i>14</i>&nbsp;import org.ei.telemedicine.repository.AllTimelineEvents;
+<i>15</i>&nbsp;import org.ei.telemedicine.util.DateUtil;
+<i>16</i>&nbsp;import org.ei.telemedicine.util.TimelineEventComparator;
+<i>17</i>&nbsp;import org.ei.telemedicine.view.activity.CameraLaunchActivity;
+<i>18</i>&nbsp;import org.ei.telemedicine.view.contract.*;
+<i>19</i>&nbsp;import org.joda.time.LocalDate;
+<i>20</i>&nbsp;import org.joda.time.format.DateTimeFormat;
+<i>21</i>&nbsp;import org.joda.time.format.DateTimeFormatter;
+<i>22</i>&nbsp;import org.ocpsoft.pretty.time.Duration;
+<i>23</i>&nbsp;import org.ocpsoft.pretty.time.PrettyTime;
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;import java.util.ArrayList;
+<i>26</i>&nbsp;import java.util.Collections;
+<i>27</i>&nbsp;import java.util.List;
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;import static java.lang.Math.min;
+<i>30</i>&nbsp;import static org.apache.commons.lang3.StringUtils.isBlank;
+<i>31</i>&nbsp;import static org.ei.telemedicine.AllConstants.CHILD_TYPE;
+<i>32</i>&nbsp;import static org.ei.telemedicine.AllConstants.ENTITY_ID;
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;public class ChildDetailController {
+<i>35</i>&nbsp;    private final Context context;
+<i>36</i>&nbsp;    private final String caseId;
+<i>37</i>&nbsp;    private final AllEligibleCouples allEligibleCouples;
+<i>38</i>&nbsp;    private final AllBeneficiaries allBeneficiaries;
+<i>39</i>&nbsp;    private final AllTimelineEvents allTimelineEvents;
+<i>40</i>&nbsp;
+<b class="fc"><i>41</i>&nbsp;    public ChildDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllTimelineEvents allTimelineEvents) {</b>
+<b class="fc"><i>42</i>&nbsp;        this.context = context;</b>
+<b class="fc"><i>43</i>&nbsp;        this.caseId = caseId;</b>
+<b class="fc"><i>44</i>&nbsp;        this.allEligibleCouples = allEligibleCouples;</b>
+<b class="fc"><i>45</i>&nbsp;        this.allBeneficiaries = allBeneficiaries;</b>
+<b class="fc"><i>46</i>&nbsp;        this.allTimelineEvents = allTimelineEvents;</b>
+<b class="fc"><i>47</i>&nbsp;    }</b>
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    public String get() {
+<b class="fc"><i>50</i>&nbsp;        Child child = allBeneficiaries.findChild(caseId);</b>
+<b class="fc"><i>51</i>&nbsp;        Mother mother = allBeneficiaries.findMother(child.motherCaseId());</b>
+<b class="fc"><i>52</i>&nbsp;        EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());</b>
+<i>53</i>&nbsp;
+<b class="fc"><i>54</i>&nbsp;        LocalDate deliveryDate = LocalDate.parse(child.dateOfBirth());</b>
+<b class="fc"><i>55</i>&nbsp;        String photoPath = isBlank(child.photoPath()) ?</b>
+<b class="fc"><i>56</i>&nbsp;                (AllConstants.FEMALE_GENDER.equalsIgnoreCase(child.gender())</b>
+<i>57</i>&nbsp;                        ? AllConstants.DEFAULT_GIRL_INFANT_IMAGE_PLACEHOLDER_PATH
+<i>58</i>&nbsp;                        : AllConstants.DEFAULT_BOY_INFANT_IMAGE_PLACEHOLDER_PATH)
+<b class="fc"><i>59</i>&nbsp;                : child.photoPath();</b>
+<i>60</i>&nbsp;
+<b class="fc"><i>61</i>&nbsp;        ChildDetail detail = new ChildDetail(caseId, mother.thayiCardNumber(),</b>
+<b class="fc"><i>62</i>&nbsp;                new CoupleDetails(couple.wifeName(), couple.husbandName(), couple.ecNumber(), couple.isOutOfArea()),</b>
+<b class="fc"><i>63</i>&nbsp;                new LocationDetails(couple.village(), couple.subCenter()),</b>
+<b class="fc"><i>64</i>&nbsp;                new BirthDetails(deliveryDate.toString(), calculateAge(deliveryDate), child.gender()), photoPath)</b>
+<b class="fc"><i>65</i>&nbsp;                .addTimelineEvents(getEvents())</b>
+<b class="fc"><i>66</i>&nbsp;                .addExtraDetails(child.details());</b>
+<i>67</i>&nbsp;
+<b class="fc"><i>68</i>&nbsp;        return new Gson().toJson(detail);</b>
+<i>69</i>&nbsp;    }
+<i>70</i>&nbsp;
+<i>71</i>&nbsp;    public void takePhoto() {
+<b class="nc"><i>72</i>&nbsp;        Intent intent = new Intent(context, CameraLaunchActivity.class);</b>
+<b class="nc"><i>73</i>&nbsp;        intent.putExtra(AllConstants.TYPE, CHILD_TYPE);</b>
+<b class="nc"><i>74</i>&nbsp;        intent.putExtra(ENTITY_ID, caseId);</b>
+<b class="nc"><i>75</i>&nbsp;        context.startActivity(intent);</b>
+<b class="nc"><i>76</i>&nbsp;    }</b>
+<i>77</i>&nbsp;
+<i>78</i>&nbsp;    private List&lt;TimelineEvent&gt; getEvents() {
+<b class="fc"><i>79</i>&nbsp;        List&lt;org.ei.telemedicine.domain.TimelineEvent&gt; events = allTimelineEvents.forCase(caseId);</b>
+<b class="fc"><i>80</i>&nbsp;        List&lt;TimelineEvent&gt; timelineEvents = new ArrayList&lt;TimelineEvent&gt;();</b>
+<i>81</i>&nbsp;
+<b class="fc"><i>82</i>&nbsp;        Collections.sort(events, new TimelineEventComparator());</b>
+<i>83</i>&nbsp;
+<b class="fc"><i>84</i>&nbsp;        for (org.ei.telemedicine.domain.TimelineEvent event : events) {</b>
+<b class="fc"><i>85</i>&nbsp;            DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(&quot;dd-MM-YYYY&quot;);</b>
+<b class="fc"><i>86</i>&nbsp;            timelineEvents.add(new TimelineEvent(event.type(), event.title(), new String[]{event.detail1(), event.detail2()}, event.referenceDate().toString(dateTimeFormatter)));</b>
+<b class="fc"><i>87</i>&nbsp;        }</b>
+<i>88</i>&nbsp;
+<b class="fc"><i>89</i>&nbsp;        return timelineEvents;</b>
+<i>90</i>&nbsp;    }
+<i>91</i>&nbsp;
+<i>92</i>&nbsp;    private String calculateAge(LocalDate deliveryDate) {
+<b class="fc"><i>93</i>&nbsp;        PrettyTime time = new PrettyTime(DateUtil.today().toDate());</b>
+<b class="fc"><i>94</i>&nbsp;        List&lt;Duration&gt; durationComponents = time.calculatePreciseDuration(deliveryDate.toDate());</b>
+<b class="fc"><i>95</i>&nbsp;        return time.format(durationComponents.subList(0, min(durationComponents.size(), 1))).replaceAll(&quot; ago&quot;, &quot;&quot;);</b>
+<i>96</i>&nbsp;    }
+<i>97</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

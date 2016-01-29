@@ -1,0 +1,109 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: MemoryCache</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.image</a> ]
+</div>
+
+<h1>Coverage Summary for Class: MemoryCache (org.ei.telemedicine.image)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MemoryCache</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 10)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.image;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.lang.ref.SoftReference;
+<i>4</i>&nbsp;import java.util.Collections;
+<i>5</i>&nbsp;import java.util.HashMap;
+<i>6</i>&nbsp;import java.util.Map;
+<i>7</i>&nbsp;import android.graphics.Bitmap;
+<i>8</i>&nbsp; 
+<b class="nc"><i>9</i>&nbsp;public class MemoryCache {</b>
+<b class="nc"><i>10</i>&nbsp;    private Map&lt;String, SoftReference&lt;Bitmap&gt;&gt; cache=Collections.synchronizedMap(new HashMap&lt;String, SoftReference&lt;Bitmap&gt;&gt;());</b>
+<i>11</i>&nbsp; 
+<i>12</i>&nbsp;    public Bitmap get(String id){
+<b class="nc"><i>13</i>&nbsp;        if(!cache.containsKey(id))</b>
+<b class="nc"><i>14</i>&nbsp;            return null;</b>
+<b class="nc"><i>15</i>&nbsp;        SoftReference&lt;Bitmap&gt; ref=cache.get(id);</b>
+<b class="nc"><i>16</i>&nbsp;        return ref.get();</b>
+<i>17</i>&nbsp;    }
+<i>18</i>&nbsp; 
+<i>19</i>&nbsp;    public void put(String id, Bitmap bitmap){
+<b class="nc"><i>20</i>&nbsp;        cache.put(id, new SoftReference&lt;Bitmap&gt;(bitmap));</b>
+<b class="nc"><i>21</i>&nbsp;    }</b>
+<i>22</i>&nbsp; 
+<i>23</i>&nbsp;    public void clear() {
+<b class="nc"><i>24</i>&nbsp;        cache.clear();</b>
+<b class="nc"><i>25</i>&nbsp;    }</b>
+<i>26</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

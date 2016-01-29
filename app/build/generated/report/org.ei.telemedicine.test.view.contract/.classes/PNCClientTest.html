@@ -1,0 +1,138 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: PNCClientTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.view.contract</a> ]
+</div>
+
+<h1>Coverage Summary for Class: PNCClientTest (org.ei.telemedicine.test.view.contract)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PNCClientTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (21/ 21)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.view.contract;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import junit.framework.Assert;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import org.ei.telemedicine.util.EasyMap;
+<i>6</i>&nbsp;import org.ei.telemedicine.view.contract.AlertDTO;
+<i>7</i>&nbsp;import org.ei.telemedicine.view.contract.ServiceProvidedDTO;
+<i>8</i>&nbsp;import org.ei.telemedicine.view.contract.Visits;
+<i>9</i>&nbsp;import org.ei.telemedicine.view.contract.pnc.PNCClient;
+<i>10</i>&nbsp;import org.junit.Test;
+<i>11</i>&nbsp;import org.junit.runner.RunWith;
+<i>12</i>&nbsp;import org.mockito.runners.MockitoJUnitRunner;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;import java.util.ArrayList;
+<i>15</i>&nbsp;import java.util.HashMap;
+<i>16</i>&nbsp;import java.util.Map;
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;import static java.util.Arrays.asList;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;@RunWith(MockitoJUnitRunner.class)
+<b class="fc"><i>21</i>&nbsp;public class PNCClientTest {</b>
+<i>22</i>&nbsp;    @Test
+<i>23</i>&nbsp;    public void shouldAddPNCAlertToServiceToVisitMap() throws Exception {
+<b class="fc"><i>24</i>&nbsp;        AlertDTO pncAlert = new AlertDTO(&quot;PNC&quot;, &quot;urgent&quot;, &quot;2013-02-01&quot;);</b>
+<b class="fc"><i>25</i>&nbsp;        PNCClient pncClient = new PNCClient(&quot;entityId&quot;, &quot;village&quot;, &quot;name&quot;, &quot;thayi&quot;,&quot;2013-01-30&quot;)</b>
+<b class="fc"><i>26</i>&nbsp;                .withAlerts(asList(pncAlert))</b>
+<b class="fc"><i>27</i>&nbsp;                .withServicesProvided(new ArrayList&lt;ServiceProvidedDTO&gt;());</b>
+<i>28</i>&nbsp;
+<b class="fc"><i>29</i>&nbsp;        PNCClient preprocessedClients = pncClient.withPreProcess();</b>
+<i>30</i>&nbsp;
+<b class="fc"><i>31</i>&nbsp;        Visits visits = new Visits();</b>
+<b class="fc"><i>32</i>&nbsp;        visits.toProvide = pncAlert;</b>
+<b class="fc"><i>33</i>&nbsp;        Map&lt;String, Visits&gt; serviceToVisitsMap = EasyMap.create(&quot;pnc&quot;, visits).map();</b>
+<i>34</i>&nbsp;
+<b class="fc"><i>35</i>&nbsp;        Assert.assertEquals(preprocessedClients.serviceToVisitsMap(), serviceToVisitsMap);</b>
+<i>36</i>&nbsp;
+<b class="fc"><i>37</i>&nbsp;    }</b>
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    @Test
+<i>40</i>&nbsp;    public void shouldAddPNCServiceProvidedToServiceToVisitMap() throws Exception {
+<b class="fc"><i>41</i>&nbsp;        ServiceProvidedDTO servicesProvided = new ServiceProvidedDTO(&quot;PNC&quot;, &quot;2013-02-01&quot;, new HashMap&lt;String, String&gt;());</b>
+<b class="fc"><i>42</i>&nbsp;        PNCClient pncClient = new PNCClient(&quot;entityId&quot;, &quot;village&quot;, &quot;name&quot;, &quot;thayi&quot;,&quot;2013-01-30&quot;)</b>
+<b class="fc"><i>43</i>&nbsp;                .withAlerts(new ArrayList&lt;AlertDTO&gt;())</b>
+<b class="fc"><i>44</i>&nbsp;                .withServicesProvided(asList(servicesProvided));</b>
+<i>45</i>&nbsp;
+<b class="fc"><i>46</i>&nbsp;        PNCClient preprocessedClients = pncClient.withPreProcess();</b>
+<i>47</i>&nbsp;
+<b class="fc"><i>48</i>&nbsp;        Visits visits = new Visits();</b>
+<b class="fc"><i>49</i>&nbsp;        visits.provided = servicesProvided;</b>
+<b class="fc"><i>50</i>&nbsp;        Map&lt;String, Visits&gt; serviceToVisitsMap = EasyMap.create(&quot;pnc&quot;, visits).map();</b>
+<i>51</i>&nbsp;
+<b class="fc"><i>52</i>&nbsp;        Assert.assertEquals(preprocessedClients.serviceToVisitsMap(), serviceToVisitsMap);</b>
+<b class="fc"><i>53</i>&nbsp;    }</b>
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-26 16:42</div>
+</div>
+</body>
+</html>

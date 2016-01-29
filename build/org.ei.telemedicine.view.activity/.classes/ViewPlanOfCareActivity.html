@@ -1,0 +1,386 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ViewPlanOfCareActivity</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.activity</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ViewPlanOfCareActivity (org.ei.telemedicine.view.activity)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ViewPlanOfCareActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 115)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ViewPlanOfCareActivity$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ViewPlanOfCareActivity$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ViewPlanOfCareActivity$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ViewPlanOfCareActivity$4</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 127)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.activity;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.app.Activity;
+<i>4</i>&nbsp;import android.app.AlertDialog;
+<i>5</i>&nbsp;import android.content.DialogInterface;
+<i>6</i>&nbsp;import android.os.Bundle;
+<i>7</i>&nbsp;import android.util.Log;
+<i>8</i>&nbsp;import android.view.Menu;
+<i>9</i>&nbsp;import android.view.View;
+<i>10</i>&nbsp;import android.widget.Button;
+<i>11</i>&nbsp;import android.widget.EditText;
+<i>12</i>&nbsp;import android.widget.TextView;
+<i>13</i>&nbsp;import android.widget.Toast;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;import org.ei.telemedicine.AllConstants;
+<i>16</i>&nbsp;import org.ei.telemedicine.Context;
+<i>17</i>&nbsp;import org.ei.telemedicine.R;
+<i>18</i>&nbsp;import org.ei.telemedicine.doctor.DoctorFormDataConstants;
+<i>19</i>&nbsp;import org.ei.telemedicine.domain.Child;
+<i>20</i>&nbsp;import org.ei.telemedicine.domain.EligibleCouple;
+<i>21</i>&nbsp;import org.ei.telemedicine.domain.Mother;
+<i>22</i>&nbsp;import org.json.JSONArray;
+<i>23</i>&nbsp;import org.json.JSONException;
+<i>24</i>&nbsp;import org.json.JSONObject;
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;/**
+<i>27</i>&nbsp; * Created by naveen on 6/10/15.
+<i>28</i>&nbsp; */
+<b class="nc"><i>29</i>&nbsp;public class ViewPlanOfCareActivity extends SecuredActivity {</b>
+<i>30</i>&nbsp;    EditText et_anc_num, et_woman_name, et_plan_of_care_date, et_doc_name, et_investigations, et_drugs, et_advice, et_diagnosis;
+<i>31</i>&nbsp;    Button bt_close;
+<i>32</i>&nbsp;    String entityId;
+<b class="nc"><i>33</i>&nbsp;    private String TAG = &quot;ViewPlanofCareActivity&quot;;</b>
+<i>34</i>&nbsp;    String visitType, intentVisitType;
+<i>35</i>&nbsp;    TextView tv_anc_number_title;
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    @Override
+<i>38</i>&nbsp;    public void onCreation() {
+<b class="nc"><i>39</i>&nbsp;        Bundle bundle = getIntent().getExtras();</b>
+<i>40</i>&nbsp;//        et_anc_num = (EditText) findViewById(R.id.et_anc_num);
+<b class="nc"><i>41</i>&nbsp;        if (bundle != null) {</b>
+<b class="nc"><i>42</i>&nbsp;            entityId = bundle.getString(AllConstants.ENTITY_ID);</b>
+<b class="nc"><i>43</i>&nbsp;            intentVisitType = bundle.getString(AllConstants.VISIT_TYPE);</b>
+<i>44</i>&nbsp;
+<b class="nc"><i>45</i>&nbsp;            setContentView(R.layout.view_anc_poc);</b>
+<b class="nc"><i>46</i>&nbsp;            bt_close = (Button) findViewById(R.id.bt_close);</b>
+<i>47</i>&nbsp;//            bt_history = (Button) findViewById(R.id.bt_history);
+<b class="nc"><i>48</i>&nbsp;            et_anc_num = (EditText) findViewById(R.id.et_anc_num);</b>
+<b class="nc"><i>49</i>&nbsp;            et_woman_name = (EditText) findViewById(R.id.et_woman_name);</b>
+<b class="nc"><i>50</i>&nbsp;            et_plan_of_care_date = (EditText) findViewById(R.id.et_plan_of_care_date);</b>
+<b class="nc"><i>51</i>&nbsp;            et_doc_name = (EditText) findViewById(R.id.et_doctor_name);</b>
+<b class="nc"><i>52</i>&nbsp;            et_investigations = (EditText) findViewById(R.id.et_investigations);</b>
+<b class="nc"><i>53</i>&nbsp;            et_drugs = (EditText) findViewById(R.id.et_drugs);</b>
+<b class="nc"><i>54</i>&nbsp;            et_advice = (EditText) findViewById(R.id.et_advice_data);</b>
+<b class="nc"><i>55</i>&nbsp;            et_diagnosis = (EditText) findViewById(R.id.et_diagnosis);</b>
+<b class="nc"><i>56</i>&nbsp;            tv_anc_number_title = (TextView) findViewById(R.id.tv_anc_num_title);</b>
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;//            bt_history.setOnClickListener(new View.OnClickListener() {
+<i>59</i>&nbsp;//                @Override
+<i>60</i>&nbsp;//                public void onClick(View v) {
+<i>61</i>&nbsp;//                    Toast.makeText(ViewPlanOfCareActivity.this, &quot;Poc History&quot;, Toast.LENGTH_SHORT).show();
+<i>62</i>&nbsp;//                }
+<i>63</i>&nbsp;//            });
+<b class="nc"><i>64</i>&nbsp;            bt_close.setOnClickListener(new View.OnClickListener() {</b>
+<i>65</i>&nbsp;                @Override
+<i>66</i>&nbsp;                public void onClick(View v) {
+<b class="nc"><i>67</i>&nbsp;                    finish();</b>
+<b class="nc"><i>68</i>&nbsp;                }</b>
+<i>69</i>&nbsp;            });
+<b class="nc"><i>70</i>&nbsp;            if (!intentVisitType.equalsIgnoreCase(&quot;child&quot;)) {</b>
+<b class="nc"><i>71</i>&nbsp;                Mother mother = Context.getInstance().childService().getMotherUseEntityId(entityId);</b>
+<b class="nc"><i>72</i>&nbsp;                EligibleCouple eligibleCouple = Context.getInstance().allEligibleCouples().findByCaseID(mother.ecCaseId());</b>
+<b class="nc"><i>73</i>&nbsp;                String docPocInfo = mother.getDetail(&quot;docPocInfo&quot;);</b>
+<b class="nc"><i>74</i>&nbsp;                tv_anc_number_title.setText(intentVisitType.equals(DoctorFormDataConstants.ancvisit) ? &quot;ANC Number&quot; : &quot;PNC Number&quot;);</b>
+<b class="nc"><i>75</i>&nbsp;                if (docPocInfo != null &amp;&amp; !docPocInfo.equals(&quot;&quot;)) {</b>
+<b class="nc"><i>76</i>&nbsp;                    Log.e(TAG, &quot;Doc Poc&quot; + docPocInfo);</b>
+<i>77</i>&nbsp;                    try {
+<b class="nc"><i>78</i>&nbsp;                        JSONArray docPocInfoArray = new JSONArray(docPocInfo);</b>
+<b class="nc"><i>79</i>&nbsp;                        JSONObject pocInfo = docPocInfoArray.length() != 0 ? docPocInfoArray.getJSONObject(docPocInfoArray.length() - 1)</b>
+<i>80</i>&nbsp;                                : new JSONObject();
+<b class="nc"><i>81</i>&nbsp;                        if (pocInfo.getString(&quot;pending&quot;).length() == 0) {</b>
+<b class="nc"><i>82</i>&nbsp;                            JSONObject pocJson = pocInfo.has(&quot;poc&quot;) ? new JSONObject(pocInfo.getString(&quot;poc&quot;)) : new JSONObject();</b>
+<b class="nc"><i>83</i>&nbsp;                            Log.e(&quot;Pox&quot;, pocJson.toString());</b>
+<b class="nc"><i>84</i>&nbsp;                            visitType = getDataFromJson(pocJson.toString(), &quot;visitType&quot;);</b>
+<b class="nc"><i>85</i>&nbsp;                            if (visitType.equals(intentVisitType)) {</b>
+<b class="nc"><i>86</i>&nbsp;                                et_woman_name.setText(eligibleCouple.wifeName());</b>
+<b class="nc"><i>87</i>&nbsp;                                et_investigations.setText(getDatafromArray(pocJson.getJSONArray(&quot;investigations&quot;).toString()));</b>
+<b class="nc"><i>88</i>&nbsp;                                et_doc_name.setText(getDataFromJson(pocJson.toString(), &quot;doctorName&quot;));</b>
+<b class="nc"><i>89</i>&nbsp;                                et_anc_num.setText(mother.getDetail(&quot;ancNumber&quot;));</b>
+<b class="nc"><i>90</i>&nbsp;                                if (visitType.equals(&quot;PNC&quot;)) {</b>
+<b class="nc"><i>91</i>&nbsp;                                    tv_anc_number_title.setText(&quot;PNC Number&quot;);</b>
+<b class="nc"><i>92</i>&nbsp;                                    et_anc_num.setText(mother.getDetail(&quot;pncNumber&quot;));</b>
+<i>93</i>&nbsp;                                }
+<b class="nc"><i>94</i>&nbsp;                                et_plan_of_care_date.setText(getDataFromJson(pocJson.toString(), &quot;planofCareDate&quot;));</b>
+<b class="nc"><i>95</i>&nbsp;                                et_drugs.setText(getDatafromDrugsArray(pocJson.getString(&quot;drugs&quot;)));</b>
+<b class="nc"><i>96</i>&nbsp;                                et_diagnosis.setText(getDatafromArray(pocJson.getJSONArray(&quot;diagnosis&quot;).toString()));</b>
+<b class="nc"><i>97</i>&nbsp;                                Log.e(TAG, &quot;Advice&quot; + pocJson.getString(&quot;advice&quot;));</b>
+<b class="nc"><i>98</i>&nbsp;                                et_advice.setText(getDataFromJson(pocJson.toString(), &quot;advice&quot;));</b>
+<i>99</i>&nbsp;                            }
+<b class="nc"><i>100</i>&nbsp;                        } else {</b>
+<b class="nc"><i>101</i>&nbsp;                            Toast.makeText(ViewPlanOfCareActivity.this, &quot;Pending= &quot; + pocInfo.getString(&quot;pending&quot;), Toast.LENGTH_SHORT).show();</b>
+<b class="nc"><i>102</i>&nbsp;                            new AlertDialog.Builder(ViewPlanOfCareActivity.this).setTitle(&quot;Poc pending reason&quot;).setMessage(pocInfo.getString(&quot;pending&quot;)).setNeutralButton(&quot;Ok&quot;, new DialogInterface.OnClickListener() {</b>
+<i>103</i>&nbsp;                                @Override
+<i>104</i>&nbsp;                                public void onClick(DialogInterface dialog, int which) {
+<b class="nc"><i>105</i>&nbsp;                                    ViewPlanOfCareActivity.this.finish();</b>
+<b class="nc"><i>106</i>&nbsp;                                }</b>
+<b class="nc"><i>107</i>&nbsp;                            }).show();</b>
+<i>108</i>&nbsp;                        }
+<b class="nc"><i>109</i>&nbsp;                    } catch (JSONException e) {</b>
+<b class="nc"><i>110</i>&nbsp;                        e.printStackTrace();</b>
+<b class="nc"><i>111</i>&nbsp;                    }</b>
+<i>112</i>&nbsp;                } else {
+<b class="nc"><i>113</i>&nbsp;                    showNoPoc();</b>
+<b class="nc"><i>114</i>&nbsp;                    Toast.makeText(ViewPlanOfCareActivity.this, &quot;No Plan Of Care&quot;, Toast.LENGTH_SHORT).show();</b>
+<i>115</i>&nbsp;                }
+<b class="nc"><i>116</i>&nbsp;            } else {</b>
+<b class="nc"><i>117</i>&nbsp;                tv_anc_number_title.setVisibility(View.GONE);</b>
+<b class="nc"><i>118</i>&nbsp;                et_anc_num.setVisibility(View.GONE);</b>
+<b class="nc"><i>119</i>&nbsp;                Log.e(&quot;Entity Id Child&quot;, entityId);</b>
+<b class="nc"><i>120</i>&nbsp;                Child child = Context.getInstance().allBeneficiaries().findChild(entityId);</b>
+<b class="nc"><i>121</i>&nbsp;                Mother mother = Context.getInstance().childService().getMotherUseEntityId(child.motherCaseId());</b>
+<b class="nc"><i>122</i>&nbsp;                EligibleCouple eligibleCouple = Context.getInstance().allEligibleCouples().findByCaseID(mother.ecCaseId());</b>
+<b class="nc"><i>123</i>&nbsp;                String docPocInfo = child.getDetail(&quot;docPocInfo&quot;);</b>
+<b class="nc"><i>124</i>&nbsp;                if (docPocInfo != null &amp;&amp; !docPocInfo.equals(&quot;&quot;)) {</b>
+<b class="nc"><i>125</i>&nbsp;                    Log.e(TAG, &quot;Child Doc Poc&quot; + docPocInfo);</b>
+<i>126</i>&nbsp;                    try {
+<b class="nc"><i>127</i>&nbsp;                        JSONArray docPocInfoArray = new JSONArray(docPocInfo);</b>
+<b class="nc"><i>128</i>&nbsp;                        JSONObject pocInfo = docPocInfoArray.length() != 0 ? docPocInfoArray.getJSONObject(docPocInfoArray.length() - 1)</b>
+<i>129</i>&nbsp;                                : new JSONObject();
+<b class="nc"><i>130</i>&nbsp;                        if (pocInfo.getString(&quot;pending&quot;).length() == 0) {</b>
+<b class="nc"><i>131</i>&nbsp;                            JSONObject pocJson = pocInfo.has(&quot;poc&quot;) ? new JSONObject(pocInfo.getString(&quot;poc&quot;)) : new JSONObject();</b>
+<b class="nc"><i>132</i>&nbsp;                            visitType = getDataFromJson(pocJson.toString(), &quot;visitType&quot;);</b>
+<b class="nc"><i>133</i>&nbsp;                            if (visitType.equalsIgnoreCase(intentVisitType)) {</b>
+<b class="nc"><i>134</i>&nbsp;                                et_woman_name.setText(eligibleCouple.wifeName());</b>
+<b class="nc"><i>135</i>&nbsp;                                et_investigations.setText(getDatafromArray(pocJson.getJSONArray(&quot;investigations&quot;).toString()));</b>
+<b class="nc"><i>136</i>&nbsp;                                et_doc_name.setText(getDataFromJson(pocJson.toString(), &quot;doctorName&quot;));</b>
+<i>137</i>&nbsp;//                          et_anc_num.setText(mother.getDetail(&quot;ancNumber&quot;));
+<i>138</i>&nbsp;//                          tv_anc_number_title.setText(&quot;PNC Number&quot;);
+<b class="nc"><i>139</i>&nbsp;                                et_plan_of_care_date.setText(getDataFromJson(pocJson.toString(), &quot;planofCareDate&quot;));</b>
+<b class="nc"><i>140</i>&nbsp;                                et_drugs.setText(getDatafromDrugsArray(pocJson.getString(&quot;drugs&quot;)));</b>
+<b class="nc"><i>141</i>&nbsp;                                et_diagnosis.setText(getDatafromArray(pocJson.getJSONArray(&quot;diagnosis&quot;).toString()));</b>
+<b class="nc"><i>142</i>&nbsp;                                Log.e(TAG, &quot;Advice&quot; + pocJson.getString(&quot;advice&quot;));</b>
+<b class="nc"><i>143</i>&nbsp;                                et_advice.setText(getDataFromJson(pocJson.toString(), &quot;advice&quot;));</b>
+<i>144</i>&nbsp;                            }
+<b class="nc"><i>145</i>&nbsp;                        } else {</b>
+<b class="nc"><i>146</i>&nbsp;                            Toast.makeText(ViewPlanOfCareActivity.this, &quot;Pending= &quot; + pocInfo.getString(&quot;pending&quot;), Toast.LENGTH_SHORT).show();</b>
+<b class="nc"><i>147</i>&nbsp;                            new AlertDialog.Builder(ViewPlanOfCareActivity.this).setTitle(&quot;Poc pending reason&quot;).setMessage(pocInfo.getString(&quot;pending&quot;)).setNeutralButton(&quot;Ok&quot;, new DialogInterface.OnClickListener() {</b>
+<i>148</i>&nbsp;                                @Override
+<i>149</i>&nbsp;                                public void onClick(DialogInterface dialog, int which) {
+<b class="nc"><i>150</i>&nbsp;                                    ViewPlanOfCareActivity.this.finish();</b>
+<b class="nc"><i>151</i>&nbsp;                                }</b>
+<b class="nc"><i>152</i>&nbsp;                            }).show();</b>
+<i>153</i>&nbsp;                        }
+<b class="nc"><i>154</i>&nbsp;                    } catch (JSONException e) {</b>
+<b class="nc"><i>155</i>&nbsp;                        e.printStackTrace();</b>
+<b class="nc"><i>156</i>&nbsp;                    }</b>
+<i>157</i>&nbsp;                } else {
+<b class="nc"><i>158</i>&nbsp;                    showNoPoc();</b>
+<b class="nc"><i>159</i>&nbsp;                    Toast.makeText(ViewPlanOfCareActivity.this, &quot;No Plan Of Care&quot;, Toast.LENGTH_SHORT).show();</b>
+<i>160</i>&nbsp;                }
+<i>161</i>&nbsp;            }
+<i>162</i>&nbsp;        }
+<i>163</i>&nbsp;
+<i>164</i>&nbsp;
+<b class="nc"><i>165</i>&nbsp;    }</b>
+<i>166</i>&nbsp;
+<i>167</i>&nbsp;    @Override
+<i>168</i>&nbsp;    public void onResumption() {
+<i>169</i>&nbsp;
+<b class="nc"><i>170</i>&nbsp;    }</b>
+<i>171</i>&nbsp;
+<i>172</i>&nbsp;    @Override
+<i>173</i>&nbsp;    public boolean onCreateOptionsMenu(Menu menu) {
+<b class="nc"><i>174</i>&nbsp;        return false;</b>
+<i>175</i>&nbsp;    }
+<i>176</i>&nbsp;
+<i>177</i>&nbsp;    private void showNoPoc() {
+<b class="nc"><i>178</i>&nbsp;        new AlertDialog.Builder(ViewPlanOfCareActivity.this).setTitle(&quot;Plan of care&quot;).setMessage(&quot;There is no plan of care.&quot;).setNeutralButton(&quot;CLOSE&quot;, new DialogInterface.OnClickListener() {</b>
+<i>179</i>&nbsp;            @Override
+<i>180</i>&nbsp;            public void onClick(DialogInterface dialog, int which) {
+<b class="nc"><i>181</i>&nbsp;                ViewPlanOfCareActivity.this.finish();</b>
+<b class="nc"><i>182</i>&nbsp;            }</b>
+<b class="nc"><i>183</i>&nbsp;        }).show();</b>
+<b class="nc"><i>184</i>&nbsp;    }</b>
+<i>185</i>&nbsp;
+<i>186</i>&nbsp;    public String getDatafromArray(String jsonArray) {
+<i>187</i>&nbsp;        try {
+<b class="nc"><i>188</i>&nbsp;            String result = &quot;&quot;;</b>
+<b class="nc"><i>189</i>&nbsp;            if (jsonArray != null) {</b>
+<b class="nc"><i>190</i>&nbsp;                JSONArray jsonArray1 = new JSONArray(jsonArray);</b>
+<b class="nc"><i>191</i>&nbsp;                for (int i = 0; i &lt; jsonArray1.length(); i++) {</b>
+<b class="nc"><i>192</i>&nbsp;                    result = result + &quot;\n&quot; + jsonArray1.getString(i);</b>
+<i>193</i>&nbsp;                }
+<b class="nc"><i>194</i>&nbsp;                return result;</b>
+<i>195</i>&nbsp;            }
+<b class="nc"><i>196</i>&nbsp;        } catch (Exception e) {</b>
+<b class="nc"><i>197</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>198</i>&nbsp;        }</b>
+<b class="nc"><i>199</i>&nbsp;        return &quot;&quot;;</b>
+<i>200</i>&nbsp;    }
+<i>201</i>&nbsp;
+<i>202</i>&nbsp;    public String getDatafromDrugsArray(String jsonArray) {
+<i>203</i>&nbsp;        try {
+<b class="nc"><i>204</i>&nbsp;            Log.e(TAG, &quot;JsonArray &quot; + jsonArray);</b>
+<b class="nc"><i>205</i>&nbsp;            String result = &quot;&quot;;</b>
+<b class="nc"><i>206</i>&nbsp;            if (jsonArray != null) {</b>
+<b class="nc"><i>207</i>&nbsp;                JSONArray jsonArray1 = new JSONArray(jsonArray);</b>
+<b class="nc"><i>208</i>&nbsp;                for (int i = 0; i &lt; jsonArray1.length(); i++) {</b>
+<b class="nc"><i>209</i>&nbsp;                    JSONObject jsonObject = jsonArray1.getJSONObject(i);</b>
+<b class="nc"><i>210</i>&nbsp;                    String data = jsonObject.getString(&quot;drugName&quot;) + &quot;-&quot; + jsonObject.getString(&quot;direction&quot;) + &quot;-&quot; + jsonObject.getString(&quot;dosage&quot;) + &quot;-&quot; + jsonObject.getString(&quot;frequency&quot;) + &quot;- Days :&quot; + jsonObject.getString(&quot;drugNoOfDays&quot;) + &quot;- Qty :&quot; + jsonObject.getString(&quot;drugQty&quot;);</b>
+<b class="nc"><i>211</i>&nbsp;                    result = result + &quot;\n&quot; + data;</b>
+<i>212</i>&nbsp;                }
+<b class="nc"><i>213</i>&nbsp;                return result;</b>
+<i>214</i>&nbsp;            }
+<b class="nc"><i>215</i>&nbsp;        } catch (Exception e) {</b>
+<b class="nc"><i>216</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>217</i>&nbsp;        }</b>
+<b class="nc"><i>218</i>&nbsp;        return &quot;&quot;;</b>
+<i>219</i>&nbsp;    }
+<i>220</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

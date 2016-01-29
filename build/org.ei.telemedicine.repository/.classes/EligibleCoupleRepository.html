@@ -1,0 +1,343 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: EligibleCoupleRepository</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.repository</a> ]
+</div>
+
+<h1>Coverage Summary for Class: EligibleCoupleRepository (org.ei.telemedicine.repository)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">EligibleCoupleRepository</td>
+<td class="coverageStat">
+  <span class="percent">
+    5.3%
+  </span>
+  <span class="absValue">
+    (1/ 19)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0.9%
+  </span>
+  <span class="absValue">
+    (1/ 107)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">EligibleCoupleRepository$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">EligibleCoupleRepository$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    4.8%
+  </span>
+  <span class="absValue">
+    (1/ 21)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0.9%
+  </span>
+  <span class="absValue">
+    (1/ 109)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.repository;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.content.ContentValues;
+<i>4</i>&nbsp;import android.database.Cursor;
+<i>5</i>&nbsp;import android.util.Log;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import com.google.gson.Gson;
+<i>8</i>&nbsp;import com.google.gson.reflect.TypeToken;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import net.sqlcipher.database.SQLiteDatabase;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;import org.ei.telemedicine.AllConstants;
+<i>13</i>&nbsp;import org.ei.telemedicine.domain.EligibleCouple;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;import java.util.ArrayList;
+<i>16</i>&nbsp;import java.util.HashMap;
+<i>17</i>&nbsp;import java.util.List;
+<i>18</i>&nbsp;import java.util.Map;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;import static java.lang.Boolean.TRUE;
+<i>21</i>&nbsp;import static java.text.MessageFormat.format;
+<i>22</i>&nbsp;import static net.sqlcipher.DatabaseUtils.longForQuery;
+<i>23</i>&nbsp;import static org.apache.commons.lang3.StringUtils.isBlank;
+<i>24</i>&nbsp;import static org.apache.commons.lang3.StringUtils.repeat;
+<i>25</i>&nbsp;
+<b class="nc"><i>26</i>&nbsp;public class EligibleCoupleRepository extends DrishtiRepository {</b>
+<i>27</i>&nbsp;    private static final String EC_SQL = &quot;CREATE TABLE eligible_couple(id VARCHAR PRIMARY KEY, wifeName VARCHAR, husbandName VARCHAR, &quot; +
+<i>28</i>&nbsp;            &quot;ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR, isOutOfArea VARCHAR, details VARCHAR, isClosed VARCHAR, photoPath VARCHAR)&quot;;
+<i>29</i>&nbsp;    public static final String ID_COLUMN = &quot;id&quot;;
+<i>30</i>&nbsp;    public static final String EC_NUMBER_COLUMN = &quot;ecNumber&quot;;
+<i>31</i>&nbsp;    public static final String WIFE_NAME_COLUMN = &quot;wifeName&quot;;
+<i>32</i>&nbsp;    public static final String HUSBAND_NAME_COLUMN = &quot;husbandName&quot;;
+<i>33</i>&nbsp;    public static final String VILLAGE_NAME_COLUMN = &quot;village&quot;;
+<i>34</i>&nbsp;    public static final String SUBCENTER_NAME_COLUMN = &quot;subCenter&quot;;
+<i>35</i>&nbsp;    public static final String IS_OUT_OF_AREA_COLUMN = &quot;isOutOfArea&quot;;
+<i>36</i>&nbsp;    public static final String DETAILS_COLUMN = &quot;details&quot;;
+<i>37</i>&nbsp;    private static final String IS_CLOSED_COLUMN = &quot;isClosed&quot;;
+<i>38</i>&nbsp;    public static final String PHOTO_PATH_COLUMN = &quot;photoPath&quot;;
+<i>39</i>&nbsp;    public static final String EC_TABLE_NAME = &quot;eligible_couple&quot;;
+<i>40</i>&nbsp;
+<b class="fc"><i>41</i>&nbsp;    public static final String[] EC_TABLE_COLUMNS = new String[]{ID_COLUMN, WIFE_NAME_COLUMN, HUSBAND_NAME_COLUMN,</b>
+<i>42</i>&nbsp;            EC_NUMBER_COLUMN, VILLAGE_NAME_COLUMN, SUBCENTER_NAME_COLUMN, IS_OUT_OF_AREA_COLUMN, DETAILS_COLUMN,
+<i>43</i>&nbsp;            IS_CLOSED_COLUMN, PHOTO_PATH_COLUMN};
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;    public static final String NOT_CLOSED = &quot;false&quot;;
+<i>46</i>&nbsp;    private static final String IN_AREA = &quot;false&quot;;
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    @Override
+<i>49</i>&nbsp;    protected void onCreate(SQLiteDatabase database) {
+<b class="nc"><i>50</i>&nbsp;        database.execSQL(EC_SQL);</b>
+<b class="nc"><i>51</i>&nbsp;    }</b>
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    public void add(EligibleCouple eligibleCouple) {
+<b class="nc"><i>54</i>&nbsp;        SQLiteDatabase database = masterRepository.getWritableDatabase();</b>
+<b class="nc"><i>55</i>&nbsp;        database.insert(EC_TABLE_NAME, null, createValuesFor(eligibleCouple));</b>
+<b class="nc"><i>56</i>&nbsp;    }</b>
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    public void updateDetails(String caseId, Map&lt;String, String&gt; details) {
+<b class="nc"><i>59</i>&nbsp;        SQLiteDatabase database = masterRepository.getWritableDatabase();</b>
+<i>60</i>&nbsp;
+<b class="nc"><i>61</i>&nbsp;        EligibleCouple couple = findByCaseID(caseId);</b>
+<b class="nc"><i>62</i>&nbsp;        if (couple == null) {</b>
+<b class="nc"><i>63</i>&nbsp;            return;</b>
+<i>64</i>&nbsp;        }
+<i>65</i>&nbsp;
+<b class="nc"><i>66</i>&nbsp;        ContentValues valuesToUpdate = new ContentValues();</b>
+<b class="nc"><i>67</i>&nbsp;        valuesToUpdate.put(DETAILS_COLUMN, new Gson().toJson(details));</b>
+<b class="nc"><i>68</i>&nbsp;        database.update(EC_TABLE_NAME, valuesToUpdate, ID_COLUMN + &quot; = ?&quot;, new String[]{caseId});</b>
+<b class="nc"><i>69</i>&nbsp;    }</b>
+<i>70</i>&nbsp;
+<i>71</i>&nbsp;    public void mergeDetails(String caseId, Map&lt;String, String&gt; details) {
+<b class="nc"><i>72</i>&nbsp;        SQLiteDatabase database = masterRepository.getWritableDatabase();</b>
+<i>73</i>&nbsp;
+<b class="nc"><i>74</i>&nbsp;        EligibleCouple couple = findByCaseID(caseId);</b>
+<b class="nc"><i>75</i>&nbsp;        if (couple == null) {</b>
+<b class="nc"><i>76</i>&nbsp;            return;</b>
+<i>77</i>&nbsp;        }
+<i>78</i>&nbsp;
+<b class="nc"><i>79</i>&nbsp;        Map&lt;String, String&gt; mergedDetails = new HashMap&lt;String, String&gt;(couple.details());</b>
+<b class="nc"><i>80</i>&nbsp;        mergedDetails.putAll(details);</b>
+<b class="nc"><i>81</i>&nbsp;        ContentValues valuesToUpdate = new ContentValues();</b>
+<b class="nc"><i>82</i>&nbsp;        valuesToUpdate.put(DETAILS_COLUMN, new Gson().toJson(mergedDetails));</b>
+<b class="nc"><i>83</i>&nbsp;        database.update(EC_TABLE_NAME, valuesToUpdate, ID_COLUMN + &quot; = ?&quot;, new String[]{caseId});</b>
+<b class="nc"><i>84</i>&nbsp;    }</b>
+<i>85</i>&nbsp;
+<i>86</i>&nbsp;    public List&lt;EligibleCouple&gt; allEligibleCouples() {
+<b class="nc"><i>87</i>&nbsp;        SQLiteDatabase database = masterRepository.getReadableDatabase();</b>
+<b class="nc"><i>88</i>&nbsp;        Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, IS_OUT_OF_AREA_COLUMN + &quot; = ? AND &quot; +</b>
+<i>89</i>&nbsp;                IS_CLOSED_COLUMN + &quot; = ?&quot;, new String[]{IN_AREA, NOT_CLOSED}, null, null, null, null);
+<b class="nc"><i>90</i>&nbsp;        return readAllEligibleCouples(cursor);</b>
+<i>91</i>&nbsp;    }
+<i>92</i>&nbsp;
+<i>93</i>&nbsp;    public List&lt;EligibleCouple&gt; findByCaseIDs(String... caseIds) {
+<b class="nc"><i>94</i>&nbsp;        SQLiteDatabase database = masterRepository.getReadableDatabase();</b>
+<b class="nc"><i>95</i>&nbsp;        Cursor cursor = database.rawQuery(String.format(&quot;SELECT * FROM %s WHERE %s IN (%s)&quot;, EC_TABLE_NAME, ID_COLUMN,</b>
+<b class="nc"><i>96</i>&nbsp;                insertPlaceholdersForInClause(caseIds.length)), caseIds);</b>
+<b class="nc"><i>97</i>&nbsp;        return readAllEligibleCouples(cursor);</b>
+<i>98</i>&nbsp;    }
+<i>99</i>&nbsp;
+<i>100</i>&nbsp;    public EligibleCouple findByCaseID(String caseId) {
+<b class="nc"><i>101</i>&nbsp;        SQLiteDatabase database = masterRepository.getReadableDatabase();</b>
+<b class="nc"><i>102</i>&nbsp;        Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, ID_COLUMN + &quot; = ?&quot;, new String[]{caseId},</b>
+<i>103</i>&nbsp;                null, null, null, null);
+<b class="nc"><i>104</i>&nbsp;        List&lt;EligibleCouple&gt; couples = readAllEligibleCouples(cursor);</b>
+<b class="nc"><i>105</i>&nbsp;        if (couples.isEmpty()) {</b>
+<b class="nc"><i>106</i>&nbsp;            return null;</b>
+<i>107</i>&nbsp;        }
+<b class="nc"><i>108</i>&nbsp;        return couples.get(0);</b>
+<i>109</i>&nbsp;    }
+<i>110</i>&nbsp;
+<i>111</i>&nbsp;    public long count() {
+<b class="nc"><i>112</i>&nbsp;        return longForQuery(masterRepository.getReadableDatabase(), &quot;SELECT COUNT(1) FROM &quot; + EC_TABLE_NAME</b>
+<i>113</i>&nbsp;                + &quot; WHERE &quot; + IS_OUT_OF_AREA_COLUMN + &quot; = &#39;&quot; + IN_AREA + &quot;&#39; and &quot; +
+<i>114</i>&nbsp;                IS_CLOSED_COLUMN + &quot; = &#39;&quot; + NOT_CLOSED + &quot;&#39;&quot;, new String[0]);
+<i>115</i>&nbsp;    }
+<i>116</i>&nbsp;
+<i>117</i>&nbsp;    public List&lt;String&gt; villages() {
+<b class="nc"><i>118</i>&nbsp;        SQLiteDatabase database = masterRepository.getReadableDatabase();</b>
+<b class="nc"><i>119</i>&nbsp;        Cursor cursor = database.query(true, EC_TABLE_NAME, new String[]{VILLAGE_NAME_COLUMN}, IS_OUT_OF_AREA_COLUMN +</b>
+<i>120</i>&nbsp;                &quot; = ? AND &quot; + IS_CLOSED_COLUMN + &quot; = ?&quot;, new String[]{IN_AREA, NOT_CLOSED}, null, null, null, null);
+<b class="nc"><i>121</i>&nbsp;        cursor.moveToFirst();</b>
+<b class="nc"><i>122</i>&nbsp;        List&lt;String&gt; villages = new ArrayList&lt;String&gt;();</b>
+<b class="nc"><i>123</i>&nbsp;        while (!cursor.isAfterLast()) {</b>
+<b class="nc"><i>124</i>&nbsp;            villages.add(cursor.getString(0));</b>
+<b class="nc"><i>125</i>&nbsp;            cursor.moveToNext();</b>
+<i>126</i>&nbsp;        }
+<i>127</i>&nbsp;
+<b class="nc"><i>128</i>&nbsp;        cursor.close();</b>
+<b class="nc"><i>129</i>&nbsp;        return villages;</b>
+<i>130</i>&nbsp;    }
+<i>131</i>&nbsp;
+<i>132</i>&nbsp;    public void updatePhotoPath(String caseId, String imagePath) {
+<b class="nc"><i>133</i>&nbsp;        SQLiteDatabase database = masterRepository.getWritableDatabase();</b>
+<b class="nc"><i>134</i>&nbsp;        if (!   imagePath.equals(&quot;&quot;) &amp;&amp; !caseId.equals(&quot;&quot;)) {</b>
+<b class="nc"><i>135</i>&nbsp;            ContentValues values = new ContentValues();</b>
+<b class="nc"><i>136</i>&nbsp;            values.put(PHOTO_PATH_COLUMN, imagePath);</b>
+<b class="nc"><i>137</i>&nbsp;            database.update(EC_TABLE_NAME, values, ID_COLUMN + &quot; = ?&quot;, new String[]{caseId});</b>
+<i>138</i>&nbsp;        }
+<b class="nc"><i>139</i>&nbsp;    }</b>
+<i>140</i>&nbsp;
+<i>141</i>&nbsp;    public void close(String caseId) {
+<b class="nc"><i>142</i>&nbsp;        ContentValues values = new ContentValues();</b>
+<b class="nc"><i>143</i>&nbsp;        values.put(IS_CLOSED_COLUMN, TRUE.toString());</b>
+<b class="nc"><i>144</i>&nbsp;        masterRepository.getWritableDatabase().update(EC_TABLE_NAME, values, ID_COLUMN + &quot; = ?&quot;, new String[]{caseId});</b>
+<b class="nc"><i>145</i>&nbsp;    }</b>
+<i>146</i>&nbsp;
+<i>147</i>&nbsp;    private ContentValues createValuesFor(EligibleCouple eligibleCouple) {
+<b class="nc"><i>148</i>&nbsp;        ContentValues values = new ContentValues();</b>
+<b class="nc"><i>149</i>&nbsp;        values.put(ID_COLUMN, eligibleCouple.caseId());</b>
+<b class="nc"><i>150</i>&nbsp;        values.put(WIFE_NAME_COLUMN, eligibleCouple.wifeName());</b>
+<b class="nc"><i>151</i>&nbsp;        values.put(HUSBAND_NAME_COLUMN, eligibleCouple.husbandName());</b>
+<b class="nc"><i>152</i>&nbsp;        values.put(EC_NUMBER_COLUMN, eligibleCouple.ecNumber());</b>
+<b class="nc"><i>153</i>&nbsp;        values.put(VILLAGE_NAME_COLUMN, eligibleCouple.village());</b>
+<b class="nc"><i>154</i>&nbsp;        values.put(SUBCENTER_NAME_COLUMN, eligibleCouple.subCenter());</b>
+<b class="nc"><i>155</i>&nbsp;        values.put(IS_OUT_OF_AREA_COLUMN, Boolean.toString(eligibleCouple.isOutOfArea()));</b>
+<b class="nc"><i>156</i>&nbsp;        values.put(DETAILS_COLUMN, new Gson().toJson(eligibleCouple.details()));</b>
+<b class="nc"><i>157</i>&nbsp;        values.put(IS_CLOSED_COLUMN, Boolean.toString(eligibleCouple.isClosed()));</b>
+<b class="nc"><i>158</i>&nbsp;        values.put(PHOTO_PATH_COLUMN, eligibleCouple.photoPath());</b>
+<b class="nc"><i>159</i>&nbsp;        return values;</b>
+<i>160</i>&nbsp;    }
+<i>161</i>&nbsp;
+<i>162</i>&nbsp;    private List&lt;EligibleCouple&gt; readAllEligibleCouples(Cursor cursor) {
+<b class="nc"><i>163</i>&nbsp;        cursor.moveToFirst();</b>
+<b class="nc"><i>164</i>&nbsp;        List&lt;EligibleCouple&gt; eligibleCouples = new ArrayList&lt;EligibleCouple&gt;();</b>
+<b class="nc"><i>165</i>&nbsp;        while (!cursor.isAfterLast()) {</b>
+<b class="nc"><i>166</i>&nbsp;            EligibleCouple eligibleCouple = new EligibleCouple(cursor.getString(0), cursor.getString(1), cursor.getString(2),</b>
+<b class="nc"><i>167</i>&nbsp;                    cursor.getString(3), cursor.getString(4), cursor.getString(5),</b>
+<b class="nc"><i>168</i>&nbsp;                    new Gson().&lt;Map&lt;String, String&gt;&gt;fromJson(cursor.getString(7), new TypeToken&lt;Map&lt;String, String&gt;&gt;() {</b>
+<b class="nc"><i>169</i>&nbsp;                    }.getType()));</b>
+<b class="nc"><i>170</i>&nbsp;            eligibleCouple.setIsClosed(Boolean.valueOf(cursor.getString(8)));</b>
+<b class="nc"><i>171</i>&nbsp;            if (Boolean.valueOf(cursor.getString(6)))</b>
+<b class="nc"><i>172</i>&nbsp;                eligibleCouple.asOutOfArea();</b>
+<b class="nc"><i>173</i>&nbsp;            eligibleCouple.withPhotoPath(cursor.getString(9));</b>
+<b class="nc"><i>174</i>&nbsp;            eligibleCouples.add(eligibleCouple);</b>
+<b class="nc"><i>175</i>&nbsp;            cursor.moveToNext();</b>
+<b class="nc"><i>176</i>&nbsp;        }</b>
+<b class="nc"><i>177</i>&nbsp;        cursor.close();</b>
+<b class="nc"><i>178</i>&nbsp;        return eligibleCouples;</b>
+<i>179</i>&nbsp;    }
+<i>180</i>&nbsp;
+<i>181</i>&nbsp;    private String insertPlaceholdersForInClause(int length) {
+<b class="nc"><i>182</i>&nbsp;        return repeat(&quot;?&quot;, &quot;,&quot;, length);</b>
+<i>183</i>&nbsp;    }
+<i>184</i>&nbsp;
+<i>185</i>&nbsp;    public long fpCount() {
+<b class="nc"><i>186</i>&nbsp;        SQLiteDatabase database = masterRepository.getReadableDatabase();</b>
+<b class="nc"><i>187</i>&nbsp;        Cursor cursor = database.rawQuery(format(&quot;SELECT details FROM {0} WHERE {1} = &#39;&#39;{2}&#39;&#39; and {3} = &#39;&#39;{4}&#39;&#39;&quot;,</b>
+<i>188</i>&nbsp;                EC_TABLE_NAME, IS_OUT_OF_AREA_COLUMN, IN_AREA, IS_CLOSED_COLUMN, NOT_CLOSED), new String[0]);
+<b class="nc"><i>189</i>&nbsp;        List&lt;Map&lt;String, String&gt;&gt; detailsList = readDetailsList(cursor);</b>
+<b class="nc"><i>190</i>&nbsp;        return getECsUsingFPMethod(detailsList);</b>
+<i>191</i>&nbsp;    }
+<i>192</i>&nbsp;
+<i>193</i>&nbsp;    private long getECsUsingFPMethod(List&lt;Map&lt;String, String&gt;&gt; detailsList) {
+<b class="nc"><i>194</i>&nbsp;        long fpCount = 0;</b>
+<b class="nc"><i>195</i>&nbsp;        for (Map&lt;String, String&gt; details : detailsList) {</b>
+<b class="nc"><i>196</i>&nbsp;            if (!(isBlank(details.get(AllConstants.ECRegistrationFields.CURRENT_FP_METHOD)) || &quot;none&quot;.equalsIgnoreCase(details.get(AllConstants.ECRegistrationFields.CURRENT_FP_METHOD)))) {</b>
+<b class="nc"><i>197</i>&nbsp;                fpCount++;</b>
+<i>198</i>&nbsp;            }
+<b class="nc"><i>199</i>&nbsp;        }</b>
+<b class="nc"><i>200</i>&nbsp;        return fpCount;</b>
+<i>201</i>&nbsp;    }
+<i>202</i>&nbsp;
+<i>203</i>&nbsp;    private List&lt;Map&lt;String, String&gt;&gt; readDetailsList(Cursor cursor) {
+<b class="nc"><i>204</i>&nbsp;        cursor.moveToFirst();</b>
+<b class="nc"><i>205</i>&nbsp;        List&lt;Map&lt;String, String&gt;&gt; detailsList = new ArrayList&lt;Map&lt;String, String&gt;&gt;();</b>
+<b class="nc"><i>206</i>&nbsp;        while (!cursor.isAfterLast()) {</b>
+<b class="nc"><i>207</i>&nbsp;            String detailsJSON = cursor.getString(0);</b>
+<b class="nc"><i>208</i>&nbsp;            detailsList.add(new Gson().&lt;Map&lt;String, String&gt;&gt;fromJson(detailsJSON, new TypeToken&lt;HashMap&lt;String, String&gt;&gt;() {</b>
+<b class="nc"><i>209</i>&nbsp;            }.getType()));</b>
+<b class="nc"><i>210</i>&nbsp;            cursor.moveToNext();</b>
+<b class="nc"><i>211</i>&nbsp;        }</b>
+<b class="nc"><i>212</i>&nbsp;        cursor.close();</b>
+<b class="nc"><i>213</i>&nbsp;        return detailsList;</b>
+<i>214</i>&nbsp;    }
+<i>215</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

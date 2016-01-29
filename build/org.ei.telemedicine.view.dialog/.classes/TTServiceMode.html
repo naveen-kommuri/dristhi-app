@@ -1,0 +1,291 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: TTServiceMode</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.dialog</a> ]
+</div>
+
+<h1>Coverage Summary for Class: TTServiceMode (org.ei.telemedicine.view.dialog)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TTServiceMode</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 70)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">TTServiceMode$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 75)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.dialog;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static android.view.View.VISIBLE;
+<i>4</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.TT;
+<i>5</i>&nbsp;import static org.ei.telemedicine.Context.getInstance;
+<i>6</i>&nbsp;import static org.ei.telemedicine.domain.ANCServiceType.TT_1;
+<i>7</i>&nbsp;import static org.ei.telemedicine.domain.ANCServiceType.TT_2;
+<i>8</i>&nbsp;import static org.ei.telemedicine.domain.ANCServiceType.TT_BOOSTER;
+<i>9</i>&nbsp;import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import org.ei.telemedicine.R;
+<i>12</i>&nbsp;import org.ei.telemedicine.domain.ANCServiceType;
+<i>13</i>&nbsp;import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
+<i>14</i>&nbsp;import org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+<i>15</i>&nbsp;import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
+<i>16</i>&nbsp;import org.ei.telemedicine.view.contract.AlertDTO;
+<i>17</i>&nbsp;import org.ei.telemedicine.view.contract.AlertStatus;
+<i>18</i>&nbsp;import org.ei.telemedicine.view.contract.ChildSmartRegisterClient;
+<i>19</i>&nbsp;import org.ei.telemedicine.view.contract.FPSmartRegisterClient;
+<i>20</i>&nbsp;import org.ei.telemedicine.view.contract.ServiceProvidedDTO;
+<i>21</i>&nbsp;import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
+<i>22</i>&nbsp;import org.ei.telemedicine.view.viewHolder.NativeANCSmartRegisterViewHolder;
+<i>23</i>&nbsp;import org.ei.telemedicine.view.viewHolder.NativeChildSmartRegisterViewHolder;
+<i>24</i>&nbsp;import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
+<i>25</i>&nbsp;import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
+<i>26</i>&nbsp;import org.ei.telemedicine.view.viewHolder.OnClickFormLauncher;
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;import android.view.View;
+<i>29</i>&nbsp;import android.widget.TextView;
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;public class TTServiceMode extends ServiceModeOption {
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    public TTServiceMode(SmartRegisterClientsProvider provider) {
+<b class="nc"><i>34</i>&nbsp;        super(provider);</b>
+<b class="nc"><i>35</i>&nbsp;    }</b>
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    @Override
+<i>38</i>&nbsp;    public String name() {
+<b class="nc"><i>39</i>&nbsp;        return getInstance().getStringResource(R.string.anc_service_mode_tt);</b>
+<i>40</i>&nbsp;    }
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    @Override
+<i>43</i>&nbsp;    public ClientsHeaderProvider getHeaderProvider() {
+<b class="nc"><i>44</i>&nbsp;        return new ClientsHeaderProvider() {</b>
+<i>45</i>&nbsp;            @Override
+<i>46</i>&nbsp;            public int count() {
+<b class="nc"><i>47</i>&nbsp;                return 6;</b>
+<i>48</i>&nbsp;            }
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;            @Override
+<i>51</i>&nbsp;            public int weightSum() {
+<b class="nc"><i>52</i>&nbsp;                return 100;</b>
+<i>53</i>&nbsp;            }
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;            @Override
+<i>56</i>&nbsp;            public int[] weights() {
+<b class="nc"><i>57</i>&nbsp;                return new int[]{21, 9, 12, 19, 19, 20, 20};</b>
+<i>58</i>&nbsp;            }
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;            @Override
+<i>61</i>&nbsp;            public int[] headerTextResourceIds() {
+<b class="nc"><i>62</i>&nbsp;                return new int[]{</b>
+<i>63</i>&nbsp;                        R.string.header_name, R.string.header_id, R.string.header_anc_status,
+<i>64</i>&nbsp;                        R.string.header_tt_1, R.string.header_tt_2, R.string.header_tt_booster};
+<i>65</i>&nbsp;            }
+<i>66</i>&nbsp;        };
+<i>67</i>&nbsp;    }
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;    @Override
+<i>70</i>&nbsp;    public void setupListView(ChildSmartRegisterClient client, NativeChildSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
+<i>71</i>&nbsp;
+<b class="nc"><i>72</i>&nbsp;    }</b>
+<i>73</i>&nbsp;
+<i>74</i>&nbsp;    @Override
+<i>75</i>&nbsp;    public void setupListView(ANCSmartRegisterClient client,
+<i>76</i>&nbsp;                              NativeANCSmartRegisterViewHolder viewHolder,
+<i>77</i>&nbsp;                              View.OnClickListener clientSectionClickListener) {
+<b class="nc"><i>78</i>&nbsp;        viewHolder.serviceModeTTView().setVisibility(VISIBLE);</b>
+<i>79</i>&nbsp;
+<b class="nc"><i>80</i>&nbsp;        setupTT1Layout(client, viewHolder);</b>
+<b class="nc"><i>81</i>&nbsp;        setupTT2Layout(client, viewHolder);</b>
+<b class="nc"><i>82</i>&nbsp;        setupTTBoosterLayout(client, viewHolder);</b>
+<b class="nc"><i>83</i>&nbsp;    }</b>
+<i>84</i>&nbsp;
+<i>85</i>&nbsp;    @Override
+<i>86</i>&nbsp;    public void setupListView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
+<i>87</i>&nbsp;
+<b class="nc"><i>88</i>&nbsp;    }</b>
+<i>89</i>&nbsp;
+<i>90</i>&nbsp;    @Override
+<i>91</i>&nbsp;    public void setupListView(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
+<i>92</i>&nbsp;
+<b class="nc"><i>93</i>&nbsp;    }</b>
+<i>94</i>&nbsp;
+<i>95</i>&nbsp;
+<i>96</i>&nbsp;    public void setupTT1Layout(ANCSmartRegisterClient client,
+<i>97</i>&nbsp;                               NativeANCSmartRegisterViewHolder viewHolder) {
+<b class="nc"><i>98</i>&nbsp;        AlertDTO ttAlert = client.getAlert(ANCServiceType.TT_1);</b>
+<b class="nc"><i>99</i>&nbsp;        ServiceProvidedDTO ttServiceProvided = client.getServiceProvidedDTO(ANCServiceType.TT_1.serviceName());</b>
+<b class="nc"><i>100</i>&nbsp;        viewHolder.hideViewsInTT1Layout();</b>
+<b class="nc"><i>101</i>&nbsp;        if (ttServiceProvided != null) {</b>
+<b class="nc"><i>102</i>&nbsp;            setServiceProvidedLayout(ttServiceProvided,</b>
+<b class="nc"><i>103</i>&nbsp;                    viewHolder.layoutTT1Alert(), viewHolder.txtTT1DoneTick(),</b>
+<b class="nc"><i>104</i>&nbsp;                    viewHolder.txtTT1Type(), viewHolder.txtTT1Date());</b>
+<b class="nc"><i>105</i>&nbsp;        } else if (ttAlert != emptyAlert &amp;&amp; ttAlert.name().equalsIgnoreCase(TT_1.serviceName())) {</b>
+<b class="nc"><i>106</i>&nbsp;            setAlertLayout(viewHolder.layoutTT1Alert(),</b>
+<b class="nc"><i>107</i>&nbsp;                    viewHolder.txtTT1Type(),</b>
+<b class="nc"><i>108</i>&nbsp;                    viewHolder.txtTT1Date(), client</b>
+<i>109</i>&nbsp;                    , ttAlert);
+<i>110</i>&nbsp;        }
+<b class="nc"><i>111</i>&nbsp;    }</b>
+<i>112</i>&nbsp;
+<i>113</i>&nbsp;    public void setupTT2Layout(ANCSmartRegisterClient client,
+<i>114</i>&nbsp;                               NativeANCSmartRegisterViewHolder viewHolder) {
+<b class="nc"><i>115</i>&nbsp;        AlertDTO ttAlert = client.getAlert(ANCServiceType.TT_2);</b>
+<b class="nc"><i>116</i>&nbsp;        ServiceProvidedDTO ttServiceProvided = client.getServiceProvidedDTO(ANCServiceType.TT_2.serviceName());</b>
+<b class="nc"><i>117</i>&nbsp;        viewHolder.hideViewsInTT2Layout();</b>
+<b class="nc"><i>118</i>&nbsp;        if (ttServiceProvided != null) {</b>
+<b class="nc"><i>119</i>&nbsp;            setServiceProvidedLayout(ttServiceProvided,</b>
+<b class="nc"><i>120</i>&nbsp;                    viewHolder.layoutTT2Alert(), viewHolder.txtTT2DoneTick(),</b>
+<b class="nc"><i>121</i>&nbsp;                    viewHolder.txtTT2Type(), viewHolder.txtTT2Date());</b>
+<b class="nc"><i>122</i>&nbsp;        } else if (ttAlert != emptyAlert &amp;&amp; ttAlert.name().equalsIgnoreCase(TT_2.serviceName())) {</b>
+<b class="nc"><i>123</i>&nbsp;            setAlertLayout(viewHolder.layoutTT2Alert(),</b>
+<b class="nc"><i>124</i>&nbsp;                    viewHolder.txtTT2Type(),</b>
+<b class="nc"><i>125</i>&nbsp;                    viewHolder.txtTT2Date(), client</b>
+<i>126</i>&nbsp;                    , ttAlert);
+<i>127</i>&nbsp;        }
+<b class="nc"><i>128</i>&nbsp;    }</b>
+<i>129</i>&nbsp;
+<i>130</i>&nbsp;    public void setupTTBoosterLayout(ANCSmartRegisterClient client,
+<i>131</i>&nbsp;                                     NativeANCSmartRegisterViewHolder viewHolder) {
+<b class="nc"><i>132</i>&nbsp;        AlertDTO ttAlert = client.getAlert(ANCServiceType.TT_BOOSTER);</b>
+<b class="nc"><i>133</i>&nbsp;        ServiceProvidedDTO ttServiceProvided = client.getServiceProvidedDTO(ANCServiceType.TT_BOOSTER.serviceName());</b>
+<b class="nc"><i>134</i>&nbsp;        viewHolder.hideViewsInTTBoosterLayout();</b>
+<b class="nc"><i>135</i>&nbsp;        if (ttServiceProvided != null) {</b>
+<b class="nc"><i>136</i>&nbsp;            setServiceProvidedLayout(ttServiceProvided,</b>
+<b class="nc"><i>137</i>&nbsp;                    viewHolder.layoutTTBoosterAlert(), viewHolder.txtTTBoosterDoneTick(),</b>
+<b class="nc"><i>138</i>&nbsp;                    viewHolder.txtTTBoosterType(), viewHolder.txtTTBoosterDate());</b>
+<b class="nc"><i>139</i>&nbsp;        } else if (ttAlert != emptyAlert &amp;&amp; ttAlert.name().equalsIgnoreCase(TT_BOOSTER.serviceName())) {</b>
+<b class="nc"><i>140</i>&nbsp;            setAlertLayout(viewHolder.layoutTTBoosterAlert(),</b>
+<b class="nc"><i>141</i>&nbsp;                    viewHolder.txtTTBoosterType(),</b>
+<b class="nc"><i>142</i>&nbsp;                    viewHolder.txtTTBoosterDate(), client</b>
+<i>143</i>&nbsp;                    , ttAlert);
+<i>144</i>&nbsp;        }
+<b class="nc"><i>145</i>&nbsp;    }</b>
+<i>146</i>&nbsp;
+<i>147</i>&nbsp;    private void setServiceProvidedLayout(ServiceProvidedDTO ttServiceProvided, View serviceProvidedLayout,
+<i>148</i>&nbsp;                                          TextView txtDoneTick, TextView txtTTType, TextView txtTTDate) {
+<b class="nc"><i>149</i>&nbsp;        serviceProvidedLayout.setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>150</i>&nbsp;        serviceProvidedLayout.setBackgroundResource(R.color.status_bar_text_almost_white);</b>
+<i>151</i>&nbsp;
+<b class="nc"><i>152</i>&nbsp;        txtDoneTick.setVisibility(View.VISIBLE);</b>
+<i>153</i>&nbsp;
+<b class="nc"><i>154</i>&nbsp;        txtTTType.setVisibility(VISIBLE);</b>
+<b class="nc"><i>155</i>&nbsp;        txtTTType.setText(ttServiceProvided.name());</b>
+<b class="nc"><i>156</i>&nbsp;        txtTTType.setTextColor(getInstance().getColorResource(R.color.text_black));</b>
+<i>157</i>&nbsp;
+<b class="nc"><i>158</i>&nbsp;        txtTTDate.setVisibility(VISIBLE);</b>
+<b class="nc"><i>159</i>&nbsp;        txtTTDate.setText(&quot;On &quot; + ttServiceProvided.shortDate());</b>
+<b class="nc"><i>160</i>&nbsp;        txtTTDate.setTextColor(getInstance().getColorResource(R.color.text_black));</b>
+<b class="nc"><i>161</i>&nbsp;    }</b>
+<i>162</i>&nbsp;
+<i>163</i>&nbsp;    private OnClickFormLauncher launchForm(String formName, ANCSmartRegisterClient client, AlertDTO alert) {
+<b class="nc"><i>164</i>&nbsp;        return provider().newFormLauncher(formName, client.entityId(), &quot;{\&quot;entityId\&quot;:\&quot;&quot; + client.entityId() + &quot;\&quot;,\&quot;alertName\&quot;:\&quot;&quot; + alert.name() + &quot;\&quot;}&quot;);</b>
+<i>165</i>&nbsp;    }
+<i>166</i>&nbsp;
+<i>167</i>&nbsp;    private void setAlertLayout(View layout, TextView typeView,
+<i>168</i>&nbsp;                                TextView dateView, ANCSmartRegisterClient client, AlertDTO alert) {
+<b class="nc"><i>169</i>&nbsp;        layout.setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>170</i>&nbsp;        layout.setOnClickListener(launchForm(TT, client, alert));</b>
+<b class="nc"><i>171</i>&nbsp;        typeView.setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>172</i>&nbsp;        dateView.setVisibility(View.VISIBLE);</b>
+<b class="nc"><i>173</i>&nbsp;        typeView.setText(alert.name());</b>
+<b class="nc"><i>174</i>&nbsp;        dateView.setText(&quot;Due &quot; + alert.shortDate());</b>
+<i>175</i>&nbsp;
+<b class="nc"><i>176</i>&nbsp;        final AlertStatus alertStatus = alert.alertStatus();</b>
+<b class="nc"><i>177</i>&nbsp;        layout.setBackgroundResource(alertStatus.backgroundColorResourceId());</b>
+<b class="nc"><i>178</i>&nbsp;        typeView.setTextColor(alertStatus.fontColor());</b>
+<b class="nc"><i>179</i>&nbsp;        dateView.setTextColor(alertStatus.fontColor());</b>
+<b class="nc"><i>180</i>&nbsp;    }</b>
+<i>181</i>&nbsp;
+<i>182</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,202 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: FPPrioritizationAllECServiceMode</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.dialog</a> ]
+</div>
+
+<h1>Coverage Summary for Class: FPPrioritizationAllECServiceMode (org.ei.telemedicine.view.dialog)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FPPrioritizationAllECServiceMode</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 16)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">FPPrioritizationAllECServiceMode$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 21)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.dialog;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static android.view.View.VISIBLE;
+<i>4</i>&nbsp;import static org.ei.telemedicine.Context.getInstance;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import org.ei.telemedicine.R;
+<i>7</i>&nbsp;import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
+<i>8</i>&nbsp;import org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+<i>9</i>&nbsp;import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
+<i>10</i>&nbsp;import org.ei.telemedicine.view.contract.ChildSmartRegisterClient;
+<i>11</i>&nbsp;import org.ei.telemedicine.view.contract.FPSmartRegisterClient;
+<i>12</i>&nbsp;import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
+<i>13</i>&nbsp;import org.ei.telemedicine.view.viewHolder.NativeANCSmartRegisterViewHolder;
+<i>14</i>&nbsp;import org.ei.telemedicine.view.viewHolder.NativeChildSmartRegisterViewHolder;
+<i>15</i>&nbsp;import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
+<i>16</i>&nbsp;import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;import android.view.View;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;public class FPPrioritizationAllECServiceMode extends ServiceModeOption {
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    public FPPrioritizationAllECServiceMode(SmartRegisterClientsProvider provider) {
+<b class="nc"><i>23</i>&nbsp;        super(provider);</b>
+<b class="nc"><i>24</i>&nbsp;    }</b>
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    @Override
+<i>27</i>&nbsp;    public String name() {
+<b class="nc"><i>28</i>&nbsp;        return getInstance().getStringResource(R.string.fp_prioritization_all_ec_service_mode);</b>
+<i>29</i>&nbsp;    }
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    @Override
+<i>32</i>&nbsp;    public ClientsHeaderProvider getHeaderProvider() {
+<b class="nc"><i>33</i>&nbsp;        return new ClientsHeaderProvider() {</b>
+<i>34</i>&nbsp;            @Override
+<i>35</i>&nbsp;            public int count() {
+<b class="nc"><i>36</i>&nbsp;                return 4;</b>
+<i>37</i>&nbsp;            }
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;            @Override
+<i>40</i>&nbsp;            public int weightSum() {
+<b class="nc"><i>41</i>&nbsp;                return 100;</b>
+<i>42</i>&nbsp;            }
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;            @Override
+<i>45</i>&nbsp;            public int[] weights() {
+<b class="nc"><i>46</i>&nbsp;                return new int[]{24, 6, 11, 59};</b>
+<i>47</i>&nbsp;            }
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;            @Override
+<i>50</i>&nbsp;            public int[] headerTextResourceIds() {
+<b class="nc"><i>51</i>&nbsp;                return new int[]{</b>
+<i>52</i>&nbsp;                        R.string.header_name, R.string.header_ec_no, R.string.header_gplsa,
+<i>53</i>&nbsp;                        R.string.header_fp_prioritization_risks};
+<i>54</i>&nbsp;            }
+<i>55</i>&nbsp;        };
+<i>56</i>&nbsp;    }
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    @Override
+<i>59</i>&nbsp;    public void setupListView(FPSmartRegisterClient client,
+<i>60</i>&nbsp;                              NativeFPSmartRegisterViewHolder viewHolder,
+<i>61</i>&nbsp;                              View.OnClickListener clientSectionClickListener) {
+<b class="nc"><i>62</i>&nbsp;        viewHolder.serviceModeFPPrioritization().setVisibility(VISIBLE);</b>
+<b class="nc"><i>63</i>&nbsp;        setupPrioritizationRisksView(client, viewHolder);</b>
+<b class="nc"><i>64</i>&nbsp;        setupAddFPView(client, clientSectionClickListener, viewHolder);</b>
+<i>65</i>&nbsp;//        viewHolder.lytFPVideosView().setOnClickListener(clientSectionClickListener);
+<b class="nc"><i>66</i>&nbsp;    }</b>
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;    private void setupPrioritizationRisksView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder) {
+<b class="nc"><i>69</i>&nbsp;        viewHolder.txtPrioritizationRiskView().setText(client.highPriorityReason());</b>
+<b class="nc"><i>70</i>&nbsp;    }</b>
+<i>71</i>&nbsp;
+<i>72</i>&nbsp;    private void setupAddFPView(FPSmartRegisterClient client, View.OnClickListener clientSectionClickListener, NativeFPSmartRegisterViewHolder viewHolder) {
+<b class="nc"><i>73</i>&nbsp;        viewHolder.lytAddFPView().setOnClickListener(clientSectionClickListener);</b>
+<b class="nc"><i>74</i>&nbsp;        viewHolder.lytAddFPView().setTag(client);</b>
+<b class="nc"><i>75</i>&nbsp;    }</b>
+<i>76</i>&nbsp;
+<i>77</i>&nbsp;    @Override
+<i>78</i>&nbsp;    public void setupListView(ChildSmartRegisterClient client,
+<i>79</i>&nbsp;                              NativeChildSmartRegisterViewHolder viewHolder,
+<i>80</i>&nbsp;                              View.OnClickListener clientSectionClickListener) {
+<i>81</i>&nbsp;
+<b class="nc"><i>82</i>&nbsp;    }</b>
+<i>83</i>&nbsp;
+<i>84</i>&nbsp;    @Override
+<i>85</i>&nbsp;    public void setupListView(ANCSmartRegisterClient client, NativeANCSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
+<i>86</i>&nbsp;
+<b class="nc"><i>87</i>&nbsp;    }</b>
+<i>88</i>&nbsp;
+<i>89</i>&nbsp;    @Override
+<i>90</i>&nbsp;    public void setupListView(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
+<i>91</i>&nbsp;
+<b class="nc"><i>92</i>&nbsp;    }</b>
+<i>93</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

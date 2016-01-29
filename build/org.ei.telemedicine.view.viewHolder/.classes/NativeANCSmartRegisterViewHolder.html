@@ -1,0 +1,875 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: NativeANCSmartRegisterViewHolder</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.viewHolder</a> ]
+</div>
+
+<h1>Coverage Summary for Class: NativeANCSmartRegisterViewHolder (org.ei.telemedicine.view.viewHolder)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">NativeANCSmartRegisterViewHolder</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 117)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 307)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.viewHolder;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.R;
+<i>4</i>&nbsp;import org.ei.telemedicine.view.customControls.ANCClientIdDetailsView;
+<i>5</i>&nbsp;import org.ei.telemedicine.view.customControls.ANCStatusView;
+<i>6</i>&nbsp;import org.ei.telemedicine.view.customControls.ClientProfileView;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import android.view.View;
+<i>9</i>&nbsp;import android.view.ViewGroup;
+<i>10</i>&nbsp;import android.widget.ImageButton;
+<i>11</i>&nbsp;import android.widget.ImageView;
+<i>12</i>&nbsp;import android.widget.LinearLayout;
+<i>13</i>&nbsp;import android.widget.TextView;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;public class NativeANCSmartRegisterViewHolder {
+<i>16</i>&nbsp;    private final ClientProfileView profileInfoLayout;
+<i>17</i>&nbsp;    private final ANCClientIdDetailsView ancClientIdDetailsView;
+<i>18</i>&nbsp;    private final ANCStatusView ancStatusView;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    private final TextView btnAncVisitView;
+<i>21</i>&nbsp;    private final View layoutANCVisitAlert;
+<i>22</i>&nbsp;    private final TextView txtANCVisitDoneOn;
+<i>23</i>&nbsp;    private final TextView txtANCVisitDueType;
+<i>24</i>&nbsp;    private final TextView txtANCVisitAlertDueOn;
+<i>25</i>&nbsp;    private final ViewGroup serviceModeViewsHolder;
+<i>26</i>&nbsp;    private final ViewGroup serviceModeOverviewView;
+<i>27</i>&nbsp;    private final TextView txtRiskFactors;
+<i>28</i>&nbsp;    private final TextView btnTTView;
+<i>29</i>&nbsp;    private final View layoutTTAlert;
+<i>30</i>&nbsp;    private final TextView txtTTDoneOn;
+<i>31</i>&nbsp;    private final TextView txtTTDueType;
+<i>32</i>&nbsp;    private final TextView txtTTDueOn;
+<i>33</i>&nbsp;    private final TextView btnIFAView;
+<i>34</i>&nbsp;    private final View layoutIFAAlert;
+<i>35</i>&nbsp;    private final TextView txtIFADoneOn;
+<i>36</i>&nbsp;    private final TextView txtIFADueType;
+<i>37</i>&nbsp;    private final TextView txtIFADueOn;
+<i>38</i>&nbsp;    private final ImageButton btnEditView;
+<i>39</i>&nbsp;    private final ViewGroup serviceModeANCVisitsView;
+<i>40</i>&nbsp;    private final View layoutANCVisit1Alert;
+<i>41</i>&nbsp;    private final View layoutANCVisit1ServiceProvided;
+<i>42</i>&nbsp;    private final TextView txtANCVisit1DueType;
+<i>43</i>&nbsp;    private final TextView txtANCVisit1DueOn;
+<i>44</i>&nbsp;    private final TextView txtANCVisit1DoneDate;
+<i>45</i>&nbsp;    private final TextView lblANCVisit1Bp;
+<i>46</i>&nbsp;    private final TextView lblANCVisit1Weight;
+<i>47</i>&nbsp;    private final TextView txtANCVisit1BpValue;
+<i>48</i>&nbsp;    private final TextView txtANCVisit1WeightValue;
+<i>49</i>&nbsp;    private final View layoutANCVisit2Alert;
+<i>50</i>&nbsp;    private final View layoutANCVisit2ServiceProvided;
+<i>51</i>&nbsp;    private final TextView txtANCVisit2DueType;
+<i>52</i>&nbsp;    private final TextView txtANCVisit2DueOn;
+<i>53</i>&nbsp;    private final TextView txtANCVisit2DoneDate;
+<i>54</i>&nbsp;    private final TextView lblANCVisit2Bp;
+<i>55</i>&nbsp;    private final TextView lblANCVisit2Weight;
+<i>56</i>&nbsp;    private final TextView txtANCVisit2BpValue;
+<i>57</i>&nbsp;    private final TextView txtANCVisit2WeightValue;
+<i>58</i>&nbsp;    private final View layoutANCVisit3Alert;
+<i>59</i>&nbsp;    private final View layoutANCVisit3ServiceProvided;
+<i>60</i>&nbsp;    private final TextView txtANCVisit3DueType;
+<i>61</i>&nbsp;    private final TextView txtANCVisit3DueOn;
+<i>62</i>&nbsp;    private final TextView txtANCVisit3DoneDate;
+<i>63</i>&nbsp;    private final TextView lblANCVisit3Bp;
+<i>64</i>&nbsp;    private final TextView lblANCVisit3Weight;
+<i>65</i>&nbsp;    private final TextView txtANCVisit3BpValue;
+<i>66</i>&nbsp;    private final TextView txtANCVisit3WeightValue;
+<i>67</i>&nbsp;    private final TextView btnOtherANCVisit;
+<i>68</i>&nbsp;    private final View layoutANCVisit4Alert;
+<i>69</i>&nbsp;    private final View layoutANCVisit4ServiceProvided;
+<i>70</i>&nbsp;    private final TextView txtANCVisit4DueType;
+<i>71</i>&nbsp;    private final TextView txtANCVisit4DueOn;
+<i>72</i>&nbsp;    private final TextView txtANCVisit4DoneDate;
+<i>73</i>&nbsp;    private final TextView lblANCVisit4Bp;
+<i>74</i>&nbsp;    private final TextView lblANCVisit4Weight;
+<i>75</i>&nbsp;    private final TextView txtANCVisit4BpValue;
+<i>76</i>&nbsp;    private final TextView txtANCVisit4WeightValue;
+<i>77</i>&nbsp;    private final ViewGroup serviceModeTTView;
+<i>78</i>&nbsp;    private final View layoutTT1Alert;
+<i>79</i>&nbsp;    private final TextView txtTT1DoneTick;
+<i>80</i>&nbsp;    private final TextView txtTT1Type;
+<i>81</i>&nbsp;    private final TextView txtTT1Date;
+<i>82</i>&nbsp;    private final View layoutTT2Alert;
+<i>83</i>&nbsp;    private final TextView txtTT2DoneTick;
+<i>84</i>&nbsp;    private final TextView txtTT2Type;
+<i>85</i>&nbsp;    private final TextView txtTT2Date;
+<i>86</i>&nbsp;    private final View layoutTTBoosterAlert;
+<i>87</i>&nbsp;    private final TextView txtTTBoosterDoneTick;
+<i>88</i>&nbsp;    private final TextView txtTTBoosterType;
+<i>89</i>&nbsp;    private final TextView txtTTBoosterDate;
+<i>90</i>&nbsp;    private final ViewGroup serviceModeHbIFAViewsHolder;
+<i>91</i>&nbsp;    private final LinearLayout layoutHbDetailsViewHolder;
+<i>92</i>&nbsp;    private final View layoutHbAlert;
+<i>93</i>&nbsp;    private final TextView txtHbDueType;
+<i>94</i>&nbsp;    private final TextView txtHbDueOn;
+<i>95</i>&nbsp;    private final TextView btnHbView;
+<i>96</i>&nbsp;    private final LinearLayout layoutIFADetailsViewHolder;
+<i>97</i>&nbsp;    private final View layoutIFAAlertInHbIFAServiceMode;
+<i>98</i>&nbsp;    private final TextView txtIFADoneTick;
+<i>99</i>&nbsp;    private final TextView txtIFAType;
+<i>100</i>&nbsp;    private final TextView txtIFADate;
+<i>101</i>&nbsp;    private final ViewGroup serviceModeDeliveryPlanViewsHolder;
+<i>102</i>&nbsp;    private final View layoutDeliveryPlanAlert;
+<i>103</i>&nbsp;    private final TextView txtDeliveryPlanDueType;
+<i>104</i>&nbsp;    private final TextView txtDeliveryPlanDueOn;
+<i>105</i>&nbsp;    private final View layoutDeliveryPlanServiceProvided;
+<i>106</i>&nbsp;    private final TextView lblDeliveryPlace;
+<i>107</i>&nbsp;    private final TextView txtDeliveryPlace;
+<i>108</i>&nbsp;    private final TextView txtTransport;
+<i>109</i>&nbsp;    private final TextView lblTransport;
+<i>110</i>&nbsp;    private final TextView lblHasCompanion;
+<i>111</i>&nbsp;    private final TextView txtHasCompanion;
+<i>112</i>&nbsp;    private final TextView lblAshaPhoneNumber;
+<i>113</i>&nbsp;    private final TextView txtAshaPhoneNumber;
+<i>114</i>&nbsp;    private final TextView lblContactPhoneNumber;
+<i>115</i>&nbsp;    private final TextView txtContactPhoneNumber;
+<i>116</i>&nbsp;    private final TextView txtRisksReviewed;
+<i>117</i>&nbsp;    private final TextView lblRisksReviewed;
+<i>118</i>&nbsp;    private final ImageView imgDeliveryPlaceStatus;
+<i>119</i>&nbsp;    private final ImageView imgTransportStatus;
+<i>120</i>&nbsp;    private final ImageView imgHasCompanionStatus;
+<i>121</i>&nbsp;    private final ImageView imgAshaPhoneNumberStatus;
+<i>122</i>&nbsp;    private final ImageView imgContactPhoneNumberStatus;
+<i>123</i>&nbsp;    private final ImageView imgRisksReviewedStatus;
+<i>124</i>&nbsp;
+<b class="nc"><i>125</i>&nbsp;    public NativeANCSmartRegisterViewHolder(ViewGroup itemView) {</b>
+<b class="nc"><i>126</i>&nbsp;        profileInfoLayout = (ClientProfileView) itemView.findViewById(R.id.profile_info_layout);</b>
+<b class="nc"><i>127</i>&nbsp;        profileInfoLayout.initialize();</b>
+<i>128</i>&nbsp;
+<b class="nc"><i>129</i>&nbsp;        ancClientIdDetailsView = (ANCClientIdDetailsView) itemView.findViewById(R.id.client_id_details_layout);</b>
+<b class="nc"><i>130</i>&nbsp;        ancClientIdDetailsView.initialize();</b>
+<i>131</i>&nbsp;
+<b class="nc"><i>132</i>&nbsp;        ancStatusView = (ANCStatusView) itemView.findViewById(R.id.client_status_layout);</b>
+<b class="nc"><i>133</i>&nbsp;        ancStatusView.initialize();</b>
+<i>134</i>&nbsp;
+<b class="nc"><i>135</i>&nbsp;        serviceModeViewsHolder = (ViewGroup) itemView.findViewById(R.id.anc_register_service_mode_options_view);</b>
+<b class="nc"><i>136</i>&nbsp;        serviceModeOverviewView = (ViewGroup) serviceModeViewsHolder.findViewById(R.id.overview_service_mode_views);</b>
+<b class="nc"><i>137</i>&nbsp;        serviceModeANCVisitsView = (ViewGroup) serviceModeViewsHolder.findViewById(R.id.anc_visit_service_mode_views);</b>
+<b class="nc"><i>138</i>&nbsp;        serviceModeTTView = (ViewGroup) serviceModeViewsHolder.findViewById(R.id.tt_service_mode_views);</b>
+<b class="nc"><i>139</i>&nbsp;        serviceModeHbIFAViewsHolder = (ViewGroup) serviceModeViewsHolder.findViewById(R.id.hb_ifa_service_mode_views);</b>
+<b class="nc"><i>140</i>&nbsp;        serviceModeDeliveryPlanViewsHolder = (ViewGroup) serviceModeViewsHolder.findViewById(R.id.delivery_plan_service_mode_views);</b>
+<i>141</i>&nbsp;
+<b class="nc"><i>142</i>&nbsp;        txtRiskFactors = (TextView) serviceModeOverviewView.findViewById(R.id.txt_risk_factors);</b>
+<i>143</i>&nbsp;
+<b class="nc"><i>144</i>&nbsp;        btnAncVisitView = (TextView) serviceModeOverviewView.findViewById(R.id.btn_anc_visit);</b>
+<b class="nc"><i>145</i>&nbsp;        layoutANCVisitAlert = serviceModeOverviewView.findViewById(R.id.layout_anc_visit_alert);</b>
+<b class="nc"><i>146</i>&nbsp;        txtANCVisitDoneOn = (TextView) serviceModeOverviewView.findViewById(R.id.txt_anc_visit_on);</b>
+<b class="nc"><i>147</i>&nbsp;        txtANCVisitDueType = (TextView) serviceModeOverviewView.findViewById(R.id.txt_anc_visit_due_type);</b>
+<b class="nc"><i>148</i>&nbsp;        txtANCVisitAlertDueOn = (TextView) serviceModeOverviewView.findViewById(R.id.txt_anc_visit_due_on);</b>
+<i>149</i>&nbsp;
+<b class="nc"><i>150</i>&nbsp;        btnTTView = (TextView) serviceModeOverviewView.findViewById(R.id.btn_tt);</b>
+<b class="nc"><i>151</i>&nbsp;        layoutTTAlert = serviceModeOverviewView.findViewById(R.id.layout_tt_alert);</b>
+<b class="nc"><i>152</i>&nbsp;        txtTTDoneOn = (TextView) serviceModeOverviewView.findViewById(R.id.txt_tt_on);</b>
+<b class="nc"><i>153</i>&nbsp;        txtTTDueType = (TextView) serviceModeOverviewView.findViewById(R.id.txt_tt_due_type);</b>
+<b class="nc"><i>154</i>&nbsp;        txtTTDueOn = (TextView) serviceModeOverviewView.findViewById(R.id.txt_tt_due_on);</b>
+<i>155</i>&nbsp;
+<b class="nc"><i>156</i>&nbsp;        btnIFAView = (TextView) serviceModeOverviewView.findViewById(R.id.btn_ifa);</b>
+<b class="nc"><i>157</i>&nbsp;        layoutIFAAlert = serviceModeOverviewView.findViewById(R.id.layout_ifa_alert);</b>
+<b class="nc"><i>158</i>&nbsp;        txtIFADoneOn = (TextView) serviceModeOverviewView.findViewById(R.id.txt_ifa_on);</b>
+<b class="nc"><i>159</i>&nbsp;        txtIFADueType = (TextView) serviceModeOverviewView.findViewById(R.id.txt_ifa_due_type);</b>
+<b class="nc"><i>160</i>&nbsp;        txtIFADueOn = (TextView) serviceModeOverviewView.findViewById(R.id.txt_ifa_due_on);</b>
+<i>161</i>&nbsp;
+<b class="nc"><i>162</i>&nbsp;        btnEditView = (ImageButton) serviceModeOverviewView.findViewById(R.id.btn_edit);</b>
+<i>163</i>&nbsp;
+<b class="nc"><i>164</i>&nbsp;        layoutANCVisit1Alert = serviceModeANCVisitsView.findViewById(R.id.layout_anc_visit_1_alert);</b>
+<b class="nc"><i>165</i>&nbsp;        layoutANCVisit1ServiceProvided = serviceModeANCVisitsView.findViewById(R.id.layout_anc_visit_1_service_provided);</b>
+<b class="nc"><i>166</i>&nbsp;        txtANCVisit1DueType = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_1_due_type);</b>
+<b class="nc"><i>167</i>&nbsp;        txtANCVisit1DueOn = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_1_due_on);</b>
+<b class="nc"><i>168</i>&nbsp;        txtANCVisit1DoneDate = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_1_done_date);</b>
+<b class="nc"><i>169</i>&nbsp;        lblANCVisit1Bp = (TextView) serviceModeANCVisitsView.findViewById(R.id.lbl_anc_visit_1_bp);</b>
+<b class="nc"><i>170</i>&nbsp;        lblANCVisit1Weight = (TextView) serviceModeANCVisitsView.findViewById(R.id.lbl_anc_visit_1_weight);</b>
+<b class="nc"><i>171</i>&nbsp;        txtANCVisit1BpValue = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_1_bp_value);</b>
+<b class="nc"><i>172</i>&nbsp;        txtANCVisit1WeightValue = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_1_weight_value);</b>
+<i>173</i>&nbsp;
+<b class="nc"><i>174</i>&nbsp;        layoutANCVisit2Alert = serviceModeANCVisitsView.findViewById(R.id.layout_anc_visit_2_alert);</b>
+<b class="nc"><i>175</i>&nbsp;        layoutANCVisit2ServiceProvided = serviceModeANCVisitsView.findViewById(R.id.layout_anc_visit_2_service_provided);</b>
+<b class="nc"><i>176</i>&nbsp;        txtANCVisit2DueType = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_2_due_type);</b>
+<b class="nc"><i>177</i>&nbsp;        txtANCVisit2DueOn = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_2_due_on);</b>
+<b class="nc"><i>178</i>&nbsp;        txtANCVisit2DoneDate = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_2_done_date);</b>
+<b class="nc"><i>179</i>&nbsp;        lblANCVisit2Bp = (TextView) serviceModeANCVisitsView.findViewById(R.id.lbl_anc_visit_2_bp);</b>
+<b class="nc"><i>180</i>&nbsp;        lblANCVisit2Weight = (TextView) serviceModeANCVisitsView.findViewById(R.id.lbl_anc_visit_2_weight);</b>
+<b class="nc"><i>181</i>&nbsp;        txtANCVisit2BpValue = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_2_bp_value);</b>
+<b class="nc"><i>182</i>&nbsp;        txtANCVisit2WeightValue = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_2_weight_value);</b>
+<i>183</i>&nbsp;
+<b class="nc"><i>184</i>&nbsp;        layoutANCVisit3Alert = serviceModeANCVisitsView.findViewById(R.id.layout_anc_visit_3_alert);</b>
+<b class="nc"><i>185</i>&nbsp;        layoutANCVisit3ServiceProvided = serviceModeANCVisitsView.findViewById(R.id.layout_anc_visit_3_service_provided);</b>
+<b class="nc"><i>186</i>&nbsp;        txtANCVisit3DueType = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_3_due_type);</b>
+<b class="nc"><i>187</i>&nbsp;        txtANCVisit3DueOn = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_3_due_on);</b>
+<b class="nc"><i>188</i>&nbsp;        txtANCVisit3DoneDate = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_3_done_date);</b>
+<b class="nc"><i>189</i>&nbsp;        lblANCVisit3Bp = (TextView) serviceModeANCVisitsView.findViewById(R.id.lbl_anc_visit_3_bp);</b>
+<b class="nc"><i>190</i>&nbsp;        lblANCVisit3Weight = (TextView) serviceModeANCVisitsView.findViewById(R.id.lbl_anc_visit_3_weight);</b>
+<b class="nc"><i>191</i>&nbsp;        txtANCVisit3BpValue = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_3_bp_value);</b>
+<b class="nc"><i>192</i>&nbsp;        txtANCVisit3WeightValue = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_3_weight_value);</b>
+<i>193</i>&nbsp;
+<b class="nc"><i>194</i>&nbsp;        layoutANCVisit4Alert = serviceModeANCVisitsView.findViewById(R.id.layout_anc_visit_4_alert);</b>
+<b class="nc"><i>195</i>&nbsp;        layoutANCVisit4ServiceProvided = serviceModeANCVisitsView.findViewById(R.id.layout_anc_visit_4_service_provided);</b>
+<b class="nc"><i>196</i>&nbsp;        txtANCVisit4DueType = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_4_due_type);</b>
+<b class="nc"><i>197</i>&nbsp;        txtANCVisit4DueOn = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_4_due_on);</b>
+<b class="nc"><i>198</i>&nbsp;        txtANCVisit4DoneDate = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_4_done_date);</b>
+<b class="nc"><i>199</i>&nbsp;        lblANCVisit4Bp = (TextView) serviceModeANCVisitsView.findViewById(R.id.lbl_anc_visit_4_bp);</b>
+<b class="nc"><i>200</i>&nbsp;        lblANCVisit4Weight = (TextView) serviceModeANCVisitsView.findViewById(R.id.lbl_anc_visit_4_weight);</b>
+<b class="nc"><i>201</i>&nbsp;        txtANCVisit4BpValue = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_4_bp_value);</b>
+<b class="nc"><i>202</i>&nbsp;        txtANCVisit4WeightValue = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_4_weight_value);</b>
+<i>203</i>&nbsp;
+<b class="nc"><i>204</i>&nbsp;        btnOtherANCVisit = (TextView) serviceModeANCVisitsView.findViewById(R.id.btn_other_anc_visit);</b>
+<i>205</i>&nbsp;
+<b class="nc"><i>206</i>&nbsp;        layoutTT1Alert = serviceModeTTView.findViewById(R.id.layout_tt_1);</b>
+<b class="nc"><i>207</i>&nbsp;        txtTT1DoneTick = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_1_done);</b>
+<b class="nc"><i>208</i>&nbsp;        txtTT1Type = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_1_type);</b>
+<b class="nc"><i>209</i>&nbsp;        txtTT1Date = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_1_date);</b>
+<i>210</i>&nbsp;
+<b class="nc"><i>211</i>&nbsp;        layoutTT2Alert = serviceModeTTView.findViewById(R.id.layout_tt_2);</b>
+<b class="nc"><i>212</i>&nbsp;        txtTT2DoneTick = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_2_done);</b>
+<b class="nc"><i>213</i>&nbsp;        txtTT2Type = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_2_type);</b>
+<b class="nc"><i>214</i>&nbsp;        txtTT2Date = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_2_date);</b>
+<i>215</i>&nbsp;
+<b class="nc"><i>216</i>&nbsp;        layoutTTBoosterAlert = serviceModeTTView.findViewById(R.id.layout_tt_booster);</b>
+<b class="nc"><i>217</i>&nbsp;        txtTTBoosterDoneTick = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_booster_done);</b>
+<b class="nc"><i>218</i>&nbsp;        txtTTBoosterType = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_booster_type);</b>
+<b class="nc"><i>219</i>&nbsp;        txtTTBoosterDate = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_booster_date);</b>
+<i>220</i>&nbsp;
+<b class="nc"><i>221</i>&nbsp;        layoutHbDetailsViewHolder = (LinearLayout) serviceModeHbIFAViewsHolder.findViewById(R.id.layout_hb_details_holder);</b>
+<i>222</i>&nbsp;
+<b class="nc"><i>223</i>&nbsp;        layoutHbAlert = serviceModeHbIFAViewsHolder.findViewById(R.id.layout_hb_alert);</b>
+<b class="nc"><i>224</i>&nbsp;        btnHbView = (TextView) serviceModeHbIFAViewsHolder.findViewById(R.id.btn_hb);</b>
+<b class="nc"><i>225</i>&nbsp;        txtHbDueType = (TextView) serviceModeHbIFAViewsHolder.findViewById(R.id.txt_hb_due_type);</b>
+<b class="nc"><i>226</i>&nbsp;        txtHbDueOn = (TextView) serviceModeHbIFAViewsHolder.findViewById(R.id.txt_hb_due_on);</b>
+<i>227</i>&nbsp;
+<b class="nc"><i>228</i>&nbsp;        layoutIFADetailsViewHolder = (LinearLayout) serviceModeHbIFAViewsHolder.findViewById(R.id.layout_ifa_details_holder);</b>
+<i>229</i>&nbsp;
+<b class="nc"><i>230</i>&nbsp;        layoutIFAAlertInHbIFAServiceMode = serviceModeHbIFAViewsHolder.findViewById(R.id.layout_ifa);</b>
+<b class="nc"><i>231</i>&nbsp;        txtIFADoneTick = (TextView) serviceModeHbIFAViewsHolder.findViewById(R.id.txt_ifa_done);</b>
+<b class="nc"><i>232</i>&nbsp;        txtIFAType = (TextView) serviceModeHbIFAViewsHolder.findViewById(R.id.txt_ifa_type);</b>
+<b class="nc"><i>233</i>&nbsp;        txtIFADate = (TextView) serviceModeHbIFAViewsHolder.findViewById(R.id.txt_ifa_date);</b>
+<i>234</i>&nbsp;
+<b class="nc"><i>235</i>&nbsp;        layoutDeliveryPlanAlert = serviceModeDeliveryPlanViewsHolder.findViewById(R.id.layout_delivery_plan_alert);</b>
+<b class="nc"><i>236</i>&nbsp;        layoutDeliveryPlanServiceProvided = serviceModeDeliveryPlanViewsHolder.findViewById(R.id.layout_delivery_plan_service_provided);</b>
+<b class="nc"><i>237</i>&nbsp;        txtDeliveryPlanDueType = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.txt_delivery_plan_due_type);</b>
+<b class="nc"><i>238</i>&nbsp;        txtDeliveryPlanDueOn = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.txt_delivery_plan_due_on);</b>
+<b class="nc"><i>239</i>&nbsp;        imgDeliveryPlaceStatus = (ImageView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.img_delivery_place_status);</b>
+<b class="nc"><i>240</i>&nbsp;        lblDeliveryPlace = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.lbl_delivery_place);</b>
+<b class="nc"><i>241</i>&nbsp;        txtDeliveryPlace = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.txt_delivery_place);</b>
+<b class="nc"><i>242</i>&nbsp;        imgTransportStatus = (ImageView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.img_transport_status);</b>
+<b class="nc"><i>243</i>&nbsp;        lblTransport = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.lbl_transport);</b>
+<b class="nc"><i>244</i>&nbsp;        txtTransport = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.txt_transport);</b>
+<b class="nc"><i>245</i>&nbsp;        imgHasCompanionStatus = (ImageView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.img_has_companion_status);</b>
+<b class="nc"><i>246</i>&nbsp;        lblHasCompanion = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.lbl_has_companion);</b>
+<b class="nc"><i>247</i>&nbsp;        txtHasCompanion = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.txt_has_companion);</b>
+<b class="nc"><i>248</i>&nbsp;        imgAshaPhoneNumberStatus = (ImageView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.img_asha_phone_number_status);</b>
+<b class="nc"><i>249</i>&nbsp;        lblAshaPhoneNumber = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.lbl_asha_phone_number);</b>
+<b class="nc"><i>250</i>&nbsp;        txtAshaPhoneNumber = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.txt_asha_phone_number);</b>
+<b class="nc"><i>251</i>&nbsp;        imgContactPhoneNumberStatus = (ImageView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.img_contact_phone_number_status);</b>
+<b class="nc"><i>252</i>&nbsp;        lblContactPhoneNumber = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.lbl_contact_phone_number);</b>
+<b class="nc"><i>253</i>&nbsp;        txtContactPhoneNumber = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.txt_contact_phone_number);</b>
+<b class="nc"><i>254</i>&nbsp;        imgRisksReviewedStatus = (ImageView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.img_risk_reviewed_status);</b>
+<b class="nc"><i>255</i>&nbsp;        lblRisksReviewed = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.lbl_risks_reviewed);</b>
+<b class="nc"><i>256</i>&nbsp;        txtRisksReviewed = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.txt_risks_reviewed);</b>
+<b class="nc"><i>257</i>&nbsp;    }</b>
+<i>258</i>&nbsp;
+<i>259</i>&nbsp;    public ClientProfileView profileInfoLayout() {
+<b class="nc"><i>260</i>&nbsp;        return profileInfoLayout;</b>
+<i>261</i>&nbsp;    }
+<i>262</i>&nbsp;
+<i>263</i>&nbsp;    public ANCClientIdDetailsView ancClientIdDetailsView() {
+<b class="nc"><i>264</i>&nbsp;        return ancClientIdDetailsView;</b>
+<i>265</i>&nbsp;    }
+<i>266</i>&nbsp;
+<i>267</i>&nbsp;    public ANCStatusView ancStatusView() {
+<b class="nc"><i>268</i>&nbsp;        return ancStatusView;</b>
+<i>269</i>&nbsp;    }
+<i>270</i>&nbsp;
+<i>271</i>&nbsp;    public TextView btnAncVisitView() {
+<b class="nc"><i>272</i>&nbsp;        return btnAncVisitView;</b>
+<i>273</i>&nbsp;    }
+<i>274</i>&nbsp;
+<i>275</i>&nbsp;    public View layoutANCVisitAlert() {
+<b class="nc"><i>276</i>&nbsp;        return layoutANCVisitAlert;</b>
+<i>277</i>&nbsp;    }
+<i>278</i>&nbsp;
+<i>279</i>&nbsp;    public TextView txtANCVisitDoneOn() {
+<b class="nc"><i>280</i>&nbsp;        return txtANCVisitDoneOn;</b>
+<i>281</i>&nbsp;    }
+<i>282</i>&nbsp;
+<i>283</i>&nbsp;    public TextView txtANCVisitDueType() {
+<b class="nc"><i>284</i>&nbsp;        return txtANCVisitDueType;</b>
+<i>285</i>&nbsp;    }
+<i>286</i>&nbsp;
+<i>287</i>&nbsp;    public TextView txtANCVisitAlertDueOn() {
+<b class="nc"><i>288</i>&nbsp;        return txtANCVisitAlertDueOn;</b>
+<i>289</i>&nbsp;    }
+<i>290</i>&nbsp;
+<i>291</i>&nbsp;    public TextView txtRiskFactors() {
+<b class="nc"><i>292</i>&nbsp;        return txtRiskFactors;</b>
+<i>293</i>&nbsp;    }
+<i>294</i>&nbsp;
+<i>295</i>&nbsp;    public ViewGroup serviceModeOverviewView() {
+<b class="nc"><i>296</i>&nbsp;        return serviceModeOverviewView;</b>
+<i>297</i>&nbsp;    }
+<i>298</i>&nbsp;
+<i>299</i>&nbsp;    public TextView btnTTView() {
+<b class="nc"><i>300</i>&nbsp;        return btnTTView;</b>
+<i>301</i>&nbsp;    }
+<i>302</i>&nbsp;
+<i>303</i>&nbsp;    public View layoutTTAlert() {
+<b class="nc"><i>304</i>&nbsp;        return layoutTTAlert;</b>
+<i>305</i>&nbsp;    }
+<i>306</i>&nbsp;
+<i>307</i>&nbsp;    public TextView txtTTDoneOn() {
+<b class="nc"><i>308</i>&nbsp;        return txtTTDoneOn;</b>
+<i>309</i>&nbsp;    }
+<i>310</i>&nbsp;
+<i>311</i>&nbsp;    public TextView txtTTDueType() {
+<b class="nc"><i>312</i>&nbsp;        return txtTTDueType;</b>
+<i>313</i>&nbsp;    }
+<i>314</i>&nbsp;
+<i>315</i>&nbsp;    public TextView txtTTDueOn() {
+<b class="nc"><i>316</i>&nbsp;        return txtTTDueOn;</b>
+<i>317</i>&nbsp;    }
+<i>318</i>&nbsp;
+<i>319</i>&nbsp;    public TextView btnIFAView() {
+<b class="nc"><i>320</i>&nbsp;        return btnIFAView;</b>
+<i>321</i>&nbsp;    }
+<i>322</i>&nbsp;
+<i>323</i>&nbsp;    public View layoutIFAAlert() {
+<b class="nc"><i>324</i>&nbsp;        return layoutIFAAlert;</b>
+<i>325</i>&nbsp;    }
+<i>326</i>&nbsp;
+<i>327</i>&nbsp;    public TextView txtIFADoneOn() {
+<b class="nc"><i>328</i>&nbsp;        return txtIFADoneOn;</b>
+<i>329</i>&nbsp;    }
+<i>330</i>&nbsp;
+<i>331</i>&nbsp;    public TextView txtIFADueType() {
+<b class="nc"><i>332</i>&nbsp;        return txtIFADueType;</b>
+<i>333</i>&nbsp;    }
+<i>334</i>&nbsp;
+<i>335</i>&nbsp;    public TextView txtIFADueOn() {
+<b class="nc"><i>336</i>&nbsp;        return txtIFADueOn;</b>
+<i>337</i>&nbsp;    }
+<i>338</i>&nbsp;
+<i>339</i>&nbsp;    public ImageButton btnEditView() {
+<b class="nc"><i>340</i>&nbsp;        return btnEditView;</b>
+<i>341</i>&nbsp;    }
+<i>342</i>&nbsp;
+<i>343</i>&nbsp;    public ViewGroup serviceModeANCVisitsView() {
+<b class="nc"><i>344</i>&nbsp;        return serviceModeANCVisitsView;</b>
+<i>345</i>&nbsp;    }
+<i>346</i>&nbsp;
+<i>347</i>&nbsp;    public View layoutANCVisit1Alert() {
+<b class="nc"><i>348</i>&nbsp;        return layoutANCVisit1Alert;</b>
+<i>349</i>&nbsp;    }
+<i>350</i>&nbsp;
+<i>351</i>&nbsp;    public TextView txtANCVisit1DueType() {
+<b class="nc"><i>352</i>&nbsp;        return txtANCVisit1DueType;</b>
+<i>353</i>&nbsp;    }
+<i>354</i>&nbsp;
+<i>355</i>&nbsp;    public TextView txtANCVisit1DueOn() {
+<b class="nc"><i>356</i>&nbsp;        return txtANCVisit1DueOn;</b>
+<i>357</i>&nbsp;    }
+<i>358</i>&nbsp;
+<i>359</i>&nbsp;    public TextView txtANCVisit1DoneDate() {
+<b class="nc"><i>360</i>&nbsp;        return txtANCVisit1DoneDate;</b>
+<i>361</i>&nbsp;    }
+<i>362</i>&nbsp;
+<i>363</i>&nbsp;    public TextView lblANCVisit1Bp() {
+<b class="nc"><i>364</i>&nbsp;        return lblANCVisit1Bp;</b>
+<i>365</i>&nbsp;    }
+<i>366</i>&nbsp;
+<i>367</i>&nbsp;    public TextView lblANCVisit1Weight() {
+<b class="nc"><i>368</i>&nbsp;        return lblANCVisit1Weight;</b>
+<i>369</i>&nbsp;    }
+<i>370</i>&nbsp;
+<i>371</i>&nbsp;    public TextView txtANCVisit1BpValue() {
+<b class="nc"><i>372</i>&nbsp;        return txtANCVisit1BpValue;</b>
+<i>373</i>&nbsp;    }
+<i>374</i>&nbsp;
+<i>375</i>&nbsp;    public TextView txtANCVisit1WeightValue() {
+<b class="nc"><i>376</i>&nbsp;        return txtANCVisit1WeightValue;</b>
+<i>377</i>&nbsp;    }
+<i>378</i>&nbsp;
+<i>379</i>&nbsp;    public void hideAllServiceModeOptions() {
+<b class="nc"><i>380</i>&nbsp;        serviceModeOverviewView().setVisibility(View.GONE);</b>
+<b class="nc"><i>381</i>&nbsp;        serviceModeANCVisitsView().setVisibility(View.GONE);</b>
+<b class="nc"><i>382</i>&nbsp;        serviceModeTTView().setVisibility(View.GONE);</b>
+<b class="nc"><i>383</i>&nbsp;        serviceModeHbIFAViewsHolder().setVisibility(View.GONE);</b>
+<b class="nc"><i>384</i>&nbsp;        serviceModeDeliveryPlanViewsHolder().setVisibility(View.GONE);</b>
+<b class="nc"><i>385</i>&nbsp;    }</b>
+<i>386</i>&nbsp;
+<i>387</i>&nbsp;    public View layoutANCVisit2Alert() {
+<b class="nc"><i>388</i>&nbsp;        return layoutANCVisit2Alert;</b>
+<i>389</i>&nbsp;    }
+<i>390</i>&nbsp;
+<i>391</i>&nbsp;    public TextView txtANCVisit2DueType() {
+<b class="nc"><i>392</i>&nbsp;        return txtANCVisit2DueType;</b>
+<i>393</i>&nbsp;    }
+<i>394</i>&nbsp;
+<i>395</i>&nbsp;    public TextView txtANCVisit2DueOn() {
+<b class="nc"><i>396</i>&nbsp;        return txtANCVisit2DueOn;</b>
+<i>397</i>&nbsp;    }
+<i>398</i>&nbsp;
+<i>399</i>&nbsp;    public TextView txtANCVisit2DoneDate() {
+<b class="nc"><i>400</i>&nbsp;        return txtANCVisit2DoneDate;</b>
+<i>401</i>&nbsp;    }
+<i>402</i>&nbsp;
+<i>403</i>&nbsp;    public TextView lblANCVisit2Bp() {
+<b class="nc"><i>404</i>&nbsp;        return lblANCVisit2Bp;</b>
+<i>405</i>&nbsp;    }
+<i>406</i>&nbsp;
+<i>407</i>&nbsp;    public TextView lblANCVisit2Weight() {
+<b class="nc"><i>408</i>&nbsp;        return lblANCVisit2Weight;</b>
+<i>409</i>&nbsp;    }
+<i>410</i>&nbsp;
+<i>411</i>&nbsp;    public TextView txtANCVisit2BpValue() {
+<b class="nc"><i>412</i>&nbsp;        return txtANCVisit2BpValue;</b>
+<i>413</i>&nbsp;    }
+<i>414</i>&nbsp;
+<i>415</i>&nbsp;    public TextView txtANCVisit2WeightValue() {
+<b class="nc"><i>416</i>&nbsp;        return txtANCVisit2WeightValue;</b>
+<i>417</i>&nbsp;    }
+<i>418</i>&nbsp;
+<i>419</i>&nbsp;    public View layoutANCVisit3Alert() {
+<b class="nc"><i>420</i>&nbsp;        return layoutANCVisit3Alert;</b>
+<i>421</i>&nbsp;    }
+<i>422</i>&nbsp;
+<i>423</i>&nbsp;    public TextView txtANCVisit3DueType() {
+<b class="nc"><i>424</i>&nbsp;        return txtANCVisit3DueType;</b>
+<i>425</i>&nbsp;    }
+<i>426</i>&nbsp;
+<i>427</i>&nbsp;    public TextView txtANCVisit3DueOn() {
+<b class="nc"><i>428</i>&nbsp;        return txtANCVisit3DueOn;</b>
+<i>429</i>&nbsp;    }
+<i>430</i>&nbsp;
+<i>431</i>&nbsp;    public TextView txtANCVisit3DoneDate() {
+<b class="nc"><i>432</i>&nbsp;        return txtANCVisit3DoneDate;</b>
+<i>433</i>&nbsp;    }
+<i>434</i>&nbsp;
+<i>435</i>&nbsp;    public TextView lblANCVisit3Bp() {
+<b class="nc"><i>436</i>&nbsp;        return lblANCVisit3Bp;</b>
+<i>437</i>&nbsp;    }
+<i>438</i>&nbsp;
+<i>439</i>&nbsp;    public TextView lblANCVisit3Weight() {
+<b class="nc"><i>440</i>&nbsp;        return lblANCVisit3Weight;</b>
+<i>441</i>&nbsp;    }
+<i>442</i>&nbsp;
+<i>443</i>&nbsp;    public TextView txtANCVisit3BpValue() {
+<b class="nc"><i>444</i>&nbsp;        return txtANCVisit3BpValue;</b>
+<i>445</i>&nbsp;    }
+<i>446</i>&nbsp;
+<i>447</i>&nbsp;    public TextView txtANCVisit3WeightValue() {
+<b class="nc"><i>448</i>&nbsp;        return txtANCVisit3WeightValue;</b>
+<i>449</i>&nbsp;    }
+<i>450</i>&nbsp;
+<i>451</i>&nbsp;    public TextView btnOtherANCVisit() {
+<b class="nc"><i>452</i>&nbsp;        return btnOtherANCVisit;</b>
+<i>453</i>&nbsp;    }
+<i>454</i>&nbsp;
+<i>455</i>&nbsp;    public View layoutANCVisit4Alert() {
+<b class="nc"><i>456</i>&nbsp;        return layoutANCVisit4Alert;</b>
+<i>457</i>&nbsp;    }
+<i>458</i>&nbsp;
+<i>459</i>&nbsp;    public TextView txtANCVisit4DueType() {
+<b class="nc"><i>460</i>&nbsp;        return txtANCVisit4DueType;</b>
+<i>461</i>&nbsp;    }
+<i>462</i>&nbsp;
+<i>463</i>&nbsp;    public TextView txtANCVisit4DueOn() {
+<b class="nc"><i>464</i>&nbsp;        return txtANCVisit4DueOn;</b>
+<i>465</i>&nbsp;    }
+<i>466</i>&nbsp;
+<i>467</i>&nbsp;    public TextView txtANCVisit4DoneDate() {
+<b class="nc"><i>468</i>&nbsp;        return txtANCVisit4DoneDate;</b>
+<i>469</i>&nbsp;    }
+<i>470</i>&nbsp;
+<i>471</i>&nbsp;    public TextView lblANCVisit4Bp() {
+<b class="nc"><i>472</i>&nbsp;        return lblANCVisit4Bp;</b>
+<i>473</i>&nbsp;    }
+<i>474</i>&nbsp;
+<i>475</i>&nbsp;    public TextView lblANCVisit4Weight() {
+<b class="nc"><i>476</i>&nbsp;        return lblANCVisit4Weight;</b>
+<i>477</i>&nbsp;    }
+<i>478</i>&nbsp;
+<i>479</i>&nbsp;    public TextView txtANCVisit4BpValue() {
+<b class="nc"><i>480</i>&nbsp;        return txtANCVisit4BpValue;</b>
+<i>481</i>&nbsp;    }
+<i>482</i>&nbsp;
+<i>483</i>&nbsp;    public TextView txtANCVisit4WeightValue() {
+<b class="nc"><i>484</i>&nbsp;        return txtANCVisit4WeightValue;</b>
+<i>485</i>&nbsp;    }
+<i>486</i>&nbsp;
+<i>487</i>&nbsp;    public void hideViewsInANCVisit1Layout() {
+<b class="nc"><i>488</i>&nbsp;        layoutANCVisit1Alert().setVisibility(View.GONE);</b>
+<b class="nc"><i>489</i>&nbsp;        layoutANCVisit1ServiceProvided().setVisibility(View.GONE);</b>
+<b class="nc"><i>490</i>&nbsp;        txtANCVisit1DueType().setVisibility(View.GONE);</b>
+<b class="nc"><i>491</i>&nbsp;        txtANCVisit1DueOn().setVisibility(View.GONE);</b>
+<b class="nc"><i>492</i>&nbsp;        txtANCVisit1DoneDate().setVisibility(View.GONE);</b>
+<b class="nc"><i>493</i>&nbsp;        lblANCVisit1Bp().setVisibility(View.GONE);</b>
+<b class="nc"><i>494</i>&nbsp;        lblANCVisit1Weight().setVisibility(View.GONE);</b>
+<b class="nc"><i>495</i>&nbsp;        txtANCVisit1BpValue().setVisibility(View.GONE);</b>
+<b class="nc"><i>496</i>&nbsp;        txtANCVisit1WeightValue().setVisibility(View.GONE);</b>
+<b class="nc"><i>497</i>&nbsp;    }</b>
+<i>498</i>&nbsp;
+<i>499</i>&nbsp;    public void hideViewsInANCVisit2Layout() {
+<b class="nc"><i>500</i>&nbsp;        layoutANCVisit2Alert().setVisibility(View.GONE);</b>
+<b class="nc"><i>501</i>&nbsp;        layoutANCVisit2ServiceProvided().setVisibility(View.GONE);</b>
+<b class="nc"><i>502</i>&nbsp;        txtANCVisit2DueType().setVisibility(View.GONE);</b>
+<b class="nc"><i>503</i>&nbsp;        txtANCVisit2DueOn().setVisibility(View.GONE);</b>
+<b class="nc"><i>504</i>&nbsp;        txtANCVisit2DoneDate().setVisibility(View.GONE);</b>
+<b class="nc"><i>505</i>&nbsp;        lblANCVisit2Bp().setVisibility(View.GONE);</b>
+<b class="nc"><i>506</i>&nbsp;        lblANCVisit2Weight().setVisibility(View.GONE);</b>
+<b class="nc"><i>507</i>&nbsp;        txtANCVisit2BpValue().setVisibility(View.GONE);</b>
+<b class="nc"><i>508</i>&nbsp;        txtANCVisit2WeightValue().setVisibility(View.GONE);</b>
+<b class="nc"><i>509</i>&nbsp;    }</b>
+<i>510</i>&nbsp;
+<i>511</i>&nbsp;    public void hideViewsInANCVisit3Layout() {
+<b class="nc"><i>512</i>&nbsp;        layoutANCVisit3Alert().setVisibility(View.GONE);</b>
+<b class="nc"><i>513</i>&nbsp;        layoutANCVisit3ServiceProvided().setVisibility(View.GONE);</b>
+<b class="nc"><i>514</i>&nbsp;        txtANCVisit3DueType().setVisibility(View.GONE);</b>
+<b class="nc"><i>515</i>&nbsp;        txtANCVisit3DueOn().setVisibility(View.GONE);</b>
+<b class="nc"><i>516</i>&nbsp;        txtANCVisit3DoneDate().setVisibility(View.GONE);</b>
+<b class="nc"><i>517</i>&nbsp;        lblANCVisit3Bp().setVisibility(View.GONE);</b>
+<b class="nc"><i>518</i>&nbsp;        lblANCVisit3Weight().setVisibility(View.GONE);</b>
+<b class="nc"><i>519</i>&nbsp;        txtANCVisit3BpValue().setVisibility(View.GONE);</b>
+<b class="nc"><i>520</i>&nbsp;        txtANCVisit3WeightValue().setVisibility(View.GONE);</b>
+<b class="nc"><i>521</i>&nbsp;    }</b>
+<i>522</i>&nbsp;
+<i>523</i>&nbsp;    public void hideViewsInANCVisit4Layout() {
+<b class="nc"><i>524</i>&nbsp;        layoutANCVisit4Alert().setVisibility(View.GONE);</b>
+<b class="nc"><i>525</i>&nbsp;        layoutANCVisit4ServiceProvided().setVisibility(View.GONE);</b>
+<b class="nc"><i>526</i>&nbsp;        txtANCVisit4DueType().setVisibility(View.GONE);</b>
+<b class="nc"><i>527</i>&nbsp;        txtANCVisit4DueOn().setVisibility(View.GONE);</b>
+<b class="nc"><i>528</i>&nbsp;        txtANCVisit4DoneDate().setVisibility(View.GONE);</b>
+<b class="nc"><i>529</i>&nbsp;        lblANCVisit4Bp().setVisibility(View.GONE);</b>
+<b class="nc"><i>530</i>&nbsp;        lblANCVisit4Weight().setVisibility(View.GONE);</b>
+<b class="nc"><i>531</i>&nbsp;        txtANCVisit4BpValue().setVisibility(View.GONE);</b>
+<b class="nc"><i>532</i>&nbsp;        txtANCVisit4WeightValue().setVisibility(View.GONE);</b>
+<b class="nc"><i>533</i>&nbsp;    }</b>
+<i>534</i>&nbsp;
+<i>535</i>&nbsp;
+<i>536</i>&nbsp;    public View layoutANCVisit1ServiceProvided() {
+<b class="nc"><i>537</i>&nbsp;        return layoutANCVisit1ServiceProvided;</b>
+<i>538</i>&nbsp;    }
+<i>539</i>&nbsp;
+<i>540</i>&nbsp;    public View layoutANCVisit2ServiceProvided() {
+<b class="nc"><i>541</i>&nbsp;        return layoutANCVisit2ServiceProvided;</b>
+<i>542</i>&nbsp;    }
+<i>543</i>&nbsp;
+<i>544</i>&nbsp;    public View layoutANCVisit3ServiceProvided() {
+<b class="nc"><i>545</i>&nbsp;        return layoutANCVisit3ServiceProvided;</b>
+<i>546</i>&nbsp;    }
+<i>547</i>&nbsp;
+<i>548</i>&nbsp;    public View layoutANCVisit4ServiceProvided() {
+<b class="nc"><i>549</i>&nbsp;        return layoutANCVisit4ServiceProvided;</b>
+<i>550</i>&nbsp;    }
+<i>551</i>&nbsp;
+<i>552</i>&nbsp;    public ViewGroup serviceModeTTView() {
+<b class="nc"><i>553</i>&nbsp;        return serviceModeTTView;</b>
+<i>554</i>&nbsp;    }
+<i>555</i>&nbsp;
+<i>556</i>&nbsp;    public View layoutTT1Alert() {
+<b class="nc"><i>557</i>&nbsp;        return layoutTT1Alert;</b>
+<i>558</i>&nbsp;    }
+<i>559</i>&nbsp;
+<i>560</i>&nbsp;    public TextView txtTT1DoneTick() {
+<b class="nc"><i>561</i>&nbsp;        return txtTT1DoneTick;</b>
+<i>562</i>&nbsp;    }
+<i>563</i>&nbsp;
+<i>564</i>&nbsp;    public TextView txtTT1Type() {
+<b class="nc"><i>565</i>&nbsp;        return txtTT1Type;</b>
+<i>566</i>&nbsp;    }
+<i>567</i>&nbsp;
+<i>568</i>&nbsp;    public TextView txtTT1Date() {
+<b class="nc"><i>569</i>&nbsp;        return txtTT1Date;</b>
+<i>570</i>&nbsp;    }
+<i>571</i>&nbsp;
+<i>572</i>&nbsp;    public void hideViewsInTT1Layout() {
+<b class="nc"><i>573</i>&nbsp;        layoutTT1Alert().setVisibility(View.GONE);</b>
+<b class="nc"><i>574</i>&nbsp;        txtTT1DoneTick().setVisibility(View.GONE);</b>
+<b class="nc"><i>575</i>&nbsp;        txtTT1Type().setVisibility(View.GONE);</b>
+<b class="nc"><i>576</i>&nbsp;        txtTT1Date().setVisibility(View.GONE);</b>
+<b class="nc"><i>577</i>&nbsp;    }</b>
+<i>578</i>&nbsp;
+<i>579</i>&nbsp;    public View layoutTT2Alert() {
+<b class="nc"><i>580</i>&nbsp;        return layoutTT2Alert;</b>
+<i>581</i>&nbsp;    }
+<i>582</i>&nbsp;
+<i>583</i>&nbsp;    public TextView txtTT2DoneTick() {
+<b class="nc"><i>584</i>&nbsp;        return txtTT2DoneTick;</b>
+<i>585</i>&nbsp;    }
+<i>586</i>&nbsp;
+<i>587</i>&nbsp;    public TextView txtTT2Type() {
+<b class="nc"><i>588</i>&nbsp;        return txtTT2Type;</b>
+<i>589</i>&nbsp;    }
+<i>590</i>&nbsp;
+<i>591</i>&nbsp;    public TextView txtTT2Date() {
+<b class="nc"><i>592</i>&nbsp;        return txtTT2Date;</b>
+<i>593</i>&nbsp;    }
+<i>594</i>&nbsp;
+<i>595</i>&nbsp;    public void hideViewsInTT2Layout() {
+<b class="nc"><i>596</i>&nbsp;        layoutTT2Alert().setVisibility(View.GONE);</b>
+<b class="nc"><i>597</i>&nbsp;        txtTT2DoneTick().setVisibility(View.GONE);</b>
+<b class="nc"><i>598</i>&nbsp;        txtTT2Type().setVisibility(View.GONE);</b>
+<b class="nc"><i>599</i>&nbsp;        txtTT2Date().setVisibility(View.GONE);</b>
+<b class="nc"><i>600</i>&nbsp;    }</b>
+<i>601</i>&nbsp;
+<i>602</i>&nbsp;    public View layoutTTBoosterAlert() {
+<b class="nc"><i>603</i>&nbsp;        return layoutTTBoosterAlert;</b>
+<i>604</i>&nbsp;    }
+<i>605</i>&nbsp;
+<i>606</i>&nbsp;    public TextView txtTTBoosterDoneTick() {
+<b class="nc"><i>607</i>&nbsp;        return txtTTBoosterDoneTick;</b>
+<i>608</i>&nbsp;    }
+<i>609</i>&nbsp;
+<i>610</i>&nbsp;    public TextView txtTTBoosterType() {
+<b class="nc"><i>611</i>&nbsp;        return txtTTBoosterType;</b>
+<i>612</i>&nbsp;    }
+<i>613</i>&nbsp;
+<i>614</i>&nbsp;    public TextView txtTTBoosterDate() {
+<b class="nc"><i>615</i>&nbsp;        return txtTTBoosterDate;</b>
+<i>616</i>&nbsp;    }
+<i>617</i>&nbsp;
+<i>618</i>&nbsp;    public void hideViewsInTTBoosterLayout() {
+<b class="nc"><i>619</i>&nbsp;        layoutTTBoosterAlert().setVisibility(View.GONE);</b>
+<b class="nc"><i>620</i>&nbsp;        txtTTBoosterDoneTick().setVisibility(View.GONE);</b>
+<b class="nc"><i>621</i>&nbsp;        txtTTBoosterType().setVisibility(View.GONE);</b>
+<b class="nc"><i>622</i>&nbsp;        txtTTBoosterDate().setVisibility(View.GONE);</b>
+<b class="nc"><i>623</i>&nbsp;    }</b>
+<i>624</i>&nbsp;
+<i>625</i>&nbsp;    public LinearLayout layoutHbDetailsViewHolder() {
+<b class="nc"><i>626</i>&nbsp;        return layoutHbDetailsViewHolder;</b>
+<i>627</i>&nbsp;    }
+<i>628</i>&nbsp;
+<i>629</i>&nbsp;    public ViewGroup serviceModeHbIFAViewsHolder() {
+<b class="nc"><i>630</i>&nbsp;        return serviceModeHbIFAViewsHolder;</b>
+<i>631</i>&nbsp;    }
+<i>632</i>&nbsp;
+<i>633</i>&nbsp;    public View layoutHbAlert() {
+<b class="nc"><i>634</i>&nbsp;        return layoutHbAlert;</b>
+<i>635</i>&nbsp;    }
+<i>636</i>&nbsp;
+<i>637</i>&nbsp;    public TextView txtHbDueType() {
+<b class="nc"><i>638</i>&nbsp;        return txtHbDueType;</b>
+<i>639</i>&nbsp;    }
+<i>640</i>&nbsp;
+<i>641</i>&nbsp;    public TextView txtHbDueOn() {
+<b class="nc"><i>642</i>&nbsp;        return txtHbDueOn;</b>
+<i>643</i>&nbsp;    }
+<i>644</i>&nbsp;
+<i>645</i>&nbsp;    public TextView btnHbView() {
+<b class="nc"><i>646</i>&nbsp;        return btnHbView;</b>
+<i>647</i>&nbsp;    }
+<i>648</i>&nbsp;
+<i>649</i>&nbsp;    public LinearLayout layoutIFADetailsViewHolder() {
+<b class="nc"><i>650</i>&nbsp;        return layoutIFADetailsViewHolder;</b>
+<i>651</i>&nbsp;    }
+<i>652</i>&nbsp;
+<i>653</i>&nbsp;    public View layoutIFAAlertInHbIFAServiceMode() {
+<b class="nc"><i>654</i>&nbsp;        return layoutIFAAlertInHbIFAServiceMode;</b>
+<i>655</i>&nbsp;    }
+<i>656</i>&nbsp;
+<i>657</i>&nbsp;    public TextView txtIFADoneTick() {
+<b class="nc"><i>658</i>&nbsp;        return txtIFADoneTick;</b>
+<i>659</i>&nbsp;    }
+<i>660</i>&nbsp;
+<i>661</i>&nbsp;    public TextView txtIFAType() {
+<b class="nc"><i>662</i>&nbsp;        return txtIFAType;</b>
+<i>663</i>&nbsp;    }
+<i>664</i>&nbsp;
+<i>665</i>&nbsp;    public TextView txtIFADate() {
+<b class="nc"><i>666</i>&nbsp;        return txtIFADate;</b>
+<i>667</i>&nbsp;    }
+<i>668</i>&nbsp;
+<i>669</i>&nbsp;    public void hideViewsInIFAAlertLayout() {
+<b class="nc"><i>670</i>&nbsp;        layoutIFAAlertInHbIFAServiceMode().setVisibility(View.GONE);</b>
+<b class="nc"><i>671</i>&nbsp;        txtIFADoneTick().setVisibility(View.GONE);</b>
+<b class="nc"><i>672</i>&nbsp;        txtIFAType().setVisibility(View.GONE);</b>
+<b class="nc"><i>673</i>&nbsp;        txtIFADate().setVisibility(View.GONE);</b>
+<b class="nc"><i>674</i>&nbsp;    }</b>
+<i>675</i>&nbsp;
+<i>676</i>&nbsp;    public ViewGroup serviceModeDeliveryPlanViewsHolder() {
+<b class="nc"><i>677</i>&nbsp;        return serviceModeDeliveryPlanViewsHolder;</b>
+<i>678</i>&nbsp;    }
+<i>679</i>&nbsp;
+<i>680</i>&nbsp;    public View layoutDeliveryPlanAlert() {
+<b class="nc"><i>681</i>&nbsp;        return layoutDeliveryPlanAlert;</b>
+<i>682</i>&nbsp;    }
+<i>683</i>&nbsp;
+<i>684</i>&nbsp;    public TextView txtDeliveryPlanDueType() {
+<b class="nc"><i>685</i>&nbsp;        return txtDeliveryPlanDueType;</b>
+<i>686</i>&nbsp;    }
+<i>687</i>&nbsp;
+<i>688</i>&nbsp;    public TextView txtDeliveryPlanDueOn() {
+<b class="nc"><i>689</i>&nbsp;        return txtDeliveryPlanDueOn;</b>
+<i>690</i>&nbsp;    }
+<i>691</i>&nbsp;
+<i>692</i>&nbsp;    public View layoutDeliveryPlanServiceProvided() {
+<b class="nc"><i>693</i>&nbsp;        return layoutDeliveryPlanServiceProvided;</b>
+<i>694</i>&nbsp;    }
+<i>695</i>&nbsp;
+<i>696</i>&nbsp;    public TextView lblDeliveryPlace() {
+<b class="nc"><i>697</i>&nbsp;        return lblDeliveryPlace;</b>
+<i>698</i>&nbsp;    }
+<i>699</i>&nbsp;
+<i>700</i>&nbsp;    public TextView txtDeliveryPlace() {
+<b class="nc"><i>701</i>&nbsp;        return txtDeliveryPlace;</b>
+<i>702</i>&nbsp;    }
+<i>703</i>&nbsp;
+<i>704</i>&nbsp;    public void hideViewsInDeliveryPlanViews() {
+<b class="nc"><i>705</i>&nbsp;        layoutDeliveryPlanAlert().setVisibility(View.GONE);</b>
+<b class="nc"><i>706</i>&nbsp;        txtDeliveryPlanDueType().setVisibility(View.GONE);</b>
+<b class="nc"><i>707</i>&nbsp;        txtDeliveryPlanDueOn().setVisibility(View.GONE);</b>
+<b class="nc"><i>708</i>&nbsp;        layoutDeliveryPlanServiceProvided().setVisibility(View.GONE);</b>
+<b class="nc"><i>709</i>&nbsp;        lblDeliveryPlace().setVisibility(View.GONE);</b>
+<b class="nc"><i>710</i>&nbsp;        txtDeliveryPlace().setVisibility(View.GONE);</b>
+<b class="nc"><i>711</i>&nbsp;        txtTransport().setVisibility(View.GONE);</b>
+<b class="nc"><i>712</i>&nbsp;        lblTransport().setVisibility(View.GONE);</b>
+<b class="nc"><i>713</i>&nbsp;        lblHasCompanion().setVisibility(View.GONE);</b>
+<b class="nc"><i>714</i>&nbsp;        txtHasCompanion().setVisibility(View.GONE);</b>
+<b class="nc"><i>715</i>&nbsp;        lblAshaPhoneNumber().setVisibility(View.GONE);</b>
+<b class="nc"><i>716</i>&nbsp;        txtAshaPhoneNumber().setVisibility(View.GONE);</b>
+<b class="nc"><i>717</i>&nbsp;        lblContactPhoneNumber().setVisibility(View.GONE);</b>
+<b class="nc"><i>718</i>&nbsp;        txtContactPhoneNumber().setVisibility(View.GONE);</b>
+<b class="nc"><i>719</i>&nbsp;        txtRisksReviewed().setVisibility(View.GONE);</b>
+<b class="nc"><i>720</i>&nbsp;        lblRisksReviewed().setVisibility(View.GONE);</b>
+<b class="nc"><i>721</i>&nbsp;        imgDeliveryPlaceStatus().setVisibility(View.GONE);</b>
+<b class="nc"><i>722</i>&nbsp;        imgAshaPhoneNumberStatus().setVisibility(View.GONE);</b>
+<b class="nc"><i>723</i>&nbsp;        imgContactPhoneNumberStatus().setVisibility(View.GONE);</b>
+<b class="nc"><i>724</i>&nbsp;        imgHasCompanionStatus().setVisibility(View.GONE);</b>
+<b class="nc"><i>725</i>&nbsp;        imgRisksReviewedStatus().setVisibility(View.GONE);</b>
+<b class="nc"><i>726</i>&nbsp;        imgTransportStatus().setVisibility(View.GONE);</b>
+<b class="nc"><i>727</i>&nbsp;    }</b>
+<i>728</i>&nbsp;
+<i>729</i>&nbsp;    public TextView txtTransport() {
+<b class="nc"><i>730</i>&nbsp;        return txtTransport;</b>
+<i>731</i>&nbsp;    }
+<i>732</i>&nbsp;
+<i>733</i>&nbsp;    public TextView lblTransport() {
+<b class="nc"><i>734</i>&nbsp;        return lblTransport;</b>
+<i>735</i>&nbsp;    }
+<i>736</i>&nbsp;
+<i>737</i>&nbsp;    public TextView lblHasCompanion() {
+<b class="nc"><i>738</i>&nbsp;        return lblHasCompanion;</b>
+<i>739</i>&nbsp;    }
+<i>740</i>&nbsp;
+<i>741</i>&nbsp;    public TextView txtHasCompanion() {
+<b class="nc"><i>742</i>&nbsp;        return txtHasCompanion;</b>
+<i>743</i>&nbsp;    }
+<i>744</i>&nbsp;
+<i>745</i>&nbsp;    public TextView lblAshaPhoneNumber() {
+<b class="nc"><i>746</i>&nbsp;        return lblAshaPhoneNumber;</b>
+<i>747</i>&nbsp;    }
+<i>748</i>&nbsp;
+<i>749</i>&nbsp;    public TextView txtAshaPhoneNumber() {
+<b class="nc"><i>750</i>&nbsp;        return txtAshaPhoneNumber;</b>
+<i>751</i>&nbsp;    }
+<i>752</i>&nbsp;
+<i>753</i>&nbsp;    public TextView lblContactPhoneNumber() {
+<b class="nc"><i>754</i>&nbsp;        return lblContactPhoneNumber;</b>
+<i>755</i>&nbsp;    }
+<i>756</i>&nbsp;
+<i>757</i>&nbsp;    public TextView txtContactPhoneNumber() {
+<b class="nc"><i>758</i>&nbsp;        return txtContactPhoneNumber;</b>
+<i>759</i>&nbsp;    }
+<i>760</i>&nbsp;
+<i>761</i>&nbsp;    public TextView txtRisksReviewed() {
+<b class="nc"><i>762</i>&nbsp;        return txtRisksReviewed;</b>
+<i>763</i>&nbsp;    }
+<i>764</i>&nbsp;
+<i>765</i>&nbsp;    public TextView lblRisksReviewed() {
+<b class="nc"><i>766</i>&nbsp;        return lblRisksReviewed;</b>
+<i>767</i>&nbsp;    }
+<i>768</i>&nbsp;
+<i>769</i>&nbsp;    public ImageView imgDeliveryPlaceStatus() {
+<b class="nc"><i>770</i>&nbsp;        return imgDeliveryPlaceStatus;</b>
+<i>771</i>&nbsp;    }
+<i>772</i>&nbsp;
+<i>773</i>&nbsp;    public ImageView imgTransportStatus() {
+<b class="nc"><i>774</i>&nbsp;        return imgTransportStatus;</b>
+<i>775</i>&nbsp;    }
+<i>776</i>&nbsp;
+<i>777</i>&nbsp;    public ImageView imgHasCompanionStatus() {
+<b class="nc"><i>778</i>&nbsp;        return imgHasCompanionStatus;</b>
+<i>779</i>&nbsp;    }
+<i>780</i>&nbsp;
+<i>781</i>&nbsp;    public ImageView imgAshaPhoneNumberStatus() {
+<b class="nc"><i>782</i>&nbsp;        return imgAshaPhoneNumberStatus;</b>
+<i>783</i>&nbsp;    }
+<i>784</i>&nbsp;
+<i>785</i>&nbsp;    public ImageView imgContactPhoneNumberStatus() {
+<b class="nc"><i>786</i>&nbsp;        return imgContactPhoneNumberStatus;</b>
+<i>787</i>&nbsp;    }
+<i>788</i>&nbsp;
+<i>789</i>&nbsp;    public ImageView imgRisksReviewedStatus() {
+<b class="nc"><i>790</i>&nbsp;        return imgRisksReviewedStatus;</b>
+<i>791</i>&nbsp;    }
+<i>792</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

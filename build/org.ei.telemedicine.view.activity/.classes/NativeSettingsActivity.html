@@ -1,0 +1,159 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: NativeSettingsActivity</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.activity</a> ]
+</div>
+
+<h1>Coverage Summary for Class: NativeSettingsActivity (org.ei.telemedicine.view.activity)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">NativeSettingsActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 36)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.activity;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.app.Activity;
+<i>4</i>&nbsp;import android.content.SharedPreferences;
+<i>5</i>&nbsp;import android.os.Bundle;
+<i>6</i>&nbsp;import android.view.MotionEvent;
+<i>7</i>&nbsp;import android.view.View;
+<i>8</i>&nbsp;import android.widget.FrameLayout;
+<i>9</i>&nbsp;import android.widget.Toast;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import org.ei.telemedicine.AllConstants;
+<i>12</i>&nbsp;import org.ei.telemedicine.Context;
+<i>13</i>&nbsp;import org.ei.telemedicine.R;
+<i>14</i>&nbsp;import org.ei.telemedicine.repository.AllSharedPreferences;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;import static android.view.View.*;
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;/**
+<i>19</i>&nbsp; * Created by naveen on 5/19/15.
+<i>20</i>&nbsp; */
+<b class="nc"><i>21</i>&nbsp;public class NativeSettingsActivity extends Activity implements OnClickListener {</b>
+<i>22</i>&nbsp;    private FrameLayout frame_ec_reg, frame_fp_reg, frame_anc_reg, frame_pnc_reg, frame_child_reg;
+<i>23</i>&nbsp;    AllSharedPreferences allSharedPreferences;
+<i>24</i>&nbsp;    @Override
+<i>25</i>&nbsp;    protected void onCreate(Bundle savedInstanceState) {
+<b class="nc"><i>26</i>&nbsp;        super.onCreate(savedInstanceState);</b>
+<b class="nc"><i>27</i>&nbsp;        setContentView(R.layout.settings_layout);</b>
+<b class="nc"><i>28</i>&nbsp;        allSharedPreferences = Context.getInstance().allSharedPreferences();</b>
+<b class="nc"><i>29</i>&nbsp;        frame_ec_reg = (FrameLayout) findViewById(R.id.frame_ec_reg);</b>
+<b class="nc"><i>30</i>&nbsp;        frame_fp_reg = (FrameLayout) findViewById(R.id.frame_fp_reg);</b>
+<b class="nc"><i>31</i>&nbsp;        frame_anc_reg = (FrameLayout) findViewById(R.id.frame_anc_reg);</b>
+<b class="nc"><i>32</i>&nbsp;        frame_pnc_reg = (FrameLayout) findViewById(R.id.frame_pnc_reg);</b>
+<b class="nc"><i>33</i>&nbsp;        frame_child_reg = (FrameLayout) findViewById(R.id.frame_child_reg);</b>
+<i>34</i>&nbsp;
+<b class="nc"><i>35</i>&nbsp;        frame_ec_reg.setAlpha(allSharedPreferences.registerState(AllConstants.EC_REGISTERS_KEY)?1: (float) 0.25);</b>
+<b class="nc"><i>36</i>&nbsp;        frame_fp_reg.setAlpha(allSharedPreferences.registerState(AllConstants.FP_REGISTERS_KEY)?1: (float) 0.25);</b>
+<b class="nc"><i>37</i>&nbsp;        frame_anc_reg.setAlpha(allSharedPreferences.registerState(AllConstants.ANC_REGISTERS_KEY)?1: (float) 0.25);</b>
+<b class="nc"><i>38</i>&nbsp;        frame_pnc_reg.setAlpha(allSharedPreferences.registerState(AllConstants.PNC_REGISTERS_KEY)?1: (float) 0.25);</b>
+<b class="nc"><i>39</i>&nbsp;        frame_child_reg.setAlpha(allSharedPreferences.registerState(AllConstants.CHILD_REGISTERS_KEY)?1: (float) 0.25);</b>
+<i>40</i>&nbsp;
+<b class="nc"><i>41</i>&nbsp;        frame_ec_reg.setOnClickListener(this);</b>
+<b class="nc"><i>42</i>&nbsp;        frame_fp_reg.setOnClickListener(this);</b>
+<b class="nc"><i>43</i>&nbsp;        frame_anc_reg.setOnClickListener(this);</b>
+<b class="nc"><i>44</i>&nbsp;        frame_pnc_reg.setOnClickListener(this);</b>
+<b class="nc"><i>45</i>&nbsp;        frame_child_reg.setOnClickListener(this);</b>
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;
+<b class="nc"><i>48</i>&nbsp;    }</b>
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;    @Override
+<i>51</i>&nbsp;    public void onClick(View v) {
+<b class="nc"><i>52</i>&nbsp;        switch (v.getId()) {</b>
+<i>53</i>&nbsp;            case R.id.frame_ec_reg:
+<b class="nc"><i>54</i>&nbsp;                frame_ec_reg.setAlpha((frame_ec_reg.getAlpha() == 0.25) ? 1 : (float) 0.25);</b>
+<b class="nc"><i>55</i>&nbsp;                allSharedPreferences.saveECRegisterState(frame_ec_reg.getAlpha() == 1 ? true : false);</b>
+<b class="nc"><i>56</i>&nbsp;                break;</b>
+<i>57</i>&nbsp;            case R.id.frame_fp_reg:
+<b class="nc"><i>58</i>&nbsp;                frame_fp_reg.setAlpha((frame_fp_reg.getAlpha() == 0.25) ? 1 : (float) 0.25);</b>
+<b class="nc"><i>59</i>&nbsp;                allSharedPreferences.saveFPRegisterState(frame_fp_reg.getAlpha() == 1 ? true : false);</b>
+<b class="nc"><i>60</i>&nbsp;                break;</b>
+<i>61</i>&nbsp;            case R.id.frame_anc_reg:
+<b class="nc"><i>62</i>&nbsp;                frame_anc_reg.setAlpha((frame_anc_reg.getAlpha() == 0.25) ? 1 : (float) 0.25);</b>
+<b class="nc"><i>63</i>&nbsp;                allSharedPreferences.saveANCRegisterState(frame_anc_reg.getAlpha() == 1 ? true : false);</b>
+<b class="nc"><i>64</i>&nbsp;                break;</b>
+<i>65</i>&nbsp;            case R.id.frame_pnc_reg:
+<b class="nc"><i>66</i>&nbsp;                frame_pnc_reg.setAlpha((frame_pnc_reg.getAlpha() == 0.25) ? 1 : (float) 0.25);</b>
+<b class="nc"><i>67</i>&nbsp;                allSharedPreferences.savePNCRegisterState(frame_pnc_reg.getAlpha() == 1 ? true : false);</b>
+<b class="nc"><i>68</i>&nbsp;                break;</b>
+<i>69</i>&nbsp;            case R.id.frame_child_reg:
+<b class="nc"><i>70</i>&nbsp;                frame_child_reg.setAlpha((frame_child_reg.getAlpha() == 0.25) ? 1 : (float) 0.25);</b>
+<b class="nc"><i>71</i>&nbsp;                allSharedPreferences.saveCHILDRegisterState(frame_child_reg.getAlpha() == 1 ? true : false);</b>
+<i>72</i>&nbsp;                break;
+<i>73</i>&nbsp;
+<i>74</i>&nbsp;        }
+<b class="nc"><i>75</i>&nbsp;    }</b>
+<i>76</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

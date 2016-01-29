@@ -1,0 +1,139 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ReportsCategory</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.domain</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ReportsCategory (org.ei.telemedicine.domain)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ReportsCategory</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (15/ 15)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.domain;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.List;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import static java.util.Arrays.asList;
+<i>6</i>&nbsp;import static org.ei.telemedicine.domain.ReportIndicator.*;
+<i>7</i>&nbsp;
+<b class="fc"><i>8</i>&nbsp;public enum ReportsCategory {</b>
+<b class="fc"><i>9</i>&nbsp;    FPS(&quot;Family Planning Services&quot;, asList(IUD, CONDOM, CONDOM_QTY, OCP, OCP_SC, OCP_ST, OCP_C_OTHERS,</b>
+<i>10</i>&nbsp;            MALE_STERILIZATION, FEMALE_STERILIZATION, FS_BPL, FS_APL)),
+<i>11</i>&nbsp;
+<b class="fc"><i>12</i>&nbsp;    ANC_SERVICES(&quot;ANC Services&quot;, asList(EARLY_ANC_REGISTRATIONS, LATE_ANC_REGISTRATIONS, TOTAL_ANC_REGISTRATIONS, SUB_TT, TT1, TT2, TTB, ANC4)),</b>
+<i>13</i>&nbsp;
+<b class="fc"><i>14</i>&nbsp;    PREGNANCY_OUTCOMES(&quot;Pregnancy Outcomes&quot;, asList(LIVE_BIRTH, STILL_BIRTH, EARLY_ABORTIONS, LATE_ABORTIONS,</b>
+<i>15</i>&nbsp;            SPONTANEOUS_ABORTION, DELIVERY, INSTITUTIONAL_DELIVERY, D_HOM, D_SC, D_PHC, D_CHC, D_SDH, D_DH, D_PRI,
+<i>16</i>&nbsp;            CESAREAN, CESAREAN_GOV, CESAREAN_PRI)),
+<i>17</i>&nbsp;
+<b class="fc"><i>18</i>&nbsp;    PNC_SERVICES(&quot;PNC Services&quot;, asList(PNC3)),</b>
+<i>19</i>&nbsp;
+<b class="fc"><i>20</i>&nbsp;    CHILD_SERVICES(&quot;Child Services&quot;, asList(INFANT_BALANCE_ON_HAND, INFANT_REG, INFANT_BALANCE_TOTAL, INFANT_LEFT,</b>
+<i>21</i>&nbsp;            INFANT_MORTALITY, INFANT_BALANCE_BALANCE, INFANT_BALANCE_OA_CHILDREN, INFANT_BALANCE_LESS_THAN_ONE_YEAR, INFANT_BALANCE_LESS_THAN_FIVE_YEAR,
+<i>22</i>&nbsp;            PENTAVALENT3_OR_OPV3, DPT_BOOSTER_OR_OPV_BOOSTER, DPT_BOOSTER2, HEP, OPV, MEASLES,
+<i>23</i>&nbsp;            PENTAVALENT_1, PENTAVALENT_2, PENTAVALENT_3,
+<i>24</i>&nbsp;            BCG, LBW, BF_POST_BIRTH, WEIGHED_AT_BIRTH,
+<i>25</i>&nbsp;            VIT_A_1, VIT_A_1_FOR_FEMALE_CHILD, VIT_A_1_FOR_MALE_CHILD,
+<i>26</i>&nbsp;            VIT_A_2, VIT_A_2_FOR_FEMALE_CHILD, VIT_A_2_FOR_MALE_CHILD,
+<i>27</i>&nbsp;            VIT_A_5_FOR_FEMALE_CHILD, VIT_A_5_FOR_MALE_CHILD, VIT_A_9_FOR_FEMALE_CHILD, VIT_A_9_FOR_MALE_CHILD,
+<i>28</i>&nbsp;            VIT_A_FOR_FEMALE, VIT_A_FOR_MALE,
+<i>29</i>&nbsp;            CHILD_DIARRHEA,
+<i>30</i>&nbsp;            CHILD_MORTALITY_DUE_TO_DIARRHEA,
+<i>31</i>&nbsp;            IB_1Y, OPV3, OPV_BOOSTER, JE, DPT_BOOSTER1)),
+<i>32</i>&nbsp;
+<b class="fc"><i>33</i>&nbsp;    MORTALITY(&quot;Mortality&quot;, asList(ENM, NM, LNM, INFANT_MORTALITY, CHILD_MORTALITY, MMA, MMD, MMP, MM)),</b>
+<i>34</i>&nbsp;
+<b class="fc"><i>35</i>&nbsp;    BENEFICIARY_SCHEMES(&quot;Beneficiary Schemes&quot;, asList(ANCS_AND_PNCS_WITH_BPL));</b>
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    private String description;
+<i>38</i>&nbsp;    private List&lt;ReportIndicator&gt; indicators;
+<i>39</i>&nbsp;
+<b class="fc"><i>40</i>&nbsp;    ReportsCategory(String description, List&lt;ReportIndicator&gt; indicators) {</b>
+<b class="fc"><i>41</i>&nbsp;        this.description = description;</b>
+<b class="fc"><i>42</i>&nbsp;        this.indicators = indicators;</b>
+<b class="fc"><i>43</i>&nbsp;    }</b>
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;    public List&lt;ReportIndicator&gt; indicators() {
+<b class="fc"><i>46</i>&nbsp;        return indicators;</b>
+<i>47</i>&nbsp;    }
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    public String description() {
+<b class="fc"><i>50</i>&nbsp;        return description;</b>
+<i>51</i>&nbsp;    }
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    public String value() {
+<b class="fc"><i>54</i>&nbsp;        return name();</b>
+<i>55</i>&nbsp;    }
+<i>56</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

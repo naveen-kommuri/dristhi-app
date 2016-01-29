@@ -1,0 +1,240 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: PNCRegisterEntryDTO</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.dto.register</a> ]
+</div>
+
+<h1>Coverage Summary for Class: PNCRegisterEntryDTO (org.ei.telemedicine.dto.register)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PNCRegisterEntryDTO</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 19)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 34)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.dto.register;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.List;
+<i>4</i>&nbsp;import java.util.Map;
+<i>5</i>&nbsp;import org.apache.commons.lang3.builder.EqualsBuilder;
+<i>6</i>&nbsp;import org.apache.commons.lang3.builder.HashCodeBuilder;
+<i>7</i>&nbsp;import org.apache.commons.lang3.builder.ToStringBuilder;
+<i>8</i>&nbsp;import org.codehaus.jackson.annotate.JsonProperty;
+<i>9</i>&nbsp;
+<b class="nc"><i>10</i>&nbsp;public class PNCRegisterEntryDTO</b>
+<i>11</i>&nbsp;{
+<i>12</i>&nbsp;  @JsonProperty
+<i>13</i>&nbsp;  private String address;
+<i>14</i>&nbsp;  @JsonProperty
+<i>15</i>&nbsp;  private List&lt;Map&lt;String, String&gt;&gt; childrenDetails;
+<i>16</i>&nbsp;  @JsonProperty
+<i>17</i>&nbsp;  private String dateOfDelivery;
+<i>18</i>&nbsp;  @JsonProperty
+<i>19</i>&nbsp;  private String deliveryComplications;
+<i>20</i>&nbsp;  @JsonProperty
+<i>21</i>&nbsp;  private String dischargeDate;
+<i>22</i>&nbsp;  @JsonProperty
+<i>23</i>&nbsp;  private String fpMethodDate;
+<i>24</i>&nbsp;  @JsonProperty
+<i>25</i>&nbsp;  private String fpMethodName;
+<i>26</i>&nbsp;  @JsonProperty
+<i>27</i>&nbsp;  private String husbandName;
+<i>28</i>&nbsp;  @JsonProperty
+<i>29</i>&nbsp;  private String placeOfDelivery;
+<i>30</i>&nbsp;  @JsonProperty
+<i>31</i>&nbsp;  private List&lt;PNCVisitDTO&gt; pncVisits;
+<i>32</i>&nbsp;  @JsonProperty
+<i>33</i>&nbsp;  private String registrationDate;
+<i>34</i>&nbsp;  @JsonProperty
+<i>35</i>&nbsp;  private String thayiCardNumber;
+<i>36</i>&nbsp;  @JsonProperty
+<i>37</i>&nbsp;  private String typeOfDelivery;
+<i>38</i>&nbsp;  @JsonProperty
+<i>39</i>&nbsp;  private String wifeDOB;
+<i>40</i>&nbsp;  @JsonProperty
+<i>41</i>&nbsp;  private String wifeName;
+<i>42</i>&nbsp;  
+<i>43</i>&nbsp;  public boolean equals(Object paramObject)
+<i>44</i>&nbsp;  {
+<b class="nc"><i>45</i>&nbsp;    return EqualsBuilder.reflectionEquals(this, paramObject, new String[0]);</b>
+<i>46</i>&nbsp;  }
+<i>47</i>&nbsp;  
+<i>48</i>&nbsp;  public int hashCode()
+<i>49</i>&nbsp;  {
+<b class="nc"><i>50</i>&nbsp;    return HashCodeBuilder.reflectionHashCode(this, new String[0]);</b>
+<i>51</i>&nbsp;  }
+<i>52</i>&nbsp;  
+<i>53</i>&nbsp;  public String toString()
+<i>54</i>&nbsp;  {
+<b class="nc"><i>55</i>&nbsp;    return ToStringBuilder.reflectionToString(this);</b>
+<i>56</i>&nbsp;  }
+<i>57</i>&nbsp;  
+<i>58</i>&nbsp;  public PNCRegisterEntryDTO withAddress(String paramString)
+<i>59</i>&nbsp;  {
+<b class="nc"><i>60</i>&nbsp;    this.address = paramString;</b>
+<b class="nc"><i>61</i>&nbsp;    return this;</b>
+<i>62</i>&nbsp;  }
+<i>63</i>&nbsp;  
+<i>64</i>&nbsp;  public PNCRegisterEntryDTO withChildrenDetails(List&lt;Map&lt;String, String&gt;&gt; paramList)
+<i>65</i>&nbsp;  {
+<b class="nc"><i>66</i>&nbsp;    this.childrenDetails = paramList;</b>
+<b class="nc"><i>67</i>&nbsp;    return this;</b>
+<i>68</i>&nbsp;  }
+<i>69</i>&nbsp;  
+<i>70</i>&nbsp;  public PNCRegisterEntryDTO withDateOfDelivery(String paramString)
+<i>71</i>&nbsp;  {
+<b class="nc"><i>72</i>&nbsp;    this.dateOfDelivery = paramString;</b>
+<b class="nc"><i>73</i>&nbsp;    return this;</b>
+<i>74</i>&nbsp;  }
+<i>75</i>&nbsp;  
+<i>76</i>&nbsp;  public PNCRegisterEntryDTO withDeliveryComplications(String paramString)
+<i>77</i>&nbsp;  {
+<b class="nc"><i>78</i>&nbsp;    this.deliveryComplications = paramString;</b>
+<b class="nc"><i>79</i>&nbsp;    return this;</b>
+<i>80</i>&nbsp;  }
+<i>81</i>&nbsp;  
+<i>82</i>&nbsp;  public PNCRegisterEntryDTO withDischargeDate(String paramString)
+<i>83</i>&nbsp;  {
+<b class="nc"><i>84</i>&nbsp;    this.dischargeDate = paramString;</b>
+<b class="nc"><i>85</i>&nbsp;    return this;</b>
+<i>86</i>&nbsp;  }
+<i>87</i>&nbsp;  
+<i>88</i>&nbsp;  public PNCRegisterEntryDTO withFPMethodDate(String paramString)
+<i>89</i>&nbsp;  {
+<b class="nc"><i>90</i>&nbsp;    this.fpMethodDate = paramString;</b>
+<b class="nc"><i>91</i>&nbsp;    return this;</b>
+<i>92</i>&nbsp;  }
+<i>93</i>&nbsp;  
+<i>94</i>&nbsp;  public PNCRegisterEntryDTO withFPMethodName(String paramString)
+<i>95</i>&nbsp;  {
+<b class="nc"><i>96</i>&nbsp;    this.fpMethodName = paramString;</b>
+<b class="nc"><i>97</i>&nbsp;    return this;</b>
+<i>98</i>&nbsp;  }
+<i>99</i>&nbsp;  
+<i>100</i>&nbsp;  public PNCRegisterEntryDTO withHusbandName(String paramString)
+<i>101</i>&nbsp;  {
+<b class="nc"><i>102</i>&nbsp;    this.husbandName = paramString;</b>
+<b class="nc"><i>103</i>&nbsp;    return this;</b>
+<i>104</i>&nbsp;  }
+<i>105</i>&nbsp;  
+<i>106</i>&nbsp;  public PNCRegisterEntryDTO withPNCVisits(List&lt;PNCVisitDTO&gt; paramList)
+<i>107</i>&nbsp;  {
+<b class="nc"><i>108</i>&nbsp;    this.pncVisits = paramList;</b>
+<b class="nc"><i>109</i>&nbsp;    return this;</b>
+<i>110</i>&nbsp;  }
+<i>111</i>&nbsp;  
+<i>112</i>&nbsp;  public PNCRegisterEntryDTO withPlaceOfDelivery(String paramString)
+<i>113</i>&nbsp;  {
+<b class="nc"><i>114</i>&nbsp;    this.placeOfDelivery = paramString;</b>
+<b class="nc"><i>115</i>&nbsp;    return this;</b>
+<i>116</i>&nbsp;  }
+<i>117</i>&nbsp;  
+<i>118</i>&nbsp;  public PNCRegisterEntryDTO withRegistrationDate(String paramString)
+<i>119</i>&nbsp;  {
+<b class="nc"><i>120</i>&nbsp;    this.registrationDate = paramString;</b>
+<b class="nc"><i>121</i>&nbsp;    return this;</b>
+<i>122</i>&nbsp;  }
+<i>123</i>&nbsp;  
+<i>124</i>&nbsp;  public PNCRegisterEntryDTO withThayiCardNumber(String paramString)
+<i>125</i>&nbsp;  {
+<b class="nc"><i>126</i>&nbsp;    this.thayiCardNumber = paramString;</b>
+<b class="nc"><i>127</i>&nbsp;    return this;</b>
+<i>128</i>&nbsp;  }
+<i>129</i>&nbsp;  
+<i>130</i>&nbsp;  public PNCRegisterEntryDTO withTypeOfDelivery(String paramString)
+<i>131</i>&nbsp;  {
+<b class="nc"><i>132</i>&nbsp;    this.typeOfDelivery = paramString;</b>
+<b class="nc"><i>133</i>&nbsp;    return this;</b>
+<i>134</i>&nbsp;  }
+<i>135</i>&nbsp;  
+<i>136</i>&nbsp;  public PNCRegisterEntryDTO withWifeDOB(String paramString)
+<i>137</i>&nbsp;  {
+<b class="nc"><i>138</i>&nbsp;    this.wifeDOB = paramString;</b>
+<b class="nc"><i>139</i>&nbsp;    return this;</b>
+<i>140</i>&nbsp;  }
+<i>141</i>&nbsp;  
+<i>142</i>&nbsp;  public PNCRegisterEntryDTO withWifeName(String paramString)
+<i>143</i>&nbsp;  {
+<b class="nc"><i>144</i>&nbsp;    this.wifeName = paramString;</b>
+<b class="nc"><i>145</i>&nbsp;    return this;</b>
+<i>146</i>&nbsp;  }
+<i>147</i>&nbsp;}
+<i>148</i>&nbsp;
+<i>149</i>&nbsp;
+<i>150</i>&nbsp;
+<i>151</i>&nbsp;/* Location:           C:\Users\appaji.r\Downloads\classes-dex2.jar
+<i>152</i>&nbsp;
+<i>153</i>&nbsp; * Qualified Name:     org.ei.drishti.dto.register.PNCRegisterEntryDTO
+<i>154</i>&nbsp;
+<i>155</i>&nbsp; * JD-Core Version:    0.7.0.1
+<i>156</i>&nbsp;
+<i>157</i>&nbsp; */
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

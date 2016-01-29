@@ -1,0 +1,226 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ViewPreVisitScreenActivity</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.doctor</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ViewPreVisitScreenActivity (org.ei.telemedicine.doctor)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ViewPreVisitScreenActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 62)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ViewPreVisitScreenActivity$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 65)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.doctor;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.app.Activity;
+<i>4</i>&nbsp;import android.os.Bundle;
+<i>5</i>&nbsp;import android.util.Log;
+<i>6</i>&nbsp;import android.view.View;
+<i>7</i>&nbsp;import android.widget.Button;
+<i>8</i>&nbsp;import android.widget.EditText;
+<i>9</i>&nbsp;import android.widget.TextView;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import org.ei.telemedicine.AllConstants;
+<i>12</i>&nbsp;import org.ei.telemedicine.R;
+<i>13</i>&nbsp;import org.json.JSONArray;
+<i>14</i>&nbsp;import org.json.JSONException;
+<i>15</i>&nbsp;import org.json.JSONObject;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;/**
+<i>18</i>&nbsp; * Created by naveen on 9/15/15.
+<i>19</i>&nbsp; */
+<b class="nc"><i>20</i>&nbsp;public class ViewPreVisitScreenActivity extends Activity {</b>
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    EditText et_plan_of_care_date, et_doc_name, et_investigations, et_drugs, et_advice, et_diagnosis, et_risks_observed;
+<i>23</i>&nbsp;    Button bt_close;
+<i>24</i>&nbsp;    String entityId;
+<b class="nc"><i>25</i>&nbsp;    private String TAG = &quot;ViewPreVisitScreenActivity&quot;;</b>
+<b class="nc"><i>26</i>&nbsp;    String formInfo = &quot;formInfo&quot;, documentId, pocDocumentId;</b>
+<i>27</i>&nbsp;    TextView tv_anc_number_title;
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    @Override
+<i>30</i>&nbsp;    protected void onCreate(Bundle savedInstanceState) {
+<b class="nc"><i>31</i>&nbsp;        super.onCreate(savedInstanceState);</b>
+<b class="nc"><i>32</i>&nbsp;        Bundle bundle = getIntent().getExtras();</b>
+<b class="nc"><i>33</i>&nbsp;        if (bundle != null) {</b>
+<b class="nc"><i>34</i>&nbsp;            formInfo = bundle.containsKey(formInfo) ? bundle.getString(formInfo) : &quot;&quot;;</b>
+<b class="nc"><i>35</i>&nbsp;            setContentView(R.layout.view_pre_visits);</b>
+<b class="nc"><i>36</i>&nbsp;            bt_close = (Button) findViewById(R.id.bt_close);</b>
+<b class="nc"><i>37</i>&nbsp;            et_plan_of_care_date = (EditText) findViewById(R.id.et_plan_of_care_date);</b>
+<b class="nc"><i>38</i>&nbsp;            et_doc_name = (EditText) findViewById(R.id.et_doctor_name);</b>
+<b class="nc"><i>39</i>&nbsp;            et_investigations = (EditText) findViewById(R.id.et_investigations);</b>
+<b class="nc"><i>40</i>&nbsp;            et_drugs = (EditText) findViewById(R.id.et_drugs);</b>
+<b class="nc"><i>41</i>&nbsp;            et_advice = (EditText) findViewById(R.id.et_advice_data);</b>
+<b class="nc"><i>42</i>&nbsp;            et_risks_observed = (EditText) findViewById(R.id.et_risks_observed);</b>
+<b class="nc"><i>43</i>&nbsp;            et_diagnosis = (EditText) findViewById(R.id.et_diagnosis);</b>
+<b class="nc"><i>44</i>&nbsp;            tv_anc_number_title = (TextView) findViewById(R.id.tv_anc_num_title);</b>
+<i>45</i>&nbsp;
+<b class="nc"><i>46</i>&nbsp;            pocDocumentId = getDataFromJson(formInfo, &quot;id&quot;);</b>
+<b class="nc"><i>47</i>&nbsp;            et_risks_observed.setText(getDataFromJson(formInfo, &quot;riskObserved&quot;).replace(&quot; &quot;, &quot;,&quot;));</b>
+<b class="nc"><i>48</i>&nbsp;            bt_close.setOnClickListener(new View.OnClickListener() {</b>
+<i>49</i>&nbsp;                @Override
+<i>50</i>&nbsp;                public void onClick(View v) {
+<b class="nc"><i>51</i>&nbsp;                    finish();</b>
+<b class="nc"><i>52</i>&nbsp;                }</b>
+<i>53</i>&nbsp;            });
+<i>54</i>&nbsp;            try {
+<b class="nc"><i>55</i>&nbsp;                String pocJson = getDataFromJson(formInfo, &quot;docPocInfo&quot;);</b>
+<b class="nc"><i>56</i>&nbsp;                if (pocJson != null &amp;&amp; !pocJson.equals(&quot;&quot;)) {</b>
+<b class="nc"><i>57</i>&nbsp;                    JSONArray pocJsonArray = new JSONArray(pocJson);</b>
+<b class="nc"><i>58</i>&nbsp;                    for (int i = 0; i &lt; pocJsonArray.length(); i++) {</b>
+<b class="nc"><i>59</i>&nbsp;                        JSONObject pocDataJson = pocJsonArray.getJSONObject(i);</b>
+<b class="nc"><i>60</i>&nbsp;                        JSONObject pocInfoJson = new JSONObject(pocDataJson.getString(&quot;poc&quot;));</b>
+<b class="nc"><i>61</i>&nbsp;                        String pocInfo = pocInfoJson.toString();</b>
+<b class="nc"><i>62</i>&nbsp;                        if (getDataFromJson(pocInfo, &quot;documentId&quot;).equals(pocDocumentId)) {</b>
+<i>63</i>&nbsp;
+<b class="nc"><i>64</i>&nbsp;                            JSONArray investigationsArray = new JSONArray(getDataFromJson(pocInfo, &quot;investigations&quot;));</b>
+<b class="nc"><i>65</i>&nbsp;                            String investigations = &quot;&quot;, diagnosis = &quot;&quot;, drugs = &quot;&quot;;</b>
+<b class="nc"><i>66</i>&nbsp;                            for (int investigation = 0; investigation &lt; investigationsArray.length(); investigation++) {</b>
+<b class="nc"><i>67</i>&nbsp;                                investigations = investigations + (!investigations.equals(&quot;&quot;) ? &quot;,&quot; : &quot;&quot;) + investigationsArray.getString(i);</b>
+<i>68</i>&nbsp;                            }
+<b class="nc"><i>69</i>&nbsp;                            JSONArray diagnosisArray = new JSONArray(getDataFromJson(pocInfo, &quot;diagnosis&quot;));</b>
+<b class="nc"><i>70</i>&nbsp;                            for (int d = 0; d &lt; diagnosisArray.length(); d++) {</b>
+<b class="nc"><i>71</i>&nbsp;                                diagnosis = diagnosis + (!diagnosis.equals(&quot;&quot;) ? &quot;,&quot; : &quot;&quot;) + diagnosisArray.getString(d);</b>
+<i>72</i>&nbsp;                            }
+<b class="nc"><i>73</i>&nbsp;                            JSONArray drugsArray = new JSONArray(getDataFromJson(pocInfo, &quot;drugs&quot;));</b>
+<i>74</i>&nbsp;                            {
+<b class="nc"><i>75</i>&nbsp;                                for (int dru = 0; dru &lt; drugsArray.length(); dru++) {</b>
+<b class="nc"><i>76</i>&nbsp;                                    String drugsJson = drugsArray.getJSONObject(dru).toString();</b>
+<b class="nc"><i>77</i>&nbsp;                                    drugs = drugs + (!drugs.equals(&quot;&quot;) ? &quot;,&quot; : &quot;&quot;)</b>
+<b class="nc"><i>78</i>&nbsp;                                            + getDataFromJson(drugsJson, &quot;drugName&quot;)</b>
+<b class="nc"><i>79</i>&nbsp;                                            + &quot;-&quot; + getDataFromJson(drugsJson, &quot;dosage&quot;)</b>
+<b class="nc"><i>80</i>&nbsp;                                            + &quot;-&quot; + getDataFromJson(drugsJson, &quot;direction&quot;)</b>
+<b class="nc"><i>81</i>&nbsp;                                            + &quot;-&quot; + getDataFromJson(drugsJson, &quot;frequency&quot;)</b>
+<b class="nc"><i>82</i>&nbsp;                                            + &quot;- Days :&quot; + getDataFromJson(drugsJson, &quot;drugNoOfDays&quot;)</b>
+<b class="nc"><i>83</i>&nbsp;                                            + &quot;- Qty :&quot; + getDataFromJson(drugsJson, &quot;drugQty&quot;);</b>
+<i>84</i>&nbsp;                                }
+<i>85</i>&nbsp;                            }
+<b class="nc"><i>86</i>&nbsp;                            et_plan_of_care_date.setText(getDataFromJson(pocInfo, &quot;planofCareDate&quot;));</b>
+<b class="nc"><i>87</i>&nbsp;                            et_doc_name.setText(getDataFromJson(pocInfo, &quot;doctorName&quot;));</b>
+<b class="nc"><i>88</i>&nbsp;                            et_drugs.setText(drugs);</b>
+<b class="nc"><i>89</i>&nbsp;                            et_investigations.setText(investigations);</b>
+<b class="nc"><i>90</i>&nbsp;                            et_diagnosis.setText(diagnosis);</b>
+<b class="nc"><i>91</i>&nbsp;                            et_advice.setText(getDataFromJson(pocInfo, &quot;advice&quot;));</b>
+<b class="nc"><i>92</i>&nbsp;                            et_doc_name.setText(getDataFromJson(pocInfo, &quot;doctorName&quot;));</b>
+<i>93</i>&nbsp;                        }
+<i>94</i>&nbsp;
+<i>95</i>&nbsp;                    }
+<i>96</i>&nbsp;
+<i>97</i>&nbsp;                }
+<b class="nc"><i>98</i>&nbsp;            } catch (JSONException e) {</b>
+<b class="nc"><i>99</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>100</i>&nbsp;            }</b>
+<i>101</i>&nbsp;
+<i>102</i>&nbsp;
+<i>103</i>&nbsp;        }
+<b class="nc"><i>104</i>&nbsp;    }</b>
+<i>105</i>&nbsp;
+<i>106</i>&nbsp;    private String getDataFromJson(String formJson, String key) {
+<b class="nc"><i>107</i>&nbsp;        if (formJson != null &amp;&amp; !formJson.equals(&quot;&quot;)) {</b>
+<i>108</i>&nbsp;            try {
+<b class="nc"><i>109</i>&nbsp;                JSONObject formInfoJson = new JSONObject(formJson);</b>
+<b class="nc"><i>110</i>&nbsp;                return formInfoJson.has(key) &amp;&amp; formInfoJson.getString(key) != null ? formInfoJson.getString(key) : &quot;&quot;;</b>
+<b class="nc"><i>111</i>&nbsp;            } catch (JSONException e) {</b>
+<b class="nc"><i>112</i>&nbsp;                e.printStackTrace();</b>
+<i>113</i>&nbsp;            }
+<i>114</i>&nbsp;        }
+<b class="nc"><i>115</i>&nbsp;        return &quot;&quot;;</b>
+<i>116</i>&nbsp;    }
+<i>117</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

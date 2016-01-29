@@ -1,0 +1,170 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AllSettingsTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.repository</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AllSettingsTest (org.ei.telemedicine.test.repository)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AllSettingsTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/ 9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (31/ 31)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.repository;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.repository.AllSettings;
+<i>4</i>&nbsp;import org.ei.telemedicine.repository.AllSharedPreferences;
+<i>5</i>&nbsp;import org.ei.telemedicine.repository.SettingsRepository;
+<i>6</i>&nbsp;import org.junit.Before;
+<i>7</i>&nbsp;import org.junit.Test;
+<i>8</i>&nbsp;import org.mockito.Mock;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import static junit.framework.Assert.assertEquals;
+<i>11</i>&nbsp;import static org.mockito.Mockito.verify;
+<i>12</i>&nbsp;import static org.mockito.Mockito.when;
+<i>13</i>&nbsp;import static org.mockito.MockitoAnnotations.initMocks;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;
+<b class="fc"><i>16</i>&nbsp;public class AllSettingsTest {</b>
+<i>17</i>&nbsp;    @Mock
+<i>18</i>&nbsp;    private SettingsRepository settingsRepository;
+<i>19</i>&nbsp;    @Mock
+<i>20</i>&nbsp;    private AllSharedPreferences allSharedPreferences;
+<i>21</i>&nbsp;    private AllSettings allSettings;
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    @Before
+<i>24</i>&nbsp;    public void setUp() throws Exception {
+<b class="fc"><i>25</i>&nbsp;        initMocks(this);</b>
+<b class="fc"><i>26</i>&nbsp;        allSettings = new AllSettings(allSharedPreferences, settingsRepository);</b>
+<b class="fc"><i>27</i>&nbsp;    }</b>
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    @Test
+<i>30</i>&nbsp;    public void shouldFetchANMPassword() throws Exception {
+<b class="fc"><i>31</i>&nbsp;        when(settingsRepository.querySetting(&quot;anmPassword&quot;, &quot;&quot;)).thenReturn(&quot;actual password&quot;);</b>
+<i>32</i>&nbsp;
+<b class="fc"><i>33</i>&nbsp;        String actual = allSettings.fetchANMPassword();</b>
+<i>34</i>&nbsp;
+<b class="fc"><i>35</i>&nbsp;        verify(settingsRepository).querySetting(&quot;anmPassword&quot;, &quot;&quot;);</b>
+<b class="fc"><i>36</i>&nbsp;        assertEquals(&quot;actual password&quot;, actual);</b>
+<b class="fc"><i>37</i>&nbsp;    }</b>
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    @Test
+<i>40</i>&nbsp;    public void shouldSavePreviousFetchIndex() throws Exception {
+<b class="fc"><i>41</i>&nbsp;        allSettings.savePreviousFetchIndex(&quot;1234&quot;);</b>
+<i>42</i>&nbsp;
+<b class="fc"><i>43</i>&nbsp;        verify(settingsRepository).updateSetting(&quot;previousFetchIndex&quot;, &quot;1234&quot;);</b>
+<b class="fc"><i>44</i>&nbsp;    }</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    @Test
+<i>47</i>&nbsp;    public void shouldFetchPreviousFetchIndex() throws Exception {
+<b class="fc"><i>48</i>&nbsp;        when(settingsRepository.querySetting(&quot;previousFetchIndex&quot;, &quot;0&quot;)).thenReturn(&quot;1234&quot;);</b>
+<i>49</i>&nbsp;
+<b class="fc"><i>50</i>&nbsp;        String actual = allSettings.fetchPreviousFetchIndex();</b>
+<i>51</i>&nbsp;
+<b class="fc"><i>52</i>&nbsp;        verify(settingsRepository).querySetting(&quot;previousFetchIndex&quot;, &quot;0&quot;);</b>
+<b class="fc"><i>53</i>&nbsp;        assertEquals(&quot;1234&quot;, actual);</b>
+<b class="fc"><i>54</i>&nbsp;    }</b>
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;    @Test
+<i>57</i>&nbsp;    public void shouldSavePreviousFormSyncIndex() throws Exception {
+<b class="fc"><i>58</i>&nbsp;        allSettings.savePreviousFormSyncIndex(&quot;1234&quot;);</b>
+<i>59</i>&nbsp;
+<b class="fc"><i>60</i>&nbsp;        verify(settingsRepository).updateSetting(&quot;previousFormSyncIndex&quot;, &quot;1234&quot;);</b>
+<b class="fc"><i>61</i>&nbsp;    }</b>
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    @Test
+<i>64</i>&nbsp;    public void shouldFetchPreviousFormSyncIndex() throws Exception {
+<b class="fc"><i>65</i>&nbsp;        when(settingsRepository.querySetting(&quot;previousFormSyncIndex&quot;, &quot;0&quot;)).thenReturn(&quot;1234&quot;);</b>
+<i>66</i>&nbsp;
+<b class="fc"><i>67</i>&nbsp;        String actual = allSettings.fetchPreviousFormSyncIndex();</b>
+<i>68</i>&nbsp;
+<b class="fc"><i>69</i>&nbsp;        verify(settingsRepository).querySetting(&quot;previousFormSyncIndex&quot;, &quot;0&quot;);</b>
+<b class="fc"><i>70</i>&nbsp;        assertEquals(&quot;1234&quot;, actual);</b>
+<b class="fc"><i>71</i>&nbsp;    }</b>
+<i>72</i>&nbsp;
+<i>73</i>&nbsp;    @Test
+<i>74</i>&nbsp;    public void shouldSaveAppliedVillageFilter() throws Exception {
+<b class="fc"><i>75</i>&nbsp;        allSettings.saveAppliedVillageFilter(&quot;munjanahalli&quot;);</b>
+<i>76</i>&nbsp;
+<b class="fc"><i>77</i>&nbsp;        verify(settingsRepository).updateSetting(&quot;appliedVillageFilter&quot;, &quot;munjanahalli&quot;);</b>
+<b class="fc"><i>78</i>&nbsp;    }</b>
+<i>79</i>&nbsp;
+<i>80</i>&nbsp;    @Test
+<i>81</i>&nbsp;    public void shouldGetAppliedVillageFilter() throws Exception {
+<b class="fc"><i>82</i>&nbsp;        allSettings.appliedVillageFilter(&quot;All&quot;);</b>
+<i>83</i>&nbsp;
+<b class="fc"><i>84</i>&nbsp;        verify(settingsRepository).querySetting(&quot;appliedVillageFilter&quot;, &quot;All&quot;);</b>
+<b class="fc"><i>85</i>&nbsp;    }</b>
+<i>86</i>&nbsp;
+<i>87</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-20 13:39</div>
+</div>
+</body>
+</html>

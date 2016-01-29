@@ -1,0 +1,197 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AlertServiceTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.service</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AlertServiceTest (org.ei.telemedicine.test.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AlertServiceTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/ 9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (44/ 44)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.service;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.domain.Alert;
+<i>4</i>&nbsp;import org.ei.telemedicine.dto.Action;
+<i>5</i>&nbsp;import org.ei.telemedicine.dto.BeneficiaryType;
+<i>6</i>&nbsp;import org.ei.telemedicine.repository.AlertRepository;
+<i>7</i>&nbsp;import org.ei.telemedicine.service.AlertService;
+<i>8</i>&nbsp;import org.junit.Before;
+<i>9</i>&nbsp;import org.junit.Test;
+<i>10</i>&nbsp;import org.junit.runner.RunWith;
+<i>11</i>&nbsp;import org.mockito.Mock;
+<i>12</i>&nbsp;import org.mockito.runners.MockitoJUnitRunner;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;import java.util.HashMap;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;import static org.ei.telemedicine.dto.AlertStatus.normal;
+<i>17</i>&nbsp;import static org.ei.telemedicine.dto.AlertStatus.urgent;
+<i>18</i>&nbsp;import static org.ei.telemedicine.test.util.ActionBuilder.actionForCloseAlert;
+<i>19</i>&nbsp;import static org.ei.telemedicine.test.util.ActionBuilder.actionForCreateAlert;
+<i>20</i>&nbsp;import static org.ei.telemedicine.test.util.ActionBuilder.actionForDeleteAllAlert;
+<i>21</i>&nbsp;import static org.mockito.Mockito.verify;
+<i>22</i>&nbsp;import static org.mockito.Mockito.verifyNoMoreInteractions;
+<i>23</i>&nbsp;import static org.mockito.Mockito.verifyZeroInteractions;
+<i>24</i>&nbsp;import static org.mockito.MockitoAnnotations.initMocks;
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;@RunWith(MockitoJUnitRunner.class)
+<b class="fc"><i>28</i>&nbsp;public class AlertServiceTest {</b>
+<i>29</i>&nbsp;    @Mock
+<i>30</i>&nbsp;    private AlertRepository alertRepository;
+<i>31</i>&nbsp;
+<i>32</i>&nbsp;    private AlertService service;
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    @Before
+<i>35</i>&nbsp;    public void setUp() throws Exception {
+<b class="fc"><i>36</i>&nbsp;        initMocks(this);</b>
+<b class="fc"><i>37</i>&nbsp;        service = new AlertService(alertRepository);</b>
+<b class="fc"><i>38</i>&nbsp;    }</b>
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;    @Test
+<i>41</i>&nbsp;    public void testShouldAddAnAlertIntoAlertRepositoryForMotherCreateAlertAction() throws Exception {
+<b class="fc"><i>42</i>&nbsp;        Action actionForMother = actionForCreateAlert(&quot;Case X&quot;, normal.value(), BeneficiaryType.mother.value(), &quot;Schedule 1&quot;, &quot;ANC 1&quot;, &quot;2012-01-01&quot;, &quot;2012-01-22&quot;, &quot;0&quot;);</b>
+<i>43</i>&nbsp;
+<b class="fc"><i>44</i>&nbsp;        service.create(actionForMother);</b>
+<i>45</i>&nbsp;
+<b class="fc"><i>46</i>&nbsp;        verify(alertRepository).createAlert(new Alert(&quot;Case X&quot;, &quot;Schedule 1&quot;, &quot;ANC 1&quot;, normal, &quot;2012-01-01&quot;, &quot;2012-01-22&quot;));</b>
+<b class="fc"><i>47</i>&nbsp;        verifyNoMoreInteractions(alertRepository);</b>
+<b class="fc"><i>48</i>&nbsp;    }</b>
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;    @Test
+<i>51</i>&nbsp;    public void testShouldAddAnAlertIntoAlertRepositoryForECCreateAlertAction() throws Exception {
+<b class="fc"><i>52</i>&nbsp;        Action actionForEC = actionForCreateAlert(&quot;Case X&quot;, normal.value(), BeneficiaryType.ec.value(), &quot;Schedule 1&quot;, &quot;Milestone 1&quot;, &quot;2012-01-01&quot;, &quot;2012-01-22&quot;, &quot;0&quot;);</b>
+<i>53</i>&nbsp;
+<b class="fc"><i>54</i>&nbsp;        service.create(actionForEC);</b>
+<i>55</i>&nbsp;
+<b class="fc"><i>56</i>&nbsp;        verify(alertRepository).createAlert(new Alert(&quot;Case X&quot;, &quot;Schedule 1&quot;, &quot;Milestone 1&quot;, normal, &quot;2012-01-01&quot;, &quot;2012-01-22&quot;));</b>
+<b class="fc"><i>57</i>&nbsp;        verifyNoMoreInteractions(alertRepository);</b>
+<b class="fc"><i>58</i>&nbsp;    }</b>
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;    @Test
+<i>61</i>&nbsp;    public void testShouldAddAnAlertIntoAlertRepositoryForECCreateAlertActionWhenThereIsNoMother() throws Exception {
+<b class="fc"><i>62</i>&nbsp;        Action actionForEC = actionForCreateAlert(&quot;Case X&quot;, normal.value(), BeneficiaryType.ec.value(), &quot;Schedule 1&quot;, &quot;Milestone 1&quot;, &quot;2012-01-01&quot;, &quot;2012-01-22&quot;, &quot;0&quot;);</b>
+<i>63</i>&nbsp;
+<b class="fc"><i>64</i>&nbsp;        service.create(actionForEC);</b>
+<i>65</i>&nbsp;
+<b class="fc"><i>66</i>&nbsp;        verify(alertRepository).createAlert(new Alert(&quot;Case X&quot;, &quot;Schedule 1&quot;, &quot;Milestone 1&quot;, normal, &quot;2012-01-01&quot;, &quot;2012-01-22&quot;));</b>
+<b class="fc"><i>67</i>&nbsp;        verifyNoMoreInteractions(alertRepository);</b>
+<b class="fc"><i>68</i>&nbsp;    }</b>
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;    @Test
+<i>71</i>&nbsp;    public void testShouldNotCreateIfActionIsInactive() throws Exception {
+<b class="fc"><i>72</i>&nbsp;        Action actionForMother = new Action(&quot;Case X&quot;, &quot;alert&quot;, &quot;createAlert&quot;, new HashMap&lt;String, String&gt;(), &quot;0&quot;, false, new HashMap&lt;String, String&gt;());</b>
+<i>73</i>&nbsp;
+<b class="fc"><i>74</i>&nbsp;        service.create(actionForMother);</b>
+<i>75</i>&nbsp;
+<b class="fc"><i>76</i>&nbsp;        verifyZeroInteractions(alertRepository);</b>
+<b class="fc"><i>77</i>&nbsp;    }</b>
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    @Test
+<i>80</i>&nbsp;    public void testShouldAddAnAlertIntoAlertRepositoryForChildCreateAlertAction() throws Exception {
+<b class="fc"><i>81</i>&nbsp;        Action actionForMother = actionForCreateAlert(&quot;Case X&quot;, urgent.value(), BeneficiaryType.child.value(), &quot;Schedule 1&quot;, &quot;Milestone 1&quot;, &quot;2012-01-01&quot;, &quot;2012-01-22&quot;, &quot;0&quot;);</b>
+<i>82</i>&nbsp;
+<b class="fc"><i>83</i>&nbsp;        service.create(actionForMother);</b>
+<i>84</i>&nbsp;
+<b class="fc"><i>85</i>&nbsp;        verify(alertRepository).createAlert(new Alert(&quot;Case X&quot;, &quot;Schedule 1&quot;, &quot;Milestone 1&quot;, urgent, &quot;2012-01-01&quot;, &quot;2012-01-22&quot;));</b>
+<b class="fc"><i>86</i>&nbsp;        verifyNoMoreInteractions(alertRepository);</b>
+<b class="fc"><i>87</i>&nbsp;    }</b>
+<i>88</i>&nbsp;
+<i>89</i>&nbsp;    @Test
+<i>90</i>&nbsp;    public void testShouldMarkAlertAsClosedInRepositoryForCloseActions() throws Exception {
+<b class="fc"><i>91</i>&nbsp;        Action firstAction = actionForCloseAlert(&quot;Case X&quot;, &quot;ANC 1&quot;, &quot;2012-01-01&quot;, &quot;0&quot;);</b>
+<b class="fc"><i>92</i>&nbsp;        Action secondAction = actionForCloseAlert(&quot;Case Y&quot;, &quot;ANC 2&quot;, &quot;2012-01-01&quot;, &quot;0&quot;);</b>
+<i>93</i>&nbsp;
+<b class="fc"><i>94</i>&nbsp;        service.close(firstAction);</b>
+<b class="fc"><i>95</i>&nbsp;        service.close(secondAction);</b>
+<i>96</i>&nbsp;
+<b class="fc"><i>97</i>&nbsp;        verify(alertRepository).markAlertAsClosed(&quot;Case X&quot;, &quot;ANC 1&quot;, &quot;2012-01-01&quot;);</b>
+<b class="fc"><i>98</i>&nbsp;        verify(alertRepository).markAlertAsClosed(&quot;Case Y&quot;, &quot;ANC 2&quot;, &quot;2012-01-01&quot;);</b>
+<b class="fc"><i>99</i>&nbsp;        verifyNoMoreInteractions(alertRepository);</b>
+<b class="fc"><i>100</i>&nbsp;    }</b>
+<i>101</i>&nbsp;
+<i>102</i>&nbsp;    @Test
+<i>103</i>&nbsp;    public void testShouldDeleteAllFromRepositoryForDeleteAllActions() throws Exception {
+<b class="fc"><i>104</i>&nbsp;        Action firstAction = actionForDeleteAllAlert(&quot;Case X&quot;);</b>
+<b class="fc"><i>105</i>&nbsp;        Action secondAction = actionForDeleteAllAlert(&quot;Case Y&quot;);</b>
+<i>106</i>&nbsp;
+<b class="fc"><i>107</i>&nbsp;        service.deleteAll(firstAction);</b>
+<b class="fc"><i>108</i>&nbsp;        service.deleteAll(secondAction);</b>
+<i>109</i>&nbsp;
+<b class="fc"><i>110</i>&nbsp;        verify(alertRepository).deleteAllAlertsForEntity(&quot;Case X&quot;);</b>
+<b class="fc"><i>111</i>&nbsp;        verify(alertRepository).deleteAllAlertsForEntity(&quot;Case Y&quot;);</b>
+<b class="fc"><i>112</i>&nbsp;        verifyNoMoreInteractions(alertRepository);</b>
+<b class="fc"><i>113</i>&nbsp;    }</b>
+<i>114</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-26 16:42</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: MonthSummaryDatum</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.dto</a> ]
+</div>
+
+<h1>Coverage Summary for Class: MonthSummaryDatum (org.ei.telemedicine.dto)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MonthSummaryDatum</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    60%
+  </span>
+  <span class="absValue">
+    (6/ 10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (12/ 16)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.dto;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.List;
+<i>4</i>&nbsp;import org.apache.commons.lang3.builder.EqualsBuilder;
+<i>5</i>&nbsp;import org.apache.commons.lang3.builder.HashCodeBuilder;
+<i>6</i>&nbsp;import org.apache.commons.lang3.builder.ToStringBuilder;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;public class MonthSummaryDatum
+<i>9</i>&nbsp;{
+<i>10</i>&nbsp;  private String aggregatedProgress;
+<i>11</i>&nbsp;  private String currentProgress;
+<i>12</i>&nbsp;  private List&lt;String&gt; externalIDs;
+<i>13</i>&nbsp;  private String month;
+<i>14</i>&nbsp;  private String year;
+<i>15</i>&nbsp;  
+<b class="fc"><i>16</i>&nbsp;  public MonthSummaryDatum() {}</b>
+<i>17</i>&nbsp;  
+<i>18</i>&nbsp;  public MonthSummaryDatum(String paramString1, String paramString2, String paramString3, String paramString4, List&lt;String&gt; paramList)
+<b class="fc"><i>19</i>&nbsp;  {</b>
+<b class="fc"><i>20</i>&nbsp;    this.month = paramString1;</b>
+<b class="fc"><i>21</i>&nbsp;    this.year = paramString2;</b>
+<b class="fc"><i>22</i>&nbsp;    this.currentProgress = paramString3;</b>
+<b class="fc"><i>23</i>&nbsp;    this.aggregatedProgress = paramString4;</b>
+<b class="fc"><i>24</i>&nbsp;    this.externalIDs = paramList;</b>
+<b class="fc"><i>25</i>&nbsp;  }</b>
+<i>26</i>&nbsp;  
+<i>27</i>&nbsp;  public String aggregatedProgress()
+<i>28</i>&nbsp;  {
+<b class="fc"><i>29</i>&nbsp;    return this.aggregatedProgress;</b>
+<i>30</i>&nbsp;  }
+<i>31</i>&nbsp;  
+<i>32</i>&nbsp;  public String currentProgress()
+<i>33</i>&nbsp;  {
+<b class="fc"><i>34</i>&nbsp;    return this.currentProgress;</b>
+<i>35</i>&nbsp;  }
+<i>36</i>&nbsp;  
+<i>37</i>&nbsp;  public boolean equals(Object paramObject)
+<i>38</i>&nbsp;  {
+<b class="nc"><i>39</i>&nbsp;    return EqualsBuilder.reflectionEquals(this, paramObject, new String[0]);</b>
+<i>40</i>&nbsp;  }
+<i>41</i>&nbsp;  
+<i>42</i>&nbsp;  public List&lt;String&gt; externalIDs()
+<i>43</i>&nbsp;  {
+<b class="nc"><i>44</i>&nbsp;    return this.externalIDs;</b>
+<i>45</i>&nbsp;  }
+<i>46</i>&nbsp;  
+<i>47</i>&nbsp;  public int hashCode()
+<i>48</i>&nbsp;  {
+<b class="nc"><i>49</i>&nbsp;    return HashCodeBuilder.reflectionHashCode(this, new String[0]);</b>
+<i>50</i>&nbsp;  }
+<i>51</i>&nbsp;  
+<i>52</i>&nbsp;  public String month()
+<i>53</i>&nbsp;  {
+<b class="fc"><i>54</i>&nbsp;    return this.month;</b>
+<i>55</i>&nbsp;  }
+<i>56</i>&nbsp;  
+<i>57</i>&nbsp;  public String toString()
+<i>58</i>&nbsp;  {
+<b class="nc"><i>59</i>&nbsp;    return ToStringBuilder.reflectionToString(this);</b>
+<i>60</i>&nbsp;  }
+<i>61</i>&nbsp;  
+<i>62</i>&nbsp;  public String year()
+<i>63</i>&nbsp;  {
+<b class="fc"><i>64</i>&nbsp;    return this.year;</b>
+<i>65</i>&nbsp;  }
+<i>66</i>&nbsp;}
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;/* Location:           C:\Users\appaji.r\Downloads\classes-dex2.jar
+<i>71</i>&nbsp;
+<i>72</i>&nbsp; * Qualified Name:     org.ei.drishti.dto.MonthSummaryDatum
+<i>73</i>&nbsp;
+<i>74</i>&nbsp; * JD-Core Version:    0.7.0.1
+<i>75</i>&nbsp;
+<i>76</i>&nbsp; */
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

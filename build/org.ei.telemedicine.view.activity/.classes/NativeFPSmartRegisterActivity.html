@@ -1,0 +1,497 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: NativeFPSmartRegisterActivity</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.activity</a> ]
+</div>
+
+<h1>Coverage Summary for Class: NativeFPSmartRegisterActivity (org.ei.telemedicine.view.activity)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">NativeFPSmartRegisterActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 55)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">NativeFPSmartRegisterActivity$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NativeFPSmartRegisterActivity$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 15)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NativeFPSmartRegisterActivity$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NativeFPSmartRegisterActivity$ClientActionHandler</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 13)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NativeFPSmartRegisterActivity$FPServiceModeDialogOptionModel</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 11)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NativeFPSmartRegisterActivity$UpdateDialogOptionModel</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 35)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 106)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.activity;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static com.google.common.collect.Iterables.concat;
+<i>4</i>&nbsp;import static com.google.common.collect.Iterables.toArray;
+<i>5</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.EC_REGISTRATION;
+<i>6</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.FP_CHANGE;
+<i>7</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.FP_COMPLICATIONS;
+<i>8</i>&nbsp;import static org.ei.telemedicine.AllConstants.FormNames.RECORD_ECPS;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import org.ei.telemedicine.AllConstants;
+<i>11</i>&nbsp;import org.ei.telemedicine.R;
+<i>12</i>&nbsp;import org.ei.telemedicine.adapter.SmartRegisterPaginatedAdapter;
+<i>13</i>&nbsp;import org.ei.telemedicine.domain.form.FieldOverrides;
+<i>14</i>&nbsp;import org.ei.telemedicine.provider.FPSmartRegisterClientsProvider;
+<i>15</i>&nbsp;import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
+<i>16</i>&nbsp;import org.ei.telemedicine.view.contract.FPClient;
+<i>17</i>&nbsp;import org.ei.telemedicine.view.contract.SmartRegisterClient;
+<i>18</i>&nbsp;import org.ei.telemedicine.view.controller.FPSmartRegisterController;
+<i>19</i>&nbsp;import org.ei.telemedicine.view.controller.VillageController;
+<i>20</i>&nbsp;import org.ei.telemedicine.view.dialog.AllClientsFilter;
+<i>21</i>&nbsp;import org.ei.telemedicine.view.dialog.DialogOption;
+<i>22</i>&nbsp;import org.ei.telemedicine.view.dialog.DialogOptionMapper;
+<i>23</i>&nbsp;import org.ei.telemedicine.view.dialog.DialogOptionModel;
+<i>24</i>&nbsp;import org.ei.telemedicine.view.dialog.ECNumberSort;
+<i>25</i>&nbsp;import org.ei.telemedicine.view.dialog.EditOption;
+<i>26</i>&nbsp;import org.ei.telemedicine.view.dialog.FPAllMethodsServiceMode;
+<i>27</i>&nbsp;import org.ei.telemedicine.view.dialog.FPCondomServiceMode;
+<i>28</i>&nbsp;import org.ei.telemedicine.view.dialog.FPDMPAServiceMode;
+<i>29</i>&nbsp;import org.ei.telemedicine.view.dialog.FPDialogOptionModel;
+<i>30</i>&nbsp;import org.ei.telemedicine.view.dialog.FPFemaleSterilizationServiceMode;
+<i>31</i>&nbsp;import org.ei.telemedicine.view.dialog.FPIUCDServiceMode;
+<i>32</i>&nbsp;import org.ei.telemedicine.view.dialog.FPMaleSterilizationServiceMode;
+<i>33</i>&nbsp;import org.ei.telemedicine.view.dialog.FPOCPServiceMode;
+<i>34</i>&nbsp;import org.ei.telemedicine.view.dialog.FPOthersServiceMode;
+<i>35</i>&nbsp;import org.ei.telemedicine.view.dialog.FPPrioritizationAllECServiceMode;
+<i>36</i>&nbsp;import org.ei.telemedicine.view.dialog.FPPrioritizationHighPriorityServiceMode;
+<i>37</i>&nbsp;import org.ei.telemedicine.view.dialog.FPPrioritizationOneChildrenServiceMode;
+<i>38</i>&nbsp;import org.ei.telemedicine.view.dialog.FPPrioritizationTwoPlusChildrenServiceMode;
+<i>39</i>&nbsp;import org.ei.telemedicine.view.dialog.FPSmartRegisterDialogFragment;
+<i>40</i>&nbsp;import org.ei.telemedicine.view.dialog.FilterOption;
+<i>41</i>&nbsp;import org.ei.telemedicine.view.dialog.HighPrioritySort;
+<i>42</i>&nbsp;import org.ei.telemedicine.view.dialog.NameSort;
+<i>43</i>&nbsp;import org.ei.telemedicine.view.dialog.OpenFormOption;
+<i>44</i>&nbsp;import org.ei.telemedicine.view.dialog.ServiceModeOption;
+<i>45</i>&nbsp;import org.ei.telemedicine.view.dialog.SortOption;
+<i>46</i>&nbsp;import org.json.JSONArray;
+<i>47</i>&nbsp;import org.json.JSONException;
+<i>48</i>&nbsp;import org.json.JSONObject;
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;import android.app.Fragment;
+<i>51</i>&nbsp;import android.app.FragmentTransaction;
+<i>52</i>&nbsp;import android.os.Bundle;
+<i>53</i>&nbsp;import android.view.View;
+<i>54</i>&nbsp;
+<b class="nc"><i>55</i>&nbsp;public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {</b>
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;    private static final String DIALOG_TAG = &quot;dialog&quot;;
+<b class="nc"><i>58</i>&nbsp;    private static int CHECKED_TAB_ID = R.id.rb_fp_method;</b>
+<i>59</i>&nbsp;
+<b class="nc"><i>60</i>&nbsp;    private SmartRegisterClientsProvider clientProvider = null;</b>
+<i>61</i>&nbsp;    private FPSmartRegisterController controller;
+<i>62</i>&nbsp;    private VillageController villageController;
+<i>63</i>&nbsp;    private DialogOptionMapper dialogOptionMapper;
+<i>64</i>&nbsp;
+<b class="nc"><i>65</i>&nbsp;    private final ClientActionHandler clientActionHandler = new ClientActionHandler();</b>
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;    @Override
+<i>68</i>&nbsp;    protected SmartRegisterPaginatedAdapter adapter() {
+<b class="nc"><i>69</i>&nbsp;        return new SmartRegisterPaginatedAdapter(clientsProvider());</b>
+<i>70</i>&nbsp;    }
+<i>71</i>&nbsp;
+<i>72</i>&nbsp;    @Override
+<i>73</i>&nbsp;    protected DefaultOptionsProvider getDefaultOptionsProvider() {
+<b class="nc"><i>74</i>&nbsp;        return new DefaultOptionsProvider() {</b>
+<i>75</i>&nbsp;
+<i>76</i>&nbsp;            @Override
+<i>77</i>&nbsp;            public ServiceModeOption serviceMode() {
+<b class="nc"><i>78</i>&nbsp;                return new FPAllMethodsServiceMode(clientsProvider());</b>
+<i>79</i>&nbsp;            }
+<i>80</i>&nbsp;
+<i>81</i>&nbsp;            @Override
+<i>82</i>&nbsp;            public FilterOption villageFilter() {
+<b class="nc"><i>83</i>&nbsp;                return new AllClientsFilter();</b>
+<i>84</i>&nbsp;            }
+<i>85</i>&nbsp;
+<i>86</i>&nbsp;            @Override
+<i>87</i>&nbsp;            public SortOption sortOption() {
+<b class="nc"><i>88</i>&nbsp;                return new NameSort();</b>
+<i>89</i>&nbsp;            }
+<i>90</i>&nbsp;
+<i>91</i>&nbsp;            @Override
+<i>92</i>&nbsp;            public String nameInShortFormForTitle() {
+<b class="nc"><i>93</i>&nbsp;                return getResources().getString(R.string.fp_register_title_in_short);</b>
+<i>94</i>&nbsp;            }
+<i>95</i>&nbsp;        };
+<i>96</i>&nbsp;    }
+<i>97</i>&nbsp;
+<i>98</i>&nbsp;    @Override
+<i>99</i>&nbsp;    protected NavBarOptionsProvider getNavBarOptionsProvider() {
+<b class="nc"><i>100</i>&nbsp;        return new NavBarOptionsProvider() {</b>
+<i>101</i>&nbsp;
+<i>102</i>&nbsp;            @Override
+<i>103</i>&nbsp;            public DialogOption[] filterOptions() {
+<b class="nc"><i>104</i>&nbsp;                Iterable&lt;? extends DialogOption&gt; villageFilterOptions =</b>
+<b class="nc"><i>105</i>&nbsp;                        dialogOptionMapper.mapToVillageFilterOptions(villageController.getVillages());</b>
+<b class="nc"><i>106</i>&nbsp;                return toArray(concat(DEFAULT_FILTER_OPTIONS, villageFilterOptions), DialogOption.class);</b>
+<i>107</i>&nbsp;            }
+<i>108</i>&nbsp;
+<i>109</i>&nbsp;            @Override
+<i>110</i>&nbsp;            public DialogOption[] serviceModeOptions() {
+<i>111</i>&nbsp;
+<b class="nc"><i>112</i>&nbsp;                return new DialogOption[]{</b>
+<b class="nc"><i>113</i>&nbsp;                        new FPAllMethodsServiceMode(clientsProvider()),</b>
+<b class="nc"><i>114</i>&nbsp;                        new FPCondomServiceMode(clientsProvider()),</b>
+<b class="nc"><i>115</i>&nbsp;                        new FPDMPAServiceMode(clientsProvider()),</b>
+<b class="nc"><i>116</i>&nbsp;                        new FPIUCDServiceMode(clientsProvider()),</b>
+<b class="nc"><i>117</i>&nbsp;                        new FPOCPServiceMode(clientsProvider()),</b>
+<b class="nc"><i>118</i>&nbsp;                        new FPFemaleSterilizationServiceMode(clientsProvider()),</b>
+<b class="nc"><i>119</i>&nbsp;                        new FPMaleSterilizationServiceMode(clientsProvider()),</b>
+<b class="nc"><i>120</i>&nbsp;                        new FPOthersServiceMode(clientsProvider())</b>
+<i>121</i>&nbsp;                };
+<i>122</i>&nbsp;            }
+<i>123</i>&nbsp;
+<i>124</i>&nbsp;            @Override
+<i>125</i>&nbsp;            public DialogOption[] sortingOptions() {
+<b class="nc"><i>126</i>&nbsp;                return new DialogOption[]{new NameSort(), new ECNumberSort(),</b>
+<i>127</i>&nbsp;                        new HighPrioritySort()};
+<i>128</i>&nbsp;            }
+<i>129</i>&nbsp;
+<i>130</i>&nbsp;            @Override
+<i>131</i>&nbsp;            public String searchHint() {
+<b class="nc"><i>132</i>&nbsp;                return getString(R.string.str_fp_search_hint);</b>
+<i>133</i>&nbsp;            }
+<i>134</i>&nbsp;        };
+<i>135</i>&nbsp;    }
+<i>136</i>&nbsp;
+<i>137</i>&nbsp;    @Override
+<i>138</i>&nbsp;    protected SmartRegisterClientsProvider clientsProvider() {
+<b class="nc"><i>139</i>&nbsp;        if (clientProvider == null) {</b>
+<b class="nc"><i>140</i>&nbsp;            clientProvider = new FPSmartRegisterClientsProvider(</b>
+<i>141</i>&nbsp;                    this, clientActionHandler, controller);
+<i>142</i>&nbsp;        }
+<b class="nc"><i>143</i>&nbsp;        return clientProvider;</b>
+<i>144</i>&nbsp;    }
+<i>145</i>&nbsp;
+<i>146</i>&nbsp;    private DialogOption[] getUpdateOptions() {
+<b class="nc"><i>147</i>&nbsp;        return new DialogOption[]{</b>
+<b class="nc"><i>148</i>&nbsp;                new OpenFormOption(getString(R.string.str_fp_change_form), FP_CHANGE, formController),</b>
+<b class="nc"><i>149</i>&nbsp;                new OpenFormOption(getString(R.string.str_record_ecp_form), RECORD_ECPS, formController),</b>
+<i>150</i>&nbsp;        };
+<i>151</i>&nbsp;    }
+<i>152</i>&nbsp;
+<i>153</i>&nbsp;    @Override
+<i>154</i>&nbsp;    protected void onInitialization() {
+<b class="nc"><i>155</i>&nbsp;        controller = new FPSmartRegisterController(context.allEligibleCouples(),</b>
+<b class="nc"><i>156</i>&nbsp;                context.allBeneficiaries(), context.alertService(),</b>
+<b class="nc"><i>157</i>&nbsp;                context.listCache(), context.fpClientsCache());</b>
+<b class="nc"><i>158</i>&nbsp;        villageController = new VillageController(context.allEligibleCouples(),</b>
+<b class="nc"><i>159</i>&nbsp;                context.listCache(), context.villagesCache());</b>
+<b class="nc"><i>160</i>&nbsp;        dialogOptionMapper = new DialogOptionMapper();</b>
+<b class="nc"><i>161</i>&nbsp;        clientsProvider().onServiceModeSelected(new FPAllMethodsServiceMode(clientsProvider()));</b>
+<b class="nc"><i>162</i>&nbsp;    }</b>
+<i>163</i>&nbsp;
+<i>164</i>&nbsp;    @Override
+<i>165</i>&nbsp;    public void setupViews() {
+<b class="nc"><i>166</i>&nbsp;        super.setupViews();</b>
+<i>167</i>&nbsp;
+<b class="nc"><i>168</i>&nbsp;    }</b>
+<i>169</i>&nbsp;
+<i>170</i>&nbsp;    @Override
+<i>171</i>&nbsp;    protected void startRegistration(String village) throws JSONException {
+<b class="nc"><i>172</i>&nbsp;        String locationJSON = context.anmLocationController().getFormInfoJSON();</b>
+<b class="nc"><i>173</i>&nbsp;        JSONObject formData = new JSONObject(locationJSON);</b>
+<b class="nc"><i>174</i>&nbsp;        formData.put(&quot;village&quot;, village.trim().replace(&quot; &quot;, &quot;%20&quot;));</b>
+<b class="nc"><i>175</i>&nbsp;        String customFields = context.allSettings().fetchFieldLabels(&quot;ECRegistration&quot;);</b>
+<b class="nc"><i>176</i>&nbsp;        if (customFields != null &amp;&amp; !customFields.equals(&quot;&quot;)) {</b>
+<b class="nc"><i>177</i>&nbsp;            JSONArray customFieldsArray = new JSONArray(customFields);</b>
+<b class="nc"><i>178</i>&nbsp;            for (int i = 0; i &lt; customFieldsArray.length(); i++) {</b>
+<b class="nc"><i>179</i>&nbsp;                formData.put(&quot;field&quot; + (i + 1), customFieldsArray.getString(i).trim().replace(&quot; &quot;, &quot;%20&quot;));</b>
+<i>180</i>&nbsp;            }
+<i>181</i>&nbsp;        }
+<b class="nc"><i>182</i>&nbsp;        FieldOverrides fieldOverrides = new FieldOverrides(formData.toString());</b>
+<b class="nc"><i>183</i>&nbsp;        startFormActivity(EC_REGISTRATION, null, fieldOverrides.getJSONString());</b>
+<b class="nc"><i>184</i>&nbsp;    }</b>
+<i>185</i>&nbsp;
+<b class="nc"><i>186</i>&nbsp;    private class ClientActionHandler implements View.OnClickListener {</b>
+<i>187</i>&nbsp;        @Override
+<i>188</i>&nbsp;        public void onClick(View view) {
+<b class="nc"><i>189</i>&nbsp;            switch (view.getId()) {</b>
+<i>190</i>&nbsp;                case R.id.profile_info_layout:
+<b class="nc"><i>191</i>&nbsp;                    showProfileView((FPClient) view.getTag());</b>
+<b class="nc"><i>192</i>&nbsp;                    break;</b>
+<i>193</i>&nbsp;                case R.id.btn_fp_method_update:
+<b class="nc"><i>194</i>&nbsp;                    NativeFPSmartRegisterActivity.super.showFragmentDialog(new UpdateDialogOptionModel(), view.getTag());</b>
+<b class="nc"><i>195</i>&nbsp;                    break;</b>
+<i>196</i>&nbsp;                case R.id.btn_side_effects:
+<b class="nc"><i>197</i>&nbsp;                    SmartRegisterClient fpClient = (SmartRegisterClient) view.getTag();</b>
+<b class="nc"><i>198</i>&nbsp;                    startFormActivity(FP_COMPLICATIONS, fpClient.entityId(), null);</b>
+<b class="nc"><i>199</i>&nbsp;                    break;</b>
+<i>200</i>&nbsp;                case R.id.lyt_fp_add:
+<b class="nc"><i>201</i>&nbsp;                    NativeFPSmartRegisterActivity.super.showFragmentDialog(new UpdateDialogOptionModel(), view.getTag());</b>
+<i>202</i>&nbsp;                    break;
+<i>203</i>&nbsp;
+<i>204</i>&nbsp;            }
+<b class="nc"><i>205</i>&nbsp;        }</b>
+<i>206</i>&nbsp;
+<i>207</i>&nbsp;        private void showProfileView(FPClient client) {
+<b class="nc"><i>208</i>&nbsp;            navigationController.startFP(client.entityId());</b>
+<b class="nc"><i>209</i>&nbsp;        }</b>
+<i>210</i>&nbsp;    }
+<i>211</i>&nbsp;
+<i>212</i>&nbsp;    @Override
+<i>213</i>&nbsp;    public void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
+<b class="nc"><i>214</i>&nbsp;        if (dialogOptionModel.getDialogOptions().length &lt;= 0) {</b>
+<b class="nc"><i>215</i>&nbsp;            return;</b>
+<i>216</i>&nbsp;        }
+<i>217</i>&nbsp;
+<b class="nc"><i>218</i>&nbsp;        if (!(dialogOptionModel instanceof ServiceModeDialogOptionModel)) {</b>
+<b class="nc"><i>219</i>&nbsp;            NativeFPSmartRegisterActivity.super.showFragmentDialog(dialogOptionModel, tag);</b>
+<b class="nc"><i>220</i>&nbsp;            return;</b>
+<i>221</i>&nbsp;        }
+<i>222</i>&nbsp;
+<b class="nc"><i>223</i>&nbsp;        FragmentTransaction ft = getFragmentManager().beginTransaction();</b>
+<b class="nc"><i>224</i>&nbsp;        Fragment prev = getFragmentManager().findFragmentByTag(DIALOG_TAG);</b>
+<b class="nc"><i>225</i>&nbsp;        if (prev != null) {</b>
+<b class="nc"><i>226</i>&nbsp;            ft.remove(prev);</b>
+<i>227</i>&nbsp;        }
+<b class="nc"><i>228</i>&nbsp;        ft.addToBackStack(null);</b>
+<i>229</i>&nbsp;
+<b class="nc"><i>230</i>&nbsp;        dialogOptionModel = new FPServiceModeDialogOptionModel().cloneDialogOptionsWith(dialogOptionModel);</b>
+<b class="nc"><i>231</i>&nbsp;        FPSmartRegisterDialogFragment fpSmartRegisterDialogFragment = FPSmartRegisterDialogFragment</b>
+<b class="nc"><i>232</i>&nbsp;                .newInstance(this, dialogOptionModel, tag);</b>
+<b class="nc"><i>233</i>&nbsp;        fpSmartRegisterDialogFragment.setSelectedListener(listener);</b>
+<b class="nc"><i>234</i>&nbsp;        fpSmartRegisterDialogFragment.setArguments(setAndReturnTabSelectionBundle());</b>
+<b class="nc"><i>235</i>&nbsp;        fpSmartRegisterDialogFragment.show(ft, DIALOG_TAG);</b>
+<i>236</i>&nbsp;
+<b class="nc"><i>237</i>&nbsp;    }</b>
+<i>238</i>&nbsp;
+<b class="nc"><i>239</i>&nbsp;    private class UpdateDialogOptionModel implements DialogOptionModel {</b>
+<i>240</i>&nbsp;        @Override
+<i>241</i>&nbsp;        public DialogOption[] getDialogOptions() {
+<b class="nc"><i>242</i>&nbsp;            return getUpdateOptions();</b>
+<i>243</i>&nbsp;        }
+<i>244</i>&nbsp;
+<i>245</i>&nbsp;        @Override
+<i>246</i>&nbsp;        public void onDialogOptionSelection(DialogOption option, Object tag) {
+<b class="nc"><i>247</i>&nbsp;            onEditSelection((EditOption) option, (SmartRegisterClient) tag);</b>
+<b class="nc"><i>248</i>&nbsp;        }</b>
+<i>249</i>&nbsp;    }
+<i>250</i>&nbsp;
+<b class="nc"><i>251</i>&nbsp;    private class FPServiceModeDialogOptionModel implements FPDialogOptionModel {</b>
+<i>252</i>&nbsp;        private DialogOption[] parentDialogOption;
+<i>253</i>&nbsp;
+<i>254</i>&nbsp;        @Override
+<i>255</i>&nbsp;        public DialogOption[] getPrioritizationDialogOptions() {
+<b class="nc"><i>256</i>&nbsp;            return new DialogOption[]{</b>
+<b class="nc"><i>257</i>&nbsp;                    new FPPrioritizationAllECServiceMode(clientsProvider()),</b>
+<b class="nc"><i>258</i>&nbsp;                    new FPPrioritizationHighPriorityServiceMode(clientsProvider()),</b>
+<b class="nc"><i>259</i>&nbsp;                    new FPPrioritizationTwoPlusChildrenServiceMode(clientsProvider()),</b>
+<b class="nc"><i>260</i>&nbsp;                    new FPPrioritizationOneChildrenServiceMode(clientsProvider()),</b>
+<i>261</i>&nbsp;            };
+<i>262</i>&nbsp;        }
+<i>263</i>&nbsp;
+<i>264</i>&nbsp;        @Override
+<i>265</i>&nbsp;        public DialogOption[] getDialogOptions() {
+<b class="nc"><i>266</i>&nbsp;            return parentDialogOption;</b>
+<i>267</i>&nbsp;        }
+<i>268</i>&nbsp;
+<i>269</i>&nbsp;        @Override
+<i>270</i>&nbsp;        public void onDialogOptionSelection(DialogOption option, Object tag) {
+<b class="nc"><i>271</i>&nbsp;            NativeFPSmartRegisterActivity.super.onServiceModeSelection((ServiceModeOption) option);</b>
+<b class="nc"><i>272</i>&nbsp;        }</b>
+<i>273</i>&nbsp;
+<i>274</i>&nbsp;        public FPDialogOptionModel cloneDialogOptionsWith(DialogOptionModel dialogOptionModel) {
+<b class="nc"><i>275</i>&nbsp;            this.parentDialogOption = dialogOptionModel.getDialogOptions();</b>
+<b class="nc"><i>276</i>&nbsp;            return this;</b>
+<i>277</i>&nbsp;        }
+<i>278</i>&nbsp;    }
+<i>279</i>&nbsp;
+<i>280</i>&nbsp;    private Bundle setAndReturnTabSelectionBundle() {
+<b class="nc"><i>281</i>&nbsp;        Bundle bundle = new Bundle();</b>
+<b class="nc"><i>282</i>&nbsp;        bundle.putInt(AllConstants.FP_DIALOG_TAB_SELECTION, CHECKED_TAB_ID);</b>
+<b class="nc"><i>283</i>&nbsp;        return bundle;</b>
+<i>284</i>&nbsp;    }
+<i>285</i>&nbsp;
+<b class="nc"><i>286</i>&nbsp;    FPSmartRegisterDialogFragment.onSelectedListener listener = new FPSmartRegisterDialogFragment.onSelectedListener() {</b>
+<i>287</i>&nbsp;        @Override
+<i>288</i>&nbsp;        public void onSelected(int id) {
+<b class="nc"><i>289</i>&nbsp;            CHECKED_TAB_ID = id;</b>
+<b class="nc"><i>290</i>&nbsp;        }</b>
+<i>291</i>&nbsp;    };
+<i>292</i>&nbsp;
+<i>293</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

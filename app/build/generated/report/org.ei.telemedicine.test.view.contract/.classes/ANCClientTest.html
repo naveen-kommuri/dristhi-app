@@ -1,0 +1,138 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ANCClientTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.view.contract</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ANCClientTest (org.ei.telemedicine.test.view.contract)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ANCClientTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/ 7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (16/ 16)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.view.contract;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.view.contract.ANCClient;
+<i>4</i>&nbsp;import org.junit.Before;
+<i>5</i>&nbsp;import org.junit.Test;
+<i>6</i>&nbsp;import org.junit.runner.RunWith;
+<i>7</i>&nbsp;import org.mockito.runners.MockitoJUnitRunner;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import static junit.framework.Assert.assertFalse;
+<i>10</i>&nbsp;import static junit.framework.Assert.assertTrue;
+<i>11</i>&nbsp;import static org.mockito.MockitoAnnotations.initMocks;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;@RunWith(MockitoJUnitRunner.class)
+<b class="fc"><i>14</i>&nbsp;public class ANCClientTest</b>
+<i>15</i>&nbsp;{
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    @Before
+<i>19</i>&nbsp;    public void setUp() throws Exception {
+<b class="fc"><i>20</i>&nbsp;        initMocks(this);</b>
+<b class="fc"><i>21</i>&nbsp;    }</b>
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    private ANCClient getClient() {
+<b class="fc"><i>24</i>&nbsp;        return new ANCClient(&quot;entity id 1&quot;, &quot;village name 1&quot;, &quot;anc name&quot;, &quot;1234567&quot;, &quot;Tue, 25 Feb 2014 00:00:00 GMT&quot;, &quot;2013-05-25&quot;);</b>
+<i>25</i>&nbsp;    }
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    @Test
+<i>28</i>&nbsp;    public void testShouldSatisfyCriteriaIfNameStartsWithDr() throws Exception {
+<b class="fc"><i>29</i>&nbsp;        boolean filterMatches = getClient().satisfiesFilter(&quot;anc&quot;);</b>
+<i>30</i>&nbsp;
+<b class="fc"><i>31</i>&nbsp;        assertTrue(filterMatches);</b>
+<b class="fc"><i>32</i>&nbsp;    }</b>
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    @Test
+<i>35</i>&nbsp;    public void testShouldReturnFalseIfCriteriaDoesNotSatisfyWithAnyClientName() throws Exception {
+<b class="fc"><i>36</i>&nbsp;        boolean filterMatches = getClient().satisfiesFilter(&quot;xyz&quot;);</b>
+<i>37</i>&nbsp;
+<b class="fc"><i>38</i>&nbsp;        assertFalse(filterMatches);</b>
+<b class="fc"><i>39</i>&nbsp;    }</b>
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;    @Test
+<i>42</i>&nbsp;    public void testShouldSatisfyCriteriaIfThayiStartsWith123() throws Exception {
+<b class="fc"><i>43</i>&nbsp;        boolean filterMatches = getClient().satisfiesFilter(&quot;123&quot;);</b>
+<i>44</i>&nbsp;
+<b class="fc"><i>45</i>&nbsp;        assertTrue(filterMatches);</b>
+<b class="fc"><i>46</i>&nbsp;    }</b>
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    @Test
+<i>49</i>&nbsp;    public void testShouldReturnFalseIfCriteriaDoesNotSatisfyWithAnyClientThayiNumber() throws Exception {
+<b class="fc"><i>50</i>&nbsp;        boolean filterMatches = getClient().satisfiesFilter(&quot;456&quot;);</b>
+<i>51</i>&nbsp;
+<b class="fc"><i>52</i>&nbsp;        assertFalse(filterMatches);</b>
+<b class="fc"><i>53</i>&nbsp;    }</b>
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-26 16:42</div>
+</div>
+</body>
+</html>

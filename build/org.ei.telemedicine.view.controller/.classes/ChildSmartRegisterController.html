@@ -1,0 +1,337 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ChildSmartRegisterController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.controller</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ChildSmartRegisterController (org.ei.telemedicine.view.controller)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ChildSmartRegisterController</td>
+<td class="coverageStat">
+  <span class="percent">
+    71.4%
+  </span>
+  <span class="absValue">
+    (5/ 7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    88.5%
+  </span>
+  <span class="absValue">
+    (23/ 26)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ChildSmartRegisterController$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (33/ 33)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ChildSmartRegisterController$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 33)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ChildSmartRegisterController$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ChildSmartRegisterController$4</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    60%
+  </span>
+  <span class="absValue">
+    (9/ 15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    60.4%
+  </span>
+  <span class="absValue">
+    (58/ 96)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.controller;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.util.Log;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import com.google.gson.Gson;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import org.apache.commons.lang3.ArrayUtils;
+<i>8</i>&nbsp;import org.ei.telemedicine.AllConstants;
+<i>9</i>&nbsp;import org.ei.telemedicine.domain.Alert;
+<i>10</i>&nbsp;import org.ei.telemedicine.domain.Child;
+<i>11</i>&nbsp;import org.ei.telemedicine.domain.ServiceProvided;
+<i>12</i>&nbsp;import org.ei.telemedicine.repository.AllBeneficiaries;
+<i>13</i>&nbsp;import org.ei.telemedicine.service.AlertService;
+<i>14</i>&nbsp;import org.ei.telemedicine.service.ServiceProvidedService;
+<i>15</i>&nbsp;import org.ei.telemedicine.util.Cache;
+<i>16</i>&nbsp;import org.ei.telemedicine.util.CacheableData;
+<i>17</i>&nbsp;import org.ei.telemedicine.view.contract.*;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;import java.util.ArrayList;
+<i>20</i>&nbsp;import java.util.Comparator;
+<i>21</i>&nbsp;import java.util.List;
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;import static java.lang.String.valueOf;
+<i>24</i>&nbsp;import static java.util.Collections.sort;
+<i>25</i>&nbsp;import static org.apache.commons.lang3.StringUtils.isBlank;
+<i>26</i>&nbsp;import static org.ei.telemedicine.AllConstants.ChildRegistrationFields.CHILD_POC_INFO;
+<i>27</i>&nbsp;import static org.ei.telemedicine.domain.ServiceProvided.*;
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;public class ChildSmartRegisterController {
+<i>30</i>&nbsp;    private static final String CHILD_CLIENTS_LIST_CACHE_ENTRY_NAME = &quot;ChildClientList&quot;;
+<i>31</i>&nbsp;    private final ServiceProvidedService serviceProvidedService;
+<i>32</i>&nbsp;    private final AlertService alertService;
+<i>33</i>&nbsp;    private final AllBeneficiaries allBeneficiaries;
+<i>34</i>&nbsp;    private final Cache&lt;String&gt; cache;
+<i>35</i>&nbsp;    private final Cache&lt;SmartRegisterClients&gt; smartRegisterCache;
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    public ChildSmartRegisterController(ServiceProvidedService serviceProvidedService, AlertService alertService,
+<b class="fc"><i>38</i>&nbsp;                                        AllBeneficiaries allBeneficiaries, Cache&lt;String&gt; cache, Cache&lt;SmartRegisterClients&gt; smartRegisterCache) {</b>
+<b class="fc"><i>39</i>&nbsp;        this.serviceProvidedService = serviceProvidedService;</b>
+<b class="fc"><i>40</i>&nbsp;        this.alertService = alertService;</b>
+<b class="fc"><i>41</i>&nbsp;        this.allBeneficiaries = allBeneficiaries;</b>
+<b class="fc"><i>42</i>&nbsp;        this.cache = cache;</b>
+<b class="fc"><i>43</i>&nbsp;        this.smartRegisterCache = smartRegisterCache;</b>
+<b class="fc"><i>44</i>&nbsp;    }</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    public String get() {
+<b class="fc"><i>47</i>&nbsp;        return cache.get(CHILD_CLIENTS_LIST_CACHE_ENTRY_NAME, new CacheableData&lt;String&gt;() {</b>
+<i>48</i>&nbsp;            @Override
+<i>49</i>&nbsp;            public String fetch() {
+<b class="fc"><i>50</i>&nbsp;                List&lt;Child&gt; children = allBeneficiaries.allChildrenWithMotherAndEC();</b>
+<b class="fc"><i>51</i>&nbsp;                List&lt;ChildClient&gt; childrenClient = new ArrayList&lt;ChildClient&gt;();</b>
+<i>52</i>&nbsp;
+<b class="fc"><i>53</i>&nbsp;                for (Child child : children) {</b>
+<b class="fc"><i>54</i>&nbsp;                    String photoPath = isBlank(child.photoPath()) ? (AllConstants.FEMALE_GENDER.equalsIgnoreCase(child.gender()) ? AllConstants.DEFAULT_GIRL_INFANT_IMAGE_PLACEHOLDER_PATH : AllConstants.DEFAULT_BOY_INFANT_IMAGE_PLACEHOLDER_PATH) : child.photoPath();</b>
+<b class="fc"><i>55</i>&nbsp;                    List&lt;AlertDTO&gt; alerts = getAlerts(child.caseId());</b>
+<b class="fc"><i>56</i>&nbsp;                    List&lt;ServiceProvidedDTO&gt; servicesProvided = getServicesProvided(child.caseId());</b>
+<b class="fc"><i>57</i>&nbsp;                    Log.e(&quot;CHild POC&quot;, child.getDetail(CHILD_POC_INFO) + &quot;&quot;);</b>
+<b class="fc"><i>58</i>&nbsp;                    ChildClient childClient =</b>
+<i>59</i>&nbsp;                            new ChildClient(
+<b class="fc"><i>60</i>&nbsp;                                    child.caseId(),</b>
+<b class="fc"><i>61</i>&nbsp;                                    child.gender(),</b>
+<b class="fc"><i>62</i>&nbsp;                                    child.getDetail(AllConstants.ChildRegistrationFields.WEIGHT),</b>
+<b class="fc"><i>63</i>&nbsp;                                    child.mother().thayiCardNumber())</b>
+<b class="fc"><i>64</i>&nbsp;                                    .withName(child.getDetail(AllConstants.ChildRegistrationFields.NAME))</b>
+<b class="fc"><i>65</i>&nbsp;                                    .withEntityIdToSavePhoto(child.caseId())</b>
+<b class="fc"><i>66</i>&nbsp;                                    .withMotherName(child.ec().wifeName())</b>
+<b class="fc"><i>67</i>&nbsp;                                    .withDOB(child.dateOfBirth())</b>
+<b class="fc"><i>68</i>&nbsp;                                    .withPOC(child.getDetail(AllConstants.ChildRegistrationFields.CHILD_POC_INFO))</b>
+<b class="fc"><i>69</i>&nbsp;                                    .withMotherAge(child.ec().age())</b>
+<b class="fc"><i>70</i>&nbsp;                                    .withFatherName(child.ec().husbandName())</b>
+<b class="fc"><i>71</i>&nbsp;                                    .withVillage(child.ec().village())</b>
+<b class="fc"><i>72</i>&nbsp;                                    .withOutOfArea(child.ec().isOutOfArea())</b>
+<b class="fc"><i>73</i>&nbsp;                                    .withEconomicStatus(child.ec().getDetail(AllConstants.ECRegistrationFields.ECONOMIC_STATUS))</b>
+<b class="fc"><i>74</i>&nbsp;                                    .withCaste(child.ec().getDetail(AllConstants.ECRegistrationFields.CASTE))</b>
+<b class="fc"><i>75</i>&nbsp;                                    .withIsHighRisk(child.isHighRisk())</b>
+<b class="fc"><i>76</i>&nbsp;                                    .withPhotoPath(photoPath)</b>
+<b class="fc"><i>77</i>&nbsp;                                    .withECNumber(child.ec().ecNumber())</b>
+<b class="fc"><i>78</i>&nbsp;                                    .withAlerts(alerts)</b>
+<b class="fc"><i>79</i>&nbsp;                                    .withServicesProvided(servicesProvided);</b>
+<i>80</i>&nbsp;
+<b class="fc"><i>81</i>&nbsp;                    childrenClient.add(childClient);</b>
+<b class="fc"><i>82</i>&nbsp;                }</b>
+<b class="fc"><i>83</i>&nbsp;                sortByMotherName(childrenClient);</b>
+<b class="fc"><i>84</i>&nbsp;                return new Gson().toJson(childrenClient);</b>
+<i>85</i>&nbsp;            }
+<i>86</i>&nbsp;        });
+<i>87</i>&nbsp;    }
+<i>88</i>&nbsp;
+<i>89</i>&nbsp;    public SmartRegisterClients getClients() {
+<b class="nc"><i>90</i>&nbsp;        return smartRegisterCache.get(CHILD_CLIENTS_LIST_CACHE_ENTRY_NAME, new CacheableData&lt;SmartRegisterClients&gt;() {</b>
+<i>91</i>&nbsp;            @Override
+<i>92</i>&nbsp;            public SmartRegisterClients fetch() {
+<b class="nc"><i>93</i>&nbsp;                List&lt;Child&gt; children = allBeneficiaries.allChildrenWithMotherAndEC();</b>
+<b class="nc"><i>94</i>&nbsp;                SmartRegisterClients childrenClient = new SmartRegisterClients();</b>
+<i>95</i>&nbsp;
+<b class="nc"><i>96</i>&nbsp;                for (Child child : children) {</b>
+<b class="nc"><i>97</i>&nbsp;                    String photoPath = isBlank(child.photoPath()) ? (AllConstants.FEMALE_GENDER.equalsIgnoreCase(child.gender()) ? AllConstants.DEFAULT_GIRL_INFANT_IMAGE_PLACEHOLDER_PATH : AllConstants.DEFAULT_BOY_INFANT_IMAGE_PLACEHOLDER_PATH) : child.photoPath();</b>
+<b class="nc"><i>98</i>&nbsp;                    List&lt;AlertDTO&gt; alerts = getAlerts(child.caseId());</b>
+<b class="nc"><i>99</i>&nbsp;                    List&lt;ServiceProvidedDTO&gt; servicesProvided = getServicesProvided(child.caseId());</b>
+<b class="nc"><i>100</i>&nbsp;                    ChildClient childClient =</b>
+<i>101</i>&nbsp;                            new ChildClient(
+<b class="nc"><i>102</i>&nbsp;                                    child.caseId(),</b>
+<b class="nc"><i>103</i>&nbsp;                                    child.gender(),</b>
+<b class="nc"><i>104</i>&nbsp;                                    child.getDetail(AllConstants.ChildRegistrationFields.WEIGHT),</b>
+<b class="nc"><i>105</i>&nbsp;                                    child.mother().thayiCardNumber())</b>
+<b class="nc"><i>106</i>&nbsp;                                    .withName(child.getDetail(AllConstants.ChildRegistrationFields.NAME))</b>
+<b class="nc"><i>107</i>&nbsp;                                    .withEntityIdToSavePhoto(child.caseId())</b>
+<b class="nc"><i>108</i>&nbsp;                                    .withMotherName(child.ec().wifeName())</b>
+<b class="nc"><i>109</i>&nbsp;                                    .withDOB(child.dateOfBirth())</b>
+<b class="nc"><i>110</i>&nbsp;                                    .withPOC(child.getDetail(AllConstants.ChildRegistrationFields.CHILD_POC_INFO))</b>
+<b class="nc"><i>111</i>&nbsp;                                    .withMotherAge(child.ec().age())</b>
+<b class="nc"><i>112</i>&nbsp;                                    .withFatherName(child.ec().husbandName())</b>
+<b class="nc"><i>113</i>&nbsp;                                    .withVillage(child.ec().village())</b>
+<b class="nc"><i>114</i>&nbsp;                                    .withOutOfArea(child.ec().isOutOfArea())</b>
+<b class="nc"><i>115</i>&nbsp;                                    .withEconomicStatus(child.ec().getDetail(AllConstants.ECRegistrationFields.ECONOMIC_STATUS))</b>
+<b class="nc"><i>116</i>&nbsp;                                    .withCaste(child.ec().getDetail(AllConstants.ECRegistrationFields.CASTE))</b>
+<b class="nc"><i>117</i>&nbsp;                                    .withIsHighRisk(child.isHighRisk())</b>
+<b class="nc"><i>118</i>&nbsp;                                    .withPhotoPath(photoPath)</b>
+<b class="nc"><i>119</i>&nbsp;                                    .withECNumber(child.ec().ecNumber())</b>
+<b class="nc"><i>120</i>&nbsp;                                    .withAlerts(alerts)</b>
+<b class="nc"><i>121</i>&nbsp;                                    .withServicesProvided(servicesProvided)</b>
+<b class="nc"><i>122</i>&nbsp;                                    .withPreprocess();</b>
+<i>123</i>&nbsp;
+<i>124</i>&nbsp;
+<b class="nc"><i>125</i>&nbsp;                    childrenClient.add(childClient);</b>
+<b class="nc"><i>126</i>&nbsp;                }</b>
+<i>127</i>&nbsp;
+<b class="nc"><i>128</i>&nbsp;                sortByName(childrenClient);</b>
+<b class="nc"><i>129</i>&nbsp;                return childrenClient;</b>
+<i>130</i>&nbsp;            }
+<i>131</i>&nbsp;        });
+<i>132</i>&nbsp;    }
+<i>133</i>&nbsp;
+<i>134</i>&nbsp;    private List&lt;ServiceProvidedDTO&gt; getServicesProvided(String entityId) {
+<b class="fc"><i>135</i>&nbsp;        List&lt;ServiceProvided&gt; servicesProvided = serviceProvidedService.findByEntityIdAndServiceNames(entityId,</b>
+<b class="fc"><i>136</i>&nbsp;                ArrayUtils.addAll(AllConstants.Immunizations.ALL, VITAMIN_A_SERVICE_PROVIDED_NAME,</b>
+<i>137</i>&nbsp;                        CHILD_ILLNESS_SERVICE_PROVIDED_NAME, PNC_SERVICE_PROVIDED_NAME));
+<b class="fc"><i>138</i>&nbsp;        List&lt;ServiceProvidedDTO&gt; serviceProvidedDTOs = new ArrayList&lt;ServiceProvidedDTO&gt;();</b>
+<b class="fc"><i>139</i>&nbsp;        for (ServiceProvided serviceProvided : servicesProvided) {</b>
+<b class="fc"><i>140</i>&nbsp;            serviceProvidedDTOs.add(new ServiceProvidedDTO(serviceProvided.name(), serviceProvided.date(), serviceProvided.data()));</b>
+<b class="fc"><i>141</i>&nbsp;        }</b>
+<b class="fc"><i>142</i>&nbsp;        return serviceProvidedDTOs;</b>
+<i>143</i>&nbsp;    }
+<i>144</i>&nbsp;
+<i>145</i>&nbsp;    private List&lt;AlertDTO&gt; getAlerts(String entityId) {
+<b class="fc"><i>146</i>&nbsp;        List&lt;Alert&gt; alerts = alertService.findByEntityIdAndAlertNames(entityId, AllConstants.Immunizations.ALL);</b>
+<b class="fc"><i>147</i>&nbsp;        List&lt;AlertDTO&gt; alertDTOs = new ArrayList&lt;AlertDTO&gt;();</b>
+<b class="fc"><i>148</i>&nbsp;        for (Alert alert : alerts) {</b>
+<b class="fc"><i>149</i>&nbsp;            alertDTOs.add(new AlertDTO(alert.visitCode(), valueOf(alert.status()), alert.startDate()));</b>
+<b class="fc"><i>150</i>&nbsp;        }</b>
+<b class="fc"><i>151</i>&nbsp;        return alertDTOs;</b>
+<i>152</i>&nbsp;    }
+<i>153</i>&nbsp;
+<i>154</i>&nbsp;    private void sortByName(List&lt;SmartRegisterClient&gt; childrenClient) {
+<b class="nc"><i>155</i>&nbsp;        sort(childrenClient, new Comparator&lt;SmartRegisterClient&gt;() {</b>
+<i>156</i>&nbsp;            @Override
+<i>157</i>&nbsp;            public int compare(SmartRegisterClient oneChild, SmartRegisterClient anotherChild) {
+<b class="nc"><i>158</i>&nbsp;                return oneChild.compareName(anotherChild);</b>
+<i>159</i>&nbsp;            }
+<i>160</i>&nbsp;        });
+<b class="nc"><i>161</i>&nbsp;    }</b>
+<i>162</i>&nbsp;
+<i>163</i>&nbsp;    private void sortByMotherName(List&lt;ChildClient&gt; childrenClient) {
+<b class="fc"><i>164</i>&nbsp;        sort(childrenClient, new Comparator&lt;ChildClient&gt;() {</b>
+<i>165</i>&nbsp;            @Override
+<i>166</i>&nbsp;            public int compare(ChildClient oneChild, ChildClient anotherChild) {
+<b class="fc"><i>167</i>&nbsp;                return oneChild.motherName().compareToIgnoreCase(anotherChild.motherName());</b>
+<i>168</i>&nbsp;            }
+<i>169</i>&nbsp;        });
+<b class="fc"><i>170</i>&nbsp;    }</b>
+<i>171</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,224 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AllSharedPreferences</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.repository</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AllSharedPreferences (org.ei.telemedicine.repository)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AllSharedPreferences</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 28)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 45)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.repository;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.content.SharedPreferences;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import static org.ei.telemedicine.AllConstants.ANC_REGISTERS_KEY;
+<i>6</i>&nbsp;import static org.ei.telemedicine.AllConstants.CHILD_REGISTERS_KEY;
+<i>7</i>&nbsp;import static org.ei.telemedicine.AllConstants.DEFAULT_LOCALE;
+<i>8</i>&nbsp;import static org.ei.telemedicine.AllConstants.EC_REGISTERS_KEY;
+<i>9</i>&nbsp;import static org.ei.telemedicine.AllConstants.FP_REGISTERS_KEY;
+<i>10</i>&nbsp;import static org.ei.telemedicine.AllConstants.IS_SYNC_IN_PROGRESS_PREFERENCE_KEY;
+<i>11</i>&nbsp;import static org.ei.telemedicine.AllConstants.LANGUAGE_PREFERENCE_KEY;
+<i>12</i>&nbsp;import static org.ei.telemedicine.AllConstants.PNC_REGISTERS_KEY;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;public class AllSharedPreferences {
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    public static final String ANM_IDENTIFIER_PREFERENCE_KEY = &quot;anmIdentifier&quot;;
+<i>17</i>&nbsp;    public static final String IS_FIRST_LOGIN = &quot;isFirstLogin&quot;;
+<i>18</i>&nbsp;    public static final String USER_ROLE_PREFERENCE_KEY = &quot;userRole&quot;;
+<i>19</i>&nbsp;    public static final String FORM_NAME_KEY = &quot;formName&quot;;
+<i>20</i>&nbsp;    public static final String VILLAGE_NAME_KEY = &quot;villageName&quot;;
+<i>21</i>&nbsp;    public static final String ENTITY_KEY = &quot;entityId&quot;;
+<i>22</i>&nbsp;    public static final String PASSWORD = &quot;password&quot;;
+<i>23</i>&nbsp;    public static final String SCREEN = &quot;screen&quot;;
+<i>24</i>&nbsp;    private SharedPreferences preferences;
+<i>25</i>&nbsp;
+<b class="nc"><i>26</i>&nbsp;    public AllSharedPreferences(SharedPreferences preferences) {</b>
+<b class="nc"><i>27</i>&nbsp;        this.preferences = preferences;</b>
+<b class="nc"><i>28</i>&nbsp;    }</b>
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    public boolean clearPreferences() {
+<b class="nc"><i>31</i>&nbsp;        return preferences.edit().clear().commit();</b>
+<i>32</i>&nbsp;    }
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    public void updateUserRole(String userRole) {
+<b class="nc"><i>35</i>&nbsp;        preferences.edit().putString(USER_ROLE_PREFERENCE_KEY, userRole).commit();</b>
+<b class="nc"><i>36</i>&nbsp;    }</b>
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    public String getUserRole() {
+<b class="nc"><i>39</i>&nbsp;        return preferences.getString(USER_ROLE_PREFERENCE_KEY, &quot;&quot;);</b>
+<i>40</i>&nbsp;    }
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    public void saveFormName(String formName, String entityId) {
+<b class="nc"><i>43</i>&nbsp;        preferences.edit().putString(FORM_NAME_KEY, formName).commit();</b>
+<b class="nc"><i>44</i>&nbsp;        preferences.edit().putString(ENTITY_KEY, entityId).commit();</b>
+<b class="nc"><i>45</i>&nbsp;    }</b>
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;    public void saveVillageName(String villageName) {
+<b class="nc"><i>48</i>&nbsp;        preferences.edit().putString(VILLAGE_NAME_KEY, villageName).commit();</b>
+<b class="nc"><i>49</i>&nbsp;    }</b>
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;    public String getVillageName() {
+<b class="nc"><i>52</i>&nbsp;        return preferences.getString(VILLAGE_NAME_KEY, &quot;&quot;);</b>
+<i>53</i>&nbsp;    }
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;    public String getFormName() {
+<b class="nc"><i>56</i>&nbsp;        return preferences.getString(FORM_NAME_KEY, &quot;&quot;);</b>
+<i>57</i>&nbsp;    }
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;    public String getEntityKey() {
+<b class="nc"><i>60</i>&nbsp;        return preferences.getString(ENTITY_KEY, &quot;&quot;);</b>
+<i>61</i>&nbsp;    }
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    public void updateANMUserName(String userName) {
+<b class="nc"><i>64</i>&nbsp;        preferences.edit().putString(ANM_IDENTIFIER_PREFERENCE_KEY, userName).commit();</b>
+<b class="nc"><i>65</i>&nbsp;    }</b>
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;    public void updateIsFirstLogin(boolean isFirstLogin) {
+<b class="nc"><i>68</i>&nbsp;        preferences.edit().putBoolean(IS_FIRST_LOGIN, isFirstLogin).commit();</b>
+<b class="nc"><i>69</i>&nbsp;    }</b>
+<i>70</i>&nbsp;
+<i>71</i>&nbsp;    public boolean fetchIsFirstLogin() {
+<b class="nc"><i>72</i>&nbsp;        return preferences.getBoolean(IS_FIRST_LOGIN, false);</b>
+<i>73</i>&nbsp;    }
+<i>74</i>&nbsp;
+<i>75</i>&nbsp;    public void savePwd(String password) {
+<b class="nc"><i>76</i>&nbsp;        preferences.edit().putString(PASSWORD, password).commit();</b>
+<b class="nc"><i>77</i>&nbsp;    }</b>
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    public void saveCurrent(String currentScreen) {
+<b class="nc"><i>80</i>&nbsp;        preferences.edit().putString(SCREEN, currentScreen).commit();</b>
+<b class="nc"><i>81</i>&nbsp;    }</b>
+<i>82</i>&nbsp;
+<i>83</i>&nbsp;    public String getScreen() {
+<b class="nc"><i>84</i>&nbsp;        return preferences.getString(SCREEN, &quot;&quot;);</b>
+<i>85</i>&nbsp;    }
+<i>86</i>&nbsp;
+<i>87</i>&nbsp;    public String getPwd() {
+<b class="nc"><i>88</i>&nbsp;        return preferences.getString(PASSWORD, &quot;&quot;);</b>
+<i>89</i>&nbsp;    }
+<i>90</i>&nbsp;
+<i>91</i>&nbsp;    public String fetchRegisteredANM() {
+<b class="nc"><i>92</i>&nbsp;        return preferences.getString(ANM_IDENTIFIER_PREFERENCE_KEY, &quot;&quot;).trim();</b>
+<i>93</i>&nbsp;    }
+<i>94</i>&nbsp;
+<i>95</i>&nbsp;    public String fetchLanguagePreference() {
+<b class="nc"><i>96</i>&nbsp;        return preferences.getString(LANGUAGE_PREFERENCE_KEY, DEFAULT_LOCALE).trim();</b>
+<i>97</i>&nbsp;    }
+<i>98</i>&nbsp;
+<i>99</i>&nbsp;    public void saveLanguagePreference(String languagePreference) {
+<b class="nc"><i>100</i>&nbsp;        preferences.edit().putString(LANGUAGE_PREFERENCE_KEY, languagePreference).commit();</b>
+<b class="nc"><i>101</i>&nbsp;    }</b>
+<i>102</i>&nbsp;
+<i>103</i>&nbsp;    public Boolean fetchIsSyncInProgress() {
+<b class="nc"><i>104</i>&nbsp;        return preferences.getBoolean(IS_SYNC_IN_PROGRESS_PREFERENCE_KEY, false);</b>
+<i>105</i>&nbsp;    }
+<i>106</i>&nbsp;
+<i>107</i>&nbsp;
+<i>108</i>&nbsp;    public void saveIsSyncInProgress(Boolean isSyncInProgress) {
+<b class="nc"><i>109</i>&nbsp;        preferences.edit().putBoolean(IS_SYNC_IN_PROGRESS_PREFERENCE_KEY, isSyncInProgress).commit();</b>
+<b class="nc"><i>110</i>&nbsp;    }</b>
+<i>111</i>&nbsp;
+<i>112</i>&nbsp;    public Boolean getIsSyncInProgress() {
+<b class="nc"><i>113</i>&nbsp;        return preferences.getBoolean(IS_SYNC_IN_PROGRESS_PREFERENCE_KEY, false);</b>
+<i>114</i>&nbsp;    }
+<i>115</i>&nbsp;
+<i>116</i>&nbsp;
+<i>117</i>&nbsp;    public void saveECRegisterState(Boolean state) {
+<b class="nc"><i>118</i>&nbsp;        preferences.edit().putBoolean(EC_REGISTERS_KEY, state).commit();</b>
+<b class="nc"><i>119</i>&nbsp;    }</b>
+<i>120</i>&nbsp;
+<i>121</i>&nbsp;    public void saveFPRegisterState(Boolean state) {
+<b class="nc"><i>122</i>&nbsp;        preferences.edit().putBoolean(FP_REGISTERS_KEY, state).commit();</b>
+<b class="nc"><i>123</i>&nbsp;    }</b>
+<i>124</i>&nbsp;
+<i>125</i>&nbsp;    public void saveANCRegisterState(Boolean state) {
+<b class="nc"><i>126</i>&nbsp;        preferences.edit().putBoolean(ANC_REGISTERS_KEY, state).commit();</b>
+<b class="nc"><i>127</i>&nbsp;    }</b>
+<i>128</i>&nbsp;
+<i>129</i>&nbsp;    public void savePNCRegisterState(Boolean state) {
+<b class="nc"><i>130</i>&nbsp;        preferences.edit().putBoolean(PNC_REGISTERS_KEY, state).commit();</b>
+<b class="nc"><i>131</i>&nbsp;    }</b>
+<i>132</i>&nbsp;
+<i>133</i>&nbsp;    public void saveCHILDRegisterState(Boolean state) {
+<b class="nc"><i>134</i>&nbsp;        preferences.edit().putBoolean(CHILD_REGISTERS_KEY, state).commit();</b>
+<b class="nc"><i>135</i>&nbsp;    }</b>
+<i>136</i>&nbsp;
+<i>137</i>&nbsp;    public Boolean registerState(String registername) {
+<b class="nc"><i>138</i>&nbsp;        return preferences.getBoolean(registername, true);</b>
+<i>139</i>&nbsp;    }
+<i>140</i>&nbsp;}
+<i>141</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

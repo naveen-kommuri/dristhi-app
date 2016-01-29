@@ -1,0 +1,131 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ReportIndicatorDetailViewController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.controller</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ReportIndicatorDetailViewController (org.ei.telemedicine.view.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ReportIndicatorDetailViewController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (2/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    44.4%
+  </span>
+  <span class="absValue">
+    (8/ 18)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.controller;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.content.Context;
+<i>4</i>&nbsp;import android.content.Intent;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import com.google.gson.Gson;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import org.ei.telemedicine.domain.Report;
+<i>9</i>&nbsp;import org.ei.telemedicine.dto.MonthSummaryDatum;
+<i>10</i>&nbsp;import org.ei.telemedicine.view.activity.ReportIndicatorCaseListActivity;
+<i>11</i>&nbsp;import org.ei.telemedicine.view.contract.IndicatorReportDetail;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;import java.util.ArrayList;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;import static org.apache.commons.lang3.StringUtils.isBlank;
+<i>16</i>&nbsp;import static org.ei.telemedicine.AllConstants.*;
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;public class ReportIndicatorDetailViewController {
+<i>19</i>&nbsp;    private final Context context;
+<i>20</i>&nbsp;    private final Report indicatorDetails;
+<i>21</i>&nbsp;    private String categoryDescription;
+<i>22</i>&nbsp;
+<b class="fc"><i>23</i>&nbsp;    public ReportIndicatorDetailViewController(Context context, Report indicatorDetails, String categoryDescription) {</b>
+<b class="fc"><i>24</i>&nbsp;        this.context = context;</b>
+<b class="fc"><i>25</i>&nbsp;        this.indicatorDetails = indicatorDetails;</b>
+<b class="fc"><i>26</i>&nbsp;        this.categoryDescription = categoryDescription;</b>
+<b class="fc"><i>27</i>&nbsp;    }</b>
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    public String get() {
+<b class="fc"><i>30</i>&nbsp;        String annualTarget = (isBlank(indicatorDetails.annualTarget())) ? &quot;NA&quot; : indicatorDetails.annualTarget();</b>
+<i>31</i>&nbsp;
+<b class="fc"><i>32</i>&nbsp;        return new Gson().toJson(new IndicatorReportDetail(categoryDescription, indicatorDetails.reportIndicator().description(),</b>
+<b class="fc"><i>33</i>&nbsp;                indicatorDetails.reportIndicator().name(), annualTarget, indicatorDetails.monthlySummaries()));</b>
+<i>34</i>&nbsp;    }
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;    public void startReportIndicatorCaseList(String month) {
+<b class="nc"><i>37</i>&nbsp;        for (MonthSummaryDatum summary : indicatorDetails.monthlySummaries()) {</b>
+<b class="nc"><i>38</i>&nbsp;            if (summary.month().equals(month)) {</b>
+<b class="nc"><i>39</i>&nbsp;                Intent intent = new Intent(context.getApplicationContext(), ReportIndicatorCaseListActivity.class);</b>
+<b class="nc"><i>40</i>&nbsp;                intent.putExtra(MONTH, month);</b>
+<b class="nc"><i>41</i>&nbsp;                intent.putExtra(INDICATOR, indicatorDetails.reportIndicator().name());</b>
+<b class="nc"><i>42</i>&nbsp;                intent.putStringArrayListExtra(CASE_IDS, new ArrayList&lt;String&gt;(summary.externalIDs()));</b>
+<b class="nc"><i>43</i>&nbsp;                context.startActivity(intent);</b>
+<b class="nc"><i>44</i>&nbsp;                return;</b>
+<i>45</i>&nbsp;            }
+<b class="nc"><i>46</i>&nbsp;        }</b>
+<b class="nc"><i>47</i>&nbsp;    }</b>
+<i>48</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,197 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AllBeneficiariesTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.test.repository</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AllBeneficiariesTest (org.ei.telemedicine.test.repository)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AllBeneficiariesTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (38/ 38)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.test.repository;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.domain.Child;
+<i>4</i>&nbsp;import org.ei.telemedicine.domain.Mother;
+<i>5</i>&nbsp;import org.ei.telemedicine.repository.AlertRepository;
+<i>6</i>&nbsp;import org.ei.telemedicine.repository.AllBeneficiaries;
+<i>7</i>&nbsp;import org.ei.telemedicine.repository.ChildRepository;
+<i>8</i>&nbsp;import org.ei.telemedicine.repository.DoctorRepository;
+<i>9</i>&nbsp;import org.ei.telemedicine.repository.MotherRepository;
+<i>10</i>&nbsp;import org.ei.telemedicine.repository.TestRepository;
+<i>11</i>&nbsp;import org.ei.telemedicine.repository.TimelineEventRepository;
+<i>12</i>&nbsp;import org.junit.Before;
+<i>13</i>&nbsp;import org.junit.Test;
+<i>14</i>&nbsp;import org.mockito.Mock;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;import java.util.Collections;
+<i>17</i>&nbsp;import java.util.HashMap;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;import static java.util.Arrays.asList;
+<i>20</i>&nbsp;import static org.mockito.Mockito.any;
+<i>21</i>&nbsp;import static org.mockito.Mockito.times;
+<i>22</i>&nbsp;import static org.mockito.Mockito.verify;
+<i>23</i>&nbsp;import static org.mockito.Mockito.verifyZeroInteractions;
+<i>24</i>&nbsp;import static org.mockito.Mockito.when;
+<i>25</i>&nbsp;import static org.mockito.MockitoAnnotations.initMocks;
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;
+<b class="fc"><i>28</i>&nbsp;public class AllBeneficiariesTest {</b>
+<i>29</i>&nbsp;    @Mock
+<i>30</i>&nbsp;    private MotherRepository motherRepository;
+<i>31</i>&nbsp;    @Mock
+<i>32</i>&nbsp;    private ChildRepository childRepository;
+<i>33</i>&nbsp;    @Mock
+<i>34</i>&nbsp;    private AlertRepository alertRepository;
+<i>35</i>&nbsp;    @Mock
+<i>36</i>&nbsp;    private TimelineEventRepository timelineEventRepository;
+<i>37</i>&nbsp;    @Mock
+<i>38</i>&nbsp;    private TestRepository testRepository;
+<i>39</i>&nbsp;    @Mock
+<i>40</i>&nbsp;    private DoctorRepository doctorRepository;
+<i>41</i>&nbsp;    @Mock
+<i>42</i>&nbsp;    private Child child;
+<i>43</i>&nbsp;    @Mock
+<i>44</i>&nbsp;    private Mother mother;
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    private AllBeneficiaries allBeneficiaries;
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    @Before
+<i>49</i>&nbsp;    public void setUp() throws Exception {
+<b class="fc"><i>50</i>&nbsp;        initMocks(this);</b>
+<b class="fc"><i>51</i>&nbsp;        allBeneficiaries = new AllBeneficiaries(motherRepository, childRepository, alertRepository, timelineEventRepository, testRepository, doctorRepository);</b>
+<b class="fc"><i>52</i>&nbsp;    }</b>
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;    @Test
+<i>55</i>&nbsp;    public void shouldDeleteTimelineEventsAndAlertsWhileClosingMother() throws Exception {
+<b class="fc"><i>56</i>&nbsp;        allBeneficiaries.closeMother(&quot;entity id 1&quot;);</b>
+<i>57</i>&nbsp;
+<b class="fc"><i>58</i>&nbsp;        verify(alertRepository).deleteAllAlertsForEntity(&quot;entity id 1&quot;);</b>
+<b class="fc"><i>59</i>&nbsp;        verify(timelineEventRepository).deleteAllTimelineEventsForEntity(&quot;entity id 1&quot;);</b>
+<b class="fc"><i>60</i>&nbsp;    }</b>
+<i>61</i>&nbsp;
+<i>62</i>&nbsp;    @Test
+<i>63</i>&nbsp;    public void shouldDeleteTimelineEventsAndAlertsForAllMothersWhenECIsClosed() throws Exception {
+<b class="fc"><i>64</i>&nbsp;        when(motherRepository.findAllCasesForEC(&quot;ec id 1&quot;))</b>
+<b class="fc"><i>65</i>&nbsp;                .thenReturn(asList(new Mother(&quot;mother id 1&quot;, &quot;ec id 1&quot;, &quot;12345&quot;, &quot;2012-12-12&quot;), new Mother(&quot;mother id 2&quot;, &quot;ec id 2&quot;, &quot;123456&quot;, &quot;2012-12-10&quot;)));</b>
+<i>66</i>&nbsp;
+<b class="fc"><i>67</i>&nbsp;        allBeneficiaries.closeAllMothersForEC(&quot;ec id 1&quot;);</b>
+<i>68</i>&nbsp;
+<b class="fc"><i>69</i>&nbsp;        verify(alertRepository).deleteAllAlertsForEntity(&quot;mother id 1&quot;);</b>
+<b class="fc"><i>70</i>&nbsp;        verify(alertRepository).deleteAllAlertsForEntity(&quot;mother id 2&quot;);</b>
+<b class="fc"><i>71</i>&nbsp;        verify(timelineEventRepository).deleteAllTimelineEventsForEntity(&quot;mother id 1&quot;);</b>
+<b class="fc"><i>72</i>&nbsp;        verify(timelineEventRepository).deleteAllTimelineEventsForEntity(&quot;mother id 2&quot;);</b>
+<b class="fc"><i>73</i>&nbsp;        verify(motherRepository).close(&quot;mother id 1&quot;);</b>
+<b class="fc"><i>74</i>&nbsp;        verify(motherRepository).close(&quot;mother id 2&quot;);</b>
+<b class="fc"><i>75</i>&nbsp;    }</b>
+<i>76</i>&nbsp;
+<i>77</i>&nbsp;    @Test
+<i>78</i>&nbsp;    public void shouldDeleteTimelineEventsAndAlertsWhenAChildIsClosed() throws Exception {
+<b class="fc"><i>79</i>&nbsp;        when(childRepository.find(&quot;child id 1&quot;))</b>
+<b class="fc"><i>80</i>&nbsp;                .thenReturn(new Child(&quot;child id 1&quot;, &quot;mother id 1&quot;, &quot;male&quot;, new HashMap&lt;String, String&gt;()));</b>
+<i>81</i>&nbsp;
+<b class="fc"><i>82</i>&nbsp;        allBeneficiaries.closeChild(&quot;child id 1&quot;);</b>
+<i>83</i>&nbsp;
+<b class="fc"><i>84</i>&nbsp;        verify(alertRepository).deleteAllAlertsForEntity(&quot;child id 1&quot;);</b>
+<b class="fc"><i>85</i>&nbsp;        verify(timelineEventRepository).deleteAllTimelineEventsForEntity(&quot;child id 1&quot;);</b>
+<b class="fc"><i>86</i>&nbsp;        verify(childRepository).close(&quot;child id 1&quot;);</b>
+<b class="fc"><i>87</i>&nbsp;    }</b>
+<i>88</i>&nbsp;
+<i>89</i>&nbsp;    @Test
+<i>90</i>&nbsp;    public void shouldNotFailClosingMotherWhenECIsClosedAndDoesNotHaveAnyMothers() throws Exception {
+<b class="fc"><i>91</i>&nbsp;        when(motherRepository.findAllCasesForEC(&quot;ec id 1&quot;)).thenReturn(null);</b>
+<b class="fc"><i>92</i>&nbsp;        when(motherRepository.findAllCasesForEC(&quot;ec id 1&quot;)).thenReturn(Collections.&lt;Mother&gt;emptyList());</b>
+<i>93</i>&nbsp;
+<b class="fc"><i>94</i>&nbsp;        allBeneficiaries.closeAllMothersForEC(&quot;ec id 1&quot;);</b>
+<i>95</i>&nbsp;
+<b class="fc"><i>96</i>&nbsp;        verifyZeroInteractions(alertRepository);</b>
+<b class="fc"><i>97</i>&nbsp;        verifyZeroInteractions(timelineEventRepository);</b>
+<b class="fc"><i>98</i>&nbsp;        verify(motherRepository, times(0)).close(any(String.class));</b>
+<b class="fc"><i>99</i>&nbsp;    }</b>
+<i>100</i>&nbsp;
+<i>101</i>&nbsp;    @Test
+<i>102</i>&nbsp;    public void shouldDelegateToChildRepositoryWhenUpdateChildIsCalled() throws Exception {
+<b class="fc"><i>103</i>&nbsp;        allBeneficiaries.updateChild(child);</b>
+<i>104</i>&nbsp;
+<b class="fc"><i>105</i>&nbsp;        verify(childRepository).update(child);</b>
+<b class="fc"><i>106</i>&nbsp;    }</b>
+<i>107</i>&nbsp;
+<i>108</i>&nbsp;    @Test
+<i>109</i>&nbsp;    public void shouldDelegateToMotherRepositoryWhenUpdateMotherIsCalled() throws Exception {
+<b class="fc"><i>110</i>&nbsp;        allBeneficiaries.updateMother(mother);</b>
+<i>111</i>&nbsp;
+<b class="fc"><i>112</i>&nbsp;        verify(motherRepository).update(mother);</b>
+<b class="fc"><i>113</i>&nbsp;    }</b>
+<i>114</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-20 13:39</div>
+</div>
+</body>
+</html>

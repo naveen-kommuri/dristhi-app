@@ -1,0 +1,532 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: PendingConsultantBaseAdapter</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.doctor</a> ]
+</div>
+
+<h1>Coverage Summary for Class: PendingConsultantBaseAdapter (org.ei.telemedicine.doctor)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PendingConsultantBaseAdapter</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 123)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">PendingConsultantBaseAdapter$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">PendingConsultantBaseAdapter$1$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 7)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">PendingConsultantBaseAdapter$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 13)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">PendingConsultantBaseAdapter$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 16)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">PendingConsultantBaseAdapter$ViewHolder</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 22)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 164)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.doctor;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.app.Activity;
+<i>4</i>&nbsp;import android.app.ProgressDialog;
+<i>5</i>&nbsp;import android.content.Context;
+<i>6</i>&nbsp;import android.content.Intent;
+<i>7</i>&nbsp;import android.graphics.Color;
+<i>8</i>&nbsp;import android.graphics.drawable.Drawable;
+<i>9</i>&nbsp;import android.os.AsyncTask;
+<i>10</i>&nbsp;import android.util.Log;
+<i>11</i>&nbsp;import android.view.LayoutInflater;
+<i>12</i>&nbsp;import android.view.View;
+<i>13</i>&nbsp;import android.view.ViewGroup;
+<i>14</i>&nbsp;import android.widget.BaseAdapter;
+<i>15</i>&nbsp;import android.widget.ImageButton;
+<i>16</i>&nbsp;import android.widget.ImageView;
+<i>17</i>&nbsp;import android.widget.LinearLayout;
+<i>18</i>&nbsp;import android.widget.Toast;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;import org.apache.commons.lang3.text.WordUtils;
+<i>21</i>&nbsp;import org.ei.telemedicine.AllConstants;
+<i>22</i>&nbsp;import org.ei.telemedicine.R;
+<i>23</i>&nbsp;import org.ei.telemedicine.event.Listener;
+<i>24</i>&nbsp;import org.ei.telemedicine.image.ImageLoader;
+<i>25</i>&nbsp;import org.ei.telemedicine.util.StringUtil;
+<i>26</i>&nbsp;import org.ei.telemedicine.view.controller.NavigationController;
+<i>27</i>&nbsp;import org.json.JSONException;
+<i>28</i>&nbsp;import org.json.JSONObject;
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;import java.util.ArrayList;
+<i>31</i>&nbsp;import java.util.Collections;
+<i>32</i>&nbsp;import java.util.List;
+<i>33</i>&nbsp;import java.util.Locale;
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;import static org.ei.telemedicine.AllConstants.DOCTOR_OVERVIEW_URL_PATH;
+<i>36</i>&nbsp;import static org.ei.telemedicine.doctor.DoctorFormDataConstants.*;
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;/**
+<i>39</i>&nbsp; * Created by naveen on 5/20/15.
+<i>40</i>&nbsp; */
+<i>41</i>&nbsp;public class PendingConsultantBaseAdapter extends BaseAdapter {
+<i>42</i>&nbsp;    List&lt;DoctorData&gt; consultantsList;
+<i>43</i>&nbsp;    List&lt;DoctorData&gt; totalConsultansList;
+<i>44</i>&nbsp;    List&lt;DoctorData&gt; searchconsultantsList;
+<i>45</i>&nbsp;    Context context;
+<b class="nc"><i>46</i>&nbsp;    private String TAG = &quot;PendingConsultantBaseAdapter&quot;;</b>
+<i>47</i>&nbsp;    Activity activity;
+<i>48</i>&nbsp;    ProgressDialog progressDialog;
+<i>49</i>&nbsp;    public ImageLoader imageLoader;
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;
+<b class="nc"><i>52</i>&nbsp;    public PendingConsultantBaseAdapter(Context context, ArrayList&lt;DoctorData&gt; consultantsList, Activity activity) {</b>
+<b class="nc"><i>53</i>&nbsp;        this.context = context;</b>
+<b class="nc"><i>54</i>&nbsp;        this.activity = activity;</b>
+<b class="nc"><i>55</i>&nbsp;        this.consultantsList = consultantsList;</b>
+<b class="nc"><i>56</i>&nbsp;        this.searchconsultantsList = new ArrayList&lt;DoctorData&gt;();</b>
+<b class="nc"><i>57</i>&nbsp;        this.totalConsultansList = new ArrayList&lt;DoctorData&gt;();</b>
+<b class="nc"><i>58</i>&nbsp;        this.totalConsultansList.addAll(consultantsList);</b>
+<b class="nc"><i>59</i>&nbsp;        this.searchconsultantsList.addAll(consultantsList);</b>
+<b class="nc"><i>60</i>&nbsp;        this.imageLoader = new ImageLoader(activity.getApplicationContext());</b>
+<b class="nc"><i>61</i>&nbsp;    }</b>
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    @Override
+<i>64</i>&nbsp;    public int getCount() {
+<b class="nc"><i>65</i>&nbsp;        return consultantsList.size();</b>
+<i>66</i>&nbsp;    }
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;    @Override
+<i>69</i>&nbsp;    public DoctorData getItem(int position) {
+<b class="nc"><i>70</i>&nbsp;        return consultantsList.get(position);</b>
+<i>71</i>&nbsp;    }
+<i>72</i>&nbsp;
+<i>73</i>&nbsp;    @Override
+<i>74</i>&nbsp;    public long getItemId(int position) {
+<b class="nc"><i>75</i>&nbsp;        return position;</b>
+<i>76</i>&nbsp;    }
+<i>77</i>&nbsp;
+<i>78</i>&nbsp;
+<b class="nc"><i>79</i>&nbsp;    static class ViewHolder {</b>
+<i>80</i>&nbsp;        org.ei.telemedicine.view.customControls.CustomFontTextView tv_wife_name, tv_husband_name, tv_village_name, tv_id_no, tv_visit_type, tv_poc_pending, tv_status, tv_wife_age, tv_status2;
+<i>81</i>&nbsp;        ImageView iv_profile, iv_hr;
+<i>82</i>&nbsp;        ImageButton ib_btn_edit;
+<i>83</i>&nbsp;        LinearLayout ll_clients_header_layout, profile_layout;
+<i>84</i>&nbsp;    }
+<i>85</i>&nbsp;
+<i>86</i>&nbsp;    @Override
+<i>87</i>&nbsp;    public View getView(int position, View convertView, ViewGroup parent) {
+<b class="nc"><i>88</i>&nbsp;        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);</b>
+<b class="nc"><i>89</i>&nbsp;        convertView = inflater.inflate(R.layout.consultant_item_list_view, null);</b>
+<i>90</i>&nbsp;        ViewHolder viewHolder;
+<i>91</i>&nbsp;//        if (convertView == null) {
+<b class="nc"><i>92</i>&nbsp;        viewHolder = new ViewHolder();</b>
+<b class="nc"><i>93</i>&nbsp;        viewHolder.profile_layout = (LinearLayout) convertView.findViewById(R.id.profile_layout);</b>
+<b class="nc"><i>94</i>&nbsp;        viewHolder.ll_clients_header_layout = (LinearLayout) convertView.findViewById(R.id.clients_header_layout);</b>
+<b class="nc"><i>95</i>&nbsp;        viewHolder.tv_wife_name = (org.ei.telemedicine.view.customControls.CustomFontTextView) convertView.findViewById(R.id.item_wife_name);</b>
+<b class="nc"><i>96</i>&nbsp;        viewHolder.tv_husband_name = (org.ei.telemedicine.view.customControls.CustomFontTextView) convertView.findViewById(R.id.item_husband_name);</b>
+<b class="nc"><i>97</i>&nbsp;        viewHolder.tv_village_name = (org.ei.telemedicine.view.customControls.CustomFontTextView) convertView.findViewById(R.id.item_village_name);</b>
+<b class="nc"><i>98</i>&nbsp;        viewHolder.tv_wife_age = (org.ei.telemedicine.view.customControls.CustomFontTextView) convertView.findViewById(R.id.item_wife_age);</b>
+<i>99</i>&nbsp;
+<b class="nc"><i>100</i>&nbsp;        viewHolder.tv_id_no = (org.ei.telemedicine.view.customControls.CustomFontTextView) convertView.findViewById(R.id.item_id_no);</b>
+<b class="nc"><i>101</i>&nbsp;        viewHolder.tv_visit_type = (org.ei.telemedicine.view.customControls.CustomFontTextView) convertView.findViewById(R.id.item_visit_type);</b>
+<b class="nc"><i>102</i>&nbsp;        viewHolder.tv_poc_pending = (org.ei.telemedicine.view.customControls.CustomFontTextView) convertView.findViewById(R.id.item_poc_pending);</b>
+<b class="nc"><i>103</i>&nbsp;        viewHolder.tv_status = (org.ei.telemedicine.view.customControls.CustomFontTextView) convertView.findViewById(R.id.item_status1);</b>
+<b class="nc"><i>104</i>&nbsp;        viewHolder.tv_status2 = (org.ei.telemedicine.view.customControls.CustomFontTextView) convertView.findViewById(R.id.item_status2);</b>
+<b class="nc"><i>105</i>&nbsp;        viewHolder.iv_profile = (ImageView) convertView.findViewById(R.id.iv_profile);</b>
+<b class="nc"><i>106</i>&nbsp;        viewHolder.iv_hr = (ImageView) convertView.findViewById(R.id.iv_hr);</b>
+<b class="nc"><i>107</i>&nbsp;        viewHolder.ib_btn_edit = (ImageButton) convertView.findViewById(R.id.btn_edit);</b>
+<i>108</i>&nbsp;//            convertView.setTag(viewHolder);
+<i>109</i>&nbsp;//        } else {
+<i>110</i>&nbsp;//            viewHolder = (ViewHolder) convertView.getTag();
+<i>111</i>&nbsp;//        }
+<i>112</i>&nbsp;//        if (consultantsList.get(position).getImage() != null) {
+<i>113</i>&nbsp;//            viewHolder.iv_profile.setImageBitmap(consultantsList.get(position).getImage());
+<i>114</i>&nbsp;//        } else {
+<i>115</i>&nbsp;//            viewHolder.iv_profile.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_launcher));
+<i>116</i>&nbsp;//        }
+<i>117</i>&nbsp;
+<b class="nc"><i>118</i>&nbsp;        final String formData = consultantsList.get(position).getFormInformation();</b>
+<i>119</i>&nbsp;//        String wifeName = getData(DoctorFormDataConstants.wife_name, formData);
+<b class="nc"><i>120</i>&nbsp;        viewHolder.tv_husband_name.setText(!getData(husband_name, formData).equals(&quot;Null&quot;) ? getData(husband_name, formData) : &quot;&quot;);</b>
+<b class="nc"><i>121</i>&nbsp;        viewHolder.tv_village_name.setText(getData(village_name, formData));</b>
+<b class="nc"><i>122</i>&nbsp;        viewHolder.tv_id_no.setText(getData(id_no, formData));</b>
+<b class="nc"><i>123</i>&nbsp;        viewHolder.tv_visit_type.setText(getData(visit_type, formData));</b>
+<b class="nc"><i>124</i>&nbsp;        String pocPendingInfo = getData(poc_pending, formData);</b>
+<b class="nc"><i>125</i>&nbsp;        viewHolder.tv_poc_pending.setText(pocPendingInfo);</b>
+<i>126</i>&nbsp;//        viewHolder.tv_status.setText(getData(status, formData));
+<b class="nc"><i>127</i>&nbsp;        viewHolder.tv_wife_age.setText(getData(age, formData));</b>
+<i>128</i>&nbsp;//        Log.e(TAG, &quot;pocPending Info&quot; + pocPendingInfo.length());
+<b class="nc"><i>129</i>&nbsp;        viewHolder.ll_clients_header_layout.setBackgroundColor(Color.parseColor((pocPendingInfo.trim().length() != 0 &amp;&amp; !pocPendingInfo.equals(&quot;&quot;)) ? &quot;#c0c0c0&quot; : &quot;#FFFFFF&quot;));</b>
+<b class="nc"><i>130</i>&nbsp;        Drawable imgae = null;</b>
+<b class="nc"><i>131</i>&nbsp;        String data = getData(visit_type, formData);</b>
+<b class="nc"><i>132</i>&nbsp;        viewHolder.iv_hr.setVisibility(getData(isHighRisk, formData).equalsIgnoreCase(&quot;yes&quot;) ? View.VISIBLE : View.GONE);</b>
+<b class="nc"><i>133</i>&nbsp;        switch (getData(visit_type, formData)) {</b>
+<i>134</i>&nbsp;            case ancvisit:
+<b class="nc"><i>135</i>&nbsp;                viewHolder.tv_wife_name.setText(getData(wife_name, formData));</b>
+<b class="nc"><i>136</i>&nbsp;                imgae = context.getResources().getDrawable(R.drawable.woman_placeholder);</b>
+<b class="nc"><i>137</i>&nbsp;                viewHolder.tv_status.setText(&quot;LMP: &quot; + getData(lmp, formData));</b>
+<b class="nc"><i>138</i>&nbsp;                viewHolder.tv_status2.setText(&quot;Edd:&quot; + getData(edd, formData));</b>
+<b class="nc"><i>139</i>&nbsp;                break;</b>
+<i>140</i>&nbsp;            case pncVisit:
+<b class="nc"><i>141</i>&nbsp;                viewHolder.tv_wife_name.setText(getData(wife_name, formData));</b>
+<b class="nc"><i>142</i>&nbsp;                imgae = context.getResources().getDrawable(R.drawable.woman_placeholder);</b>
+<b class="nc"><i>143</i>&nbsp;                viewHolder.tv_status.setText(&quot;Place : &quot; + getData(pnc_visit_place, formData));</b>
+<b class="nc"><i>144</i>&nbsp;                viewHolder.tv_status2.setText(&quot;Date :&quot; + getData(pnc_visit_date, formData));</b>
+<i>145</i>&nbsp;//
+<i>146</i>&nbsp;//                viewHolder.tv_status.setText(&quot;Place: &quot; + getData(pnc_visit_place, formData) + &quot;\n Date:&quot; + getData(pnc_visit_date, formData));
+<b class="nc"><i>147</i>&nbsp;                break;</b>
+<i>148</i>&nbsp;            case childVisit:
+<b class="nc"><i>149</i>&nbsp;                viewHolder.tv_wife_name.setText(getData(child_name, formData).equals(&quot;&quot;) ? &quot;B/o &quot; + getData(wife_name, formData) : getData(child_name, formData));</b>
+<b class="nc"><i>150</i>&nbsp;                imgae = getData(child_gender, formData).equalsIgnoreCase(&quot;male&quot;) ? context.getResources().getDrawable(R.drawable.child_boy_infant) : context.getResources().getDrawable(R.drawable.child_girl_infant);</b>
+<b class="nc"><i>151</i>&nbsp;                viewHolder.tv_status.setText(!getData(child_report_child_disease_place, formData).equals(&quot;&quot;) ? &quot;Place : &quot; + getData(child_report_child_disease_place, formData) : &quot;&quot;);</b>
+<b class="nc"><i>152</i>&nbsp;                viewHolder.tv_status2.setText(!getData(child_report_child_disease_date, formData).equals(&quot;&quot;) ? &quot;Date :&quot; + getData(child_report_child_disease_date, formData) : &quot;&quot;);</b>
+<i>153</i>&nbsp;//                viewHolder.tv_status.setText(&quot;Place: &quot; + getData(child_report_child_disease_place, formData) + &quot;\n Date:&quot; + getData(child_report_child_disease_date, formData));
+<i>154</i>&nbsp;                break;
+<i>155</i>&nbsp;
+<i>156</i>&nbsp;        }
+<i>157</i>&nbsp;//      Getting image from url
+<i>158</i>&nbsp;//        switch ((getData(wife_name, formData).substring(0, 1)).toLowerCase()) {
+<i>159</i>&nbsp;//            case &quot;r&quot;:
+<i>160</i>&nbsp;//                imageLoader.DisplayImage(&quot;http://media.mediatemple.netdna-cdn.com/wp-content/uploads/2013/01/1.jpg&quot;, viewHolder.iv_profile);
+<i>161</i>&nbsp;//                break;
+<i>162</i>&nbsp;//            case &quot;j&quot;:
+<i>163</i>&nbsp;//                imageLoader.DisplayImage(&quot;http://www.theandroidsoul.com/wp-content/uploads/2014/05/root-android-image-puzzle.jpg&quot;, viewHolder.iv_profile);
+<i>164</i>&nbsp;//                break;
+<i>165</i>&nbsp;//            case &quot;l&quot;:
+<i>166</i>&nbsp;//                imageLoader.DisplayImage(&quot;http://www.androiddunyasi.net/wp-content/uploads/2012/08/android-wallpaper-5.jpg&quot;, viewHolder.iv_profile);
+<i>167</i>&nbsp;//                break;
+<i>168</i>&nbsp;//            default:
+<i>169</i>&nbsp;//                imageLoader.DisplayImage(&quot;http://thenextweb.com/wp-content/blogs.dir/1/files/2012/12/Android-VS-Apple.jpg&quot;, viewHolder.iv_profile);
+<i>170</i>&nbsp;//                break;
+<i>171</i>&nbsp;//
+<i>172</i>&nbsp;//        }
+<i>173</i>&nbsp;
+<b class="nc"><i>174</i>&nbsp;        viewHolder.iv_profile.setImageDrawable(imgae);</b>
+<b class="nc"><i>175</i>&nbsp;        viewHolder.profile_layout.setOnClickListener(new View.OnClickListener() {</b>
+<i>176</i>&nbsp;            @Override
+<i>177</i>&nbsp;            public void onClick(View v) {
+<b class="nc"><i>178</i>&nbsp;                String url = DOCTOR_OVERVIEW_URL_PATH + &quot;visitid=&quot; + getData(visitId, formData) + &quot;&amp;entityid=&quot; + getData(entityId, formData);</b>
+<i>179</i>&nbsp;
+<b class="nc"><i>180</i>&nbsp;                getData(url, new Listener&lt;String&gt;() {</b>
+<i>181</i>&nbsp;                    @Override
+<i>182</i>&nbsp;                    public void onEvent(String data) {
+<b class="nc"><i>183</i>&nbsp;                        if (data != null) {</b>
+<b class="nc"><i>184</i>&nbsp;                            NavigationController navigationController = new NavigationController(activity, org.ei.telemedicine.Context.getInstance().anmController());</b>
+<b class="nc"><i>185</i>&nbsp;                            navigationController.startDoctor(data, formData);</b>
+<b class="nc"><i>186</i>&nbsp;                        } else</b>
+<b class="nc"><i>187</i>&nbsp;                            Toast.makeText(context, &quot;No Data from server&quot;, Toast.LENGTH_SHORT).show();</b>
+<b class="nc"><i>188</i>&nbsp;                    }</b>
+<i>189</i>&nbsp;                });
+<i>190</i>&nbsp;
+<b class="nc"><i>191</i>&nbsp;            }</b>
+<i>192</i>&nbsp;        });
+<b class="nc"><i>193</i>&nbsp;        viewHolder.ib_btn_edit.setOnClickListener(new View.OnClickListener() {</b>
+<i>194</i>&nbsp;                                                      @Override
+<i>195</i>&nbsp;                                                      public void onClick(View v) {
+<b class="nc"><i>196</i>&nbsp;                                                          Intent intent = null;</b>
+<b class="nc"><i>197</i>&nbsp;                                                          Log.e(&quot;Visit Type&quot;, getData(visit_type, formData));</b>
+<b class="nc"><i>198</i>&nbsp;                                                          switch (getData(visit_type, formData)) {</b>
+<i>199</i>&nbsp;                                                              case ancvisit:
+<b class="nc"><i>200</i>&nbsp;                                                                  intent = new Intent(context, DoctorANCScreenActivity.class);</b>
+<b class="nc"><i>201</i>&nbsp;                                                                  break;</b>
+<i>202</i>&nbsp;                                                              case pncVisit:
+<b class="nc"><i>203</i>&nbsp;                                                                  intent = new Intent(context, DoctorPNCScreenActivity.class);</b>
+<b class="nc"><i>204</i>&nbsp;                                                                  break;</b>
+<i>205</i>&nbsp;                                                              case childVisit:
+<b class="nc"><i>206</i>&nbsp;                                                                  intent = new Intent(context, DoctorChildScreenActivity.class);</b>
+<i>207</i>&nbsp;                                                                  break;
+<i>208</i>&nbsp;                                                          }
+<b class="nc"><i>209</i>&nbsp;                                                          if (intent != null) {</b>
+<b class="nc"><i>210</i>&nbsp;                                                              intent.putExtra(&quot;formData&quot;, formData);</b>
+<i>211</i>&nbsp;//                                                              Log.e(TAG, &quot;Data from adapter &quot; + formData);
+<b class="nc"><i>212</i>&nbsp;                                                              context.startActivity(intent);</b>
+<i>213</i>&nbsp;                                                          }
+<b class="nc"><i>214</i>&nbsp;                                                      }</b>
+<i>215</i>&nbsp;                                                  }
+<i>216</i>&nbsp;
+<i>217</i>&nbsp;        );
+<i>218</i>&nbsp;
+<b class="nc"><i>219</i>&nbsp;        return convertView;</b>
+<i>220</i>&nbsp;    }
+<i>221</i>&nbsp;
+<i>222</i>&nbsp;
+<i>223</i>&nbsp;    private void getData(final String url, final Listener&lt;String&gt; afterResult) {
+<b class="nc"><i>224</i>&nbsp;        new AsyncTask&lt;Void, Void, String&gt;() {</b>
+<i>225</i>&nbsp;
+<i>226</i>&nbsp;            @Override
+<i>227</i>&nbsp;            protected String doInBackground(Void... params) {
+<b class="nc"><i>228</i>&nbsp;                org.ei.telemedicine.Context context = org.ei.telemedicine.Context.getInstance();</b>
+<b class="nc"><i>229</i>&nbsp;                Log.e(&quot;Doctor Overview URL&quot;, context.configuration().dristhiDjangoBaseURL() + url);</b>
+<b class="nc"><i>230</i>&nbsp;                String result = context.userService().gettingFromRemoteURL(context.configuration().dristhiDjangoBaseURL() + url);</b>
+<b class="nc"><i>231</i>&nbsp;                return result;</b>
+<i>232</i>&nbsp;            }
+<i>233</i>&nbsp;
+<i>234</i>&nbsp;            @Override
+<i>235</i>&nbsp;            protected void onPreExecute() {
+<b class="nc"><i>236</i>&nbsp;                super.onPreExecute();</b>
+<b class="nc"><i>237</i>&nbsp;                progressDialog = new ProgressDialog(context);</b>
+<b class="nc"><i>238</i>&nbsp;                progressDialog.setCancelable(false);</b>
+<b class="nc"><i>239</i>&nbsp;                progressDialog.setMessage(context.getString(R.string.dialog_message));</b>
+<b class="nc"><i>240</i>&nbsp;                progressDialog.show();</b>
+<b class="nc"><i>241</i>&nbsp;            }</b>
+<i>242</i>&nbsp;
+<i>243</i>&nbsp;            @Override
+<i>244</i>&nbsp;            protected void onPostExecute(String resultData) {
+<b class="nc"><i>245</i>&nbsp;                super.onPostExecute(resultData);</b>
+<b class="nc"><i>246</i>&nbsp;                if (progressDialog.isShowing())</b>
+<b class="nc"><i>247</i>&nbsp;                    progressDialog.hide();</b>
+<b class="nc"><i>248</i>&nbsp;                afterResult.onEvent(resultData);</b>
+<b class="nc"><i>249</i>&nbsp;            }</b>
+<b class="nc"><i>250</i>&nbsp;        }.execute();</b>
+<b class="nc"><i>251</i>&nbsp;    }</b>
+<i>252</i>&nbsp;
+<i>253</i>&nbsp;    public String getData(String key, String formData) {
+<i>254</i>&nbsp;
+<b class="nc"><i>255</i>&nbsp;        if (formData != null) try {</b>
+<b class="nc"><i>256</i>&nbsp;            JSONObject jsonData = new JSONObject(formData);</b>
+<b class="nc"><i>257</i>&nbsp;            return (jsonData != null &amp;&amp; jsonData.has(key) &amp;&amp; jsonData.getString(key) != null &amp;&amp; !jsonData.getString(key).equalsIgnoreCase(&quot;null&quot;)) ? WordUtils.capitalize(jsonData.getString(key)) : &quot;&quot;;</b>
+<b class="nc"><i>258</i>&nbsp;        } catch (JSONException e) {</b>
+<b class="nc"><i>259</i>&nbsp;            e.printStackTrace();</b>
+<i>260</i>&nbsp;        }
+<i>261</i>&nbsp;
+<b class="nc"><i>262</i>&nbsp;        return null;</b>
+<i>263</i>&nbsp;    }
+<i>264</i>&nbsp;
+<i>265</i>&nbsp;
+<i>266</i>&nbsp;    public void villagesFilter(String text, ArrayList&lt;DoctorData&gt; doctorDatas) {
+<b class="nc"><i>267</i>&nbsp;        NativeDoctorActivity.village_name_view.setText(text);</b>
+<b class="nc"><i>268</i>&nbsp;        text = text.toLowerCase(Locale.getDefault());</b>
+<i>269</i>&nbsp;
+<b class="nc"><i>270</i>&nbsp;        totalConsultansList.clear();</b>
+<i>271</i>&nbsp;//        consultantsList.clear();
+<b class="nc"><i>272</i>&nbsp;        if (text.trim().length() == 0 || text.equalsIgnoreCase(&quot;all&quot;)) {</b>
+<b class="nc"><i>273</i>&nbsp;            notifyDataSetChanged(doctorDatas);</b>
+<i>274</i>&nbsp;        } else {
+<b class="nc"><i>275</i>&nbsp;            for (DoctorData doctorData : doctorDatas) {</b>
+<b class="nc"><i>276</i>&nbsp;                String villageName = getData(village_name, doctorData.getFormInformation());</b>
+<b class="nc"><i>277</i>&nbsp;                if (villageName != null &amp;&amp; villageName.toLowerCase(Locale.getDefault()).contains(text)) {</b>
+<b class="nc"><i>278</i>&nbsp;                    totalConsultansList.add(doctorData);</b>
+<i>279</i>&nbsp;                }
+<b class="nc"><i>280</i>&nbsp;            }</b>
+<b class="nc"><i>281</i>&nbsp;            notifyDataSetChanged(totalConsultansList);</b>
+<i>282</i>&nbsp;        }
+<b class="nc"><i>283</i>&nbsp;    }</b>
+<i>284</i>&nbsp;
+<i>285</i>&nbsp;    public List&lt;DoctorData&gt; filter(String text, ArrayList&lt;DoctorData&gt; doctorDatas) {
+<b class="nc"><i>286</i>&nbsp;        text = text.toLowerCase(Locale.getDefault());</b>
+<b class="nc"><i>287</i>&nbsp;        totalConsultansList.clear();</b>
+<i>288</i>&nbsp;//        consultantsList.clear();
+<b class="nc"><i>289</i>&nbsp;        if (text.trim().length() == 0 || text.equalsIgnoreCase(&quot;all&quot;)) {</b>
+<b class="nc"><i>290</i>&nbsp;            return doctorDatas;</b>
+<i>291</i>&nbsp;        } else {
+<b class="nc"><i>292</i>&nbsp;            for (DoctorData doctorData : doctorDatas) {</b>
+<b class="nc"><i>293</i>&nbsp;                String womanName = getData(wife_name, doctorData.getFormInformation());</b>
+<b class="nc"><i>294</i>&nbsp;                if (womanName != null &amp;&amp; womanName.toLowerCase(Locale.getDefault()).contains(text)) {</b>
+<b class="nc"><i>295</i>&nbsp;                    totalConsultansList.add(doctorData);</b>
+<i>296</i>&nbsp;                }
+<b class="nc"><i>297</i>&nbsp;            }</b>
+<i>298</i>&nbsp;        }
+<b class="nc"><i>299</i>&nbsp;        return totalConsultansList;</b>
+<i>300</i>&nbsp;    }
+<i>301</i>&nbsp;
+<i>302</i>&nbsp;    public void notifyDataSetChanged(List&lt;DoctorData&gt; consultantsList) {
+<b class="nc"><i>303</i>&nbsp;        this.consultantsList = consultantsList;</b>
+<b class="nc"><i>304</i>&nbsp;        super.notifyDataSetChanged();</b>
+<b class="nc"><i>305</i>&nbsp;    }</b>
+<i>306</i>&nbsp;
+<i>307</i>&nbsp;
+<i>308</i>&nbsp;    public void sort(String sortingOption, ArrayList&lt;DoctorData&gt; doctorDatas) {
+<i>309</i>&nbsp;
+<b class="nc"><i>310</i>&nbsp;        String text = sortingOption.toLowerCase(Locale.getDefault());</b>
+<b class="nc"><i>311</i>&nbsp;        totalConsultansList.clear();</b>
+<b class="nc"><i>312</i>&nbsp;        searchconsultantsList.clear();</b>
+<i>313</i>&nbsp;//        consultantsList.clear();
+<b class="nc"><i>314</i>&nbsp;        if (text.trim().length() == 0 || text.trim().equalsIgnoreCase(DoctorFormDataConstants.sorting_name.toLowerCase().trim())) {</b>
+<b class="nc"><i>315</i>&nbsp;            consultantsList.addAll(doctorDatas);</b>
+<b class="nc"><i>316</i>&nbsp;            Collections.sort(doctorDatas, DoctorData.womanNameComparator);</b>
+<b class="nc"><i>317</i>&nbsp;            notifyDataSetChanged(doctorDatas);</b>
+<i>318</i>&nbsp;        }
+<b class="nc"><i>319</i>&nbsp;        if (text.trim().equalsIgnoreCase(DoctorFormDataConstants.sorting_hr)) {</b>
+<b class="nc"><i>320</i>&nbsp;            for (DoctorData doctorData : doctorDatas) {</b>
+<b class="nc"><i>321</i>&nbsp;                String isHighRisk = getData(DoctorFormDataConstants.isHighRisk, doctorData.getFormInformation());</b>
+<b class="nc"><i>322</i>&nbsp;                if (isHighRisk != null &amp;&amp; isHighRisk.toLowerCase(Locale.getDefault()).contains(&quot;yes&quot;)) {</b>
+<b class="nc"><i>323</i>&nbsp;                    totalConsultansList.add(doctorData);</b>
+<i>324</i>&nbsp;                } else {
+<b class="nc"><i>325</i>&nbsp;                    searchconsultantsList.add(doctorData);</b>
+<i>326</i>&nbsp;                }
+<b class="nc"><i>327</i>&nbsp;            }</b>
+<b class="nc"><i>328</i>&nbsp;            Collections.sort(totalConsultansList, DoctorData.womanNameComparator);</b>
+<b class="nc"><i>329</i>&nbsp;            totalConsultansList.addAll(searchconsultantsList);</b>
+<b class="nc"><i>330</i>&nbsp;            notifyDataSetChanged(totalConsultansList);</b>
+<i>331</i>&nbsp;        } else {
+<b class="nc"><i>332</i>&nbsp;            for (DoctorData doctorData : doctorDatas) {</b>
+<b class="nc"><i>333</i>&nbsp;                String visitType = getData(visit_type, doctorData.getFormInformation());</b>
+<b class="nc"><i>334</i>&nbsp;                if (visitType != null &amp;&amp; visitType.toLowerCase(Locale.getDefault()).contains(text)) {</b>
+<b class="nc"><i>335</i>&nbsp;                    totalConsultansList.add(doctorData);</b>
+<i>336</i>&nbsp;                } else {
+<b class="nc"><i>337</i>&nbsp;                    searchconsultantsList.add(doctorData);</b>
+<i>338</i>&nbsp;                }
+<b class="nc"><i>339</i>&nbsp;            }</b>
+<b class="nc"><i>340</i>&nbsp;            Collections.sort(totalConsultansList, DoctorData.womanNameComparator);</b>
+<b class="nc"><i>341</i>&nbsp;            totalConsultansList.addAll(searchconsultantsList);</b>
+<b class="nc"><i>342</i>&nbsp;            notifyDataSetChanged(totalConsultansList);</b>
+<i>343</i>&nbsp;        }
+<i>344</i>&nbsp;
+<b class="nc"><i>345</i>&nbsp;    }</b>
+<i>346</i>&nbsp;
+<i>347</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>

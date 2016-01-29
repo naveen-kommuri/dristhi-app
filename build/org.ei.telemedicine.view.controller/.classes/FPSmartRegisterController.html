@@ -1,0 +1,229 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: FPSmartRegisterController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.ei.telemedicine.view.controller</a> ]
+</div>
+
+<h1>Coverage Summary for Class: FPSmartRegisterController (org.ei.telemedicine.view.controller)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FPSmartRegisterController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/ 14)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">FPSmartRegisterController$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (42/ 42)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (56/ 56)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package org.ei.telemedicine.view.controller;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.ei.telemedicine.domain.Alert;
+<i>4</i>&nbsp;import org.ei.telemedicine.domain.EligibleCouple;
+<i>5</i>&nbsp;import org.ei.telemedicine.repository.AllBeneficiaries;
+<i>6</i>&nbsp;import org.ei.telemedicine.repository.AllEligibleCouples;
+<i>7</i>&nbsp;import org.ei.telemedicine.service.AlertService;
+<i>8</i>&nbsp;import org.ei.telemedicine.util.Cache;
+<i>9</i>&nbsp;import org.ei.telemedicine.util.CacheableData;
+<i>10</i>&nbsp;import org.ei.telemedicine.view.contract.AlertDTO;
+<i>11</i>&nbsp;import org.ei.telemedicine.view.contract.FPClient;
+<i>12</i>&nbsp;import org.ei.telemedicine.view.contract.FPClients;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;import java.util.ArrayList;
+<i>15</i>&nbsp;import java.util.List;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;import static org.apache.commons.lang3.StringUtils.isBlank;
+<i>18</i>&nbsp;import static org.ei.telemedicine.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;public class FPSmartRegisterController {
+<i>21</i>&nbsp;    public static final String OCP_REFILL_ALERT_NAME = &quot;OCP Refill&quot;;
+<i>22</i>&nbsp;    public static final String CONDOM_REFILL_ALERT_NAME = &quot;Condom Refill&quot;;
+<i>23</i>&nbsp;    public static final String DMPA_INJECTABLE_REFILL_ALERT_NAME = &quot;DMPA Injectable Refill&quot;;
+<i>24</i>&nbsp;    public static final String FEMALE_STERILIZATION_FOLLOWUP_1_ALERT_NAME = &quot;Female sterilization Followup 1&quot;;
+<i>25</i>&nbsp;    public static final String FEMALE_STERILIZATION_FOLLOWUP_2_ALERT_NAME = &quot;Female sterilization Followup 2&quot;;
+<i>26</i>&nbsp;    public static final String FEMALE_STERILIZATION_FOLLOWUP_3_ALERT_NAME = &quot;Female sterilization Followup 3&quot;;
+<i>27</i>&nbsp;    public static final String MALE_STERILIZATION_FOLLOWUP_1_ALERT_NAME = &quot;Male sterilization Followup 1&quot;;
+<i>28</i>&nbsp;    public static final String MALE_STERILIZATION_FOLLOWUP_2_ALERT_NAME = &quot;Male sterilization Followup 2&quot;;
+<i>29</i>&nbsp;    public static final String IUD_FOLLOWUP_1_ALERT_NAME = &quot;IUD Followup 1&quot;;
+<i>30</i>&nbsp;    public static final String IUD_FOLLOWUP_2_ALERT_NAME = &quot;IUD Followup 2&quot;;
+<i>31</i>&nbsp;    public static final String FP_FOLLOWUP_ALERT_NAME = &quot;FP Followup&quot;;
+<i>32</i>&nbsp;    public static final String FP_REFERRAL_FOLLOWUP_ALERT_NAME = &quot;FP Referral Followup&quot;;
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    private final static String FP_CLIENTS_LIST = &quot;FPClientsList&quot;;
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;    private final AllEligibleCouples allEligibleCouples;
+<i>37</i>&nbsp;    private final AllBeneficiaries allBeneficiaries;
+<i>38</i>&nbsp;    private Cache&lt;String&gt; cache;
+<i>39</i>&nbsp;    private Cache&lt;FPClients&gt; fpClientsCache;
+<i>40</i>&nbsp;    private final AlertService alertService;
+<i>41</i>&nbsp;
+<b class="fc"><i>42</i>&nbsp;    public FPSmartRegisterController(AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AlertService alertService, Cache&lt;String&gt; cache, Cache&lt;FPClients&gt; fpClientsCache) {</b>
+<b class="fc"><i>43</i>&nbsp;        this.allEligibleCouples = allEligibleCouples;</b>
+<b class="fc"><i>44</i>&nbsp;        this.allBeneficiaries = allBeneficiaries;</b>
+<b class="fc"><i>45</i>&nbsp;        this.alertService = alertService;</b>
+<b class="fc"><i>46</i>&nbsp;        this.cache = cache;</b>
+<b class="fc"><i>47</i>&nbsp;        this.fpClientsCache = fpClientsCache;</b>
+<b class="fc"><i>48</i>&nbsp;    }</b>
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;    private List&lt;AlertDTO&gt; getFPAlertsForEC(String entityId) {
+<b class="fc"><i>51</i>&nbsp;        List&lt;Alert&gt; alerts = alertService.findByEntityIdAndAlertNames(entityId,</b>
+<i>52</i>&nbsp;                OCP_REFILL_ALERT_NAME,
+<i>53</i>&nbsp;                CONDOM_REFILL_ALERT_NAME, DMPA_INJECTABLE_REFILL_ALERT_NAME,
+<i>54</i>&nbsp;                FEMALE_STERILIZATION_FOLLOWUP_1_ALERT_NAME,
+<i>55</i>&nbsp;                FEMALE_STERILIZATION_FOLLOWUP_2_ALERT_NAME,
+<i>56</i>&nbsp;                FEMALE_STERILIZATION_FOLLOWUP_3_ALERT_NAME,
+<i>57</i>&nbsp;                MALE_STERILIZATION_FOLLOWUP_1_ALERT_NAME,
+<i>58</i>&nbsp;                MALE_STERILIZATION_FOLLOWUP_2_ALERT_NAME,
+<i>59</i>&nbsp;                IUD_FOLLOWUP_1_ALERT_NAME,
+<i>60</i>&nbsp;                IUD_FOLLOWUP_2_ALERT_NAME,
+<i>61</i>&nbsp;                FP_FOLLOWUP_ALERT_NAME,
+<i>62</i>&nbsp;                FP_REFERRAL_FOLLOWUP_ALERT_NAME);
+<b class="fc"><i>63</i>&nbsp;        ArrayList&lt;AlertDTO&gt; alertDTOs = new ArrayList&lt;AlertDTO&gt;();</b>
+<b class="fc"><i>64</i>&nbsp;        for (Alert alert : alerts) {</b>
+<b class="fc"><i>65</i>&nbsp;            alertDTOs.add(new AlertDTO(alert.visitCode(), String.valueOf(alert.status()), alert.startDate()));</b>
+<b class="fc"><i>66</i>&nbsp;        }</b>
+<b class="fc"><i>67</i>&nbsp;        return alertDTOs;</b>
+<i>68</i>&nbsp;    }
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;    public FPClients getClients() {
+<b class="fc"><i>71</i>&nbsp;        return fpClientsCache.get(FP_CLIENTS_LIST, new CacheableData&lt;FPClients&gt;() {</b>
+<i>72</i>&nbsp;            @Override
+<i>73</i>&nbsp;            public FPClients fetch() {
+<b class="fc"><i>74</i>&nbsp;                List&lt;EligibleCouple&gt; ecs = allEligibleCouples.all();</b>
+<b class="fc"><i>75</i>&nbsp;                FPClients fpClients = new FPClients();</b>
+<b class="fc"><i>76</i>&nbsp;                for (EligibleCouple ec : ecs) {</b>
+<b class="fc"><i>77</i>&nbsp;                    if (allBeneficiaries.isPregnant(ec.caseId())) {</b>
+<b class="fc"><i>78</i>&nbsp;                        continue;</b>
+<i>79</i>&nbsp;                    }
+<i>80</i>&nbsp;
+<b class="fc"><i>81</i>&nbsp;                    String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();</b>
+<b class="fc"><i>82</i>&nbsp;                    List&lt;AlertDTO&gt; alerts = getFPAlertsForEC(ec.caseId());</b>
+<b class="fc"><i>83</i>&nbsp;                    FPClient fpClient = new FPClient(ec.caseId(), ec.wifeName(), ec.husbandName(), ec.village(), ec.ecNumber())</b>
+<b class="fc"><i>84</i>&nbsp;                            .withAge(ec.age())</b>
+<b class="fc"><i>85</i>&nbsp;                            .withFPMethod(ec.getDetail(&quot;currentMethod&quot;))</b>
+<b class="fc"><i>86</i>&nbsp;                            .withFamilyPlanningMethodChangeDate(ec.getDetail(&quot;familyPlanningMethodChangeDate&quot;))</b>
+<b class="fc"><i>87</i>&nbsp;                            .withComplicationDate(ec.getDetail(&quot;complicationDate&quot;))</b>
+<b class="fc"><i>88</i>&nbsp;                            .withIUDPlace(ec.getDetail(&quot;iudPlace&quot;))</b>
+<b class="fc"><i>89</i>&nbsp;                            .withIUDPerson(ec.getDetail(&quot;iudPerson&quot;))</b>
+<b class="fc"><i>90</i>&nbsp;                            .withNumberOfCondomsSupplied(ec.getDetail(&quot;numberOfCondomsSupplied&quot;))</b>
+<b class="fc"><i>91</i>&nbsp;                            .withNumberOfCentchromanPillsDelivered(ec.getDetail(&quot;numberOfCentchromanPillsDelivered&quot;))</b>
+<b class="fc"><i>92</i>&nbsp;                            .withNumberOfOCPDelivered(ec.getDetail(&quot;numberOfOCPDelivered&quot;))</b>
+<b class="fc"><i>93</i>&nbsp;                            .withFPMethodFollowupDate(ec.getDetail(&quot;fpFollowupDate&quot;))</b>
+<b class="fc"><i>94</i>&nbsp;                            .withCaste(ec.getDetail(&quot;caste&quot;))</b>
+<b class="fc"><i>95</i>&nbsp;                            .withEconomicStatus(ec.getDetail(&quot;economicStatus&quot;))</b>
+<b class="fc"><i>96</i>&nbsp;                            .withNumberOfPregnancies(ec.getDetail(&quot;numberOfPregnancies&quot;))</b>
+<b class="fc"><i>97</i>&nbsp;                            .withParity(ec.getDetail(&quot;parity&quot;))</b>
+<b class="fc"><i>98</i>&nbsp;                            .withNumberOfLivingChildren(ec.getDetail(&quot;numberOfLivingChildren&quot;))</b>
+<b class="fc"><i>99</i>&nbsp;                            .withNumberOfStillBirths(ec.getDetail(&quot;numberOfStillBirths&quot;))</b>
+<b class="fc"><i>100</i>&nbsp;                            .withNumberOfAbortions(ec.getDetail(&quot;numberOfAbortions&quot;))</b>
+<b class="fc"><i>101</i>&nbsp;                            .withIsYoungestChildUnderTwo(ec.isYoungestChildUnderTwo())</b>
+<b class="fc"><i>102</i>&nbsp;                            .withYoungestChildAge(ec.getDetail(&quot;youngestChildAge&quot;))</b>
+<b class="fc"><i>103</i>&nbsp;                            .withIsHighPriority(ec.isHighPriority())</b>
+<b class="fc"><i>104</i>&nbsp;                            .withPhotoPath(photoPath)</b>
+<b class="fc"><i>105</i>&nbsp;                            .withAlerts(alerts)</b>
+<b class="fc"><i>106</i>&nbsp;                            .withCondomSideEffect(ec.getDetail(&quot;condomSideEffect&quot;))</b>
+<b class="fc"><i>107</i>&nbsp;                            .withIUDSidEffect(ec.getDetail(&quot;iudSidEffect&quot;))</b>
+<b class="fc"><i>108</i>&nbsp;                            .withOCPSideEffect(ec.getDetail(&quot;ocpSideEffect&quot;))</b>
+<b class="fc"><i>109</i>&nbsp;                            .withInjectableSideEffect(ec.getDetail(&quot;injectableSideEffect&quot;))</b>
+<b class="fc"><i>110</i>&nbsp;                            .withSterilizationSideEffect(ec.getDetail(&quot;sterilizationSideEffect&quot;))</b>
+<b class="fc"><i>111</i>&nbsp;                            .withOtherSideEffect(ec.getDetail(&quot;otherSideEffect&quot;))</b>
+<b class="fc"><i>112</i>&nbsp;                            .withHighPriorityReason(ec.getDetail(&quot;highPriorityReason&quot;))</b>
+<b class="fc"><i>113</i>&nbsp;                            .preprocess();</b>
+<b class="fc"><i>114</i>&nbsp;                    fpClients.add(fpClient);</b>
+<b class="fc"><i>115</i>&nbsp;                }</b>
+<b class="fc"><i>116</i>&nbsp;                return fpClients;</b>
+<i>117</i>&nbsp;            }
+<i>118</i>&nbsp;        });
+<i>119</i>&nbsp;    }
+<i>120</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-01-19 17:58</div>
+</div>
+</body>
+</html>
