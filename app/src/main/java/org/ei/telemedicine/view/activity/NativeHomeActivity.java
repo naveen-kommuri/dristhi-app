@@ -71,9 +71,10 @@ public class NativeHomeActivity extends SecuredActivity {
     private Listener<Boolean> onNetworkChangeListener = new Listener<Boolean>() {
         @Override
         public void onEvent(Boolean data) {
-            if (networkMenuItem != null)
+            if (networkMenuItem != null) {
                 Log.e("Internet Status", data + "");
-            networkMenuItem.setIcon(data ? R.drawable.online : R.drawable.offline);
+                networkMenuItem.setIcon(data ? R.drawable.online : R.drawable.offline);
+            }
         }
     };
 

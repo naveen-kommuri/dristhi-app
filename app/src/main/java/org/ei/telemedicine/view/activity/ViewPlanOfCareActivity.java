@@ -1,11 +1,9 @@
 package org.ei.telemedicine.view.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -167,11 +165,6 @@ public class ViewPlanOfCareActivity extends SecuredActivity {
     @Override
     public void onResumption() {
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return false;
     }
 
     private void showNoPoc() {

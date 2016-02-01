@@ -155,7 +155,8 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
         ib_sort_selection.setOnClickListener(this);
         ib_clear_search.setOnClickListener(this);
         ib_logout.setOnClickListener(this);
-        context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
+        context = Context.getInstance();
+//        context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
         allDoctorRepository = context.allDoctorRepository();
     }
 
@@ -241,7 +242,8 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
         startActivity(intent);
         this.finish();
     }
-@Override
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ib_doc_search_cancel:
