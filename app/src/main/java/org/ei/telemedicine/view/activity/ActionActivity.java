@@ -9,40 +9,36 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import org.ei.telemedicine.AllConstants;
-
-//import org.ei.telemedicine.Context;
-
 import org.ei.telemedicine.R;
 
-import java.util.Random;
+//import org.ei.telemedicine.Context;
 
 public class ActionActivity extends Activity {
 
     private org.ei.telemedicine.Context context;
 
-    protected String callUrl=AllConstants.RECEIVING_URL;
+    protected String callUrl;
 
     private Ringtone ringtone;
 
-    public String getUsern()
-    {
+    public String getUsern() {
 
         context = org.ei.telemedicine.Context.getInstance().updateApplicationContext(this.getApplicationContext());
         return context.allSharedPreferences().fetchRegisteredANM();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-
             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
             ringtone = RingtoneManager.getRingtone(getApplicationContext(), notification);
             ringtone.play();
@@ -50,21 +46,21 @@ public class ActionActivity extends Activity {
             // Vibrate for 500 milliseconds
             v.vibrate(500);
 
-        }catch(Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         setContentView(R.layout.activity_action);
+        callUrl = org.ei.telemedicine.Context.getInstance().configuration().drishtiVideoURL() + AllConstants.RECEIVING_URL;
         Intent myIntent = getIntent();
         final String callerId = myIntent.getStringExtra("name");
-        TextView showCaller =(TextView) findViewById(R.id.txtCaller);
+        TextView showCaller = (TextView) findViewById(R.id.txtCaller);
         showCaller.setText(callerId);
         findViewById(R.id.img_btn1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 ringtone.stop();
-                Uri url = Uri.parse(String.format(callUrl,getUsern(),callerId));
+                Log.e("Receive URL", callUrl);
+                Uri url = Uri.parse(String.format(callUrl, getUsern(), callerId));
                 Intent _broswer = new Intent(Intent.ACTION_VIEW, url);
                 startActivity(_broswer);
                 finish();
@@ -76,24 +72,24 @@ public class ActionActivity extends Activity {
             public void onClick(View v) {
                 ringtone.stop();
                 finish();
-                            }
+            }
         });
 
 
     }
-    public Ringtone ringAlarm(Context context)
-    {
+
+    public Ringtone ringAlarm(Context context) {
         Uri alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-        if(alert == null){
+        if (alert == null) {
             // alert is null, using backup
             alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-            if(alert == null){  // I can't see this ever being null (as always have a default notification) but just incase
+            if (alert == null) {  // I can't see this ever being null (as always have a default notification) but just incase
                 // alert backup is null, using 2nd backup
                 alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
             }
         }
         Ringtone r = RingtoneManager.getRingtone(context.getApplicationContext(), alert);
-        AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+        AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         int maxVolumeAlarm = audioManager.getStreamMaxVolume(AudioManager.STREAM_ALARM);
         //int maxVolumeRing = audioManager.getStreamMaxVolume(AudioManager.STREAM_RING);
         audioManager.setStreamVolume(AudioManager.STREAM_ALARM, maxVolumeAlarm, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);

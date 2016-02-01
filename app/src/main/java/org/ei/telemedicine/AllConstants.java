@@ -41,11 +41,15 @@ public class AllConstants {
     public static final String WOMAN_TYPE = "woman";
     public static final String CHILD_TYPE = "child";
     public static final String REALM = "Dristhi";
-    public static final String RECEIVING_URL = "http://202.153.34.169:8004/recieve?id=%s&peer_id=%s";
-    public static final String WEBSOCKET = "ws://202.153.34.169:8004/wslogin?id=%s";
-    public static final String CALLING_URL = "http://202.153.34.169:8004/call?id=%s&peer_id=%s";
 
 
+    //    public static final String RECEIVING_URL = "http://202.153.34.169:8004/recieve?id=%s&peer_id=%s";
+    //    public static final String CALLING_URL = "http://202.153.34.169:8004/call?id=%s&peer_id=%s";
+    //    public static final String WEBSOCKET = "ws://202.153.34.169:8004/wslogin?id=%s";
+    public static final String CALLING_URL = "/call?id=%s&peer_id=%s";
+    public static final String WEBSOCKET = "/wslogin?id=%s";
+    public static final String RECEIVING_URL = "/recieve?id=%s&peer_id=%s";
+    
     public static final String LOGIN_URL_PATH = "/auth/?userid=";
     public static final String VILLAGES_USER_URL_PATH = "/anm-villages?anm-id=";
     public static final String DOCTOR_REFER_URL_PATH = "/doctor_refer/?docid=";

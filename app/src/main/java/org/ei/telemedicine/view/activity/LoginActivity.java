@@ -17,7 +17,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
@@ -25,29 +24,23 @@ import org.ei.telemedicine.R;
 import org.ei.telemedicine.doctor.NativeDoctorActivity;
 import org.ei.telemedicine.domain.LoginResponse;
 import org.ei.telemedicine.event.Listener;
-
 import org.ei.telemedicine.sync.DrishtiSyncScheduler;
 import org.ei.telemedicine.view.BackgroundAction;
 import org.ei.telemedicine.view.LockingBackgroundTask;
 import org.ei.telemedicine.view.ProgressIndicator;
-
+import org.ei.telemedicine.view.UserSettingsActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.security.PublicKey;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import org.json.JSONObject;
 
 import de.tavendo.autobahn.WebSocketConnection;
 import de.tavendo.autobahn.WebSocketException;
 import de.tavendo.autobahn.WebSocketHandler;
-
-
-
 
 import static android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS;
 import static org.ei.telemedicine.domain.LoginResponse.SUCCESS;
@@ -63,21 +56,19 @@ public class LoginActivity extends Activity {
     private ProgressDialog progressDialog;
     private String TAG = "LoginActivity";
 
-    private int waitTime = 5;
+    private int waitTime = 5000;
     private final WebSocketConnection mConnection = new WebSocketConnection();
 
-    public String getUsern()
-    {
+    public String getUsern() {
         context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
         return context.allSharedPreferences().fetchRegisteredANM();
     }
 
     private void start() {
 
-
-        final String wsuri = AllConstants.WEBSOCKET;
+        final String wsuri = context.configuration().drishtiWSURL() + AllConstants.WEBSOCKET;
         try {
-            mConnection.connect(String.format(wsuri,getUsern()), new WebSocketHandler() {
+            mConnection.connect(String.format(wsuri, getUsern()), new WebSocketHandler() {
 
                 @Override
                 public void onOpen() {
@@ -97,8 +88,7 @@ public class LoginActivity extends Activity {
                         //Log.d(TAG, check);
                         String match = "INI";
                         boolean response = (status.equals(match));
-                        if (response)
-                        {
+                        if (response) {
                             //Toast.makeText(getApplicationContext(),"call started",Toast.LENGTH_LONG).show();
                             Intent i = new Intent(getApplicationContext(), ActionActivity.class);
                             i.putExtra(CALLER, caller);
@@ -106,8 +96,7 @@ public class LoginActivity extends Activity {
                             startActivity(i);
                         }
 
-                    }catch (Exception ex)
-                    {
+                    } catch (Exception ex) {
                         Log.d(TAG, ex.toString());
                     }
                 }
@@ -118,7 +107,7 @@ public class LoginActivity extends Activity {
                     //Toast.makeText(getApplicationContext(),"closed",Toast.LENGTH_SHORT).show();
                     try {
                         Thread.sleep(waitTime);
-                        waitTime = waitTime*2;
+                        waitTime = waitTime * 2;
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -127,7 +116,6 @@ public class LoginActivity extends Activity {
                 }
             });
         } catch (WebSocketException e) {
-
             Log.d(TAG, e.toString());
         }
     }
@@ -143,6 +131,15 @@ public class LoginActivity extends Activity {
         initializeBuildDetails();
         setDoneActionHandlerOnPasswordField();
         initializeProgressDialog();
+        Button settingsButton = (Button) findViewById(R.id.settings_Button);
+        settingsButton.setVisibility(View.VISIBLE);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), UserSettingsActivity.class);
+                startActivity(i);
+            }
+        });
 
 
     }
@@ -291,7 +288,7 @@ public class LoginActivity extends Activity {
         context.allSharedPreferences().updateIsFirstLogin(false);
         String userRole = context.userService().getUserRole();
         goToHome(userRole);
-        start();
+//        start();
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
         //DrishtiCallScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
@@ -328,7 +325,7 @@ public class LoginActivity extends Activity {
             context.allSharedPreferences().savePwd(password);
         }
         goToHome(userRole);
-        start();
+//        start();
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
 
         //DrishtiCallScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());

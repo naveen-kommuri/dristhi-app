@@ -179,7 +179,7 @@
             android:label="@string/title_activity_action"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"></activity>
-
+        <activity android:name=".view.UserSettingsActivity" />
     </application>
 
 </manifest>

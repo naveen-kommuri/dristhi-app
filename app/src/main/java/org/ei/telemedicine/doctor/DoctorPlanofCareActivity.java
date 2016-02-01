@@ -3,8 +3,8 @@ package org.ei.telemedicine.doctor;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.ComponentName;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -82,7 +82,7 @@ public class DoctorPlanofCareActivity extends Activity {
     private String TAG = "DoctorPlanOfCareActivity";
     String visitType, visitNumber;
     String documentId, formData, phoneNumber, caseId;
-    public String CALLER_URL = AllConstants.CALLING_URL;
+    public String CALLER_URL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -255,18 +255,20 @@ public class DoctorPlanofCareActivity extends Activity {
                     @Override
                     public void onClick(View v) {
 //                        startActivity(new Intent(DoctorPlanofCareActivity.this, VideoActivity.class));
-                        try {
-                            Intent intent = new Intent(Intent.ACTION_MAIN);
-                            intent.setComponent(new ComponentName("org.appspot.apprtc",
-                                    "org.appspot.apprtc.ConnectActivity"));
-                            startActivity(intent);
-                        } catch (Exception e) {
-                            Toast.makeText(DoctorPlanofCareActivity.this, "Please install Apprtc APK", Toast.LENGTH_SHORT).show();
-                        }
-//                        String caller_url = String.format(CALLER_URL,doc_name,nus_name);
-//                        Uri url = Uri.parse(caller_url);
-//                        Intent _broswer = new Intent(Intent.ACTION_VIEW,url);
-//                        startActivity(_broswer);
+//                        try {
+//                            Intent intent = new Intent(Intent.ACTION_MAIN);
+//                            intent.setComponent(new ComponentName("org.appspot.apprtc",
+//                                    "org.appspot.apprtc.ConnectActivity"));
+//                            startActivity(intent);
+//                        } catch (Exception e) {
+//                            Toast.makeText(DoctorPlanofCareActivity.this, "Please install Apprtc APK", Toast.LENGTH_SHORT).show();
+//                        }
+                        CALLER_URL = context.configuration().drishtiVideoURL() + AllConstants.CALLING_URL;
+                        String caller_url = String.format(CALLER_URL, doc_name, nus_name);
+                        Log.e("Calling URL", caller_url);
+                        Uri url = Uri.parse(caller_url);
+                        Intent _broswer = new Intent(Intent.ACTION_VIEW, url);
+                        startActivity(_broswer);
                     }
                 });
 

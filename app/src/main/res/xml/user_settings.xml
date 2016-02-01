@@ -22,10 +22,16 @@
             android:title="Enter Drishti Django Base URL" />
 
         <!--<ListPreference-->
-            <!--android:entries="@array/django_url_list"-->
-            <!--android:entryValues="@array/django_url_list"-->
-            <!--android:key="prefDjangoBaseURL"-->
-            <!--android:title="Select Django URL" />-->
+        <!--android:entries="@array/django_url_list"-->
+        <!--android:entryValues="@array/django_url_list"-->
+        <!--android:key="prefDjangoBaseURL"-->
+        <!--android:title="Select Django URL" />-->
+
+        <EditTextPreference
+            android:key="prefVideoURL"
+            android:text="202.153.34.169:8004"
+            android:title="Enter Video URL" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
