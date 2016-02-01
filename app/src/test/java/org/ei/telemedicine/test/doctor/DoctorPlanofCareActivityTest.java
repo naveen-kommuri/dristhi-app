@@ -3,6 +3,7 @@ package org.ei.telemedicine.test.doctor;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.view.View;
 import android.widget.AutoCompleteTextView;
 
 import org.ei.telemedicine.AllConstants;
@@ -10,6 +11,9 @@ import org.ei.telemedicine.BuildConfig;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.doctor.DoctorFormDataConstants;
 import org.ei.telemedicine.doctor.DoctorPlanofCareActivity;
+import org.ei.telemedicine.doctor.PocBaseAdapter;
+import org.ei.telemedicine.doctor.PocDrugBaseAdapter;
+import org.ei.telemedicine.doctor.PocDrugData;
 import org.ei.telemedicine.repository.AllDoctorRepository;
 import org.ei.telemedicine.repository.AllSharedPreferences;
 import org.ei.telemedicine.util.Cache;
@@ -24,6 +28,10 @@ import org.robolectric.annotation.Config;
 import org.robolectric.annotation.Implements;
 import org.robolectric.util.ActivityController;
 
+import java.util.ArrayList;
+
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -45,15 +53,11 @@ public class DoctorPlanofCareActivityTest {
     @Mock
     private AllSharedPreferences allSharedPreferences;
     ActivityController activityController;
+    DoctorPlanofCareActivity doctorPlanofCareActivityActivityController;
 
     @Before
     public void setup() {
         initMocks(this);
-    }
-
-
-    @Test
-    public void testingonCreate() {
         Context.setInstance(context);
         when(context.allSharedPreferences()).thenReturn(allSharedPreferences);
         when(context.typefaceCache()).thenReturn(cache);
@@ -66,30 +70,44 @@ public class DoctorPlanofCareActivityTest {
         intent.putExtra(AllConstants.DRUG_INFO_RESULT, drugs);
         intent.putExtra(DoctorFormDataConstants.documentId, "e5a5213e292944ae0ca87a314bd397ee");
         intent.putExtra(DoctorFormDataConstants.formData, formData);
-        ActivityController<DoctorPlanofCareActivity> doctorPlanofCareActivityActivityController = Robolectric.buildActivity(DoctorPlanofCareActivity.class).withIntent(intent).create();
-//        ((ImageButton) doctorPlanofCareActivity.findViewById(R.id.ib_stop_by_date)).performClick();
+        doctorPlanofCareActivityActivityController = Robolectric.buildActivity(DoctorPlanofCareActivity.class).withIntent(intent).create().get();
 
-//        autoCompleteTextView1 = (AutoCompleteTextView) doctorPlanofCareActivity.findViewById(R.id.act_tests);
-//        autoCompleteTextView1.performItemClick();
-//        customFontTextView1 = (CustomFontTextView) (LayoutInflater.from(doctorPlanofCareActivity)).inflate(R.layout.doc_plan_of_care, null);
-//        customFontTextView1.setText("Hello");
-//
-//
-//        assertEquals(customFontTextView1.getText().toString(), "sasm");
-//        assertNull(allDoctorRepository);
-//        when(doctorRepository.getPocInfo("sdf")).thenReturn("");
-//        assertNotNull(context);
-//        assertNull(context.allDoctorRepository());
-//        when(context.allDoctorRepository()).thenReturn(allDoctorRepository);
-//        assertNotNull(context.allDoctorRepository());
-//        when(allDoctorRepository.getPocInfoCaseId("sadf")).thenReturn("a");
-//        activityController.create();
     }
-//
-//    @Test
-//    public void testListeners() {
-//        doctorPlanofCareActivity = Robolectric.buildActivity(DoctorPlanofCareActivity.class).get();
-//        ((ImageButton) doctorPlanofCareActivity.findViewById(R.id.ib_stop_by_date)).performClick();
-//    }
+
+    @Test
+    public void testListView() {
+
+        assertNotNull(doctorPlanofCareActivityActivityController);
+        assertNotNull(context);
+        PocDrugData pocDrugData = new PocDrugData();
+        pocDrugData.setDirection("direction1");
+        pocDrugData.setDosage("dosage1");
+        pocDrugData.setDrugName("drugName1");
+        pocDrugData.setDrugNoofDays("drugDays1");
+        pocDrugData.setDrugQty("drugqty1");
+        pocDrugData.setDrugStopByDate("drugDate1");
+        pocDrugData.setIsDrugDuplicate(false);
+        ArrayList<PocDrugData> pocDrugDatas = new ArrayList<PocDrugData>();
+        pocDrugDatas.add(pocDrugData);
+        PocDrugBaseAdapter pocDrugBaseAdapter = new PocDrugBaseAdapter(doctorPlanofCareActivityActivityController, pocDrugDatas);
+        Object item = pocDrugBaseAdapter.getItem(0);
+        assertEquals("drugName1", ((PocDrugData) item).getDrugName());
+        View view = pocDrugBaseAdapter.getView(0, null, null);
+        assertNotNull(view);
+        assertEquals(0, pocDrugBaseAdapter.getItemId(0));
+
+    }
+
+    @Test
+    public void testDiagnosisAdapter() {
+        assertNotNull(doctorPlanofCareActivityActivityController);
+        ArrayList<String> sampleData = new ArrayList<String>();
+        sampleData.add("investigation1");
+        sampleData.add("investigation2");
+        PocBaseAdapter pocBaseAdapter = new PocBaseAdapter(doctorPlanofCareActivityActivityController, sampleData);
+        assertEquals("investigation2", ((String) pocBaseAdapter.getItem(1)));
+        assertEquals(1, pocBaseAdapter.getItemId(1));
+        assertNotNull(pocBaseAdapter.getView(1, null, null));
+    }
 
 }

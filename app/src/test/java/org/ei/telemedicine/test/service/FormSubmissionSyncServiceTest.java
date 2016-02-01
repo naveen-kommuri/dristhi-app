@@ -206,10 +206,10 @@ public class FormSubmissionSyncServiceTest {
         FetchStatus fetchStatus = FetchStatus.fetched;
         //service.pullFromServer(null);
         when(allSharedPreferences.getUserRole()).thenReturn(AllConstants.DOCTOR_ROLE);
-        when(allSharedPreferences.fetchRegisteredANM()).thenReturn("anm id 1");
+        when(allSharedPreferences.fetchRegisteredANM()).thenReturn("anmid1");
         when(allSharedPreferences.getPwd()).thenReturn("122");
         when(configuration.dristhiDjangoBaseURL()).thenReturn("http://django_url");
-        when(httpAgent.fetch("http://django_url/docinfo?docname=anm id 1&pwd=122"))
+        when(httpAgent.fetch("http://django_url/docinfo?docname=anmid1&pwd=122"))
                 .thenReturn(new Response<String>(success, dummyData));
         when(context.allDoctorRepository()).thenReturn(allDoctorRepository);
         allDoctorRepository.addData(doctorData);
