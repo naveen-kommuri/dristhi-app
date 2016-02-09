@@ -3,9 +3,7 @@ package org.ei.telemedicine.view.activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -260,17 +258,17 @@ public class NativeHomeActivity extends SecuredActivity {
                 updateFromServer();
                 return true;
 
-            case R.id.video:
-                try {
-                    Intent intent = new Intent(Intent.ACTION_MAIN);
-                    intent.setComponent(new ComponentName("org.appspot.apprtc",
-                            "org.appspot.apprtc.ConnectActivity"));
-                    startActivity(intent);
-                } catch (Exception e) {
-                    Toast.makeText(this, "Please install Apprtc APK", Toast.LENGTH_SHORT).show();
-                }
-                return true;
-//            case R.id.export:
+//            case R.id.video:
+//                try {
+//                    Intent intent = new Intent(Intent.ACTION_MAIN);
+//                    intent.setComponent(new ComponentName("org.appspot.apprtc",
+//                            "org.appspot.apprtc.ConnectActivity"));
+//                    startActivity(intent);
+//                } catch (Exception e) {
+//                    Toast.makeText(this, "Please install Apprtc APK", Toast.LENGTH_SHORT).show();
+//                }
+//                return true;
+//            case R.id.video:
 //                File sd = Environment.getExternalStorageDirectory();
 //                File data = Environment.getDataDirectory();
 //                FileChannel source = null;

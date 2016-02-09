@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion '23.0.0'
+    buildToolsVersion '22.0.0'
     lintOptions {
         checkReleaseBuilds false
         // Or, if you prefer, you can continue to check for errors in release builds,
@@ -22,7 +22,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
-
 //        debug {
 ////            debuggable true
 //            testCoverageEnabled = true
@@ -88,6 +87,8 @@ task jacocoTestReport(type: JacocoReport, dependsOn: "testDebug") {
             dir: '../app/build/intermediates/classes/debug',
             excludes: ['**/R.class',
                        '**/R$*.class',
+                       '**/*Repository.class',
+                       '**/bluetooth/*/*.class',
                        '**/*$ViewInjector*.*',
                        '**/BuildConfig.*',
                        '**/Manifest*.*']

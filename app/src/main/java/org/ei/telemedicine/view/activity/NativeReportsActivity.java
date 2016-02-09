@@ -32,7 +32,7 @@ public class NativeReportsActivity extends Activity {
         servicesList.add(AllConstants.Reports.FP_SERVICES);
         servicesList.add(AllConstants.Reports.ANC_SERVICES);
         servicesList.add(AllConstants.Reports.PREGNANCY);
-        servicesList.add(AllConstants.Reports.PNC_SERVICES);
+//        servicesList.add(AllConstants.Reports.PNC_SERVICES);
         servicesList.add(AllConstants.Reports.CHILD_SERVICES);
         servicesList.add(AllConstants.Reports.MORTALITY);
 

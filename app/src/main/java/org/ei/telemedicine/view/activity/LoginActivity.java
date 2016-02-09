@@ -288,7 +288,7 @@ public class LoginActivity extends Activity {
         context.allSharedPreferences().updateIsFirstLogin(false);
         String userRole = context.userService().getUserRole();
         goToHome(userRole);
-//        start();
+        start();
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
         //DrishtiCallScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
@@ -325,7 +325,7 @@ public class LoginActivity extends Activity {
             context.allSharedPreferences().savePwd(password);
         }
         goToHome(userRole);
-//        start();
+        start();
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
 
         //DrishtiCallScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
