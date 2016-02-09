@@ -94,6 +94,7 @@ public class AllConstants {
     public static final String FORMINFO = "formInfo";
     public static final String ALLFORMDATA = "allFormInfo";
     public static final String ENTITY_ID = "entityId";
+    public static final int CAPTURE_RESULT_CODE= 999;
     public static final int FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE = 112;
     public static final int DRUGS_INFO_RESULT_CODE = 113;
     public static final String ALERT_NAME_PARAM = "alertName";

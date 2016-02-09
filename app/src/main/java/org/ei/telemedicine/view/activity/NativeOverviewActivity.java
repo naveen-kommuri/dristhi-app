@@ -199,23 +199,25 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                     case "ec":
                         ec_summary.setVisibility(View.VISIBLE);
                         isFromEC = true;
+                        Log.e("ec path", caseId);
                         ib_profile_pic.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-//                                takePhoto(WOMAN_TYPE);
-                                dispatchTakePictureIntent(ib_profile_pic, caseId);
+                                takePhoto(AllConstants.WOMAN_TYPE, caseId);
+//                                dispatchTakePictureIntent(ib_profile_pic, caseId);
                             }
                         });
                         String ecData = new EligibleCoupleDetailController(this, caseId, context.allEligibleCouples(), context.allTimelineEvents()).get();
                         String coupleDetails = getDataFromJson(ecData, "coupleDetails");
                         String details = getDataFromJson(ecData, "details");
                         EligibleCouple byCaseID = context.allEligibleCouples().findByCaseID(caseId);
-                        if (byCaseID.photoPath() != null && byCaseID.photoPath().equals("") && byCaseID.photoPath().toLowerCase().startsWith("http"))
-                            new ImageLoader(NativeOverviewActivity.this).DisplayImage(byCaseID.photoPath(), ib_profile_pic, getResources().getDrawable(R.drawable.woman_placeholder));
-                        else
-                            ib_profile_pic.setImageBitmap(getImageBitmap(byCaseID.photoPath()));
                         if (byCaseID.photoPath() == null)
                             ib_profile_pic.setImageDrawable(getResources().getDrawable(R.drawable.woman_placeholder));
+                        else if (byCaseID.photoPath() != null && !byCaseID.photoPath().equals("") && byCaseID.photoPath().toLowerCase().startsWith("http"))
+                            new ImageLoader(NativeOverviewActivity.this).DisplayImage(byCaseID.photoPath(), ib_profile_pic, getResources().getDrawable(R.drawable.woman_placeholder));
+                        else
+                            ib_profile_pic.setImageURI(Uri.parse(byCaseID.photoPath()));
+
                         Mother motherData = context.allBeneficiaries().findMotherByECCaseId(caseId);
                         if (motherData != null) {
                             android.util.Log.e("ecData", ecData + "------------" + motherData.caseId());
@@ -244,8 +246,8 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         ib_profile_pic.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-//                                takePhoto(WOMAN_TYPE);
-                                dispatchTakePictureIntent(ib_profile_pic, mother != null ? mother.ecCaseId() : caseId);
+                                takePhoto(AllConstants.WOMAN_TYPE, mother.ecCaseId());
+//                                dispatchTakePictureIntent(ib_profile_pic, mother != null ? mother.ecCaseId() : caseId);
                             }
                         });
                         if (mother != null) {
@@ -285,8 +287,8 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         ib_profile_pic.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-//                                takePhoto(WOMAN_TYPE);
-                                dispatchTakePictureIntent(ib_profile_pic, pncMother != null ? pncMother.ecCaseId() : caseId);
+                                takePhoto(AllConstants.WOMAN_TYPE, pncMother.ecCaseId());
+//                                dispatchTakePictureIntent(ib_profile_pic, pncMother != null ? pncMother.ecCaseId() : caseId);
                             }
                         });
                         if (pncMother != null) {
@@ -341,13 +343,13 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         final Child child = context.allBeneficiaries().findChild(caseId);
                         Toast.makeText(this, "sda" + child.motherCaseId(), Toast.LENGTH_SHORT).show();
                         final Mother childMother = context.allBeneficiaries().findMother(child.motherCaseId());
-                        ib_profile_pic.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-//                                takePhoto(CHILD_TYPE);
-                                dispatchTakePictureIntent(ib_profile_pic, childMother != null ? child.motherCaseId() : caseId);
-                            }
-                        });
+//                        ib_profile_pic.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                takePhoto(AllConstants.CHILD_TYPE, caseId);
+////                                dispatchTakePictureIntent(ib_profile_pic, childMother != null ? child.motherCaseId() : caseId);
+//                            }
+//                        });
 
                         if (childMother != null) {
                             String pocInfo = childMother.getDetail("docPocInfo") != null ? childMother.getDetail("docPocInfo") : "";
@@ -557,7 +559,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
-                storageDir      /* directory */
+                storageDir   /* directory */
         );
 
         // Save a file: path for use with ACTION_VIEW intents
@@ -605,7 +607,13 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        if (requestCode == AllConstants.CAPTURE_RESULT_CODE) {
+            String path = data.getExtras().getString("location");
+            Log.e("getting path", path);
+            if (ib_profile_pic != null)
+                ib_profile_pic.setImageURI(Uri.parse(path));
+//            mImageView.setImageBitmap(getImageBitmap(path));
+        }
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
             HashMap<String, String> details = new HashMap<String, String>();
             details.put("profilepic", currentfile.getAbsolutePath());
@@ -653,12 +661,12 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
         return "";
     }
 
-    public void takePhoto(String type) {
+    public void takePhoto(String type, String entityId) {
         ON_PHOTO_CAPTURED.addListener(photoCaptureListener);
         Intent intent = new Intent(this, CameraLaunchActivity.class);
         intent.putExtra(AllConstants.TYPE, type);
-        intent.putExtra(ENTITY_ID, caseId);
-        startActivity(intent);
+        intent.putExtra(ENTITY_ID, entityId);
+        startActivityForResult(intent, AllConstants.CAPTURE_RESULT_CODE);
     }
 
 

@@ -3,8 +3,8 @@ package org.ei.telemedicine.view.viewHolder;
 import android.content.res.Resources;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
-import org.ei.telemedicine.util.Log;
 import org.ei.telemedicine.view.contract.SmartRegisterClient;
 
 import java.io.File;
@@ -18,6 +18,7 @@ public class ECProfilePhotoLoader implements ProfilePhotoLoader {
     private final Resources resources;
     private final Drawable defaultPlaceHolder;
     private final Map<String, Drawable> drawableMap = new HashMap<String, Drawable>();
+    private Drawable asyncDrawable;
 
     public ECProfilePhotoLoader(Resources res, Drawable placeHolder) {
         this.resources = res;
@@ -30,9 +31,11 @@ public class ECProfilePhotoLoader implements ProfilePhotoLoader {
         }
 
         String photoPath = client.profilePhotoPath();
+        android.util.Log.e("EC Profile Photoloader", photoPath + "-------" + client.wifeName());
         if (isBlank(photoPath)
                 || isThisDefaultProfilePhoto(photoPath)
                 || !isFileExists(photoPath)) {
+            Log.e("default", photoPath);
             return defaultPlaceHolder;
         }
 
@@ -42,10 +45,15 @@ public class ECProfilePhotoLoader implements ProfilePhotoLoader {
     }
 
     private boolean isFileExists(String path) {
-        return new File(path).exists();
+        return new File(path.replace("file:///", "/")).exists() || isFromURL(path);
     }
 
     private boolean isThisDefaultProfilePhoto(String photoPath) {
         return photoPath.contains(DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH);
     }
+
+    private boolean isFromURL(String photoPath) {
+        return photoPath.contains("http://");
+    }
+
 }

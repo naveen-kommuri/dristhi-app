@@ -68,14 +68,25 @@ public class CameraLaunchActivity extends SecuredActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        String path = "";
         if (requestCode != TAKE_PHOTO_REQUEST_CODE)
             return;
         if (imageFile.exists()) {
             String imageFilePath = imageFile.getAbsolutePath();
             setPic(imageFilePath);
-            updateEntity("file://" + imageFilePath);
+            path = "file://" + imageFilePath;
+            updateEntity(path);
+            android.util.Log.e("add", imageFilePath);
             Toast.makeText(this, "Photo captured", Toast.LENGTH_SHORT).show();
         }
+        goBack(path);
+
+    }
+
+    private void goBack(String imgPath) {
+        Intent intent = new Intent();
+        intent.putExtra("location", imgPath);
+        setResult(AllConstants.CAPTURE_RESULT_CODE, intent);
         super.onBackPressed();
     }
 

@@ -25,6 +25,7 @@ public class EligibleCouple {
     private Boolean isOutOfArea;
     private Boolean isClosed;
     private String photoPath;
+    private String photoURL;
 
     public EligibleCouple(String caseId, String wifeName, String husbandName, String ecNumber, String village, String subcenter, Map<String, String> details) {
         this.caseId = caseId;
@@ -46,6 +47,11 @@ public class EligibleCouple {
 
     public EligibleCouple withPhotoPath(String photoPath) {
         this.photoPath = photoPath;
+        return this;
+    }
+
+    public EligibleCouple withPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
         return this;
     }
 
@@ -147,4 +153,10 @@ public class EligibleCouple {
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
+
+    public String getPhotoURL() {
+        return photoURL;
+    }
+
+
 }

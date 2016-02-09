@@ -40,8 +40,16 @@ public class AllEligibleCouples {
         return eligibleCoupleRepository.findByCaseIDs(caseIds.toArray(new String[caseIds.size()]));
     }
 
+    public List<EligibleCouple> getUnSyncedProfilepics() {
+        return eligibleCoupleRepository.getUnSyncedProfilePics();
+    }
+
     public void updatePhotoPath(String caseId, String imagePath) {
         eligibleCoupleRepository.updatePhotoPath(caseId, imagePath);
+    }
+
+    public void updatePhotoURL(String caseId, String imagePath) {
+        eligibleCoupleRepository.updatePhotoURL(caseId, imagePath);
     }
 
     public void close(String entityId) {

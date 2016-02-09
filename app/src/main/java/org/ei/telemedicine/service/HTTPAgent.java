@@ -1,27 +1,10 @@
 package org.ei.telemedicine.service;
 
-import static org.ei.telemedicine.AllConstants.REALM;
-import static org.ei.telemedicine.domain.LoginResponse.NO_INTERNET_CONNECTIVITY;
-import static org.ei.telemedicine.domain.LoginResponse.SUCCESS;
-import static org.ei.telemedicine.domain.LoginResponse.UNAUTHORIZED;
-import static org.ei.telemedicine.domain.LoginResponse.UNKNOWN_RESPONSE;
-import static org.ei.telemedicine.util.HttpResponseUtil.getResponseBody;
-import static org.ei.telemedicine.util.Log.logError;
-import static org.ei.telemedicine.util.Log.logWarn;
-
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.security.KeyStore;
-
-import javax.net.ssl.SSLException;
+import android.content.Context;
+import android.util.Log;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.auth.AuthScope;
@@ -44,7 +27,7 @@ import org.apache.http.impl.conn.SingleClientConnManager;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
+import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.DristhiConfiguration;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.client.GZipEncodingHttpClient;
@@ -57,8 +40,26 @@ import org.ei.telemedicine.repository.AllSharedPreferences;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.Context;
-import android.util.Log;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.security.KeyStore;
+import java.util.UUID;
+
+import javax.net.ssl.SSLException;
+
+import static android.os.Environment.DIRECTORY_PICTURES;
+import static android.os.Environment.getExternalStoragePublicDirectory;
+import static org.ei.telemedicine.AllConstants.REALM;
+import static org.ei.telemedicine.domain.LoginResponse.NO_INTERNET_CONNECTIVITY;
+import static org.ei.telemedicine.domain.LoginResponse.SUCCESS;
+import static org.ei.telemedicine.domain.LoginResponse.UNAUTHORIZED;
+import static org.ei.telemedicine.domain.LoginResponse.UNKNOWN_RESPONSE;
+import static org.ei.telemedicine.util.HttpResponseUtil.getResponseBody;
+import static org.ei.telemedicine.util.Log.logError;
+import static org.ei.telemedicine.util.Log.logWarn;
 
 public class HTTPAgent {
     private final GZipEncodingHttpClient httpClient;
@@ -209,18 +210,17 @@ public class HTTPAgent {
             HttpPost httpost = new HttpPost(url);
             Log.e("Image URL", url + "-------------" + image.getContenttype());
             httpost.setHeader("Accept", "multipart/form-data");
-            File filetoupload = new File(image.getFilepath());
+            File filetoupload = new File(image.getFilepath().replace("file://", ""));
             Log.v("file to upload", "" + filetoupload.length());
             MultipartEntity entity = new MultipartEntity();
             entity.addPart("anm-id", new StringBody(image.getAnmId()));
             entity.addPart("entity-id", new StringBody(image.getEntityID()));
             entity.addPart("content-type", new StringBody(image.getContenttype()));
-            entity.addPart("file-category", new StringBody(image.getEntityID()));
-            entity.addPart("file", new FileBody(new File(image.getFilepath())));
+            entity.addPart("file-category", new StringBody(image.getFileCategory()));
+            entity.addPart("file", new FileBody(filetoupload));
             httpost.setEntity(entity);
-            Log.e("File Data", new FileBody(new File(image.getFilepath())) + "");
             HttpResponse response = httpClient.postContent(httpost);
-            responseString = EntityUtils.toString(response.getEntity());
+//            responseString = EntityUtils.toString(response.getEntity());
             int RESPONSE_OK = 200;
             int RESPONSE_OK_ = 201;
 
@@ -232,5 +232,44 @@ public class HTTPAgent {
             return "";
         }
 
+    }
+
+    public String saveImage(String _url) {
+        String filepath = null;
+        try {
+            setCredentials(allSharedPreferences.fetchRegisteredANM(), settings.fetchANMPassword());
+            HttpGet request = new HttpGet(_url);
+            HttpResponse response = httpClient.execute(request);
+            HttpEntity entity = response.getEntity();
+            InputStream inputStream = entity.getContent();
+
+            File directory = new File(getExternalStoragePublicDirectory(DIRECTORY_PICTURES), AllConstants.DRISTHI_DIRECTORY_NAME);
+            String filename = UUID.randomUUID().toString() + ".jpg";
+            Log.i("Local filename:", "" + filename);
+            File file = new File(directory, filename);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            Log.e("File absol", file.getAbsolutePath().toString());
+            FileOutputStream fileOutput = new FileOutputStream(file);
+
+            int downloadedSize = 0;
+            byte[] buffer = new byte[1024];
+            int bufferLength = 0;
+            while ((bufferLength = inputStream.read(buffer)) > 0) {
+                fileOutput.write(buffer, 0, bufferLength);
+                downloadedSize += bufferLength;
+                Log.i("Progress:", "downloadedSize:" + downloadedSize + "totalSize:");
+            }
+            fileOutput.close();
+            filepath = file.getAbsolutePath().toString();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            filepath = null;
+            e.printStackTrace();
+        }
+        Log.i("filepath:", " " + filepath);
+        return filepath;
     }
 }

@@ -16,7 +16,6 @@ import org.ei.telemedicine.dto.form.FormSubmissionDTO;
 import org.ei.telemedicine.repository.AllSettings;
 import org.ei.telemedicine.repository.AllSharedPreferences;
 import org.ei.telemedicine.repository.FormDataRepository;
-import org.ei.telemedicine.repository.ImageRepository;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,7 +59,7 @@ public class FormSubmissionSyncService {
 
     public FetchStatus sync(String villageName) {
         pushToServer();
-        new ImageUploadSyncService((ImageRepository) Context.getInstance().imageRepository());
+        new ImageUploadSyncService();
         return pullFromServer(villageName);
     }
 
@@ -137,7 +136,6 @@ public class FormSubmissionSyncService {
                     allSharedPreferences.getPwd()
             );
             logError("url= " + uri);
-            System.out.println(uri);
             Response<String> response = httpAgent.fetch(uri);
             if (response.isFailure()) {
                 logError(format("Fetching doctor records failed."));
@@ -155,11 +153,6 @@ public class FormSubmissionSyncService {
             int downloadBatchSize = configuration.syncDownloadBatchSize();
             String baseURL = configuration.dristhiBaseURL();
             Log.e("Base Url", baseURL);
-//            ArrayList<String> villagesList = new ArrayList<String>();
-//            villagesList.add("Gazi Pur");
-//            villagesList.add("Kotla");
-//            villagesList.add("Dalu Pura");
-//            for (String villageName : villagesList) {
             while (true) {
                 String uri = format("{0}/{1}?anm-id={2}&timestamp={3}&batch-size={4}&village={5}",
                         baseURL,

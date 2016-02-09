@@ -25,7 +25,7 @@ import static org.apache.commons.lang3.StringUtils.repeat;
 
 public class EligibleCoupleRepository extends DrishtiRepository {
     private static final String EC_SQL = "CREATE TABLE eligible_couple(id VARCHAR PRIMARY KEY, wifeName VARCHAR, husbandName VARCHAR, " +
-            "ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR, isOutOfArea VARCHAR, details VARCHAR, isClosed VARCHAR, photoPath VARCHAR)";
+            "ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR, isOutOfArea VARCHAR, details VARCHAR, isClosed VARCHAR, photoPath VARCHAR, photoURL VARCHAR)";
     public static final String ID_COLUMN = "id";
     public static final String EC_NUMBER_COLUMN = "ecNumber";
     public static final String WIFE_NAME_COLUMN = "wifeName";
@@ -36,11 +36,12 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     public static final String DETAILS_COLUMN = "details";
     private static final String IS_CLOSED_COLUMN = "isClosed";
     public static final String PHOTO_PATH_COLUMN = "photoPath";
+    public static final String PHOTO_URL_COLUMN = "photoURL";
     public static final String EC_TABLE_NAME = "eligible_couple";
 
     public static final String[] EC_TABLE_COLUMNS = new String[]{ID_COLUMN, WIFE_NAME_COLUMN, HUSBAND_NAME_COLUMN,
             EC_NUMBER_COLUMN, VILLAGE_NAME_COLUMN, SUBCENTER_NAME_COLUMN, IS_OUT_OF_AREA_COLUMN, DETAILS_COLUMN,
-            IS_CLOSED_COLUMN, PHOTO_PATH_COLUMN};
+            IS_CLOSED_COLUMN, PHOTO_PATH_COLUMN, PHOTO_URL_COLUMN};
 
     public static final String NOT_CLOSED = "false";
     private static final String IN_AREA = "false";
@@ -90,6 +91,12 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         return readAllEligibleCouples(cursor);
     }
 
+    public List<EligibleCouple> getUnSyncedProfilePics() {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.rawQuery(String.format("select * from %s where %s is not null and %s is null", EC_TABLE_NAME, PHOTO_PATH_COLUMN, PHOTO_URL_COLUMN), null);
+        return readAllEligibleCouples(cursor);
+    }
+
     public List<EligibleCouple> findByCaseIDs(String... caseIds) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.rawQuery(String.format("SELECT * FROM %s WHERE %s IN (%s)", EC_TABLE_NAME, ID_COLUMN,
@@ -131,11 +138,18 @@ public class EligibleCoupleRepository extends DrishtiRepository {
 
     public void updatePhotoPath(String caseId, String imagePath) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
-        if (!   imagePath.equals("") && !caseId.equals("")) {
+        if (imagePath != null && caseId != null && !imagePath.equals("") && !caseId.equals("")) {
             ContentValues values = new ContentValues();
             values.put(PHOTO_PATH_COLUMN, imagePath);
             database.update(EC_TABLE_NAME, values, ID_COLUMN + " = ?", new String[]{caseId});
         }
+    }
+
+    public void updatePhotoURL(String caseId, String imagePath) {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(PHOTO_URL_COLUMN, imagePath);
+        database.update(EC_TABLE_NAME, values, ID_COLUMN + " = ?", new String[]{caseId});
     }
 
     public void close(String caseId) {
@@ -170,6 +184,8 @@ public class EligibleCoupleRepository extends DrishtiRepository {
             eligibleCouple.setIsClosed(Boolean.valueOf(cursor.getString(8)));
             if (Boolean.valueOf(cursor.getString(6)))
                 eligibleCouple.asOutOfArea();
+            eligibleCouple.withPhotoURL(cursor.getString(cursor.getColumnIndex(PHOTO_URL_COLUMN)));
+            Log.e("path", cursor.getString(9) != null ? cursor.getString(9) : "++++++++++++++++=");
             eligibleCouple.withPhotoPath(cursor.getString(9));
             eligibleCouples.add(eligibleCouple);
             cursor.moveToNext();

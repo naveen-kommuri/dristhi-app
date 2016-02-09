@@ -16,7 +16,7 @@ public class ProfileImage {
     private String filepath;
 
     private String syncStatus;
-
+    private String fileCategory;
 
     public ProfileImage(String imageid, String anmId, String entityID, String contenttype, String filepath, String syncStatus) {
         this.imageid = imageid;
@@ -28,6 +28,10 @@ public class ProfileImage {
 
     }
 
+    public ProfileImage withFileCategory(String fileCategory) {
+        this.fileCategory = fileCategory;
+        return this;
+    }
 
     public String getImageid() {
         return imageid;
@@ -100,4 +104,7 @@ public class ProfileImage {
     }
 
 
+    public String getFileCategory() {
+        return fileCategory;
+    }
 }
