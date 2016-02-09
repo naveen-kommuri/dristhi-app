@@ -83,5 +83,19 @@ public class NativeGraphActivityTest {
 
     }
 
+    @Test
+    public void testingfetalChart() {
+        Context.setInstance(context);
+        when(context.allSharedPreferences()).thenReturn(allSharedPreferences);
+        when(context.typefaceCache()).thenReturn(cache);
+
+        String dummyData = "[{\"bpSystolic\": \"130\", \"visit_number\": \"1\", \"temperature\": \"36.8-C\", \"visit_type\": \"ANC\", \"bpDiastolic\": \"86\", \"visitDate\": \"2016-01-22\", \"bloodGlucoseData\": \"5.3\", \"fetalData\": \"113\"}, {\"bpSystolic\": \"139\", \"visit_number\": \"1\", \"temperature\": \"36.5-C\", \"visit_type\": \"ANC\", \"bpDiastolic\": \"91\", \"visitDate\": \"2016-01-07\", \"bloodGlucoseData\": \"4.8\", \"fetalData\": \"127\"}, {\"bpSystolic\": \"120\", \"visit_number\": \"2\", \"temperature\": \"36.1-C\", \"visit_type\": \"ANC\", \"bpDiastolic\": \"60\", \"visitDate\": \"2016-01-21\", \"bloodGlucoseData\": \"4.8\", \"fetalData\": \"122\"}, {\"bpSystolic\": \"120\", \"visit_number\": \"2\", \"temperature\": \"36.8-C\", \"visit_type\": \"ANC\", \"bpDiastolic\": \"67\", \"visitDate\": \"2016-01-21\", \"bloodGlucoseData\": \"4.8\", \"fetalData\": \"120\"}]";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.putExtra(AllConstants.VITALS_INFO_RESULT, dummyData);
+        intent.putExtra(AllConstants.VITAL_TYPE, AllConstants.GraphFields.FETALDATA);
+        ActivityController activityController = Robolectric.buildActivity(NativeGraphActivity.class).withIntent(intent).create();
+
+    }
+
 
 }
