@@ -1,19 +1,17 @@
 package org.ei.telemedicine.view.customControls;
 
-import org.ei.telemedicine.AllConstants;
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.image.ImageLoader;
-import org.ei.telemedicine.util.Log;
-import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
-import org.ei.telemedicine.view.contract.SmartRegisterClient;
-import org.ei.telemedicine.view.viewHolder.ProfilePhotoLoader;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import org.ei.telemedicine.AllConstants;
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
+import org.ei.telemedicine.view.contract.SmartRegisterClient;
+import org.ei.telemedicine.view.viewHolder.ProfilePhotoLoader;
 
 public class ClientProfileView extends RelativeLayout {
     private ImageView imgProfileView;
@@ -58,11 +56,19 @@ public class ClientProfileView extends RelativeLayout {
 
     // #TODO: make these names generic, so this layout can be reused in all the registers
     public void bindData(SmartRegisterClient client, ProfilePhotoLoader photoLoader) {
-        if (!client.profilePhotoPath().equals("") && client.profilePhotoPath().toLowerCase().startsWith("http://")) {
-            new ImageLoader(getContext()).DisplayImage(client.profilePhotoPath(), imgProfileView, photoLoader.get(client));
-        } else
-            new ImageLoader(getContext()).DisplayImage(client.profilePhotoPath(), imgProfileView, photoLoader.get(client));
-//        imgProfileView.setBackground(photoLoader.get(client));
+//        logError("bind photo---" + client.profilePhotoPath()+"-----------"+photoLoader.get(client));
+//        if(client.profilePhotoPath().contains("placeholder")){
+//            imgProfileView.setImageBitmap(new);
+//        }
+//        imgProfileView.setImageURI(Uri.parse(client.profilePhotoPath()));
+////        if (!client.profilePhotoPath().equals("") && client.profilePhotoPath().toLowerCase().startsWith("http://")) {
+////            new ImageLoader(getContext()).DisplayImage(client.profilePhotoPath(), imgProfileView, photoLoader.get(client));
+////        } else
+////            new ImageLoader(getContext()).DisplayImage(client.profilePhotoPath(), imgProfileView, photoLoader.get(client));
+//        if (photoLoader.get(client) == null)
+//            new ImageLoader(getContext()).DisplayImage(client.profilePhotoPath(), imgProfileView, photoLoader.get(client));
+//        else
+        imgProfileView.setBackground(photoLoader.get(client));
         txtNameView.setText(client.displayName());
         txtHusbandNameView.setText(client.husbandName());
         txtVillageNameView.setText(client.village());

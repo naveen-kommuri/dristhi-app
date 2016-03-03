@@ -200,13 +200,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         ec_summary.setVisibility(View.VISIBLE);
                         isFromEC = true;
                         Log.e("ec path", caseId);
-                        ib_profile_pic.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                takePhoto(AllConstants.WOMAN_TYPE, caseId);
-//                                dispatchTakePictureIntent(ib_profile_pic, caseId);
-                            }
-                        });
+
                         String ecData = new EligibleCoupleDetailController(this, caseId, context.allEligibleCouples(), context.allTimelineEvents()).get();
                         String coupleDetails = getDataFromJson(ecData, "coupleDetails");
                         String details = getDataFromJson(ecData, "details");
@@ -218,6 +212,13 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         else
                             ib_profile_pic.setImageURI(Uri.parse(byCaseID.photoPath()));
 
+                        ib_profile_pic.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+//                                if (ib_profile_pic.getDrawable() == getResources().getDrawable(R.drawable.woman_placeholder))
+                                    takePhoto(AllConstants.WOMAN_TYPE, caseId);
+                            }
+                        });
                         Mother motherData = context.allBeneficiaries().findMotherByECCaseId(caseId);
                         if (motherData != null) {
                             android.util.Log.e("ecData", ecData + "------------" + motherData.caseId());
@@ -243,10 +244,19 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
 //                        imageLoader.DisplayImage("http://media.mediatemple.netdna-cdn.com/wp-content/uploads/2013/01/1.jpg", ib_profile_pic);
                         anc_summary.setVisibility(View.VISIBLE);
                         final Mother mother = context.allBeneficiaries().findMother(caseId);
+                        EligibleCouple eligibleCouple = context.allEligibleCouples().findByCaseID(mother.ecCaseId());
+                        if (eligibleCouple.photoPath() == null)
+                            ib_profile_pic.setImageDrawable(getResources().getDrawable(R.drawable.woman_placeholder));
+                        else if (eligibleCouple.photoPath() != null && !eligibleCouple.photoPath().equals("") && eligibleCouple.photoPath().toLowerCase().startsWith("http"))
+                            new ImageLoader(NativeOverviewActivity.this).DisplayImage(eligibleCouple.photoPath(), ib_profile_pic, getResources().getDrawable(R.drawable.woman_placeholder));
+                        else
+                            ib_profile_pic.setImageURI(Uri.parse(eligibleCouple.photoPath()));
+
                         ib_profile_pic.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                takePhoto(AllConstants.WOMAN_TYPE, mother.ecCaseId());
+//                                if (ib_profile_pic.getDrawable() == getResources().getDrawable(R.drawable.woman_placeholder))
+                                    takePhoto(AllConstants.WOMAN_TYPE, mother.ecCaseId());
 //                                dispatchTakePictureIntent(ib_profile_pic, mother != null ? mother.ecCaseId() : caseId);
                             }
                         });
@@ -284,10 +294,19 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
 
                         pnc_summary.setVisibility(View.VISIBLE);
                         final Mother pncMother = context.allBeneficiaries().findMother(caseId);
+                        EligibleCouple eligibleCouple1 = context.allEligibleCouples().findByCaseID(pncMother.ecCaseId());
+                        if (eligibleCouple1.photoPath() == null)
+                            ib_profile_pic.setImageDrawable(getResources().getDrawable(R.drawable.woman_placeholder));
+                        else if (eligibleCouple1.photoPath() != null && !eligibleCouple1.photoPath().equals("") && eligibleCouple1.photoPath().toLowerCase().startsWith("http"))
+                            new ImageLoader(NativeOverviewActivity.this).DisplayImage(eligibleCouple1.photoPath(), ib_profile_pic, getResources().getDrawable(R.drawable.woman_placeholder));
+                        else
+                            ib_profile_pic.setImageURI(Uri.parse(eligibleCouple1.photoPath()));
+
                         ib_profile_pic.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                takePhoto(AllConstants.WOMAN_TYPE, pncMother.ecCaseId());
+//                                if (ib_profile_pic.getDrawable() == getResources().getDrawable(R.drawable.woman_placeholder))
+                                    takePhoto(AllConstants.WOMAN_TYPE, pncMother.ecCaseId());
 //                                dispatchTakePictureIntent(ib_profile_pic, pncMother != null ? pncMother.ecCaseId() : caseId);
                             }
                         });

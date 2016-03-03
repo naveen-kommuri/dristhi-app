@@ -206,6 +206,9 @@
         <item name="android:clickable">true</item>
     </style>
 
+    <style name="DialogwithActionBar" parent="android:Theme.Holo.Light.Dialog">
+        <item name="android:windowActionBar">true</item>
+    </style>
 
     <!--<style name="MooTheme" parent="android:Theme">-->
     <!--<item name="android:spinnerItemStyle">@style/MooSpinnerItem</item>-->

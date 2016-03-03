@@ -7,7 +7,6 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.domain.ChildServiceType;
 import org.ei.telemedicine.util.DateUtil;
-import org.ei.telemedicine.util.Log;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
@@ -17,13 +16,41 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.ei.telemedicine.AllConstants.ChildIllnessFields.*;
-import static org.ei.telemedicine.AllConstants.ECRegistrationFields.*;
-import static org.ei.telemedicine.AllConstants.*;
-import static org.ei.telemedicine.domain.ChildServiceType.*;
+import static org.ei.telemedicine.AllConstants.ChildIllnessFields.REPORT_CHILD_DISEASE;
+import static org.ei.telemedicine.AllConstants.ChildIllnessFields.REPORT_CHILD_DISEASE_DATE;
+import static org.ei.telemedicine.AllConstants.ChildIllnessFields.REPORT_CHILD_DISEASE_OTHER;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.BPL_VALUE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.SC_VALUE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.ST_VALUE;
+import static org.ei.telemedicine.AllConstants.FEMALE_GENDER;
+import static org.ei.telemedicine.AllConstants.IN_AREA;
+import static org.ei.telemedicine.AllConstants.OUT_OF_AREA;
+import static org.ei.telemedicine.domain.ChildServiceType.BCG;
+import static org.ei.telemedicine.domain.ChildServiceType.DPTBOOSTER_1;
+import static org.ei.telemedicine.domain.ChildServiceType.DPTBOOSTER_2;
+import static org.ei.telemedicine.domain.ChildServiceType.HEPB_0;
+import static org.ei.telemedicine.domain.ChildServiceType.ILLNESS_VISIT;
+import static org.ei.telemedicine.domain.ChildServiceType.MEASLES;
+import static org.ei.telemedicine.domain.ChildServiceType.MEASLESBOOSTER;
+import static org.ei.telemedicine.domain.ChildServiceType.OPV_0;
+import static org.ei.telemedicine.domain.ChildServiceType.OPV_1;
+import static org.ei.telemedicine.domain.ChildServiceType.OPV_2;
+import static org.ei.telemedicine.domain.ChildServiceType.OPV_3;
+import static org.ei.telemedicine.domain.ChildServiceType.OPV_BOOSTER;
+import static org.ei.telemedicine.domain.ChildServiceType.PENTAVALENT_1;
+import static org.ei.telemedicine.domain.ChildServiceType.PENTAVALENT_2;
+import static org.ei.telemedicine.domain.ChildServiceType.PENTAVALENT_3;
+import static org.ei.telemedicine.domain.ChildServiceType.VITAMIN_A;
 import static org.ei.telemedicine.util.DateUtil.formatDate;
 import static org.ei.telemedicine.util.StringUtil.humanize;
 import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
@@ -77,6 +104,7 @@ public class ChildClient implements ChildSmartRegisterClient {
     private boolean isHighRisk;
     private String photo_path;
     private String ecNumber;
+    private String pncNumber;
     private List<AlertDTO> alerts;
     private List<ServiceProvidedDTO> services_provided;
     private String entityIdToSavePhoto;
@@ -93,7 +121,8 @@ public class ChildClient implements ChildSmartRegisterClient {
         this.entityId = entityId;
         this.gender = gender;
         this.weight = weight;
-        this.thayiCardNumber = thayiCardNumber;
+        this.pncNumber = thayiCardNumber;
+        this.thayiCardNumber = null;
     }
 
     @Override
@@ -225,7 +254,7 @@ public class ChildClient implements ChildSmartRegisterClient {
         return (!isBlank(name) && name.toLowerCase().startsWith(filterCriterion.toLowerCase()))
                 || (!isBlank(motherName) && motherName.toLowerCase().startsWith(filterCriterion.toLowerCase()))
                 || String.valueOf(ecNumber).startsWith(filterCriterion)
-                || String.valueOf(thayiCardNumber).startsWith(filterCriterion);
+                || String.valueOf(pncNumber).startsWith(filterCriterion);
     }
 
     @Override
@@ -259,7 +288,7 @@ public class ChildClient implements ChildSmartRegisterClient {
 
     @Override
     public String thayiCardNumber() {
-        return thayiCardNumber;
+        return pncNumber;
     }
 
     @Override

@@ -10,7 +10,6 @@ import com.google.gson.reflect.TypeToken;
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.ei.telemedicine.doctor.DoctorData;
-import org.ei.telemedicine.domain.EligibleCouple;
 import org.ei.telemedicine.domain.Mother;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,8 +17,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import static java.text.MessageFormat.format;
 
 /**
  * Created by naveen on 5/21/15.
@@ -90,7 +87,7 @@ public class DoctorRepository extends DrishtiRepository {
             database.insert(DOCTORS_INFO_TABLE_NAME, null, createValuesFor(doctorData));
         else {
             try {
-                database.update(DOCTORS_INFO_TABLE_NAME, createValuesFor(doctorData), CASE_ID_COLUMN + " = ?", new String[]{doctorData.getCaseId()});
+                database.update(DOCTORS_INFO_TABLE_NAME, updateValuesFor(doctorData), CASE_ID_COLUMN + " = ?", new String[]{doctorData.getCaseId()});
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -111,6 +108,20 @@ public class DoctorRepository extends DrishtiRepository {
         values.put(ANMID_COLUMN, doctorData.getAnmId());
         values.put(FORMINFORMATION_COLUMN, doctorData.getFormInformation().toString());
         values.put(POCINFORMATION_COL, doctorData.getPOCInformation());
+        values.put(FORMTIME_COLUMN, doctorData.getFormTime());
+        values.put(POCSTATUS_COL, doctorData.getPocStatus());
+        values.put(POCTIME_COL, doctorData.getPocTime());
+        values.put(SYNCSTATUS_COL, doctorData.getSyncStatus());
+        values.put(VISIT_TYPE_COL, doctorData.getVisitType());
+        values.put(VILLAGE_NAME_COL, doctorData.getVillageName());
+        return values;
+    }
+
+    private ContentValues updateValuesFor(DoctorData doctorData) {
+        ContentValues values = new ContentValues();
+        values.put(CASE_ID_COLUMN, doctorData.getCaseId());
+        values.put(ANMID_COLUMN, doctorData.getAnmId());
+        values.put(FORMINFORMATION_COLUMN, doctorData.getFormInformation().toString());
         values.put(FORMTIME_COLUMN, doctorData.getFormTime());
         values.put(POCSTATUS_COL, doctorData.getPocStatus());
         values.put(POCTIME_COL, doctorData.getPocTime());

@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,6 +31,7 @@ public class ViewPreVisitScreenActivity extends Activity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             formInfo = bundle.containsKey(formInfo) ? bundle.getString(formInfo) : "";
+            Log.e("Form", formInfo);
             setContentView(R.layout.view_pre_visits);
             bt_close = (Button) findViewById(R.id.bt_close);
             et_plan_of_care_date = (EditText) findViewById(R.id.et_plan_of_care_date);

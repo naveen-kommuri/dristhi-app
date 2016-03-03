@@ -1,6 +1,8 @@
 package org.ei.telemedicine.test.bluetooth;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -165,6 +167,13 @@ public class BluetoothInfoActivityTest {
     @Test
     public void testDestroy() {
         assertEquals(Constants.PULSE_DEVICE, "Sp");
+        blueToothInfoActivity.registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(android.content.Context context, Intent intent) {
+
+            }
+        }, new IntentFilter());
+        blueToothInfoActivity.startActivityForResult(new Intent(), AllConstants.DRUGS_INFO_RESULT_CODE);
         blueToothInfoActivity.onResult(new byte[]{}, 101);
         blueToothInfoActivity.onBackPressed();
         activityController.destroy();

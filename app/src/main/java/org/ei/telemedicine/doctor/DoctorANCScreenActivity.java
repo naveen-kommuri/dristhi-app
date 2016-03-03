@@ -1,7 +1,6 @@
 package org.ei.telemedicine.doctor;
 
 import android.app.ProgressDialog;
-import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.ei.telemedicine.AllConstants;
-
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.customControls.CustomFontTextView;
@@ -130,7 +128,6 @@ public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
                     playData(audioUrl, ib_play_stehoscope, ib_pause_stehoscope);
                     ib_pause_stehoscope.setVisibility(View.VISIBLE);
                     ib_play_stehoscope.setVisibility(View.INVISIBLE);
-
                 }
                 break;
             case R.id.ib_pause_stehoscope:

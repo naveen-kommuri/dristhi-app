@@ -38,6 +38,7 @@ public class EligibleCoupleService {
         if (isBlank(fpMethodChangeDate)) {
             fpMethodChangeDate = submission.getFieldValue(AllConstants.CommonFormFields.SUBMISSION_DATE);
         }
+
         allTimelineEvents.add(forChangeOfFPMethod(submission.entityId(), submission.getFieldValue(AllConstants.ECRegistrationFields.CURRENT_FP_METHOD),
                 submission.getFieldValue(NEW_FP_METHOD_FIELD_NAME), fpMethodChangeDate));
         allEligibleCouples.mergeDetails(submission.entityId(), mapOf(AllConstants.ECRegistrationFields.CURRENT_FP_METHOD, submission.getFieldValue(NEW_FP_METHOD_FIELD_NAME)));

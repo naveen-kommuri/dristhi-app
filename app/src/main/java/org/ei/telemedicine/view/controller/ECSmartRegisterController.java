@@ -1,5 +1,7 @@
 package org.ei.telemedicine.view.controller;
 
+import android.util.Log;
+
 import com.google.common.collect.Iterables;
 import com.google.gson.Gson;
 
@@ -12,7 +14,6 @@ import org.ei.telemedicine.repository.AllEligibleCouples;
 import org.ei.telemedicine.util.Cache;
 import org.ei.telemedicine.util.CacheableData;
 import org.ei.telemedicine.util.EasyMap;
-import org.ei.telemedicine.util.IntegerUtil;
 import org.ei.telemedicine.view.contract.ECChildClient;
 import org.ei.telemedicine.view.contract.ECClient;
 import org.ei.telemedicine.view.contract.ECClients;
@@ -26,9 +27,25 @@ import java.util.List;
 
 import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.ei.telemedicine.AllConstants.ECRegistrationFields.*;
-import static org.ei.telemedicine.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
 import static org.ei.telemedicine.AllConstants.ANCRegistrationFields.EDD;
+import static org.ei.telemedicine.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.CASTE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.CURRENT_FP_METHOD;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.ECONOMIC_STATUS;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.FAMILY_PLANNING_METHOD_CHANGE_DATE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.HIGH_PRIORITY_REASON;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.IUD_PERSON;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.IUD_PLACE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.NUMBER_OF_ABORTIONS;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.NUMBER_OF_CENTCHROMAN_PILLS_DELIVERED;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.NUMBER_OF_CONDOMS_SUPPLIED;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.NUMBER_OF_LIVING_CHILDREN;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.NUMBER_OF_OCP_DELIVERED;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.NUMBER_OF_PREGNANCIES;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.NUMBER_OF_STILL_BIRTHS;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.PARITY;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.REGISTRATION_DATE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.WOMAN_DOB;
 
 public class ECSmartRegisterController {
     public static final String STATUS_TYPE_FIELD = "type";
@@ -105,6 +122,7 @@ public class ECSmartRegisterController {
 
                 for (EligibleCouple ec : ecs) {
                     String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();
+                    Log.e("phtPath", photoPath);
                     ECClient ecClient = new ECClient(ec.caseId(), ec.wifeName(), ec.husbandName(), ec.village(), Long.parseLong(ec.ecNumber()))
                             .withDateOfBirth(ec.getDetail(WOMAN_DOB))
                             .withFPMethod(ec.getDetail(CURRENT_FP_METHOD))

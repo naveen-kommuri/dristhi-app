@@ -7,7 +7,6 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -21,8 +20,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.formData;
@@ -171,7 +168,7 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
                 if (resultData != null) {
 //                    Toast.makeText(DoctorPatientDetailSuperActivity.this, "Document Id " + documentId, Toast.LENGTH_SHORT).show();
                     Log.e("Document Id", documentId);
-                    Context.getInstance().allDoctorRepository().updatePocInLocal(documentId, "", "");
+//                    Context.getInstance().allDoctorRepository().updatePocInLocal(documentId, "", "");
                     Intent intent = new Intent(DoctorPatientDetailSuperActivity.this, DoctorPlanofCareActivity.class);
                     intent.putExtra(AllConstants.DRUG_INFO_RESULT, resultData);
                     intent.putExtra(DoctorFormDataConstants.formData, formInfo);
@@ -217,39 +214,39 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
         }.execute();
     }
 
-    public void createFileFrombyte(byte[] audioBytes) {
-        try {
-            String path = Environment.getExternalStorageDirectory().getAbsolutePath();
-            path += "/audiorecordtest.wav";
-            File dstFile = new File(path);
-            if (!dstFile.exists())
-                dstFile.createNewFile();
-            FileOutputStream fout = new FileOutputStream(dstFile);
-            fout.write(audioBytes);
-            fout.flush();
-            fout.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void startPlaying(String path) {
-        MediaPlayer mPlayer = new MediaPlayer();
-        try {
-            mPlayer.setDataSource(path);
-            mPlayer.prepare();
-            mPlayer.start();
-            mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    mp.stop();
-                    mp.release();
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void createFileFrombyte(byte[] audioBytes) {
+//        try {
+//            String path = Environment.getExternalStorageDirectory().getAbsolutePath();
+//            path += "/audiorecordtest.wav";
+//            File dstFile = new File(path);
+//            if (!dstFile.exists())
+//                dstFile.createNewFile();
+//            FileOutputStream fout = new FileOutputStream(dstFile);
+//            fout.write(audioBytes);
+//            fout.flush();
+//            fout.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void startPlaying(String path) {
+//        MediaPlayer mPlayer = new MediaPlayer();
+//        try {
+//            mPlayer.setDataSource(path);
+//            mPlayer.prepare();
+//            mPlayer.start();
+//            mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//                @Override
+//                public void onCompletion(MediaPlayer mp) {
+//                    mp.stop();
+//                    mp.release();
+//                }
+//            });
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public String getDatafromJsonArray(String jsonArrayStr) {
         if (jsonArrayStr.trim().length() != 0)

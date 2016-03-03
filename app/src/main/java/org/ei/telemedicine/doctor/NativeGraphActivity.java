@@ -19,10 +19,8 @@ import org.ei.telemedicine.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.mockito.internal.util.collections.ArrayUtils;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import static org.ei.telemedicine.AllConstants.GraphFields.BLOODGLUCOSEDATA;
 import static org.ei.telemedicine.AllConstants.GraphFields.BP_DIA;
@@ -75,6 +73,7 @@ public class NativeGraphActivity extends Activity {
         String[] vitalDates;
         JSONArray vitalsArray = new JSONArray(vitalsData);
         for (int i = 0; i < vitalsArray.length(); i++) {
+
             datalist1.add(getIntDatafromJson(vitalsArray.getJSONObject(i).toString(), BP_SYS));
             datalist2.add(getIntDatafromJson(vitalsArray.getJSONObject(i).toString(), BP_DIA));
             datelist.add(getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISIT_DATE) + "\n" + (!getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISITNUMBER).equals("") ? "ANC- " + getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISITNUMBER) : ""));
@@ -154,8 +153,12 @@ public class NativeGraphActivity extends Activity {
         for (int i = 0; i < vitalsArray.length(); i++) {
             switch (vitalType) {
                 case TEMPERATURE:
-                    datalist.add(Double.parseDouble(getStrDatafromJson(vitalsArray.getJSONObject(i).toString(), TEMPERATURE)));
-                    datelist.add(getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISIT_DATE) + "\n" + (!getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISITNUMBER).equals("") ? "ANC- " + getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISITNUMBER) : ""));
+                    try {
+                        datalist.add(Double.parseDouble(getStrDatafromJson(vitalsArray.getJSONObject(i).toString(), TEMPERATURE)));
+                        datelist.add(getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISIT_DATE) + "\n" + (!getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISITNUMBER).equals("") ? "ANC- " + getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISITNUMBER) : ""));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case BLOODGLUCOSEDATA:
                     datalist.add(getDatafromJson(vitalsArray.getJSONObject(i).toString(), BLOODGLUCOSEDATA));

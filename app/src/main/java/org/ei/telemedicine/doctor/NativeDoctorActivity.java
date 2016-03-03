@@ -8,6 +8,7 @@ import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.event.Listener;
@@ -30,6 +32,11 @@ import org.ei.telemedicine.sync.UpdateActionsTask;
 import org.ei.telemedicine.view.activity.LoginActivity;
 import org.ei.telemedicine.view.customControls.CustomFontTextView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -185,7 +192,7 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.doctor_home_screen);
 //        _context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
-
+//        restoreDB();
         setupViews();
         startListeners();
         updateFromServer();
@@ -243,6 +250,55 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
         this.finish();
     }
 
+    public void backupDB() {
+        File sd = Environment.getExternalStorageDirectory();
+        File data = Environment.getDataDirectory();
+        FileChannel source = null;
+        FileChannel destination = null;
+        String SAMPLE_DB_NAME = "drishti.db";
+        String currentDBPath = "/data/" + "org.ei.telemedicine" + "/databases/" + SAMPLE_DB_NAME;
+        String backupDBPath = SAMPLE_DB_NAME;
+        File currentDB = new File(data, currentDBPath);
+        File backupDB = new File(sd, backupDBPath);
+        try {
+            source = new FileInputStream(currentDB).getChannel();
+            destination = new FileOutputStream(backupDB).getChannel();
+            destination.transferFrom(source, 0, source.size());
+            source.close();
+            destination.close();
+            Toast.makeText(this, "DB Exported!", Toast.LENGTH_LONG).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Toast.makeText(this, "Comple", Toast.LENGTH_SHORT).show();
+
+    }
+
+    public void restoreDB() {
+        try {
+            File sd = Environment.getExternalStorageDirectory();
+            File data = Environment.getDataDirectory();
+
+            if (sd.canWrite()) {
+                String currentDBPath = "/data/org.ei.telemedicine/databases/drishti.db";
+                String backupDBPath = AllConstants.DRISTHI_DIRECTORY_NAME + "/drishti_" + context.allSharedPreferences().fetchRegisteredANM() + ".db";
+                File currentDB = new File(data, currentDBPath);
+                File backupDB = new File(sd, backupDBPath);
+
+                if (backupDB.exists()) {
+                    FileChannel src = new FileInputStream(backupDB).getChannel();
+                    FileChannel dst = new FileOutputStream(currentDB).getChannel();
+                    dst.transferFrom(src, 0, src.size());
+                    src.close();
+                    dst.close();
+                    Toast.makeText(getApplicationContext(), "Database Restored successfully", Toast.LENGTH_SHORT).show();
+                }
+            }
+        } catch (Exception e) {
+
+        }
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -274,7 +330,7 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         logoutUser();
-//                        backup();
+//                        backupDB();
                     }
                 }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override

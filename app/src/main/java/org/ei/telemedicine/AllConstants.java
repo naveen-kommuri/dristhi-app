@@ -49,7 +49,7 @@ public class AllConstants {
     public static final String CALLING_URL = "/call?id=%s&peer_id=%s";
     public static final String WEBSOCKET = "/wslogin?id=%s";
     public static final String RECEIVING_URL = "/recieve?id=%s&peer_id=%s";
-    
+
     public static final String LOGIN_URL_PATH = "/auth/?userid=";
     public static final String VILLAGES_USER_URL_PATH = "/anm-villages?anm-id=";
     public static final String DOCTOR_REFER_URL_PATH = "/doctor_refer/?docid=";
@@ -94,9 +94,10 @@ public class AllConstants {
     public static final String FORMINFO = "formInfo";
     public static final String ALLFORMDATA = "allFormInfo";
     public static final String ENTITY_ID = "entityId";
-    public static final int CAPTURE_RESULT_CODE= 999;
+    public static final int CAPTURE_RESULT_CODE = 999;
     public static final int FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE = 112;
     public static final int DRUGS_INFO_RESULT_CODE = 113;
+    public static final int INSTRUCTS_INFO_RESULT_CODE = 114;
     public static final String ALERT_NAME_PARAM = "alertName";
     public static final String BOOLEAN_TRUE = "yes";
     public static final String BOOLEAN_FALSE = "no";

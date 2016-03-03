@@ -27,6 +27,7 @@ import org.apache.http.impl.conn.SingleClientConnManager;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.DristhiConfiguration;
 import org.ei.telemedicine.R;
@@ -210,8 +211,12 @@ public class HTTPAgent {
             HttpPost httpost = new HttpPost(url);
             Log.e("Image URL", url + "-------------" + image.getContenttype());
             httpost.setHeader("Accept", "multipart/form-data");
-            File filetoupload = new File(image.getFilepath().replace("file://", ""));
-            Log.v("file to upload", "" + filetoupload.length());
+            File filetoupload;
+            if (image.getFilepath().contains("file://"))
+                filetoupload = new File(image.getFilepath().replace("file://", ""));
+            else
+                filetoupload = new File(image.getFilepath());
+            Log.e("file to upload", "" + filetoupload.length() + "-----------------------" + image.getFilepath().toString());
             MultipartEntity entity = new MultipartEntity();
             entity.addPart("anm-id", new StringBody(image.getAnmId()));
             entity.addPart("entity-id", new StringBody(image.getEntityID()));
@@ -221,6 +226,42 @@ public class HTTPAgent {
             httpost.setEntity(entity);
             HttpResponse response = httpClient.postContent(httpost);
 //            responseString = EntityUtils.toString(response.getEntity());
+            int RESPONSE_OK = 200;
+            int RESPONSE_OK_ = 201;
+
+            if (response.getStatusLine().getStatusCode() != RESPONSE_OK_ && response.getStatusLine().getStatusCode() != RESPONSE_OK) {
+                return "";
+            } else
+                return responseString.contains("fails") ? "" : responseString;
+        } catch (Exception e) {
+            return "";
+        }
+
+    }
+
+    public String httpAudioPost(String url, ProfileImage image) {
+
+        String responseString = "";
+        try {
+            setCredentials(allSharedPreferences.fetchRegisteredANM(), settings.fetchANMPassword());
+            HttpPost httpost = new HttpPost(url);
+            Log.e("Image URL", url + "-------------" + image.getContenttype());
+            httpost.setHeader("Accept", "multipart/form-data");
+            File filetoupload;
+            if (image.getFilepath().contains("file://"))
+                filetoupload = new File(image.getFilepath().replace("file://", ""));
+            else
+                filetoupload = new File(image.getFilepath());
+            Log.e("file to upload", "" + filetoupload.length() + "-----------------------" + image.getFilepath().toString());
+            MultipartEntity entity1 = new MultipartEntity();
+            entity1.addPart("anm-id", new StringBody(image.getAnmId()));
+            entity1.addPart("entity-id", new StringBody(image.getEntityID()));
+            entity1.addPart("content-type", new StringBody(image.getContenttype()));
+            entity1.addPart("file-category", new StringBody(image.getFileCategory()));
+            entity1.addPart("file", new FileBody(filetoupload));
+            httpost.setEntity(entity1);
+            HttpResponse response = httpClient.postContent(httpost);
+            responseString = EntityUtils.toString(response.getEntity());
             int RESPONSE_OK = 200;
             int RESPONSE_OK_ = 201;
 

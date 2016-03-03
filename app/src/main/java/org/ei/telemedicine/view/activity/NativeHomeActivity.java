@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,6 +32,11 @@ import org.ei.telemedicine.view.controller.NativeUpdateANMDetailsTask;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
 import static java.lang.String.valueOf;
@@ -118,6 +124,7 @@ public class NativeHomeActivity extends SecuredActivity {
     @Override
     public void onCreation() {
         setContentView(R.layout.smart_registers_home);
+
         setupViews();
         initialize();
     }
@@ -251,13 +258,41 @@ public class NativeHomeActivity extends SecuredActivity {
         return true;
     }
 
+
+    public void backupDB() {
+        File sd = Environment.getExternalStorageDirectory();
+        File data = Environment.getDataDirectory();
+        FileChannel source = null;
+        FileChannel destination = null;
+        String DB_NAME = "drishti.db";
+        String SAMPLE_DB_NAME = "/drishti_" + context.allSharedPreferences().fetchRegisteredANM() + ".db";
+        String currentDBPath = "/data/" + "org.ei.telemedicine" + "/databases/" + DB_NAME;
+        String backupDBPath = AllConstants.DRISTHI_DIRECTORY_NAME + SAMPLE_DB_NAME;
+        File currentDB = new File(data, currentDBPath);
+        File backupDB = new File(sd, backupDBPath);
+        try {
+            source = new FileInputStream(currentDB).getChannel();
+            destination = new FileOutputStream(backupDB).getChannel();
+            destination.transferFrom(source, 0, source.size());
+            source.close();
+            destination.close();
+            Toast.makeText(this, "DB Exported!", Toast.LENGTH_LONG).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Toast.makeText(this, "Comple", Toast.LENGTH_SHORT).show();
+
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.updateMenuItem:
                 updateFromServer();
                 return true;
-
+//            case R.id.export:
+//                backupDB();
+//                return true;
 //            case R.id.video:
 //                try {
 //                    Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -292,6 +327,7 @@ public class NativeHomeActivity extends SecuredActivity {
 //                return true;
 
             case R.id.logout:
+//                context.userService().logoutSession();
                 new AlertDialog.Builder(this).setTitle("Do you want logout?").setPositiveButton("Logout", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

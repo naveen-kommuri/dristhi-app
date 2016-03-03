@@ -139,7 +139,7 @@
     <string name="header_opv_booster">OPV BOOSTER</string>
     <string name="header_dpt_booster">DPT BOOSTER</string>
     <string name="header_vitamin_a">VITAMIN A</string>
-    <string name="thayi_label">Thayi:</string>
+    <string name="pnc_label">PNC:</string>
     <string name="mother_ec_label">Mother EC:</string>
     <string name="sort_by_child_age">Age</string>
     <string name="sort_by_child_hr">HR</string>
@@ -262,7 +262,7 @@
     <string name="header_anc_3">ANC3</string>
     <string name="header_anc_4">ANC4</string>
     <string name="header_other">Other</string>
-    <string name="header_visits">VISITS</string>
+    <string name="header_visits">LAST VISITS</string>
     <string name="header_tt">TT</string>
     <string name="header_tt_1">TT 1</string>
     <string name="header_tt_2">TT 2</string>

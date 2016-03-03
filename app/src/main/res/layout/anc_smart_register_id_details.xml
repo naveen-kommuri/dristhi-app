@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/lbl_mother_ec"
-                android:text="@string/thayi_label"
+                android:text="@string/pnc_label"
                 style="@style/CustomFontTextViewStyle.ListView.Normal"/>
 
         <org.ei.telemedicine.view.customControls.CustomFontTextView

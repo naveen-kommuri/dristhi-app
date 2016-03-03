@@ -65,6 +65,7 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static org.ei.telemedicine.AllConstants.DRUGS;
 import static org.ei.telemedicine.AllConstants.DRUGS_INFO_RESULT_CODE;
 import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT_EDIT;
+import static org.ei.telemedicine.AllConstants.INSTRUCTS_INFO_RESULT_CODE;
 
 public class BlueToothInfoActivity extends SecuredActivity implements OnClickListener,
         ICallBack, OnBluetoothResult, org.ei.telemedicine.bluetooth.bp.ICallBack,
@@ -324,6 +325,35 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
         if (resultCode == DRUGS_INFO_RESULT_CODE) {
             Log.e("drugs", data.getExtras().getString(DRUGS));
             anmPocInfo = data.getExtras().getString(DRUGS);
+        } else if (resultCode == INSTRUCTS_INFO_RESULT_CODE) {
+            switch (data.getExtras().getString("device")) {
+                case "bgm":
+                    device = Constants.BLOOD_DEVICE_NUM;
+                    iv_bgm.setImageDrawable(getResources().getDrawable(R.drawable.bgm_enable));
+                    startDiscovery();
+                    break;
+                case "bp":
+                    device = Constants.BP_DEVICE_NUM;
+                    iv_bp.setImageDrawable(getResources().getDrawable(R.drawable.bp_enable));
+                    startDiscovery();
+                    break;
+                case "steh":
+                    device = 0;
+                    iv_steh.setImageDrawable(getResources().getDrawable(R.drawable.steh_enable));
+                    startRecord(getFilePath());
+                    break;
+                case "fetal":
+                    device = Constants.FET_DEVICE_NUM;
+                    iv_fetal.setImageDrawable(getResources().getDrawable(R.drawable.fetal_enable));
+                    startDiscovery();
+                    break;
+                case "eet":
+                    tempartureFor = 0;
+                    device = Constants.EET_DEVICE_NUM;
+                    iv_eet.setImageDrawable(getResources().getDrawable(R.drawable.eet_enable));
+                    startDiscovery();
+                    break;
+            }
         }
     }
 
@@ -340,7 +370,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
         }
     }
 
-    private BroadcastReceiver searchDevices = new BroadcastReceiver() {
+    public BroadcastReceiver searchDevices = new BroadcastReceiver() {
 
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -435,6 +465,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
 
     public void startDiscovery() {
         progressDialog.show();
+        Log.e("Discovrty", "Startd");
 //        progressDialog.setCancelable(false);
         bluetoothAdapter.startDiscovery();
     }
@@ -443,38 +474,32 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_bp:
-                device = Constants.BP_DEVICE_NUM;
-                iv_bp.setImageDrawable(getResources().getDrawable(R.drawable.bp_enable));
-                startDiscovery();
+                startActivityForResult(new Intent(this, BluetoothInstructionsActivity.class).putExtra("device", "bp"), AllConstants.INSTRUCTS_INFO_RESULT_CODE);
                 break;
             case R.id.iv_bgm:
-                device = Constants.BLOOD_DEVICE_NUM;
-                iv_bgm.setImageDrawable(getResources().getDrawable(R.drawable.bgm_enable));
-                startDiscovery();
+                startActivityForResult(new Intent(this, BluetoothInstructionsActivity.class).putExtra("device", "bgm"), AllConstants.INSTRUCTS_INFO_RESULT_CODE);
                 break;
             case R.id.iv_steh:
-                device = 0;
-                iv_steh.setImageDrawable(getResources().getDrawable(R.drawable.steh_enable));
-                startRecord(getFilePath());
+                startActivityForResult(new Intent(this, BluetoothInstructionsActivity.class).putExtra("device", "steh"), AllConstants.INSTRUCTS_INFO_RESULT_CODE);
+
                 break;
             case R.id.iv_eet:
-                tempartureFor = 0;
-                device = Constants.EET_DEVICE_NUM;
-                iv_eet.setImageDrawable(getResources().getDrawable(R.drawable.eet_enable));
-                startDiscovery();
+                startActivityForResult(new Intent(this, BluetoothInstructionsActivity.class).putExtra("device", "eet"), AllConstants.INSTRUCTS_INFO_RESULT_CODE);
+
                 break;
             case R.id.iv_fetal:
-                device = Constants.FET_DEVICE_NUM;
-                iv_fetal.setImageDrawable(getResources().getDrawable(R.drawable.fetal_enable));
-                startDiscovery();
+                startActivityForResult(new Intent(this, BluetoothInstructionsActivity.class).putExtra("device", "fetal"), AllConstants.INSTRUCTS_INFO_RESULT_CODE);
+
                 break;
             case R.id.iv_poc:
-                Intent intent = new Intent(this, NativeANMPlanofCareActivity.class);
                 risks = risks.equals("") ? pncRisks : risks;
                 risks = risks.equals("") ? childSigns : risks;
-
-                intent.putExtra(AllConstants.ANCVisitFields.RISKS, risks.trim().replace(" ", ",").replace("_", " "));
-                startActivityForResult(intent, DRUGS_INFO_RESULT_CODE);
+                if (risks.trim().length() != 0) {
+                    Intent intent = new Intent(this, NativeANMPlanofCareActivity.class);
+                    intent.putExtra(AllConstants.ANCVisitFields.RISKS, risks.trim().replace(" ", ",").replace("_", " "));
+                    startActivityForResult(intent, DRUGS_INFO_RESULT_CODE);
+                } else
+                    Toast.makeText(this, "No Symptoms has been selected", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.bt_info_save:
                 if (et_bp_dia.getText().toString().equals("") && et_bp_sys.getText().toString().equals("") && et_eet.getText().toString().equals("") && et_fetal.getText().toString().equals("") && et_bgm.getText().toString().equals("")) {
@@ -589,9 +614,8 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
         @Override
         protected void onPostExecute(String result) {
             recordProgressDialog.dismiss();
-            Toast.makeText(BlueToothInfoActivity.this, "Record Completed", Toast.LENGTH_SHORT).show();
             stopRecording();
-
+            Toast.makeText(BlueToothInfoActivity.this, "Record Successful", Toast.LENGTH_SHORT).show();
         }
     }
 

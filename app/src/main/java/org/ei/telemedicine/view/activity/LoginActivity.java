@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -64,6 +66,7 @@ public class LoginActivity extends Activity {
         return context.allSharedPreferences().fetchRegisteredANM();
     }
 
+
     private void start() {
 
         final String wsuri = context.configuration().drishtiWSURL() + AllConstants.WEBSOCKET;
@@ -111,8 +114,12 @@ public class LoginActivity extends Activity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    start();
-
+//                    start();
+                    if (isNetworkAvailable()) {
+                        start();
+                    } else {
+                        Log.d(TAG, "No connection");
+                    }
                 }
             });
         } catch (WebSocketException e) {
@@ -170,7 +177,28 @@ public class LoginActivity extends Activity {
 
         final String userName = userNameEditText.getText().toString().trim();
         final String password = passwordEditText.getText().toString();
-
+//        String str = "";
+//        if (!context.userService().sameUser(userName)) {
+//            str = "exist";
+//            new AlertDialog.Builder(this).setTitle(context.allSharedPreferences().fetchRegisteredANM() + " is already login.Do you want proceed as new login?").setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    if (!context.allSharedPreferences().getIsSyncInProgress() && context.pendingFormSubmissionService().pendingFormSubmissionCount() == 0) {
+//                        context.userService().clearData();
+//                    } else {
+//                        Toast.makeText(LoginActivity.this, "Must sync all the data to server for User: " + userName, Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//
+//                }
+//            }).show();
+//        } else {
+//            str = "old";
+//        }
+//        if (str.trim().length() != 0)
         if (context.userService().hasARegisteredUser()) {
             localLogin(view, userName, password);
         } else {
@@ -205,7 +233,6 @@ public class LoginActivity extends Activity {
     private void localLogin(View view, String userName, String password) {
         if (context.userService().isValidLocalLogin(userName, password)) {
             localLoginWith(userName, password);
-
         } else {
             showErrorDialog(getString(R.string.login_failed_dialog_message));
             view.setClickable(true);
@@ -288,7 +315,11 @@ public class LoginActivity extends Activity {
         context.allSharedPreferences().updateIsFirstLogin(false);
         String userRole = context.userService().getUserRole();
         goToHome(userRole);
-        start();
+        if (isNetworkAvailable()) {
+            start();
+        } else {
+            Log.d(TAG, "No connection");
+        }
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
         //DrishtiCallScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
@@ -306,6 +337,17 @@ public class LoginActivity extends Activity {
         return "";
     }
 
+    private boolean isNetworkAvailable() {
+        try {
+            ConnectivityManager connectivityManager
+                    = (ConnectivityManager) getSystemService(android.content.Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     private void remoteLoginWith(String userName, String password, String loginResponse) {
         String userRole = null, personalInfo = null, location = null, drugs = null, configuration = null, countryCode = null, formFields = null;
@@ -325,7 +367,11 @@ public class LoginActivity extends Activity {
             context.allSharedPreferences().savePwd(password);
         }
         goToHome(userRole);
-        start();
+        if (isNetworkAvailable()) {
+            start();
+        } else {
+            Log.d(TAG, "No connection");
+        }
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
 
         //DrishtiCallScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());

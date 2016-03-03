@@ -272,11 +272,12 @@ public class TimelineEvent {
 
         private DetailBuilder withTemperature(String temperature) {
             String temp = "";
+            String[] tempData = new String[2];
             if (details.get(temperature) != null && !details.get(temperature).equals("") && details.get(temperature).contains("-")) {
-                String[] tempData = details.get(temperature).split("-");
+                tempData = details.get(temperature).split("-");
                 temp = "Temp: " + tempData[0] + " °" + tempData[1] + "\n";
             }
-            this.stringBuilder.append(checkEmptyField(temp, details.get(temperature)));
+            this.stringBuilder.append(checkEmptyField(temp, tempData[0]));
             return this;
         }
 

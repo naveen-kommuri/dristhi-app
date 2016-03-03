@@ -160,7 +160,9 @@
         <activity
             android:name=".view.activity.NativeANMPlanofCareActivity"
             android:theme="@android:style/Theme.Holo.Light.Dialog" />
-
+        <activity
+            android:name=".bluetooth.BluetoothInstructionsActivity"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" />
 
         <activity
             android:name=".doctor.ViewPreVisitScreenActivity"
@@ -177,7 +179,7 @@
         <activity
             android:name=".view.activity.ActionActivity"
             android:label="@string/title_activity_action"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"></activity>
         <activity android:name=".view.UserSettingsActivity" />
     </application>

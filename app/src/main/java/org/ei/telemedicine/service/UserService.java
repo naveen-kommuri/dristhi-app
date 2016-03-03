@@ -6,7 +6,6 @@ import org.ei.telemedicine.repository.AllSettings;
 import org.ei.telemedicine.repository.AllSharedPreferences;
 import org.ei.telemedicine.repository.Repository;
 import org.ei.telemedicine.sync.SaveANMLocationTask;
-import org.ei.telemedicine.util.Log;
 import org.ei.telemedicine.util.Session;
 
 import static org.ei.telemedicine.AllConstants.LOGIN_URL_PATH;
@@ -87,8 +86,16 @@ public class UserService {
         return !allSharedPreferences.fetchRegisteredANM().equals("");
     }
 
+    public boolean sameUser(String userName) {
+        return userName.trim().equalsIgnoreCase(allSharedPreferences.fetchRegisteredANM().trim());
+    }
+
     public void logout() {
         logoutSession();
+        clearData();
+    }
+
+    public void clearData() {
         allSettings.clearPreferences();
         allSettings.registerANM("", "");
         allSettings.savePreviousFetchIndex("0");

@@ -91,7 +91,8 @@ task jacocoTestReport(type: JacocoReport, dependsOn: "testDebug") {
                        '**/bluetooth/*/*.class',
                        '**/*$ViewInjector*.*',
                        '**/BuildConfig.*',
-                       '**/Manifest*.*']
+                       '**/Manifest*.*'],
+            includes: ['**/bluetooth/*.class', '**/doctor/*.class']
     )
 
     additionalSourceDirs = files(coverageSourceDirs)

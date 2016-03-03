@@ -85,8 +85,8 @@ public class FormSubmissionSyncService {
                             if (jsonData.getString("name").equals(PSTETHOSCOPE_DATA)) {
                                 String fileLocation = jsonData.has("value") ? jsonData.getString("value") : "";
                                 if (fileLocation.trim().length() != 0) {
-                                    ProfileImage profileImage = new ProfileImage("", Context.getInstance().allSharedPreferences().fetchRegisteredANM(), entityId, "audio/x-wav", fileLocation, "");
-                                    String response = Context.getInstance().getHttpAgent().httpImagePost(Context.getInstance().configuration().dristhiBaseURL() + "/multimedia-file", profileImage);
+                                    ProfileImage profileImage = new ProfileImage("", Context.getInstance().allSharedPreferences().fetchRegisteredANM(), entityId, "audio/x-wav", fileLocation, "").withFileCategory("audio");
+                                    String response = Context.getInstance().getHttpAgent().httpAudioPost(Context.getInstance().configuration().dristhiBaseURL() + "/multimedia-file", profileImage);
                                     if (response.trim().length() != 0) {
                                         jsonData.put("value", response);
                                         fieldsJsonArray.put(i, jsonData);

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -51,7 +53,6 @@ public class DoctorPlanofCareActivity extends Activity {
     Switch swich_poc_pending;
     Spinner sp_services, sp_drug_name, sp_drug_frequency, sp_drug_direction, sp_drug_dosage;
     EditText et_drug_qty, et_drug_no_of_days, et_reason, et_advice;
-
     Button bt_save_plan_of_care;
     ImageButton ib_stop_by, ib_add_drug, ib_anm_logo;
     CustomFontTextView tv_stop_date, tv_health_worker_name, tv_health_worker_village, tv_doc_name, tv_doc_type, tv_mother_name, tv_age, tv_visit_type, tv_village;
@@ -83,6 +84,7 @@ public class DoctorPlanofCareActivity extends Activity {
     String visitType, visitNumber;
     String documentId, formData, phoneNumber, caseId;
     public String CALLER_URL;
+    private String packName = "org.mozilla.firefox";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,8 +143,9 @@ public class DoctorPlanofCareActivity extends Activity {
                 pocDrugFrequenciesList.add(getString(R.string.please_select_frequency));
                 pocDrugDirectionsList.add(getString(R.string.please_select_direction));
                 pocDrugDosagesList.add(getString(R.string.please_select_dosage));
+                Log.e("Exist Case Id", caseId);
+                String existPocInfo = context.allDoctorRepository().getPocInfoCaseId(caseId);
 
-                String existPocInfo = context.allDoctorRepository().getPocInfoCaseId(documentId);
                 if (existPocInfo != null && !existPocInfo.equals("")) {
                     JSONObject pocInfo = new JSONObject(existPocInfo);
                     JSONArray diagnosisArray = pocInfo.has("diagnosis") ? pocInfo.getJSONArray("diagnosis") : new JSONArray();
@@ -263,12 +266,16 @@ public class DoctorPlanofCareActivity extends Activity {
 //                        } catch (Exception e) {
 //                            Toast.makeText(DoctorPlanofCareActivity.this, "Please install Apprtc APK", Toast.LENGTH_SHORT).show();
 //                        }
-                        CALLER_URL = context.configuration().drishtiVideoURL() + AllConstants.CALLING_URL;
-                        String caller_url = String.format(CALLER_URL, doc_name, nus_name);
-                        Log.e("Calling URL", caller_url);
-                        Uri url = Uri.parse(caller_url);
-                        Intent _broswer = new Intent(Intent.ACTION_VIEW, url);
-                        startActivity(_broswer);
+                        if (isPackageExist(packName)) {
+                            CALLER_URL = context.configuration().drishtiVideoURL() + AllConstants.CALLING_URL;
+                            String caller_url = String.format(CALLER_URL, doc_name, nus_name);
+                            Log.e("Calling URL", caller_url);
+                            Uri url = Uri.parse(caller_url);
+                            Intent _broswer = new Intent(Intent.ACTION_VIEW, url);
+                            startActivity(_broswer);
+                        } else {
+                            Toast.makeText(DoctorPlanofCareActivity.this, "Video call is compatible with FireFox. Please install", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
@@ -291,7 +298,7 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                   for (int i = 0; i < pocTestsList.size(); i++) {
                                                                       Log.e(TAG, pocTestsList.get(i));
                                                                   }
-                                                                  act_tests.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, android.R.layout.simple_list_item_1, pocTestsList));
+                                                                  act_tests.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, R.layout.diagnosis_list_item, R.id.tv_name, pocTestsList));
                                                               }
                                                           }
 
@@ -355,7 +362,9 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                              long id) {
                                                          act_tests.setText("");
                                                          lv_selected_tests.setVisibility(View.VISIBLE);
-                                                         TextView tv = (TextView) view;
+
+                                                         TextView tv = (TextView) view.findViewById(R.id.tv_name);
+//                                                         String actTestName = pocTestsList.get(position).toString();
                                                          String testName = sp_services.getSelectedItem().toString() + "-" + tv.getText().toString();
                                                          if (!selectTests.contains(testName)) {
                                                              selectTests.add(testName);
@@ -469,6 +478,7 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                     //                            resultJson.put("reason", et_reason.getText().toString());
                                                                     Log.e(TAG, "Reason" + et_reason.getText().toString() + "---" + swich_poc_pending.isChecked() + "");
                                                                     Log.e(TAG, "selected Json" + resultJson.toString());
+                                                                    Log.e("Hello", documentId + "::::::::::::::::::::::::::::");
                                                                     if (swich_poc_pending.isChecked() && et_reason.getText().toString().trim().length() != 0) {
                                                                         saveDatainLocal(documentId, resultJson.toString(), et_reason.getText().toString());
                                                                         saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString(), phoneNumber);
@@ -554,9 +564,10 @@ public class DoctorPlanofCareActivity extends Activity {
 
     public void saveDatainLocal(String documentId, String pocJsonInfo, String
             pocPendingInfo) {
-        context.allDoctorRepository().updatePocInLocal(documentId, pocJsonInfo, pocPendingInfo);
-        if (!pocPendingInfo.equals(""))
-            gotoHome();
+        Log.e("Case Id Local", caseId);
+        context.allDoctorRepository().updatePocInLocal(caseId, pocJsonInfo, pocPendingInfo);
+//        if (!pocPendingInfo.equals(""))
+//            gotoHome();
     }
 
     private void saveData(final String documentID, String pocJsonData, JSONObject formDataJson, final String pocPendingReason, final String phoneNumber) {
@@ -632,6 +643,20 @@ public class DoctorPlanofCareActivity extends Activity {
             }
         }.execute();
 
+    }
+
+    public boolean isPackageExist(String packName) {
+        PackageManager packageManager = getPackageManager();
+        try {
+            PackageInfo info = packageManager.getPackageInfo(packName, PackageManager.GET_META_DATA);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
 }

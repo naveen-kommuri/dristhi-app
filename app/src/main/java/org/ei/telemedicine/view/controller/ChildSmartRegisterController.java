@@ -60,7 +60,7 @@ public class ChildSmartRegisterController {
                                     child.caseId(),
                                     child.gender(),
                                     child.getDetail(AllConstants.ChildRegistrationFields.WEIGHT),
-                                    child.mother().thayiCardNumber())
+                                    child.mother().pncNumber())
                                     .withName(child.getDetail(AllConstants.ChildRegistrationFields.NAME))
                                     .withEntityIdToSavePhoto(child.caseId())
                                     .withMotherName(child.ec().wifeName())
@@ -102,7 +102,7 @@ public class ChildSmartRegisterController {
                                     child.caseId(),
                                     child.gender(),
                                     child.getDetail(AllConstants.ChildRegistrationFields.WEIGHT),
-                                    child.mother().thayiCardNumber())
+                                    child.mother().pncNumber())
                                     .withName(child.getDetail(AllConstants.ChildRegistrationFields.NAME))
                                     .withEntityIdToSavePhoto(child.caseId())
                                     .withMotherName(child.ec().wifeName())

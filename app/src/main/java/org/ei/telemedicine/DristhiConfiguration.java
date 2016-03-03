@@ -57,7 +57,7 @@ public class DristhiConfiguration {
     }
 
     public String drishtiVideoURL() {
-        return "http://" + (!preferences.getString("prefVideoURL", "").equals("") ? preferences.getString("prefVideoURL", "") : this.get(DRISHTI_VIDEO_URL));
+        return (!preferences.getString("prefVideoURL", "").equals("") ? preferences.getString("prefVideoURL", "") : this.get(DRISHTI_VIDEO_URL));
     }
 
     public String drishtiWSURL() {

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +32,11 @@ public class ViewPlanOfCareActivity extends SecuredActivity {
     private String TAG = "ViewPlanofCareActivity";
     String visitType, intentVisitType;
     TextView tv_anc_number_title;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
+    }
 
     @Override
     public void onCreation() {
