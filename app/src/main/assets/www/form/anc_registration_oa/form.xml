@@ -8,7 +8,7 @@
     </select>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">PHC
+        <span class="question-label active" lang="">Primary Health Center(PHC)
         </span>
         <input name="/ANC_Registration_OA_EngKan/phc" autocomplete="off" data-type-xml="string"
             disabled="disabled" type="text" />
@@ -390,7 +390,7 @@
     <fieldset class="question">
         <fieldset>
             <legend>
-                <span class="question-label active" lang="">LMP is known?
+                <span class="question-label active" lang="">Last Menstrual Period(LMP) is known?
                 </span>
                 <span class="required">*</span>
             </legend>
@@ -413,7 +413,7 @@
 
 
     <label class="question or-branch">
-        <span class="question-label active" lang="">LMP Date
+        <span class="question-label active" lang="">Last Menstrual Period(LMP) Date
         </span>
         <span class="or-hint active" lang="">Future dates are not allowed
         </span>
@@ -424,7 +424,7 @@
     </label>
 
     <label class="question or-branch pre-init non-select">
-        <span class="question-label active" lang="">LMP In Weeks
+        <span class="question-label active" lang="">Last Menstrual Period(LMP) In Weeks
         </span>
         <span class="required">*</span>
         <input name="/ANC_Registration_OA_EngKan/lmp_in_week" autocomplete="off"
@@ -433,7 +433,7 @@
     </label>
 
     <label class="note non-select ">
-        <span class="question-label active" lang="">EDD
+        <span class="question-label active" lang="">Expected Date of Delivery(EDD)
             <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/edd_formatted"></span>
         </span>
         <input name="/ANC_Registration_OA_EngKan/edd_note" data-type-xml="string"

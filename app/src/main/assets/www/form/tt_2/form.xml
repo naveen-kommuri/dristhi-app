@@ -22,7 +22,7 @@
             data-type-xml="select1" required="required">
             <option value="">...</option>
             <option value="sub_center">My Sub Center</option>
-            <option value="phc">My PHC</option>
+            <option value="phc">My Primary Health Center(PHC)</option>
             <option value="elsewhere">Elsewhere</option>
         </select>
         <span style="display:none;" class="or-option-translations"></span>

@@ -301,25 +301,25 @@
                     <input name="/Delivery_Plan_EngKan/delivery_facility" autocomplete="off"
                         data-name="/Delivery_Plan_EngKan/delivery_facility" data-type-xml="select1"
                         required="required" type="radio" value="phc" />
-                    <span class="option-label active" lang="">PHC</span>
+                    <span class="option-label active" lang="">Primary Health Center(PHC)</span>
                 </label>
                 <label class="">
                     <input name="/Delivery_Plan_EngKan/delivery_facility" autocomplete="off"
                         data-name="/Delivery_Plan_EngKan/delivery_facility" data-type-xml="select1"
                         required="required" type="radio" value="chc" />
-                    <span class="option-label active" lang="">CHC</span>
+                    <span class="option-label active" lang="">Community Health Center(CHC)</span>
                 </label>
                 <label class="">
                     <input name="/Delivery_Plan_EngKan/delivery_facility" autocomplete="off"
                         data-name="/Delivery_Plan_EngKan/delivery_facility" data-type-xml="select1"
                         required="required" type="radio" value="sdh" />
-                    <span class="option-label active" lang="">SDH</span>
+                    <span class="option-label active" lang="">Sub District Hospital(SDH)</span>
                 </label>
                 <label class="">
                     <input name="/Delivery_Plan_EngKan/delivery_facility" autocomplete="off"
                         data-name="/Delivery_Plan_EngKan/delivery_facility" data-type-xml="select1"
                         required="required" type="radio" value="dh" />
-                    <span class="option-label active" lang="">DH</span>
+                    <span class="option-label active" lang="">District Hospital(DH)</span>
                 </label>
                 <label class="">
                     <input name="/Delivery_Plan_EngKan/delivery_facility" autocomplete="off"
@@ -341,7 +341,8 @@
     <label class="note or-branch pre-init non-select ">
         <span class="question-label active" lang="">
             <span class="or-output" data-value=" /Delivery_Plan_EngKan/woman_name "></span>has high
-            risk pregnancy. Tell her to deliver at SDH or DH for her safety and safety of child!
+            risk pregnancy. Tell her to deliver at Sub District Hospital(SDH) or District
+            Hospital(DH) for her safety and safety of child!
             <!--<span class="or-output" data-value=" /Delivery_Plan_EngKan/woman_name "></span>-->
 
         </span>
@@ -352,7 +353,8 @@
     <label class="note or-branch pre-init non-select ">
         <span class="question-label active" lang="">
             <span class="or-output" data-value=" /Delivery_Plan_EngKan/woman_name "></span>is high
-            risk and severely anaemic. Tell her and her family to deliver at SDH or DH. She may need
+            risk and severely anaemic. Tell her and her family to deliver at Sub District
+            Hospital(SDH) or District Hospital(DH). She may need
             blood transfusion before labor starts.
             <span class="or-output" data-value=" /Delivery_Plan_EngKan/woman_name "></span>
 
@@ -365,7 +367,8 @@
     <label class="note or-branch pre-init non-select ">
         <span class="question-label active" lang="">Tell
             <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
-            to deliver at PHC. Tell her that complications can happen in any delivery, even if she
+            to deliver at Primary Health Center(PHC). Tell her that complications can happen in any
+            delivery, even if she
             is not high risk.
 
             <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
@@ -549,7 +552,8 @@
     <label class="note non-select ">
         <span class="question-label active" lang="">Tell
             <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
-            her options for family planning after delivery, including sterilization and IUCD
+            her options for family planning after delivery, including sterilization and Intrauterine
+            Contraceptive Device(IUCD)
             insertion.
             <!--<span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>-->
 
@@ -603,14 +607,15 @@
                         data-name="/Delivery_Plan_EngKan/pp_fp_method"
                         data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
                         data-type-xml="select1" type="radio" value="ocp" />
-                    <span class="option-label active" lang="">OCP</span>
+                    <span class="option-label active" lang="">Oral Contraceptive Pills(OCP)</span>
                 </label>
                 <label class="">
                     <input name="/Delivery_Plan_EngKan/pp_fp_method" autocomplete="off"
                         data-name="/Delivery_Plan_EngKan/pp_fp_method"
                         data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
                         data-type-xml="select1" type="radio" value="iud" />
-                    <span class="option-label active" lang="">IUCD
+                    <span class="option-label active" lang="">Intrauterine Contraceptive
+                        Device(IUCD)
 
                     </span>
                 </label>
@@ -640,7 +645,9 @@
                         data-name="/Delivery_Plan_EngKan/pp_fp_method"
                         data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
                         data-type-xml="select1" type="radio" value="dmpa_injectable" />
-                    <span class="option-label active" lang="">DMPA / Injectable</span>
+                    <span class="option-label active" lang="">Depo-Provera and Depo-Ralovera /
+                        Injectable
+                    </span>
                 </label>
                 <label class="">
                     <input name="/Delivery_Plan_EngKan/pp_fp_method" autocomplete="off"
@@ -654,7 +661,8 @@
                         data-name="/Delivery_Plan_EngKan/pp_fp_method"
                         data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
                         data-type-xml="select1" type="radio" value="lam" />
-                    <span class="option-label active" lang="">LAM</span>
+                    <span class="option-label active" lang="">Lactational Amenorrhea Method(LAM)
+                    </span>
                 </label>
                 <label class="">
                     <input name="/Delivery_Plan_EngKan/pp_fp_method" autocomplete="off"

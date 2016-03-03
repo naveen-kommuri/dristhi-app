@@ -7,7 +7,7 @@
     </select>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">PHC
+        <span class="question-label active" lang="">Primary Health Center(PHC)
         </span>
         <input name="/EC_Registration_EngKan/phc" autocomplete="off" data-type-xml="string"
             disabled="disabled" type="text" />
@@ -515,13 +515,14 @@
                     <input name="/EC_Registration_EngKan/familyplanning_method_1" autocomplete="off"
                         data-name="/EC_Registration_EngKan/familyplanning_method_1"
                         data-type-xml="select1" required="required" type="radio" value="ocp" />
-                    <span class="option-label active" lang="">OCP</span>
+                    <span class="option-label active" lang="">Oral Contraceptive Pills(OCP)</span>
                 </label>
                 <label class="">
                     <input name="/EC_Registration_EngKan/familyplanning_method_1" autocomplete="off"
                         data-name="/EC_Registration_EngKan/familyplanning_method_1"
                         data-type-xml="select1" required="required" type="radio" value="iud" />
-                    <span class="option-label active" lang="">IUCD
+                    <span class="option-label active" lang="">Intrauterine Contraceptive
+                        Device(IUCD)
 
                     </span>
                 </label>
@@ -592,7 +593,7 @@
                         data-relevant=" /EC_Registration_EngKan/familyplanning_method_1  = 'others'"
                         data-type-xml="select1" required="required" type="radio"
                         value="dmpa_injectable" />
-                    <span class="option-label active" lang="">DMPA / Injectable</span>
+                    <span class="option-label active" lang="">Depo-Provera and Depo-Ralovera / Injectable</span>
                 </label>
                 <label class="">
                     <input name="/EC_Registration_EngKan/familyplanning_method_other"
@@ -628,7 +629,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span class="question-label active" lang="">UPT result?
+                <span class="question-label active" lang="">Urine Pregnancy Result(UPT) result?
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -652,7 +653,9 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span class="question-label active" lang="">Place where IUCD was given?</span>
+                <span class="question-label active" lang="">Place where Intrauterine Contraceptive
+                    Device(IUCD) was given?
+                </span>
             </legend>
             <div class="option-wrapper">
                 <label class="">
@@ -667,7 +670,7 @@
                         data-name="/EC_Registration_EngKan/iud_place"
                         data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
                         data-type-xml="select1" type="radio" value="phc" />
-                    <span class="option-label active" lang="">My PHC</span>
+                    <span class="option-label active" lang="">My Primary Health Center(PHC)</span>
                 </label>
                 <label class="">
                     <input name="/EC_Registration_EngKan/iud_place" autocomplete="off"
@@ -683,7 +686,8 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span class="question-label active" lang="">Who inserted IUCD?
+                <span class="question-label active" lang="">Who inserted Intrauterine Contraceptive
+                    Device(IUCD)?
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -692,7 +696,7 @@
                         data-name="/EC_Registration_EngKan/iud_person"
                         data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
                         data-type-xml="select1" type="radio" value="anm" />
-                    <span class="option-label active" lang="">ANM
+                    <span class="option-label active" lang="">Auxiliary Nurse Midwifery(ANM)
                     </span>
                 </label>
                 <label class="">
@@ -700,21 +704,21 @@
                         data-name="/EC_Registration_EngKan/iud_person"
                         data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
                         data-type-xml="select1" type="radio" value="sn" />
-                    <span class="option-label active" lang="">SN</span>
+                    <span class="option-label active" lang="">Staff Nurse(SN)</span>
                 </label>
                 <label class="">
                     <input name="/EC_Registration_EngKan/iud_person" autocomplete="off"
                         data-name="/EC_Registration_EngKan/iud_person"
                         data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
                         data-type-xml="select1" type="radio" value="lhv" />
-                    <span class="option-label active" lang="">LHV</span>
+                    <span class="option-label active" lang="">Lady Health Visitor(LHV)</span>
                 </label>
                 <label class="">
                     <input name="/EC_Registration_EngKan/iud_person" autocomplete="off"
                         data-name="/EC_Registration_EngKan/iud_person"
                         data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
                         data-type-xml="select1" type="radio" value="mo" />
-                    <span class="option-label active" lang="">MO</span>
+                    <span class="option-label active" lang="">Medical Officer(MO)</span>
                 </label>
                 <label class="">
                     <input name="/EC_Registration_EngKan/iud_person" autocomplete="off"
@@ -778,7 +782,7 @@
         </fieldset>
     </fieldset>
     <label class="question or-branch pre-init non-select ">
-        <span class="question-label active" lang="">Last DMPA injection date?
+        <span class="question-label active" lang="">Last Depo-Provera and Depo-Ralovera injection date?
         </span>
         <span class="required">*</span>
         <input name="/EC_Registration_EngKan/injectable_date" autocomplete="off"
@@ -798,7 +802,8 @@
             data-type-xml="int" required="required" type="number" />
     </label>
     <label class="question or-branch pre-init non-select ">
-        <span class="question-label active" lang="">Number of OCP strips given?
+        <span class="question-label active" lang="">Number of Oral Contraceptive Pills(OCP) strips
+            given?
         </span>
         <span class="or-hint active" lang="">between 0-99
         </span>

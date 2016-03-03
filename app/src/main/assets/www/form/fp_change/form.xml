@@ -1,203 +1,215 @@
-<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="Family_Planning_Change_Method">
+<form autocomplete="off" class="or clearfix" id="Family_Planning_Change_Method"
+    novalidate="novalidate">
     <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">Change FP Method</h3>
 
     <label class="question non-select ">
 
-        <input name="/Family_Planning_Change_Method_EngKan/village" autocomplete="off" data-type-xml="string"
-            disabled="disabled" type="hidden" />
+        <input name="/Family_Planning_Change_Method_EngKan/village" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="hidden" />
     </label>
 
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">IUCD removal date?
+        <span class="question-label active" lang="">Intrauterine Contraceptive Device(IUCD) removal
+            date?
         </span>
         <span class="or-hint active" lang="">Future dates are not allowed
         </span>
-        <input autocomplete="off" type="date" name="/Family_Planning_Change_Method_EngKan/iud_removal_date"
-               data-constraint=".&lt;= /Family_Planning_Change_Method_EngKan/today "
-               data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
-               data-type-xml="date"/>
+        <input name="/Family_Planning_Change_Method_EngKan/iud_removal_date" autocomplete="off"
+            data-constraint=".&lt;= /Family_Planning_Change_Method_EngKan/today "
+            data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
+            data-type-xml="date" type="date" />
     </label>
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Place of IUCD removal?
+                <span class="question-label active" lang="">Place of Intrauterine Contraceptive
+                    Device(IUCD) removal?
                 </span>
             </legend>
             <div class="option-wrapper">
                 <label class="">
-                    <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
-                           data-name="/Family_Planning_Change_Method_EngKan/iud_removal_place" value="home"
-                           data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Home </span>
+                    <input name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
+                        data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="home" />
+                    <span class="option-label active" lang="">Home</span>
                 </label>
                 <label class="">
-                    <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
-                           data-name="/Family_Planning_Change_Method_EngKan/iud_removal_place" value="sub_center"
-                           data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">My Sub Center </span>
+                    <input name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
+                        data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="sub_center" />
+                    <span class="option-label active" lang="">My Sub Center</span>
                 </label>
                 <label class="">
-                    <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
-                           data-name="/Family_Planning_Change_Method_EngKan/iud_removal_place" value="phc"
-                           data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">My PHC </span>
+                    <input name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
+                        data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="phc" />
+                    <span class="option-label active" lang="">My Primary Health Center(PHC)</span>
                 </label>
                 <label class="">
-                    <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
-                           data-name="/Family_Planning_Change_Method_EngKan/iud_removal_place" value="elsewhere"
-                           data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Elsewhere
-                        </span>
+                    <input name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
+                        data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="elsewhere" />
+                    <span class="option-label active" lang="">Elsewhere
+                    </span>
                 </label>
             </div>
         </fieldset>
     </fieldset>
 
     <label class="question non-select ">
-        <span lang="" class="question-label active">EC Number: </span>
-        <input autocomplete="off" type="text" name="/Family_Planning_Change_Method_EngKan/ec_num" data-type-xml="int" disabled="disabled"/>
+        <span class="question-label active" lang="">EC Number:</span>
+        <input name="/Family_Planning_Change_Method_EngKan/ec_num" autocomplete="off"
+            data-type-xml="int" disabled="disabled" type="text" />
     </label>
 
 
     <label class="question non-select ">
-        <span lang="" class="question-label active">Woman Name: </span>
-        <input autocomplete="off" type="text" name="/Family_Planning_Change_Method_EngKan/woman_name" data-type-xml="string" disabled="disabled"/>
+        <span class="question-label active" lang="">Woman Name:</span>
+        <input name="/Family_Planning_Change_Method_EngKan/woman_name" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
     </label>
-
 
 
     <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Which method will the couple accept?
+                <span class="question-label active" lang="">Which method will the couple accept?
                 </span>
                 <span class="required">*</span>
             </legend>
             <div class="option-wrapper">
                 <label class="">
-                    <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
-                           data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method" value="condom"
-                           required="required" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Condom </span>
+                    <input name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
+                        data-type-xml="select1" required="required" type="radio" value="condom" />
+                    <span class="option-label active" lang="">Condom</span>
                 </label>
                 <label class="">
-                    <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
-                           data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method" value="ocp"
-                           required="required" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">OCP </span>
+                    <input name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
+                        data-type-xml="select1" required="required" type="radio" value="ocp" />
+                    <span class="option-label active" lang="">Oral Contraceptive Pills(OCP)</span>
                 </label>
                 <label class="">
-                    <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
-                           data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method" value="iud"
-                           required="required" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">IUCD
+                    <input name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
+                        data-type-xml="select1" required="required" type="radio" value="iud" />
+                    <span class="option-label active" lang="">Intrauterine Contraceptive
+                        Device(IUCD)
 
                     </span>
                 </label>
                 <label class="">
-                    <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
-                           data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
-                           value="male_sterilization" required="required" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Male Sterilization </span>
+                    <input name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
+                        data-type-xml="select1" required="required" type="radio"
+                        value="male_sterilization" />
+                    <span class="option-label active" lang="">Male Sterilization</span>
                 </label>
                 <label class="">
-                    <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
-                           data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
-                           value="female_sterilization" required="required" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Female Sterilization </span>
+                    <input name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
+                        data-type-xml="select1" required="required" type="radio"
+                        value="female_sterilization" />
+                    <span class="option-label active" lang="">Female Sterilization</span>
                 </label>
                 <label class="">
-                    <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
-                           data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
-                           value="dmpa_injectable" required="required" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">DMPA / Injectable </span>
+                    <input name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
+                        data-type-xml="select1" required="required" type="radio"
+                        value="dmpa_injectable" />
+                    <span class="option-label active" lang="">Depo-Provera and Depo-Ralovera / Injectable</span>
                 </label>
                 <label class="">
-                    <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
-                           data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
-                           value="traditional_methods" required="required" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Traditional Methods </span>
+                    <input name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
+                        data-type-xml="select1" required="required" type="radio"
+                        value="traditional_methods" />
+                    <span class="option-label active" lang="">Traditional Methods</span>
                 </label>
                 <label class="">
-                    <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
-                           data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method" value="lam"
-                           required="required" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">LAM</span>
+                    <input name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
+                        data-type-xml="select1" required="required" type="radio" value="lam" />
+                    <span class="option-label active" lang="">Lactational Amenorrhea Method(LAM)</span>
                 </label>
                 <label class="">
-                    <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
-                           data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method" value="centchroman"
-                           required="required" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Centchroman </span>
+                    <input name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
+                        data-type-xml="select1" required="required" type="radio"
+                        value="centchroman" />
+                    <span class="option-label active" lang="">Centchroman</span>
                 </label>
                 <label class="">
-                    <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
-                           data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method" value="none"
-                           required="required" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">None </span>
+                    <input name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
+                        data-type-xml="select1" required="required" type="radio" value="none" />
+                    <span class="option-label active" lang="">None</span>
                 </label>
             </div>
         </fieldset>
     </fieldset>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Date FP method started?
+        <span class="question-label active" lang="">Date FP method started?
         </span>
         <span class="or-hint active" lang="">Future dates are not allowed
         </span>
         <span class="required">*</span>
-        <input autocomplete="off" type="date" name="/Family_Planning_Change_Method_EngKan/date_familyplanningstart1"
-               required="required" data-constraint=".&lt;= /Family_Planning_Change_Method_EngKan/today "
-               data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none'"
-               data-type-xml="date"/>
+        <input name="/Family_Planning_Change_Method_EngKan/date_familyplanningstart1"
+            autocomplete="off" data-constraint=".&lt;= /Family_Planning_Change_Method_EngKan/today "
+            data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none'"
+            data-type-xml="date" required="required" type="date" />
     </label>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">LMP
+        <span class="question-label active" lang="">Last Menstrual Period(LMP)
         </span>
-        <input autocomplete="off" type="date" name="/Family_Planning_Change_Method_EngKan/lmp_date"
-               data-constraint=".&lt;= /Family_Planning_Change_Method_EngKan/today "
-               data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none' and  /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'male_sterilization'"
-               data-type-xml="date"/>
+        <input name="/Family_Planning_Change_Method_EngKan/lmp_date" autocomplete="off"
+            data-constraint=".&lt;= /Family_Planning_Change_Method_EngKan/today "
+            data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none' and  /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'male_sterilization'"
+            data-type-xml="date" type="date" />
     </label>
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">UPT result?
+                <span class="question-label active" lang="">Urine Pregnancy Result(UPT) result?
                 </span>
             </legend>
             <div class="option-wrapper">
                 <label class="">
-                    <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/upt_result"
-                           data-name="/Family_Planning_Change_Method_EngKan/upt_result" value="positive"
-                           data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none' and  /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'male_sterilization'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Positive </span>
+                    <input name="/Family_Planning_Change_Method_EngKan/upt_result"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/upt_result"
+                        data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none' and  /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'male_sterilization'"
+                        data-type-xml="select1" type="radio" value="positive" />
+                    <span class="option-label active" lang="">Positive</span>
                 </label>
                 <label class="">
-                    <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/upt_result"
-                           data-name="/Family_Planning_Change_Method_EngKan/upt_result" value="negative"
-                           data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none' and  /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'male_sterilization'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Negative </span>
+                    <input name="/Family_Planning_Change_Method_EngKan/upt_result"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/upt_result"
+                        data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none' and  /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'male_sterilization'"
+                        data-type-xml="select1" type="radio" value="negative" />
+                    <span class="option-label active" lang="">Negative</span>
                 </label>
             </div>
         </fieldset>
@@ -205,125 +217,134 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Place where IUCD was given?
+                <span class="question-label active" lang="">Place where Intrauterine Contraceptive
+                    Device(IUCD) was given?
                 </span>
             </legend>
             <div class="option-wrapper">
                 <label class="">
-                    <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_place"
-                           data-name="/Family_Planning_Change_Method_EngKan/iud_place" value="sub_center"
-                           data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">My Sub Center </span>
+                    <input name="/Family_Planning_Change_Method_EngKan/iud_place" autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/iud_place"
+                        data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="sub_center" />
+                    <span class="option-label active" lang="">My Sub Center</span>
                 </label>
                 <label class="">
-                    <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_place"
-                           data-name="/Family_Planning_Change_Method_EngKan/iud_place" value="phc"
-                           data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">My PHC </span>
+                    <input name="/Family_Planning_Change_Method_EngKan/iud_place" autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/iud_place"
+                        data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="phc" />
+                    <span class="option-label active" lang="">My Primary Health Center(PHC)</span>
                 </label>
                 <label class="">
-                    <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_place"
-                           data-name="/Family_Planning_Change_Method_EngKan/iud_place" value="elsewhere"
-                           data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Elsewhere
-                        </span>
-                </label>
-            </div>
-        </fieldset>
-    </fieldset>
-    <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Name of facility where IUCD was given?
-        </span>
-        <input autocomplete="off" type="text" name="/Family_Planning_Change_Method_EngKan/iud_place_name"
-               data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
-               data-type-xml="string"/>
-    </label>
-    <fieldset class="question or-branch pre-init ">
-        <fieldset>
-            <legend>
-                <span lang="" class="question-label active">Who inserted IUCD?
-                </span>
-            </legend>
-            <div class="option-wrapper">
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_person"
-                           data-name="/Family_Planning_Change_Method_EngKan/iud_person" value="anm"
-                           data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">ANM
-                        </span>
-                </label>
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_person"
-                           data-name="/Family_Planning_Change_Method_EngKan/iud_person" value="sn"
-                           data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">SN </span>
-                </label>
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_person"
-                           data-name="/Family_Planning_Change_Method_EngKan/iud_person" value="lhv"
-                           data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">LHV </span>
-                </label>
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_person"
-                           data-name="/Family_Planning_Change_Method_EngKan/iud_person" value="mo"
-                           data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">MO </span>
-                </label>
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_person"
-                           data-name="/Family_Planning_Change_Method_EngKan/iud_person" value="others"
-                           data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Others </span>
+                    <input name="/Family_Planning_Change_Method_EngKan/iud_place" autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/iud_place"
+                        data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="elsewhere" />
+                    <span class="option-label active" lang="">Elsewhere
+                    </span>
                 </label>
             </div>
         </fieldset>
     </fieldset>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Name of IUCD inserter
+        <span class="question-label active" lang="">Name of facility where Intrauterine
+            Contraceptive Device(IUCD) was given?
         </span>
-        <input autocomplete="off" type="text" name="/Family_Planning_Change_Method_EngKan/iud_person_name"
-               data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
-               data-type-xml="string"/>
+        <input name="/Family_Planning_Change_Method_EngKan/iud_place_name" autocomplete="off"
+            data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
+            data-type-xml="string" type="text" />
+    </label>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Who inserted Intrauterine Contraceptive
+                    Device(IUCD)?
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Family_Planning_Change_Method_EngKan/iud_person"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/iud_person"
+                        data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="anm" />
+                    <span class="option-label active" lang="">Auxiliary Nurse Midwifery(ANM)
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/Family_Planning_Change_Method_EngKan/iud_person"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/iud_person"
+                        data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="sn" />
+                    <span class="option-label active" lang="">Staff Nurse(SN)</span>
+                </label>
+                <label class="">
+                    <input name="/Family_Planning_Change_Method_EngKan/iud_person"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/iud_person"
+                        data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="lhv" />
+                    <span class="option-label active" lang="">Lady Health Visitor(LHV)</span>
+                </label>
+                <label class="">
+                    <input name="/Family_Planning_Change_Method_EngKan/iud_person"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/iud_person"
+                        data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="mo" />
+                    <span class="option-label active" lang="">Medical Officer(MO)</span>
+                </label>
+                <label class="">
+                    <input name="/Family_Planning_Change_Method_EngKan/iud_person"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/iud_person"
+                        data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="others" />
+                    <span class="option-label active" lang="">Others</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Name of Intrauterine Contraceptive Device(IUCD)
+            inserter
+        </span>
+        <input name="/Family_Planning_Change_Method_EngKan/iud_person_name" autocomplete="off"
+            data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
+            data-type-xml="string" type="text" />
     </label>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Name of doctor who did sterilization?
+        <span class="question-label active" lang="">Name of doctor who did sterilization?
         </span>
-        <input autocomplete="off" type="text" name="/Family_Planning_Change_Method_EngKan/sterilization_doctor_name"
-               data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'male_sterilization' or  /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'female_sterilization'"
-               data-type-xml="string"/>
+        <input name="/Family_Planning_Change_Method_EngKan/sterilization_doctor_name"
+            autocomplete="off"
+            data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'male_sterilization' or  /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'female_sterilization'"
+            data-type-xml="string" type="text" />
     </label>
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Type of sterilization?
+                <span class="question-label active" lang="">Type of sterilization?
                 </span>
             </legend>
             <div class="option-wrapper">
                 <label class="">
-                    <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Change_Method_EngKan/male_sterilization_type"
-                           data-name="/Family_Planning_Change_Method_EngKan/male_sterilization_type" value="nsv"
-                           data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'male_sterilization'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">No-Scalpel Vasectomy (NSV) </span>
+                    <input name="/Family_Planning_Change_Method_EngKan/male_sterilization_type"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/male_sterilization_type"
+                        data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'male_sterilization'"
+                        data-type-xml="select1" type="radio" value="nsv" />
+                    <span class="option-label active" lang="">No-Scalpel Vasectomy (NSV)</span>
                 </label>
                 <label class="">
-                    <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Change_Method_EngKan/male_sterilization_type"
-                           data-name="/Family_Planning_Change_Method_EngKan/male_sterilization_type"
-                           value="conventional_vasectomy"
-                           data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'male_sterilization'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Conventional Vasectomy</span>
+                    <input name="/Family_Planning_Change_Method_EngKan/male_sterilization_type"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/male_sterilization_type"
+                        data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'male_sterilization'"
+                        data-type-xml="select1" type="radio" value="conventional_vasectomy" />
+                    <span class="option-label active" lang="">Conventional Vasectomy</span>
                 </label>
             </div>
         </fieldset>
@@ -331,112 +352,119 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Type of sterilization?
+                <span class="question-label active" lang="">Type of sterilization?
                 </span>
             </legend>
             <div class="option-wrapper">
                 <label class="">
-                    <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Change_Method_EngKan/female_sterilization_type"
-                           data-name="/Family_Planning_Change_Method_EngKan/female_sterilization_type" value="minilap"
-                           data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'female_sterilization'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Minilap </span>
+                    <input name="/Family_Planning_Change_Method_EngKan/female_sterilization_type"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/female_sterilization_type"
+                        data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'female_sterilization'"
+                        data-type-xml="select1" type="radio" value="minilap" />
+                    <span class="option-label active" lang="">Minilap</span>
                 </label>
                 <label class="">
-                    <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Change_Method_EngKan/female_sterilization_type"
-                           data-name="/Family_Planning_Change_Method_EngKan/female_sterilization_type"
-                           value="laparoscopic"
-                           data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'female_sterilization'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Laparoscopic </span>
+                    <input name="/Family_Planning_Change_Method_EngKan/female_sterilization_type"
+                        autocomplete="off"
+                        data-name="/Family_Planning_Change_Method_EngKan/female_sterilization_type"
+                        data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'female_sterilization'"
+                        data-type-xml="select1" type="radio" value="laparoscopic" />
+                    <span class="option-label active" lang="">Laparoscopic</span>
                 </label>
             </div>
         </fieldset>
     </fieldset>
-    <section class="or-group-data or-branch pre-init "
-             name="/Family_Planning_Change_Method_EngKan/male_sterilizaton_group"
-             data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'male_sterilization'">
+    <section name="/Family_Planning_Change_Method_EngKan/male_sterilizaton_group"
+        class="or-group-data or-branch pre-init "
+        data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'male_sterilization'">
         <label class="note or-branch pre-init non-select ">
-            <span lang="" class="question-label active">Pregnancy can still happen up to 3 months after male
-                sterilization. Tell the couple to use back-up FP method until 3 months from sterilization date,
+            <span class="question-label active" lang="">Pregnancy can still happen up to 3 months
+                after male
+                sterilization. Tell the couple to use back-up FP method until 3 months from
+                sterilization date,
                 <span class="or-output"
-                      data-value=" /Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date_formatted ">
-                </span>
+                    data-value=" /Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date_formatted "></span>
             </span>
-            <input autocomplete="off" type="text"
-                   name="/Family_Planning_Change_Method_EngKan/male_sterilizaton_group/male_sterilization_message"
-                   data-relevant=" /Family_Planning_Change_Method_EngKan/today  -  /Family_Planning_Change_Method_EngKan/date_familyplanningstart  &lt; 90"
-                   data-type-xml="string" readonly="readonly"/>
+            <input
+                name="/Family_Planning_Change_Method_EngKan/male_sterilizaton_group/male_sterilization_message"
+                autocomplete="off"
+                data-relevant=" /Family_Planning_Change_Method_EngKan/today  -  /Family_Planning_Change_Method_EngKan/date_familyplanningstart  &lt; 90"
+                data-type-xml="string" readonly="readonly" type="text" />
         </label>
     </section>
     <!--end of group -->
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Number of condoms given?
-        </span> <span class="or-hint active" lang="">between 0-99
-    </span>
-        <span class="required">*</span>
-        <input autocomplete="off" type="number" name="/Family_Planning_Change_Method_EngKan/num_condoms"
-               required="required" data-constraint=".&gt;= 0 and .&lt; 100"
-               data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'condom'"
-               data-type-xml="int"/>
-    </label>
-    <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Number of OCP strips given?
+        <span class="question-label active" lang="">Number of condoms given?
         </span>
         <span class="or-hint active" lang="">between 0-99
         </span>
         <span class="required">*</span>
-        <input autocomplete="off" type="number" name="/Family_Planning_Change_Method_EngKan/num_ocp_strips"
-               required="required" data-constraint=".&gt;= 0 and .&lt; 100"
-               data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'ocp'"
-               data-type-xml="int"/>
+        <input name="/Family_Planning_Change_Method_EngKan/num_condoms" autocomplete="off"
+            data-constraint=".&gt;= 0 and .&lt; 100"
+            data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'condom'"
+            data-type-xml="int" required="required" type="number" />
     </label>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Number of Centchroman strips given?
+        <span class="question-label active" lang="">Number of Oral Contraceptive Pills(OCP) strips
+            given?
         </span>
         <span class="or-hint active" lang="">between 0-99
         </span>
         <span class="required">*</span>
-        <input autocomplete="off" type="number" name="/Family_Planning_Change_Method_EngKan/num_centchroman_pills"
-               required="required" data-constraint=".&gt;= 0 and .&lt; 100"
-               data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'centchroman'"
-               data-type-xml="int"/>
+        <input name="/Family_Planning_Change_Method_EngKan/num_ocp_strips" autocomplete="off"
+            data-constraint=".&gt;= 0 and .&lt; 100"
+            data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'ocp'"
+            data-type-xml="int" required="required" type="number" />
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Number of Centchroman strips given?
+        </span>
+        <span class="or-hint active" lang="">between 0-99
+        </span>
+        <span class="required">*</span>
+        <input name="/Family_Planning_Change_Method_EngKan/num_centchroman_pills" autocomplete="off"
+            data-constraint=".&gt;= 0 and .&lt; 100"
+            data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'centchroman'"
+            data-type-xml="int" required="required" type="number" />
     </label>
 
-    <fieldset id="or-preload-items" style="display:none;">
+    <fieldset style="display:none;" id="or-preload-items">
         <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden" name="/Family_Planning_Change_Method_EngKan/today"
-                   data-preload="date" data-preload-params="today" data-type-xml="date"/>
+            <input name="/Family_Planning_Change_Method_EngKan/today" autocomplete="off"
+                data-preload="date" data-preload-params="today" data-type-xml="date"
+                type="hidden" />
         </label>
     </fieldset>
-    <fieldset id="or-calculated-items" style="display:none;">
+    <fieldset style="display:none;" id="or-calculated-items">
         <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden"
-                   name="/Family_Planning_Change_Method_EngKan/date_familyplanningstart"
-                   data-calculate="if( /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'none', ' ',  /Family_Planning_Change_Method_EngKan/date_familyplanningstart1 )"
-                   data-type-xml="string"/>
+            <input name="/Family_Planning_Change_Method_EngKan/date_familyplanningstart"
+                autocomplete="off"
+                data-calculate="if( /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'none', ' ',  /Family_Planning_Change_Method_EngKan/date_familyplanningstart1 )"
+                data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden"
-                   name="/Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date"
-                   data-calculate="date( /Family_Planning_Change_Method_EngKan/date_familyplanningstart  + 90)"
-                   data-type-xml="string"/>
+            <input
+                name="/Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date"
+                autocomplete="off"
+                data-calculate="date( /Family_Planning_Change_Method_EngKan/date_familyplanningstart  + 90)"
+                data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden"
-                   name="/Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date_formatted"
-                   data-calculate="format-date( /Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date , '%Y-%n-%e')"
-                   data-type-xml="string"/>
+            <input
+                name="/Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date_formatted"
+                autocomplete="off"
+                data-calculate="format-date( /Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date , '%Y-%n-%e')"
+                data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden" name="/Family_Planning_Change_Method_EngKan/meta/instanceID"
-                   data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
+            <input name="/Family_Planning_Change_Method_EngKan/meta/instanceID" autocomplete="off"
+                data-calculate="concat('uuid:', uuid())" data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden" name="/Family_Planning_Change_Method_EngKan/formhub/uuid"
-                   data-calculate="'e73e02e0be8241c8bfe8a0ec702f2319'" data-type-xml="string"/>
+            <input name="/Family_Planning_Change_Method_EngKan/formhub/uuid" autocomplete="off"
+                data-calculate="'e73e02e0be8241c8bfe8a0ec702f2319'" data-type-xml="string"
+                type="hidden" />
         </label>
     </fieldset>
 </form>

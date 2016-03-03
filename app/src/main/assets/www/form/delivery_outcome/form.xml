@@ -67,25 +67,25 @@
                     <input name="/PNC_Registration_EngKan/place_delivery" autocomplete="off"
                         data-name="/PNC_Registration_EngKan/place_delivery" data-type-xml="select1"
                         required="required" type="radio" value="phc" />
-                    <span class="option-label active" lang="">PHC</span>
+                    <span class="option-label active" lang="">Primary Health Center(PHC)</span>
                 </label>
                 <label class="">
                     <input name="/PNC_Registration_EngKan/place_delivery" autocomplete="off"
                         data-name="/PNC_Registration_EngKan/place_delivery" data-type-xml="select1"
                         required="required" type="radio" value="chc" />
-                    <span class="option-label active" lang="">CHC</span>
+                    <span class="option-label active" lang="">Community Health Center(CHC)</span>
                 </label>
                 <label class="">
                     <input name="/PNC_Registration_EngKan/place_delivery" autocomplete="off"
                         data-name="/PNC_Registration_EngKan/place_delivery" data-type-xml="select1"
                         required="required" type="radio" value="sdh" />
-                    <span class="option-label active" lang="">SDH</span>
+                    <span class="option-label active" lang="">Sub District Hospital(SDH)</span>
                 </label>
                 <label class="">
                     <input name="/PNC_Registration_EngKan/place_delivery" autocomplete="off"
                         data-name="/PNC_Registration_EngKan/place_delivery" data-type-xml="select1"
                         required="required" type="radio" value="dh" />
-                    <span class="option-label active" lang="">DH</span>
+                    <span class="option-label active" lang="">District Hospital(DH)</span>
                 </label>
                 <label class="">
                     <input name="/PNC_Registration_EngKan/place_delivery" autocomplete="off"
@@ -149,25 +149,25 @@
                     <input name="/PNC_Registration_EngKan/addl_delivery_facility" autocomplete="off"
                         data-relevant=" /PNC_Registration_EngKan/only_delivery_facility  = 'no'"
                         data-type-xml="select" type="checkbox" value="phc" />
-                    <span class="option-label active" lang="">PHC</span>
+                    <span class="option-label active" lang="">Primary Health Center(PHC)</span>
                 </label>
                 <label class="">
                     <input name="/PNC_Registration_EngKan/addl_delivery_facility" autocomplete="off"
                         data-relevant=" /PNC_Registration_EngKan/only_delivery_facility  = 'no'"
                         data-type-xml="select" type="checkbox" value="chc" />
-                    <span class="option-label active" lang="">CHC</span>
+                    <span class="option-label active" lang="">Community Health Center(CHC)</span>
                 </label>
                 <label class="">
                     <input name="/PNC_Registration_EngKan/addl_delivery_facility" autocomplete="off"
                         data-relevant=" /PNC_Registration_EngKan/only_delivery_facility  = 'no'"
                         data-type-xml="select" type="checkbox" value="sdh" />
-                    <span class="option-label active" lang="">SDH</span>
+                    <span class="option-label active" lang="">Sub District Hospital(SDH)</span>
                 </label>
                 <label class="">
                     <input name="/PNC_Registration_EngKan/addl_delivery_facility" autocomplete="off"
                         data-relevant=" /PNC_Registration_EngKan/only_delivery_facility  = 'no'"
                         data-type-xml="select" type="checkbox" value="dh" />
-                    <span class="option-label active" lang="">DH</span>
+                    <span class="option-label active" lang="">District Hospital(DH)</span>
                 </label>
                 <label class="">
                     <input name="/PNC_Registration_EngKan/addl_delivery_facility" autocomplete="off"
@@ -249,7 +249,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span class="question-label active" lang="">Delivery attended by SBA?
+                <span class="question-label active" lang="">Delivery attended by Skilled Birth Attendant(SBA)?
                 </span>
                 <span class="required">*</span>
             </legend>
@@ -497,14 +497,14 @@
                                     name="/PNC_Registration_EngKan/live_birth_group/child/immunizations_atbirth"
                                     autocomplete="off" data-type-xml="select" type="checkbox"
                                     value="bcg" />
-                                <span class="option-label active" lang="">BCG</span>
+                                <span class="option-label active" lang="">Bacillus Calmette–Guerin(BCG)</span>
                             </label>
                             <label class="">
                                 <input
                                     name="/PNC_Registration_EngKan/live_birth_group/child/immunizations_atbirth"
                                     autocomplete="off" data-type-xml="select" type="checkbox"
                                     value="opv_0" />
-                                <span class="option-label active" lang="">OPV 0
+                                <span class="option-label active" lang="">Oral Polio Vaccine(OPV) 0
                                 </span>
                             </label>
                             <label class="">

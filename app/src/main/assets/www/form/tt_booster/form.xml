@@ -14,7 +14,7 @@
             disabled="disabled" type="hidden" />
     </label>
     <label class="question or-appearance-minimal ">
-        <span class="question-label active" lang="">Place of TT Booster injection?
+        <span class="question-label active" lang="">Place of Tetanus Toxoid(TT) Booster injection?
         </span>
         <span class="required">*</span>
         <select name="/TTBooster_EngKan/ttbooster_injection_place"
@@ -22,12 +22,12 @@
             required="required">
             <option value="">...</option>
             <option value="sub_center">My Sub Center</option>
-            <option value="phc">My PHC</option>
+            <option value="phc">My Primary Health Center(PHC)</option>
         </select>
         <span style="display:none;" class="or-option-translations"></span>
     </label>
     <label class="question non-select ">
-        <span class="question-label active" lang="">Date of TT Booster injection?
+        <span class="question-label active" lang="">Date of Tetanus Toxoid(TT) Booster injection?
         </span>
         <span class="or-hint active" lang="">Future dates are not allowed
         </span>

@@ -27,57 +27,58 @@
                 <label class="">
                     <input name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method" autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method"
-                        data-type-xml="select1" required="required"
-                        type="radio" value="condom" />
+                        data-type-xml="select1" required="required" type="radio" value="condom" />
                     <span class="option-label active" lang="">Condom</span>
                 </label>
                 <label class="">
                     <input name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method" autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method"
-                        data-type-xml="select1" required="required"
-                        type="radio" value="ocp" />
-                    <span class="option-label active" lang="">OCP</span>
+                        data-type-xml="select1" required="required" type="radio" value="ocp" />
+                    <span class="option-label active" lang="">Oral Contraceptive Pills(OCP)</span>
                 </label>
                 <label class="">
                     <input name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method" autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method"
-                        data-type-xml="select1" required="required"
-                        type="radio" value="iud" />
-                    <span class="option-label active" lang="">IUCD</span>
+                        data-type-xml="select1" required="required" type="radio" value="iud" />
+                    <span class="option-label active" lang="">Intrauterine Contraceptive
+                        Device(IUCD)
+                    </span>
                 </label>
                 <label class="">
                     <input name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method" autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method"
-                        data-type-xml="select1"
-                        required="required" type="radio" value="male_sterilization" />
+                        data-type-xml="select1" required="required" type="radio"
+                        value="male_sterilization" />
                     <span class="option-label active" lang="">Male Sterilization</span>
                 </label>
                 <label class="">
                     <input name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method" autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method"
-                        data-type-xml="select1"
-                        required="required" type="radio" value="female_sterilization" />
+                        data-type-xml="select1" required="required" type="radio"
+                        value="female_sterilization" />
                     <span class="option-label active" lang="">Female Sterilization</span>
                 </label>
                 <label class="">
                     <input name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method" autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method"
-                        data-type-xml="select1"
-                        required="required" type="radio" value="dmpa_injectable" />
-                    <span class="option-label active" lang="">DMPA / Injectable</span>
+                        data-type-xml="select1" required="required" type="radio"
+                        value="dmpa_injectable" />
+                    <span class="option-label active" lang="">Depo-Provera and Depo-Ralovera /
+                        Injectable
+                    </span>
                 </label>
                 <label class="">
                     <input name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method" autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method"
-                        data-type-xml="select1"
-                        required="required" type="radio" value="traditional_methods" />
+                        data-type-xml="select1" required="required" type="radio"
+                        value="traditional_methods" />
                     <span class="option-label active" lang="">Traditional Methods</span>
                 </label>
                 <label class="">
                     <input name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method" autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method"
-                        data-type-xml="select1"
-                        required="required" type="radio" value="centchroman" />
+                        data-type-xml="select1" required="required" type="radio"
+                        value="centchroman" />
                     <span class="option-label active" lang="">Centchroman</span>
                 </label>
             </div>
@@ -91,62 +92,56 @@
         <span class="required">*</span>
         <input name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method_start_date" autocomplete="off"
             data-constraint=".&lt;= /Postpartum_FamilyPlanning_EngKan/today " data-type-xml="date"
-            required="required"
-            type="date" />
+            required="required" type="date" />
     </label>
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span class="question-label active" lang="">Place where IUCD was given?</span>
+                <span class="question-label active" lang="">Place where Intrauterine Contraceptive
+                    Device(IUCD) was given?
+                </span>
             </legend>
             <div class="option-wrapper">
                 <label class="">
                     <input name="/Postpartum_FamilyPlanning_EngKan/iud_place" autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/iud_place"
-                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'" data-type-xml="select1"
-                        type="radio"
-                        value="subcenter" />
+                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="subcenter" />
                     <span class="option-label active" lang="">Sub Center</span>
                 </label>
                 <label class="">
                     <input name="/Postpartum_FamilyPlanning_EngKan/iud_place" autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/iud_place"
-                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'" data-type-xml="select1"
-                        type="radio"
-                        value="phc" />
-                    <span class="option-label active" lang="">PHC</span>
-                </label>
-                <label class="">
-                    <input name="/Postpartum_FamilyPlanning_EngKan/iud_place" autocomplete="off"
-                        data-name="/Postpartum_FamilyPlanning_EngKan/iud_place"
-                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'" data-type-xml="select1"
-                        type="radio"
-                        value="chc" />
-                    <span class="option-label active" lang="">CHC</span>
-                </label>
-                <label class="">
-                    <input name="/Postpartum_FamilyPlanning_EngKan/iud_place" autocomplete="off"
-                        data-name="/Postpartum_FamilyPlanning_EngKan/iud_place"
-                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'" data-type-xml="select1"
-                        type="radio"
-                        value="sdh" />
-                    <span class="option-label active" lang="">SDH</span>
-                </label>
-                <label class="">
-                    <input name="/Postpartum_FamilyPlanning_EngKan/iud_place" autocomplete="off"
-                        data-name="/Postpartum_FamilyPlanning_EngKan/iud_place"
-                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'" data-type-xml="select1"
-                        type="radio"
-                        value="dh" />
-                    <span class="option-label active" lang="">DH</span>
+                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="phc" />
+                    <span class="option-label active" lang="">Primary Health Center(PHC)</span>
                 </label>
                 <label class="">
                     <input name="/Postpartum_FamilyPlanning_EngKan/iud_place" autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/iud_place"
                         data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'"
-                        data-type-xml="select1"
-                        type="radio"
-                        value="private_facility" />
+                        data-type-xml="select1" type="radio" value="chc" />
+                    <span class="option-label active" lang="">Community Health Center(CHC)</span>
+                </label>
+                <label class="">
+                    <input name="/Postpartum_FamilyPlanning_EngKan/iud_place" autocomplete="off"
+                        data-name="/Postpartum_FamilyPlanning_EngKan/iud_place"
+                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="sdh" />
+                    <span class="option-label active" lang="">Sub District Hospital(SDH)</span>
+                </label>
+                <label class="">
+                    <input name="/Postpartum_FamilyPlanning_EngKan/iud_place" autocomplete="off"
+                        data-name="/Postpartum_FamilyPlanning_EngKan/iud_place"
+                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="dh" />
+                    <span class="option-label active" lang="">District Hospital(DH)</span>
+                </label>
+                <label class="">
+                    <input name="/Postpartum_FamilyPlanning_EngKan/iud_place" autocomplete="off"
+                        data-name="/Postpartum_FamilyPlanning_EngKan/iud_place"
+                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="private_facility" />
                     <span class="option-label active" lang="">Private</span>
                 </label>
             </div>
@@ -155,47 +150,44 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span class="question-label active" lang="">Who inserted IUCD?</span>
+                <span class="question-label active" lang="">Who inserted Intrauterine Contraceptive
+                    Device(IUCD)?
+                </span>
             </legend>
             <div class="option-wrapper">
                 <label class="">
                     <input name="/Postpartum_FamilyPlanning_EngKan/iud_person" autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/iud_person"
-                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'" data-type-xml="select1"
-                        type="radio"
-                        value="anm" />
-                    <span class="option-label active" lang="">ANM</span>
+                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="anm" />
+                    <span class="option-label active" lang="">Auxiliary Nurse Midwifery(ANM)</span>
                 </label>
                 <label class="">
                     <input name="/Postpartum_FamilyPlanning_EngKan/iud_person" autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/iud_person"
-                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'" data-type-xml="select1"
-                        type="radio"
-                        value="sn" />
-                    <span class="option-label active" lang="">SN</span>
+                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="sn" />
+                    <span class="option-label active" lang="">Staff Nurse(SN)</span>
                 </label>
                 <label class="">
                     <input name="/Postpartum_FamilyPlanning_EngKan/iud_person" autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/iud_person"
-                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'" data-type-xml="select1"
-                        type="radio"
-                        value="lhv" />
-                    <span class="option-label active" lang="">LHV</span>
+                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="lhv" />
+                    <span class="option-label active" lang="">Lady Health Visitor(LHV)</span>
                 </label>
                 <label class="">
                     <input name="/Postpartum_FamilyPlanning_EngKan/iud_person" autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/iud_person"
-                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'" data-type-xml="select1"
-                        type="radio"
-                        value="mo" />
-                    <span class="option-label active" lang="">MO</span>
+                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="mo" />
+                    <span class="option-label active" lang="">Medical Officer(MO)</span>
                 </label>
                 <label class="">
                     <input name="/Postpartum_FamilyPlanning_EngKan/iud_person" autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/iud_person"
-                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'" data-type-xml="select1"
-                        type="radio"
-                        value="others" />
+                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="others" />
                     <span class="option-label active" lang="">Others</span>
                 </label>
             </div>
@@ -208,21 +200,19 @@
             </legend>
             <div class="option-wrapper">
                 <label class="">
-                    <input name="/Postpartum_FamilyPlanning_EngKan/female_sterilization_type" autocomplete="off"
+                    <input name="/Postpartum_FamilyPlanning_EngKan/female_sterilization_type"
+                        autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/female_sterilization_type"
                         data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'female_sterilization'"
-                        data-type-xml="select1"
-                        type="radio"
-                        value="minilap" />
+                        data-type-xml="select1" type="radio" value="minilap" />
                     <span class="option-label active" lang="">Minilap</span>
                 </label>
                 <label class="">
-                    <input name="/Postpartum_FamilyPlanning_EngKan/female_sterilization_type" autocomplete="off"
+                    <input name="/Postpartum_FamilyPlanning_EngKan/female_sterilization_type"
+                        autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/female_sterilization_type"
                         data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'female_sterilization'"
-                        data-type-xml="select1"
-                        type="radio"
-                        value="laparoscopic" />
+                        data-type-xml="select1" type="radio" value="laparoscopic" />
                     <span class="option-label active" lang="">Laparoscopic</span>
                 </label>
             </div>
@@ -235,46 +225,45 @@
             </legend>
             <div class="option-wrapper">
                 <label class="">
-                    <input name="/Postpartum_FamilyPlanning_EngKan/male_sterilization_type" autocomplete="off"
+                    <input name="/Postpartum_FamilyPlanning_EngKan/male_sterilization_type"
+                        autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/male_sterilization_type"
                         data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'male_sterilization'"
-                        data-type-xml="select1"
-                        type="radio"
-                        value="nsv" />
+                        data-type-xml="select1" type="radio" value="nsv" />
                     <span class="option-label active" lang="">No-Scalpel Vasectomy (NSV)</span>
                 </label>
                 <label class="">
-                    <input name="/Postpartum_FamilyPlanning_EngKan/male_sterilization_type" autocomplete="off"
+                    <input name="/Postpartum_FamilyPlanning_EngKan/male_sterilization_type"
+                        autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/male_sterilization_type"
                         data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'male_sterilization'"
-                        data-type-xml="select1"
-                        type="radio"
-                        value="conventional_vasectomy" />
+                        data-type-xml="select1" type="radio" value="conventional_vasectomy" />
                     <span class="option-label active" lang="">Conventional Vasectomy</span>
                 </label>
             </div>
         </fieldset>
     </fieldset>
     <label class="question or-branch pre-init non-select ">
-        <span class="question-label active" lang="">Number of OCP strips given?</span>
+        <span class="question-label active" lang="">Number of Oral Contraceptive Pills(OCP) strips
+            given?
+        </span>
         <span class="or-hint active" lang="">between 0-99
         </span>
         <span class="required">*</span>
         <input name="/Postpartum_FamilyPlanning_EngKan/num_ocp_strips" autocomplete="off"
-            data-constraint=".&gt;=0 and .&lt; 100" data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'ocp'"
-            data-type-xml="int"
-            required="required"
-            type="number" />
+            data-constraint=".&gt;=0 and .&lt; 100"
+            data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'ocp'"
+            data-type-xml="int" required="required" type="number" />
     </label>
     <label class="question or-branch pre-init non-select ">
         <span class="question-label active" lang="">Number of condoms given?</span>
         <span class="or-hint active" lang="">between 0-99
         </span>
         <span class="required">*</span>
-        <input name="/Postpartum_FamilyPlanning_EngKan/num_condoms" autocomplete="off" data-constraint=".&gt;=0 and .&lt; 100"
-            data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'condom'" data-type-xml="int"
-            required="required"
-            type="number" />
+        <input name="/Postpartum_FamilyPlanning_EngKan/num_condoms" autocomplete="off"
+            data-constraint=".&gt;=0 and .&lt; 100"
+            data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'condom'"
+            data-type-xml="int" required="required" type="number" />
     </label>
     <label class="question or-branch pre-init non-select ">
         <span class="question-label active" lang="">Number of Centchroman strips given?</span>
@@ -282,10 +271,9 @@
         </span>
         <span class="required">*</span>
         <input name="/Postpartum_FamilyPlanning_EngKan/num_centchroman_pills" autocomplete="off"
-            data-constraint=".&gt;=0 and .&lt; 100" data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'centchroman'"
-            data-type-xml="int"
-            required="required"
-            type="number" />
+            data-constraint=".&gt;=0 and .&lt; 100"
+            data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method  = 'centchroman'"
+            data-type-xml="int" required="required" type="number" />
     </label>
     <fieldset class="question ">
         <fieldset>
@@ -296,17 +284,17 @@
             </legend>
             <div class="option-wrapper">
                 <label class="">
-                    <input name="/Postpartum_FamilyPlanning_EngKan/exclusively_bf" autocomplete="off"
+                    <input name="/Postpartum_FamilyPlanning_EngKan/exclusively_bf"
+                        autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/exclusively_bf"
-                        data-type-xml="select1" type="radio"
-                        value="yes" />
+                        data-type-xml="select1" type="radio" value="yes" />
                     <span class="option-label active" lang="">Yes</span>
                 </label>
                 <label class="">
-                    <input name="/Postpartum_FamilyPlanning_EngKan/exclusively_bf" autocomplete="off"
+                    <input name="/Postpartum_FamilyPlanning_EngKan/exclusively_bf"
+                        autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/exclusively_bf"
-                        data-type-xml="select1" type="radio"
-                        value="no" />
+                        data-type-xml="select1" type="radio" value="no" />
                     <span class="option-label active" lang="">No</span>
                 </label>
             </div>
@@ -323,17 +311,15 @@
                 <label class="">
                     <input name="/Postpartum_FamilyPlanning_EngKan/partially_bf" autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/partially_bf"
-                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/exclusively_bf  = 'no'" data-type-xml="select1"
-                        type="radio"
-                        value="yes" />
+                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/exclusively_bf  = 'no'"
+                        data-type-xml="select1" type="radio" value="yes" />
                     <span class="option-label active" lang="">Yes</span>
                 </label>
                 <label class="">
                     <input name="/Postpartum_FamilyPlanning_EngKan/partially_bf" autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/partially_bf"
-                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/exclusively_bf  = 'no'" data-type-xml="select1"
-                        type="radio"
-                        value="no" />
+                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/exclusively_bf  = 'no'"
+                        data-type-xml="select1" type="radio" value="no" />
                     <span class="option-label active" lang="">No</span>
                 </label>
             </div>
@@ -346,17 +332,17 @@
             </legend>
             <div class="option-wrapper">
                 <label class="">
-                    <input name="/Postpartum_FamilyPlanning_EngKan/monthly_bleeding" autocomplete="off"
+                    <input name="/Postpartum_FamilyPlanning_EngKan/monthly_bleeding"
+                        autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/monthly_bleeding"
-                        data-type-xml="select1" type="radio"
-                        value="yes" />
+                        data-type-xml="select1" type="radio" value="yes" />
                     <span class="option-label active" lang="">Yes</span>
                 </label>
                 <label class="">
-                    <input name="/Postpartum_FamilyPlanning_EngKan/monthly_bleeding" autocomplete="off"
+                    <input name="/Postpartum_FamilyPlanning_EngKan/monthly_bleeding"
+                        autocomplete="off"
                         data-name="/Postpartum_FamilyPlanning_EngKan/monthly_bleeding"
-                        data-type-xml="select1" type="radio"
-                        value="no" />
+                        data-type-xml="select1" type="radio" value="no" />
                     <span class="option-label active" lang="">No</span>
                 </label>
             </div>
@@ -365,20 +351,20 @@
 
     <fieldset style="display:none;" id="or-preload-items">
         <label class="calculation non-select ">
-            <input name="/Postpartum_FamilyPlanning_EngKan/today" autocomplete="off" data-preload="date"
-                data-preload-params="today" data-type-xml="date" type="hidden" />
+            <input name="/Postpartum_FamilyPlanning_EngKan/today" autocomplete="off"
+                data-preload="date" data-preload-params="today" data-type-xml="date"
+                type="hidden" />
         </label>
     </fieldset>
     <fieldset style="display:none;" id="or-calculated-items">
         <label class="calculation non-select ">
             <input name="/Postpartum_FamilyPlanning_EngKan/meta/instanceID" autocomplete="off"
-                data-calculate="concat('uuid:', uuid())"
-                data-type-xml="string" type="hidden" />
+                data-calculate="concat('uuid:', uuid())" data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
             <input name="/Postpartum_FamilyPlanning_EngKan/formhub/uuid" autocomplete="off"
-                data-calculate="'b54d5c4984244ee7a72e2e577495ec27'"
-                data-type-xml="string" type="hidden" />
+                data-calculate="'b54d5c4984244ee7a72e2e577495ec27'" data-type-xml="string"
+                type="hidden" />
         </label>
     </fieldset>
 </form>

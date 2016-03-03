@@ -4,7 +4,7 @@
     <h3 id="form-title">View EC</h3>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">PHC
+        <span class="question-label active" lang="">Primary Health Center(PHC)
             <input name="/EC_View_EngKan/ec_view_group/case_phc" autocomplete="off"
                 data-type-xml="string" disabled="disabled" type="text" />
         </span>

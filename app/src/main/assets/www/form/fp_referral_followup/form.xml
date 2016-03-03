@@ -241,7 +241,7 @@
                         data-type-xml="select1" required="required"
                         type="radio"
                         value="phc" />
-                    <span class="option-label active" lang="">PHC</span>
+                    <span class="option-label active" lang="">Primary Health Center(PHC)</span>
                 </label>
                 <label class="">
                     <input name="/Family_Planning_Referral_Followup_EngKan/referral_place" autocomplete="off"

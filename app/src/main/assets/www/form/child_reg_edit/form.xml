@@ -201,28 +201,28 @@
             <select name="/Child_Registration_EngKan/child_edit_group/child_immunization_history"
                 data-type-xml="select" multiple="multiple">
                 <option value="">...</option>
-                <option value="bcg">BCG</option>
-                <option value="opv_0">OPV 0</option>
+                <option value="bcg">Bacillus Calmette–Guerin(BCG)</option>
+                <option value="opv_0">Oral Polio Vaccine(OPV) 0</option>
                 <option value="hepb_0">Hep B 0
                 </option>
-                <option value="opv_1">OPV 1</option>
+                <option value="opv_1">Oral Polio Vaccine(OPV) 1</option>
                 <option value="pentavalent_1">Pentavalent 1
                 </option>
-                <option value="opv_2">OPV 2</option>
+                <option value="opv_2">Oral Polio Vaccine(OPV) 2</option>
                 <option value="pentavalent_2">Pentavalent 2
                 </option>
-                <option value="opv_3">OPV 3</option>
+                <option value="opv_3">Oral Polio Vaccine(OPV) 3</option>
                 <option value="pentavalent_3">Pentavalent 3
                 </option>
                 <option value="measles">Measles 1</option>
-                <option value="je">JE 1</option>
+                <option value="je">Japanese Encephalitis(JE) 1</option>
                 <option value="mmr">MMR</option>
-                <option value="dptbooster_1">DPT Booster 1
+                <option value="dptbooster_1">Diphtheria, Pertussis, Tetanus(DPT) Booster 1
                 </option>
-                <option value="opvbooster">OPV Booster</option>
+                <option value="opvbooster">Oral Polio Vaccine(OPV) Booster</option>
                 <option value="measlesbooster">Measles 2</option>
-                <option value="je_2">JE 2</option>
-                <option value="dptbooster_2">DPT Booster 2 (5 years)
+                <option value="je_2">Japanese Encephalitis(JE) 2</option>
+                <option value="dptbooster_2">Diphtheria, Pertussis, Tetanus(DPT) Booster 2 (5 years)
                 </option>
             </select>
             <span style="display:none;" class="or-option-translations"></span>
@@ -231,7 +231,8 @@
             class="or-group-data or-branch pre-init "
             data-relevant=" /Child_Registration_EngKan/child_edit_group/child_immunization_history  != ''">
             <label class="question or-branch pre-init non-select ">
-                <span class="question-label active" lang="">BCG date?</span>
+                <span class="question-label active" lang="">Bacillus Calmette–Guerin(BCG) date?
+                </span>
                 <input
                     name="/Child_Registration_EngKan/child_edit_group/child_immunization_history_group/bcg_date"
                     autocomplete="off"
@@ -240,7 +241,7 @@
                     data-type-xml="date" type="date" />
             </label>
             <label class="question or-branch pre-init non-select ">
-                <span class="question-label active" lang="">OPV 0 date?</span>
+                <span class="question-label active" lang="">Oral Polio Vaccine(OPV) 0 date?</span>
                 <input
                     name="/Child_Registration_EngKan/child_edit_group/child_immunization_history_group/opv_0_date"
                     autocomplete="off"
@@ -259,7 +260,7 @@
                     data-type-xml="date" type="date" />
             </label>
             <label class="question or-branch pre-init non-select ">
-                <span class="question-label active" lang="">OPV 1 date?</span>
+                <span class="question-label active" lang="">Oral Polio Vaccine(OPV) 1 date?</span>
                 <input
                     name="/Child_Registration_EngKan/child_edit_group/child_immunization_history_group/opv_1_date"
                     autocomplete="off"
@@ -278,7 +279,7 @@
                     data-type-xml="date" type="date" />
             </label>
             <label class="question or-branch pre-init non-select ">
-                <span class="question-label active" lang="">OPV 2 date?</span>
+                <span class="question-label active" lang="">Oral Polio Vaccine(OPV) 2 date?</span>
                 <input
                     name="/Child_Registration_EngKan/child_edit_group/child_immunization_history_group/opv_2_date"
                     autocomplete="off"
@@ -297,7 +298,7 @@
                     data-type-xml="date" type="date" />
             </label>
             <label class="question or-branch pre-init non-select ">
-                <span class="question-label active" lang="">OPV 3 date?</span>
+                <span class="question-label active" lang="">Oral Polio Vaccine(OPV) 3 date?</span>
                 <input
                     name="/Child_Registration_EngKan/child_edit_group/child_immunization_history_group/opv_3_date"
                     autocomplete="off"
@@ -325,7 +326,7 @@
                     data-type-xml="date" type="date" />
             </label>
             <label class="question or-branch pre-init non-select ">
-                <span class="question-label active" lang="">JE 1 date? JE 1
+                <span class="question-label active" lang="">Japanese Encephalitis(JE) 1 date?
                 </span>
                 <input
                     name="/Child_Registration_EngKan/child_edit_group/child_immunization_history_group/je_date"
@@ -345,7 +346,8 @@
                     data-type-xml="date" type="date" />
             </label>
             <label class="question or-branch pre-init non-select ">
-                <span class="question-label active" lang="">DPT Booster 1 date?
+                <span class="question-label active" lang="">Diphtheria, Pertussis, Tetanus(DPT)
+                    Booster 1 date?
                 </span>
                 <input
                     name="/Child_Registration_EngKan/child_edit_group/child_immunization_history_group/dptbooster_1_date"
@@ -355,7 +357,7 @@
                     data-type-xml="date" type="date" />
             </label>
             <label class="question or-branch pre-init non-select ">
-                <span class="question-label active" lang="">OPV Booster date?
+                <span class="question-label active" lang="">Oral Polio Vaccine(OPV) Booster date?
                 </span>
                 <input
                     name="/Child_Registration_EngKan/child_edit_group/child_immunization_history_group/opvbooster_date"
@@ -374,7 +376,7 @@
                     data-type-xml="date" type="date" />
             </label>
             <label class="question or-branch pre-init non-select ">
-                <span class="question-label active" lang="">JE 2 date? JE 2
+                <span class="question-label active" lang="">Japanese Encephalitis(JE) 2 date?
                 </span>
                 <input
                     name="/Child_Registration_EngKan/child_edit_group/child_immunization_history_group/je_2_date"
@@ -384,7 +386,8 @@
                     data-type-xml="date" type="date" />
             </label>
             <label class="question or-branch pre-init non-select ">
-                <span class="question-label active" lang="">DPT Booster 2 (5 years) date?
+                <span class="question-label active" lang="">Diphtheria, Pertussis, Tetanus(DPT)
+                    Booster 2 (5 years) date?
                 </span>
                 <input
                     name="/Child_Registration_EngKan/child_edit_group/child_immunization_history_group/dptbooster_2_date"

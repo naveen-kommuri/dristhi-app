@@ -1,4 +1,4 @@
-<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="TT1_EngKan">
+<form autocomplete="off" class="or clearfix" id="TT1_EngKan" novalidate="novalidate">
     <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">TT1</h3>
@@ -14,44 +14,43 @@
             disabled="disabled" type="hidden" />
     </label>
     <label class="question or-appearance-minimal ">
-        <span lang="" class="question-label active">Place of TT1 injection? </span>
+        <span class="question-label active" lang="">Place of TT1 injection?</span>
         <span class="required">*</span>
-        <select name="/TT1_EngKan/tt1_injection_place" data-name="/TT1_EngKan/tt1_injection_place" required="required"
-                data-type-xml="select1">
+        <select name="/TT1_EngKan/tt1_injection_place" data-name="/TT1_EngKan/tt1_injection_place"
+            data-type-xml="select1" required="required">
             <option value="">...</option>
-            <option value="sub_center">My Sub Center </option>
-            <option value="phc">My PHC </option>
+            <option value="sub_center">My Sub Center</option>
+            <option value="phc">My Primary Health Center(PHC)</option>
         </select>
-        <span class="or-option-translations" style="display:none;">
-        </span>
+        <span style="display:none;" class="or-option-translations"></span>
     </label>
     <label class="question non-select ">
-        <span lang="" class="question-label active">Date of TT1 injection? </span>
+        <span class="question-label active" lang="">Date of TT1 injection?</span>
         <span class="or-hint active" lang="">Future dates are not allowed
         </span>
         <span class="required">*</span>
-        <input autocomplete="off" type="date" name="/TT1_EngKan/tt1_date" required="required"
-               data-constraint=".&lt;= /TT1_EngKan/today " data-type-xml="date"/>
+        <input name="/TT1_EngKan/tt1_date" autocomplete="off" data-constraint=".&lt;= /TT1_EngKan/today " data-type-xml="date"
+            required="required" type="date" />
     </label>
 
-    <fieldset id="or-preload-items" style="display:none;">
+    <fieldset style="display:none;" id="or-preload-items">
         <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden" name="/TT1_EngKan/today" data-preload="date"
-                   data-preload-params="today" data-type-xml="date"/>
+            <input name="/TT1_EngKan/today" autocomplete="off" data-preload="date" data-preload-params="today"
+                data-type-xml="date" type="hidden" />
         </label>
     </fieldset>
-    <fieldset id="or-calculated-items" style="display:none;">
+    <fieldset style="display:none;" id="or-calculated-items">
         <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden" name="/TT1_EngKan/tt_dose" data-calculate="&quot;tt1&quot;"
-                   data-type-xml="string"/>
+            <input name="/TT1_EngKan/tt_dose" autocomplete="off" data-calculate="&quot;tt1&quot;"
+                data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden" name="/TT1_EngKan/meta/instanceID"
-                   data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
+            <input name="/TT1_EngKan/meta/instanceID" autocomplete="off" data-calculate="concat('uuid:', uuid())"
+                data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden" name="/TT1_EngKan/formhub/uuid"
-                   data-calculate="'5a0763159b2b44168b550cd79a0ac1c6'" data-type-xml="string"/>
+            <input name="/TT1_EngKan/formhub/uuid" autocomplete="off" data-calculate="'5a0763159b2b44168b550cd79a0ac1c6'"
+                data-type-xml="string" type="hidden" />
         </label>
     </fieldset>
 </form>

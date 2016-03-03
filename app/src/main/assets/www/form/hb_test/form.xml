@@ -1,7 +1,7 @@
 <form autocomplete="off" class="or clearfix" id="Hb_Test_EngKan" novalidate="novalidate">
     <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
-    <h3 id="form-title">Hb Test</h3>
+    <h3 id="form-title">Hemoglobin(HB) Test</h3>
 
     <label class="question non-select ">
         <span class="question-label active" lang="">ANC Number</span>
@@ -16,7 +16,7 @@
 
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">Hb test date?
+        <span class="question-label active" lang="">Hemoglobin(HB) test date?
         </span>
         <span class="or-hint active" lang="">Future dates are not allowed
         </span>
@@ -27,7 +27,7 @@
     <fieldset class="question ">
         <fieldset>
             <legend>
-                <span class="question-label active" lang="">Hb test place?
+                <span class="question-label active" lang="">Hemoglobin(HB) test place?
                 </span>
                 <span class="required">*</span>
             </legend>
@@ -42,7 +42,7 @@
                     <input name="/Hb_Test_EngKan/hb_test_place"
                         data-name="/Hb_Test_EngKan/hb_test_place" data-type-xml="select1"
                         required="required" type="radio" value="phc" />
-                    <span class="option-label active" lang="">My PHC</span>
+                    <span class="option-label active" lang="">My Primary Health Center(PHC)</span>
                 </label>
                 <label class="">
                     <input name="/Hb_Test_EngKan/hb_test_place"
@@ -63,7 +63,7 @@
     </label>
     <label class="note or-branch pre-init non-select ">
         <span class="question-label active" lang="">Woman is anaemic! Start her on therapeutic dose
-            of IFA (2 tablets
+            of Iron Folic Acid(IFA) (2 tablets
             per day).
         </span>
         <input name="/Hb_Test_EngKan/anaemic_message"
@@ -72,7 +72,7 @@
     </label>
     <label class="note or-branch pre-init non-select ">
         <span class="question-label active" lang="">Woman is severely anaemic! Start her on
-            therapeutic dose of IFA (2
+            therapeutic dose of Iron Folic Acid(IFA) (2
             tablets per day) and refer immediately to the MO!
         </span>
         <input name="/Hb_Test_EngKan/severely_anaemic_message"

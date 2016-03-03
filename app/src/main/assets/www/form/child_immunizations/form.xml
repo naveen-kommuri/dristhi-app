@@ -29,13 +29,13 @@
                     <input name="/Child_Immunizations_EngKan/entity_immunizations_received"
                         autocomplete="off" data-type-xml="select" required="required"
                         type="checkbox" value="bcg" />
-                    <span class="option-label active" lang="">BCG</span>
+                    <span class="option-label active" lang="">Bacillus Calmette–Guerin(BCG)</span>
                 </label>
                 <label class="">
                     <input name="/Child_Immunizations_EngKan/entity_immunizations_received"
                         autocomplete="off" data-type-xml="select" required="required"
                         type="checkbox" value="opv_0" />
-                    <span class="option-label active" lang="">OPV 0</span>
+                    <span class="option-label active" lang="">Oral Polio Vaccine(OPV) 0</span>
                 </label>
                 <label class="">
                     <input name="/Child_Immunizations_EngKan/entity_immunizations_received"
@@ -48,7 +48,7 @@
                     <input name="/Child_Immunizations_EngKan/entity_immunizations_received"
                         autocomplete="off" data-type-xml="select" required="required"
                         type="checkbox" value="opv_1" />
-                    <span class="option-label active" lang="">OPV 1</span>
+                    <span class="option-label active" lang="">Oral Polio Vaccine(OPV) 1</span>
                 </label>
                 <label class="">
                     <input name="/Child_Immunizations_EngKan/entity_immunizations_received"
@@ -61,7 +61,7 @@
                     <input name="/Child_Immunizations_EngKan/entity_immunizations_received"
                         autocomplete="off" data-type-xml="select" required="required"
                         type="checkbox" value="opv_2" />
-                    <span class="option-label active" lang="">OPV 2</span>
+                    <span class="option-label active" lang="">Oral Polio Vaccine(OPV) 2</span>
                 </label>
                 <label class="">
                     <input name="/Child_Immunizations_EngKan/entity_immunizations_received"
@@ -74,7 +74,7 @@
                     <input name="/Child_Immunizations_EngKan/entity_immunizations_received"
                         autocomplete="off" data-type-xml="select" required="required"
                         type="checkbox" value="opv_3" />
-                    <span class="option-label active" lang="">OPV 3</span>
+                    <span class="option-label active" lang="">Oral Polio Vaccine(OPV) 3</span>
                 </label>
                 <label class="">
                     <input name="/Child_Immunizations_EngKan/entity_immunizations_received"
@@ -93,7 +93,7 @@
                     <input name="/Child_Immunizations_EngKan/entity_immunizations_received"
                         autocomplete="off" data-type-xml="select" required="required"
                         type="checkbox" value="je" />
-                    <span class="option-label active" lang="">JE 1</span>
+                    <span class="option-label active" lang="">Japanese Encephalitis(JE) 1</span>
                 </label>
                 <label class="">
                     <input name="/Child_Immunizations_EngKan/entity_immunizations_received"
@@ -105,14 +105,15 @@
                     <input name="/Child_Immunizations_EngKan/entity_immunizations_received"
                         autocomplete="off" data-type-xml="select" required="required"
                         type="checkbox" value="dptbooster_1" />
-                    <span class="option-label active" lang="">DPT Booster 1
+                    <span class="option-label active" lang="">Diphtheria, Pertussis, Tetanus(DPT)
+                        Booster 1
                     </span>
                 </label>
                 <label class="">
                     <input name="/Child_Immunizations_EngKan/entity_immunizations_received"
                         autocomplete="off" data-type-xml="select" required="required"
                         type="checkbox" value="opvbooster" />
-                    <span class="option-label active" lang="">OPV Booster</span>
+                    <span class="option-label active" lang="">Oral Polio Vaccine(OPV) Booster</span>
                 </label>
                 <label class="">
                     <input name="/Child_Immunizations_EngKan/entity_immunizations_received"
@@ -124,13 +125,14 @@
                     <input name="/Child_Immunizations_EngKan/entity_immunizations_received"
                         autocomplete="off" data-type-xml="select" required="required"
                         type="checkbox" value="je_2" />
-                    <span class="option-label active" lang="">JE 2</span>
+                    <span class="option-label active" lang="">Japanese Encephalitis(JE) 2</span>
                 </label>
                 <label class="">
                     <input name="/Child_Immunizations_EngKan/entity_immunizations_received"
                         autocomplete="off" data-type-xml="select" required="required"
                         type="checkbox" value="dptbooster_2" />
-                    <span class="option-label active" lang="">DPT Booster 2 (5 years)
+                    <span class="option-label active" lang="">Diphtheria, Pertussis, Tetanus(DPT)
+                        Booster 2 (5 years)
                     </span>
                 </label>
             </div>
@@ -153,7 +155,7 @@
                     <input name="/Child_Immunizations_EngKan/immunization_place" autocomplete="off"
                         data-name="/Child_Immunizations_EngKan/immunization_place"
                         data-type-xml="select1" type="radio" value="phc" />
-                    <span class="option-label active" lang="">My PHC</span>
+                    <span class="option-label active" lang="">My Primary Health Center(PHC)</span>
                 </label>
                 <label class="">
                     <input name="/Child_Immunizations_EngKan/immunization_place" autocomplete="off"

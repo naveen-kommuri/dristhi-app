@@ -95,7 +95,7 @@
                     <input name="/ANC_Visit_EngKan/anc_visit_place"
                         data-name="/ANC_Visit_EngKan/anc_visit_place" data-type-xml="select1"
                         required="required" type="radio" value="phc" />
-                    <span class="option-label active" lang="">My PHC</span>
+                    <span class="option-label active" lang="">My Primary Health Center(PHC)</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Visit_EngKan/anc_visit_place"
@@ -119,26 +119,26 @@
                     <input name="/ANC_Visit_EngKan/anc_visit_person"
                         data-name="/ANC_Visit_EngKan/anc_visit_person" data-type-xml="select1"
                         required="required" type="radio" value="anm" />
-                    <span class="option-label active" lang="">ANM
+                    <span class="option-label active" lang="">Auxiliary Nurse Midwifery(ANM)
                     </span>
                 </label>
                 <label class="">
                     <input name="/ANC_Visit_EngKan/anc_visit_person"
                         data-name="/ANC_Visit_EngKan/anc_visit_person" data-type-xml="select1"
                         required="required" type="radio" value="sn" />
-                    <span class="option-label active" lang="">SN</span>
+                    <span class="option-label active" lang="">Staff Nurse(SN)</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Visit_EngKan/anc_visit_person"
                         data-name="/ANC_Visit_EngKan/anc_visit_person" data-type-xml="select1"
                         required="required" type="radio" value="lhv" />
-                    <span class="option-label active" lang="">LHV</span>
+                    <span class="option-label active" lang="">Lady Health Visitor(LHV)</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Visit_EngKan/anc_visit_person"
                         data-name="/ANC_Visit_EngKan/anc_visit_person" data-type-xml="select1"
                         required="required" type="radio" value="mo" />
-                    <span class="option-label active" lang="">MO</span>
+                    <span class="option-label active" lang="">Medical Officer(MO)</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Visit_EngKan/anc_visit_person"

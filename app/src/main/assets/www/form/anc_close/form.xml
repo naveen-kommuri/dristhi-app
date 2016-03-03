@@ -198,7 +198,7 @@
                             autocomplete="off"
                             data-name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_place"
                             data-type-xml="select1" type="radio" value="phc" />
-                        <span class="option-label active" lang="">My PHC</span>
+                        <span class="option-label active" lang="">My Primary Health Center(PHC)</span>
                     </label>
                     <label class="">
                         <input

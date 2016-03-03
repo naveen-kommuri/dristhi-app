@@ -57,7 +57,9 @@
         class="or-group-data or-branch pre-init "
         data-relevant=" /Family_Planning_Refill_Method_EngKan/able_to_renew_method  = 'yes'">
         <label class="question or-branch pre-init non-select ">
-            <span class="question-label active" lang="">DMPA / Injectable date?</span>
+            <span class="question-label active" lang="">Depo-Provera and Depo-Ralovera / Injectable
+                date?
+            </span>
             <span class="or-hint active" lang="">Future dates are not allowed
             </span>
 
@@ -79,7 +81,9 @@
                 data-type-xml="int" required="required" type="number" />
         </label>
         <label class="question or-branch pre-init non-select ">
-            <span class="question-label active" lang="">Number of OCP strips given?</span>
+            <span class="question-label active" lang="">Number of Oral Contraceptive Pills(OCP)
+                strips given?
+            </span>
             <span class="or-hint active" lang="">between 0-99
             </span>
             <span class="required">*</span>

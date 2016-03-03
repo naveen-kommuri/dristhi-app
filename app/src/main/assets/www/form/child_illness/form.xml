@@ -495,7 +495,7 @@
                             autocomplete="off"
                             data-name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease_place"
                             data-type-xml="select1" type="radio" value="phc" />
-                        <span class="option-label active" lang="">My PHC</span>
+                        <span class="option-label active" lang="">My Primary Health Center(PHC)</span>
                     </label>
                     <label class="">
                         <input

@@ -20,8 +20,9 @@
         </span>
         <span class="or-hint active" lang="">Future dates are not allowed.
         </span>
-        <input name="/ANC_Investigations_EngKan/test_date" autocomplete="off" data-constraint=".&lt;=  /ANC_Investigations_EngKan/today "
-            data-type-xml="date" type="date" />
+        <input name="/ANC_Investigations_EngKan/test_date" autocomplete="off"
+            data-constraint=".&lt;=  /ANC_Investigations_EngKan/today " data-type-xml="date"
+            type="date" />
     </label>
     <fieldset class="question ">
         <fieldset>
@@ -31,51 +32,48 @@
             </legend>
             <div class="option-wrapper">
                 <label class="">
-                    <input name="/ANC_Investigations_EngKan/test_results_to_enter" autocomplete="off"
-                        data-type-xml="select"
-                        type="checkbox" value="w_blood_group" />
+                    <input name="/ANC_Investigations_EngKan/test_results_to_enter"
+                        autocomplete="off" data-type-xml="select" type="checkbox"
+                        value="w_blood_group" />
                     <span class="option-label active" lang="">Woman's blood group</span>
                 </label>
                 <label class="">
-                    <input name="/ANC_Investigations_EngKan/test_results_to_enter" autocomplete="off"
-                        data-type-xml="select" type="checkbox"
+                    <input name="/ANC_Investigations_EngKan/test_results_to_enter"
+                        autocomplete="off" data-type-xml="select" type="checkbox"
                         value="urine_sugar" />
                     <span class="option-label active" lang="">Urine Sugar</span>
                 </label>
                 <label class="">
-                    <input name="/ANC_Investigations_EngKan/test_results_to_enter" autocomplete="off"
-                        data-type-xml="select"
-                        type="checkbox" value="urine_albumin" />
+                    <input name="/ANC_Investigations_EngKan/test_results_to_enter"
+                        autocomplete="off" data-type-xml="select" type="checkbox"
+                        value="urine_albumin" />
                     <span class="option-label active" lang="">Urine Albumin</span>
                 </label>
                 <label class="">
-                    <input name="/ANC_Investigations_EngKan/test_results_to_enter" autocomplete="off"
-                        data-type-xml="select" type="checkbox"
-                        value="std" />
-                    <span class="option-label active" lang="">STD</span>
+                    <input name="/ANC_Investigations_EngKan/test_results_to_enter"
+                        autocomplete="off" data-type-xml="select" type="checkbox" value="std" />
+                    <span class="option-label active" lang="">Sexually Transmitted Disease(STD)
+                    </span>
                 </label>
                 <label class="">
-                    <input name="/ANC_Investigations_EngKan/test_results_to_enter" autocomplete="off"
-                        data-type-xml="select" type="checkbox"
-                        value="hiv" />
-                    <span class="option-label active" lang="">HIV</span>
+                    <input name="/ANC_Investigations_EngKan/test_results_to_enter"
+                        autocomplete="off" data-type-xml="select" type="checkbox" value="hiv" />
+                    <span class="option-label active" lang="">Human immunodeficiency virus(HIV)
+                    </span>
                 </label>
                 <label class="">
-                    <input name="/ANC_Investigations_EngKan/test_results_to_enter" autocomplete="off"
-                        data-type-xml="select" type="checkbox"
-                        value="hep_b" />
+                    <input name="/ANC_Investigations_EngKan/test_results_to_enter"
+                        autocomplete="off" data-type-xml="select" type="checkbox" value="hep_b" />
                     <span class="option-label active" lang="">Hepatitis B</span>
                 </label>
                 <label class="">
-                    <input name="/ANC_Investigations_EngKan/test_results_to_enter" autocomplete="off"
-                        data-type-xml="select" type="checkbox"
-                        value="mp" />
+                    <input name="/ANC_Investigations_EngKan/test_results_to_enter"
+                        autocomplete="off" data-type-xml="select" type="checkbox" value="mp" />
                     <span class="option-label active" lang="">Malaria Parasite</span>
                 </label>
                 <label class="">
-                    <input name="/ANC_Investigations_EngKan/test_results_to_enter" autocomplete="off"
-                        data-type-xml="select" type="checkbox"
-                        value="bile" />
+                    <input name="/ANC_Investigations_EngKan/test_results_to_enter"
+                        autocomplete="off" data-type-xml="select" type="checkbox" value="bile" />
                     <span class="option-label active" lang="">Urine Bile Salts / Bile Pigments
                     </span>
                 </label>
@@ -92,65 +90,57 @@
                 <label class="">
                     <input name="/ANC_Investigations_EngKan/w_blood_group" autocomplete="off"
                         data-name="/ANC_Investigations_EngKan/w_blood_group"
-                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'w_blood_group')" data-type-xml="select1"
-                        type="radio"
-                        value="a_positive" />
+                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'w_blood_group')"
+                        data-type-xml="select1" type="radio" value="a_positive" />
                     <span class="option-label active" lang="">A+</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Investigations_EngKan/w_blood_group" autocomplete="off"
                         data-name="/ANC_Investigations_EngKan/w_blood_group"
-                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'w_blood_group')" data-type-xml="select1"
-                        type="radio"
-                        value="a_negative" />
+                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'w_blood_group')"
+                        data-type-xml="select1" type="radio" value="a_negative" />
                     <span class="option-label active" lang="">A-</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Investigations_EngKan/w_blood_group" autocomplete="off"
                         data-name="/ANC_Investigations_EngKan/w_blood_group"
-                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'w_blood_group')" data-type-xml="select1"
-                        type="radio"
-                        value="b_positive" />
+                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'w_blood_group')"
+                        data-type-xml="select1" type="radio" value="b_positive" />
                     <span class="option-label active" lang="">B+</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Investigations_EngKan/w_blood_group" autocomplete="off"
                         data-name="/ANC_Investigations_EngKan/w_blood_group"
-                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'w_blood_group')" data-type-xml="select1"
-                        type="radio"
-                        value="b_negative" />
+                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'w_blood_group')"
+                        data-type-xml="select1" type="radio" value="b_negative" />
                     <span class="option-label active" lang="">B-</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Investigations_EngKan/w_blood_group" autocomplete="off"
                         data-name="/ANC_Investigations_EngKan/w_blood_group"
-                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'w_blood_group')" data-type-xml="select1"
-                        type="radio"
-                        value="ab_positive" />
+                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'w_blood_group')"
+                        data-type-xml="select1" type="radio" value="ab_positive" />
                     <span class="option-label active" lang="">AB+</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Investigations_EngKan/w_blood_group" autocomplete="off"
                         data-name="/ANC_Investigations_EngKan/w_blood_group"
-                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'w_blood_group')" data-type-xml="select1"
-                        type="radio"
-                        value="ab_negative" />
+                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'w_blood_group')"
+                        data-type-xml="select1" type="radio" value="ab_negative" />
                     <span class="option-label active" lang="">AB-</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Investigations_EngKan/w_blood_group" autocomplete="off"
                         data-name="/ANC_Investigations_EngKan/w_blood_group"
-                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'w_blood_group')" data-type-xml="select1"
-                        type="radio"
-                        value="o_positive" />
+                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'w_blood_group')"
+                        data-type-xml="select1" type="radio" value="o_positive" />
                     <span class="option-label active" lang="">O+</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Investigations_EngKan/w_blood_group" autocomplete="off"
                         data-name="/ANC_Investigations_EngKan/w_blood_group"
-                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'w_blood_group')" data-type-xml="select1"
-                        type="radio"
-                        value="o_negative" />
+                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'w_blood_group')"
+                        data-type-xml="select1" type="radio" value="o_negative" />
                     <span class="option-label active" lang="">O-</span>
                 </label>
             </div>
@@ -164,19 +154,19 @@
             </legend>
             <div class="option-wrapper">
                 <label class="">
-                    <input name="/ANC_Investigations_EngKan/rh_incompatible_couple" autocomplete="off"
+                    <input name="/ANC_Investigations_EngKan/rh_incompatible_couple"
+                        autocomplete="off"
                         data-name="/ANC_Investigations_EngKan/rh_incompatible_couple"
-                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'w_blood_group')" data-type-xml="select1"
-                        type="radio"
-                        value="yes" />
+                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'w_blood_group')"
+                        data-type-xml="select1" type="radio" value="yes" />
                     <span class="option-label active" lang="">Yes</span>
                 </label>
                 <label class="">
-                    <input name="/ANC_Investigations_EngKan/rh_incompatible_couple" autocomplete="off"
+                    <input name="/ANC_Investigations_EngKan/rh_incompatible_couple"
+                        autocomplete="off"
                         data-name="/ANC_Investigations_EngKan/rh_incompatible_couple"
-                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'w_blood_group')" data-type-xml="select1"
-                        type="radio"
-                        value="no" />
+                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'w_blood_group')"
+                        data-type-xml="select1" type="radio" value="no" />
                     <span class="option-label active" lang="">No</span>
                 </label>
             </div>
@@ -190,46 +180,47 @@
             </legend>
             <div class="option-wrapper">
                 <label class="">
-                    <input name="/ANC_Investigations_EngKan/tests_result_positive" autocomplete="off"
-                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_sugar') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_albumin') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'mp') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'std') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hep_b') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hiv')" data-type-xml="select"
-                        type="checkbox"
-                        value="urine_sugar" />
+                    <input name="/ANC_Investigations_EngKan/tests_result_positive"
+                        autocomplete="off"
+                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_sugar') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_albumin') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'mp') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'std') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hep_b') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hiv')"
+                        data-type-xml="select" type="checkbox" value="urine_sugar" />
                     <span class="option-label active" lang="">Urine Sugar</span>
                 </label>
                 <label class="">
-                    <input name="/ANC_Investigations_EngKan/tests_result_positive" autocomplete="off"
+                    <input name="/ANC_Investigations_EngKan/tests_result_positive"
+                        autocomplete="off"
                         data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_sugar') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_albumin') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'mp') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'std') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hep_b') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hiv')"
-                        data-type-xml="select"
-                        type="checkbox"
-                        value="urine_albumin" />
+                        data-type-xml="select" type="checkbox" value="urine_albumin" />
                     <span class="option-label active" lang="">Urine Albumin</span>
                 </label>
                 <label class="">
-                    <input name="/ANC_Investigations_EngKan/tests_result_positive" autocomplete="off"
-                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_sugar') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_albumin') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'mp') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'std') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hep_b') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hiv')" data-type-xml="select"
-                        type="checkbox"
-                        value="std" />
-                    <span class="option-label active" lang="">STD</span>
+                    <input name="/ANC_Investigations_EngKan/tests_result_positive"
+                        autocomplete="off"
+                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_sugar') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_albumin') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'mp') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'std') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hep_b') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hiv')"
+                        data-type-xml="select" type="checkbox" value="std" />
+                    <span class="option-label active" lang="">Sexually Transmitted Disease(STD)
+                    </span>
                 </label>
                 <label class="">
-                    <input name="/ANC_Investigations_EngKan/tests_result_positive" autocomplete="off"
-                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_sugar') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_albumin') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'mp') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'std') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hep_b') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hiv')" data-type-xml="select"
-                        type="checkbox"
-                        value="hiv" />
-                    <span class="option-label active" lang="">HIV</span>
+                    <input name="/ANC_Investigations_EngKan/tests_result_positive"
+                        autocomplete="off"
+                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_sugar') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_albumin') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'mp') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'std') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hep_b') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hiv')"
+                        data-type-xml="select" type="checkbox" value="hiv" />
+                    <span class="option-label active" lang="">Human immunodeficiency virus(HIV)
+                    </span>
                 </label>
                 <label class="">
-                    <input name="/ANC_Investigations_EngKan/tests_result_positive" autocomplete="off"
-                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_sugar') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_albumin') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'mp') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'std') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hep_b') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hiv')" data-type-xml="select"
-                        type="checkbox"
-                        value="hep_b" />
+                    <input name="/ANC_Investigations_EngKan/tests_result_positive"
+                        autocomplete="off"
+                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_sugar') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_albumin') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'mp') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'std') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hep_b') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hiv')"
+                        data-type-xml="select" type="checkbox" value="hep_b" />
                     <span class="option-label active" lang="">Hepatitis B</span>
                 </label>
                 <label class="">
-                    <input name="/ANC_Investigations_EngKan/tests_result_positive" autocomplete="off"
-                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_sugar') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_albumin') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'mp') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'std') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hep_b') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hiv')" data-type-xml="select"
-                        type="checkbox"
-                        value="mp" />
+                    <input name="/ANC_Investigations_EngKan/tests_result_positive"
+                        autocomplete="off"
+                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_sugar') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'urine_albumin') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'mp') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'std') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hep_b') or selected( /ANC_Investigations_EngKan/test_results_to_enter , 'hiv')"
+                        data-type-xml="select" type="checkbox" value="mp" />
                     <span class="option-label active" lang="">Malaria Parasite</span>
                 </label>
             </div>
@@ -244,17 +235,15 @@
                 <label class="">
                     <input name="/ANC_Investigations_EngKan/bile_salts" autocomplete="off"
                         data-name="/ANC_Investigations_EngKan/bile_salts"
-                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'bile')" data-type-xml="select1"
-                        type="radio"
-                        value="present" />
+                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'bile')"
+                        data-type-xml="select1" type="radio" value="present" />
                     <span class="option-label active" lang="">Present</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Investigations_EngKan/bile_salts" autocomplete="off"
                         data-name="/ANC_Investigations_EngKan/bile_salts"
-                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'bile')" data-type-xml="select1"
-                        type="radio"
-                        value="absent" />
+                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'bile')"
+                        data-type-xml="select1" type="radio" value="absent" />
                     <span class="option-label active" lang="">Absent</span>
                 </label>
             </div>
@@ -269,17 +258,15 @@
                 <label class="">
                     <input name="/ANC_Investigations_EngKan/bile_pigments" autocomplete="off"
                         data-name="/ANC_Investigations_EngKan/bile_pigments"
-                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'bile')" data-type-xml="select1"
-                        type="radio"
-                        value="present" />
+                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'bile')"
+                        data-type-xml="select1" type="radio" value="present" />
                     <span class="option-label active" lang="">Present</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Investigations_EngKan/bile_pigments" autocomplete="off"
                         data-name="/ANC_Investigations_EngKan/bile_pigments"
-                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'bile')" data-type-xml="select1"
-                        type="radio"
-                        value="absent" />
+                        data-relevant="selected( /ANC_Investigations_EngKan/test_results_to_enter , 'bile')"
+                        data-type-xml="select1" type="radio" value="absent" />
                     <span class="option-label active" lang="">Absent</span>
                 </label>
             </div>
@@ -317,12 +304,12 @@
     <fieldset style="display:none;" id="or-calculated-items">
         <label class="calculation non-select ">
             <input name="/ANC_Investigations_EngKan/meta/instanceID" autocomplete="off"
-                data-calculate="concat('uuid:', uuid())"
-                data-type-xml="string" type="hidden" />
+                data-calculate="concat('uuid:', uuid())" data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
-            <input name="/ANC_Investigations_EngKan/formhub/uuid" autocomplete="off" data-calculate="'165bf7237a324a87ac413e0b1eb0768c'"
-                data-type-xml="string" type="hidden" />
+            <input name="/ANC_Investigations_EngKan/formhub/uuid" autocomplete="off"
+                data-calculate="'165bf7237a324a87ac413e0b1eb0768c'" data-type-xml="string"
+                type="hidden" />
         </label>
     </fieldset>
 </form>

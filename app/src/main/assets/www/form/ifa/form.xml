@@ -1,7 +1,7 @@
 <form autocomplete="off" class="or clearfix" id="IFA_EngKan" novalidate="novalidate">
     <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
-    <h3 id="form-title">IFA</h3>
+    <h3 id="form-title">Iron Folic Acid(IFA)</h3>
 
     <label class="question non-select ">
         <span class="question-label active" lang="">ANC Number</span>
@@ -16,7 +16,7 @@
 
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">No. of IFA tablets given?
+        <span class="question-label active" lang="">No. of Iron Folic Acid(IFA) tablets given?
         </span>
         <span class="or-hint active" lang="">between 0-99
         </span>
@@ -26,7 +26,7 @@
             type="number" />
     </label>
     <label class="question or-appearance-minimal ">
-        <span class="question-label active" lang="">IFA place?
+        <span class="question-label active" lang="">Iron Folic Acid(IFA) place?
         </span>
         <select name="/IFA_EngKan/ifa_tablets_place" data-name="/IFA_EngKan/ifa_tablets_place"
             data-type-xml="select1">
@@ -36,7 +36,7 @@
         <span style="display:none;" class="or-option-translations"></span>
     </label>
     <label class="question non-select ">
-        <span class="question-label active" lang="">IFA tablet date?
+        <span class="question-label active" lang="">Iron Folic Acid(IFA) tablet date?
         </span>
         <span class="or-hint active" lang="">Future dates are not allowed
         </span>

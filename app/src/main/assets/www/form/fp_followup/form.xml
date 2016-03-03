@@ -66,7 +66,7 @@
         <fieldset class="question or-branch pre-init ">
             <fieldset>
                 <legend>
-                    <span class="question-label active" lang="">Any problems with IUCD?
+                    <span class="question-label active" lang="">Any problems with Intrauterine Contraceptive Device(IUCD)?
                     </span>
                 </legend>
                 <div class="option-wrapper">
@@ -245,7 +245,7 @@
                         data-name="/Family_Planning_Followup_EngKan/refer_couple_fp_method_complication_place"
                         data-relevant=" /Family_Planning_Followup_EngKan/refer_couple_fp_method_complication  = 'yes'"
                         data-type-xml="select1" required="required" type="radio" value="phc" />
-                    <span class="option-label active" lang="">PHC</span>
+                    <span class="option-label active" lang="">Primary Health Center(PHC)</span>
                 </label>
                 <label class="">
                     <input

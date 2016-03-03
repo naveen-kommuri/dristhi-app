@@ -43,7 +43,7 @@
                     <input name="/Child_Vitamin_A_EngKan/vit_a_place" autocomplete="off"
                         data-name="/Child_Vitamin_A_EngKan/vit_a_place" data-type-xml="select1"
                         type="radio" value="phc" />
-                    <span class="option-label active" lang="">My PHC</span>
+                    <span class="option-label active" lang="">My Primary Health Center(PHC)</span>
                 </label>
                 <label class="">
                     <input name="/Child_Vitamin_A_EngKan/vit_a_place" autocomplete="off"
