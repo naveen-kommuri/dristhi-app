@@ -31,6 +31,11 @@
             android:key="prefVideoURL"
             android:text="202.153.34.169:8004"
             android:title="Enter Video URL" />
+            
+            <EditTextPreference
+            android:key="prefWebSocketURL"
+            android:text="ws://202.153.34.169:8004"
+            android:title="Enter Websocket URL" />
 
     </PreferenceCategory>
 
