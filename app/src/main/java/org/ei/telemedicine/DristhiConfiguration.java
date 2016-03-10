@@ -19,6 +19,7 @@ public class DristhiConfiguration {
     private static final String SYNC_DOWNLOAD_BATCH_SIZE = "SYNC_DOWNLOAD_BATCH_SIZE";
     private static final String DRISHTI_AUDIO_URL = "DRISHTI_AUDIO_URL";
     private static final String DRISHTI_VIDEO_URL = "DRISHTI_VIDEO_URL";
+    private static final String DRISHTI_WEBSOCKET_URL = "DRISHTI_WEBSOCKET_URL";
     private Properties properties = new Properties();
     SharedPreferences preferences;
 
@@ -58,10 +59,13 @@ public class DristhiConfiguration {
 
     public String drishtiVideoURL() {
         return (!preferences.getString("prefVideoURL", "").equals("") ? preferences.getString("prefVideoURL", "") : this.get(DRISHTI_VIDEO_URL));
+
     }
 
     public String drishtiWSURL() {
-        return "ws://" + (!preferences.getString("prefVideoURL", "").equals("") ? preferences.getString("prefVideoURL", "") : this.get(DRISHTI_VIDEO_URL));
+
+        return  (!preferences.getString("prefWebSocketURL", "").equals("") ? preferences.getString("prefWebSocketURL", "") : this.get(DRISHTI_WEBSOCKET_URL));
+
     }
 
     public String drishtiAudioURL() {
