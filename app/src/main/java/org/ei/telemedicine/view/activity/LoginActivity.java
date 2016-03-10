@@ -19,6 +19,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
@@ -67,61 +68,52 @@ public class LoginActivity extends Activity {
     }
 
 
-    private void start() {
+    public  void start() {
 
         final String wsuri = context.configuration().drishtiWSURL() + AllConstants.WEBSOCKET;
         try {
-            mConnection.connect(String.format(wsuri, getUsern()), new WebSocketHandler() {
+            final String url = String.format(wsuri, getUsern());
+            Log.d("FFFFF",url);
 
-                @Override
-                public void onOpen() {
-                    Log.d(TAG, "Status: Connected to " + wsuri);
-                    //Toast.makeText(getApplicationContext(),String.format(wsuri,getUsern()), Toast.LENGTH_SHORT).show();
-                    //mConnection.sendTextMessage("Hello, world!");
-                }
+                    mConnection.connect(url, new WebSocketHandler() {
 
-                @Override
-                public void onTextMessage(String payload) {
-                    Log.d(TAG, "Got echo: " + payload);
-                    try {
-                        JSONObject jObject = new JSONObject(payload);
-                        String status = jObject.getString("status");
-                        String msg = jObject.getString("msg_type");
-                        String caller = jObject.getString("caller");
-                        //Log.d(TAG, check);
-                        String match = "INI";
-                        boolean response = (status.equals(match));
-                        if (response) {
-                            //Toast.makeText(getApplicationContext(),"call started",Toast.LENGTH_LONG).show();
-                            Intent i = new Intent(getApplicationContext(), ActionActivity.class);
-                            i.putExtra(CALLER, caller);
-                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(i);
+                        @Override
+                        public void onOpen() {
+                            Log.d(TAG, "Status: Connected to " + url);
+                            //Toast.makeText(getApplicationContext(), String.format(wsuri, getUsern()), Toast.LENGTH_SHORT).show();
+                            //mConnection.sendTextMessage("Hello, world!");
                         }
 
-                    } catch (Exception ex) {
-                        Log.d(TAG, ex.toString());
-                    }
-                }
+                        @Override
+                        public void onTextMessage(String payload) {
+                            Log.d(TAG, "Got echo: " + payload);
+                            try {
+                                JSONObject jObject = new JSONObject(payload);
+                                String status = jObject.getString("status");
+                                String msg = jObject.getString("msg_type");
+                                String caller = jObject.getString("caller");
+                                //Log.d(TAG, check);
+                                String match = "INI";
+                                boolean response = (status.equals(match));
+                                if (response) {
+                                    //Toast.makeText(getApplicationContext(),"call started",Toast.LENGTH_LONG).show();
+                                    Intent i = new Intent(getApplicationContext(), ActionActivity.class);
+                                    i.putExtra(CALLER, caller);
+                                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(i);
+                                }
 
-                @Override
-                public void onClose(int code, String reason) {
-                    Log.d(TAG, "Connection lost.");
-                    //Toast.makeText(getApplicationContext(),"closed",Toast.LENGTH_SHORT).show();
-                    try {
-                        Thread.sleep(waitTime);
-                        waitTime = waitTime * 2;
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-//                    start();
-                    if (isNetworkAvailable()) {
-                        start();
-                    } else {
-                        Log.d(TAG, "No connection");
-                    }
-                }
-            });
+                            } catch (Exception ex) {
+                                Log.d(TAG, ex.toString());
+                            }
+                        }
+
+                        @Override
+                        public void onClose(int code, String reason) {
+                            Log.d(TAG, "Connection lost.");
+                            //Toast.makeText(getApplicationContext(),"closed",Toast.LENGTH_SHORT).show();
+                        }
+                    });
         } catch (WebSocketException e) {
             Log.d(TAG, e.toString());
         }
