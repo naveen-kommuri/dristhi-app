@@ -24,11 +24,11 @@ public class SaveANMLocationTask {
         });
     }
 
-    public void save(final String anmLocation, final String anmDrugs, final String anmConfig, final String anmCountryCode, final String formFields) {
+    public void save(final String anmLocation, final String anmDrugs, final String anmConfig, final String anmCountryCode, final String formFields, final String parentDoctors) {
         task.doActionInBackground(new BackgroundAction<String>() {
             @Override
             public String actionToDoInBackgroundThread() {
-                allSettings.saveANMInfo(anmLocation, anmDrugs, anmConfig, anmCountryCode, formFields);
+                allSettings.saveANMInfo(anmLocation, anmDrugs, anmConfig, anmCountryCode, formFields, parentDoctors);
                 return anmLocation;
             }
 

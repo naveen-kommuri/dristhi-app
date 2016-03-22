@@ -16,6 +16,7 @@ public class AllSettings {
     private static final String ANM_CONFIG = "anmConfiguration";
     private static final String ANM_COUNTRY_CODE = "anmCountryCode";
     private static final String FORM_FIELDS = "formFieldLabels";
+    private static final String PARENT_DOCTORS = "parentDoctors";
     private AllSharedPreferences preferences;
     private SettingsRepository settingsRepository;
 
@@ -71,18 +72,23 @@ public class AllSettings {
         settingsRepository.updateSetting(ANM_LOCATION, anmLocation);
     }
 
-    public void saveANMInfo(String anmLocation, String anmDrugs, String anmConfig, String countryCode, String formFields) {
+    public void saveANMInfo(String anmLocation, String anmDrugs, String anmConfig, String countryCode, String formFields, String parentDoctors) {
         settingsRepository.updateSetting(ANM_LOCATION, anmLocation);
         settingsRepository.updateSetting(ANM_DRUGS, anmDrugs);
         settingsRepository.updateSetting(ANM_CONFIG, anmConfig);
         settingsRepository.updateSetting(ANM_COUNTRY_CODE, countryCode);
         settingsRepository.updateSetting(FORM_FIELDS, formFields);
+        settingsRepository.updateSetting(PARENT_DOCTORS, parentDoctors);
     }
 
 
     public String fetchANMLocation() {
         String setting = settingsRepository.querySetting(ANM_LOCATION, "");
         return setting;
+    }
+
+    public String fetchParentDoctors() {
+        return settingsRepository.querySetting(PARENT_DOCTORS, "");
     }
 
     public String fetchDrugs() {

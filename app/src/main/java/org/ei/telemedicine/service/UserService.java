@@ -77,9 +77,11 @@ public class UserService {
         loginWith(userName, password);
     }
 
-    public void remoteLogin(String userName, String password, String userRole, String anmLocation, String anmDrugs, String anmConfig, String anmCountryCode, String formFields) {
+    public void remoteLogin(String userName, String password, String userRole, String anmLocation, String anmDrugs, String anmConfig, String anmCountryCode, String formFields, String parentDoctors) {
         loginWithUserRole(userName, password, userRole);
-        saveANMLocationTask.save(anmLocation, anmDrugs, anmConfig, anmCountryCode, formFields);
+        saveANMLocationTask.save(anmLocation, anmDrugs, anmConfig, anmCountryCode, formFields, parentDoctors);
+
+
     }
 
     public boolean hasARegisteredUser() {
