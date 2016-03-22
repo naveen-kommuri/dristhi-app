@@ -1,12 +1,5 @@
 package org.ei.telemedicine.bluetooth.fetal;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
@@ -19,6 +12,13 @@ import android.util.Log;
 import com.contec.jar.fhr01.DeviceCommand;
 
 import org.ei.telemedicine.bluetooth.Constants;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @TargetApi(Build.VERSION_CODES.ECLAIR)
 @SuppressLint("NewApi")
@@ -360,7 +360,6 @@ public class BluetoothService implements Constants {
                             deviceNum);
                     x = x + 1;
                 } catch (IOException e) {
-
                     Log.e(TAG, "disconnected", e);
                     if (mmInStream != null) {
                         try {

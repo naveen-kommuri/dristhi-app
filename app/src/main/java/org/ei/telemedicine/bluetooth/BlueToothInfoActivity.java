@@ -1,6 +1,7 @@
 package org.ei.telemedicine.bluetooth;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -10,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.AsyncTask;
@@ -23,11 +25,14 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +51,7 @@ import org.ei.telemedicine.domain.form.FieldOverrides;
 import org.ei.telemedicine.domain.form.FormSubmission;
 import org.ei.telemedicine.sync.DrishtiSyncScheduler;
 import org.ei.telemedicine.view.activity.NativeANMPlanofCareActivity;
+import org.ei.telemedicine.view.activity.NativeHomeActivity;
 import org.ei.telemedicine.view.activity.SecuredActivity;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,6 +60,8 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Vector;
@@ -305,6 +313,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                 if (bluetoothAdapter != null) {
                     IntentFilter intent = new IntentFilter();
                     intent.addAction(BluetoothDevice.ACTION_FOUND);
+                    intent.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
                     intent.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
                     intent.addAction(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
                     intent.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
@@ -371,24 +380,30 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
     }
 
     public BroadcastReceiver searchDevices = new BroadcastReceiver() {
+        ArrayList<String> bluetoothDevicesList = new ArrayList<String>();
 
         public void onReceive(Context context, Intent intent) {
+            progressDialog.setTitle("Search is initiated");
             String action = intent.getAction();
-            Bundle b = intent.getExtras();
-            Object[] lstName = b.keySet().toArray();
-
-            for (int i = 0; i < lstName.length; i++) {
-                String keyName = lstName[i].toString();
-                Log.e(TAG, String.valueOf(b.get(keyName)));
+            Bundle bundle = intent.getExtras();
+            if (bundle != null) {
+                Object[] lstName = bundle.keySet().toArray();
+                for (int i = 0; i < lstName.length; i++) {
+                    String keyName = lstName[i].toString();
+                    Log.e(TAG, keyName + "-----" + String.valueOf(bundle.get(keyName)));
+                }
             }
-
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent
                         .getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 
+                bluetoothDevicesList.add(device.getName() + "\n" + device.getAddress());
+//                if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
+//                    Log.i("face", device.getName() + "\n" + device.getAddress());
+//                }
 
                 if (device.getName() != null
-                        && device.getName().contains(Constants.PULSE_DEVICE)) {
+                        && device.getName().contains(Constants.PULSE_DEVICE) && BlueToothInfoActivity.device == Constants.PULSE_DEVICE_NUM) {
 
                     if (pulseService != null)
                         pulseService.stop();
@@ -401,9 +416,9 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                     pulseService.connect(device, context,
                             Constants.PULSE_DEVICE_NUM);
                 } else if (device.getName() != null
-                        && device.getName().startsWith(Constants.BP_DEVICE)) {
+                        && device.getName().startsWith(Constants.BP_DEVICE) && BlueToothInfoActivity.device == Constants.BP_DEVICE_NUM) {
                     Log.e(TAG, "Connect" + "BP Device");
-
+                    progressDialog.setTitle("BP is connected");
                     if (bpService != null)
                         bpService.stop();
                     try {
@@ -415,7 +430,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                     bpService.connect(device, BlueToothInfoActivity.this,
                             Constants.BP_DEVICE_NUM);
                 } else if (device.getName() != null
-                        && device.getName().startsWith(Constants.EET_DEVICE)) {
+                        && device.getName().startsWith(Constants.EET_DEVICE) && BlueToothInfoActivity.device == Constants.EET_DEVICE_NUM) {
                     Log.e(TAG, "Connect" + "EET Device");
 
                     if (eetService != null)
@@ -429,7 +444,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                     eetService.connect(device, BlueToothInfoActivity.this,
                             Constants.EET_DEVICE_NUM);
                 } else if (device.getName() != null
-                        && device.getName().startsWith(Constants.FET_DEVICE)) {
+                        && device.getName().startsWith(Constants.FET_DEVICE) && BlueToothInfoActivity.device == Constants.FET_DEVICE_NUM) {
                     Log.e(TAG, "Connect" + "FET Device");
 
                     if (fetalService != null)
@@ -443,9 +458,9 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                     fetalService.connect(device, BlueToothInfoActivity.this,
                             Constants.FET_DEVICE_NUM);
                 } else if (device.getName() != null
-                        && device.getName().startsWith(Constants.BLOOD_DEVICE)) {
+                        && device.getName().startsWith(Constants.BLOOD_DEVICE) && BlueToothInfoActivity.device == Constants.BLOOD_DEVICE_NUM) {
                     Log.e(TAG, "Connect" + "Blood Device");
-
+                    progressDialog.setTitle("Blood Device is connected");
                     if (bloodService != null)
                         bloodService.stop();
                     try {
@@ -457,11 +472,51 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                     bloodService.connect(device, BlueToothInfoActivity.this,
                             Constants.BLOOD_DEVICE_NUM);
                 }
+            } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equalsIgnoreCase(action)) {
+                Log.e("Finished discovery", bluetoothDevicesList.size() + "-----");
+                if (bluetoothDevicesList.size() == 0) {
+                    if (progressDialog != null)
+                        progressDialog.dismiss();
+                    Toast.makeText(BlueToothInfoActivity.this, "No Device", Toast.LENGTH_SHORT).show();
+                }
+                for (String device : bluetoothDevicesList) {
+                    if (device.startsWith(Constants.BLOOD_DEVICE) || device.startsWith(Constants.FET_DEVICE) || device.startsWith(Constants.BP_DEVICE) || device.startsWith(Constants.EET_DEVICE)) {
+                    } else {
+                        if (progressDialog != null)
+                            progressDialog.dismiss();
+                        Toast.makeText(BlueToothInfoActivity.this, "No Device", Toast.LENGTH_SHORT).show();
+                    }
+                }
             } else {
 //                Toast.makeText(BlueToothInfoActivity.this, "No Device", Toast.LENGTH_SHORT).show();
+                if (progressDialog != null)
+                    progressDialog.dismiss();
+                if (bluetoothAdapter != null)
+                    bluetoothAdapter.cancelDiscovery();
             }
         }
     };
+
+    private void startReceivingData(String deviceName, Object serviceObj) {
+
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                return null;
+            }
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+            }
+        }.execute();
+
+    }
 
     public void startDiscovery() {
         progressDialog.show();
@@ -541,7 +596,18 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
 
     }
 
+    public void turnSpeaker() {
+        AudioManager audioManager = (AudioManager) this.getSystemService(this.AUDIO_SERVICE);
+        audioManager.setMode(AudioManager.STREAM_MUSIC);
+        audioManager.setSpeakerphoneOn(true);
+    }
+
     private void startPlaying(String filePath) {
+        try {
+            turnSpeaker();
+        } catch (Exception e) {
+            Toast.makeText(BlueToothInfoActivity.this, "Unable to play in speaker", Toast.LENGTH_SHORT).show();
+        }
         mPlayer = new MediaPlayer();
         try {
             mPlayer.setDataSource(filePath);
@@ -564,6 +630,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
         this.filePath = filePath;
         File file = new File(filePath);
         if (!file.exists()) {
+//            showListDialog(filePath);
             new AsyncTaskRunner().execute(filePath);
         }
     }
@@ -577,6 +644,28 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
         path += "/" + System.currentTimeMillis() + ".wav";
         Log.e("Audio path", path);
         return path;
+    }
+
+    private void showListDialog(final String filePath) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose Mic");
+
+        ListView modeList = new ListView(this);
+        String[] stringArray = new String[]{"DEFAULT", "MIC", "VOICE_UPLINK", "VOICE_DOWNLINK", "VOICE_CALL", "CAMCORDER", "VOICE_RECOGNITION", "VOICE_COMMUNICATION", "REMOTE_SUBMIX", "HOTWORD"};
+        ArrayAdapter<String> modeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, stringArray);
+        modeList.setAdapter(modeAdapter);
+        modeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(BlueToothInfoActivity.this, "selected--" + ((TextView) view).getText().toString(), Toast.LENGTH_SHORT).show();
+//                startRecording(filePath, position == 9 ? 1999 : position);
+                new AsyncTaskRunner().execute(filePath, position == 9 ? 1999 + "" : position + "");
+            }
+        });
+        builder.setView(modeList);
+
+        final Dialog dialog = builder.create();
+        dialog.show();
     }
 
     private class AsyncTaskRunner extends AsyncTask<String, Void, String> {
@@ -598,7 +687,9 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
             try {
                 // Do your long operations here and return the result
                 // Sleeping for given time period
+//                startRecording(params[0], Integer.parseInt(params[1]));
                 startRecording(params[0]);
+
                 Thread.sleep(time);
                 resp = "Slept for " + time + " milliseconds";
             } catch (InterruptedException e) {
@@ -614,8 +705,13 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
         @Override
         protected void onPostExecute(String result) {
             recordProgressDialog.dismiss();
-            stopRecording();
-            Toast.makeText(BlueToothInfoActivity.this, "Record Successful", Toast.LENGTH_SHORT).show();
+            new AlertDialog.Builder(BlueToothInfoActivity.this).setCancelable(false).setMessage("Record Successful.").setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    stopRecording();
+                }
+            }).show();
+//            Toast.makeText(BlueToothInfoActivity.this, "Record Successful", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -623,6 +719,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
     private void startRecording(String filePath) {
         mRecorder = new MediaRecorder();
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+//        mRecorder.setAudioSource(i);
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
         mRecorder.setOutputFile(filePath);
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
@@ -636,9 +733,13 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
 
     private void stopRecording() {
         if (mRecorder != null) {
-            mRecorder.stop();
-            mRecorder.release();
-            mRecorder = null;
+            try {
+                mRecorder.stop();
+                mRecorder.release();
+                mRecorder = null;
+            } catch (Exception e) {
+                Log.e("Media", "is already released");
+            }
         }
         if (ib_play != null)
             ib_play.setVisibility(VISIBLE);
@@ -649,7 +750,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
 //        Toast.makeText(BlueToothInfoActivity.this, "cleic", Toast.LENGTH_SHORT).show();
         org.ei.telemedicine.Context context = org.ei.telemedicine.Context.getInstance();
         Log.e(TAG, "Entity ID----" + entityId);
-
+        Log.e(TAG, "BP Dia----" + et_bp_dia.getText().toString() + "/////Bp Sys----" + et_bp_sys.getText().toString() + "--Temp----" + et_eet.getText().toString() + "---Fetal---" + et_fetal.getText().toString() + "---BGM---" + et_bgm.getText().toString());
         if (entityId != null) {
             FormSubmission formSubmission = context.formDataRepository().fetchFromSubmissionUseEntity(entityId);
             Log.e(TAG, "Instance Id " + formSubmission.instanceId());
@@ -659,7 +760,6 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
             JSONArray fieldsJsonArray = instanceData.getJSONArray("fields");
             JSONArray instancesArray = instanceData.has("sub_forms") ? instanceData.getJSONArray("sub_forms").getJSONObject(0).getJSONArray("instances") : null;
             if (instancesArray != null && subFormCount == 0) {
-                ;
                 for (int i = 1; i <= subFormCount; i++) {
                     int value = i;
                     EditText editText = (EditText) findViewById(value);
@@ -675,7 +775,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                         jsonObject.put("value", et_bp_dia.getText().toString());
                     else if (jsonObject.get("name").equals(bpSystolic))
                         jsonObject.put("value", et_bp_sys.getText().toString());
-                    else if (jsonObject.get("name").equals("pulseRate"))
+                    else if (jsonObject.get("name").equals(AllConstants.ANCVisitFields.PULSERATE))
                         jsonObject.put("value", et_bp_heart.getText().toString());
                     else if (jsonObject.get("name").equals(temperature))
                         jsonObject.put("value", et_eet.getText().toString() + (context.allSettings().fetchANMConfiguration("temperature").startsWith("c") ? "-C" : "-F"));
@@ -707,6 +807,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
         String userRole = context.userService().getUserRole();
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
         this.finish();
+        startActivity(new Intent(BlueToothInfoActivity.this, NativeHomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
     }
 
     @Override
@@ -735,7 +836,9 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
     private String conversionBGM(String data) {
         try {
             float resultFloat = 18 * Float.parseFloat(data);
-            return Float.toString(resultFloat);
+            BigDecimal result;
+//            result = Math.round(resultFloat, 2);
+            return Math.round(resultFloat * 100.0) / 100.0 + "";
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(BlueToothInfoActivity.this, "Blood Glucose meter Conversion problem", Toast.LENGTH_SHORT).show();
@@ -768,6 +871,12 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                         et_bp_sys.setText(sys + "");
                         et_bp_dia.setText(resultData[2] + "");
                         et_bp_heart.setText(resultData[3] + "");
+                        new AlertDialog.Builder(BlueToothInfoActivity.this).setTitle("BP").setMessage("Receiving is completed.").setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
                     }
                     if (deviceNum == Constants.EET_DEVICE_NUM && deviceNum == BlueToothInfoActivity.device) {
                         String result = new String(resultData);
@@ -780,12 +889,24 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                             EditText editText = (EditText) findViewById(tempartureFor);
                             editText.setText(tempVal);
                         }
+                        new AlertDialog.Builder(BlueToothInfoActivity.this).setTitle("Temperature").setMessage("Receiving is completed.").setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
                     }
                     if (deviceNum == Constants.FET_DEVICE_NUM && deviceNum == BlueToothInfoActivity.device) {
                         Log.e(TAG,
                                 "Data FET= " + Arrays.toString(resultData));
                         String fetalStr = resultData[0] + "";
                         et_fetal.setText(fetalStr.replace("-", "").trim());
+                        new AlertDialog.Builder(BlueToothInfoActivity.this).setTitle("Fetal").setMessage("Receiving is completed.").setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
                     }
                     if (deviceNum == Constants.BLOOD_DEVICE_NUM && deviceNum == BlueToothInfoActivity.device) {
                         String result = new String(resultData);
@@ -798,6 +919,12 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                                 Toast.makeText(BlueToothInfoActivity.this, "Blood Conversion not possible", Toast.LENGTH_SHORT).show();
                             }
                         et_bgm.setText(result + "");
+                        new AlertDialog.Builder(BlueToothInfoActivity.this).setTitle("BGM").setMessage("Receiving is completed.").setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
                     }
                 } else {
                     Toast.makeText(BlueToothInfoActivity.this, "Device Disconnected",
