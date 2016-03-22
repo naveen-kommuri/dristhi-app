@@ -12,6 +12,7 @@
             <anc_reg_num />
             <pnc_number />
             <delivery_reg_date />
+            <is_consult_doctor />
             <place_delivery />
             <name_delivery_facility />
             <only_delivery_facility />

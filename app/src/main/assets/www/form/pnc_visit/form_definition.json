@@ -213,7 +213,7 @@
         "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/reason_for_no"
       },
       {
-        "name": "isConsultDoctor",
+        "name": "isPNCConsultDoctor",
         "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/is_consult_doctor"
       },

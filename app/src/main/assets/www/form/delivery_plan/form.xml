@@ -189,9 +189,6 @@
                     <span class="or-output"
                         data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
                     requires a transfusion at the hospital?
-                    <span class="or-output"
-                        data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
-
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -219,9 +216,7 @@
                     you review the high risk reasons with
                     <span class="or-output"
                         data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
-                    and her family? .
-                    <span class="or-output"
-                        data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
+                    and her family?
 
                 </span>
             </legend>
@@ -278,8 +273,6 @@
                     <span class="or-output"
                         data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
                     planning to deliver at?
-                    <span class="or-output"
-                        data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
 
                 </span>
                 <span class="required">*</span>
@@ -371,7 +364,6 @@
             delivery, even if she
             is not high risk.
 
-            <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
 
         </span>
         <input name="/Delivery_Plan_EngKan/normal_delivery_facility_message" autocomplete="off"
@@ -388,8 +380,6 @@
                         <span class="or-output"
                             data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
                         know the five 'cleans' for home delivery?
-                        <span class="or-output"
-                            data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
 
                     </span>
                     <span class="or-hint active" lang="">1. Clean surface
@@ -436,8 +426,6 @@
                     <span class="or-output"
                         data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
                     have a transportation plan?
-                    <span class="or-output"
-                        data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
 
                 </span>
             </legend>
@@ -568,8 +556,6 @@
                     <span class="or-output"
                         data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
                     ready to select a postpartum FP method?
-                    <span class="or-output"
-                        data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
 
                 </span>
             </legend>
@@ -596,8 +582,6 @@
                     <span class="or-output"
                         data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
                     use after delivery?
-                    <span class="or-output"
-                        data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
 
                 </span>
             </legend>

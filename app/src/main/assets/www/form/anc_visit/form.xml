@@ -38,25 +38,25 @@
                     <input name="/ANC_Visit_EngKan/this_anc_number"
                         data-name="/ANC_Visit_EngKan/this_anc_number" data-type-xml="select1"
                         required="required" type="radio" value="1" />
-                    <span class="option-label active" lang="">ANC 1</span>
+                    <span class="option-label active" lang="">ANC 1 (Week8- Week 12)</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Visit_EngKan/this_anc_number"
                         data-name="/ANC_Visit_EngKan/this_anc_number" data-type-xml="select1"
                         required="required" type="radio" value="2" />
-                    <span class="option-label active" lang="">ANC 2</span>
+                    <span class="option-label active" lang="">ANC 2 (Week 24- Week 28)</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Visit_EngKan/this_anc_number"
                         data-name="/ANC_Visit_EngKan/this_anc_number" data-type-xml="select1"
                         required="required" type="radio" value="3" />
-                    <span class="option-label active" lang="">ANC 3</span>
+                    <span class="option-label active" lang="">ANC 3 (Week 30- Week 32)</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Visit_EngKan/this_anc_number"
                         data-name="/ANC_Visit_EngKan/this_anc_number" data-type-xml="select1"
                         required="required" type="radio" value="4" />
-                    <span class="option-label active" lang="">ANC 4</span>
+                    <span class="option-label active" lang="">ANC 4 (Week 38- Week40)</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Visit_EngKan/this_anc_number"

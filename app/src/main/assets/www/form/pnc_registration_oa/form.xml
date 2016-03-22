@@ -122,9 +122,12 @@
     <label class="question or-branch pre-init non-select ">
         <span class="question-label active" lang="">Date of Birth?
         </span>
-        <span class="or-hint active" lang="">Future dates are not allowed
+        <span class="or-hint active" lang="">
+            Age limit
+            <span class="or-output" data-value=" /PNC_Child_Registration_EngKan/wife_min_age " />
+            -
+            <span class="or-output" data-value=" /PNC_Child_Registration_EngKan/wife_max_age" />
         </span>
-
         <span class="required">*</span>
         <input name="/PNC_Child_Registration_EngKan/wife_dob" autocomplete="off"
             data-constraint=".&lt;= ( /PNC_Child_Registration_EngKan/today  - /PNC_Child_Registration_EngKan/wife_min_age * 365) and .&gt;= ( /PNC_Child_Registration_EngKan/today  - /PNC_Child_Registration_EngKan/wife_max_age* 365)"
@@ -520,12 +523,15 @@
                         <label class="">
                             <input name="/PNC_Child_Registration_EngKan/child/immunizations_atbirth"
                                 data-type-xml="select" type="checkbox" value="bcg" />
-                            <span class="option-label active" lang="">Bacillus Calmette–Guerin(BCG)</span>
+                            <span class="option-label active" lang="">Bacillus
+                                Calmette–Guerin(BCG)
+                            </span>
                         </label>
                         <label class="">
                             <input name="/PNC_Child_Registration_EngKan/child/immunizations_atbirth"
                                 data-type-xml="select" type="checkbox" value="opv_0" />
-                            <span class="option-label active" lang="">Oral Polio Vaccine(OPV) 0</span>
+                            <span class="option-label active" lang="">Oral Polio Vaccine(OPV) 0
+                            </span>
                         </label>
                         <label class="">
                             <input name="/PNC_Child_Registration_EngKan/child/immunizations_atbirth"

@@ -124,6 +124,13 @@
         <span class="question-label active" lang="">Date of Birth?
         </span>
         <span class="required">*</span>
+        <span class="or-hint active" lang="">
+            Age limit
+            <span class="or-output" data-value=" /EC_Registration_EngKan/wife_min_age " />
+            -
+            <span class="or-output" data-value=" /EC_Registration_EngKan/wife_max_age " />
+        </span>
+
         <input name="/EC_Registration_EngKan/wife_dob" autocomplete="off"
             data-constraint=".&lt;= ( /EC_Registration_EngKan/today  - /EC_Registration_EngKan/wife_min_age * 365) and .&gt;= ( /EC_Registration_EngKan/today  - /EC_Registration_EngKan/wife_max_age* 365)"
             data-relevant="/EC_Registration_EngKan/is_dob_known  = 'yes'" data-type-xml="date"
@@ -593,7 +600,9 @@
                         data-relevant=" /EC_Registration_EngKan/familyplanning_method_1  = 'others'"
                         data-type-xml="select1" required="required" type="radio"
                         value="dmpa_injectable" />
-                    <span class="option-label active" lang="">Depo-Provera and Depo-Ralovera / Injectable</span>
+                    <span class="option-label active" lang="">Depo-Provera and Depo-Ralovera /
+                        Injectable
+                    </span>
                 </label>
                 <label class="">
                     <input name="/EC_Registration_EngKan/familyplanning_method_other"
@@ -782,7 +791,8 @@
         </fieldset>
     </fieldset>
     <label class="question or-branch pre-init non-select ">
-        <span class="question-label active" lang="">Last Depo-Provera and Depo-Ralovera injection date?
+        <span class="question-label active" lang="">Last Depo-Provera and Depo-Ralovera injection
+            date?
         </span>
         <span class="required">*</span>
         <input name="/EC_Registration_EngKan/injectable_date" autocomplete="off"

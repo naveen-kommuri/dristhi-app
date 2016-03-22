@@ -218,7 +218,7 @@
         "bind": "/model/instance/ANC_Visit_EngKan/today"
       },
       {
-        "name": "isConsultDoctor",
+        "name": "isANCConsultDoctor",
         "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Visit_EngKan/is_consult_doctor"
       },

@@ -131,7 +131,13 @@
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Date of Birth?
             </span>
-            <span class="or-hint active" lang="">Future dates are not allowed
+            <span class="or-hint active" lang="">
+                Age limit
+                <span class="or-output"
+                    data-value=" /PNC_Child_Registration_EngKan/pnc_edit_group/wife_min_age " />
+                -
+                <span class="or-output"
+                    data-value=" /PNC_Child_Registration_EngKan/pnc_edit_group/wife_max_age " />
             </span>
             <span class="required">*</span>
             <input name="/PNC_Child_Registration_EngKan/pnc_edit_group/wife_dob" autocomplete="off"

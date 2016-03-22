@@ -316,8 +316,8 @@
                         <span class="or-output"
                             data-value=" /PNC_Visit_EngKan/case_woman_name "></span>
                         feel hot or have the chills?
-                        <span class="or-output"
-                            data-value=" /PNC_Visit_EngKan/case_woman_name "></span>
+                        <!--<span class="or-output"-->
+                            <!--data-value=" /PNC_Visit_EngKan/case_woman_name "></span>-->
                     </span>
                 </legend>
                 <div class="option-wrapper">
