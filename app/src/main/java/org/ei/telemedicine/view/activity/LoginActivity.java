@@ -27,6 +27,7 @@ import org.ei.telemedicine.R;
 import org.ei.telemedicine.doctor.NativeDoctorActivity;
 import org.ei.telemedicine.domain.LoginResponse;
 import org.ei.telemedicine.event.Listener;
+import org.ei.telemedicine.service.PendingFormSubmissionService;
 import org.ei.telemedicine.sync.DrishtiSyncScheduler;
 import org.ei.telemedicine.view.BackgroundAction;
 import org.ei.telemedicine.view.LockingBackgroundTask;
@@ -47,6 +48,8 @@ import de.tavendo.autobahn.WebSocketHandler;
 
 import static android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS;
 import static org.ei.telemedicine.domain.LoginResponse.SUCCESS;
+import static org.ei.telemedicine.event.Event.SYNC_COMPLETED;
+import static org.ei.telemedicine.event.Event.SYNC_STARTED;
 import static org.ei.telemedicine.util.Log.logError;
 import static org.ei.telemedicine.util.Log.logVerbose;
 
@@ -56,7 +59,7 @@ public class LoginActivity extends Activity {
     private EditText passwordEditText;
     private final String CALLER = "name";
 
-    private ProgressDialog progressDialog;
+    private ProgressDialog progressDialog, _progressDialog;
     private String TAG = "LoginActivity";
 
     private int waitTime = 5000;
@@ -68,56 +71,90 @@ public class LoginActivity extends Activity {
     }
 
 
-    public  void start() {
+    public void start() {
 
         final String wsuri = context.configuration().drishtiWSURL() + AllConstants.WEBSOCKET;
         try {
             final String url = String.format(wsuri, getUsern());
-            Log.d("FFFFF",url);
+            Log.d("FFFFF", url);
 
-                    mConnection.connect(url, new WebSocketHandler() {
+            mConnection.connect(url, new WebSocketHandler() {
 
-                        @Override
-                        public void onOpen() {
-                            Log.d(TAG, "Status: Connected to " + url);
-                            //Toast.makeText(getApplicationContext(), String.format(wsuri, getUsern()), Toast.LENGTH_SHORT).show();
-                            //mConnection.sendTextMessage("Hello, world!");
+                @Override
+                public void onOpen() {
+                    Log.d(TAG, "Status: Connected to " + url);
+                    //Toast.makeText(getApplicationContext(), String.format(wsuri, getUsern()), Toast.LENGTH_SHORT).show();
+                    //mConnection.sendTextMessage("Hello, world!");
+                }
+
+                @Override
+                public void onTextMessage(String payload) {
+                    Log.d(TAG, "Got echo: " + payload);
+                    try {
+                        JSONObject jObject = new JSONObject(payload);
+                        String status = jObject.getString("status");
+                        String msg = jObject.getString("msg_type");
+                        String caller = jObject.getString("caller");
+                        //Log.d(TAG, check);
+                        String match = "INI";
+                        boolean response = (status.equals(match));
+                        if (response) {
+                            //Toast.makeText(getApplicationContext(),"call started",Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(getApplicationContext(), ActionActivity.class);
+                            i.putExtra(CALLER, caller);
+                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(i);
                         }
 
-                        @Override
-                        public void onTextMessage(String payload) {
-                            Log.d(TAG, "Got echo: " + payload);
-                            try {
-                                JSONObject jObject = new JSONObject(payload);
-                                String status = jObject.getString("status");
-                                String msg = jObject.getString("msg_type");
-                                String caller = jObject.getString("caller");
-                                //Log.d(TAG, check);
-                                String match = "INI";
-                                boolean response = (status.equals(match));
-                                if (response) {
-                                    //Toast.makeText(getApplicationContext(),"call started",Toast.LENGTH_LONG).show();
-                                    Intent i = new Intent(getApplicationContext(), ActionActivity.class);
-                                    i.putExtra(CALLER, caller);
-                                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    startActivity(i);
-                                }
+                    } catch (Exception ex) {
+                        Log.d(TAG, ex.toString());
+                    }
+                }
 
-                            } catch (Exception ex) {
-                                Log.d(TAG, ex.toString());
-                            }
-                        }
-
-                        @Override
-                        public void onClose(int code, String reason) {
-                            Log.d(TAG, "Connection lost.");
-                            //Toast.makeText(getApplicationContext(),"closed",Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                @Override
+                public void onClose(int code, String reason) {
+                    Log.d(TAG, "Connection lost.");
+                    //Toast.makeText(getApplicationContext(),"closed",Toast.LENGTH_SHORT).show();
+                }
+            });
         } catch (WebSocketException e) {
             Log.d(TAG, e.toString());
         }
     }
+
+    private Listener<Boolean> onSyncStartListener = new Listener<Boolean>() {
+        @Override
+        public void onEvent(Boolean data) {
+            _progressDialog = new ProgressDialog(LoginActivity.this);
+            _progressDialog.setMessage("Data is Syncing");
+            _progressDialog.setCancelable(false);
+            _progressDialog.show();
+        }
+    };
+    private Listener<Boolean> onNetworkChangeListener = new Listener<Boolean>() {
+        @Override
+        public void onEvent(Boolean data) {
+            if (!data) {
+                if (_progressDialog != null) {
+                    _progressDialog.dismiss();
+                }
+            }
+        }
+    };
+
+    private Listener<Boolean> onSyncCompleteListener = new Listener<Boolean>() {
+        @Override
+        public void onEvent(Boolean data) {
+            //#TODO: RemainingFormsToSyncCount cannot be updated from a back ground thread!!
+
+            if (_progressDialog != null && _progressDialog.isShowing())
+                _progressDialog.dismiss();
+            logoutUser();
+            SYNC_STARTED.removeListener(onSyncStartListener);
+            SYNC_COMPLETED.removeListener(onSyncCompleteListener);
+        }
+    };
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -140,8 +177,68 @@ public class LoginActivity extends Activity {
             }
         });
 
+        Button anotherLogin = (Button) findViewById(R.id.clear_Button);
+        if (context.allSharedPreferences().fetchRegisteredANM().trim().length() != 0 && context.allSharedPreferences().getPwd().trim().length() != 0) {
+            anotherLogin.setText("Not " + context.allSharedPreferences().fetchRegisteredANM() + "! Sign in as another user");
+            anotherLogin.setVisibility(View.VISIBLE);
+        } else
+            anotherLogin.setVisibility(View.GONE);
+        anotherLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (userNameEditText.getText().toString().trim().length() != 0 && context.allSharedPreferences().getPwd().trim().length() != 0) {
+                    localLoginWith(userNameEditText.getText().toString(), context.allSharedPreferences().getPwd(), true);
+                    PendingFormSubmissionService pendingFormSubmissionService = context.pendingFormSubmissionService();
+                    final long pendingCount = pendingFormSubmissionService.pendingFormSubmissionCount();
+                    if (pendingCount != 0)
+                        new AlertDialog.Builder(LoginActivity.this).setTitle("Previous User Data is not synced completely.").setNeutralButton("Sync Old Data", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (isNetworkAvailable()) {
+                                    SYNC_STARTED.addListener(onSyncStartListener);
+                                    SYNC_COMPLETED.addListener(onSyncCompleteListener);
+                                    DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), context.allSharedPreferences().getUserRole());
+                                    dialog.dismiss();
+                                } else
+                                    Toast.makeText(LoginActivity.this, "First Sync old user data", Toast.LENGTH_SHORT).show();
+                            }
+                        }).show();
+                    else
+                        logoutUser();
+                } else
+                    Toast.makeText(LoginActivity.this, "Missmatch with credentials", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
+
+//    private boolean executeOldUserData() {
+//        new AsyncTask<Void, Void, Void>() {
+//
+//            @Override
+//            protected Void doInBackground(Void... params) {
+//                DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), context.allSharedPreferences().getUserRole());
+//                return null;
+//            }
+//
+//            @Override
+//            protected void onPreExecute() {
+//                super.onPreExecute();
+//            }
+//
+//            @Override
+//            protected void onPostExecute(Void aVoid) {
+//                super.onPostExecute(aVoid);
+//            }
+//        }
+//        try {
+//
+//
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 
     private void initializeBuildDetails() {
         TextView buildDetailsTextView = (TextView) findViewById(R.id.login_build);
@@ -198,6 +295,12 @@ public class LoginActivity extends Activity {
         }
     }
 
+    public void logoutUser() {
+        context.userService().logout();
+        this.finish();
+        startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+    }
+
     private void initializeLoginFields() {
         userNameEditText = ((EditText) findViewById(R.id.login_userNameText));
         passwordEditText = ((EditText) findViewById(R.id.login_passwordText));
@@ -224,7 +327,7 @@ public class LoginActivity extends Activity {
 
     private void localLogin(View view, String userName, String password) {
         if (context.userService().isValidLocalLogin(userName, password)) {
-            localLoginWith(userName, password);
+            localLoginWith(userName, password, false);
         } else {
             showErrorDialog(getString(R.string.login_failed_dialog_message));
             view.setClickable(true);
@@ -302,17 +405,21 @@ public class LoginActivity extends Activity {
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), HIDE_NOT_ALWAYS);
     }
 
-    private void localLoginWith(String userName, String password) {
+    private void localLoginWith(String userName, String password, boolean isAnother) {
         context.userService().localLogin(userName, password);
         context.allSharedPreferences().updateIsFirstLogin(false);
         String userRole = context.userService().getUserRole();
-        goToHome(userRole);
-        if (isNetworkAvailable()) {
-            start();
+        if (!isAnother) {
+            goToHome(userRole);
+            if (isNetworkAvailable()) {
+                start();
+            } else {
+                Log.d(TAG, "No connection");
+            }
+            DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
         } else {
-            Log.d(TAG, "No connection");
+
         }
-        DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
         //DrishtiCallScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 
@@ -342,10 +449,12 @@ public class LoginActivity extends Activity {
     }
 
     private void remoteLoginWith(String userName, String password, String loginResponse) {
-        String userRole = null, personalInfo = null, location = null, drugs = null, configuration = null, countryCode = null, formFields = null;
+        String userRole = null, personalInfo = null, location = null, drugs = null, configuration = null, countryCode = null, formFields = null, doctors = null;
         if (loginResponse != null) {
             context.allSharedPreferences().updateIsFirstLogin(true);
             userRole = getFromJson(loginResponse, AllConstants.ROLE);
+            doctors = getFromJson(loginResponse, AllConstants.PARENT_DOCTORS);
+
             personalInfo = getFromJson(loginResponse, AllConstants.PERSONAL_INFO);
             location = getFromJson(personalInfo, "location");
             drugs = getFromJson(personalInfo, "drugs");
@@ -353,11 +462,12 @@ public class LoginActivity extends Activity {
             countryCode = getFromJson(personalInfo, "countryCode");
             formFields = getFromJson(personalInfo, "formLabels");
             context.userService()
-                    .remoteLogin(userName, password, userRole, location, drugs, configuration, countryCode, formFields);
+                    .remoteLogin(userName, password, userRole, location, drugs, configuration, countryCode, formFields, doctors);
         }
-        if (userRole != null && userRole.equals(AllConstants.DOCTOR_ROLE)) {
-            context.allSharedPreferences().savePwd(password);
-        }
+//        if (userRole != null && userRole.equals(AllConstants.DOCTOR_ROLE)) {
+//            context.allSharedPreferences().savePwd(password);
+//        }
+        context.allSharedPreferences().savePwd(password);
         goToHome(userRole);
         if (isNetworkAvailable()) {
             start();
