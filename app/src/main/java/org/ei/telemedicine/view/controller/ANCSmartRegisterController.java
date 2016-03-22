@@ -123,6 +123,7 @@ public class ANCSmartRegisterController {
                             .withIsHighRisk(anc.isHighRisk())
                             .withIsOutOfArea(ec.isOutOfArea())
                             .withHighRiskReason(anc.highRiskReason())
+                            .withMedicalConsultation(anc.isANC() ? anc.getDetail(AllConstants.ANCVisitFields.ISCONSULTDOCTOR) : null)
                             .withPoc(anc.getDetail(AllConstants.ANCRegistrationFields.ANC_POC_INFO))
                             .withCaste(ec.getDetail(AllConstants.ECRegistrationFields.CASTE))
                             .withEconomicStatus(ec.getDetail(AllConstants.ECRegistrationFields.ECONOMIC_STATUS))

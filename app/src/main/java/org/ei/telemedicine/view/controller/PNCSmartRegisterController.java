@@ -1,29 +1,6 @@
 package org.ei.telemedicine.view.controller;
 
-import static java.lang.String.valueOf;
-import static java.util.Collections.sort;
-import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.ei.telemedicine.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
-import static org.ei.telemedicine.AllConstants.ECRegistrationFields.CASTE;
-import static org.ei.telemedicine.AllConstants.ECRegistrationFields.CURRENT_FP_METHOD;
-import static org.ei.telemedicine.AllConstants.ECRegistrationFields.ECONOMIC_STATUS;
-import static org.ei.telemedicine.AllConstants.ECRegistrationFields.FAMILY_PLANNING_METHOD_CHANGE_DATE;
-import static org.ei.telemedicine.AllConstants.ECRegistrationFields.IUD_PERSON;
-import static org.ei.telemedicine.AllConstants.ECRegistrationFields.IUD_PLACE;
-import static org.ei.telemedicine.AllConstants.ECRegistrationFields.NUMBER_OF_CENTCHROMAN_PILLS_DELIVERED;
-import static org.ei.telemedicine.AllConstants.ECRegistrationFields.NUMBER_OF_CONDOMS_SUPPLIED;
-import static org.ei.telemedicine.AllConstants.ECRegistrationFields.NUMBER_OF_OCP_DELIVERED;
-import static org.ei.telemedicine.AllConstants.ECRegistrationFields.WOMAN_DOB;
-import static org.ei.telemedicine.AllConstants.PNCRegistrationFields.DELIVERY_COMPLICATIONS;
-import static org.ei.telemedicine.AllConstants.PNCRegistrationFields.DELIVERY_PLACE;
-import static org.ei.telemedicine.AllConstants.PNCRegistrationFields.DELIVERY_TYPE;
-import static org.ei.telemedicine.AllConstants.PNCRegistrationFields.IMMEDIATE_REFERRAL_REASON;
-import static org.ei.telemedicine.AllConstants.PNCRegistrationFields.OTHER_DELIVERY_COMPLICATIONS;
-import static org.ei.telemedicine.domain.ServiceProvided.PNC_SERVICE_PROVIDED_NAME;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import com.google.gson.Gson;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.ei.telemedicine.AllConstants;
@@ -47,7 +24,30 @@ import org.ei.telemedicine.view.contract.pnc.PNCClient;
 import org.ei.telemedicine.view.contract.pnc.PNCClients;
 import org.ei.telemedicine.view.preProcessor.PNCClientPreProcessor;
 
-import com.google.gson.Gson;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+import static java.lang.String.valueOf;
+import static java.util.Collections.sort;
+import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.ei.telemedicine.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.CASTE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.CURRENT_FP_METHOD;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.ECONOMIC_STATUS;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.FAMILY_PLANNING_METHOD_CHANGE_DATE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.IUD_PERSON;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.IUD_PLACE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.NUMBER_OF_CENTCHROMAN_PILLS_DELIVERED;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.NUMBER_OF_CONDOMS_SUPPLIED;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.NUMBER_OF_OCP_DELIVERED;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.WOMAN_DOB;
+import static org.ei.telemedicine.AllConstants.PNCRegistrationFields.DELIVERY_COMPLICATIONS;
+import static org.ei.telemedicine.AllConstants.PNCRegistrationFields.DELIVERY_PLACE;
+import static org.ei.telemedicine.AllConstants.PNCRegistrationFields.DELIVERY_TYPE;
+import static org.ei.telemedicine.AllConstants.PNCRegistrationFields.IMMEDIATE_REFERRAL_REASON;
+import static org.ei.telemedicine.AllConstants.PNCRegistrationFields.OTHER_DELIVERY_COMPLICATIONS;
+import static org.ei.telemedicine.domain.ServiceProvided.PNC_SERVICE_PROVIDED_NAME;
 
 public class PNCSmartRegisterController {
     private static final String PNC_1_ALERT_NAME = "PNC 1";
@@ -103,6 +103,7 @@ public class PNCSmartRegisterController {
                             .withEconomicStatus(ec.getDetail(ECONOMIC_STATUS))
                             .withIsOutOfArea(ec.isOutOfArea())
                             .withCaste(ec.getDetail(CASTE))
+                            .withMedicalConsultation(pnc.getDetail(AllConstants.PNCVisitFields.ISCONSULTDOCTOR))
                             .withPoc(pnc.getDetail(AllConstants.PNCRegistrationFields.PNC_POC_INFO))
                             .withPhotoPath(photoPath)
                             .withFPMethod(ec.getDetail(CURRENT_FP_METHOD))

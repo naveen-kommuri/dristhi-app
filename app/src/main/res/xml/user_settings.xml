@@ -31,11 +31,21 @@
             android:key="prefVideoURL"
             android:text="202.153.34.169:8004"
             android:title="Enter Video URL" />
-            
-            <EditTextPreference
-            android:key="prefWebSocketURL"
-            android:text="ws://202.153.34.169:8004"
-            android:title="Enter Websocket URL" />
+
+        <EditTextPreference
+            android:key="prefClientURL"
+            android:text="https://play.google.com/store/apps/details?id=org.mozilla.firefox"
+            android:title="Enter Client Download URL" />
+
+        <EditTextPreference
+            android:key="prefVideoBrowserURL"
+            android:text="org.mozilla.firefox"
+            android:title="Enter Video Browser" />
+
+        <EditTextPreference
+            android:key="prefVideoBrowserAppURL"
+            android:text="org.mozilla.firefox.App"
+            android:title="Enter Video Browser App Name" />
 
     </PreferenceCategory>
 

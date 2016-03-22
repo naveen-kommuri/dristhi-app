@@ -95,6 +95,7 @@
             android:paddingLeft="8dp"
             android:password="true"
             android:singleLine="true"
+            android:text="123456"
             android:textColor="#666666"
             android:textColorHint="#bfbfbf"
             android:textCursorDrawable="@drawable/color_cursor"
@@ -140,6 +141,34 @@
             android:textColor="#666666"
             android:textSize="20sp"
             android:visibility="gone" />
+
+        <!--<org.ei.telemedicine.view.customControls.CustomFontTextView-->
+        <!--android:id="@+id/tv_another_login"-->
+        <!--style="@style/CustomFontTextViewStyle.Home.RegisterName"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="ANM"-->
+        <!--android:textSize="25sp" />-->
+
+        <Button
+            android:id="@+id/clear_Button"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="0"
+            android:background="@drawable/transparent_blue_background"
+            android:ems="10"
+            android:onClick="login"
+            android:shadowColor="#ffffff"
+            android:shadowDx="0"
+            android:shadowDy="1"
+            android:shadowRadius="0.5"
+            android:text="Login as a another user"
+            android:textColor="@android:color/black"
+            android:textSize="25sp" />
 
         <ImageView
             android:id="@+id/form_spacer_below"

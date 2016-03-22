@@ -11,6 +11,7 @@ public class AllConstants {
     public static final String PRESCRIBE_DRUGS = "Prescribe Possible Drugs";
     public static final String PERSONAL_INFO = "personal_info";
     public static final String ROLE = "role";
+    public static final String PARENT_DOCTORS = "parent_doctors";
     public static final String DRUGS = "drugs";
     public static final String LOCATION = "location";
 
@@ -274,8 +275,9 @@ public class AllConstants {
         public static final String TEMPERATURE = "temperature";
         public static final String HBLEVEL = "hbLevel";
         public static final String BLOODGLUCOSEDATA = "bloodGlucoseData";
-        public static final String ISCONSULTDOCTOR = "isConsultDoctor";
+        public static final String ISCONSULTDOCTOR = "isANCConsultDoctor";
         public static final String FETALDATA = "fetalData";
+        public static final String PULSERATE = "pulseRate";
         public static final String WEIGHT = "weight";
         public static final String ANM_POC = "anmPoc";
         public static final String POC_INFO = "docPocInfo";
@@ -289,10 +291,11 @@ public class AllConstants {
         public static final String BP_DIASTOLIC = "bpDiastolic";
         public static final String TEMPERATURE = "temperature";
         public static final String CHILD_TEMPERATURE = "childTemperature";
+        public static final String PULSERATE = "pulseRate";
         public static final String WEIGHT = "weight";
         public static final String HB_LEVEL = "hbLevel";
         public static final String BLOODGLUCOSEDATA = "bloodGlucoseData";
-        public static final String ISCONSULTDOCTOR = "isConsultDoctor";
+        public static final String ISCONSULTDOCTOR = "isPNCConsultDoctor";
         public static final String PNC_RISKS = "pncRisks";
 
         public static final String NUMBER_OF_IFA_TABLETS_GIVEN = "numberOfIFATabletsGiven";
@@ -406,6 +409,7 @@ public class AllConstants {
         public static final String REPORT_CHILD_DISEASE_DATE = "reportChildDiseaseDate";
         public static final String REPORT_CHILD_DISEASE_PLACE = "reportChildDiseasePlace";
         public static final String CHILD_REFERRAL = "childReferral";
+        public static final String ISCONSULTDOCTOR = "isChildConsultDoctor";
     }
 
     public class VitaminAFields {

@@ -206,7 +206,7 @@ public class ViewPlanOfCareActivity extends SecuredActivity {
                 JSONArray jsonArray1 = new JSONArray(jsonArray);
                 for (int i = 0; i < jsonArray1.length(); i++) {
                     JSONObject jsonObject = jsonArray1.getJSONObject(i);
-                    String data = jsonObject.getString("drugName") + "-" + jsonObject.getString("direction") + "-" + jsonObject.getString("dosage") + "-" + jsonObject.getString("frequency") + "- Days :" + jsonObject.getString("drugNoOfDays") + "- Qty :" + jsonObject.getString("drugQty");
+                    String data = jsonObject.getString("drugName") + "-" + jsonObject.getString("direction") + "-" + jsonObject.getString("dosage") + "-" + jsonObject.getString("frequency") + "- Days :" + jsonObject.getString("drugNoOfDays") + "- Qty :" + jsonObject.getString("drugQty") + (jsonObject.has("drugStopDate") ? "- Stop By:" + jsonObject.getString("drugStopDate") : "");
                     result = result + "\n" + data;
                 }
                 return result;

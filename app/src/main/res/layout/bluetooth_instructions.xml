@@ -59,6 +59,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tt1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -200,21 +201,23 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/fetal_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:padding="5dp"
-                    android:text="•	Press the power button to switch on the device"
+                    android:text="•	Press the power button"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/fetal_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:padding="5dp"
-                    android:text="•	Long press Sync button to get id and number on LCD display"
+                    android:text="•	Long press Sync button"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />
@@ -260,6 +263,7 @@
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/fetal_7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -270,11 +274,12 @@
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/fetal_8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:padding="5dp"
-                    android:text="•	Press No in case of message  do you want to delete records"
+                    android:text="•	Press No "
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />
@@ -362,11 +367,12 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/eet_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:padding="5dp"
-                    android:text="•	Press ON/OFF button to turn on the device"
+                    android:text="•	Press "
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />
@@ -484,11 +490,12 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_steh1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:padding="5dp"
-                    android:text="•	Press Power key for 3 sec to turn on the device"
+                    android:text="•	Press Power key "
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />
@@ -616,11 +623,12 @@
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/bgm_step2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:padding="5dp"
-                    android:text="• Unscrew the lancing device, and insert the lancet in the lancing device. Press the button to do the blood collection"
+                    android:text="• Unscrew the lancing device, and insert the lancet in the lancing device. Press the button"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />

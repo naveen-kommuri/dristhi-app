@@ -72,8 +72,8 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:paddingLeft="5dp"
-                android:visibility="gone"
-                android:src="@drawable/flag_poc_pending" />
+                android:src="@drawable/flag_poc_pending"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/img_poc_badge"
@@ -82,8 +82,19 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:paddingLeft="5dp"
-                android:visibility="gone"
-                android:src="@drawable/flag_poc_complete" />
+                android:src="@drawable/flag_poc_complete"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/img_consult_badge"
+                android:layout_width="@dimen/client_profile_badge_width"
+                android:layout_height="@dimen/client_profile_badge_height"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:paddingLeft="5dp"
+                android:src="@drawable/flag_medical_consult"
+                android:visibility="gone" />
+
         </RelativeLayout>
     </FrameLayout>
 

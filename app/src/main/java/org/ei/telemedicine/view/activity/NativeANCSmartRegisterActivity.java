@@ -139,7 +139,7 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
                 new OpenFormOption(getString(R.string.str_register_anc_visit_form), ANC_VISIT, formController),
 //                new OpenFormOption("ANC Visit Edit", ANC_VISIT_EDIT, formController),
 //                new OpenFormOption("ANC Reg Edit", "anc_reg_edit", formController),
-//                new OpenFormOption("ANC Edit", ANC_EDIT, formController),
+                new OpenFormOption("ANC Edit", AllConstants.FormNames.ANC_EDIT, formController),
                 new OpenFormOption(getString(R.string.str_register_hb_test_form), HB_TEST, formController),
                 new OpenFormOption(getString(R.string.str_register_ifa_form), IFA, formController),
                 new OpenFormOption(getString(R.string.str_register_tt_form), TT, formController),

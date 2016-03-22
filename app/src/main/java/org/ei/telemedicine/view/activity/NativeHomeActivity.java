@@ -264,10 +264,9 @@ public class NativeHomeActivity extends SecuredActivity {
         File data = Environment.getDataDirectory();
         FileChannel source = null;
         FileChannel destination = null;
-        String DB_NAME = "drishti.db";
-        String SAMPLE_DB_NAME = "/drishti_" + context.allSharedPreferences().fetchRegisteredANM() + ".db";
-        String currentDBPath = "/data/" + "org.ei.telemedicine" + "/databases/" + DB_NAME;
-        String backupDBPath = AllConstants.DRISTHI_DIRECTORY_NAME + SAMPLE_DB_NAME;
+        String SAMPLE_DB_NAME = "drishti.db";
+        String currentDBPath = "/data/" + "org.ei.telemedicine" + "/databases/" + SAMPLE_DB_NAME;
+        String backupDBPath = SAMPLE_DB_NAME;
         File currentDB = new File(data, currentDBPath);
         File backupDB = new File(sd, backupDBPath);
         try {
@@ -328,7 +327,7 @@ public class NativeHomeActivity extends SecuredActivity {
 
             case R.id.logout:
 //                context.userService().logoutSession();
-                new AlertDialog.Builder(this).setTitle("Do you want logout?").setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+                new AlertDialog.Builder(this).setTitle("Do you want logout or exit only?").setPositiveButton("Logout & Exit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (!context.allSharedPreferences().getIsSyncInProgress() && pendingFormSubmissionService.pendingFormSubmissionCount() == 0) {
@@ -337,9 +336,10 @@ public class NativeHomeActivity extends SecuredActivity {
                             Toast.makeText(NativeHomeActivity.this, "Need to sync all information in server", Toast.LENGTH_SHORT).show();
                         }
                     }
-                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                }).setNegativeButton("Exit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        context.userService().logoutSession();
                     }
                 }).show();
 

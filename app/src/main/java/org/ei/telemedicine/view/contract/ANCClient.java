@@ -6,7 +6,6 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.telemedicine.domain.ANCServiceType;
 import org.ei.telemedicine.util.IntegerUtil;
-import org.ei.telemedicine.util.Log;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.ISODateTimeFormat;
@@ -14,15 +13,38 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.ei.telemedicine.AllConstants.ECRegistrationFields.*;
-import static org.ei.telemedicine.AllConstants.*;
 import static org.ei.telemedicine.AllConstants.ANCVisitFields.BP_DIASTOLIC;
 import static org.ei.telemedicine.AllConstants.ANCVisitFields.BP_SYSTOLIC;
-import static org.ei.telemedicine.domain.ANCServiceType.*;
+import static org.ei.telemedicine.AllConstants.COLON;
+import static org.ei.telemedicine.AllConstants.COMMA_WITH_SPACE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.BPL_VALUE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.SC_VALUE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.ST_VALUE;
+import static org.ei.telemedicine.AllConstants.FORM_DATE_TIME_FORMAT;
+import static org.ei.telemedicine.AllConstants.IN_AREA;
+import static org.ei.telemedicine.AllConstants.OUT_OF_AREA;
+import static org.ei.telemedicine.AllConstants.SLASH_STRING;
+import static org.ei.telemedicine.domain.ANCServiceType.ANC_1;
+import static org.ei.telemedicine.domain.ANCServiceType.ANC_2;
+import static org.ei.telemedicine.domain.ANCServiceType.ANC_3;
+import static org.ei.telemedicine.domain.ANCServiceType.ANC_4;
+import static org.ei.telemedicine.domain.ANCServiceType.DELIVERY_PLAN;
+import static org.ei.telemedicine.domain.ANCServiceType.HB_TEST;
+import static org.ei.telemedicine.domain.ANCServiceType.IFA;
+import static org.ei.telemedicine.domain.ANCServiceType.PNC;
+import static org.ei.telemedicine.domain.ANCServiceType.TT_1;
+import static org.ei.telemedicine.domain.ANCServiceType.TT_2;
+import static org.ei.telemedicine.domain.ANCServiceType.TT_BOOSTER;
 import static org.ei.telemedicine.util.DateUtil.formatDate;
 import static org.ei.telemedicine.util.DateUtil.today;
 import static org.ei.telemedicine.util.StringUtil.humanize;
@@ -73,6 +95,7 @@ public class ANCClient implements ANCSmartRegisterClient {
     private String caste;
     private String economicStatus;
     private String pocInfo;
+    private Boolean medicalConsultation;
     private List<AlertDTO> alerts;
     private List<ServiceProvidedDTO> services_provided;
     private String entityIdToSavePhoto;
@@ -163,6 +186,11 @@ public class ANCClient implements ANCSmartRegisterClient {
     @Override
     public boolean isPOC() {
         return pocInfo != null && !pocInfo.equals("");
+    }
+
+    @Override
+    public boolean isMedicalConsult() {
+        return medicalConsultation;
     }
 
     @Override
@@ -360,6 +388,11 @@ public class ANCClient implements ANCSmartRegisterClient {
 
     public ANCClient withPoc(String pocInfo) {
         this.pocInfo = pocInfo;
+        return this;
+    }
+
+    public ANCClient withMedicalConsultation(String medicalConsultation) {
+        this.medicalConsultation = (medicalConsultation != null && medicalConsultation.equalsIgnoreCase("yes")) ? true : false;
         return this;
     }
 

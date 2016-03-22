@@ -116,6 +116,8 @@ public interface SmartRegisterClient {
 
     public boolean isPOC();
 
+    public boolean isMedicalConsult();
+
     public boolean isPocPending();
 
     public String profilePhotoPath();

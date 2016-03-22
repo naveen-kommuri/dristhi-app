@@ -64,9 +64,9 @@ public class DristhiConfiguration {
 
     public String drishtiWSURL() {
 
-        return  (!preferences.getString("prefWebSocketURL", "").equals("") ? preferences.getString("prefWebSocketURL", "") : this.get(DRISHTI_WEBSOCKET_URL));
-
+        return (!preferences.getString("prefWebSocketURL", "").equals("") ? preferences.getString("prefWebSocketURL", "") : this.get(DRISHTI_WEBSOCKET_URL));
     }
+
 
     public String drishtiAudioURL() {
         return this.get(DRISHTI_AUDIO_URL);
@@ -76,4 +76,15 @@ public class DristhiConfiguration {
         return IntegerUtil.tryParse(this.get(SYNC_DOWNLOAD_BATCH_SIZE), 100);
     }
 
+    public String getClientAPPURL() {
+        return !preferences.getString("prefClientURL", "").equals("") ? preferences.getString("prefClientURL", "") : "https://play.google.com/store/apps/details?id=org.mozilla.firefox";
+    }
+
+    public String getClientBrowserUrl() {
+        return !preferences.getString("prefVideoBrowserURL", "").equals("") ? preferences.getString("prefVideoBrowserURL", "") : "org.mozilla.firefox";
+    }
+
+    public String getClientBrowserAPPUrl() {
+        return !preferences.getString("prefVideoBrowserAppURL", "").equals("") ? preferences.getString("prefVideoBrowserAppURL", "") : "org.mozilla.firefox.App";
+    }
 }

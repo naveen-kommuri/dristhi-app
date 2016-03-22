@@ -6,10 +6,15 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.domain.ANCServiceType;
 import org.ei.telemedicine.domain.FPMethod;
 import org.ei.telemedicine.util.IntegerUtil;
-import org.ei.telemedicine.view.contract.*;
+import org.ei.telemedicine.view.contract.AlertDTO;
+import org.ei.telemedicine.view.contract.ChildClient;
+import org.ei.telemedicine.view.contract.ServiceProvidedDTO;
+import org.ei.telemedicine.view.contract.SmartRegisterClient;
+import org.ei.telemedicine.view.contract.Visits;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.ISODateTimeFormat;
@@ -17,13 +22,27 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 
-import static org.ei.telemedicine.AllConstants.ECRegistrationFields.*;
-import static org.ei.telemedicine.AllConstants.*;
+import static org.ei.telemedicine.AllConstants.COMMA_WITH_SPACE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.BPL_VALUE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.SC_VALUE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.ST_VALUE;
+import static org.ei.telemedicine.AllConstants.IN_AREA;
+import static org.ei.telemedicine.AllConstants.OUT_OF_AREA;
+import static org.ei.telemedicine.AllConstants.SPACE;
 import static org.ei.telemedicine.domain.ANCServiceType.PNC;
-import static org.ei.telemedicine.util.DateUtil.*;
-import static org.ei.telemedicine.util.StringUtil.*;
+import static org.ei.telemedicine.util.DateUtil.formatDate;
+import static org.ei.telemedicine.util.DateUtil.formatFromISOString;
+import static org.ei.telemedicine.util.DateUtil.getLocalDateFromISOString;
+import static org.ei.telemedicine.util.StringUtil.humanize;
+import static org.ei.telemedicine.util.StringUtil.humanizeAndDoUPPERCASE;
+import static org.ei.telemedicine.util.StringUtil.replaceAndHumanizeWithInitCapText;
 import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
 import static org.ei.telemedicine.view.contract.ServiceProvidedDTO.emptyService;
 
@@ -36,6 +55,7 @@ public class PNCClient implements PNCSmartRegisterClient {
         categoriesToServiceTypeMap.put(CATEGORY_PNC, Arrays.asList(PNC));
     }
 
+    private Boolean medicalConsultation;
     private String entityId;
     private String ec_number;
     private String village;
@@ -153,9 +173,49 @@ public class PNCClient implements PNCSmartRegisterClient {
         return economicStatus != null && economicStatus.equalsIgnoreCase(BPL_VALUE);
     }
 
+    public String getDataFromJson(String jsonData, String keyValue) {
+        if (jsonData != null && !jsonData.equals("")) {
+            try {
+                JSONObject jsonObject = new JSONObject(jsonData);
+                return jsonObject.has(keyValue) && !jsonObject.getString(keyValue).equalsIgnoreCase("none") && !jsonObject.getString(keyValue).equalsIgnoreCase("null") ? jsonObject.getString(keyValue) : "";
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return "";
+    }
+
     @Override
     public boolean isPOC() {
-        return pocInfo != null && !pocInfo.equals("");
+        String visitType;
+        try {
+            if (pocInfo != null && !pocInfo.equals("")) {
+                JSONArray docPocInfoArray = new JSONArray(pocInfo);
+                JSONObject pocInfo = docPocInfoArray.length() != 0 ? docPocInfoArray.getJSONObject(docPocInfoArray.length() - 1)
+                        : new JSONObject();
+                if (pocInfo.getString("pending").length() == 0) {
+                    JSONObject pocJson = pocInfo.has("poc") ? new JSONObject(pocInfo.getString("poc")) : new JSONObject();
+                    visitType = getDataFromJson(pocJson.toString(), "visitType");
+                    if (visitType.equalsIgnoreCase(AllConstants.VisitTypes.PNC_VISIT)) {
+                        return true;
+                    }
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean isMedicalConsult() {
+        return medicalConsultation;
+    }
+
+    public PNCClient withMedicalConsultation(String medicalConsultation) {
+        this.medicalConsultation = (medicalConsultation != null && medicalConsultation.equalsIgnoreCase("yes")) ? true : false;
+        return this;
     }
 
     @Override

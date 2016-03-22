@@ -108,6 +108,7 @@ public class ChildSmartRegisterController {
                                     .withMotherName(child.ec().wifeName())
                                     .withDOB(child.dateOfBirth())
                                     .withPOC(child.getDetail(AllConstants.ChildRegistrationFields.CHILD_POC_INFO))
+                                    .withMedicalConsultation(child.getDetail(AllConstants.ChildIllnessFields.ISCONSULTDOCTOR))
                                     .withMotherAge(child.ec().age())
                                     .withFatherName(child.ec().husbandName())
                                     .withVillage(child.ec().village())

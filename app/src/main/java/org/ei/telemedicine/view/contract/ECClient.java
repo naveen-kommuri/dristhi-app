@@ -6,19 +6,23 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.domain.FPMethod;
 import org.ei.telemedicine.util.DateUtil;
-import org.ei.telemedicine.util.IntegerUtil;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
-import static org.apache.commons.lang3.StringUtils.upperCase;
-import static org.ei.telemedicine.AllConstants.ECRegistrationFields.*;
-import static org.ei.telemedicine.AllConstants.*;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.BPL_VALUE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.SC_VALUE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.ST_VALUE;
+import static org.ei.telemedicine.AllConstants.IN_AREA;
+import static org.ei.telemedicine.AllConstants.OUT_OF_AREA;
 import static org.ei.telemedicine.util.DateUtil.formatDate;
 import static org.ei.telemedicine.util.StringUtil.humanize;
 import static org.ei.telemedicine.util.StringUtil.humanizeAndDoUPPERCASE;
@@ -42,6 +46,7 @@ public class ECClient implements ECSmartRegisterClient {
     private String familyPlanningMethodChangeDate;
     private String photo_path;
     private String caste;
+    private Boolean medicalConsultation;
     private String economicStatus;
     private String iudPlace;
     private String iudPerson;
@@ -142,6 +147,16 @@ public class ECClient implements ECSmartRegisterClient {
 
     @Override
     public boolean isPOC() {
+        return false;
+    }
+
+    public ECClient withMedicalConsultation(Boolean medicalConsultation) {
+        this.medicalConsultation = medicalConsultation;
+        return this;
+    }
+
+    @Override
+    public boolean isMedicalConsult() {
         return false;
     }
 

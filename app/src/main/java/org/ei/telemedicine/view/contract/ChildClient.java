@@ -57,6 +57,7 @@ import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
 import static org.ei.telemedicine.view.contract.ServiceProvidedDTO.emptyService;
 
 public class ChildClient implements ChildSmartRegisterClient {
+    private Boolean medicalConsultation;
     public static final String CATEGORY_BCG = "bcg";
     public static final String CATEGORY_MEASLES = "measles";
     public static final String CATEGORY_OPV = "opv";
@@ -220,6 +221,11 @@ public class ChildClient implements ChildSmartRegisterClient {
     }
 
     @Override
+    public boolean isMedicalConsult() {
+        return medicalConsultation;
+    }
+
+    @Override
     public boolean isPocPending() {
         try {
             if (pocInfo != null && !pocInfo.equals("")) {
@@ -374,6 +380,11 @@ public class ChildClient implements ChildSmartRegisterClient {
 
     public ChildClient withDOB(String dob) {
         this.dob = dob;
+        return this;
+    }
+
+    public ChildClient withMedicalConsultation(String medicalConsultation) {
+        this.medicalConsultation = (medicalConsultation != null && medicalConsultation.equalsIgnoreCase("yes")) ? true : false;
         return this;
     }
 

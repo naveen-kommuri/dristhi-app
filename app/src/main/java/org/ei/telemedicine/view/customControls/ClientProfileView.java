@@ -25,6 +25,7 @@ public class ClientProfileView extends RelativeLayout {
     private ImageView badgeBPLView;
     private ImageView badgePOCPendingView;
     private ImageView badgePocCompleteView;
+    private ImageView badgeMedicalConsultView;
 
     @SuppressWarnings("UnusedDeclaration")
     public ClientProfileView(Context context) {
@@ -52,6 +53,7 @@ public class ClientProfileView extends RelativeLayout {
         badgeBPLView = (ImageView) findViewById(R.id.img_bpl_badge);
         badgePOCPendingView = (ImageView) findViewById(R.id.img_poc_pending_badge);
         badgePocCompleteView = (ImageView) findViewById(R.id.img_poc_badge);
+        badgeMedicalConsultView = (ImageView) findViewById(R.id.img_consult_badge);
     }
 
     // #TODO: make these names generic, so this layout can be reused in all the registers
@@ -82,9 +84,15 @@ public class ClientProfileView extends RelativeLayout {
 //            badgePocCompleteView.setVisibility(VISIBLE);
 //            badgePocCompleteView.setImageResource(client.isPocPending() ? R.drawable.flag_poc_pending : R.drawable.flag_poc_complete);
 //        }
-
-        badgePocCompleteView.setVisibility(client.isPOC() && !client.isPocPending() ? View.VISIBLE : View.GONE);
-        badgePOCPendingView.setVisibility(client.isPocPending() ? View.VISIBLE : View.GONE);
+        badgeMedicalConsultView.setVisibility(client.isMedicalConsult() ? VISIBLE : GONE);
+        if (client.isPOC() && !client.isPocPending()) {
+            badgePocCompleteView.setVisibility(View.VISIBLE);
+            badgeMedicalConsultView.setVisibility(GONE);
+        }
+        if (client.isPocPending()) {
+            badgePOCPendingView.setVisibility(View.VISIBLE);
+            badgeMedicalConsultView.setVisibility(GONE);
+        }
     }
 
     private void setHROrHRPBadge(SmartRegisterClient client) {

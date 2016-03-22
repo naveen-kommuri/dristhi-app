@@ -67,7 +67,6 @@ public abstract class SecuredActivity extends Activity {
 
 //        context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
         context = Context.getInstance();
-
         logoutListener = new Listener<Boolean>() {
             public void onEvent(Boolean data) {
                 finish();
@@ -98,6 +97,8 @@ public abstract class SecuredActivity extends Activity {
         onResumption();
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -121,8 +122,6 @@ public abstract class SecuredActivity extends Activity {
 
     public void logoutUser() {
         context.userService().logout();
-
-
         this.finish();
         startActivity(new Intent(this, LoginActivity.class));
     }
