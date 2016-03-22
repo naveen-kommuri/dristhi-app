@@ -50,7 +50,7 @@ public class DoctorPlanofCareActivity extends Activity {
     String url = "";
     AutoCompleteTextView act_icd10Diagnosis, act_tests;
     ListView lv_selected_icd10, lv_selected_tests, lv_selected_drugs;
-    Switch swich_poc_pending;
+    Switch swich_poc_pending, switch_poc_physical_consultation;
     Spinner sp_services, sp_drug_name, sp_drug_frequency, sp_drug_direction, sp_drug_dosage;
     EditText et_drug_qty, et_drug_no_of_days, et_reason, et_advice;
     Button bt_save_plan_of_care;
@@ -124,6 +124,7 @@ public class DoctorPlanofCareActivity extends Activity {
                 tv_stop_date = (CustomFontTextView) findViewById(R.id.tv_stop_by_date);
                 sp_drug_name = (Spinner) findViewById(R.id.sp_drug_name);
                 swich_poc_pending = (Switch) findViewById(R.id.switch_poc_pending);
+                switch_poc_physical_consultation = (Switch) findViewById(R.id.switch_poc_physical_consultation);
                 sp_drug_direction = (Spinner) findViewById(R.id.sp_drug_direction);
                 sp_drug_dosage = (Spinner) findViewById(R.id.sp_drug_dosage);
                 sp_drug_frequency = (Spinner) findViewById(R.id.sp_drug_frequency);
@@ -266,16 +267,41 @@ public class DoctorPlanofCareActivity extends Activity {
 //                        } catch (Exception e) {
 //                            Toast.makeText(DoctorPlanofCareActivity.this, "Please install Apprtc APK", Toast.LENGTH_SHORT).show();
 //                        }
-                        if (isPackageExist(packName)) {
-                            CALLER_URL = context.configuration().drishtiVideoURL() + AllConstants.CALLING_URL;
-                            String caller_url = String.format(CALLER_URL, doc_name, nus_name);
-                            Log.e("Calling URL", caller_url);
-                            Uri url = Uri.parse(caller_url);
-                            Intent _broswer = new Intent(Intent.ACTION_VIEW, url);
-                            startActivity(_broswer);
-                        } else {
-                            Toast.makeText(DoctorPlanofCareActivity.this, "Video call is compatible with FireFox. Please install", Toast.LENGTH_SHORT).show();
-                        }
+//                        if (isPackageExist(packName)) {
+//                            Uri url = Uri.parse(caller_url);
+//                            Intent _broswer = new Intent(Intent.ACTION_VIEW, url);
+//                            _broswer.setComponent(new ComponentName("org.mozilla.firefox", "org.mozilla.firefox.App"));
+//                            startActivity(_broswer);
+//                        } else {
+//                            Toast.makeText(DoctorPlanofCareActivity.this, "Video call is compatible with FireFox. Please install", Toast.LENGTH_SHORT).show();
+//
+//                            Uri ul = Uri.parse(firefoxUrl);
+//                            Intent downLoadfire = new Intent(Intent.ACTION_VIEW, ul);
+//                            startActivity(downLoadfire);
+//                        }
+//                        try {
+                        CALLER_URL = context.configuration().drishtiVideoURL() + AllConstants.CALLING_URL;
+                        String caller_url = String.format(CALLER_URL, doc_name, nus_name);
+                        Log.e("Calling URL", caller_url);
+//                        startActivity(new Intent(DoctorPlanofCareActivity.this, VideoCallActivity.class).putExtra("loadUrl", "http://www.google.com"));
+                        Uri url = Uri.parse(caller_url);
+                        Intent _broswer = new Intent(Intent.ACTION_VIEW, url);
+                        startActivity(_broswer);
+
+//                        Intent intent = new Intent(Intent.ACTION_VIEW, null);
+//                        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+////                            intent.setComponent(new ComponentName("org.mozilla.firefox", "org.mozilla.firefox.App"));
+//                        //intent.setAction("org.mozilla.gecko.BOOKMARK");
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        intent.putExtra("args", "--url=" + caller_url);
+//                        intent.setData(Uri.parse(url));
+//                        startActivity(intent);
+//                        } catch (ActivityNotFoundException ex) {
+//                            String firefoxUrl = org.ei.telemedicine.Context.getInstance().configuration().getClientAPPURL();
+//                            Uri ul = Uri.parse(firefoxUrl);
+//                            Intent downLoadfire = new Intent(Intent.ACTION_VIEW, ul);
+//                            startActivity(downLoadfire);
+//                        }
                     }
                 });
 
@@ -474,9 +500,10 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                     resultJson.put("diagnosis", diagnosisArray);
                                                                     resultJson.put("drugs", drugsArray);
                                                                     resultJson.put("investigations", testsArray);
-                                                                    resultJson.put("advice", et_advice.getText().toString());
+                                                                    String adviceStr = et_advice.getText().toString() + "." + (switch_poc_physical_consultation.isChecked() ? "\n Physical Examination is Required." : "");
+                                                                    resultJson.put("advice", adviceStr);
                                                                     //                            resultJson.put("reason", et_reason.getText().toString());
-                                                                    Log.e(TAG, "Reason" + et_reason.getText().toString() + "---" + swich_poc_pending.isChecked() + "");
+                                                                    Log.e(TAG, "Reason" + et_reason.getText().toString() + "---" + switch_poc_physical_consultation.isChecked() + "");
                                                                     Log.e(TAG, "selected Json" + resultJson.toString());
                                                                     Log.e("Hello", documentId + "::::::::::::::::::::::::::::");
                                                                     if (swich_poc_pending.isChecked() && et_reason.getText().toString().trim().length() != 0) {
@@ -485,7 +512,7 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                     } else if (!swich_poc_pending.isChecked() && (diagnosisArray.length() != 0 || drugsArray.length() != 0 || testsArray.length() != 0 || resultJson.getString("advice").length() != 0)) {
                                                                         saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString(), phoneNumber);
                                                                     } else {
-                                                                        Toast.makeText(DoctorPlanofCareActivity.this, "Plan of care / Reason for Pending must be given", Toast.LENGTH_SHORT).show();
+                                                                        Toast.makeText(DoctorPlanofCareActivity.this, "Plan of care must be given", Toast.LENGTH_SHORT).show();
                                                                     }
 
                                                                 } catch (JSONException e) {
@@ -508,6 +535,7 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                      if (isChecked) {
                                                                          et_reason.setVisibility(View.VISIBLE);
                                                                      } else {
+                                                                         et_reason.setText("");
                                                                          et_reason.setVisibility(View.GONE);
                                                                      }
                                                                  }

@@ -17,6 +17,7 @@ import org.ei.telemedicine.view.customControls.CustomFontTextView;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.anmPoc;
 
 public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
+    String val;
     Button bt_poc, bt_doc_refer;
     ProgressDialog progressDialog;
     static String resultData;
@@ -60,7 +61,7 @@ public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
         ib_play_stehoscope.setVisibility(!pstechoscopeData.equals("") ? View.VISIBLE : View.GONE);
         tv_stehoscope_title.setVisibility(!pstechoscopeData.equals("") ? View.VISIBLE : View.GONE);
 
-        String risks = getDatafromJson(formInfo, DoctorFormDataConstants.risk_symptoms);
+        String risks = getDatafromJson(formInfo, DoctorFormDataConstants.risk_symptoms).trim();
         tv_risks.setText(risks.replace(" ", ", "));
         tv_anm_poc.setText(getDatafromJsonArray(getDatafromJson(formInfo, anmPoc)));
         return new String[]{documentId, phoneNumber, visitId};
@@ -107,7 +108,8 @@ public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
         ib_fetal_graph.setOnClickListener(this);
 
     }
-//
+
+    //
 //    @Override
 //    protected void onStart() {
 //        super.onStart();
@@ -117,6 +119,7 @@ public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
 //        }
 //
 //    }
+
 
     @Override
     public void onClick(View v) {
@@ -151,7 +154,7 @@ public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
                 getVitalsData(AllConstants.GraphFields.FETALDATA, visitId);
                 break;
             case R.id.bt_refer:
-                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId, documentId, "ANC", wifeName);
+                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId, documentId, "ANC", wifeName, null);
                 break;
         }
     }

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -38,6 +39,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -135,6 +137,8 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
         ArrayList<DoctorData> doctorDatas = updateRegisterCounts();
         if (pendingConsultantBaseAdapter == null)
             pendingConsultantBaseAdapter = new PendingConsultantBaseAdapter(NativeDoctorActivity.this, doctorDatas, this);
+        Collections.sort(doctorDatas, DoctorData.womanNameComparator);
+        Log.e("default", "searhc");
         pendingConsultantBaseAdapter.notifyDataSetChanged(doctorDatas);
     }
 
@@ -185,6 +189,8 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
         super.onResume();
         if (adapter != null && lv_pending_consultants != null)
             updateInfo(adapter);
+
+
     }
 
     @Override
@@ -196,11 +202,14 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
         setupViews();
         startListeners();
         updateFromServer();
+//        sorted_by_name.setText("Default");
 //        updateRegisterCounts();
         adapter = new PendingConsultantBaseAdapter(NativeDoctorActivity.this, updateRegisterCounts(), this);
         lv_pending_consultants.setAdapter(adapter);
         updateInfo(adapter);
-
+//        Collections.sort(updateRegisterCounts(), DoctorData.womanNameComparator);
+//        adapter.notifyDataSetChanged(updateRegisterCounts());
+//        Log.e("default", "Search");
         edt_search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -323,6 +332,7 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
                 showFragmentDialog(sortingList, "Sort");
                 break;
             case R.id.start_sync_doc_data:
+//                backupDB();
                 updateFromServer();
                 break;
             case R.id.ib_logout:

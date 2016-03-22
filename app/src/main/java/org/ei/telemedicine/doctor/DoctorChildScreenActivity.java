@@ -132,7 +132,7 @@ public class DoctorChildScreenActivity extends DoctorPatientDetailSuperActivity 
                 getVitalsData(AllConstants.GraphFields.BP, visitId);
                 break;
             case R.id.bt_refer:
-                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId, documentId, "CHILD", wifeName);
+                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId, documentId, "CHILD", wifeName, null);
                 break;
         }
     }

@@ -101,12 +101,16 @@ public class NativeGraphActivity extends Activity {
         dataset.addSeries(vitalData);
         dataset.addSeries(vitalData2);
 
+
         // Creating XYSeriesRenderer to customize vitalData
         XYSeriesRenderer dataRenderer = new XYSeriesRenderer();
         dataRenderer.setColor(Color.RED);
         dataRenderer.setPointStyle(PointStyle.CIRCLE);
+        dataRenderer.setPointStrokeWidth(19);
         dataRenderer.setFillPoints(true);
         dataRenderer.setLineWidth(3);
+        dataRenderer.setChartValuesTextSize(26);
+
         dataRenderer.setDisplayChartValues(true);
         dataRenderer.setDisplayBoundingPoints(true);
         dataRenderer.setHighlighted(true);
@@ -114,11 +118,15 @@ public class NativeGraphActivity extends Activity {
         XYSeriesRenderer dataRenderer2 = new XYSeriesRenderer();
         dataRenderer2.setColor(Color.BLUE);
         dataRenderer2.setPointStyle(PointStyle.SQUARE);
+        dataRenderer2.setPointStrokeWidth(19);
         dataRenderer2.setFillPoints(true);
         dataRenderer2.setLineWidth(3);
+        dataRenderer2.setChartValuesTextSize(26);
+
         dataRenderer2.setDisplayChartValues(true);
         dataRenderer2.setDisplayBoundingPoints(true);
         dataRenderer2.setHighlighted(true);
+
 
         // Creating a XYMultipleSeriesRenderer to customize the whole chart
         XYMultipleSeriesRenderer multiRenderer = new XYMultipleSeriesRenderer();
@@ -128,9 +136,11 @@ public class NativeGraphActivity extends Activity {
         multiRenderer.setYTitle("Readings");
         multiRenderer.setZoomButtonsVisible(false);
         multiRenderer.setAxisTitleTextSize(20);
-
+        multiRenderer.setLabelsTextSize(20);
+        multiRenderer.setXLabelsPadding(10);
         multiRenderer.setXLabelsColor(Color.parseColor("#ff0099cc"));
-        multiRenderer.setXLabelsPadding(5);
+
+
         for (int i = 0; i < vitalDates.length; i++) {
             multiRenderer.addXTextLabel(i, vitalDates[i]);
         }
@@ -181,6 +191,7 @@ public class NativeGraphActivity extends Activity {
         XYSeries vitalData = new XYSeries(vitalType);
         for (int i = 0; i < vitalReadings.length; i++) {
             vitalData.add(i, vitalReadings[i]);
+
         }
 
         XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
@@ -190,8 +201,13 @@ public class NativeGraphActivity extends Activity {
         XYSeriesRenderer dataRenderer = new XYSeriesRenderer();
         dataRenderer.setColor(Color.RED);
         dataRenderer.setPointStyle(PointStyle.CIRCLE);
+//        dataRenderer.setPointStrokeWidth(5);//New
+//        dataRenderer.setChartValuesTextSize();
+        dataRenderer.setPointStrokeWidth(19);
         dataRenderer.setFillPoints(true);
         dataRenderer.setLineWidth(3);
+        dataRenderer.setChartValuesTextSize(26);
+
         dataRenderer.setDisplayChartValues(true);
         dataRenderer.setDisplayBoundingPoints(true);
         dataRenderer.setHighlighted(true);
@@ -204,8 +220,9 @@ public class NativeGraphActivity extends Activity {
         multiRenderer.setXTitle("Visit Date");
         multiRenderer.setYTitle("Readings");
         multiRenderer.setZoomButtonsVisible(false);
-
-
+        multiRenderer.setAxisTitleTextSize(20);
+        multiRenderer.setLabelsTextSize(20);
+        
         multiRenderer.setXLabelsColor(Color.parseColor("#ff0099cc"));
         multiRenderer.setXLabelsPadding(5);
         for (int i = 0; i < vitalDates.length; i++) {

@@ -1,7 +1,10 @@
 package org.ei.telemedicine.doctor;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -9,7 +12,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.ei.telemedicine.AllConstants;
@@ -21,6 +31,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.formData;
 
@@ -34,6 +48,8 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
     private String[] details;
     ProgressDialog playProgressDialog;
     MediaPlayer player;
+    static String referedDoctor = null;
+    int val = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +88,15 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
         }
     }
 
+    public void turnSpeaker() {
+        AudioManager audioManager = (AudioManager) this.getSystemService(this.AUDIO_SERVICE);
+        audioManager.setMode(AudioManager.STREAM_MUSIC);
+        audioManager.setSpeakerphoneOn(true);
+    }
+
     public void playData(String url, final ImageButton ib_play_stehoscope, final ImageButton ib_pause_stehoscope) {
         Log.e("Play pat", url);
+        turnSpeaker();
         try {
             player = new MediaPlayer();
             player.setAudioStreamType(AudioManager.STREAM_MUSIC);
@@ -148,18 +171,173 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
         });
     }
 
-    public void referAnotherDoctor(String doctorId, final String visitId, String entityId, final String documentId, final String visitType, final String wifeName) {
-        getData(AllConstants.DOCTOR_REFER_URL_PATH + doctorId + "&visitid=" + visitId + "&entityid=" + entityId + "&patientname=" + (visitType.equalsIgnoreCase("CHILD") ? "Baby%20of%20" + wifeName : wifeName), new Listener<String>() {
+    private Map<String, String> getDoctorsData() {
+        String parentDoctors = Context.getInstance().allSettings().fetchParentDoctors();
+        if (parentDoctors != null) {
+            try {
+                JSONArray doctorsArray = new JSONArray(parentDoctors);
+                Map<String, String> doctorMapData = new HashMap<String, String>();
+
+                for (int i = 0; i < doctorsArray.length(); i++) {
+                    JSONObject docjsonObject = doctorsArray.getJSONObject(i);
+                    doctorMapData.put(docjsonObject.getString("name"), docjsonObject.getString("userid"));
+                }
+                return doctorMapData;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    private void showListDialog(final String doctorId, final String visitId, final String entityId, final String documentId, final String visitType, final String wifeName) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose Doctor");
+        ListView modeList = new ListView(this);
+        String[] stringArray = new String[]{"Bright Mode", "Normal Mode"};
+
+        ArrayAdapter<String> modeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, stringArray);
+        modeList.setAdapter(modeAdapter);
+        modeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(DoctorPatientDetailSuperActivity.this, "C_______________________________--" + ((TextView) view).getText().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+//        modeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                if (view != null)
+//                    referedDoctor = ((TextView) view).getText().toString();
+//
+//                getData(AllConstants.DOCTOR_REFER_URL_PATH + doctorId + "&visitid=" + visitId + "&entityid=" + entityId + "&patientname=" + (visitType.equalsIgnoreCase("CHILD") ? "Baby%20of%20" + wifeName : wifeName) + "&doctor_referred=" + referedDoctor, new Listener<String>() {
+//                    @Override
+//                    public void onEvent(String data) {
+//                        Context.getInstance().allDoctorRepository().deleteUseCaseId(visitId);
+//                        startActivity(new Intent(DoctorPatientDetailSuperActivity.this, NativeDoctorActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+//
+//                    }
+//                });
+//                finish();
+//            }
+//        });
+        builder.setView(modeList);
+//        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//
+//            }
+//        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//
+//            }
+//        });
+        final Dialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void showRadios(final String doctorId, final String visitId, final String entityId, final String documentId, final String visitType, final String wifeName, final String referedDoctorId) {
+        final Map<String, String> doctorsInfo = getDoctorsData();
+
+        if (doctorsInfo != null) {
+            final ArrayList<String> doctorIdsList = new ArrayList<>();
+            doctorIdsList.addAll(doctorsInfo.values());
+            String[] doctors = doctorsInfo.keySet().toArray(new String[doctorsInfo.keySet().size()]);
+            AlertDialog.Builder builder2 = new AlertDialog.Builder(this)
+                    .setTitle("Choose Doctor")
+                    .setSingleChoiceItems(doctors, -1, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // TODO Auto-generated method stub
+                            val = which;
+                        }
+                    });
+            builder2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (val != -1)
+                        referDoctor(doctorId, visitId, entityId, documentId, visitType, wifeName, doctorIdsList.get(val));
+                    else
+                        Toast.makeText(DoctorPatientDetailSuperActivity.this, "Choose Doctor Correctly", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+            }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            AlertDialog alertdialog2 = builder2.create();
+            alertdialog2.show();
+        } else
+            Toast.makeText(this, "No parent doctors", Toast.LENGTH_SHORT).show();
+    }
+
+    private void showRadioButtonDialog() {
+
+        // custom dialog
+        final String selected = null;
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.radiobutton_dialog);
+        dialog.setCancelable(false);
+        List<String> stringList = new ArrayList<>();  // here is list
+        for (int i = 0; i < 5; i++) {
+            stringList.add("RadioButton " + (i + 1));
+        }
+        RadioGroup rg = (RadioGroup) dialog.findViewById(R.id.radio_group);
+
+        for (int i = 0; i < stringList.size(); i++) {
+            RadioButton rb = new RadioButton(this); // dynamically creating RadioButton and adding to RadioGroup.
+            rb.setText(stringList.get(i));
+            rg.addView(rb);
+        }
+
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                int childCount = group.getChildCount();
+                for (int x = 0; x < childCount; x++) {
+                    RadioButton btn = (RadioButton) group.getChildAt(x);
+                    if (btn.getId() == checkedId) {
+                        Log.e("selected RadioButton->", btn.getText().toString());
+                        Toast.makeText(DoctorPatientDetailSuperActivity.this, "___" + btn.getText(), Toast.LENGTH_SHORT).show();
+                        referedDoctor = btn.getText().toString();
+                    }
+                }
+            }
+        });
+
+        dialog.show();
+
+    }
+
+    public void referAnotherDoctor(final String doctorId, final String visitId, final String entityId, final String documentId, final String visitType, final String wifeName, final String referedDoctorId) {
+        new AlertDialog.Builder(this).setTitle("Refer Selection").setMessage("Do you want choose doctor?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                showRadios(doctorId, visitId, entityId, documentId, visitType, wifeName, referedDoctorId);
+            }
+        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                referDoctor(doctorId, visitId, entityId, documentId, visitType, wifeName, null);
+            }
+        }).show();
+
+    }
+
+    private void referDoctor(final String doctorId, final String visitId, final String entityId, final String documentId, final String visitType, final String wifeName, final String referedDoctorId) {
+        getData(AllConstants.DOCTOR_REFER_URL_PATH + doctorId + "&visitid=" + visitId + "&entityid=" + entityId + "&patientname=" + (visitType.equalsIgnoreCase("CHILD") ? "Baby%20of%20" + wifeName : wifeName + "&refdoc=" + referedDoctorId), new Listener<String>() {
             @Override
             public void onEvent(String data) {
                 Context.getInstance().allDoctorRepository().deleteUseCaseId(visitId);
                 startActivity(new Intent(DoctorPatientDetailSuperActivity.this, NativeDoctorActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-
             }
         });
-
     }
-
 
     public void getDrugData() {
         getData(AllConstants.DRUG_INFO_URL_PATH, new Listener<String>() {
@@ -191,7 +369,6 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
                 Context context = Context.getInstance();
                 Log.e("URL", context.configuration().dristhiDjangoBaseURL() + url);
                 String result = context.userService().gettingFromRemoteURL(context.configuration().dristhiDjangoBaseURL() + url);
-
                 return result;
             }
 
@@ -267,7 +444,7 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
         if (jsonStr != null) {
             try {
                 JSONObject jsonData = new JSONObject(jsonStr);
-                return (jsonData.has(key) && jsonData.getString(key) != null && !jsonData.getString(key).equalsIgnoreCase("null")) ? jsonData.getString(key).trim().replace(" ", ",").replace("_", " ") : "";
+                return (jsonData.has(key) && jsonData.getString(key) != null && !jsonData.getString(key).equalsIgnoreCase("null") && !jsonData.getString(key).equalsIgnoreCase("0")) ? jsonData.getString(key).trim().replace(" ", ",").replace("_", " ") : "";
             } catch (JSONException e) {
                 e.printStackTrace();
             }

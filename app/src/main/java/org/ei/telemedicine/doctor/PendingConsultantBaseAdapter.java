@@ -18,11 +18,9 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.apache.commons.lang3.text.WordUtils;
-import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.image.ImageLoader;
-import org.ei.telemedicine.util.StringUtil;
 import org.ei.telemedicine.view.controller.NavigationController;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +31,28 @@ import java.util.List;
 import java.util.Locale;
 
 import static org.ei.telemedicine.AllConstants.DOCTOR_OVERVIEW_URL_PATH;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.*;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.age;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.ancvisit;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.childVisit;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_gender;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_name;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_report_child_disease_date;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_report_child_disease_place;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_sick_visit_date;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.edd;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.entityId;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.husband_name;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.id_no;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.isHighRisk;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.lmp;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.pncVisit;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.pnc_visit_date;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.pnc_visit_place;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.poc_pending;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.village_name;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.visitId;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.visit_type;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.wife_name;
 
 /**
  * Created by naveen on 5/20/15.
@@ -149,7 +168,8 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
                 viewHolder.tv_wife_name.setText(getData(child_name, formData).equals("") ? "B/o " + getData(wife_name, formData) : getData(child_name, formData));
                 imgae = getData(child_gender, formData).equalsIgnoreCase("male") ? context.getResources().getDrawable(R.drawable.child_boy_infant) : context.getResources().getDrawable(R.drawable.child_girl_infant);
                 viewHolder.tv_status.setText(!getData(child_report_child_disease_place, formData).equals("") ? "Place : " + getData(child_report_child_disease_place, formData) : "");
-                viewHolder.tv_status2.setText(!getData(child_report_child_disease_date, formData).equals("") ? "Date :" + getData(child_report_child_disease_date, formData) : "");
+                viewHolder.tv_status2.setText(!getData(child_report_child_disease_date, formData).equals("") ? "Date :" + getData(child_report_child_disease_date, formData) : (!getData(child_sick_visit_date, formData).equals("") ? "Date :" + getData(child_sick_visit_date, formData) : ""));
+//                viewHolder.tv_status2.setText(!getData(child_sick_visit_date,0 formData).equals("") ? "Date :" + getData(child_sick_visit_date, formData) : "");
 //                viewHolder.tv_status.setText("Place: " + getData(child_report_child_disease_place, formData) + "\n Date:" + getData(child_report_child_disease_date, formData));
                 break;
 
@@ -312,11 +332,11 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
         searchconsultantsList.clear();
 //        consultantsList.clear();
         if (text.trim().length() == 0 || text.trim().equalsIgnoreCase(DoctorFormDataConstants.sorting_name.toLowerCase().trim())) {
+//            consultantsList.clear();
             consultantsList.addAll(doctorDatas);
             Collections.sort(doctorDatas, DoctorData.womanNameComparator);
             notifyDataSetChanged(doctorDatas);
-        }
-        if (text.trim().equalsIgnoreCase(DoctorFormDataConstants.sorting_hr)) {
+        } else if (text.trim().equalsIgnoreCase(DoctorFormDataConstants.sorting_hr)) {
             for (DoctorData doctorData : doctorDatas) {
                 String isHighRisk = getData(DoctorFormDataConstants.isHighRisk, doctorData.getFormInformation());
                 if (isHighRisk != null && isHighRisk.toLowerCase(Locale.getDefault()).contains("yes")) {

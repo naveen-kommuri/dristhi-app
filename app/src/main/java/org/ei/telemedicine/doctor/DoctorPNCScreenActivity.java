@@ -154,7 +154,7 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
                 getVitalsData(AllConstants.GraphFields.BLOODGLUCOSEDATA, visitId);
                 break;
             case R.id.bt_refer:
-                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId, documentId, "PNC", wifeName);
+                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId, documentId, "PNC", wifeName,null);
                 break;
         }
 
