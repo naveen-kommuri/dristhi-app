@@ -10,17 +10,35 @@ import org.ei.telemedicine.domain.form.FormSubmission;
 import org.ei.telemedicine.repository.AllBeneficiaries;
 import org.ei.telemedicine.repository.AllEligibleCouples;
 import org.ei.telemedicine.repository.AllTimelineEvents;
-import org.joda.time.LocalDate;
 
-import static org.ei.telemedicine.AllConstants.ANCVisitFields.*;
-import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.*;
-import static org.ei.telemedicine.AllConstants.BOOLEAN_FALSE;
 import static org.ei.telemedicine.AllConstants.ANCCloseFields.CLOSE_REASON_FIELD_NAME;
 import static org.ei.telemedicine.AllConstants.ANCCloseFields.DEATH_OF_WOMAN_FIELD_VALUE;
 import static org.ei.telemedicine.AllConstants.ANCRegistrationFields.REGISTRATION_DATE;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.ANC_VISIT_DATE;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.ANC_VISIT_NUMBER;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.ANM_POC;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.BLOODGLUCOSEDATA;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.BP_DIASTOLIC;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.BP_SYSTOLIC;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.FETALDATA;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.ISCONSULTDOCTOR;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.POC_INFO;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.PULSERATE;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.REFERENCE_DATE;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.RISKS;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.TEMPERATURE;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.THAYI_CARD_NUMBER;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.WEIGHT;
+import static org.ei.telemedicine.AllConstants.BOOLEAN_FALSE;
 import static org.ei.telemedicine.AllConstants.CommonFormFields.SUBMISSION_DATE;
 import static org.ei.telemedicine.AllConstants.DeliveryOutcomeFields.DID_MOTHER_SURVIVE;
 import static org.ei.telemedicine.AllConstants.DeliveryOutcomeFields.DID_WOMAN_SURVIVE;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.ASHA_PHONE_NUMBER;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.BIRTH_COMPANION;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.DELIVERY_FACILITY_NAME;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.PHONE_NUMBER;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.REVIEWED_HRP_STATUS;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.TRANSPORTATION_PLAN;
 import static org.ei.telemedicine.AllConstants.HbTestFields.HB_LEVEL;
 import static org.ei.telemedicine.AllConstants.HbTestFields.HB_TEST_DATE;
 import static org.ei.telemedicine.AllConstants.IFAFields.IFA_TABLETS_DATE;
@@ -30,7 +48,14 @@ import static org.ei.telemedicine.AllConstants.TTFields.TT_DATE;
 import static org.ei.telemedicine.AllConstants.TTFields.TT_DOSE;
 import static org.ei.telemedicine.domain.ServiceProvided.forHBTest;
 import static org.ei.telemedicine.domain.ServiceProvided.forTTDose;
-import static org.ei.telemedicine.domain.TimelineEvent.*;
+import static org.ei.telemedicine.domain.TimelineEvent.forANCCareProvided;
+import static org.ei.telemedicine.domain.TimelineEvent.forDeliveryPlan;
+import static org.ei.telemedicine.domain.TimelineEvent.forIFATabletsGiven;
+import static org.ei.telemedicine.domain.TimelineEvent.forMotherPNCVisit;
+import static org.ei.telemedicine.domain.TimelineEvent.forPOCGiven;
+import static org.ei.telemedicine.domain.TimelineEvent.forStartOfPregnancy;
+import static org.ei.telemedicine.domain.TimelineEvent.forStartOfPregnancyForEC;
+import static org.ei.telemedicine.domain.TimelineEvent.forTTShotProvided;
 import static org.ei.telemedicine.util.EasyMap.create;
 import static org.ei.telemedicine.util.IntegerUtil.tryParse;
 import static org.ei.telemedicine.util.Log.logWarn;
@@ -78,6 +103,7 @@ public class MotherService {
                                 .put(BLOODGLUCOSEDATA, submission.getFieldValue(BLOODGLUCOSEDATA))
                                 .put(ISCONSULTDOCTOR, submission.getFieldValue(ISCONSULTDOCTOR))
                                 .put(FETALDATA, submission.getFieldValue(FETALDATA))
+                                .put(PULSERATE, submission.getFieldValue(PULSERATE))
                                 .put(POC_INFO, submission.getFieldValue(POC_INFO))
                                 .put(ANM_POC, submission.getFieldValue(ANM_POC))
                                 .put(RISKS, riskObserved)
@@ -142,6 +168,10 @@ public class MotherService {
     }
 
     public void hbTest(FormSubmission submission) {
+        allTimelines.add(TimelineEvent.forHBTest(submission.entityId(),
+                submission.getFieldValue(HB_LEVEL),
+                submission.getFieldValue(HB_TEST_DATE)));
+
         serviceProvidedService.add(
                 forHBTest(submission.entityId(),
                         submission.getFieldValue(HB_LEVEL),
@@ -173,7 +203,7 @@ public class MotherService {
                         submission.getFieldValue(AllConstants.PNCVisitFields.BP_DIASTOLIC),
                         submission.getFieldValue(AllConstants.PNCVisitFields.TEMPERATURE),
                         submission.getFieldValue(AllConstants.PNCVisitFields.HB_LEVEL),
-                        submission.getFieldValue(AllConstants.PNCVisitFields.BLOODGLUCOSEDATA), submission.getFieldValue(AllConstants.PNCVisitFields.ISCONSULTDOCTOR), submission.getFieldValue(AllConstants.ANCVisitFields.ANM_POC)));
+                        submission.getFieldValue(AllConstants.PNCVisitFields.BLOODGLUCOSEDATA), submission.getFieldValue(AllConstants.PNCVisitFields.PULSERATE), submission.getFieldValue(AllConstants.PNCVisitFields.ISCONSULTDOCTOR), submission.getFieldValue(AllConstants.ANCVisitFields.ANM_POC)));
         Log.e("Submission Form for poc", "POc fot visit" + submission.instance() + "");
         if (submission.getFieldValue(POC_INFO) != null && !submission.getFieldValue(POC_INFO).equals("")) {
             TimelineEvent pncVisitPoc = forPOCGiven(
