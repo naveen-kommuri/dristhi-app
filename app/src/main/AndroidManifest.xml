@@ -188,6 +188,9 @@
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"></activity>
         <activity android:name=".view.UserSettingsActivity" />
+        <activity
+            android:name=".doctor.NativeChartActivity"
+            android:screenOrientation="landscape" />
         <!--<activity android:name=".doctor.VideoCallActivity" />-->
     </application>
 

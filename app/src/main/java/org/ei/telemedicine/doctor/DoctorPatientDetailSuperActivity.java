@@ -163,7 +163,8 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
             @Override
             public void onEvent(String data) {
                 Log.e("Result", visitId);
-                Intent intent = new Intent(DoctorPatientDetailSuperActivity.this, NativeGraphActivity.class);
+//                Intent intent = new Intent(DoctorPatientDetailSuperActivity.this, NativeGraphActivity.class);
+                Intent intent = new Intent(DoctorPatientDetailSuperActivity.this, NativeChartActivity.class);
                 intent.putExtra(AllConstants.VITALS_INFO_RESULT, data);
                 intent.putExtra(AllConstants.VITAL_TYPE, vitalType);
                 startActivity(intent);
@@ -431,9 +432,10 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
                 String result = "";
                 JSONArray jsonArray = new JSONArray(jsonArrayStr);
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    result = !result.equals("") ? result + jsonArray.getString(i).trim().replace("_", " ") + "," : jsonArray.getString(i).trim().replace("_", " ") + ",";
+                    if (jsonArray.getString(i).trim().length() != 0)
+                        result = !result.equals("") ? result + jsonArray.getString(i).trim().replace("_", " ") + "," : jsonArray.getString(i).trim().replace("_", " ") + ",";
                 }
-                return result;
+                return jsonArray.length() == 1 ? result.replace(",", "") : result;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
