@@ -48,10 +48,10 @@ import java.util.List;
  */
 public class DoctorPlanofCareActivity extends Activity {
     String url = "";
-    AutoCompleteTextView act_icd10Diagnosis, act_tests;
+    AutoCompleteTextView act_icd10Diagnosis, act_tests, act_drug_name;
     ListView lv_selected_icd10, lv_selected_tests, lv_selected_drugs;
     Switch swich_poc_pending, switch_poc_physical_consultation;
-    Spinner sp_services, sp_drug_name, sp_drug_frequency, sp_drug_direction, sp_drug_dosage;
+    Spinner sp_services, sp_drug_frequency, sp_drug_direction, sp_drug_dosage;
     EditText et_drug_qty, et_drug_no_of_days, et_reason, et_advice;
     Button bt_save_plan_of_care;
     ImageButton ib_stop_by, ib_add_drug, ib_anm_logo;
@@ -122,7 +122,8 @@ public class DoctorPlanofCareActivity extends Activity {
 
                 ib_stop_by = (ImageButton) findViewById(R.id.ib_stop_by_date);
                 tv_stop_date = (CustomFontTextView) findViewById(R.id.tv_stop_by_date);
-                sp_drug_name = (Spinner) findViewById(R.id.sp_drug_name);
+
+                act_drug_name = (AutoCompleteTextView) findViewById(R.id.act_drug_name);
                 swich_poc_pending = (Switch) findViewById(R.id.switch_poc_pending);
                 switch_poc_physical_consultation = (Switch) findViewById(R.id.switch_poc_physical_consultation);
                 sp_drug_direction = (Spinner) findViewById(R.id.sp_drug_direction);
@@ -140,7 +141,7 @@ public class DoctorPlanofCareActivity extends Activity {
 //                progressDialog.setMessage(getString(R.string.loggin_in_dialog_message));
 
                 pocServicesList.add("");
-                pocDrugNamesList.add(getString(R.string.please_select_drug));
+//                pocDrugNamesList.add(getString(R.string.please_select_drug));
                 pocDrugFrequenciesList.add(getString(R.string.please_select_frequency));
                 pocDrugDirectionsList.add(getString(R.string.please_select_direction));
                 pocDrugDosagesList.add(getString(R.string.please_select_dosage));
@@ -250,7 +251,8 @@ public class DoctorPlanofCareActivity extends Activity {
                 sp_services.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, R.layout.spinner_item, pocServicesList));
                 act_icd10Diagnosis.setAdapter(new DiagnosisArrayAdapter(DoctorPlanofCareActivity.this, R.layout.diagnosis_list_item, pocDiagnosises));
 
-                sp_drug_name.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, R.layout.spinner_item, pocDrugNamesList));
+                act_drug_name.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, R.layout.diagnosis_list_item, R.id.tv_name, pocDrugNamesList));
+//                sp_drug_name.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, R.layout.spinner_item, pocDrugNamesList));
                 sp_drug_dosage.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, R.layout.spinner_item, pocDrugDosagesList));
                 sp_drug_frequency.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, R.layout.spinner_item, pocDrugFrequenciesList));
                 sp_drug_direction.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, R.layout.spinner_item, pocDrugDirectionsList));
@@ -335,29 +337,23 @@ public class DoctorPlanofCareActivity extends Activity {
                                                       }
 
                 );
-                sp_drug_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
 
-                                                       {
-                                                           @Override
-                                                           public void onItemSelected(AdapterView<?> parent, View view,
-                                                                                      int position, long id) {
-                                                               TextView tv_drugName = (TextView) view;
-                                                               String drugName = tv_drugName.getText().toString();
-                                                               for (int i = 0; i < pocDrugDatas.size(); i++) {
-                                                                   PocDrugData pocDrugData = pocDrugDatas.get(i);
-                                                                   if (pocDrugData.getDrugName().equals(drugName)) {
-                                                                       sp_drug_direction.setSelection(pocDrugDirectionsList.indexOf(pocDrugData.getDirection()), true);
-                                                                       sp_drug_frequency.setSelection(pocDrugFrequenciesList.indexOf(pocDrugData.getFrequncy()), true);
-                                                                       sp_drug_dosage.setSelection(pocDrugDosagesList.indexOf(pocDrugData.getDosage()), true);
-                                                                   }
-                                                               }
-                                                           }
+                act_drug_name.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                                         @Override
+                                                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                                                             TextView tv_drugName = (TextView) view;
+                                                             String drugName = parent.getItemAtPosition(position).toString();
+                                                             for (int i = 0; i < pocDrugDatas.size(); i++) {
+                                                                 PocDrugData pocDrugData = pocDrugDatas.get(i);
+                                                                 if (pocDrugData.getDrugName().equals(drugName)) {
+                                                                     sp_drug_direction.setSelection(pocDrugDirectionsList.indexOf(pocDrugData.getDirection()), true);
+                                                                     sp_drug_frequency.setSelection(pocDrugFrequenciesList.indexOf(pocDrugData.getFrequncy()), true);
+                                                                     sp_drug_dosage.setSelection(pocDrugDosagesList.indexOf(pocDrugData.getDosage()), true);
+                                                                 }
+                                                             }
+                                                         }
 
-                                                           @Override
-                                                           public void onNothingSelected(AdapterView<?> parent) {
-
-                                                           }
-                                                       }
+                                                     }
 
                 );
 
@@ -411,7 +407,8 @@ public class DoctorPlanofCareActivity extends Activity {
                                                    public void onClick(View v) {
                                                        lv_selected_drugs.setVisibility(View.VISIBLE);
                                                        boolean isDrugExist = false;
-                                                       String drugName = sp_drug_name.getSelectedItem().toString();
+//                                                       String drugName = sp_drug_name.getSelectedItem().toString();
+                                                       String drugName = act_drug_name.getText().toString();
                                                        String drugFrequency = sp_drug_frequency.getSelectedItem().toString();
                                                        String drugDosage = sp_drug_dosage.getSelectedItem().toString();
                                                        String drugDirection = sp_drug_direction.getSelectedItem().toString();
@@ -438,10 +435,10 @@ public class DoctorPlanofCareActivity extends Activity {
                                                            }
 
                                                        }
-                                                       if (!drugName.equals(getString(R.string.please_select_drug)) && !drugDirection.equals(getString(R.string.please_select_direction)) && !drugFrequency.equals(getString(R.string.please_select_frequency)) && !drugDosage.equals(getString(R.string.please_select_dosage)) && !drugNoOfDays.equals("") && !drugQty.equals("")) {
+                                                       if (drugName.trim().length() != 0 && !drugDirection.equals(getString(R.string.please_select_direction)) && !drugFrequency.equals(getString(R.string.please_select_frequency)) && !drugDosage.equals(getString(R.string.please_select_dosage)) && !drugNoOfDays.equals("") && !drugQty.equals("")) {
                                                            if (isDrugExist) {
                                                                Log.e(TAG, "length " + drugQty.length() + "" + drugNoOfDays.length() + "" + drugStopDate.length() + drugStopDate);
-                                                               if (drugQty.length() != 0 && drugNoOfDays.length() != 0 && !drugStopDate.equals("Stop By")) {
+                                                               if (drugQty.length() != 0 && drugNoOfDays.length() != 0 && drugStopDate.trim().length() != 0) {
                                                                    selectDrugs.add(pocDrugData);
                                                                    pocDrugBaseAdapter.notifyDataSetChanged();
                                                                } else {
@@ -500,7 +497,8 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                     resultJson.put("diagnosis", diagnosisArray);
                                                                     resultJson.put("drugs", drugsArray);
                                                                     resultJson.put("investigations", testsArray);
-                                                                    String adviceStr = et_advice.getText().toString() + "." + (switch_poc_physical_consultation.isChecked() ? "\n Physical Examination is Required." : "");
+                                                                    resultJson.put("pocDate", getCurrentDate());
+                                                                    String adviceStr = et_advice.getText().toString() + (switch_poc_physical_consultation.isChecked() ? "\n Physical Examination is Required." : "");
                                                                     resultJson.put("advice", adviceStr);
                                                                     //                            resultJson.put("reason", et_reason.getText().toString());
                                                                     Log.e(TAG, "Reason" + et_reason.getText().toString() + "---" + switch_poc_physical_consultation.isChecked() + "");
@@ -509,7 +507,7 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                     if (swich_poc_pending.isChecked() && et_reason.getText().toString().trim().length() != 0) {
                                                                         saveDatainLocal(documentId, resultJson.toString(), et_reason.getText().toString());
                                                                         saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString(), phoneNumber);
-                                                                    } else if (!swich_poc_pending.isChecked() && (diagnosisArray.length() != 0 || drugsArray.length() != 0 || testsArray.length() != 0 || resultJson.getString("advice").length() != 0)) {
+                                                                    } else if (!swich_poc_pending.isChecked() && (diagnosisArray.length() != 0 || drugsArray.length() != 0 || testsArray.length() != 0 || et_advice.getText().toString().trim().length() != 0)) {
                                                                         saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString(), phoneNumber);
                                                                     } else {
                                                                         Toast.makeText(DoctorPlanofCareActivity.this, "Plan of care must be given", Toast.LENGTH_SHORT).show();
@@ -575,6 +573,13 @@ public class DoctorPlanofCareActivity extends Activity {
         {
             Log.e(TAG, "No Data");
         }
+    }
+
+    private String getCurrentDate() {
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = df.format(c.getTime());
+        return formattedDate;
     }
 
     private String getData(JSONObject jsonData, String key) {

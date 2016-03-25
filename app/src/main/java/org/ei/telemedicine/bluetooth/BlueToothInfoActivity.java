@@ -62,7 +62,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Locale;
 import java.util.Vector;
 
@@ -468,6 +467,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+//                    startReceivingData("bgm", bloodService, device);
                     bloodService.start();
                     bloodService.connect(device, BlueToothInfoActivity.this,
                             Constants.BLOOD_DEVICE_NUM);
@@ -497,11 +497,25 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
         }
     };
 
-    private void startReceivingData(String deviceName, Object serviceObj) {
+    private void startReceivingData(final String deviceName, Object serviceObj, final BluetoothDevice device) {
 
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
+                try {
+                    switch (deviceName) {
+                        case "bgm":
+                            bloodService.start();
+                            bloodService.connect(device, BlueToothInfoActivity.this,
+                                    Constants.BLOOD_DEVICE_NUM);
+                            break;
+                    }
+                    Thread.sleep(time);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 return null;
             }
 
@@ -513,6 +527,12 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
+                new AlertDialog.Builder(BlueToothInfoActivity.this).setCancelable(false).setMessage("Stop.").setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        stopRecording();
+                    }
+                }).show();
             }
         }.execute();
 
@@ -780,7 +800,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                     else if (jsonObject.get("name").equals(temperature))
                         jsonObject.put("value", et_eet.getText().toString() + (context.allSettings().fetchANMConfiguration("temperature").startsWith("c") ? "-C" : "-F"));
                     else if (jsonObject.get("name").equals(AllConstants.PNCVisitFields.CHILD_TEMPERATURE))
-                        jsonObject.put("value", et_eet.getText().toString() + (context.allSettings().fetchANMConfiguration("childtemperature").startsWith("c") ? "-C" : "-F"));
+                        jsonObject.put("value", et_eet.getText().toString() + (context.allSettings().fetchANMConfiguration("temperature").startsWith("c") ? "-C" : "-F"));
                     else if (jsonObject.get("name").equals(fetal_data))
                         jsonObject.put("value", et_fetal.getText().toString());
                     else if (jsonObject.get("name").equals(blood_glucose_data))
@@ -897,9 +917,13 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                         }).show();
                     }
                     if (deviceNum == Constants.FET_DEVICE_NUM && deviceNum == BlueToothInfoActivity.device) {
-                        Log.e(TAG,
-                                "Data FET= " + Arrays.toString(resultData));
-                        String fetalStr = resultData[0] + "";
+//                        Log.e(TAG,
+//                                "Data FET= " + Arrays.toString(resultData));
+//                        String fetalStr = resultData[0] + "";
+                        String fetalStr = null;
+                        if (resultData == null)
+                            fetalStr = new String(resultData);
+
                         et_fetal.setText(fetalStr.replace("-", "").trim());
                         new AlertDialog.Builder(BlueToothInfoActivity.this).setTitle("Fetal").setMessage("Receiving is completed.").setNeutralButton("Ok", new DialogInterface.OnClickListener() {
                             @Override

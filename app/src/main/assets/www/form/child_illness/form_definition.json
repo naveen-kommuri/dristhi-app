@@ -116,7 +116,7 @@
         "bind": "/model/instance/Child_Sick_Visit_EngKan/is_consult_doctor_no_reason"
       },
       {
-        "name": "isConsultDoctor",
+        "name": "isChildConsultDoctor",
         "shouldLoadValue": true,
         "bind": "/model/instance/Child_Sick_Visit_EngKan/is_consult_doctor"
       },

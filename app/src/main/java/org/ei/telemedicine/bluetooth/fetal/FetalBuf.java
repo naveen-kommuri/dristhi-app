@@ -1,9 +1,5 @@
 package org.ei.telemedicine.bluetooth.fetal;
 
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Vector;
-
 import android.content.Context;
 import android.util.Log;
 
@@ -14,6 +10,10 @@ import com.contec.jar.fhr01.DevicePackManager;
 
 import org.ei.telemedicine.bluetooth.Constants;
 import org.ei.telemedicine.bluetooth.OnBluetoothResult;
+
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Vector;
 
 
 public class FetalBuf {
@@ -60,9 +60,25 @@ public class FetalBuf {
                 DeviceData deviceData1 = deviceDataList11.get(size - 1);
                 ArrayList<byte[]> result = deviceData1.mDatas;
                 Log.e(TAG, "Result Size " + result.size());
-                byte[] resultData = (result.size() == 0) ? null : result.get(result
-                        .size() - 1);
-                onResult.onResult(resultData, Constants.FET_DEVICE_NUM);
+
+                //Get Last fetal Data
+//                byte[] resultData = (result.size() == 0) ? null : result.get(result
+//                        .size() - 1);
+//                onResult.onResult(resultData, Constants.FET_DEVICE_NUM);
+                //Get Average fetal Data
+                int val = 0;
+                byte[] resultData = null;
+                try {
+                    for (int i = 0; i < result.size(); i++) {
+                        val = val + result.get(i)[0];
+                    }
+                    val = Math.round(val / result.size());
+                } catch (Exception e) {
+                    resultData = (result.size() == 0) ? null : result.get(result
+                            .size() - 1);
+                }
+                onResult.onResult(val != 0 ? (val + "").getBytes() : null, Constants.FET_DEVICE_NUM);
+
                 pOutputStream.write(DeviceCommand.DELETE_DATA);
                 break;
 

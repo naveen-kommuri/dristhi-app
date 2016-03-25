@@ -258,15 +258,20 @@
             android:textColor="@android:color/black"
             android:textSize="20sp" />
 
-
-        <Spinner
-            android:id="@+id/sp_drug_name"
+        <AutoCompleteTextView
+            android:id="@+id/act_drug_name"
             android:layout_width="500dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:background="@android:color/darker_gray"
-            android:popupBackground="@android:color/white" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/rounded_corner_edittext"
+            android:completionThreshold="2"
+            android:hint="Please Select Drug"
+            android:padding="3dp"
+            android:textColor="@android:color/black"
+            android:textSize="25sp" />
+
 
         <Spinner
             android:id="@+id/sp_drug_frequency"

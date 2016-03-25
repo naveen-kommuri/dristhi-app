@@ -2,7 +2,8 @@ package org.ei.telemedicine.domain;
 
 public enum LoginResponse {
     SUCCESS("Login successful."),
-    NO_INTERNET_CONNECTIVITY("Please check server connectivity"),
+    NO_INTERNET_CONNECTIVITY("Please check internet"),
+    NO_SERVER_CONNECTIVITY("Please check server connectivity"),
     UNKNOWN_RESPONSE("OpenSRP login failed. Try later"),
     UNAUTHORIZED("Please check the credentials");
 

@@ -111,12 +111,13 @@ public class TimelineEvent {
             if (pocJsonArray.length() != 0) {
                 JSONObject pocInfoData = pocJsonArray.getJSONObject(pocJsonArray.length() - 1);
                 String pocDataStr = getDataFromJson(pocInfoData.toString(), "poc");
+                String pocDate = getDataFromJson(pocDataStr, "pocDate");
                 String investigationsStr = getDataFromArray(getDataFromJson(pocDataStr, "investigations"), "Investigations: ");
                 String diagnosisStr = getDataFromArray(getDataFromJson(pocDataStr, "diagnosis"), "Diagnosis: ");
                 String drugsStr = getDatafromDrugsArray(getDataFromJson(pocDataStr, "drugs"));
                 String adviceStr = !getDataFromJson(pocDataStr, "advice").equals("") ? "Advice:" + getDataFromJson(pocDataStr, "advice") : "";
                 String detailStr = investigationsStr + diagnosisStr + (!drugsStr.equals("") ? "Drugs:" + drugsStr + ";" : "") + "\n" + adviceStr;
-                return new TimelineEvent(caseId, visitType, LocalDate.parse(visitDate), title, detailStr, "");
+                return new TimelineEvent(caseId, visitType, LocalDate.parse(pocDate.trim().length() != 0 ? pocDate : visitDate), title, detailStr, "");
             }
 
         } catch (JSONException e) {
@@ -158,7 +159,7 @@ public class TimelineEvent {
                 JSONArray jsonArray1 = new JSONArray(jsonArray);
                 for (int i = 0; i < jsonArray1.length(); i++) {
                     JSONObject jsonObject = jsonArray1.getJSONObject(i);
-                    String data = jsonObject.getString("drugName") + "-" + jsonObject.getString("direction") + "-" + jsonObject.getString("dosage") + "-" + jsonObject.getString("frequency") + "- Days :" + jsonObject.getString("drugNoOfDays") + "- Qty :" + jsonObject.getString("drugQty");
+                    String data = jsonObject.getString("drugName") + "-" + jsonObject.getString("direction") + "-" + jsonObject.getString("dosage") + "-" + jsonObject.getString("frequency") + "- Days :" + jsonObject.getString("drugNoOfDays") + "- Qty :" + jsonObject.getString("drugQty") + (jsonObject.has("drugStopDate") ? "- Stop By:" + jsonObject.getString("drugStopDate") : "");
                     result = !result.equals("") ? result + "\n" + data : data;
                 }
                 return result;

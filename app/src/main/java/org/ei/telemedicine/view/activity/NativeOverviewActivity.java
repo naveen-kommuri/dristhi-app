@@ -101,7 +101,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
     Context context;
     LinearLayout ec_summary, anc_summary, pnc_summary, child_summary, anc_pregnency_summary, pnc_pregnency_summary;
     static Boolean isANCOA = false, isFromEC = false;
-    Boolean isPoc = false, isFP = false;
+    Boolean isPoc = false, isFP = false, isExistANCVisit = false;
 
     private Listener<CapturedPhotoInformation> photoCaptureListener = new Listener<CapturedPhotoInformation>() {
         @Override
@@ -216,7 +216,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                             @Override
                             public void onClick(View v) {
 //                                if (ib_profile_pic.getDrawable() == getResources().getDrawable(R.drawable.woman_placeholder))
-                                    takePhoto(AllConstants.WOMAN_TYPE, caseId);
+                                takePhoto(AllConstants.WOMAN_TYPE, caseId);
                             }
                         });
                         Mother motherData = context.allBeneficiaries().findMotherByECCaseId(caseId);
@@ -256,7 +256,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                             @Override
                             public void onClick(View v) {
 //                                if (ib_profile_pic.getDrawable() == getResources().getDrawable(R.drawable.woman_placeholder))
-                                    takePhoto(AllConstants.WOMAN_TYPE, mother.ecCaseId());
+                                takePhoto(AllConstants.WOMAN_TYPE, mother.ecCaseId());
 //                                dispatchTakePictureIntent(ib_profile_pic, mother != null ? mother.ecCaseId() : caseId);
                             }
                         });
@@ -279,6 +279,10 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         tv_husband_name.setText(WordUtils.capitalize(getDataFromJson(anccoupleDetails, "husbandName")));
 //                        isANCOA = getDataFromJson(ancDetails, "ancNumber").toLowerCase().contains("oa");
                         tv_id_no.setText("ANC No: " + WordUtils.capitalize(getDataFromJson(ancDetails, "ancNumber")));
+                        if (getDataFromJson(ancDetails, "ancVisitNumber").trim().length() != 0) {
+                            isExistANCVisit = true;
+                        }
+
                         tv_village_name.setText(WordUtils.capitalize(getDataFromJson(locationDetails, "villageName")));
 
                         tv_priority.setText(getDataFromJson(ancDetails, "isHighRisk").equals("yes") ? "High Risk" : "Normal Risk");
@@ -306,7 +310,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                             @Override
                             public void onClick(View v) {
 //                                if (ib_profile_pic.getDrawable() == getResources().getDrawable(R.drawable.woman_placeholder))
-                                    takePhoto(AllConstants.WOMAN_TYPE, pncMother.ecCaseId());
+                                takePhoto(AllConstants.WOMAN_TYPE, pncMother.ecCaseId());
 //                                dispatchTakePictureIntent(ib_profile_pic, pncMother != null ? pncMother.ecCaseId() : caseId);
                             }
                         });
@@ -491,11 +495,13 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
 
                                 String type = "doctorOverview";
                                 String details2 = jsonData;
-                                String details1 = (!getDataFromJson(jsonData, "bpDiastolic").equals("") ? "Bp Dia :" + getDataFromJson(jsonData, "bpDiastolic") + " " : "") +
-                                        (!getDataFromJson(jsonData, "bpSystolic").equals("") ? "Bp Sys :" + getDataFromJson(jsonData, "bpSystolic") + " " : "") +
-                                        (!getDataFromJson(jsonData, "temperature").equals("") ? "Temperature :" + getDataFromJson(jsonData, "temperature") + " " : "") +
-                                        (!getDataFromJson(jsonData, "pulseRate").equals("") ? "Pulse :" + getDataFromJson(jsonData, "pulseRate") : "") + " " +
-                                        (!getDataFromJson(jsonData, "bloodGlucoseData").equals("") ? "BGM :" + getDataFromJson(jsonData, "bloodGlucoseData") + " " : "");
+                                String details1 = (!getDataFromJson(jsonData, "bpSystolic").equals("") ? "Bp Systolic :" + getDataFromJson(jsonData, "bpSystolic") + " mmHg\n" : "") +
+                                        (!getDataFromJson(jsonData, "bpDiastolic").equals("") ? "Bp Diastolic :" + getDataFromJson(jsonData, "bpDiastolic") + " mmHg\n" : "") +
+                                        (getDataFromJson(jsonData, "temperature").split("-")[0].trim().length() != 0 ? "Temperature :" + getDataFromJson(jsonData, "temperature").replace("-", "\u00B0") + "\n" : "") +
+                                        (!getDataFromJson(jsonData, "pulseRate").equals("") ? "Pulse Rate:" + getDataFromJson(jsonData, "pulseRate") + " bpm\n" : "") +
+                                        (!getDataFromJson(jsonData, "fetalData").equals("") ? "Fetal Heart Rate :" + getDataFromJson(jsonData, "fetalData") + " bpm\n" : "") +
+                                        (!getDataFromJson(jsonData, "bloodGlucoseData").equals("") ? "BGM :" + getDataFromJson(jsonData, "bloodGlucoseData") + " mmoI/L\n" : "") +
+                                        (!getDataFromJson(jsonData, "anmPoc").equals("") ? "ANM Prescribed Drugs : " + getDataFromJson(jsonData, "anmPoc").replace("[", "").replace("]", "").replace("\"", "") : "");
                                 timelineEvents.add(new TimelineEvent(caseId, type, referDate, title, details1, details2));
                             }
                         } catch (JSONException e) {
@@ -727,12 +733,15 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                 formController.startFormActivity(ANC_VISIT, caseId, formInfo);
                 return true;
             case R.id.anc_visit_edit:
-                if (!isPoc)
+                if (isExistANCVisit)
+                    if (!isPoc)
 //                    startFormActivity(ANC_VISIT_EDIT, caseId, formInfo);
 //                    new OpenFormOption(ANC_VISIT_EDIT, ANC_VISIT_EDIT, new FormController(this)).doEdit(client);
-                    formController.startFormActivity(ANC_VISIT_EDIT, caseId, formInfo);
+                        formController.startFormActivity(ANC_VISIT_EDIT, caseId, formInfo);
+                    else
+                        Toast.makeText(this, "Already Poc given for this visit", Toast.LENGTH_SHORT).show();
                 else
-                    Toast.makeText(this, "Already Poc given for this visit", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "No previous visit", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.hb_test:
                 startFormActivity(HB_TEST, caseId, formInfo);

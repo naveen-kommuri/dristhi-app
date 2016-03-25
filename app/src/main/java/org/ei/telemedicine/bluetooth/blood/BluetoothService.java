@@ -250,6 +250,7 @@ public class BluetoothService implements Constants {
             try {
                 // This is a blocking call and will only return on a
                 // successful connection or an exception
+
                 mmSocket.connect();
 
             } catch (IOException e) {

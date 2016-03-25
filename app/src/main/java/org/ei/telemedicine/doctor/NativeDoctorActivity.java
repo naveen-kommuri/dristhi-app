@@ -137,7 +137,10 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
         ArrayList<DoctorData> doctorDatas = updateRegisterCounts();
         if (pendingConsultantBaseAdapter == null)
             pendingConsultantBaseAdapter = new PendingConsultantBaseAdapter(NativeDoctorActivity.this, doctorDatas, this);
+        //Default Name sort
         Collections.sort(doctorDatas, DoctorData.womanNameComparator);
+//        Default High Risk sort
+//        pendingConsultantBaseAdapter.sort(DoctorFormDataConstants.sorting_hr, doctorDatas);
         Log.e("default", "searhc");
         pendingConsultantBaseAdapter.notifyDataSetChanged(doctorDatas);
     }

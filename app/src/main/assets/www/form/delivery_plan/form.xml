@@ -66,7 +66,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span class="question-label active" lang="">Is contact number still<span
+                <span class="question-label active" lang="">Is contact number still <span
                     class="or-output" data-value=" /Delivery_Plan_EngKan/entity_phone_no "></span>?
                 </span>
             </legend>

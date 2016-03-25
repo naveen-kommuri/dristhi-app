@@ -13,6 +13,8 @@ import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.customControls.CustomFontTextView;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.anmPoc;
 
@@ -63,9 +65,21 @@ public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
 
         String risks = getDatafromJson(formInfo, DoctorFormDataConstants.risk_symptoms).trim();
         tv_risks.setText(risks.replace(" ", ", "));
-        tv_anm_poc.setText(getDatafromJsonArray(getDatafromJson(formInfo, anmPoc)));
+        Log.e("ANM Poc", getDatafromJson(formInfo, anmPoc));
+
+        tv_anm_poc.setText(getDatafromJsonArray(getDataforDrugs(formInfo, anmPoc)));
         return new String[]{documentId, phoneNumber, visitId};
 
+    }
+
+    private String getDataforDrugs(String formInfo, String key) {
+        try {
+            JSONObject jsonObject = new JSONObject(formInfo);
+            return jsonObject.has(key) ? jsonObject.getString(key) : "";
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     @Override
@@ -139,6 +153,7 @@ public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
                 pausePlay();
                 break;
             case R.id.bt_plan_of_care:
+//                startActivity(new Intent(this, NativeChartActivity.class));
                 getDrugData();
                 break;
             case R.id.ib_bp_graph:

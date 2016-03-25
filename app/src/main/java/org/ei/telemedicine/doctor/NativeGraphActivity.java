@@ -73,7 +73,6 @@ public class NativeGraphActivity extends Activity {
         String[] vitalDates;
         JSONArray vitalsArray = new JSONArray(vitalsData);
         for (int i = 0; i < vitalsArray.length(); i++) {
-
             datalist1.add(getIntDatafromJson(vitalsArray.getJSONObject(i).toString(), BP_SYS));
             datalist2.add(getIntDatafromJson(vitalsArray.getJSONObject(i).toString(), BP_DIA));
             datelist.add(getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISIT_DATE) + "\n" + (!getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISITNUMBER).equals("") ? "ANC- " + getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISITNUMBER) : ""));

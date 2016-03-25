@@ -1,19 +1,9 @@
 package org.ei.telemedicine.view.dialog;
 
-import static android.view.View.VISIBLE;
-import static org.ei.telemedicine.AllConstants.BOOLEAN_TRUE;
-import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.BIRTH_COMPANION;
-import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.DELIVERY_FACILITY_DH_VALUE;
-import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.DELIVERY_FACILITY_HOME_VALUE;
-import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.DELIVERY_FACILITY_NAME;
-import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.DELIVERY_FACILITY_SDH_VALUE;
-import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.PHONE_NUMBER;
-import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.REVIEWED_HRP_STATUS;
-import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.TRANSPORTATION_PLAN;
-import static org.ei.telemedicine.Context.getInstance;
-import static org.ei.telemedicine.domain.ANCServiceType.DELIVERY_PLAN;
-import static org.ei.telemedicine.util.StringUtil.humanize;
-import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
@@ -33,10 +23,20 @@ import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.OnClickFormLauncher;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import static android.view.View.VISIBLE;
+import static org.ei.telemedicine.AllConstants.BOOLEAN_TRUE;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.BIRTH_COMPANION;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.DELIVERY_FACILITY_DH_VALUE;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.DELIVERY_FACILITY_HOME_VALUE;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.DELIVERY_FACILITY_NAME;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.DELIVERY_FACILITY_SDH_VALUE;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.PHONE_NUMBER;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.REVIEWED_HRP_STATUS;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.TRANSPORTATION_PLAN;
+import static org.ei.telemedicine.Context.getInstance;
+import static org.ei.telemedicine.domain.ANCServiceType.DELIVERY_PLAN;
+import static org.ei.telemedicine.util.StringUtil.humanize;
+import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
 
 public class DeliveryPlanServiceMode extends ServiceModeOption {
 
@@ -110,7 +110,7 @@ public class DeliveryPlanServiceMode extends ServiceModeOption {
             setDeliveryFacilityName(client, viewHolder, deliveryPlanServiceProvided);
             setTransportationPlan(viewHolder, deliveryPlanServiceProvided);
             setBirthCompanion(viewHolder, deliveryPlanServiceProvided);
-            setAshaPhoneNumber(client, viewHolder);
+//            setAshaPhoneNumber(client, viewHolder);
             setContactPhoneNumber(viewHolder, deliveryPlanServiceProvided);
             setReviewedHRPStatus(client, viewHolder, deliveryPlanServiceProvided);
         } else if (deliveryPlanAlert != emptyAlert && deliveryPlanAlert.name().equalsIgnoreCase(DELIVERY_PLAN.serviceName())) {

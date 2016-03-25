@@ -84,15 +84,18 @@ public class ClientProfileView extends RelativeLayout {
 //            badgePocCompleteView.setVisibility(VISIBLE);
 //            badgePocCompleteView.setImageResource(client.isPocPending() ? R.drawable.flag_poc_pending : R.drawable.flag_poc_complete);
 //        }
-        badgeMedicalConsultView.setVisibility(client.isMedicalConsult() ? VISIBLE : GONE);
-        if (client.isPOC() && !client.isPocPending()) {
-            badgePocCompleteView.setVisibility(View.VISIBLE);
-            badgeMedicalConsultView.setVisibility(GONE);
-        }
-        if (client.isPocPending()) {
-            badgePOCPendingView.setVisibility(View.VISIBLE);
-            badgeMedicalConsultView.setVisibility(GONE);
-        }
+        badgePocCompleteView.setVisibility(client.isPOC() && !client.isPocPending() ? VISIBLE : GONE);
+        badgePOCPendingView.setVisibility(client.isPocPending() ? VISIBLE : GONE);
+        badgeMedicalConsultView.setVisibility(client.isMedicalConsult() && !client.isPOC() && !client.isPocPending() ? VISIBLE : GONE);
+
+//        if (client.isPOC() && !client.isPocPending()) {
+//            badgePocCompleteView.setVisibility(View.VISIBLE);
+//            badgeMedicalConsultView.setVisibility(GONE);
+//        }
+//        if (client.isPocPending()) {
+//            badgePOCPendingView.setVisibility(View.VISIBLE);
+//            badgeMedicalConsultView.setVisibility(GONE);
+//        }
     }
 
     private void setHROrHRPBadge(SmartRegisterClient client) {

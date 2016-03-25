@@ -38,6 +38,7 @@ import org.ei.telemedicine.domain.Response;
 import org.ei.telemedicine.domain.ResponseStatus;
 import org.ei.telemedicine.repository.AllSettings;
 import org.ei.telemedicine.repository.AllSharedPreferences;
+import org.ei.telemedicine.sync.DrishtiSyncScheduler;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -55,6 +56,7 @@ import static android.os.Environment.DIRECTORY_PICTURES;
 import static android.os.Environment.getExternalStoragePublicDirectory;
 import static org.ei.telemedicine.AllConstants.REALM;
 import static org.ei.telemedicine.domain.LoginResponse.NO_INTERNET_CONNECTIVITY;
+import static org.ei.telemedicine.domain.LoginResponse.NO_SERVER_CONNECTIVITY;
 import static org.ei.telemedicine.domain.LoginResponse.SUCCESS;
 import static org.ei.telemedicine.domain.LoginResponse.UNAUTHORIZED;
 import static org.ei.telemedicine.domain.LoginResponse.UNKNOWN_RESPONSE;
@@ -139,11 +141,12 @@ public class HTTPAgent {
                 logError("Bad response from Dristhi. Status code:  " + statusCode + " username: " + userName + " using " + requestURL);
                 return UNKNOWN_RESPONSE;
             }
-
-
         } catch (IOException e) {
             logError("Failed to check credentials of: " + userName + " using " + requestURL + ". Error: " + e.toString());
-            return NO_INTERNET_CONNECTIVITY;
+            if (!DrishtiSyncScheduler.isNetWorkAvailable(context))
+                return NO_INTERNET_CONNECTIVITY;
+            else
+                return NO_SERVER_CONNECTIVITY;
         } catch (JSONException e) {
             e.printStackTrace();
             return NO_INTERNET_CONNECTIVITY;

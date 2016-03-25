@@ -65,6 +65,7 @@ public class ChildSmartRegisterController {
                                     .withEntityIdToSavePhoto(child.caseId())
                                     .withMotherName(child.ec().wifeName())
                                     .withDOB(child.dateOfBirth())
+                                    .withMedicalConsultation(child.getDetail(AllConstants.ChildIllnessFields.ISCONSULTDOCTOR))
                                     .withPOC(child.getDetail(AllConstants.ChildRegistrationFields.CHILD_POC_INFO))
                                     .withMotherAge(child.ec().age())
                                     .withFatherName(child.ec().husbandName())
