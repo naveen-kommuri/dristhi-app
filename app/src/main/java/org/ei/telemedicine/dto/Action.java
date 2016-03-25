@@ -1,10 +1,11 @@
 package org.ei.telemedicine.dto;
 
-import java.util.Map;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.codehaus.jackson.annotate.JsonProperty;
+
+import java.util.Map;
 
 public class Action
 {
@@ -92,8 +93,12 @@ public class Action
   }
 }
 
-
-/* Location:           C:\Users\appaji.r\Downloads\classes-dex2.jar
- * Qualified Name:     org.ei.drishti.dto.Action
- * JD-Core Version:    0.7.0.1
+
+
+/* Location:           C:\Users\appaji.r\Downloads\classes-dex2.jar
+
+ * Qualified Name:     org.ei.drishti.dto.Action
+
+ * JD-Core Version:    0.7.0.1
+
  */
