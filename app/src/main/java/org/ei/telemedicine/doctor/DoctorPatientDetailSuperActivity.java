@@ -19,7 +19,6 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.ei.telemedicine.AllConstants;
@@ -30,7 +29,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -95,22 +93,37 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
     }
 
     public void playData(String url, final ImageButton ib_play_stehoscope, final ImageButton ib_pause_stehoscope) {
-        Log.e("Play pat", url);
-        turnSpeaker();
+        try {
+            turnSpeaker();
+        } catch (Exception e) {
+            Toast.makeText(DoctorPatientDetailSuperActivity.this, "Unable to play, check audio settings", Toast.LENGTH_SHORT).show();
+        }
         try {
             player = new MediaPlayer();
             player.setAudioStreamType(AudioManager.STREAM_MUSIC);
             player.setDataSource(url);
             player.prepare();
-//
-//            playProgressDialog = new ProgressDialog(DoctorPatientDetailSuperActivity.this);
-//            playProgressDialog.setTitle("Playing Heartbeat");
-////            playProgressDialog.setCancelable(false);
-//            playProgressDialog.show();
+            playProgressDialog = new ProgressDialog(DoctorPatientDetailSuperActivity.this);
+            playProgressDialog.setTitle("Playing Heart sound");
+            playProgressDialog.setMessage("Playing Heart sound");
+            playProgressDialog.setCancelable(false);
+            playProgressDialog.setButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (player != null && player.isPlaying()) {
+                        player.stop();
+                        player.release();
+                    }
+                    ib_play_stehoscope.setVisibility(View.VISIBLE);
+                    ib_pause_stehoscope.setVisibility(View.INVISIBLE);
+                    dialog.dismiss();
+                }
+            });
 
             player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
+                    playProgressDialog.show();
                     mp.start();
                 }
             });
@@ -118,43 +131,16 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
+                    if (playProgressDialog != null && playProgressDialog.isShowing())
+                        playProgressDialog.dismiss();
                     ib_play_stehoscope.setVisibility(View.VISIBLE);
                     ib_pause_stehoscope.setVisibility(View.INVISIBLE);
                 }
             });
 
-        } catch (
-                IOException e
-                )
-
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-//
-//
-//        new AsyncTask<String, Void, Boolean>() {
-//            @Override
-//            protected Boolean doInBackground(String... params) {
-//                try {
-//
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//                return false;
-//            }
-//
-//            @Override
-//            protected void onPreExecute() {
-//
-//
-//            }
-//
-//            @Override
-//            protected void onPostExecute(Boolean isRunning) {
-//                if (playProgressDialog != null && !player.isPlaying())
-//                    playProgressDialog.dismiss();
-//            }
-//        }.execute(url);
 
     }
 
@@ -202,7 +188,7 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
         modeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(DoctorPatientDetailSuperActivity.this, "C_______________________________--" + ((TextView) view).getText().toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(DoctorPatientDetailSuperActivity.this, "C_______________________________--" + ((TextView) view).getText().toString(), Toast.LENGTH_SHORT).show();
             }
         });
 //        modeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -257,10 +243,12 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
             builder2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    if (val != -1)
-                        referDoctor(doctorId, visitId, entityId, documentId, visitType, wifeName, doctorIdsList.get(val));
-                    else
-                        Toast.makeText(DoctorPatientDetailSuperActivity.this, "Choose Doctor Correctly", Toast.LENGTH_SHORT).show();
+                    if (val != -1) {
+                        String doctor = doctorIdsList.get(val);
+                        referDoctor(doctorId, visitId, entityId, documentId, visitType, wifeName, doctor);
+
+                    } else
+                        Toast.makeText(DoctorPatientDetailSuperActivity.this, "Something went wrong! Please try again", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                 }
             }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -272,7 +260,7 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
             AlertDialog alertdialog2 = builder2.create();
             alertdialog2.show();
         } else
-            Toast.makeText(this, "No parent doctors", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "There is no doctor to refer", Toast.LENGTH_SHORT).show();
     }
 
     private void showRadioButtonDialog() {
@@ -304,7 +292,7 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
                     RadioButton btn = (RadioButton) group.getChildAt(x);
                     if (btn.getId() == checkedId) {
                         Log.e("selected RadioButton->", btn.getText().toString());
-                        Toast.makeText(DoctorPatientDetailSuperActivity.this, "___" + btn.getText(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(DoctorPatientDetailSuperActivity.this, "___" + btn.getText(), Toast.LENGTH_SHORT).show();
                         referedDoctor = btn.getText().toString();
                     }
                 }
@@ -316,7 +304,7 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
     }
 
     public void referAnotherDoctor(final String doctorId, final String visitId, final String entityId, final String documentId, final String visitType, final String wifeName, final String referedDoctorId) {
-        new AlertDialog.Builder(this).setTitle("Refer Selection").setMessage("Do you want choose doctor?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(this).setTitle("Refer Doctor Selection").setMessage("Do you want to choose particular doctor to refer?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 showRadios(doctorId, visitId, entityId, documentId, visitType, wifeName, referedDoctorId);
@@ -331,11 +319,18 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
     }
 
     private void referDoctor(final String doctorId, final String visitId, final String entityId, final String documentId, final String visitType, final String wifeName, final String referedDoctorId) {
-        getData(AllConstants.DOCTOR_REFER_URL_PATH + doctorId + "&visitid=" + visitId + "&entityid=" + entityId + "&patientname=" + (visitType.equalsIgnoreCase("CHILD") ? "Baby%20of%20" + wifeName : wifeName + "&refdoc=" + referedDoctorId), new Listener<String>() {
+        getData(AllConstants.DOCTOR_REFER_URL_PATH + doctorId + "&visitid=" + visitId + "&entityid=" + entityId + "&patientname=" + ((visitType.equalsIgnoreCase("CHILD") ? "Baby%20of%20" + wifeName : wifeName) + "&refdoc=" + referedDoctorId), new Listener<String>() {
             @Override
             public void onEvent(String data) {
-                Context.getInstance().allDoctorRepository().deleteUseCaseId(visitId);
-                startActivity(new Intent(DoctorPatientDetailSuperActivity.this, NativeDoctorActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                if (data != null && getDatafromJson(data, "hospital").trim().length() != 0) {
+                    new AlertDialog.Builder(DoctorPatientDetailSuperActivity.this).setMessage("Record is referred to " + getDatafromJson(data, "hospital")).setCancelable(false).setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Context.getInstance().allDoctorRepository().deleteUseCaseId(visitId);
+                            startActivity(new Intent(DoctorPatientDetailSuperActivity.this, NativeDoctorActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        }
+                    }).show();
+                }
             }
         });
     }
@@ -356,7 +351,7 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
                     intent.putExtra(DoctorFormDataConstants.anc_entityId, caseId);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(DoctorPatientDetailSuperActivity.this, "No Data getting from server", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DoctorPatientDetailSuperActivity.this, "Something went wrong! Please try again ", Toast.LENGTH_SHORT).show();
                 }
             }
         });

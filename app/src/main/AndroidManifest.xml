@@ -142,7 +142,8 @@
         <!--<activity android:name=".view.activity.NativeVideoActivity" />-->
         <activity
             android:name=".doctor.DoctorPlanofCareActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".view.activity.ViewPlanOfCareActivity"
             android:screenOrientation="landscape" />
@@ -163,7 +164,7 @@
             android:theme="@android:style/Theme.Holo.Light.Dialog" />
         <activity
             android:name=".bluetooth.BluetoothInstructionsActivity"
-            android:theme="@android:style/Theme.Holo.Light.Dialog" />
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" />
 
         <activity
             android:name=".doctor.ViewPreVisitScreenActivity"
@@ -186,12 +187,13 @@
             android:name=".view.activity.ActionActivity"
             android:label="@string/title_activity_action"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"></activity>
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar.MinWidth" />
         <activity android:name=".view.UserSettingsActivity" />
         <activity
             android:name=".doctor.NativeChartActivity"
             android:screenOrientation="landscape" />
-        <!--<activity android:name=".doctor.VideoCallActivity" />-->
+        <activity android:name=".bluetooth.VisulActivity" />
     </application>
 
 </manifest>
+

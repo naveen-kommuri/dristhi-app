@@ -1,5 +1,6 @@
 package org.ei.telemedicine.service;
 
+import org.ei.telemedicine.Context;
 import org.ei.telemedicine.DristhiConfiguration;
 import org.ei.telemedicine.domain.LoginResponse;
 import org.ei.telemedicine.repository.AllSettings;
@@ -7,11 +8,15 @@ import org.ei.telemedicine.repository.AllSharedPreferences;
 import org.ei.telemedicine.repository.Repository;
 import org.ei.telemedicine.sync.SaveANMLocationTask;
 import org.ei.telemedicine.util.Session;
+import org.ei.telemedicine.view.activity.LoginActivity;
+
+import de.tavendo.autobahn.WebSocketConnection;
 
 import static org.ei.telemedicine.AllConstants.LOGIN_URL_PATH;
 import static org.ei.telemedicine.event.Event.ON_LOGOUT;
 
 public class UserService {
+    WebSocketConnection mConnection;
     private final Repository repository;
     private final AllSettings allSettings;
     private final AllSharedPreferences allSharedPreferences;
@@ -98,6 +103,8 @@ public class UserService {
     }
 
     public void clearData() {
+        if (LoginActivity.mConnection != null && LoginActivity.mConnection.isConnected())
+            LoginActivity.mConnection.disconnect();
         allSettings.clearPreferences();
         allSettings.registerANM("", "");
         allSettings.savePreviousFetchIndex("0");
@@ -126,4 +133,11 @@ public class UserService {
         return httpAgent.callingURL(requestURL);
     }
 
+
+    private String getUsern() {
+        return Context.getInstance().allSharedPreferences().fetchRegisteredANM();
+    }
+
+
 }
+

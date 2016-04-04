@@ -1,9 +1,10 @@
 package org.ei.telemedicine.dto;
 
-import java.util.List;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import java.util.List;
 
 public class MonthSummaryDatum
 {
@@ -65,8 +66,12 @@ public class MonthSummaryDatum
   }
 }
 
-
-/* Location:           C:\Users\appaji.r\Downloads\classes-dex2.jar
- * Qualified Name:     org.ei.drishti.dto.MonthSummaryDatum
- * JD-Core Version:    0.7.0.1
+
+
+/* Location:           C:\Users\appaji.r\Downloads\classes-dex2.jar
+
+ * Qualified Name:     org.ei.drishti.dto.MonthSummaryDatum
+
+ * JD-Core Version:    0.7.0.1
+
  */

@@ -6,9 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
 
-import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.view.receiver.SyncBroadcastReceiver;
 

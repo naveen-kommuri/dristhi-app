@@ -1,9 +1,6 @@
 package org.ei.telemedicine.view.contract;
 
 import org.ei.telemedicine.domain.FPMethod;
-import org.ei.telemedicine.util.IntegerUtil;
-
-import java.util.Comparator;
 
 public interface BaseFPSmartRegisterClient extends SmartRegisterClient {
 

@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
@@ -102,7 +101,7 @@ public class ViewPlanOfCareActivity extends SecuredActivity {
                                 et_advice.setText(getDataFromJson(pocJson.toString(), "advice"));
                             }
                         } else {
-                            Toast.makeText(ViewPlanOfCareActivity.this, "Pending= " + pocInfo.getString("pending"), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(ViewPlanOfCareActivity.this, "Pending= " + pocInfo.getString("pending"), Toast.LENGTH_SHORT).show();
                             new AlertDialog.Builder(ViewPlanOfCareActivity.this).setTitle("Poc pending reason").setMessage(pocInfo.getString("pending")).setNeutralButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -115,7 +114,7 @@ public class ViewPlanOfCareActivity extends SecuredActivity {
                     }
                 } else {
                     showNoPoc();
-                    Toast.makeText(ViewPlanOfCareActivity.this, "No Plan Of Care", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(ViewPlanOfCareActivity.this, "No Plan Of Care", Toast.LENGTH_SHORT).show();
                 }
             } else {
                 tv_anc_number_title.setVisibility(View.GONE);
@@ -147,7 +146,7 @@ public class ViewPlanOfCareActivity extends SecuredActivity {
                                 et_advice.setText(getDataFromJson(pocJson.toString(), "advice"));
                             }
                         } else {
-                            Toast.makeText(ViewPlanOfCareActivity.this, "Pending= " + pocInfo.getString("pending"), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(ViewPlanOfCareActivity.this, "Pending= " + pocInfo.getString("pending"), Toast.LENGTH_SHORT).show();
                             new AlertDialog.Builder(ViewPlanOfCareActivity.this).setTitle("Poc pending reason").setMessage(pocInfo.getString("pending")).setNeutralButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -160,7 +159,7 @@ public class ViewPlanOfCareActivity extends SecuredActivity {
                     }
                 } else {
                     showNoPoc();
-                    Toast.makeText(ViewPlanOfCareActivity.this, "No Plan Of Care", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(ViewPlanOfCareActivity.this, "No Plan Of Care", Toast.LENGTH_SHORT).show();
                 }
             }
         }

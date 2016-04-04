@@ -204,7 +204,7 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
                             NavigationController navigationController = new NavigationController(activity, org.ei.telemedicine.Context.getInstance().anmController());
                             navigationController.startDoctor(data, formData);
                         } else
-                            Toast.makeText(context, "No Data from server", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Something went wrong! Please try again", Toast.LENGTH_SHORT).show();
                     }
                 });
 

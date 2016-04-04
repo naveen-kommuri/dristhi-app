@@ -9,7 +9,10 @@ import java.util.Map;
 
 import static java.text.MessageFormat.format;
 import static org.ei.telemedicine.domain.FetchStatus.fetched;
-import static org.ei.telemedicine.event.Event.*;
+import static org.ei.telemedicine.event.Event.ACTION_HANDLED;
+import static org.ei.telemedicine.event.Event.FORM_SUBMITTED;
+import static org.ei.telemedicine.event.Event.ON_DATA_FETCHED;
+import static org.ei.telemedicine.event.Event.ON_PHOTO_CAPTURED;
 import static org.ei.telemedicine.util.Log.logWarn;
 
 public class Cache<T> {

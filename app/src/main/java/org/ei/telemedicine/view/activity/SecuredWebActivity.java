@@ -1,18 +1,5 @@
 package org.ei.telemedicine.view.activity;
 
-import static android.webkit.ConsoleMessage.MessageLevel.ERROR;
-import static java.text.MessageFormat.format;
-import static org.ei.telemedicine.util.Log.logDebug;
-import static org.ei.telemedicine.util.Log.logError;
-
-import org.acra.ACRA;
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.sync.SyncAfterFetchListener;
-import org.ei.telemedicine.sync.SyncProgressIndicator;
-import org.ei.telemedicine.sync.UpdateActionsTask;
-import org.ei.telemedicine.view.InternationalizationContext;
-import org.ei.telemedicine.view.controller.UpdateController;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.view.MenuItem;
@@ -21,6 +8,18 @@ import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.sync.SyncAfterFetchListener;
+import org.ei.telemedicine.sync.SyncProgressIndicator;
+import org.ei.telemedicine.sync.UpdateActionsTask;
+import org.ei.telemedicine.view.InternationalizationContext;
+import org.ei.telemedicine.view.controller.UpdateController;
+
+import static android.webkit.ConsoleMessage.MessageLevel.ERROR;
+import static java.text.MessageFormat.format;
+import static org.ei.telemedicine.util.Log.logDebug;
+import static org.ei.telemedicine.util.Log.logError;
 
 public abstract class SecuredWebActivity extends SecuredActivity {
     protected WebView webView;
@@ -60,7 +59,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
 
     public void updateFromServer() {
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(this, context.actionService(), context.formSubmissionSyncService(), new SyncProgressIndicator());
-        updateActionsTask.updateFromServer(new SyncAfterFetchListener(),"");
+        updateActionsTask.updateFromServer(new SyncAfterFetchListener(), "");
     }
 
     protected void closeDialog() {
@@ -102,6 +101,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
             public void onProgressChanged(WebView view, int progress) {
                 dismissProgressBarOnProgressComplete(progress, activity);
             }
+
             @Override
             public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
                 String message = format("Javascript Log. Message: {0}, lineNumber: {1}, sourceId, {2}", consoleMessage.message(),
@@ -128,7 +128,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
     }
 
     private void dismissProgressBarOnProgressComplete(int progress, Activity activity) {
-        if(shouldDismissProgressBarOnProgressComplete){
+        if (shouldDismissProgressBarOnProgressComplete) {
             activity.setProgress(progress * 1000);
 
             if (progress == 100 && progressDialog.isShowing())
@@ -137,6 +137,6 @@ public abstract class SecuredWebActivity extends SecuredActivity {
     }
 
     protected void reportException(String message) {
-        ACRA.getErrorReporter().handleSilentException(new RuntimeException(message));
+//        ACRA.getErrorReporter().handleSilentException(new RuntimeException(message));
     }
 }

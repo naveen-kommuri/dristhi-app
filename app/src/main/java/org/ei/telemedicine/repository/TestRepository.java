@@ -1,24 +1,6 @@
 package org.ei.telemedicine.repository;
 
-import static net.sqlcipher.DatabaseUtils.longForQuery;
-import static org.apache.commons.lang3.StringUtils.repeat;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import net.sqlcipher.database.SQLiteDatabase;
-
-import org.ei.telemedicine.doctor.DoctorData;
-import org.ei.telemedicine.domain.Mother;
-import org.ei.telemedicine.domain.TestDomain;
-
-import android.content.ContentValues;
-import android.database.Cursor;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 public class TestRepository extends DrishtiRepository {
     static final String DOCTORS_INFO_SQL = "CREATE TABLE consultants(SNo INTEGER PRIMARY KEY AUTOINCREMENT,AnmId VARCHAR, FormInformation BLOB,FormTime VARCHAR,POCInformation BLOB,POCTime VARCHAR,PocStatus VARCHAR,SyncStatus VARCHAR)";

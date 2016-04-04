@@ -21,7 +21,10 @@ import static java.lang.System.currentTimeMillis;
 import static java.util.Arrays.asList;
 import static java.util.UUID.randomUUID;
 import static net.sqlcipher.DatabaseUtils.longForQuery;
-import static org.ei.telemedicine.AllConstants.*;
+import static org.ei.telemedicine.AllConstants.ENTITY_ID_FIELD_NAME;
+import static org.ei.telemedicine.AllConstants.ENTITY_ID_PARAM;
+import static org.ei.telemedicine.AllConstants.INSTANCE_ID_PARAM;
+import static org.ei.telemedicine.AllConstants.SYNC_STATUS;
 import static org.ei.telemedicine.domain.SyncStatus.PENDING;
 import static org.ei.telemedicine.domain.SyncStatus.SYNCED;
 

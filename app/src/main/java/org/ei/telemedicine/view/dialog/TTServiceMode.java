@@ -1,12 +1,7 @@
 package org.ei.telemedicine.view.dialog;
 
-import static android.view.View.VISIBLE;
-import static org.ei.telemedicine.AllConstants.FormNames.TT;
-import static org.ei.telemedicine.Context.getInstance;
-import static org.ei.telemedicine.domain.ANCServiceType.TT_1;
-import static org.ei.telemedicine.domain.ANCServiceType.TT_2;
-import static org.ei.telemedicine.domain.ANCServiceType.TT_BOOSTER;
-import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
+import android.view.View;
+import android.widget.TextView;
 
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.domain.ANCServiceType;
@@ -25,8 +20,13 @@ import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.OnClickFormLauncher;
 
-import android.view.View;
-import android.widget.TextView;
+import static android.view.View.VISIBLE;
+import static org.ei.telemedicine.AllConstants.FormNames.TT;
+import static org.ei.telemedicine.Context.getInstance;
+import static org.ei.telemedicine.domain.ANCServiceType.TT_1;
+import static org.ei.telemedicine.domain.ANCServiceType.TT_2;
+import static org.ei.telemedicine.domain.ANCServiceType.TT_BOOSTER;
+import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
 
 public class TTServiceMode extends ServiceModeOption {
 

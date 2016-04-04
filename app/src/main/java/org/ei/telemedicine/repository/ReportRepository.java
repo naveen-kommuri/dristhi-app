@@ -2,6 +2,7 @@ package org.ei.telemedicine.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.ei.telemedicine.domain.Report;

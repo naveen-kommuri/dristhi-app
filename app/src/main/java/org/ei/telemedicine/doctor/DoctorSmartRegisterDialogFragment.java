@@ -1,13 +1,6 @@
 package org.ei.telemedicine.doctor;
 
 
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.util.StringUtil;
-import org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity;
-import org.ei.telemedicine.view.dialog.DialogOption;
-import org.ei.telemedicine.view.dialog.DialogOptionModel;
-import org.ei.telemedicine.view.dialog.SmartRegisterDialogFragment;
-
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Context;
@@ -20,9 +13,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.sql.Struct;
+import org.ei.telemedicine.R;
+
 import java.util.ArrayList;
 
 public class DoctorSmartRegisterDialogFragment extends DialogFragment {
@@ -91,7 +84,7 @@ public class DoctorSmartRegisterDialogFragment extends DialogFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 dismiss();
-                Toast.makeText(context, values.get(i).toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, values.get(i).toString(), Toast.LENGTH_SHORT).show();
                 if (tag.toString().equals("Filter")) {
                     String value = values.get(i).toString();
                     if (pendingConsultantBaseAdapter != null) {

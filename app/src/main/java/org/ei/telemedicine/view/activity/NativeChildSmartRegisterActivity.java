@@ -1,10 +1,6 @@
 package org.ei.telemedicine.view.activity;
 
-import static com.google.common.collect.Iterables.concat;
-import static com.google.common.collect.Iterables.toArray;
-import static java.util.Arrays.asList;
-
-import java.util.List;
+import android.view.View;
 
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
@@ -35,7 +31,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.view.View;
+import java.util.List;
+
+import static com.google.common.collect.Iterables.concat;
+import static com.google.common.collect.Iterables.toArray;
+import static java.util.Arrays.asList;
 
 public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 

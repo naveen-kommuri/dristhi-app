@@ -5,12 +5,28 @@ import com.google.common.collect.Iterables;
 
 import org.ei.telemedicine.util.DateUtil;
 import org.ei.telemedicine.view.contract.ServiceProvidedDTO;
-import org.ei.telemedicine.view.contract.pnc.*;
+import org.ei.telemedicine.view.contract.pnc.PNCCircleDatum;
+import org.ei.telemedicine.view.contract.pnc.PNCClient;
+import org.ei.telemedicine.view.contract.pnc.PNCFirstSevenDaysVisits;
+import org.ei.telemedicine.view.contract.pnc.PNCLineDatum;
+import org.ei.telemedicine.view.contract.pnc.PNCStatusColor;
+import org.ei.telemedicine.view.contract.pnc.PNCStatusDatum;
+import org.ei.telemedicine.view.contract.pnc.PNCTickDatum;
+import org.ei.telemedicine.view.contract.pnc.PNCVisitDaysDatum;
+import org.ei.telemedicine.view.contract.pnc.PNCVisitStatus;
+import org.ei.telemedicine.view.contract.pnc.PNCVisitType;
 import org.joda.time.LocalDate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import static org.ei.telemedicine.util.DateUtil.dayDifference;
 import static org.ei.telemedicine.util.DateUtil.formatDate;

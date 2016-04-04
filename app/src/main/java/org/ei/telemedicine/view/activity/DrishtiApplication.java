@@ -3,24 +3,22 @@ package org.ei.telemedicine.view.activity;
 import android.app.Application;
 import android.content.res.Configuration;
 
-import org.acra.ReportingInteractionMode;
-import org.acra.annotation.ReportsCrashes;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.sync.DrishtiSyncScheduler;
 
 import java.util.Locale;
 
 import static org.ei.telemedicine.util.Log.logInfo;
-
-@ReportsCrashes(
-        formKey = "",
-        formUri = "https://opensrp.cloudant.com/acra-opensrpp/_design/acra-storage/_update/report",
-        reportType = org.acra.sender.HttpSender.Type.JSON,
-        httpMethod = org.acra.sender.HttpSender.Method.POST,
-        formUriBasicAuthLogin = "llseveraffeassireseralmi",
-        formUriBasicAuthPassword = "88ec26943ef02c171008f860371f4e100bba3f36",
-        mode = ReportingInteractionMode.SILENT
-)
+//
+//@ReportsCrashes(
+//        formKey = "",
+//        formUri = "https://opensrp.cloudant.com/acra-opensrpp/_design/acra-storage/_update/report",
+//        reportType = org.acra.sender.HttpSender.Type.JSON,
+//        httpMethod = org.acra.sender.HttpSender.Method.POST,
+//        formUriBasicAuthLogin = "llseveraffeassireseralmi",
+//        formUriBasicAuthPassword = "88ec26943ef02c171008f860371f4e100bba3f36",
+//        mode = ReportingInteractionMode.SILENT
+//)
 public class DrishtiApplication extends Application {
     private Locale locale = null;
     private Context context;

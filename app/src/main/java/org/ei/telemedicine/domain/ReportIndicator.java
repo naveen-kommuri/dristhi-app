@@ -5,7 +5,10 @@ import org.ei.telemedicine.view.contract.Beneficiary;
 
 import java.util.List;
 
-import static org.ei.telemedicine.view.controller.ProfileNavigationController.*;
+import static org.ei.telemedicine.view.controller.ProfileNavigationController.navigateToANCProfile;
+import static org.ei.telemedicine.view.controller.ProfileNavigationController.navigateToChildProfile;
+import static org.ei.telemedicine.view.controller.ProfileNavigationController.navigateToECProfile;
+import static org.ei.telemedicine.view.controller.ProfileNavigationController.navigateToPNCProfile;
 
 public enum ReportIndicator {
     IUD("IUD", "IUD Adoption") {

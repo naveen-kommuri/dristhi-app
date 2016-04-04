@@ -95,7 +95,6 @@
             android:paddingLeft="8dp"
             android:password="true"
             android:singleLine="true"
-            android:text="123456"
             android:textColor="#666666"
             android:textColorHint="#bfbfbf"
             android:textCursorDrawable="@drawable/color_cursor"

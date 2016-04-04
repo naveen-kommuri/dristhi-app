@@ -1,8 +1,6 @@
 package org.ei.telemedicine.view.dialog;
 
-import static android.view.View.VISIBLE;
-import static org.ei.telemedicine.AllConstants.FormNames.FP_COMPLICATIONS;
-import static org.ei.telemedicine.Context.getInstance;
+import android.view.View;
 
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
@@ -20,7 +18,9 @@ import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.OnClickFormLauncher;
 
-import android.view.View;
+import static android.view.View.VISIBLE;
+import static org.ei.telemedicine.AllConstants.FormNames.FP_COMPLICATIONS;
+import static org.ei.telemedicine.Context.getInstance;
 
 public class FPAllMethodsServiceMode extends ServiceModeOption {
 

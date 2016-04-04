@@ -1,15 +1,15 @@
 package org.ei.telemedicine.view.customControls;
 
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.domain.FPMethod;
-import org.ei.telemedicine.view.contract.BaseFPSmartRegisterClient;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.domain.FPMethod;
+import org.ei.telemedicine.view.contract.BaseFPSmartRegisterClient;
 
 public class ClientPNCPpFpMethodView extends LinearLayout {
     private TextView ppFpMethodView;

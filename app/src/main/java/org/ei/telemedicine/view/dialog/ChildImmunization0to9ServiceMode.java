@@ -1,7 +1,7 @@
 package org.ei.telemedicine.view.dialog;
 
-import static org.ei.telemedicine.AllConstants.FormNames.CHILD_IMMUNIZATIONS;
-import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
+import android.view.View;
+import android.widget.TextView;
 
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
@@ -20,8 +20,8 @@ import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.OnClickFormLauncher;
 
-import android.view.View;
-import android.widget.TextView;
+import static org.ei.telemedicine.AllConstants.FormNames.CHILD_IMMUNIZATIONS;
+import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
 
 public class ChildImmunization0to9ServiceMode extends ServiceModeOption {
 

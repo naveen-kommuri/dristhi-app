@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import static org.ei.telemedicine.AllConstants.GraphFields.BLOODGLUCOSEDATA;
 import static org.ei.telemedicine.AllConstants.GraphFields.BP_DIA;
 import static org.ei.telemedicine.AllConstants.GraphFields.BP_SYS;
+import static org.ei.telemedicine.AllConstants.GraphFields.CHILD_TEMPERATURE;
 import static org.ei.telemedicine.AllConstants.GraphFields.FETALDATA;
 import static org.ei.telemedicine.AllConstants.GraphFields.TEMPERATURE;
 import static org.ei.telemedicine.AllConstants.GraphFields.VISITNUMBER;
@@ -51,7 +52,7 @@ public class NativeChartActivity extends Activity {
             xAxis.setTextSize(30f);
             xAxis.setTextColor(Color.RED);
             xAxis.setDrawAxisLine(true);
-            xAxis.setAdjustXLabels(true);
+//            xAxis.setAdjustXLabels(true);
 
 
             try {
@@ -88,7 +89,7 @@ public class NativeChartActivity extends Activity {
 
                     }
                 else {
-                    Toast.makeText(this, "No vital Data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "There is no previous vital readings.", Toast.LENGTH_SHORT).show();
                     this.finish();
                 }
 
@@ -104,24 +105,53 @@ public class NativeChartActivity extends Activity {
 
         ArrayList<BarDataSet> dataSets = null;
         ArrayList<BarEntry> vitalDatas = new ArrayList<>();
-
+        String units = "";
         JSONArray vitalsArray = null;
         try {
             vitalsArray = new JSONArray(vitalsData);
             for (int i = 0; i < vitalsArray.length(); i++) {
                 switch (vitalType) {
                     case TEMPERATURE:
-                        vitalDatas.add(new BarEntry(Float.parseFloat(getStrDatafromJson(vitalsArray.getJSONObject(i).toString(), TEMPERATURE)), i));
+                        float val;
+                        try {
+                            val = Float.parseFloat(getStrDatafromJson(vitalsArray.getJSONObject(i).toString(), TEMPERATURE));
+                        } catch (Exception e) {
+                            val = 0;
+                        }
+                        vitalDatas.add(new BarEntry(val, i));
+                        break;
+                    case CHILD_TEMPERATURE:
+                        float cval;
+                        try {
+                            cval = Float.parseFloat(getStrDatafromJson(vitalsArray.getJSONObject(i).toString(), CHILD_TEMPERATURE));
+                        } catch (Exception e) {
+                            cval = 0;
+                        }
+                        vitalDatas.add(new BarEntry(cval, i));
                         break;
                     case BLOODGLUCOSEDATA:
-                        vitalDatas.add(new BarEntry(Float.parseFloat(getDatafromJson(vitalsArray.getJSONObject(i).toString(), BLOODGLUCOSEDATA)), i));
+                        float bgmVal;
+                        units = "mmol/L";
+                        try {
+                            bgmVal = Float.parseFloat(getDatafromJson(vitalsArray.getJSONObject(i).toString(), BLOODGLUCOSEDATA));
+                        } catch (Exception e) {
+                            bgmVal = 0;
+                        }
+                        vitalDatas.add(new BarEntry(bgmVal, i));
                         break;
                     case FETALDATA:
-                        vitalDatas.add(new BarEntry(Float.parseFloat(getDatafromJson(vitalsArray.getJSONObject(i).toString(), FETALDATA)), i));
+                        float fetalVal;
+                        units = "bpm";
+                        try {
+                            fetalVal = Float.parseFloat(getDatafromJson(vitalsArray.getJSONObject(i).toString(), FETALDATA));
+                        } catch (Exception e) {
+                            fetalVal = 0;
+                        }
+                        vitalDatas.add(new BarEntry(fetalVal, i));
                         break;
                 }
             }
-            BarDataSet barDataSet1 = new BarDataSet(vitalDatas, WordUtils.capitalize(vitalType));
+            BarDataSet barDataSet1 = new BarDataSet(vitalDatas, WordUtils.capitalize(vitalType) + ((units.trim().length() != 0) ? (" in " + units) : ""));
             barDataSet1.setColors(ColorTemplate.COLORFUL_COLORS);
 
             dataSets = new ArrayList<>();
@@ -146,12 +176,12 @@ public class NativeChartActivity extends Activity {
                 bpSysData.add(new BarEntry(getIntDatafromJson(vitalsArray.getJSONObject(i).toString(), BP_SYS), i));
                 bpDiaData.add(new BarEntry(getIntDatafromJson(vitalsArray.getJSONObject(i).toString(), BP_DIA), i));
             }
-            BarDataSet barDataSet1 = new BarDataSet(bpSysData, "Bp Systolic");
+            BarDataSet barDataSet1 = new BarDataSet(bpSysData, "Bp Systolic in mmHg");
             barDataSet1.setValueTextSize(20f);
             barDataSet1.setColors(ColorTemplate.COLORFUL_COLORS);
 //            barDataSet1.setValueTextColor(Color.GREEN);
 
-            BarDataSet barDataSet2 = new BarDataSet(bpDiaData, "Bp Diastolic");
+            BarDataSet barDataSet2 = new BarDataSet(bpDiaData, "Bp Diastolic in mmHg");
             barDataSet2.setColors(ColorTemplate.COLORFUL_COLORS);
             barDataSet2.setValueTextSize(20f);
 
@@ -272,7 +302,7 @@ public class NativeChartActivity extends Activity {
                 String tempVal = "0";
                 if (jsonData.has(key) && jsonData.getString(key).contains("-")) {
                     String[] temp = jsonData.getString(key).split("-");
-                    tempVal = temp[0];
+                    tempVal = temp[0].trim().length() == 0 ? "0" : temp[0];
                 }
                 return tempVal;
             } catch (JSONException e) {

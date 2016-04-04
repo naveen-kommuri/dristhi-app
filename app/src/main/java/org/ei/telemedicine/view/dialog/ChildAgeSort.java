@@ -1,12 +1,12 @@
 package org.ei.telemedicine.view.dialog;
 
-import static org.ei.telemedicine.view.contract.SmartRegisterClient.AGE_COMPARATOR;
-
-import java.util.Collections;
-
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.contract.SmartRegisterClients;
+
+import java.util.Collections;
+
+import static org.ei.telemedicine.view.contract.SmartRegisterClient.AGE_COMPARATOR;
 
 public class ChildAgeSort implements SortOption {
     @Override

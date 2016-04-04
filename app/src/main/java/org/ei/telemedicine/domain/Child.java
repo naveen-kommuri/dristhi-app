@@ -10,9 +10,9 @@ import java.util.HashSet;
 import java.util.Map;
 
 import static org.ei.telemedicine.AllConstants.BOOLEAN_TRUE;
-import static org.ei.telemedicine.AllConstants.SPACE;
 import static org.ei.telemedicine.AllConstants.ChildRegistrationFields.HIGH_RISK_REASON;
 import static org.ei.telemedicine.AllConstants.ChildRegistrationFields.IS_CHILD_HIGH_RISK;
+import static org.ei.telemedicine.AllConstants.SPACE;
 
 public class Child {
     private final String caseId;

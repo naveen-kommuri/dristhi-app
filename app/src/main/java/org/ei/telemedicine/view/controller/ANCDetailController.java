@@ -14,7 +14,11 @@ import org.ei.telemedicine.repository.AllTimelineEvents;
 import org.ei.telemedicine.util.DateUtil;
 import org.ei.telemedicine.util.TimelineEventComparator;
 import org.ei.telemedicine.view.activity.CameraLaunchActivity;
-import org.ei.telemedicine.view.contract.*;
+import org.ei.telemedicine.view.contract.ANCDetail;
+import org.ei.telemedicine.view.contract.CoupleDetails;
+import org.ei.telemedicine.view.contract.LocationDetails;
+import org.ei.telemedicine.view.contract.PregnancyDetails;
+import org.ei.telemedicine.view.contract.TimelineEvent;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
@@ -26,7 +30,9 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.ei.telemedicine.AllConstants.*;
+import static org.ei.telemedicine.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
+import static org.ei.telemedicine.AllConstants.ENTITY_ID;
+import static org.ei.telemedicine.AllConstants.WOMAN_TYPE;
 
 public class ANCDetailController {
     public static final int DURATION_OF_PREGNANCY_IN_WEEKS = 40;

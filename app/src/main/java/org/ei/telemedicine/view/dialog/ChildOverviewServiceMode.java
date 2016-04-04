@@ -1,12 +1,10 @@
 package org.ei.telemedicine.view.dialog;
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-import static org.ei.telemedicine.AllConstants.FormNames.CHILD_ILLNESS;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
-
 import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
 import org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
@@ -19,8 +17,9 @@ import org.ei.telemedicine.view.viewHolder.NativeChildSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+import static org.ei.telemedicine.AllConstants.FormNames.CHILD_ILLNESS;
 
 public class ChildOverviewServiceMode extends ServiceModeOption {
     private String illnessReport = Context.getInstance().getStringResource(R.string.illness_report);

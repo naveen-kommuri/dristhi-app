@@ -103,7 +103,7 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
         @Override
         public void onEvent(String data) {
             updateInfo(adapter);
-            Toast.makeText(NativeDoctorActivity.this, "Completed", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(NativeDoctorActivity.this, "Completed", Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -335,6 +335,7 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
                 showFragmentDialog(sortingList, "Sort");
                 break;
             case R.id.start_sync_doc_data:
+//                startActivity(new Intent(this, TempWebSocket.class));
 //                backupDB();
                 updateFromServer();
                 break;

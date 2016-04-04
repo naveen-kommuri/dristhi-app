@@ -1,8 +1,11 @@
 package org.ei.telemedicine.view.dialog;
 
-import static android.view.View.VISIBLE;
-import static org.ei.telemedicine.AllConstants.FormNames.PNC_VISIT;
-import static org.ei.telemedicine.Context.getInstance;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
@@ -23,12 +26,9 @@ import org.ei.telemedicine.view.viewHolder.NativeChildSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import com.google.gson.Gson;
+import static android.view.View.VISIBLE;
+import static org.ei.telemedicine.AllConstants.FormNames.PNC_VISIT;
+import static org.ei.telemedicine.Context.getInstance;
 
 public class PNCVisitsServiceMode extends ServiceModeOption {
     public static final AlertDTO emptyAlert = new AlertDTO("", "", "");

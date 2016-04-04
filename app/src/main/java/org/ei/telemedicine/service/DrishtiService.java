@@ -1,7 +1,5 @@
 package org.ei.telemedicine.service;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;

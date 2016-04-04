@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
+
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.view.activity.ActionActivity;
 import org.json.JSONObject;
@@ -65,7 +66,6 @@ public class CallReceiver extends BroadcastReceiver {
                 @Override
                 public void onOpen() {
                     Log.d(TAG, "Status: Connected to " + url);
-
                 }
 
                 @Override

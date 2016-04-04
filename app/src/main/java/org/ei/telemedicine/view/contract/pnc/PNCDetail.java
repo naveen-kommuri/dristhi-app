@@ -8,7 +8,9 @@ import org.ei.telemedicine.view.contract.LocationDetails;
 import org.ei.telemedicine.view.contract.PregnancyOutcomeDetails;
 import org.ei.telemedicine.view.contract.TimelineEvent;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class PNCDetail {
     private final String caseId;

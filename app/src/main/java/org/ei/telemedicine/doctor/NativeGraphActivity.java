@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.chart.PointStyle;
@@ -51,7 +50,7 @@ public class NativeGraphActivity extends Activity {
                     else
                         openChart(vitalsData, vitalType);
                 else {
-                    Toast.makeText(this, "No vital Data", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(this, "No vital Data", Toast.LENGTH_SHORT).show();
                     this.finish();
                 }
 

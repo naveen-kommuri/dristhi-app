@@ -1,14 +1,7 @@
 package org.ei.telemedicine.view.dialog;
 
-import static android.view.View.VISIBLE;
-import static org.ei.telemedicine.AllConstants.ANCVisitFields.WEIGHT;
-import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT;
-import static org.ei.telemedicine.Context.getInstance;
-import static org.ei.telemedicine.domain.ANCServiceType.ANC_1;
-import static org.ei.telemedicine.domain.ANCServiceType.ANC_2;
-import static org.ei.telemedicine.domain.ANCServiceType.ANC_3;
-import static org.ei.telemedicine.domain.ANCServiceType.ANC_4;
-import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
+import android.view.View;
+import android.widget.TextView;
 
 import org.apache.commons.lang3.StringUtils;
 import org.ei.telemedicine.R;
@@ -28,8 +21,15 @@ import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.OnClickFormLauncher;
 
-import android.view.View;
-import android.widget.TextView;
+import static android.view.View.VISIBLE;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.WEIGHT;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT;
+import static org.ei.telemedicine.Context.getInstance;
+import static org.ei.telemedicine.domain.ANCServiceType.ANC_1;
+import static org.ei.telemedicine.domain.ANCServiceType.ANC_2;
+import static org.ei.telemedicine.domain.ANCServiceType.ANC_3;
+import static org.ei.telemedicine.domain.ANCServiceType.ANC_4;
+import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
 
 public class ANCVisitsServiceMode extends ServiceModeOption {
 

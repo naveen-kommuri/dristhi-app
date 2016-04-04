@@ -1,13 +1,8 @@
 package org.ei.telemedicine.view.dialog;
 
-import static android.view.View.VISIBLE;
-import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT;
-import static org.ei.telemedicine.AllConstants.FormNames.IFA;
-import static org.ei.telemedicine.AllConstants.FormNames.TT;
-import static org.ei.telemedicine.Context.getInstance;
-import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
-import static org.ei.telemedicine.view.contract.AlertStatus.COMPLETE;
-import static org.ei.telemedicine.view.contract.AlertStatus.INPROCESS;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.TextView;
 
 import org.apache.commons.lang3.StringUtils;
 import org.ei.telemedicine.Context;
@@ -28,9 +23,14 @@ import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.OnClickFormLauncher;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.TextView;
+import static android.view.View.VISIBLE;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT;
+import static org.ei.telemedicine.AllConstants.FormNames.IFA;
+import static org.ei.telemedicine.AllConstants.FormNames.TT;
+import static org.ei.telemedicine.Context.getInstance;
+import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
+import static org.ei.telemedicine.view.contract.AlertStatus.COMPLETE;
+import static org.ei.telemedicine.view.contract.AlertStatus.INPROCESS;
 
 public class ANCOverviewServiceMode extends ServiceModeOption {
 

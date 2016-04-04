@@ -1,19 +1,16 @@
 package org.ei.telemedicine.view.activity;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.repository.AllSharedPreferences;
 
-import static android.view.View.*;
+import static android.view.View.OnClickListener;
 
 /**
  * Created by naveen on 5/19/15.

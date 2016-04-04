@@ -2,7 +2,6 @@ package org.ei.telemedicine.view.controller;
 
 import com.google.gson.Gson;
 
-import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.repository.AllSettings;
 import org.ei.telemedicine.util.Cache;
 import org.ei.telemedicine.util.CacheableData;

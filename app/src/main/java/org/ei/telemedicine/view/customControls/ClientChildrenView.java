@@ -1,17 +1,17 @@
 package org.ei.telemedicine.view.customControls;
 
-import static java.text.MessageFormat.format;
-
-import java.util.List;
+import android.content.Context;
+import android.util.AttributeSet;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.contract.ECChildClient;
 import org.ei.telemedicine.view.contract.ECSmartRegisterClient;
 
-import android.content.Context;
-import android.util.AttributeSet;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import java.util.List;
+
+import static java.text.MessageFormat.format;
 
 public class ClientChildrenView extends LinearLayout {
 

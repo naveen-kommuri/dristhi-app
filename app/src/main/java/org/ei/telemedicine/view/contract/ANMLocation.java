@@ -2,8 +2,6 @@ package org.ei.telemedicine.view.contract;
 
 import com.google.gson.Gson;
 
-import org.ei.telemedicine.Context;
-
 import java.util.List;
 
 public class ANMLocation {

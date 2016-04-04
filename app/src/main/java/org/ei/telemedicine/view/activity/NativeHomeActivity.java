@@ -290,6 +290,9 @@ public class NativeHomeActivity extends SecuredActivity {
                 updateFromServer();
                 return true;
 //            case R.id.export:
+//                startActivity(new Intent(this, VisulActivity.class));
+//                return true;
+//            case R.id.export:
 //                backupDB();
 //                return true;
 //            case R.id.video:
@@ -327,16 +330,16 @@ public class NativeHomeActivity extends SecuredActivity {
 
             case R.id.logout:
 //                context.userService().logoutSession();
-                new AlertDialog.Builder(this).setTitle("Do you want logout or exit only?").setPositiveButton("Logout & Exit", new DialogInterface.OnClickListener() {
+                new AlertDialog.Builder(this).setTitle("Do you want logout or exit only?").setNegativeButton("Logout & Exit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (!context.allSharedPreferences().getIsSyncInProgress() && pendingFormSubmissionService.pendingFormSubmissionCount() == 0) {
                             logoutUser();
                         } else {
-                            Toast.makeText(NativeHomeActivity.this, "Need to sync all information in server", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(NativeHomeActivity.this, "Need to sync complete information.", Toast.LENGTH_SHORT).show();
                         }
                     }
-                }).setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+                }).setPositiveButton("Exit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         context.userService().logoutSession();

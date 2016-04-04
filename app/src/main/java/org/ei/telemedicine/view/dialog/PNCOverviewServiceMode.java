@@ -1,8 +1,10 @@
 package org.ei.telemedicine.view.dialog;
 
-import static android.view.View.VISIBLE;
-import static org.ei.telemedicine.AllConstants.FormNames.PNC_POSTPARTUM_FAMILY_PLANNING;
-import static org.ei.telemedicine.Context.getInstance;
+import android.graphics.drawable.Drawable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
@@ -19,11 +21,9 @@ import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.OnClickFormLauncher;
 
-import android.graphics.drawable.Drawable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import static android.view.View.VISIBLE;
+import static org.ei.telemedicine.AllConstants.FormNames.PNC_POSTPARTUM_FAMILY_PLANNING;
+import static org.ei.telemedicine.Context.getInstance;
 
 public class PNCOverviewServiceMode extends ServiceModeOption {
 

@@ -1,12 +1,10 @@
 package org.ei.telemedicine.image;
 
-import java.io.File;
-
 import android.content.Context;
-import android.util.Log;
 
-import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
+
+import java.io.File;
 
 public class FileCache {
 

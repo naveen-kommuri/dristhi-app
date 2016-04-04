@@ -48,7 +48,8 @@ public class AllConstants {
     //    public static final String CALLING_URL = "http://202.153.34.169:8004/call?id=%s&peer_id=%s";
     //    public static final String WEBSOCKET = "ws://202.153.34.169:8004/wslogin?id=%s";
     public static final String CALLING_URL = "/call?id=%s&peer_id=%s";
-    public static final String WEBSOCKET = "/wslogin?id=%s";
+    //    public static final String WEBSOCKET = "/wslogin?id=%s";
+    public static final String WEBSOCKET = "/wsrecieve?id=cli:%s";
     public static final String RECEIVING_URL = "/recieve?id=%s&peer_id=%s";
 
     public static final String LOGIN_URL_PATH = "/auth/?userid=";
@@ -150,12 +151,14 @@ public class AllConstants {
         public static final String PNC_REGISTRATION_OA = "pnc_registration_oa";
         public static final String PNC_CLOSE = "pnc_close";
         public static final String PNC_VISIT = "pnc_visit";
+        public static final String PNC_VISIT_EDIT = "pnc_visit_edit";
         public static final String PNC_POSTPARTUM_FAMILY_PLANNING = "postpartum_family_planning";
         public static final String CHILD_IMMUNIZATIONS = "child_immunizations";
         public static final String CHILD_REGISTRATION_EC = "child_registration_ec";
         public static final String CHILD_REGISTRATION_OA = "child_registration_oa";
         public static final String CHILD_CLOSE = "child_close";
         public static final String CHILD_ILLNESS = "child_illness";
+        public static final String CHILD_ILLNESS_EDIT = "child_illness_edit";
         public static final String VITAMIN_A = "vitamin_a";
         public static final String DELIVERY_PLAN = "delivery_plan";
         public static final String EC_EDIT = "ec_edit";
@@ -235,6 +238,7 @@ public class AllConstants {
 
     public class GraphFields {
         public static final String TEMPERATURE = "temperature";
+        public static final String CHILD_TEMPERATURE = "childTemperature";
         public static final String FETALDATA = "fetalData";
         public static final String BP = "bpDiastolic";
         public static final String BP_DIA = "bpDiastolic";

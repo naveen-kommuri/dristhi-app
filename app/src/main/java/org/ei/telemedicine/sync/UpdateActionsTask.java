@@ -12,7 +12,6 @@ import org.ei.telemedicine.view.LockingBackgroundTask;
 import org.ei.telemedicine.view.ProgressIndicator;
 
 import static org.ei.telemedicine.domain.FetchStatus.fetched;
-import static org.ei.telemedicine.domain.FetchStatus.fetchedFailed;
 import static org.ei.telemedicine.domain.FetchStatus.nothingFetched;
 import static org.ei.telemedicine.util.Log.logInfo;
 

@@ -10,8 +10,10 @@ import java.util.HashSet;
 import java.util.Map;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
-import static org.ei.telemedicine.AllConstants.ECRegistrationFields.*;
 import static org.ei.telemedicine.AllConstants.BOOLEAN_TRUE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.CURRENT_FP_METHOD;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.HIGH_PRIORITY_REASON;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.IS_HIGH_PRIORITY;
 import static org.ei.telemedicine.AllConstants.SPACE;
 
 public class EligibleCouple {

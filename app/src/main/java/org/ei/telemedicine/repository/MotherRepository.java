@@ -20,7 +20,9 @@ import static java.lang.Boolean.TRUE;
 import static net.sqlcipher.DatabaseUtils.longForQuery;
 import static org.apache.commons.lang3.StringUtils.join;
 import static org.apache.commons.lang3.StringUtils.repeat;
-import static org.ei.telemedicine.repository.EligibleCoupleRepository.*;
+import static org.ei.telemedicine.repository.EligibleCoupleRepository.EC_TABLE_COLUMNS;
+import static org.ei.telemedicine.repository.EligibleCoupleRepository.EC_TABLE_NAME;
+import static org.ei.telemedicine.repository.EligibleCoupleRepository.IS_OUT_OF_AREA_COLUMN;
 
 public class MotherRepository extends DrishtiRepository {
     private static final String MOTHER_SQL = "CREATE TABLE mother(id VARCHAR PRIMARY KEY, ecCaseId VARCHAR, thayiCardNumber VARCHAR, type VARCHAR, referenceDate VARCHAR, details VARCHAR, isClosed VARCHAR)";

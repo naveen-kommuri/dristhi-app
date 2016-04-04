@@ -1,19 +1,5 @@
 package org.ei.telemedicine.repository;
 
-import android.database.Cursor;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import net.sqlcipher.database.SQLiteDatabase;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import org.ei.telemedicine.domain.Mother;
-import org.ei.telemedicine.domain.TestDomain;
-
 public class AllTestRepository {
     private TestRepository test_repository;
     private final TimelineEventRepository timelineEventRepository;

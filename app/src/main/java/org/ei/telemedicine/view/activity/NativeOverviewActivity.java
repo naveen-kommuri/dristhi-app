@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -77,6 +78,7 @@ import static org.ei.telemedicine.AllConstants.FormNames.IFA;
 import static org.ei.telemedicine.AllConstants.FormNames.PNC_CLOSE;
 import static org.ei.telemedicine.AllConstants.FormNames.PNC_POSTPARTUM_FAMILY_PLANNING;
 import static org.ei.telemedicine.AllConstants.FormNames.PNC_VISIT;
+import static org.ei.telemedicine.AllConstants.FormNames.PNC_VISIT_EDIT;
 import static org.ei.telemedicine.AllConstants.FormNames.TT;
 import static org.ei.telemedicine.AllConstants.FormNames.VIEW_EC_REGISTRATION;
 import static org.ei.telemedicine.AllConstants.FormNames.VITAMIN_A;
@@ -101,7 +103,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
     Context context;
     LinearLayout ec_summary, anc_summary, pnc_summary, child_summary, anc_pregnency_summary, pnc_pregnency_summary;
     static Boolean isANCOA = false, isFromEC = false;
-    Boolean isPoc = false, isFP = false, isExistANCVisit = false;
+    Boolean isPoc = false, isFP = false, isExistANCVisit = false, isExistPNCVisit = false;
 
     private Listener<CapturedPhotoInformation> photoCaptureListener = new Listener<CapturedPhotoInformation>() {
         @Override
@@ -173,6 +175,11 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                 }
             }
         }
+        return false;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
         return false;
     }
 
@@ -347,7 +354,9 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         tv_husband_name.setText(WordUtils.capitalize(getDataFromJson(pnccoupleDetails, "husbandName")));
                         tv_id_no.setText("PNC No: " + WordUtils.capitalize(getDataFromJson(pncDetails, "pncNumber")));
                         tv_village_name.setText(WordUtils.capitalize(getDataFromJson(pncLocationDetails, "villageName")));
-
+                        if (getDataFromJson(pncDetails, "pncVisitDay").trim().length() != 0) {
+                            isExistPNCVisit = true;
+                        }
                         tv_priority.setText(getDataFromJson(pncDetails, "isHighRisk").equals("yes") ? "High Risk" : "Normal Risk");
                         tv_priority.setTextColor(getDataFromJson(pncDetails, "isHighRisk").equals("yes") ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));
                         pnc_summary_priority.setText(getDataFromJson(pncDetails, "isHighRisk").equals("yes") ? "High Risk" : "Normal Risk");
@@ -364,7 +373,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         String childData = new ChildDetailController(this, caseId, context.allEligibleCouples(), context.allBeneficiaries(), context.allTimelineEvents()).get();
 
                         final Child child = context.allBeneficiaries().findChild(caseId);
-                        Toast.makeText(this, "sda" + child.motherCaseId(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(this, "sda" + child.motherCaseId(), Toast.LENGTH_SHORT).show();
                         final Mother childMother = context.allBeneficiaries().findMother(child.motherCaseId());
 //                        ib_profile_pic.setOnClickListener(new View.OnClickListener() {
 //                            @Override
@@ -501,6 +510,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                                         (!getDataFromJson(jsonData, "pulseRate").equals("") ? "Pulse Rate:" + getDataFromJson(jsonData, "pulseRate") + " bpm\n" : "") +
                                         (!getDataFromJson(jsonData, "fetalData").equals("") ? "Fetal Heart Rate :" + getDataFromJson(jsonData, "fetalData") + " bpm\n" : "") +
                                         (!getDataFromJson(jsonData, "bloodGlucoseData").equals("") ? "BGM :" + getDataFromJson(jsonData, "bloodGlucoseData") + " mmoI/L\n" : "") +
+                                        (getDataFromJson(jsonData, "childTemperature").split("-")[0].trim().length() != 0 ? "Temperature :" + getDataFromJson(jsonData, "childTemperature").replace("-", "\u00B0") + "\n" : "") +
                                         (!getDataFromJson(jsonData, "anmPoc").equals("") ? "ANM Prescribed Drugs : " + getDataFromJson(jsonData, "anmPoc").replace("[", "").replace("]", "").replace("\"", "") : "");
                                 timelineEvents.add(new TimelineEvent(caseId, type, referDate, title, details1, details2));
                             }
@@ -630,8 +640,9 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.e("cominff", "Overview Acitivity Result=========================" + resultCode);
         if (requestCode == AllConstants.CAPTURE_RESULT_CODE) {
             String path = data.getExtras().getString("location");
             Log.e("getting path", path);
@@ -739,9 +750,9 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
 //                    new OpenFormOption(ANC_VISIT_EDIT, ANC_VISIT_EDIT, new FormController(this)).doEdit(client);
                         formController.startFormActivity(ANC_VISIT_EDIT, caseId, formInfo);
                     else
-                        Toast.makeText(this, "Already Poc given for this visit", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Plan of Care is already given.", Toast.LENGTH_SHORT).show();
                 else
-                    Toast.makeText(this, "No previous visit", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "No previous visit to edit.", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.hb_test:
                 startFormActivity(HB_TEST, caseId, formInfo);
@@ -772,6 +783,18 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
             case R.id.pnc_visit:
                 startFormActivity(PNC_VISIT, caseId, formInfo);
                 return true;
+            case R.id.pnc_visit_edit:
+                if (isExistPNCVisit)
+                    if (!isPoc)
+//                    startFormActivity(ANC_VISIT_EDIT, caseId, formInfo);
+//                    new OpenFormOption(ANC_VISIT_EDIT, ANC_VISIT_EDIT, new FormController(this)).doEdit(client);
+                        formController.startFormActivity(PNC_VISIT_EDIT, caseId, formInfo);
+                    else
+                        Toast.makeText(this, "Plan of Care is already given.", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(this, "No previous visit to edit.", Toast.LENGTH_SHORT).show();
+
+                return true;
             case R.id.view_poc_pnc:
                 viewPOCActivity(AllConstants.VisitTypes.PNC_VISIT, caseId);
                 return true;
@@ -793,6 +816,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
             case R.id.child_illness:
                 startFormActivity(CHILD_ILLNESS, caseId, formInfo);
                 return true;
+
             case R.id.vitamin_a:
                 startFormActivity(VITAMIN_A, caseId, formInfo);
                 return true;

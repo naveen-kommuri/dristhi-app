@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
@@ -50,7 +49,7 @@ public class NativeReportsActivity extends Activity {
         lv_services.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(NativeReportsActivity.this, servicesList.get(i).toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(NativeReportsActivity.this, servicesList.get(i).toString(), Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(NativeReportsActivity.this, ReportsInfoActivity.class).putExtra("service", servicesList.get(i).toString()));
             }
         });

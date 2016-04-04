@@ -4,18 +4,17 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.telemedicine.AllConstants;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import static org.ei.telemedicine.AllConstants.ANCRegistrationFields.HIGH_RISK_REASON;
+import static org.ei.telemedicine.AllConstants.ANCRegistrationFields.IS_HIGH_RISK;
 import static org.ei.telemedicine.AllConstants.BOOLEAN_TRUE;
 import static org.ei.telemedicine.AllConstants.PNCRegistrationFields.PNC_NUMBER;
 import static org.ei.telemedicine.AllConstants.SPACE;
-import static org.ei.telemedicine.AllConstants.ANCRegistrationFields.HIGH_RISK_REASON;
-import static org.ei.telemedicine.AllConstants.ANCRegistrationFields.IS_HIGH_RISK;
 
 public class Mother {
     private final String caseId;

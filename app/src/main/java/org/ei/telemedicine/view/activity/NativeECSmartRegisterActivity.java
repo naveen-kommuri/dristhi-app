@@ -1,23 +1,10 @@
 package org.ei.telemedicine.view.activity;
 
-import static com.google.common.collect.Iterables.concat;
-import static com.google.common.collect.Iterables.toArray;
-import static org.ei.telemedicine.AllConstants.FormNames.ANC_REGISTRATION;
-import static org.ei.telemedicine.AllConstants.FormNames.CHILD_REGISTRATION_EC;
-import static org.ei.telemedicine.AllConstants.FormNames.EC_CLOSE;
-import static org.ei.telemedicine.AllConstants.FormNames.EC_EDIT;
-import static org.ei.telemedicine.AllConstants.FormNames.EC_REGISTRATION;
-import static org.ei.telemedicine.AllConstants.FormNames.FP_CHANGE;
-import static org.ei.telemedicine.AllConstants.FormNames.VIEW_ANC_REGISTRATION_EC;
-import static org.ei.telemedicine.AllConstants.FormNames.VIEW_EC_REGISTRATION;
+import android.view.View;
 
-import org.codehaus.jackson.node.POJONode;
-import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.telemedicine.domain.form.FieldOverrides;
-import org.ei.telemedicine.event.Event;
-import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.provider.ECSmartRegisterClientsProvider;
 import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
 import org.ei.telemedicine.view.contract.ECClient;
@@ -41,9 +28,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.ProgressDialog;
-import android.view.View;
-import android.widget.Toast;
+import static com.google.common.collect.Iterables.concat;
+import static com.google.common.collect.Iterables.toArray;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_REGISTRATION;
+import static org.ei.telemedicine.AllConstants.FormNames.CHILD_REGISTRATION_EC;
+import static org.ei.telemedicine.AllConstants.FormNames.EC_CLOSE;
+import static org.ei.telemedicine.AllConstants.FormNames.EC_EDIT;
+import static org.ei.telemedicine.AllConstants.FormNames.EC_REGISTRATION;
+import static org.ei.telemedicine.AllConstants.FormNames.FP_CHANGE;
+import static org.ei.telemedicine.AllConstants.FormNames.VIEW_EC_REGISTRATION;
 
 public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 

@@ -70,7 +70,7 @@ public class OpenFormOption implements EditOption {
                 try {
                     ECSmartRegisterClient ecClient = (ECSmartRegisterClient) client;
                     if ((ecClient.status().get(STATUS_TYPE_FIELD)).equalsIgnoreCase("anc")) {
-                        Toast.makeText(context, "ANC Registration is already completed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "ANC Registration is already done", Toast.LENGTH_SHORT).show();
                     } else
                         formController.startFormActivity(formName, client.entityId(), new FieldOverrides(Context.getInstance().anmLocationController().getFormInfoJSON()).getJSONString());
                 } catch (Exception e) {

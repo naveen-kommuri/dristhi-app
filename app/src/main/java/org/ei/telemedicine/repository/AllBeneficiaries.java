@@ -1,7 +1,6 @@
 package org.ei.telemedicine.repository;
 
 import org.apache.commons.lang3.tuple.Pair;
-import org.ei.telemedicine.doctor.DoctorData;
 import org.ei.telemedicine.domain.Child;
 import org.ei.telemedicine.domain.EligibleCouple;
 import org.ei.telemedicine.domain.Mother;

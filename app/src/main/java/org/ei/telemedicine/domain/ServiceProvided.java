@@ -7,8 +7,15 @@ import org.ei.telemedicine.domain.mapper.TTMapper;
 
 import java.util.Map;
 
-import static org.ei.telemedicine.AllConstants.ANCVisitFields.*;
-import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.*;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.BP_DIASTOLIC;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.BP_SYSTOLIC;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.WEIGHT;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.ASHA_PHONE_NUMBER;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.BIRTH_COMPANION;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.DELIVERY_FACILITY_NAME;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.PHONE_NUMBER;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.REVIEWED_HRP_STATUS;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.TRANSPORTATION_PLAN;
 import static org.ei.telemedicine.AllConstants.VitaminAFields.VITAMIN_A_DOSE;
 import static org.ei.telemedicine.AllConstants.VitaminAFields.VITAMIN_A_PLACE;
 import static org.ei.telemedicine.util.EasyMap.create;

@@ -93,7 +93,7 @@ public class TimelineEvent {
     }
 
     public static TimelineEvent forChangeOfFPMethod(String caseId, String oldFPMethod, String newFPMethod, String dateOfFPChange) {
-        String oldFp = oldFPMethod.equalsIgnoreCase("iud") ? "IUCD" : oldFPMethod;
+        String oldFp = (oldFPMethod != null && oldFPMethod.equalsIgnoreCase("iud")) ? "IUCD" : oldFPMethod;
         return new TimelineEvent(caseId, "FPCHANGE", LocalDate.parse(dateOfFPChange), "Changed FP Method", "From: " + oldFp, "To: " + newFPMethod);
     }
 
@@ -175,7 +175,7 @@ public class TimelineEvent {
     }
 
     public static TimelineEvent forTTShotProvided(String caseId, String ttDose, String visitDate) {
-        return new TimelineEvent(caseId, "TTSHOTPROVIDED", LocalDate.parse(visitDate), "TT Injection Given", ttDose, null);
+        return new TimelineEvent(caseId, "TTSHOTPROVIDED", LocalDate.parse(visitDate), "TT Injection Given", ttDose.contains("tt") ? ttDose.replace("tt", "TT ") : ttDose, null);
     }
 
     public static TimelineEvent forHBTest(String caseId, String hbLevel, String hbVisitDate) {
@@ -283,26 +283,26 @@ public class TimelineEvent {
                 tempData = details.get(temperature).split("-");
                 temp = "Temp: " + tempData[0] + " °" + tempData[1] + "\n";
             }
-            this.stringBuilder.append(checkEmptyField(temp, tempData[0]));
+            this.stringBuilder.append(checkEmptyVital(temp, tempData[0]));
             return this;
         }
 
 
         private DetailBuilder withBloodGlucose(String bloodGlucoseData) {
             String bgm = "BGM: " + details.get(bloodGlucoseData) + " mmoI/L\n";
-            this.stringBuilder.append(checkEmptyField(bgm, details.get(bloodGlucoseData)));
+            this.stringBuilder.append(checkEmptyVital(bgm, details.get(bloodGlucoseData)));
             return this;
         }
 
         private DetailBuilder withPulseRate(String pulseRate) {
             String pulse = "Pulse Rate: " + details.get(pulseRate) + " bpm\n";
-            this.stringBuilder.append(checkEmptyField(pulse, details.get(pulseRate)));
+            this.stringBuilder.append(checkEmptyVital(pulse, details.get(pulseRate)));
             return this;
         }
 
         private DetailBuilder withFetal(String fetalData) {
             String fetal = "Fetal Data : " + details.get(fetalData) + " bpm\n";
-            this.stringBuilder.append(checkEmptyField(fetal, details.get(fetalData)));
+            this.stringBuilder.append(checkEmptyVital(fetal, details.get(fetalData)));
             return this;
         }
 
@@ -367,13 +367,13 @@ public class TimelineEvent {
 
         private DetailBuilder withHbLevel(String hbLevel) {
             String hb = "Hb Level: " + details.get(hbLevel) + "\n";
-            this.stringBuilder.append(checkEmptyField(hb, details.get(hbLevel)));
+            this.stringBuilder.append(checkEmptyVital(hb, details.get(hbLevel)));
             return this;
         }
 
         private DetailBuilder withBP(String bpSystolic, String bpDiastolic) {
             String bp = "BP: " + details.get(bpSystolic) + "/" + details.get(bpDiastolic) + "\n";
-            this.stringBuilder.append(checkEmptyField(bp, details.get(bpSystolic)));
+            this.stringBuilder.append(checkEmptyVital(bp, details.get(bpSystolic)));
             return this;
         }
 
@@ -425,6 +425,14 @@ public class TimelineEvent {
             }
             return msg;
         }
+
+        private String checkEmptyVital(String msg, String condition) {
+            if (isBlank(condition) || condition.equalsIgnoreCase("0")) {
+                return "";
+            }
+            return msg;
+        }
+
 
         public DetailBuilder withImmunizationsGiven(String immunizationsGiven) {
             if (isBlank(immunizationsGiven)) {

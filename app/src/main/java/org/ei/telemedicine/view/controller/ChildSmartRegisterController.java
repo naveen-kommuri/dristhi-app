@@ -14,7 +14,11 @@ import org.ei.telemedicine.service.AlertService;
 import org.ei.telemedicine.service.ServiceProvidedService;
 import org.ei.telemedicine.util.Cache;
 import org.ei.telemedicine.util.CacheableData;
-import org.ei.telemedicine.view.contract.*;
+import org.ei.telemedicine.view.contract.AlertDTO;
+import org.ei.telemedicine.view.contract.ChildClient;
+import org.ei.telemedicine.view.contract.ServiceProvidedDTO;
+import org.ei.telemedicine.view.contract.SmartRegisterClient;
+import org.ei.telemedicine.view.contract.SmartRegisterClients;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -24,7 +28,9 @@ import static java.lang.String.valueOf;
 import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.telemedicine.AllConstants.ChildRegistrationFields.CHILD_POC_INFO;
-import static org.ei.telemedicine.domain.ServiceProvided.*;
+import static org.ei.telemedicine.domain.ServiceProvided.CHILD_ILLNESS_SERVICE_PROVIDED_NAME;
+import static org.ei.telemedicine.domain.ServiceProvided.PNC_SERVICE_PROVIDED_NAME;
+import static org.ei.telemedicine.domain.ServiceProvided.VITAMIN_A_SERVICE_PROVIDED_NAME;
 
 public class ChildSmartRegisterController {
     private static final String CHILD_CLIENTS_LIST_CACHE_ENTRY_NAME = "ChildClientList";

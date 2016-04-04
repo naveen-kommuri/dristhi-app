@@ -7,8 +7,8 @@ import android.util.Log;
 import android.webkit.WebSettings;
 
 import org.apache.commons.io.IOUtils;
-import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
+import org.ei.telemedicine.bluetooth.BlueToothInfoActivity;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -24,7 +24,6 @@ import static org.ei.telemedicine.AllConstants.INSTANCE_ID_PARAM;
 import static org.ei.telemedicine.AllConstants.REPOSITORY;
 import static org.ei.telemedicine.AllConstants.VIEW_FORM;
 import static org.ei.telemedicine.AllConstants.ZIGGY_FILE_LOADER;
-import static org.ei.telemedicine.R.string.edd_label;
 import static org.ei.telemedicine.R.string.form_back_confirm_dialog_message;
 import static org.ei.telemedicine.R.string.form_back_confirm_dialog_title;
 import static org.ei.telemedicine.R.string.no_button_label;
@@ -150,5 +149,8 @@ public abstract class SecuredFormActivity extends SecuredWebActivity {
     private void goBack() {
 //        super.onBackPressed();
         finish();
+        Log.e("Exist", "from Secrurd Form-----" + BlueToothInfoActivity.isBluetooth);
+        if (BlueToothInfoActivity.isBluetooth)
+            startActivity(new Intent(this, NativeHomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
     }
 }

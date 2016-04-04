@@ -1,23 +1,15 @@
 package org.ei.telemedicine.repository;
 
-import android.content.ContentValues;
-import android.database.Cursor;
 import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import net.sqlcipher.database.SQLiteDatabase;
+import org.ei.telemedicine.doctor.DoctorData;
+import org.ei.telemedicine.domain.Mother;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import org.ei.telemedicine.doctor.DoctorData;
 //import org.ei.telemedicine.doctor.DoctorDomain;
-import org.ei.telemedicine.domain.Mother;
-import org.ei.telemedicine.domain.TestDomain;
-import org.json.JSONException;
 
 public class AllDoctorRepository {
     private DoctorRepository doctorRepository;

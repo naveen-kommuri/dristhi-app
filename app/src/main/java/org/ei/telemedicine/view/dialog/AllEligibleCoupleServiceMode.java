@@ -1,5 +1,7 @@
 package org.ei.telemedicine.view.dialog;
 
+import android.view.View;
+
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
@@ -12,8 +14,6 @@ import org.ei.telemedicine.view.viewHolder.NativeANCSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativeChildSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
-
-import android.view.View;
 
 public class AllEligibleCoupleServiceMode extends ServiceModeOption {
 

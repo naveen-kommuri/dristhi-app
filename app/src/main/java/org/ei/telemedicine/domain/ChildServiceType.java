@@ -1,12 +1,13 @@
 package org.ei.telemedicine.domain;
 
 import org.apache.commons.lang3.StringUtils;
-import org.ei.telemedicine.R;
 import org.ei.telemedicine.Context;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.contract.ChildClient;
-import static org.ei.telemedicine.util.Log.logWarn;
 
 import java.util.Locale;
+
+import static org.ei.telemedicine.util.Log.logWarn;
 
 public enum ChildServiceType {
     MEASLES {

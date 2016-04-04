@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -43,7 +42,9 @@ import static org.ei.telemedicine.AllConstants.FormNames.ANC_INVESTIGATIONS;
 import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT;
 import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT_EDIT;
 import static org.ei.telemedicine.AllConstants.FormNames.CHILD_ILLNESS;
+import static org.ei.telemedicine.AllConstants.FormNames.CHILD_ILLNESS_EDIT;
 import static org.ei.telemedicine.AllConstants.FormNames.PNC_VISIT;
+import static org.ei.telemedicine.AllConstants.FormNames.PNC_VISIT_EDIT;
 import static org.ei.telemedicine.AllConstants.INSTANCE_ID_PARAM;
 import static org.ei.telemedicine.AllConstants.SUB_FORM_COUNT;
 import static org.ei.telemedicine.AllConstants.VIEW_FORM;
@@ -98,7 +99,6 @@ public abstract class SecuredActivity extends Activity {
     }
 
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -117,7 +117,7 @@ public abstract class SecuredActivity extends Activity {
         ProfileImage profileImage = new ProfileImage(UUID.randomUUID().toString(), anmId, entityid, "Image", details.get("profilepic"), ImageRepository.TYPE_Unsynced);
         ((ImageRepository) Context.getInstance().imageRepository()).add(profileImage);
         Context.getInstance().allEligibleCouples().updatePhotoPath(entityid, details.get("profilepic"));
-        Toast.makeText(this, entityid, Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, entityid, Toast.LENGTH_LONG).show();
     }
 
     public void logoutUser() {
@@ -172,7 +172,7 @@ public abstract class SecuredActivity extends Activity {
         this.metaData = metaData;
         Log.e("Launching form", formName + "===" + entityId);
 
-        Intent intent = new Intent(this, formType);
+        Intent intent = new Intent(SecuredActivity.this, formType);
         intent.putExtra(FORM_NAME_PARAM, formName);
         intent.putExtra(ENTITY_ID_PARAM, entityId);
         addFieldOverridesIfExist(intent);
@@ -191,7 +191,7 @@ public abstract class SecuredActivity extends Activity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.e("Res", resultCode + "");
         if (isSuccessfulFormSubmission(resultCode)) {
@@ -203,7 +203,7 @@ public abstract class SecuredActivity extends Activity {
                     Context.getInstance().alertService().changeAlertStatusToInProcess(metaDataMap.get(ENTITY_ID), metaDataMap.get(ALERT_NAME_PARAM));
                 }
             }
-            if (context.userService().getFormName().equals(ANC_VISIT) || context.userService().getFormName().equals(ANC_INVESTIGATIONS) || context.userService().getFormName().equals(PNC_VISIT) || context.userService().getFormName().equals(ANC_VISIT_EDIT) || context.userService().getFormName().equals(CHILD_ILLNESS)) {
+            if (context.userService().getFormName().equals(ANC_VISIT) || context.userService().getFormName().equals(ANC_INVESTIGATIONS) || context.userService().getFormName().equals(PNC_VISIT) || context.userService().getFormName().equals(PNC_VISIT_EDIT) || context.userService().getFormName().equals(ANC_VISIT_EDIT) || context.userService().getFormName().equals(CHILD_ILLNESS) || context.userService().getFormName().equals(CHILD_ILLNESS_EDIT)) {
                 DrishtiSyncScheduler.stop(SecuredActivity.this);
                 FormSubmission formSubmission = context.formDataRepository().fetchFromSubmissionUseEntity(context.userService().getEntityId());
                 int subFormCount = 0;
@@ -238,8 +238,7 @@ public abstract class SecuredActivity extends Activity {
         intent.putExtra(AllConstants.ANCVisitFields.RISKS, risks != null && risks.trim().length() != 0 ? risks : "");
         intent.putExtra(AllConstants.PNCVisitFields.PNC_RISKS, pncRisks != null && pncRisks.trim().length() != 0 ? pncRisks : "");
         intent.putExtra(AllConstants.ChildIllnessFields.CHILD_SIGNS, childSigns != null && childSigns.trim().length() != 0 ? childSigns : "");
-
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
         startActivity(intent);
 
     }

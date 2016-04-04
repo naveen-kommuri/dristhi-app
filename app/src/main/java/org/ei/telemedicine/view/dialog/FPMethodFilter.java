@@ -4,7 +4,6 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.telemedicine.domain.FPMethod;
-import org.ei.telemedicine.view.contract.BaseFPSmartRegisterClient;
 import org.ei.telemedicine.view.contract.FPSmartRegisterClient;
 import org.ei.telemedicine.view.contract.SmartRegisterClient;
 

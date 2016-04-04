@@ -2,6 +2,7 @@ package org.ei.telemedicine.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.ei.telemedicine.domain.Alert;
@@ -13,7 +14,9 @@ import java.util.List;
 import static java.lang.String.format;
 import static org.apache.commons.lang3.ArrayUtils.addAll;
 import static org.apache.commons.lang3.StringUtils.repeat;
-import static org.ei.telemedicine.dto.AlertStatus.*;
+import static org.ei.telemedicine.dto.AlertStatus.complete;
+import static org.ei.telemedicine.dto.AlertStatus.from;
+import static org.ei.telemedicine.dto.AlertStatus.inProcess;
 
 public class AlertRepository extends DrishtiRepository {
     private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, scheduleName VARCHAR, visitCode VARCHAR, status VARCHAR, startDate VARCHAR, expiryDate VARCHAR, completionDate VARCHAR)";

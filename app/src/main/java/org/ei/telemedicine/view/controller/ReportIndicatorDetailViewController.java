@@ -13,7 +13,9 @@ import org.ei.telemedicine.view.contract.IndicatorReportDetail;
 import java.util.ArrayList;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.ei.telemedicine.AllConstants.*;
+import static org.ei.telemedicine.AllConstants.CASE_IDS;
+import static org.ei.telemedicine.AllConstants.INDICATOR;
+import static org.ei.telemedicine.AllConstants.MONTH;
 
 public class ReportIndicatorDetailViewController {
     private final Context context;

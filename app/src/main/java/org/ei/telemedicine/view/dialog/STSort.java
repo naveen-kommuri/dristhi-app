@@ -1,12 +1,12 @@
 package org.ei.telemedicine.view.dialog;
 
-import static org.ei.telemedicine.view.contract.SmartRegisterClient.ST_COMPARATOR;
-
-import java.util.Collections;
-
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.contract.SmartRegisterClients;
+
+import java.util.Collections;
+
+import static org.ei.telemedicine.view.contract.SmartRegisterClient.ST_COMPARATOR;
 
 public class STSort implements SortOption {
     @Override

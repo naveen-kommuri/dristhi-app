@@ -1,11 +1,9 @@
 package org.ei.telemedicine.view.activity;
 
-import static com.google.common.collect.Iterables.concat;
-import static com.google.common.collect.Iterables.toArray;
-import static org.ei.telemedicine.AllConstants.FormNames.EC_REGISTRATION;
-import static org.ei.telemedicine.AllConstants.FormNames.FP_CHANGE;
-import static org.ei.telemedicine.AllConstants.FormNames.FP_COMPLICATIONS;
-import static org.ei.telemedicine.AllConstants.FormNames.RECORD_ECPS;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.os.Bundle;
+import android.view.View;
 
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
@@ -47,10 +45,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.os.Bundle;
-import android.view.View;
+import static com.google.common.collect.Iterables.concat;
+import static com.google.common.collect.Iterables.toArray;
+import static org.ei.telemedicine.AllConstants.FormNames.EC_REGISTRATION;
+import static org.ei.telemedicine.AllConstants.FormNames.FP_CHANGE;
+import static org.ei.telemedicine.AllConstants.FormNames.FP_COMPLICATIONS;
+import static org.ei.telemedicine.AllConstants.FormNames.RECORD_ECPS;
 
 public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 

@@ -4,6 +4,9 @@
         android:id="@+id/pnc_visit"
         android:title="PNC Visit" />
     <item
+        android:id="@+id/pnc_visit_edit"
+        android:title="PNC Visit Edit" />
+    <item
         android:id="@+id/view_poc_pnc"
         android:title="View Plan Of Care" />
     <item
@@ -12,5 +15,5 @@
     <item
         android:id="@+id/pnc_close"
         android:title="PNC Close" />
-    
+
 </menu>

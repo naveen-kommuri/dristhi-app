@@ -5,7 +5,8 @@ import android.os.Bundle;
 import org.ei.telemedicine.domain.Report;
 import org.ei.telemedicine.view.controller.ReportIndicatorDetailViewController;
 
-import static org.ei.telemedicine.AllConstants.*;
+import static org.ei.telemedicine.AllConstants.CATEGORY_DESCRIPTION;
+import static org.ei.telemedicine.AllConstants.INDICATOR_DETAIL;
 
 public class ReportIndicatorDetailActivity extends SecuredWebActivity {
 

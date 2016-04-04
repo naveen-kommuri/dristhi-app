@@ -4,9 +4,6 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 
 import org.ei.telemedicine.view.dialog.FilterClause;
-import org.ei.telemedicine.view.dialog.FilterOption;
-import org.ei.telemedicine.view.dialog.ServiceModeOption;
-import org.ei.telemedicine.view.dialog.SortOption;
 
 import java.util.ArrayList;
 import java.util.List;

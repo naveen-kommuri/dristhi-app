@@ -1,14 +1,10 @@
 package org.ei.telemedicine.view.activity;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.ColorRes;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
@@ -18,7 +14,6 @@ import android.widget.Toast;
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
-import org.ei.telemedicine.bluetooth.BlueToothInfoActivity;
 import org.ei.telemedicine.view.customControls.CustomFontTextView;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,7 +22,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import static org.ei.telemedicine.AllConstants.*;
+import static org.ei.telemedicine.AllConstants.DRUGS;
+import static org.ei.telemedicine.AllConstants.DRUGS_INFO_RESULT_CODE;
 
 public class NativeANMPlanofCareActivity extends Activity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
     LinearLayout ll_drugs;
@@ -42,6 +38,7 @@ public class NativeANMPlanofCareActivity extends Activity implements CompoundBut
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.anm_poc_info);
+        this.setFinishOnTouchOutside(false);
         Bundle extras = getIntent().getExtras();
         if (extras != null && extras.containsKey(AllConstants.ANCVisitFields.RISKS))
             risks = extras.getString(AllConstants.ANCVisitFields.RISKS, "");
@@ -53,6 +50,7 @@ public class NativeANMPlanofCareActivity extends Activity implements CompoundBut
         String drugsJson = context.allSettings().fetchDrugs();
         save_poc_data.setOnClickListener(this);
         if (!risks.equals("")) {
+//            Toast.makeText(NativeANMPlanofCareActivity.this, "risks_______________" + risks, Toast.LENGTH_SHORT).show();
             try {
                 JSONObject jsonData = new JSONObject(drugsJson);
                 Iterator<String> keys = jsonData.keys();
@@ -82,7 +80,7 @@ public class NativeANMPlanofCareActivity extends Activity implements CompoundBut
                 e.printStackTrace();
             }
         } else
-            Toast.makeText(this, "No Risks", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No Risks are observed during visit", Toast.LENGTH_SHORT).show();
     }
 
     @Override

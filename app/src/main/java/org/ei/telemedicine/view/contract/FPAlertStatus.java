@@ -1,8 +1,8 @@
 package org.ei.telemedicine.view.contract;
 
-import org.ei.telemedicine.R;
-
 import android.graphics.Color;
+
+import org.ei.telemedicine.R;
 
 public enum FPAlertStatus {
     EMPTY {
