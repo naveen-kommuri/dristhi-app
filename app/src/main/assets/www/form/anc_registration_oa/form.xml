@@ -36,7 +36,7 @@
         <span class="required">*</span>
         <input name="/ANC_Registration_OA_EngKan/out_of_area_reg_date"
             data-constraint=".&lt;= /ANC_Registration_OA_EngKan/today " data-type-xml="date"
-            required="required" type="date" />
+            required="required" type="datetime-local" />
     </label>
     <label class="question non-select ">
         <span class="question-label active" lang="">Name of original village?
@@ -128,7 +128,7 @@
         <input name="/ANC_Registration_OA_EngKan/wife_dob" autocomplete="off"
             data-constraint=".&lt;= ( /ANC_Registration_OA_EngKan/today  - /ANC_Registration_OA_EngKan/wife_min_age * 365) and .&gt;= ( /ANC_Registration_OA_EngKan/today  - /ANC_Registration_OA_EngKan/wife_max_age* 365)"
             data-relevant="/ANC_Registration_OA_EngKan/is_dob_known  = 'yes'" data-type-xml="date"
-            required="required" type="date" />
+            required="required" type="datetime-local" />
     </label>
 
     <label class="note or-branch pre-init non-select ">
@@ -423,8 +423,9 @@
         </span>
         <span class="required">*</span>
         <input name="/ANC_Registration_OA_EngKan/lmp_in_date" autocomplete="off"
+            data-constraint=".&lt;= /ANC_Registration_OA_EngKan/today "
             data-relevant=" /ANC_Registration_OA_EngKan/is_lmp_known  = 'yes'" data-type-xml="date"
-            required="required" type="date" />
+            required="required" type="datetime-local" />
     </label>
 
     <label class="question or-branch pre-init non-select">
@@ -718,14 +719,14 @@
         <span class="question-label active" lang="">Height (in cms)
         </span>
         <input name="/ANC_Registration_OA_EngKan/height" data-constraint=".&gt;=50 and .&lt;=200"
-            data-type-xml="decimal" step="any" type="number" />
+            data-type-xml="decimal" step="any" type="decimal" />
     </label>
     <label class="question non-select ">
         <span class="question-label active" lang="">Weight at start of pregnancy (in kgs)
         </span>
         <input name="/ANC_Registration_OA_EngKan/weight_startofpregnancy"
             data-constraint=".&gt;=20 and .&lt;150" data-type-xml="decimal" step="any"
-            type="number" />
+            type="decimal" />
     </label>
     <label class="note or-branch pre-init non-select ">
         <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/risk_value "></span>

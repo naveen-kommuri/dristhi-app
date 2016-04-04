@@ -195,7 +195,7 @@
             <span class="or-hint active" lang="">Future dates are not allowed
             </span>
             <span class="required">*</span>
-            <input autocomplete="off" type="date" name="/Child_Close_EngKan/death_child_group/child_death_date"
+            <input autocomplete="off" type="datetime-local" name="/Child_Close_EngKan/death_child_group/child_death_date"
                    required="required" data-constraint=".&lt;= /Child_Close_EngKan/today " data-type-xml="date"/>
         </label>
     </section>

@@ -30,6 +30,15 @@
         "source": "child.mother.eligible_couple.wifeName"
       },
       {
+        "name": "gender",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/Child_Sick_Visit_EngKan/child_sex"
+      },
+      {
+        "name": "sickVisitOption",
+        "bind": "/model/instance/Child_Sick_Visit_EngKan/sick_visit_option"
+      },
+      {
         "name": "dateOfBirth",
         "bind": "/model/instance/Child_Sick_Visit_EngKan/child_sickness_management_group/case_child_birth_date",
         "shouldLoadValue": true

@@ -38,7 +38,7 @@
         <span class="required">*</span>
         <input name="/ANC_Registration_OA_EDIT/out_of_area_reg_date"
             data-constraint=".&lt;= /ANC_Registration_OA_EDIT/today " data-type-xml="date"
-            required="required" type="date" />
+            required="required" type="datetime-local" />
     </label>
 
 
@@ -79,7 +79,7 @@
         <span class="required">*</span>
         <input name="/ANC_Registration_OA_EDIT/wife_dob" autocomplete="off"
             data-constraint=".&lt;= ( /ANC_Registration_OA_EDIT/today  - /ANC_Registration_OA_EDIT/wife_min_age * 365) and .&gt;= ( /ANC_Registration_OA_EDIT/today  - /ANC_Registration_OA_EDIT/wife_max_age* 365)"
-            data-type-xml="date" required="required" type="date" />
+            data-type-xml="date" required="required" type="datetime-local" />
     </label>
 
     <label class="note or-branch pre-init non-select ">
@@ -252,7 +252,7 @@
         </span>
         <span class="required">*</span>
         <input name="/ANC_Registration_OA_EDIT/lmp_date" autocomplete="off" data-type-xml="date"
-            required="required" type="date" />
+            required="required" type="datetime-local" />
     </label>
 
 
@@ -538,7 +538,7 @@
         <span class="question-label active" lang="">Height (in cms)
         </span>
         <input name="/ANC_Registration_OA_EDIT/height" data-constraint=".&gt;=50 and .&lt;=200"
-            data-type-xml="decimal" step="any" type="number" />
+            data-type-xml="decimal" step="any" type="decimal" />
     </label>
     <label class="question non-select ">
         <span class="question-label active" lang="">Weight at start of pregnancy (in kgs)

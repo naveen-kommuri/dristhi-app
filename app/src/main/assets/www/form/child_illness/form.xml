@@ -53,7 +53,7 @@
             <input name="/Child_Sick_Visit_EngKan/child_sickness_management_group/sick_visit_date"
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Sick_Visit_EngKan/child_sickness_management_group/case_child_birth_date  and .&lt;= /Child_Sick_Visit_EngKan/today "
-                data-type-xml="date" required="required" type="date" />
+                data-type-xml="date" required="required" type="datetime-local" />
         </label>
         <fieldset class="question ">
             <fieldset>
@@ -472,7 +472,7 @@
                 name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease_date"
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Sick_Visit_EngKan/child_sickness_management_group/case_child_birth_date  and .&lt;= /Child_Sick_Visit_EngKan/today "
-                data-type-xml="date" required="required" type="date" />
+                data-type-xml="date" required="required" type="datetime-local" />
         </label>
         <fieldset class="question ">
             <fieldset>

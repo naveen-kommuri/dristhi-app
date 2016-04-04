@@ -63,7 +63,7 @@
         <span class="required">*</span>
         <input name="/TT_EngKan/tt_date" autocomplete="off"
             data-constraint=".&lt;= /TT_EngKan/today " data-type-xml="date" required="required"
-            type="date" />
+            type="datetime-local" />
     </label>
 
     <fieldset style="display:none;" id="or-preload-items">

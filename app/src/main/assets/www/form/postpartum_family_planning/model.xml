@@ -2,26 +2,26 @@
     <instance>
         <Postpartum_FamilyPlanning_EngKan id="Postpartum_FamilyPlanning_EngKan">
             <formhub>
-                <uuid/>
+                <uuid />
             </formhub>
-            <today/>
-            <pnc_num/>
+            <today />
+            <pnc_num />
             <village />
-
-            <pp_fp_method/>
-            <pp_fp_method_start_date/>
-            <iud_place/>
-            <iud_person/>
-            <female_sterilization_type/>
-            <male_sterilization_type/>
-            <num_ocp_strips/>
-            <num_condoms/>
-            <num_centchroman_pills/>
-            <exclusively_bf/>
-            <partially_bf/>
-            <monthly_bleeding/>
+            <case_woman_name />
+            <pp_fp_method />
+            <pp_fp_method_start_date />
+            <iud_place />
+            <iud_person />
+            <female_sterilization_type />
+            <male_sterilization_type />
+            <num_ocp_strips />
+            <num_condoms />
+            <num_centchroman_pills />
+            <exclusively_bf />
+            <partially_bf />
+            <monthly_bleeding />
             <meta>
-                <instanceID/>
+                <instanceID />
             </meta>
         </Postpartum_FamilyPlanning_EngKan>
     </instance>

@@ -15,6 +15,12 @@
         "source": "mother.eligible_couple.village"
       },
       {
+        "name": "wifeName",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/Postpartum_FamilyPlanning_EngKan/case_woman_name",
+        "source": "mother.eligible_couple.wifeName"
+      },
+      {
         "name": "ecId",
         "shouldLoadValue": true,
         "source": "mother.eligible_couple.id"

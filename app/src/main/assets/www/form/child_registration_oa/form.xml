@@ -34,7 +34,7 @@
         <span class="required">*</span>
         <input name="/Child_Registration_EngKan/child_reg_date" autocomplete="off"
             data-constraint=".&lt;= /Child_Registration_EngKan/today " data-type-xml="date"
-            required="required" type="date" />
+            required="required" type="datetime-local" />
     </label>
 
     <label class="question non-select ">
@@ -121,7 +121,7 @@
         <span class="required">*</span>
         <input name="/Child_Registration_EngKan/child_birth_date" autocomplete="off"
             data-constraint=".&gt; ( /Child_Registration_EngKan/today  - 2191.5) and .&lt;= /Child_Registration_EngKan/today  and .&lt;= /Child_Registration_EngKan/child_reg_date "
-            data-type-xml="date" required="required" type="date" />
+            data-type-xml="date" required="required" type="datetime-local" />
     </label>
     <label class="note non-select ">
         <span class="question-label active" lang="">Child age
@@ -181,13 +181,13 @@
         <span class="question-label active" lang="">Current weight (in kgs)?
         </span>
         <input name="/Child_Registration_EngKan/child_weight" autocomplete="off"
-            data-type-xml="decimal" step="any" type="number" />
+            data-type-xml="decimal" step="any" type="decimal" />
     </label>
     <label class="question non-select ">
         <span class="question-label active" lang="">Current height (in cms)?
         </span>
         <input name="/Child_Registration_EngKan/child_height" autocomplete="off" data-type-xml="int"
-            type="number" />
+            type="decimal" />
     </label>
     <label class="question or-appearance-minimal ">
         <span class="question-label active" lang="">Immunizations already received?
@@ -230,7 +230,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'bcg')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Oral Polio Vaccine(OPV) 0 date?</span>
@@ -238,7 +238,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'opv_0')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Hep B 0 date?
@@ -247,7 +247,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'hepb_0')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Oral Polio Vaccine(OPV) 1 date?</span>
@@ -255,7 +255,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'opv_1')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Pentavalent 1 date?
@@ -265,7 +265,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'pentavalent_1')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Oral Polio Vaccine(OPV) 2 date?</span>
@@ -273,7 +273,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'opv_2')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Pentavalent 2 date?
@@ -283,7 +283,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'pentavalent_2')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Oral Polio Vaccine(OPV) 3 date?</span>
@@ -291,7 +291,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'opv_3')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Pentavalent 3 date?
@@ -301,7 +301,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'pentavalent_3')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Measles 1 date?</span>
@@ -309,7 +309,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'measles')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Japanese Encephalitis(JE) 1 date?
@@ -318,7 +318,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'je')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">MMR date?
@@ -327,7 +327,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'mmr')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Diphtheria, Pertussis, Tetanus(DPT) Booster
@@ -338,7 +338,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'dptbooster_1')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Oral Polio Vaccine(OPV) Booster date?
@@ -348,7 +348,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'opvbooster')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Measles 2 date?</span>
@@ -357,7 +357,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'measlesbooster')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Japanese Encephalitis(JE) 2 date?
@@ -366,7 +366,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'je_2')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Diphtheria, Pertussis, Tetanus(DPT) Booster
@@ -377,7 +377,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'dptbooster_2')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
     </section>
     <!--end of group -->
@@ -409,7 +409,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '1')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Vitamin A 2 date?
@@ -418,7 +418,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '2')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Vitamin A 3 date?
@@ -427,7 +427,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '3')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Vitamin A 4 date?
@@ -436,7 +436,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '4')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Vitamin A 5 date?
@@ -445,7 +445,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '5')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Vitamin A 6 date?
@@ -454,7 +454,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '6')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Vitamin A 7 date?
@@ -463,7 +463,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '7')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Vitamin A 8 date?
@@ -472,7 +472,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '8')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Vitamin A 9 date?
@@ -481,7 +481,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                 data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '9')"
-                data-type-xml="date" type="date" />
+                data-type-xml="date" type="datetime-local" />
         </label>
     </section>
 

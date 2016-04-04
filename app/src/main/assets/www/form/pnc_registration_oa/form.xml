@@ -36,7 +36,7 @@
         <span class="required">*</span>
         <input name="/PNC_Child_Registration_EngKan/pnc_reg_date"
             data-constraint=".&lt;= /PNC_Child_Registration_EngKan/today " data-type-xml="date"
-            required="required" type="date" />
+            required="required" type="datetime-local" />
     </label>
 
 
@@ -132,7 +132,7 @@
         <input name="/PNC_Child_Registration_EngKan/wife_dob" autocomplete="off"
             data-constraint=".&lt;= ( /PNC_Child_Registration_EngKan/today  - /PNC_Child_Registration_EngKan/wife_min_age * 365) and .&gt;= ( /PNC_Child_Registration_EngKan/today  - /PNC_Child_Registration_EngKan/wife_max_age* 365)"
             data-relevant="/PNC_Child_Registration_EngKan/is_dob_known  = 'yes'"
-            data-type-xml="date" required="required" type="date" />
+            data-type-xml="date" required="required" type="datetime-local" />
     </label>
 
     <label class="note or-branch pre-init non-select ">
@@ -249,7 +249,7 @@
         <span class="required">*</span>
         <input name="/PNC_Child_Registration_EngKan/delivery_date"
             data-constraint=".&lt;= /PNC_Child_Registration_EngKan/today " data-type-xml="date"
-            required="required" type="date" />
+            required="required" type="datetime-local" />
     </label>
     <fieldset class="question ">
         <fieldset>

@@ -64,7 +64,7 @@
         <span class="required">*</span>
         <input name="/Child_Vitamin_A_EngKan/vit_a_date" autocomplete="off"
             data-constraint=".&gt;=  /Child_Vitamin_A_EngKan/eight_months  and .&lt;= /Child_Vitamin_A_EngKan/today "
-            data-type-xml="date" required="required" type="date" />
+            data-type-xml="date" required="required" type="datetime-local" />
     </label>
 
     <fieldset style="display:none;" id="or-preload-items">

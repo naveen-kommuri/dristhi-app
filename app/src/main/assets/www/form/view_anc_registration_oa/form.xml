@@ -134,14 +134,14 @@
     </label>
     <label class="question non-select ">
         <span class="question-label active" lang="">Height (in cms):</span>
-        <input name="/ANC_Registration_OA_EngKan/height" autocomplete="off" data-type-xml="string"
-            disabled="disabled" type="text" />
+        <input name="/ANC_Registration_OA_EngKan/height" autocomplete="off" data-type-xml="decimal"
+            disabled="disabled" type="decimal" />
     </label>
 
     <label class="question non-select ">
         <span class="question-label active" lang="">Weight at start of pregnancy (in kgs):</span>
         <input name="/ANC_Registration_OA_EngKan/weight_startofpregnancy" autocomplete="off"
-            data-type-xml="string" disabled="disabled" type="text" />
+            data-type-xml="decimal" disabled="disabled" type="decimal" />
     </label>
     <label class="question non-select ">
         <span class="question-label active" lang="">Expected Date of Delivery(EDD):</span>

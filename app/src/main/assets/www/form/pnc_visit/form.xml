@@ -13,6 +13,11 @@
         <input name="/PNC_Visit_EngKan/village" autocomplete="off" data-type-xml="string"
             disabled="disabled" type="hidden" />
     </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman Name</span>
+        <input name="/PNC_Visit_EngKan/case_woman_name" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="text" />
+    </label>
 
     <label class="question or-branch pre-init non-select ">
         <span class="question-label active" lang="">Discharge date from delivery facility?</span>
@@ -23,7 +28,7 @@
         <input name="/PNC_Visit_EngKan/discharge_date"
             data-constraint=".&lt;= /PNC_Visit_EngKan/today "
             data-relevant="( /PNC_Visit_EngKan/case_place_delivery  != 'home' and  /PNC_Visit_EngKan/case_discharge_date  = '')"
-            data-type-xml="date" required="required" type="date" />
+            data-type-xml="date" required="required" type="datetime-local" />
     </label>
     <label class="question non-select ">
         <span class="question-label active" lang="">PNC visit date?</span>
@@ -33,7 +38,7 @@
         <span class="required">*</span>
         <input name="/PNC_Visit_EngKan/pnc_visit_date"
             data-constraint=".&lt;= /PNC_Visit_EngKan/today " data-type-xml="date"
-            required="required" type="date" />
+            required="required" type="datetime-local" />
     </label>
     <fieldset class="question ">
         <fieldset>
@@ -317,7 +322,7 @@
                             data-value=" /PNC_Visit_EngKan/case_woman_name "></span>
                         feel hot or have the chills?
                         <!--<span class="or-output"-->
-                            <!--data-value=" /PNC_Visit_EngKan/case_woman_name "></span>-->
+                        <!--data-value=" /PNC_Visit_EngKan/case_woman_name "></span>-->
                     </span>
                 </legend>
                 <div class="option-wrapper">
@@ -359,7 +364,7 @@
         <label class="question non-select ">
             <span class="question-label active" lang="">Hb level (g/dl)</span>
             <input name="/PNC_Visit_EngKan/pnc_mother_group/hb_level" data-type-xml="decimal"
-                step="any" type="number" />
+                step="any" type="decimal" />
         </label>
         <label class="note or-branch pre-init non-select ">
             <span class="question-label active" lang="">
@@ -873,12 +878,12 @@
         </label>
         <label class="calculation non-select ">
             <input name="/PNC_Visit_EngKan/pnc_mother_group/immediate_referral"
-                data-calculate="if(( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1 , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2 , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area , 'normal'))) or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever_symptoms  = 'yes' or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever  != '' or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_rapid_pulse_rate  != '' or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_low_blood_pressure  != '', 'yes', 'no')"
+                data-calculate="if(( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1 , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2 , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area , 'normal'))) or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever_symptoms  = 'yes' or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever  != '' or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_rapid_pulse_rate  != '', 'yes', 'no')"
                 data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
             <input name="/PNC_Visit_EngKan/pnc_mother_group/immediate_referral_reason"
-                data-calculate="concat(if(not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1 , 'no_problems')), string( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1 ), ''), ' ', if(not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems , 'no_problems')), string( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems ), ''), ' ', if(not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems , 'no_problems')), string( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems ), ''), ' ', if(not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2 , 'no_problems')), string( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2 ), ''), ' ', if(not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems , 'no_problems')), string( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems ), ''), ' ', if(not(selected( /PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area , 'normal')), string( /PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area ), ''), ' ',  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever , ' ',  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_rapid_pulse_rate , ' ',  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_low_blood_pressure )"
+                data-calculate="concat(if(not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1 , 'no_problems')), string( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1 ), ''), ' ', if(not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems , 'no_problems')), string( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems ), ''), ' ', if(not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems , 'no_problems')), string( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems ), ''), ' ', if(not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2 , 'no_problems')), string( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2 ), ''), ' ', if(not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems , 'no_problems')), string( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems ), ''), ' ', if(not(selected( /PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area , 'normal')), string( /PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area ), ''), ' ',  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever , ' ',  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_rapid_pulse_rate , ' ' )"
                 data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">

@@ -34,7 +34,7 @@
             data-constraint=".&lt;= /Family_Planning_Referral_Followup_EngKan/today "
             data-type-xml="date"
             required="required"
-            type="date" />
+            type="datetime-local" />
     </label>
     <fieldset class="question ">
         <fieldset>

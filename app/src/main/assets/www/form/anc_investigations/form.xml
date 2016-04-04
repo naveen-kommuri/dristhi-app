@@ -22,7 +22,7 @@
         </span>
         <input name="/ANC_Investigations_EngKan/test_date" autocomplete="off"
             data-constraint=".&lt;=  /ANC_Investigations_EngKan/today " data-type-xml="date"
-            type="date" />
+            type="datetime-local" />
     </label>
     <fieldset class="question ">
         <fieldset>

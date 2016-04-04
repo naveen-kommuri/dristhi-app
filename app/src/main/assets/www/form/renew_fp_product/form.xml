@@ -27,7 +27,7 @@
         <span class="required">*</span>
         <input name="/Family_Planning_Refill_Method_EngKan/fp_renew_method_visit_date"
             autocomplete="off" data-constraint=".&lt;= /Family_Planning_Refill_Method_EngKan/today "
-            data-type-xml="date" required="required" type="date" />
+            data-type-xml="date" required="required" type="datetime-local" />
     </label>
     <fieldset class="question ">
         <fieldset>
@@ -68,7 +68,7 @@
                 autocomplete="off"
                 data-constraint=".&lt;= /Family_Planning_Refill_Method_EngKan/today "
                 data-relevant=" /Family_Planning_Refill_Method_EngKan/case_familyplanning_method  = 'dmpa_injectable'"
-                data-type-xml="date" required="required" type="date" />
+                data-type-xml="date" required="required" type="datetime-local" />
         </label>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Number of condoms given?</span>
@@ -111,7 +111,7 @@
                 autocomplete="off"
                 data-constraint=".&gt;= /Family_Planning_Refill_Method_EngKan/fp_renew_method_visit_date "
                 data-relevant=" /Family_Planning_Refill_Method_EngKan/renewed_method_group/num_ocp_strips  &gt; 0"
-                data-type-xml="date" required="required" type="date" />
+                data-type-xml="date" required="required" type="datetime-local" />
         </label>
     </section>
     <!--end of group -->

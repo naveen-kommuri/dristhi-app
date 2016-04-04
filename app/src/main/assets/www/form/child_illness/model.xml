@@ -6,6 +6,7 @@
             </formhub>
             <today />
             <village />
+            <child_sex />
             <mother_name />
             <anm_poc />
             <sick_visit_option />

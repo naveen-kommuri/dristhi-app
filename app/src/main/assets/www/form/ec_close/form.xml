@@ -111,7 +111,7 @@
         <input name="/EC_Close_EngKan/sterilization_death_date" autocomplete="off"
             data-constraint=".&lt;= /EC_Close_EngKan/today "
             data-relevant=" /EC_Close_EngKan/sterilization_death  = 'yes'" data-type-xml="date"
-            type="date" />
+            type="datetime-local" />
     </label>
     <fieldset class="question or-branch pre-init ">
         <fieldset>
@@ -152,7 +152,7 @@
         <input name="/EC_Close_EngKan/maternal_death_date" autocomplete="off"
             data-constraint=".&lt;= /EC_Close_EngKan/today "
             data-relevant=" /EC_Close_EngKan/maternal_death  = 'yes'" data-type-xml="date"
-            type="date" />
+            type="datetime-local" />
     </label>
     <fieldset class="question or-branch pre-init ">
         <fieldset>

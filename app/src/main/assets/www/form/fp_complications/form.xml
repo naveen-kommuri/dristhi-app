@@ -32,7 +32,7 @@
         <input name="/Family_Planning_Complications_EngKan/complication_date" autocomplete="off"
             data-constraint=".&lt;= /Family_Planning_Complications_EngKan/today " data-type-xml="date"
             required="required"
-            type="date" />
+            type="datetime-local" />
     </label>
     <fieldset class="question or-branch pre-init ">
         <fieldset>

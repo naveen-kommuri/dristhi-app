@@ -100,8 +100,8 @@
             <span class="or-hint active" lang="">Future dates are not allowed.
             </span>
             <input name="/ANC_Close_EngKan/spontaneous_abortion_group/date_spontaneous"
-                autocomplete="off" data-constraint=".&lt;= /ANC_Close_EngKan/today "
-                data-type-xml="date" type="date" />
+                appearance="month-year" autocomplete="off"
+                data-constraint=".&lt;= /ANC_Close_EngKan/today " data-type-xml="date" type="datetime-local" />
         </label>
         <fieldset class="question ">
             <fieldset>
@@ -198,7 +198,8 @@
                             autocomplete="off"
                             data-name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_place"
                             data-type-xml="select1" type="radio" value="phc" />
-                        <span class="option-label active" lang="">My Primary Health Center(PHC)</span>
+                        <span class="option-label active" lang="">My Primary Health Center(PHC)
+                        </span>
                     </label>
                     <label class="">
                         <input
@@ -296,7 +297,7 @@
             </span>
             <input name="/ANC_Close_EngKan/induced_abortion_group/date_induced" autocomplete="off"
                 data-constraint=".&lt;= /ANC_Close_EngKan/today " data-type-xml="date"
-                type="date" />
+                type="datetime-local" />
         </label>
         <fieldset class="question or-branch pre-init ">
             <fieldset>
@@ -344,7 +345,7 @@
             <span class="required">*</span>
             <input name="/ANC_Close_EngKan/maternal_death_group/date_maternal_death"
                 autocomplete="off" data-constraint=".&lt;= /ANC_Close_EngKan/today "
-                data-type-xml="date" required="required" type="date" />
+                data-type-xml="date" required="required" type="datetime-local" />
         </label>
         <fieldset class="question ">
             <fieldset>

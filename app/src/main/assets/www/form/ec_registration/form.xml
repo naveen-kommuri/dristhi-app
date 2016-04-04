@@ -134,7 +134,7 @@
         <input name="/EC_Registration_EngKan/wife_dob" autocomplete="off"
             data-constraint=".&lt;= ( /EC_Registration_EngKan/today  - /EC_Registration_EngKan/wife_min_age * 365) and .&gt;= ( /EC_Registration_EngKan/today  - /EC_Registration_EngKan/wife_max_age* 365)"
             data-relevant="/EC_Registration_EngKan/is_dob_known  = 'yes'" data-type-xml="date"
-            required="required" type="date" />
+            required="required" type="datetime-local" />
     </label>
 
     <label class="note or-branch pre-init non-select ">
@@ -489,7 +489,7 @@
         <input name="/EC_Registration_EngKan/youngestchild_date_of_birth" autocomplete="off"
             data-constraint=".&lt;= /EC_Registration_EngKan/today  and .&gt;= ( /EC_Registration_EngKan/today  - 6570)"
             data-relevant=" /EC_Registration_EngKan/num_livingchildren  &gt; 0" data-type-xml="date"
-            required="required" type="date" />
+            required="required" type="datetime-local" />
     </label>
 
     <label class="note or-branch pre-init non-select ">
@@ -625,7 +625,7 @@
         <input name="/EC_Registration_EngKan/date_familyplanningstart" autocomplete="off"
             data-constraint=".&lt;= /EC_Registration_EngKan/today "
             data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ps' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ss'"
-            data-type-xml="date" required="required" type="date" />
+            data-type-xml="date" required="required" type="datetime-local" />
     </label>
     <!--<label class="question or-branch pre-init non-select ">-->
     <!--<span class="question-label active" lang="">LMP-->
@@ -798,7 +798,7 @@
         <input name="/EC_Registration_EngKan/injectable_date" autocomplete="off"
             data-constraint=".&lt;= /EC_Registration_EngKan/today "
             data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'dmpa_injectable'"
-            data-type-xml="date" required="required" type="date" />
+            data-type-xml="date" required="required" type="datetime-local" />
     </label>
     <label class="question or-branch pre-init non-select ">
         <span class="question-label active" lang="">Number of condoms given?
@@ -842,7 +842,7 @@
         <span class="required">*</span>
         <input name="/EC_Registration_EngKan/refill_date1" autocomplete="off"
             data-relevant=" /EC_Registration_EngKan/num_ocp_strips  &gt; 0" data-type-xml="date"
-            required="required" type="date" />
+            required="required" type="datetime-local" />
     </label>
     <label class="note or-branch pre-init non-select ">
         <span class="question-label active" lang="">

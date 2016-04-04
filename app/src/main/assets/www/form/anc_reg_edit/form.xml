@@ -40,7 +40,7 @@
             <span class="required">*</span>
             <input name="/ANC_Registration_EngKan/anc_edit_group/reg_date" autocomplete="off"
                 data-constraint=".&lt;= /ANC_Registration_EngKan/anc_edit_group/today "
-                data-type-xml="date" required="required" type="date" />
+                data-type-xml="date" required="required" type="datetime-local" />
         </label>
         <fieldset class="question ">
             <fieldset>
@@ -155,8 +155,9 @@
             </span>
             <span class="required">*</span>
             <input name="/ANC_Registration_EngKan/anc_edit_group/lmp_in_date" autocomplete="off"
+                data-constraint=".&lt;= /ANC_Registration_EngKan/anc_edit_group/today "
                 data-relevant=" /ANC_Registration_EngKan/anc_edit_group/is_lmp_known  = 'yes'"
-                data-type-xml="date" required="required" type="date" />
+                data-type-xml="date" required="required" type="datetime-local" />
         </label>
 
         <label class="question or-branch pre-init non-select">
@@ -387,13 +388,13 @@
             <span class="question-label active" lang="">Height (in cms)
             </span>
             <input name="/ANC_Registration_EngKan/anc_edit_group/height" autocomplete="off"
-                data-type-xml="decimal" step="any" type="number" />
+                data-type-xml="decimal" step="any" type="decimal" />
         </label>
         <label class="question non-select ">
             <span class="question-label active" lang="">Weight at start of pregnancy (in kgs)
             </span>
             <input name="/ANC_Registration_EngKan/anc_edit_group/weight_startofpregnancy"
-                autocomplete="off" data-type-xml="decimal" step="any" type="number" />
+                autocomplete="off" data-type-xml="decimal" step="any" type="decimal" />
         </label>
         <label class="note or-branch pre-init non-select ">
             <span class="or-output"

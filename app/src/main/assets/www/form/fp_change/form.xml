@@ -19,7 +19,7 @@
         <input name="/Family_Planning_Change_Method_EngKan/iud_removal_date" autocomplete="off"
             data-constraint=".&lt;= /Family_Planning_Change_Method_EngKan/today "
             data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
-            data-type-xml="date" type="date" />
+            data-type-xml="date" type="datetime-local" />
     </label>
     <fieldset class="question or-branch pre-init ">
         <fieldset>
@@ -178,7 +178,7 @@
         <input name="/Family_Planning_Change_Method_EngKan/date_familyplanningstart1"
             autocomplete="off" data-constraint=".&lt;= /Family_Planning_Change_Method_EngKan/today "
             data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none'"
-            data-type-xml="date" required="required" type="date" />
+            data-type-xml="date" required="required" type="datetime-local" />
     </label>
     <label class="question or-branch pre-init non-select ">
         <span class="question-label active" lang="">Last Menstrual Period(LMP)
@@ -186,7 +186,7 @@
         <input name="/Family_Planning_Change_Method_EngKan/lmp_date" autocomplete="off"
             data-constraint=".&lt;= /Family_Planning_Change_Method_EngKan/today "
             data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none' and  /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'male_sterilization'"
-            data-type-xml="date" type="date" />
+            data-type-xml="date" type="datetime-local" />
     </label>
     <fieldset class="question or-branch pre-init ">
         <fieldset>
