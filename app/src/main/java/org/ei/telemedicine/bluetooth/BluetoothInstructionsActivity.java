@@ -26,8 +26,9 @@ public class BluetoothInstructionsActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        requestWindowFeature(Window.FEATURE_ACTION_BAR);
+//        requestWindowFeature(Window.FEATURE_ACTION_BAR);\
         setContentView(R.layout.bluetooth_instructions);
+        this.setFinishOnTouchOutside(false);
         bt_ok = (CustomFontTextView) findViewById(R.id.bt_ok);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {

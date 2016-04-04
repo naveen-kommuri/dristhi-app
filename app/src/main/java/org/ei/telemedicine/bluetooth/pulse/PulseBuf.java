@@ -1,8 +1,5 @@
 package org.ei.telemedicine.bluetooth.pulse;
 
-import java.io.OutputStream;
-import java.util.Vector;
-
 import android.content.Context;
 import android.util.Log;
 
@@ -12,6 +9,9 @@ import com.contec.cms50dj_jar.DevicePackManager;
 
 import org.ei.telemedicine.bluetooth.Constants;
 import org.ei.telemedicine.bluetooth.OnBluetoothResult;
+
+import java.io.OutputStream;
+import java.util.Vector;
 
 public class PulseBuf {
 	private static final String TAG = "com.testBlueTooth.Mtbuf";

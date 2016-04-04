@@ -1,17 +1,16 @@
 package org.ei.telemedicine.bluetooth.bp;
 
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Vector;
+import android.content.Context;
+import android.util.Log;
 
 import com.contec.jar.contec08a.DeviceCommand;
 import com.contec.jar.contec08a.DevicePackManager;
 
-import android.R.integer;
-import android.content.Context;
-import android.util.Log;
-
 import org.ei.telemedicine.bluetooth.OnBluetoothResult;
+
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Vector;
 
 
 public class MtBuf {

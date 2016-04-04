@@ -8,7 +8,6 @@ import org.ei.telemedicine.bluetooth.OnBluetoothResult;
 
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Vector;
 
 import cn.com.contec.jar.cmssxt.CmssxtDataJar;

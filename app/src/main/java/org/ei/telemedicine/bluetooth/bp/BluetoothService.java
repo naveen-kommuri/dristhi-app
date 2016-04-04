@@ -16,11 +16,6 @@
 
 package org.ei.telemedicine.bluetooth.bp;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.UUID;
-
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -28,6 +23,11 @@ import android.content.Context;
 import android.util.Log;
 
 import com.contec.jar.contec08a.DeviceCommand;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.UUID;
 
 /**
  * This class does all the work for setting up and managing Bluetooth

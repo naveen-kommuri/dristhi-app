@@ -1,9 +1,9 @@
 package org.ei.telemedicine.bluetooth.bp;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Date;
-
-import android.util.Log;
 
 public class DeviceData  {
 

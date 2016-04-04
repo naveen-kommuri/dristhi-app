@@ -1,9 +1,5 @@
 package org.ei.telemedicine.bluetooth.pulse;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
@@ -16,6 +12,10 @@ import android.util.Log;
 import com.contec.cms50dj_jar.DeviceCommand;
 
 import org.ei.telemedicine.bluetooth.Constants;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 @TargetApi(Build.VERSION_CODES.ECLAIR)
 @SuppressLint("NewApi")

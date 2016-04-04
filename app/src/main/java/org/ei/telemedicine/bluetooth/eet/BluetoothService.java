@@ -1,9 +1,5 @@
 package org.ei.telemedicine.bluetooth.eet;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
@@ -13,9 +9,12 @@ import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 
-import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.bluetooth.Constants;
 import org.ei.telemedicine.bluetooth.OnBluetoothResult;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import cn.com.contec.jar.eartemperture.DeviceCommand;
 

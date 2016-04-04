@@ -1,14 +1,14 @@
 package org.ei.telemedicine.bluetooth.eet;
 
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Vector;
-
 import android.content.Context;
 import android.util.Log;
 
 import org.ei.telemedicine.bluetooth.Constants;
 import org.ei.telemedicine.bluetooth.OnBluetoothResult;
+
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Vector;
 
 import cn.com.contec.jar.eartemperture.DeviceCommand;
 import cn.com.contec.jar.eartemperture.DevicePackManager;

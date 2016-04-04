@@ -72,6 +72,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:maxLength="5"
                                 android:textSize="20sp" />
 
                             <TextView
@@ -129,6 +130,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1.5"
+                                android:maxLength="5"
                                 android:textSize="20sp" />
 
                             <TextView
@@ -279,7 +281,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1.5"
-
+                                android:maxLength="3"
                                 android:textSize="20sp" />
 
                             <TextView
@@ -312,7 +314,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1.5"
-
+                                android:maxLength="3"
                                 android:textSize="20sp" />
 
                             <TextView
@@ -345,7 +347,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1.5"
-
+                                android:maxLength="3"
                                 android:textSize="20sp" />
 
                             <TextView
@@ -411,7 +413,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1.5"
-
+                                    android:maxLength="3"
                                     android:textSize="20sp" />
 
                                 <TextView

@@ -70,12 +70,15 @@ public class FetalBuf {
                 byte[] resultData = null;
                 try {
                     for (int i = 0; i < result.size(); i++) {
-                        val = val + result.get(i)[0];
+                        Log.e("Vall", result.get(i)[0] + "");
+                        val = val + Math.abs(result.get(i)[0]);
+                        Log.e("Sum", val + "");
                     }
+                    Log.e("Total Val", val + "");
                     val = Math.round(val / result.size());
                 } catch (Exception e) {
-                    resultData = (result.size() == 0) ? null : result.get(result
-                            .size() - 1);
+                    e.printStackTrace();
+                    val = 0;
                 }
                 onResult.onResult(val != 0 ? (val + "").getBytes() : null, Constants.FET_DEVICE_NUM);
 
