@@ -18,22 +18,30 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.commons.lang3.text.WordUtils;
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import de.tavendo.autobahn.WebSocketConnection;
+import de.tavendo.autobahn.WebSocketException;
+import de.tavendo.autobahn.WebSocketHandler;
 
 //import org.ei.telemedicine.Context;
 
 public class ActionActivity extends Activity {
 
     private org.ei.telemedicine.Context context;
-
+    public static boolean isBusy = false;
     protected String callUrl;
-
+    boolean callStatus = false;
     private Ringtone ringtone;
     private String packName = "org.mozilla.firefox";
+    final WebSocketConnection mConnection = new WebSocketConnection();
+    String callerId = "";
 
     public String getUsern() {
-
         context = org.ei.telemedicine.Context.getInstance().updateApplicationContext(this.getApplicationContext());
         return context.allSharedPreferences().fetchRegisteredANM();
     }
@@ -42,6 +50,26 @@ public class ActionActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
+            ActionActivity.isBusy = true;
+            Intent myIntent = getIntent();
+            callerId = myIntent.getStringExtra("name");
+            Log.e("ANM", "Before Temp WEb Socket Connection");
+            createTempWebSocket(callerId);
+            Log.e("ANM", "After Temp WEb Socket Connection");
+
+            Thread ft = new Thread() {
+                public void run() {
+                    try {
+                        Thread.sleep(40000);
+                        checkForNoAnswer();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+
+            ft.start();
+
             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
             ringtone = RingtoneManager.getRingtone(getApplicationContext(), notification);
             ringtone.play();
@@ -53,22 +81,33 @@ public class ActionActivity extends Activity {
             ex.printStackTrace();
         }
         setContentView(R.layout.activity_action);
+        this.setFinishOnTouchOutside(false);
         callUrl = org.ei.telemedicine.Context.getInstance().configuration().drishtiVideoURL() + AllConstants.RECEIVING_URL;
-        Intent myIntent = getIntent();
-        final String callerId = myIntent.getStringExtra("name");
+
         TextView showCaller = (TextView) findViewById(R.id.txtCaller);
-        showCaller.setText(callerId);
-        findViewById(R.id.img_btn1).setOnClickListener(new View.OnClickListener() {
+        showCaller.setText(WordUtils.capitalize(callerId) + " is calling....");
+        findViewById(R.id.tv_accept).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ringtone.stop();
                 Log.e("Receive URL", callUrl);
-//                if (isPackageExist(packName)) {
+                try {
+                    mConnection.sendTextMessage(new JSONObject().put("msg_type", "Call is accepted").put("status", "accept").put("receiver", getUsern()).toString());
+                    callStatus = true;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 Uri url = Uri.parse(String.format(callUrl, getUsern(), callerId));
+                if (mConnection.isConnected())
+                    mConnection.disconnect();
+                ActionActivity.isBusy = false;
                 Intent _broswer = new Intent(Intent.ACTION_VIEW, url);
-//                _broswer.setComponent(new ComponentName(org.ei.telemedicine.Context.getInstance().configuration().getClientBrowserUrl(), context.configuration().getClientBrowserAPPUrl()));
+
                 startActivity(_broswer);
+
                 finish();
+                //                if (isPackageExist(packName)) {
+                //                _broswer.setComponent(new ComponentName(org.ei.telemedicine.Context.getInstance().configuration().getClientBrowserUrl(), context.configuration().getClientBrowserAPPUrl()));
 //                } else {
 //                    Toast.makeText(ActionActivity.this, "Video call is compatible with FireFox. Please install", Toast.LENGTH_SHORT).show();
 //                    String firefoxUrl = org.ei.telemedicine.Context.getInstance().configuration().getClientAPPURL();
@@ -79,15 +118,88 @@ public class ActionActivity extends Activity {
             }
         });
 
-        findViewById(R.id.img_btn2).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.tv_reject).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ringtone.stop();
+                try {
+                    mConnection.sendTextMessage(new JSONObject().put("msg_type", "Call is Rejected").put("status", "reject").put("receiver", getUsern()).toString());
+                    if (mConnection.isConnected())
+                        mConnection.disconnect();
+                    ActionActivity.isBusy = false;
+                    callStatus = true;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 finish();
             }
         });
 
 
+    }
+
+    private void checkForNoAnswer() {
+        if (!callStatus) {
+            try {
+                if (ringtone != null && ringtone.isPlaying())
+                    ringtone.stop();
+                if (mConnection != null) {
+                    mConnection.sendTextMessage(new JSONObject().put("msg_type", "No Answer").put("status", "no_answer").put("receiver", getUsern()).toString());
+                    if (mConnection.isConnected())
+                        mConnection.disconnect();
+                }
+                ActionActivity.isBusy = false;
+                finish();
+//                new AlertDialog.Builder(ActionActivity.this).setMessage("You are missed " + callerId + " call").setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                    }
+//                }).show();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private WebSocketConnection createTempWebSocket(final String callerId) {
+        try {
+            mConnection.connect("ws://202.153.34.169:8004/wscall?id=cli:" + getUsern() + "&peer_id=cli:" + callerId, new WebSocketHandler() {
+                @Override
+                public void onOpen() {
+                    super.onOpen();
+                    Log.e("Initiate", "ANM Temp WebSocket");
+                    try {
+                        mConnection.sendTextMessage(new JSONObject().put("msg_type", "Call is ringing").put("status", "ring_starts").put("receiver", getUsern()).toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onTextMessage(String payload) {
+                    super.onTextMessage(payload);
+                    Log.e("Get ANM ", payload);
+                    String status = getDataFromJson(payload, "status");
+                    switch (status) {
+                        case "disconnect":
+                            ringtone.stop();
+                            ActionActivity.isBusy = false;
+                            Toast.makeText(ActionActivity.this, "Call is disconnected by " + callerId, Toast.LENGTH_SHORT).show();
+                            finish();
+                            break;
+                    }
+                }
+
+                @Override
+                public void onClose(int code, String reason) {
+                    super.onClose(code, reason);
+                }
+            });
+        } catch (WebSocketException e) {
+            e.printStackTrace();
+        }
+        return mConnection;
     }
 
     public Ringtone ringAlarm(Context context) {
@@ -106,7 +218,7 @@ public class ActionActivity extends Activity {
         //int maxVolumeRing = audioManager.getStreamMaxVolume(AudioManager.STREAM_RING);
         audioManager.setStreamVolume(AudioManager.STREAM_ALARM, maxVolumeAlarm, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
         //audioManager.setStreamVolume(AudioManager.STREAM_RING, maxVolumeRing,AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
-        Toast.makeText(context.getApplicationContext(), "alarm started", Toast.LENGTH_LONG).show();
+//        Toast.makeText(context.getApplicationContext(), "alarm started", Toast.LENGTH_LONG).show();
         return r;
     }
 
@@ -115,6 +227,16 @@ public class ActionActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_action, menu);
         return true;
+    }
+
+    private String getDataFromJson(String jsonStr, String key) {
+        try {
+            JSONObject jsonObject = new JSONObject(jsonStr);
+            return jsonObject.has(key) ? jsonObject.getString(key) : "";
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     @Override

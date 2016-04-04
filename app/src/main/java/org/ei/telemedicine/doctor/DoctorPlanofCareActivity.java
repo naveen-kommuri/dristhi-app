@@ -1,8 +1,11 @@
 package org.ei.telemedicine.doctor;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -25,6 +28,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.commons.lang3.text.WordUtils;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.message.BasicNameValuePair;
@@ -40,14 +44,20 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import de.tavendo.autobahn.WebSocketConnection;
+import de.tavendo.autobahn.WebSocketException;
+import de.tavendo.autobahn.WebSocketHandler;
 
 /**
  * Created by naveen on 6/1/15.
  */
 public class DoctorPlanofCareActivity extends Activity {
-    String url = "";
+    String url = "", callStatus = "call is initiated";
+    boolean isPeerUnavailalbe = false, isCall = false;
     AutoCompleteTextView act_icd10Diagnosis, act_tests, act_drug_name;
     ListView lv_selected_icd10, lv_selected_tests, lv_selected_drugs;
     Switch swich_poc_pending, switch_poc_physical_consultation;
@@ -56,10 +66,10 @@ public class DoctorPlanofCareActivity extends Activity {
     Button bt_save_plan_of_care;
     ImageButton ib_stop_by, ib_add_drug, ib_anm_logo;
     CustomFontTextView tv_stop_date, tv_health_worker_name, tv_health_worker_village, tv_doc_name, tv_doc_type, tv_mother_name, tv_age, tv_visit_type, tv_village;
-
+    WebSocketConnection mConnection = new WebSocketConnection();
     Dialog popup_dialog;
     Object obj;
-
+    ProgressDialog callProgressDialog;
     static PocBaseAdapter pocDiagnosisBaseAdapter, pocTestBaseAdapter;
     static PocDrugBaseAdapter pocDrugBaseAdapter;
 
@@ -85,6 +95,8 @@ public class DoctorPlanofCareActivity extends Activity {
     String documentId, formData, phoneNumber, caseId;
     public String CALLER_URL;
     private String packName = "org.mozilla.firefox";
+    String nus_name = "";
+    String doc_name = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,9 +148,26 @@ public class DoctorPlanofCareActivity extends Activity {
 
                 dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
 
-//                progressDialog = new ProgressDialog(DoctorPlanofCareActivity.this);
-//                progressDialog.setCancelable(false);
-//                progressDialog.setMessage(getString(R.string.loggin_in_dialog_message));
+                callProgressDialog = new ProgressDialog(DoctorPlanofCareActivity.this);
+                callProgressDialog.setCancelable(false);
+                callProgressDialog.setButton("End Call", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (mConnection != null) {
+                            try {
+                                mConnection.sendTextMessage(new JSONObject().put("msg_type", "Call disconnected").put("status", "disconnect").put("receiver", doc_name).toString());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        disconnect(mConnection);
+                        dialog.dismiss();
+                    }
+                });
+
+                callProgressDialog.setMessage(callStatus);
+
+//                progressDialog.setMessage(getString(R.string.loggin_in_dialog_message));s
 
                 pocServicesList.add("");
 //                pocDrugNamesList.add(getString(R.string.please_select_drug));
@@ -212,7 +241,8 @@ public class DoctorPlanofCareActivity extends Activity {
                     pocDrugDatas.add(pocDrugData);
                     Log.e("sad", drugJsonObject.getString("direction") + pocDrugDirectionsList.contains(drugJsonObject.getString("direction").trim()));
 
-                    pocDrugNamesList.add(drugJsonObject.getString("name"));
+                    pocDrugNamesList.add(WordUtils.capitalize(drugJsonObject.getString("name")));
+
                     if (!pocDrugDirectionsList.contains(drugJsonObject.getString("direction").trim()))
                         pocDrugDirectionsList.add(drugJsonObject.getString("direction").trim());
                     if (!pocDrugDosagesList.contains(drugJsonObject.getString("dosage").trim()))
@@ -221,8 +251,9 @@ public class DoctorPlanofCareActivity extends Activity {
                         pocDrugFrequenciesList.add(drugJsonObject.getString("frequency").trim());
 
                 }
-                final String doc_name = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
-                final String nus_name = getData(formDataJson, DoctorFormDataConstants.anmId);
+
+                doc_name = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
+                nus_name = getData(formDataJson, DoctorFormDataConstants.anmId);
                 tv_doc_name.setText(doc_name);
                 tv_mother_name.setText(getData(formDataJson, DoctorFormDataConstants.wife_name));
                 tv_age.setText(getData(formDataJson, DoctorFormDataConstants.age));
@@ -250,8 +281,13 @@ public class DoctorPlanofCareActivity extends Activity {
 
                 sp_services.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, R.layout.spinner_item, pocServicesList));
                 act_icd10Diagnosis.setAdapter(new DiagnosisArrayAdapter(DoctorPlanofCareActivity.this, R.layout.diagnosis_list_item, pocDiagnosises));
-
+//                ArrayAdapter drugAdapter = new ArrayAdapter(DoctorPlanofCareActivity.this, R.layout.diagnosis_list_item, R.id.tv_name, pocDrugNamesList);
+                Collections.sort(pocDrugNamesList);
+                for (String str : pocDrugNamesList) {
+                    Log.e("val", str);
+                }
                 act_drug_name.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, R.layout.diagnosis_list_item, R.id.tv_name, pocDrugNamesList));
+
 //                sp_drug_name.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, R.layout.spinner_item, pocDrugNamesList));
                 sp_drug_dosage.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, R.layout.spinner_item, pocDrugDosagesList));
                 sp_drug_frequency.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, R.layout.spinner_item, pocDrugFrequenciesList));
@@ -282,13 +318,13 @@ public class DoctorPlanofCareActivity extends Activity {
 //                            startActivity(downLoadfire);
 //                        }
 //                        try {
-                        CALLER_URL = context.configuration().drishtiVideoURL() + AllConstants.CALLING_URL;
-                        String caller_url = String.format(CALLER_URL, doc_name, nus_name);
-                        Log.e("Calling URL", caller_url);
-//                        startActivity(new Intent(DoctorPlanofCareActivity.this, VideoCallActivity.class).putExtra("loadUrl", "http://www.google.com"));
-                        Uri url = Uri.parse(caller_url);
-                        Intent _broswer = new Intent(Intent.ACTION_VIEW, url);
-                        startActivity(_broswer);
+
+                        createTempWebSocket(doc_name, nus_name);
+
+                        //Stops
+//                        openWeb(doc_name, nus_name);
+
+//Stops
 
 //                        Intent intent = new Intent(Intent.ACTION_VIEW, null);
 //                        intent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -442,14 +478,14 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                    selectDrugs.add(pocDrugData);
                                                                    pocDrugBaseAdapter.notifyDataSetChanged();
                                                                } else {
-                                                                   Toast.makeText(DoctorPlanofCareActivity.this, "Stop Date Need", Toast.LENGTH_SHORT).show();
+                                                                   Toast.makeText(DoctorPlanofCareActivity.this, "Please enter Stop by date.", Toast.LENGTH_SHORT).show();
                                                                }
                                                            } else {
                                                                selectDrugs.add(pocDrugData);
                                                                pocDrugBaseAdapter.notifyDataSetChanged();
                                                            }
                                                        } else
-                                                           Toast.makeText(DoctorPlanofCareActivity.this, "All Fields are mandatory", Toast.LENGTH_SHORT).show();
+                                                           Toast.makeText(DoctorPlanofCareActivity.this, "All Drug fields are mandatory", Toast.LENGTH_SHORT).show();
                                                        tv_stop_date.setText("");
                                                        et_drug_no_of_days.setText("");
                                                        et_drug_qty.setText("");
@@ -566,13 +602,39 @@ public class DoctorPlanofCareActivity extends Activity {
 
             {
                 e.printStackTrace();
-                Toast.makeText(DoctorPlanofCareActivity.this, "Json Failure" + e.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(DoctorPlanofCareActivity.this, "Something went wrong! Please try again" + e.toString(), Toast.LENGTH_SHORT).show();
             }
         } else
 
         {
             Log.e(TAG, "No Data");
         }
+    }
+
+    private void checkForNoAnswer() {
+        if (callProgressDialog != null && callProgressDialog.isShowing()) {
+            callProgressDialog.dismiss();
+            if (mConnection != null && mConnection.isConnected()) {
+                mConnection.disconnect();
+            }
+            this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(DoctorPlanofCareActivity.this, "Unable to reach anm. Please try again", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
+    private void openWeb(String doc_name, String nus_name) {
+        CALLER_URL = context.configuration().drishtiVideoURL() + AllConstants.CALLING_URL;
+        String caller_url = String.format(CALLER_URL, doc_name, nus_name);
+        Log.e("Calling URL", caller_url);
+//                        startActivity(new Intent(DoctorPlanofCareActivity.this, VideoCallActivity.class).putExtra("loadUrl", "http://www.google.com"));
+        Uri url = Uri.parse(caller_url);
+        Intent _broswer = new Intent(Intent.ACTION_VIEW, url);
+        startActivity(_broswer);
+
     }
 
     private String getCurrentDate() {
@@ -612,10 +674,10 @@ public class DoctorPlanofCareActivity extends Activity {
                                 Log.e("Case Id", documentID + "------------" + caseId);
                                 context.allDoctorRepository().deleteUseCaseId(caseId);
                             }
-                            Toast.makeText(DoctorPlanofCareActivity.this, "Plan of care is submitted", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DoctorPlanofCareActivity.this, "Plan of care is submitted successfully.", Toast.LENGTH_SHORT).show();
                             gotoHome();
                         } else {
-                            Toast.makeText(DoctorPlanofCareActivity.this, "Data is not saved!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DoctorPlanofCareActivity.this, "Plan of care is not saved!", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -692,4 +754,140 @@ public class DoctorPlanofCareActivity extends Activity {
         return true;
     }
 
+    private void createTempWebSocket(final String doc_name, final String nus_name) {
+//        context = org.ei.telemedicine.Context.getInstance().updateApplicationContext(this.getApplicationContext());
+        final String wsuri = "ws://202.153.34.169:8004/wscall?id=cli:" + doc_name + "&peer_id=cli:" + nus_name;
+
+        try {
+            if (mConnection != null && mConnection.isConnected())
+                mConnection.disconnect();
+            Log.e("WsUrl", wsuri);
+            if (mConnection == null)
+                mConnection = new WebSocketConnection();
+            mConnection.connect(wsuri, new WebSocketHandler() {
+                @Override
+                public void onOpen() {
+                    super.onOpen();
+                    Thread ft = new Thread() {
+                        public void run() {
+                            try {
+                                Thread.sleep(45000);
+                                checkForNoAnswer();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    };
+                    ft.start();
+                    callProgressDialog.setTitle("Call to " + nus_name);
+                    callProgressDialog.show();
+                    Log.e("Temp", "Socket is created");
+                    try {
+                        mConnection.sendTextMessage(new JSONObject().put("msg_type", "initated").put("status", "INI").put("caller", doc_name).put("receiver", nus_name).toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onTextMessage(String payload) {
+                    super.onTextMessage(payload);
+                    Log.e("Temp Payload", "Getting Data" + payload);
+
+                    String status = getDataFromJson(payload, "status");
+                    switch (status) {
+                        case "ring_starts":
+                            isPeerUnavailalbe = false;
+                            callStatus = "Ringing";
+                            runOnUiThread(changeMessage);
+                            Toast.makeText(DoctorPlanofCareActivity.this, "Waiting for response from " + getDataFromJson(payload, "receiver"), Toast.LENGTH_SHORT).show();
+//                            new AlertDialog.Builder(TempWebSocket.this).setMessage("Ring Start").show();
+                            break;
+                        case "accept":
+                            isPeerUnavailalbe = false;
+                            if (callProgressDialog != null && callProgressDialog.isShowing())
+                                callProgressDialog.dismiss();
+                            Toast.makeText(DoctorPlanofCareActivity.this, getDataFromJson(payload, "receiver") + " accepted the call", Toast.LENGTH_SHORT).show();
+                            openWeb(DoctorPlanofCareActivity.this.doc_name, DoctorPlanofCareActivity.this.nus_name);
+                            disconnect(mConnection);
+//                            new AlertDialog.Builder(TempWebSocket.this).setMessage("Ring Start").show();
+                            break;
+                        case "reject":
+                            isPeerUnavailalbe = false;
+                            if (callProgressDialog != null && callProgressDialog.isShowing())
+                                callProgressDialog.dismiss();
+                            Toast.makeText(DoctorPlanofCareActivity.this, getDataFromJson(payload, "receiver") + " rejected the call", Toast.LENGTH_SHORT).show();
+                            disconnect(mConnection);
+                            break;
+                        case "no_answer":
+                            isPeerUnavailalbe = false;
+                            if (callProgressDialog != null && callProgressDialog.isShowing())
+                                callProgressDialog.dismiss();
+                            new AlertDialog.Builder(DoctorPlanofCareActivity.this).setMessage(getDataFromJson(payload, "receiver") + " is not responding. Please try later").
+                                    setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    }).show();
+                            Toast.makeText(DoctorPlanofCareActivity.this, getDataFromJson(payload, "receiver") + " is not responding. Please try later", Toast.LENGTH_SHORT).show();
+                            disconnect(mConnection);
+                            break;
+                        default:
+                            isPeerUnavailalbe = true;
+                            if (callProgressDialog != null && callProgressDialog.isShowing())
+                                callProgressDialog.dismiss();
+
+                            disconnect(mConnection);
+                            break;
+                    }
+                    if (isPeerUnavailalbe) {
+                        new AlertDialog.Builder(DoctorPlanofCareActivity.this).setMessage("Unable to reach " + nus_name + ". Please try again").
+                                setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                }).show();
+                        Toast.makeText(DoctorPlanofCareActivity.this, "Unable to reach " + nus_name + ". Please try again", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+
+                @Override
+                public void onClose(int code, String reason) {
+                    super.onClose(code, reason);
+                    Log.e("Temp", "Socket is closed");
+                    mConnection = null;
+                }
+            });
+
+        } catch (WebSocketException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void disconnect(WebSocketConnection mConnection) {
+        if (mConnection != null) {
+            mConnection.disconnect();
+        }
+    }
+
+    private String getDataFromJson(String jsonStr, String key) {
+        try {
+            JSONObject jsonObject = new JSONObject(jsonStr);
+            return jsonObject.has(key) ? jsonObject.getString(key) : "";
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    private Runnable changeMessage = new Runnable() {
+        @Override
+        public void run() {
+            //Log.v(TAG, strCharacters);
+            callProgressDialog.setMessage(callStatus);
+        }
+    };
 }

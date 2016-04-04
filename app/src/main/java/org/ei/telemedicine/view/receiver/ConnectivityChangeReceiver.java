@@ -10,9 +10,9 @@ import android.util.Log;
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.sync.DrishtiSyncScheduler;
 import org.ei.telemedicine.view.activity.ActionActivity;
+import org.ei.telemedicine.view.activity.LoginActivity;
 import org.json.JSONObject;
 
-import de.tavendo.autobahn.WebSocketConnection;
 import de.tavendo.autobahn.WebSocketException;
 import de.tavendo.autobahn.WebSocketHandler;
 
@@ -22,7 +22,7 @@ public class ConnectivityChangeReceiver extends BroadcastReceiver {
     private org.ei.telemedicine.Context context;
     private final String CALLER = "name";
     private String TAG = "RECEIVER";
-    private final WebSocketConnection mConnection = new WebSocketConnection();
+
 
     @Override
     public void onReceive(final Context context, Intent intent) {
@@ -31,14 +31,15 @@ public class ConnectivityChangeReceiver extends BroadcastReceiver {
             if (isDeviceDisconnectedFromNetwork(intent)) {
                 logInfo("Device got disconnected from network. Stopping Dristhi Sync scheduler.");
                 DrishtiSyncScheduler.stop(context);
-                if (mConnection != null)
-                    mConnection.disconnect();
+                if (LoginActivity.mConnection != null)
+                    LoginActivity.mConnection.disconnect();
                 return;
             }
             if (isDeviceConnectedToNetwork(intent)) {
                 logInfo("Device got connected to network. Trying to start Dristhi Sync scheduler.");
                 DrishtiSyncScheduler.start(context);
-                StartWebConnection(context);
+                if (!LoginActivity.mConnection.isConnected())
+                    StartWebConnection(context);
             }
         }
     }
@@ -60,26 +61,25 @@ public class ConnectivityChangeReceiver extends BroadcastReceiver {
             final String url = String.format(wsuri, username);
             Log.d("WEBSOCKET_URL", url);
 
-            mConnection.connect(url, new WebSocketHandler() {
-
+            LoginActivity.mConnection.connect(url, new WebSocketHandler() {
                 @Override
                 public void onOpen() {
-                    Log.d(TAG, "Status: Connected to " + url);
-
+                    Log.e(TAG, "Status: Connected to " + url);
                 }
 
                 @Override
                 public void onTextMessage(String payload) {
-                    Log.d(TAG, "Got echo: " + payload);
+                    Log.e(TAG, "Got echo: " + payload);
                     try {
                         JSONObject jObject = new JSONObject(payload);
                         String status = jObject.getString("status");
                         String msg = jObject.getString("msg_type");
                         String caller = jObject.getString("caller");
-                        //Log.d(TAG, check);
+                        String receiver = jObject.getString("receiver");
+                        Log.d(TAG, receiver + "______________________________" + username);
                         String match = "INI";
                         boolean response = (status.equals(match));
-                        if (response) {
+                        if (receiver.equalsIgnoreCase(username) && response && !ActionActivity.isBusy) {
                             Intent i = new Intent(mcontext.getApplicationContext(), ActionActivity.class);
                             i.putExtra(CALLER, caller);
                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

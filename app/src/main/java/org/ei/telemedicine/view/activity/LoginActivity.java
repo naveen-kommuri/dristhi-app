@@ -63,20 +63,21 @@ public class LoginActivity extends Activity {
     private String TAG = "LoginActivity";
 
     private int waitTime = 5000;
-    private final WebSocketConnection mConnection = new WebSocketConnection();
+    public static final WebSocketConnection mConnection = new WebSocketConnection();
 
     public String getUsern() {
-        context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
         return context.allSharedPreferences().fetchRegisteredANM();
     }
 
 
     public void start() {
-
+//        if (mConnection != null && mConnection.isConnected()) {
+//            mConnection.disconnect();
+//        }
         final String wsuri = context.configuration().drishtiWSURL() + AllConstants.WEBSOCKET;
         try {
             final String url = String.format(wsuri, getUsern());
-            Log.d("FFFFF", url);
+            Log.e("FFFFF", url);
 
             mConnection.connect(url, new WebSocketHandler() {
 
@@ -95,10 +96,11 @@ public class LoginActivity extends Activity {
                         String status = jObject.getString("status");
                         String msg = jObject.getString("msg_type");
                         String caller = jObject.getString("caller");
+                        String receiver = jObject.getString("receiver");
                         //Log.d(TAG, check);
                         String match = "INI";
                         boolean response = (status.equals(match));
-                        if (response) {
+                        if (receiver.equalsIgnoreCase(getUsern()) && response && !ActionActivity.isBusy) {
                             //Toast.makeText(getApplicationContext(),"call started",Toast.LENGTH_LONG).show();
                             Intent i = new Intent(getApplicationContext(), ActionActivity.class);
                             i.putExtra(CALLER, caller);
@@ -200,13 +202,13 @@ public class LoginActivity extends Activity {
                                     DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), context.allSharedPreferences().getUserRole());
                                     dialog.dismiss();
                                 } else
-                                    Toast.makeText(LoginActivity.this, "First Sync old user data", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginActivity.this, "Please check internet connectivity to Sync old user data", Toast.LENGTH_SHORT).show();
                             }
                         }).show();
                     else
                         logoutUser();
                 } else
-                    Toast.makeText(LoginActivity.this, "Missmatch with credentials", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Something went wrong! Please try again", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -258,6 +260,7 @@ public class LoginActivity extends Activity {
         }
 
         fillUserIfExists();
+
     }
 
     public void login(final View view) {
