@@ -50,6 +50,7 @@ public class ActionActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
+
             ActionActivity.isBusy = true;
             Intent myIntent = getIntent();
             callerId = myIntent.getStringExtra("name");

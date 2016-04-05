@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
@@ -18,6 +19,7 @@ import org.apache.commons.lang3.text.WordUtils;
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
+import org.ei.telemedicine.bluetooth.WaveformActivity;
 import org.ei.telemedicine.domain.ANM;
 import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.repository.AllSharedPreferences;
@@ -289,9 +291,9 @@ public class NativeHomeActivity extends SecuredActivity {
             case R.id.updateMenuItem:
                 updateFromServer();
                 return true;
-//            case R.id.export:
-//                startActivity(new Intent(this, VisulActivity.class));
-//                return true;
+            case R.id.export:
+                startActivity(new Intent(this, WaveformActivity.class));
+                return true;
 //            case R.id.export:
 //                backupDB();
 //                return true;
