@@ -38,13 +38,8 @@ public class ConnectivityChangeReceiver extends BroadcastReceiver {
             }
             if (isDeviceConnectedToNetwork(intent)) {
                 logInfo("Device got connected to network. Trying to start Dristhi Sync scheduler.");
+
                 DrishtiSyncScheduler.start(context);
-                try {
-                    if (LoginActivity.mConnection == null || !LoginActivity.mConnection.isConnected())
-                        LoginActivity.connectWS();
-                } catch (Exception e) {
-                    LoginActivity.disconnectWS();
-                }
             }
         }
     }

@@ -297,14 +297,8 @@ public class NativeHomeActivity extends SecuredActivity {
 //                backupDB();
 //                return true;
 //            case R.id.video:
-//                try {
-//                    Intent intent = new Intent(Intent.ACTION_MAIN);
-//                    intent.setComponent(new ComponentName("org.appspot.apprtc",
-//                            "org.appspot.apprtc.ConnectActivity"));
-//                    startActivity(intent);
-//                } catch (Exception e) {
-//                    Toast.makeText(this, "Please install Apprtc APK", Toast.LENGTH_SHORT).show();
-//                }
+//                Intent intent = new Intent(this, DummyCallActivity.class);
+//                startActivity(intent);
 //                return true;
 //            case R.id.video:
 //                File sd = Environment.getExternalStorageDirectory();

@@ -15,6 +15,7 @@ import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -752,8 +753,24 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
             recordProgressDialog = new ProgressDialog(BlueToothInfoActivity.this);
             recordProgressDialog.setTitle("Recording Audio");
             recordProgressDialog.show();
+//            new CountDownTimer(100000, 1000) {
+//                public void onTick(long millisUntilFinished) {
+//                    onProgressUpdate(millisUntilFinished);
+////                    mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
+//                }
+//
+//                public void onFinish() {
+//
+//                }
+//            }.start();
         }
 
+//        @Override
+//        protected void onProgressUpdate(long... values) {
+//            super.onProgressUpdate(values);
+//            if (recordProgressDialog != null)
+//                recordProgressDialog.setMessage("seconds remaining: " + values[0] / 1000);
+//        }
 
         @Override
         protected String doInBackground(String... params) {

@@ -73,6 +73,22 @@ public class NativeChartActivity extends Activity {
                         legend.setFormSize(15);
                         legend.setTextColor(Color.WHITE);
 
+                    } else if (vitalType.equals(AllConstants.GraphFields.TEMPERATURE) || vitalType.equals(AllConstants.GraphFields.CHILD_TEMPERATURE)) {
+                        BarData data = new BarData(getXAxisValues(vitalsData), getTempDataSets(vitalsData));
+                        chart.setData(data);
+                        chart.setNoDataText("No Data");
+                        chart.setDescription("Temperature");
+
+                        chart.setDescriptionTextSize(20f);
+                        chart.animateX(2000);
+                        chart.invalidate();
+
+                        Legend legend = chart.getLegend();
+                        legend.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+                        legend.setTextSize(20);
+                        legend.setFormSize(15);
+                        legend.setTextColor(Color.WHITE);
+
                     } else {
                         BarData data = new BarData(getXAxisValues(vitalsData), getVitalDataSet(vitalsData, vitalType));
                         chart.setData(data);
@@ -111,24 +127,7 @@ public class NativeChartActivity extends Activity {
             vitalsArray = new JSONArray(vitalsData);
             for (int i = 0; i < vitalsArray.length(); i++) {
                 switch (vitalType) {
-                    case TEMPERATURE:
-                        float val;
-                        try {
-                            val = Float.parseFloat(getStrDatafromJson(vitalsArray.getJSONObject(i).toString(), TEMPERATURE));
-                        } catch (Exception e) {
-                            val = 0;
-                        }
-                        vitalDatas.add(new BarEntry(val, i));
-                        break;
-                    case CHILD_TEMPERATURE:
-                        float cval;
-                        try {
-                            cval = Float.parseFloat(getStrDatafromJson(vitalsArray.getJSONObject(i).toString(), CHILD_TEMPERATURE));
-                        } catch (Exception e) {
-                            cval = 0;
-                        }
-                        vitalDatas.add(new BarEntry(cval, i));
-                        break;
+
                     case BLOODGLUCOSEDATA:
                         float bgmVal;
                         units = "mmol/L";
@@ -178,11 +177,11 @@ public class NativeChartActivity extends Activity {
             }
             BarDataSet barDataSet1 = new BarDataSet(bpSysData, "Bp Systolic in mmHg");
             barDataSet1.setValueTextSize(20f);
-            barDataSet1.setColors(ColorTemplate.COLORFUL_COLORS);
+            barDataSet1.setColor(getResources().getColor(android.R.color.holo_green_dark));
 //            barDataSet1.setValueTextColor(Color.GREEN);
 
             BarDataSet barDataSet2 = new BarDataSet(bpDiaData, "Bp Diastolic in mmHg");
-            barDataSet2.setColors(ColorTemplate.COLORFUL_COLORS);
+            barDataSet2.setColor(getResources().getColor(android.R.color.holo_blue_dark));
             barDataSet2.setValueTextSize(20f);
 
             bpSets = new ArrayList<>();
@@ -193,6 +192,55 @@ public class NativeChartActivity extends Activity {
             e.printStackTrace();
         }
         return bpSets;
+    }
+
+    private ArrayList<BarDataSet> getTempDataSets(String vitalsData) {
+        ArrayList<BarDataSet> tempSets = null;
+        ArrayList<BarEntry> tempCData = new ArrayList<>();
+        ArrayList<BarEntry> tempFData = new ArrayList<>();
+        JSONArray vitalsArray = null;
+        try {
+            vitalsArray = new JSONArray(vitalsData);
+//            String result = new String(resultData);
+//            String result_in_faren = String.format("%.02f", (Float.parseFloat(result) * 1.8) + 32);
+            for (int i = 0; i < vitalsArray.length(); i++) {
+                String temp = getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), TEMPERATURE);
+                if (temp.trim().length() != 0) {
+                    String[] temps = temp.split("-");
+                    String _temperature = temps[0].trim().length() != 0 ? temps[0] : "0";
+                    if (temps[1].equalsIgnoreCase("c")) {
+                        double val = 0;
+                        if (!_temperature.equalsIgnoreCase("0"))
+                            val = (Float.parseFloat(_temperature) * 1.8) + 32;
+                        String result_in_faren = String.format("%.02f", val);
+                        tempCData.add(new BarEntry(Float.parseFloat(_temperature), i));
+                        tempFData.add(new BarEntry(Float.parseFloat(result_in_faren), i));
+                    } else if (temps[1].equalsIgnoreCase("f")) {
+                        float val = 0;
+                        if (!_temperature.equalsIgnoreCase("0"))
+                            val = (((Float.parseFloat(_temperature) - 32) * 5) / 9);
+                        String result_in_cen = String.format("%.02f", val);
+                        tempFData.add(new BarEntry(Float.parseFloat(_temperature), i));
+                        tempCData.add(new BarEntry(Float.parseFloat(result_in_cen), i));
+                    }
+                }
+            }
+            BarDataSet barDataSet1 = new BarDataSet(tempCData, "Temperature in °C");
+            barDataSet1.setValueTextSize(20f);
+            barDataSet1.setColor(getResources().getColor(android.R.color.holo_green_dark));
+//            barDataSet1.setValueTextColor(Color.GREEN);
+
+            BarDataSet barDataSet2 = new BarDataSet(tempFData, "Temperature in °F");
+            barDataSet2.setColor(getResources().getColor(android.R.color.holo_blue_dark));
+            barDataSet2.setValueTextSize(20f);
+            tempSets = new ArrayList<>();
+            tempSets.add(barDataSet1);
+            tempSets.add(barDataSet2);
+            return tempSets;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return tempSets;
     }
 
     private ArrayList<String> getXAxisValues(String vitalsData) {

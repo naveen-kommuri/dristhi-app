@@ -8,6 +8,7 @@ import org.ei.telemedicine.sync.SyncAfterFetchListener;
 import org.ei.telemedicine.sync.SyncProgressIndicator;
 import org.ei.telemedicine.sync.UpdateActionsTask;
 import org.ei.telemedicine.util.Log;
+import org.ei.telemedicine.view.activity.ActionActivity;
 import org.ei.telemedicine.view.activity.LoginActivity;
 
 import java.util.ArrayList;
@@ -18,7 +19,15 @@ public class SyncBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         logInfo("Sync alarm triggered. Trying to Sync.");
+        if (!ActionActivity.isBusy)
+            LoginActivity.disconnectWS();
 
+        try {
+            if (LoginActivity.mConnection == null || !LoginActivity.mConnection.isConnected())
+                LoginActivity.connectWS();
+        } catch (Exception e) {
+            LoginActivity.disconnectWS();
+        }
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(
                 context,
                 org.ei.telemedicine.Context.getInstance().actionService(),
