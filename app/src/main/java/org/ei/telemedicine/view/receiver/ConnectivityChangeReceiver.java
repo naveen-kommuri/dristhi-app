@@ -5,13 +5,26 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.PowerManager;
+import android.util.Log;
 
+import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.sync.DrishtiSyncScheduler;
+import org.ei.telemedicine.view.activity.ActionActivity;
 import org.ei.telemedicine.view.activity.LoginActivity;
+import org.json.JSONObject;
+
+import de.tavendo.autobahn.WebSocketException;
+import de.tavendo.autobahn.WebSocketHandler;
 
 import static org.ei.telemedicine.util.Log.logInfo;
 
 public class ConnectivityChangeReceiver extends BroadcastReceiver {
+    private org.ei.telemedicine.Context context;
+    private final String CALLER = "name";
+    private String TAG = "RECEIVER";
+    PowerManager powerManager;
+    PowerManager.WakeLock wakeLock;
 
     @Override
     public void onReceive(final Context context, Intent intent) {
@@ -20,13 +33,18 @@ public class ConnectivityChangeReceiver extends BroadcastReceiver {
             if (isDeviceDisconnectedFromNetwork(intent)) {
                 logInfo("Device got disconnected from network. Stopping Dristhi Sync scheduler.");
                 DrishtiSyncScheduler.stop(context);
-                if (LoginActivity.mConnection != null)
-                    LoginActivity.mConnection.disconnect();
+                LoginActivity.disconnectWS();
                 return;
             }
             if (isDeviceConnectedToNetwork(intent)) {
                 logInfo("Device got connected to network. Trying to start Dristhi Sync scheduler.");
                 DrishtiSyncScheduler.start(context);
+                try {
+                    if (LoginActivity.mConnection == null || !LoginActivity.mConnection.isConnected())
+                        LoginActivity.connectWS();
+                } catch (Exception e) {
+                    LoginActivity.disconnectWS();
+                }
             }
         }
     }
@@ -39,8 +57,5 @@ public class ConnectivityChangeReceiver extends BroadcastReceiver {
         NetworkInfo networkInfo = (NetworkInfo) intent.getExtras().get(ConnectivityManager.EXTRA_NETWORK_INFO);
         return networkInfo != null && networkInfo.isConnected();
     }
-
-
-
 }
 

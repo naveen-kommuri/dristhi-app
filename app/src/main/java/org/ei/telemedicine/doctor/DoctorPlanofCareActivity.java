@@ -9,6 +9,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -37,6 +39,7 @@ import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.view.customControls.CustomFontTextView;
+import org.ei.telemedicine.view.receiver.ConnectivityChangeReceiver;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -318,8 +321,10 @@ public class DoctorPlanofCareActivity extends Activity {
 //                            startActivity(downLoadfire);
 //                        }
 //                        try {
-
-                        createTempWebSocket(doc_name, nus_name);
+                        if (isNetworkAvailable())
+                            createTempWebSocket(doc_name, nus_name);
+                        else
+                            Toast.makeText(DoctorPlanofCareActivity.this, "Something went wrong! Please try again", Toast.LENGTH_SHORT).show();
 
                         //Stops
 //                        openWeb(doc_name, nus_name);
@@ -642,6 +647,18 @@ public class DoctorPlanofCareActivity extends Activity {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDate = df.format(c.getTime());
         return formattedDate;
+    }
+
+    private boolean isNetworkAvailable() {
+        try {
+            ConnectivityManager connectivityManager
+                    = (ConnectivityManager) getSystemService(android.content.Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     private String getData(JSONObject jsonData, String key) {

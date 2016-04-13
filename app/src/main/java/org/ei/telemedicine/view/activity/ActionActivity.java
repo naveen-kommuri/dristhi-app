@@ -144,7 +144,7 @@ public class ActionActivity extends Activity {
             try {
                 if (ringtone != null && ringtone.isPlaying())
                     ringtone.stop();
-                if (mConnection != null) {
+                if (mConnection != null && mConnection.isConnected()) {
                     mConnection.sendTextMessage(new JSONObject().put("msg_type", "No Answer").put("status", "no_answer").put("receiver", getUsern()).toString());
                     if (mConnection.isConnected())
                         mConnection.disconnect();

@@ -18,6 +18,8 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,70 +60,18 @@ public class LoginActivity extends Activity {
     private EditText userNameEditText;
     private EditText passwordEditText;
     private final String CALLER = "name";
-
+    ImageView login_logo;
     private ProgressDialog progressDialog, _progressDialog;
     private String TAG = "LoginActivity";
-
+    static boolean isSettingsEnable = false;
+    public int settingsBtCount = 0;
     private int waitTime = 5000;
-    public static final WebSocketConnection mConnection = new WebSocketConnection();
-
-    public String getUsern() {
-        return context.allSharedPreferences().fetchRegisteredANM();
-    }
-
+    public static WebSocketConnection mConnection = null;
+    private static android.content.Context mContext;
 
     public void start() {
-//        if (mConnection != null && mConnection.isConnected()) {
-//            mConnection.disconnect();
-//        }
-        final String wsuri = context.configuration().drishtiWSURL() + AllConstants.WEBSOCKET;
-        try {
-            final String url = String.format(wsuri, getUsern());
-            Log.e("FFFFF", url);
-
-            mConnection.connect(url, new WebSocketHandler() {
-
-                @Override
-                public void onOpen() {
-                    Log.d(TAG, "Status: Connected to " + url);
-                    //Toast.makeText(getApplicationContext(), String.format(wsuri, getUsern()), Toast.LENGTH_SHORT).show();
-                    //mConnection.sendTextMessage("Hello, world!");
-                }
-
-                @Override
-                public void onTextMessage(String payload) {
-                    Log.d(TAG, "Got echo: " + payload);
-                    try {
-                        JSONObject jObject = new JSONObject(payload);
-                        String status = jObject.getString("status");
-                        String msg = jObject.getString("msg_type");
-                        String caller = jObject.getString("caller");
-                        String receiver = jObject.getString("receiver");
-                        //Log.d(TAG, check);
-                        String match = "INI";
-                        boolean response = (status.equals(match));
-                        if (receiver.equalsIgnoreCase(getUsern()) && response && !ActionActivity.isBusy) {
-                            //Toast.makeText(getApplicationContext(),"call started",Toast.LENGTH_LONG).show();
-                            Intent i = new Intent(getApplicationContext(), ActionActivity.class);
-                            i.putExtra(CALLER, caller);
-                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(i);
-                        }
-
-                    } catch (Exception ex) {
-                        Log.d(TAG, ex.toString());
-                    }
-                }
-
-                @Override
-                public void onClose(int code, String reason) {
-                    Log.d(TAG, "Connection lost.");
-                    //Toast.makeText(getApplicationContext(),"closed",Toast.LENGTH_SHORT).show();
-                }
-            });
-        } catch (WebSocketException e) {
-            Log.d(TAG, e.toString());
-        }
+        if (LoginActivity.mConnection == null || !LoginActivity.mConnection.isConnected())
+            LoginActivity.connectWS();
     }
 
     private Listener<Boolean> onSyncStartListener = new Listener<Boolean>() {
@@ -157,18 +107,27 @@ public class LoginActivity extends Activity {
         }
     };
 
+    private void checkSettingButton() {
+        if (isSettingsEnable) {
+            (findViewById(R.id.login_logo)).setClickable(false);
+            findViewById(R.id.settings_Button).setVisibility(View.VISIBLE);
+        } else
+            findViewById(R.id.settings_Button).setVisibility(View.GONE);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         logVerbose("Initializing ...");
         setContentView(R.layout.login);
+        mContext = this.getApplicationContext();
 
         context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
         initializeLoginFields();
         initializeBuildDetails();
         setDoneActionHandlerOnPasswordField();
         initializeProgressDialog();
+
         Button settingsButton = (Button) findViewById(R.id.settings_Button);
         settingsButton.setVisibility(View.VISIBLE);
         settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -182,9 +141,9 @@ public class LoginActivity extends Activity {
         Button anotherLogin = (Button) findViewById(R.id.clear_Button);
         if (context.allSharedPreferences().fetchRegisteredANM().trim().length() != 0 && context.allSharedPreferences().getPwd().trim().length() != 0) {
             anotherLogin.setText("Not " + context.allSharedPreferences().fetchRegisteredANM() + "! Sign in as another user");
-            anotherLogin.setVisibility(View.VISIBLE);
+            (findViewById(R.id.ll_another)).setVisibility(View.VISIBLE);
         } else
-            anotherLogin.setVisibility(View.GONE);
+            (findViewById(R.id.ll_another)).setVisibility(View.GONE);
         anotherLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -500,4 +459,66 @@ public class LoginActivity extends Activity {
         ZipEntry ze = zf.getEntry("classes.dex");
         return new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new java.util.Date(ze.getTime()));
     }
+
+    public static void disconnectWS() {
+        if (LoginActivity.mConnection != null) {
+            LoginActivity.mConnection.disconnect();
+            LoginActivity.mConnection = null;
+        }
+    }
+
+    public static void connectWS() {
+
+        LoginActivity.mConnection = new WebSocketConnection();
+        final String wsuri = Context.getInstance().configuration().drishtiWSURL() + AllConstants.WEBSOCKET;
+        final String userName = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
+        try {
+            final String url = String.format(wsuri, userName);
+            Log.e("FFFFF", url);
+
+            mConnection.connect(url, new WebSocketHandler() {
+
+                @Override
+                public void onOpen() {
+                    Log.d("LoginActivity-WS Open", "Status: Connected to " + url);
+                    //Toast.makeText(getApplicationContext(), String.format(wsuri, getUsern()), Toast.LENGTH_SHORT).show();
+                    //mConnection.sendTextMessage("Hello, world!");
+                }
+
+                @Override
+                public void onTextMessage(String payload) {
+                    Log.d("LoginActivity-WS onTextMsg", "Got echo: " + payload);
+                    try {
+                        JSONObject jObject = new JSONObject(payload);
+                        String status = jObject.getString("status");
+                        String msg = jObject.getString("msg_type");
+                        String caller = jObject.getString("caller");
+                        String receiver = jObject.getString("receiver");
+                        //Log.d(TAG, check);
+                        String match = "INI";
+                        boolean response = (status.equals(match));
+                        if (receiver.equalsIgnoreCase(userName) && response && !ActionActivity.isBusy) {
+                            //Toast.makeText(getApplicationContext(),"call started",Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(mContext, ActionActivity.class);
+                            i.putExtra("name", caller);
+                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            mContext.startActivity(i);
+                        }
+                    } catch (Exception ex) {
+                        Log.d("LoginActivity-WS Exception", ex.toString());
+                    }
+                }
+
+                @Override
+                public void onClose(int code, String reason) {
+                    Log.d("LoginActivity-WS Close", "Connection lost.");
+                    //Toast.makeText(getApplicationContext(),"closed",Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (WebSocketException e) {
+            Log.d("LoginActivity-WS wsException", e.toString());
+        }
+
+    }
+
 }

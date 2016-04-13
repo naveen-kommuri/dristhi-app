@@ -674,11 +674,11 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
     }
 
     private void startPlaying(String filePath) {
-        try {
-            turnSpeaker();
-        } catch (Exception e) {
-            Toast.makeText(BlueToothInfoActivity.this, "Unable to play, check audio settings", Toast.LENGTH_SHORT).show();
-        }
+//        try {
+//            turnSpeaker();
+//        } catch (Exception e) {
+//            Toast.makeText(BlueToothInfoActivity.this, "Unable to play, check audio settings", Toast.LENGTH_SHORT).show();
+//        }
         playDialog = new ProgressDialog(BlueToothInfoActivity.this);
         playDialog.setMessage("Record is Playing");
         playDialog.setCancelable(false);

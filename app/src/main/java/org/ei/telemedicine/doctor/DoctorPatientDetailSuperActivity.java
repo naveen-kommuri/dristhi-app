@@ -93,11 +93,11 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
     }
 
     public void playData(String url, final ImageButton ib_play_stehoscope, final ImageButton ib_pause_stehoscope) {
-        try {
-            turnSpeaker();
-        } catch (Exception e) {
-            Toast.makeText(DoctorPatientDetailSuperActivity.this, "Unable to play, check audio settings", Toast.LENGTH_SHORT).show();
-        }
+//        try {
+//            turnSpeaker();
+//        } catch (Exception e) {
+//            Toast.makeText(DoctorPatientDetailSuperActivity.this, "Unable to play, check audio settings", Toast.LENGTH_SHORT).show();
+//        }
         try {
             player = new MediaPlayer();
             player.setAudioStreamType(AudioManager.STREAM_MUSIC);

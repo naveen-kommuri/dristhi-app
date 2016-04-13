@@ -47,6 +47,8 @@
     <uses-permission android:name="android.permission.STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -175,6 +177,7 @@
         <receiver android:name=".view.receiver.ConnectivityChangeReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+
             </intent-filter>
         </receiver>
         <!--<receiver android:name=".view.receiver.CallReceiver">-->
@@ -192,7 +195,8 @@
         <activity
             android:name=".doctor.NativeChartActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".bluetooth.VisulActivity" />
+        <!--<activity android:name=".view.activity.DummyCallActivity" />-->
+        <!--<activity android:name=".bluetooth.VisulActivity" />-->
     </application>
 
 </manifest>

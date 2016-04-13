@@ -103,8 +103,7 @@ public class UserService {
     }
 
     public void clearData() {
-        if (LoginActivity.mConnection != null && LoginActivity.mConnection.isConnected())
-            LoginActivity.mConnection.disconnect();
+        LoginActivity.disconnectWS();
         allSettings.clearPreferences();
         allSettings.registerANM("", "");
         allSettings.savePreviousFetchIndex("0");
