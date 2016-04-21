@@ -73,7 +73,7 @@ public class EligibleCouple {
     }
 
     public String ecNumber() {
-        return ecNumber;
+        return ecNumber != null ? ecNumber : "0";
     }
 
     public String caseId() {

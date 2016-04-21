@@ -47,8 +47,11 @@ import org.ei.telemedicine.bluetooth.pulse.PulseBuf;
 import org.ei.telemedicine.domain.form.FieldOverrides;
 import org.ei.telemedicine.domain.form.FormSubmission;
 import org.ei.telemedicine.sync.DrishtiSyncScheduler;
+import org.ei.telemedicine.view.activity.NativeANCSmartRegisterActivity;
 import org.ei.telemedicine.view.activity.NativeANMPlanofCareActivity;
+import org.ei.telemedicine.view.activity.NativeChildSmartRegisterActivity;
 import org.ei.telemedicine.view.activity.NativeHomeActivity;
+import org.ei.telemedicine.view.activity.NativePNCSmartRegisterActivity;
 import org.ei.telemedicine.view.activity.SecuredActivity;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -389,7 +392,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
 //            startActivity(new Intent(this, DummyActivity.class).putExtra("entityId", entityId).putExtra("screen", "bluet"));
             startFormActivity(AllConstants.FormNames.PNC_VISIT_EDIT, entityId, new FieldOverrides(context.anmLocationController().getFormInfoJSON()).getJSONString());
 //            startFormActivity(AllConstants.FormNames.ANC_VISIT_EDIT, entityId, new FieldOverrides(context.anmLocationController().getFormInfoJSON()).getJSONString());
-        } else if (formName.equalsIgnoreCase(AllConstants.FormNames.CHILD_ILLNESS)) {
+        } else if (formName.equalsIgnoreCase(AllConstants.FormNames.CHILD_ILLNESS) || formName.equalsIgnoreCase(AllConstants.FormNames.CHILD_ILLNESS_EDIT)) {
 //            startActivity(new Intent(this, DummyActivity.class).putExtra("entityId", entityId).putExtra("screen", "bluet"));
             startFormActivity(AllConstants.FormNames.CHILD_ILLNESS_EDIT, entityId, new FieldOverrides(context.anmLocationController().getFormInfoJSON()).getJSONString());
 //            startFormActivity(AllConstants.FormNames.ANC_VISIT_EDIT, entityId, new FieldOverrides(context.anmLocationController().getFormInfoJSON()).getJSONString());
@@ -742,7 +745,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
     }
 
 
-    private class AsyncTaskRunner extends AsyncTask<String, Void, String> {
+    private class AsyncTaskRunner extends AsyncTask<String, Long, String> {
 
         private String resp;
 
@@ -753,42 +756,35 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
             recordProgressDialog = new ProgressDialog(BlueToothInfoActivity.this);
             recordProgressDialog.setTitle("Recording Audio");
             recordProgressDialog.show();
-//            new CountDownTimer(100000, 1000) {
-//                public void onTick(long millisUntilFinished) {
-//                    onProgressUpdate(millisUntilFinished);
-////                    mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
-//                }
 //
-//                public void onFinish() {
-//
-//                }
-//            }.start();
         }
 
-//        @Override
-//        protected void onProgressUpdate(long... values) {
-//            super.onProgressUpdate(values);
-//            if (recordProgressDialog != null)
-//                recordProgressDialog.setMessage("seconds remaining: " + values[0] / 1000);
-//        }
+        @Override
+        protected void onProgressUpdate(Long... values) {
+            super.onProgressUpdate(values);
+            if (recordProgressDialog != null)
+                recordProgressDialog.setMessage("seconds remaining: " + values[0] / 1000);
+        }
 
         @Override
         protected String doInBackground(String... params) {
-            try {
-                // Do your long operations here and return the result
-                // Sleeping for given time period
-//                startRecording(params[0], Integer.parseInt(params[1]));
-                startRecording(params[0]);
 
-                Thread.sleep(time);
-                resp = "Slept for " + time + " milliseconds";
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                resp = e.getMessage();
-            } catch (Exception e) {
-                e.printStackTrace();
-                resp = e.getMessage();
-            }
+            // Do your long operations here and return the result
+            // Sleeping for given time period
+//                startRecording(params[0], Integer.parseInt(params[1]));
+
+            startRecording(params[0]);
+            new CountDownTimer(time, 1000) {
+                public void onTick(long millisUntilFinished) {
+                    onProgressUpdate(millisUntilFinished);
+//                    mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
+                }
+
+                public void onFinish() {
+                    resp = "Completed";
+                }
+            }.start();
+
             return resp;
         }
 
@@ -898,7 +894,14 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
         BlueToothInfoActivity.isBluetooth = false;
         this.finish();
-        startActivity(new Intent(BlueToothInfoActivity.this, NativeHomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+        if (context.userService().getFormName().equalsIgnoreCase(AllConstants.FormNames.ANC_VISIT) || context.userService().getFormName().equalsIgnoreCase(AllConstants.FormNames.ANC_VISIT_EDIT))
+            startActivity(new Intent(this, NativeANCSmartRegisterActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        else if (context.userService().getFormName().equalsIgnoreCase(AllConstants.FormNames.PNC_VISIT) || context.userService().getFormName().equalsIgnoreCase(AllConstants.FormNames.PNC_VISIT_EDIT))
+            startActivity(new Intent(this, NativePNCSmartRegisterActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        else if (context.userService().getFormName().equalsIgnoreCase(AllConstants.FormNames.CHILD_ILLNESS) || context.userService().getFormName().equalsIgnoreCase(AllConstants.FormNames.CHILD_ILLNESS_EDIT))
+            startActivity(new Intent(this, NativeChildSmartRegisterActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        else
+            startActivity(new Intent(BlueToothInfoActivity.this, NativeHomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
     }
 
     @Override

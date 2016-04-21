@@ -7,6 +7,7 @@ import android.util.Log;
 import android.webkit.WebSettings;
 
 import org.apache.commons.io.IOUtils;
+import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.bluetooth.BlueToothInfoActivity;
 
@@ -150,7 +151,15 @@ public abstract class SecuredFormActivity extends SecuredWebActivity {
 //        super.onBackPressed();
         finish();
         Log.e("Exist", "from Secrurd Form-----" + BlueToothInfoActivity.isBluetooth);
-        if (BlueToothInfoActivity.isBluetooth)
-            startActivity(new Intent(this, NativeHomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+        if (BlueToothInfoActivity.isBluetooth) {
+            if (context.userService().getFormName().equalsIgnoreCase(AllConstants.FormNames.ANC_VISIT) || context.userService().getFormName().equalsIgnoreCase(AllConstants.FormNames.ANC_VISIT_EDIT))
+                startActivity(new Intent(this, NativeANCSmartRegisterActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            else if (context.userService().getFormName().equalsIgnoreCase(AllConstants.FormNames.PNC_VISIT) || context.userService().getFormName().equalsIgnoreCase(AllConstants.FormNames.PNC_VISIT_EDIT))
+                startActivity(new Intent(this, NativePNCSmartRegisterActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            else if (context.userService().getFormName().equalsIgnoreCase(AllConstants.FormNames.CHILD_ILLNESS) || context.userService().getFormName().equalsIgnoreCase(AllConstants.FormNames.CHILD_ILLNESS_EDIT))
+                startActivity(new Intent(this, NativeChildSmartRegisterActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            else
+                startActivity(new Intent(this, NativeHomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+        }
     }
 }

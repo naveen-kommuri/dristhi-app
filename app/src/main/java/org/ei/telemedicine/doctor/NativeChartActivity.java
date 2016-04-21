@@ -74,7 +74,7 @@ public class NativeChartActivity extends Activity {
                         legend.setTextColor(Color.WHITE);
 
                     } else if (vitalType.equals(AllConstants.GraphFields.TEMPERATURE) || vitalType.equals(AllConstants.GraphFields.CHILD_TEMPERATURE)) {
-                        BarData data = new BarData(getXAxisValues(vitalsData), getTempDataSets(vitalsData));
+                        BarData data = new BarData(getXAxisValues(vitalsData), getTempDataSets(vitalsData, vitalType));
                         chart.setData(data);
                         chart.setNoDataText("No Data");
                         chart.setDescription("Temperature");
@@ -194,7 +194,7 @@ public class NativeChartActivity extends Activity {
         return bpSets;
     }
 
-    private ArrayList<BarDataSet> getTempDataSets(String vitalsData) {
+    private ArrayList<BarDataSet> getTempDataSets(String vitalsData, String tag) {
         ArrayList<BarDataSet> tempSets = null;
         ArrayList<BarEntry> tempCData = new ArrayList<>();
         ArrayList<BarEntry> tempFData = new ArrayList<>();
@@ -204,8 +204,10 @@ public class NativeChartActivity extends Activity {
 //            String result = new String(resultData);
 //            String result_in_faren = String.format("%.02f", (Float.parseFloat(result) * 1.8) + 32);
             for (int i = 0; i < vitalsArray.length(); i++) {
-                String temp = getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), TEMPERATURE);
+                String temp = getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), tag);
                 if (temp.trim().length() != 0) {
+                    if (!temp.contains("-"))
+                        temp = temp + "-C";
                     String[] temps = temp.split("-");
                     String _temperature = temps[0].trim().length() != 0 ? temps[0] : "0";
                     if (temps[1].equalsIgnoreCase("c")) {

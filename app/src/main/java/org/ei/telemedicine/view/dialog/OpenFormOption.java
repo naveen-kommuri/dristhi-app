@@ -77,7 +77,7 @@ public class OpenFormOption implements EditOption {
                     e.printStackTrace();
                 }
             } else if (formName.equals(CHILD_EDIT)) {
-                formController.startFormActivity(CHILD_REG_EDIT, client.entityId(), new FieldOverrides(Context.getInstance().anmLocationController().getFormInfoJSON()).getJSONString());
+                formController.startFormActivity(CHILD_EDIT, client.entityId(), new FieldOverrides(Context.getInstance().anmLocationController().getFormInfoJSON()).getJSONString());
             } else if (formName.equals(PNC_EDIT) || formName.equals(ANC_EDIT)) {
                 Mother mother = Context.getInstance().allBeneficiaries().findMother(client.entityId());
                 if (mother != null) {

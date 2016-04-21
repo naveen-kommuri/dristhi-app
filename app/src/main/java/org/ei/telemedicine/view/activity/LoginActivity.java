@@ -66,6 +66,7 @@ public class LoginActivity extends Activity {
     static boolean isSettingsEnable = false;
     public int settingsBtCount = 0;
     private int waitTime = 5000;
+    boolean isAnotherLogin = false;
     public static WebSocketConnection mConnection = null;
     private static android.content.Context mContext;
 
@@ -101,7 +102,11 @@ public class LoginActivity extends Activity {
 
             if (_progressDialog != null && _progressDialog.isShowing())
                 _progressDialog.dismiss();
-            logoutUser();
+
+            PendingFormSubmissionService pendingFormSubmissionService = context.pendingFormSubmissionService();
+            final long pendingCount = pendingFormSubmissionService.pendingFormSubmissionCount();
+            if (pendingCount == 0)
+                logoutUser("complete");
             SYNC_STARTED.removeListener(onSyncStartListener);
             SYNC_COMPLETED.removeListener(onSyncCompleteListener);
         }
@@ -119,6 +124,7 @@ public class LoginActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         logVerbose("Initializing ...");
+        isAnotherLogin = false;
         setContentView(R.layout.login);
         mContext = this.getApplicationContext();
 
@@ -148,6 +154,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if (userNameEditText.getText().toString().trim().length() != 0 && context.allSharedPreferences().getPwd().trim().length() != 0) {
+                    isAnotherLogin = true;
                     localLoginWith(userNameEditText.getText().toString(), context.allSharedPreferences().getPwd(), true);
                     PendingFormSubmissionService pendingFormSubmissionService = context.pendingFormSubmissionService();
                     final long pendingCount = pendingFormSubmissionService.pendingFormSubmissionCount();
@@ -165,7 +172,7 @@ public class LoginActivity extends Activity {
                             }
                         }).show();
                     else
-                        logoutUser();
+                        logoutUser("No Data---------+++++++++++");
                 } else
                     Toast.makeText(LoginActivity.this, "Something went wrong! Please try again", Toast.LENGTH_SHORT).show();
             }
@@ -214,7 +221,7 @@ public class LoginActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        if (!context.IsUserLoggedOut()) {
+        if (!isAnotherLogin && !context.IsUserLoggedOut()) {
             goToHome(context.userService().getUserRole());
         }
 
@@ -257,7 +264,8 @@ public class LoginActivity extends Activity {
         }
     }
 
-    public void logoutUser() {
+    public void logoutUser(String str) {
+        Log.e("val", str);
         context.userService().logout();
         this.finish();
         startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));

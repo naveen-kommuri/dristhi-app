@@ -545,13 +545,20 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                     Log.e(TAG, "Reason" + et_reason.getText().toString() + "---" + switch_poc_physical_consultation.isChecked() + "");
                                                                     Log.e(TAG, "selected Json" + resultJson.toString());
                                                                     Log.e("Hello", documentId + "::::::::::::::::::::::::::::");
-                                                                    if (swich_poc_pending.isChecked() && et_reason.getText().toString().trim().length() != 0) {
-                                                                        saveDatainLocal(documentId, resultJson.toString(), et_reason.getText().toString());
-                                                                        saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString(), phoneNumber);
-                                                                    } else if (!swich_poc_pending.isChecked() && (diagnosisArray.length() != 0 || drugsArray.length() != 0 || testsArray.length() != 0 || et_advice.getText().toString().trim().length() != 0)) {
-                                                                        saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString(), phoneNumber);
+
+                                                                    if (swich_poc_pending.isChecked()) {
+                                                                        if (et_reason.getText().toString().trim().length() != 0) {
+                                                                            saveDatainLocal(documentId, resultJson.toString(), et_reason.getText().toString());
+                                                                            saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString(), phoneNumber);
+                                                                        } else {
+                                                                            Toast.makeText(DoctorPlanofCareActivity.this, "Pending Reason must be given", Toast.LENGTH_SHORT).show();
+                                                                        }
                                                                     } else {
-                                                                        Toast.makeText(DoctorPlanofCareActivity.this, "Plan of care must be given", Toast.LENGTH_SHORT).show();
+                                                                        if ((diagnosisArray.length() != 0 || drugsArray.length() != 0 || testsArray.length() != 0 || et_advice.getText().toString().trim().length() != 0)) {
+                                                                            saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString(), phoneNumber);
+                                                                        } else {
+                                                                            Toast.makeText(DoctorPlanofCareActivity.this, "Plan of care must be given", Toast.LENGTH_SHORT).show();
+                                                                        }
                                                                     }
 
                                                                 } catch (JSONException e) {

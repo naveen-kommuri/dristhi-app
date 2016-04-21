@@ -1,0 +1,106 @@
+{
+  "form_data_definition_version": "6",
+  "form": {
+    "bind_type": "child",
+    "default_bind_path": "/model/instance/Child_Registration_EngKan/child_edit_group/",
+    "fields": [
+      {
+        "name": "id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "password",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/Child_Registration_EngKan/child_edit_group/pwd"
+      },
+      {
+        "name": "village",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/Child_Registration_EngKan/child_edit_group/village",
+        "source": "child.mother.eligible_couple.village"
+      },
+      {
+        "name": "motherName",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/Child_Registration_EngKan/child_edit_group/mother_name",
+        "source": "child.mother.eligible_couple.wifeName"
+      },
+      {
+        "name": "fatherName",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/Child_Registration_EngKan/child_edit_group/father_name",
+        "source": "child.mother.eligible_couple.husbandName"
+      },
+      {
+        "name": "gender",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Registration_EngKan/live_birth_group/child/sex_child"
+      },
+      {
+        "name": "weight",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Registration_EngKan/live_birth_group/child/birthweight"
+      },
+      {
+        "name": "bloodGroup",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Registration_EngKan/live_birth_group/child/child_blood_group"
+      },
+      {
+        "name": "immunizationsGiven",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Registration_EngKan/live_birth_group/child/immunizations_atbirth"
+      },
+      {
+        "name": "hepB",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Registration_EngKan/live_birth_group/child/case_hepb"
+      },
+      {
+        "name": "isHepBProphylaxisProvided",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Registration_EngKan/live_birth_group/child/hepb_prophylaxis_provided"
+      },
+      {
+        "name": "isChildHighRisk1",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Registration_EngKan/live_birth_group/child/is_child_high_risk1"
+      },
+      {
+        "name": "childHighRiskReasons",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Registration_EngKan/live_birth_group/child/child_high_risk_reasons"
+      },
+      {
+        "name": "isChildHighRisk",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Registration_EngKan/live_birth_group/child/is_child_high_risk"
+      },
+      {
+        "name": "lbw",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Registration_EngKan/live_birth_group/child/lbw"
+      },
+      {
+        "name": "vlbw",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Registration_EngKan/live_birth_group/child/vlbw"
+      },
+      {
+        "name": "premature",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Registration_EngKan/live_birth_group/child/premature"
+      },
+      {
+        "name": "ecId",
+        "shouldLoadValue": true,
+        "source": "child.mother.eligible_couple.id"
+      },
+      {
+        "name": "motherId",
+        "shouldLoadValue": true,
+        "source": "child.mother.id"
+      }
+    ]
+  }
+}
