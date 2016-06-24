@@ -3,8 +3,10 @@ package org.ei.telemedicine.view.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +26,7 @@ import org.json.JSONObject;
 /**
  * Created by naveen on 6/10/15.
  */
-public class ViewPlanOfCareActivity extends SecuredActivity {
+public class ViewPlanOfCareActivity extends SecuredActivity implements View.OnTouchListener {
     EditText et_anc_num, et_woman_name, et_plan_of_care_date, et_doc_name, et_investigations, et_drugs, et_advice, et_diagnosis;
     Button bt_close;
     String entityId;
@@ -54,16 +56,14 @@ public class ViewPlanOfCareActivity extends SecuredActivity {
             et_doc_name = (EditText) findViewById(R.id.et_doctor_name);
             et_investigations = (EditText) findViewById(R.id.et_investigations);
             et_drugs = (EditText) findViewById(R.id.et_drugs);
+
             et_advice = (EditText) findViewById(R.id.et_advice_data);
             et_diagnosis = (EditText) findViewById(R.id.et_diagnosis);
             tv_anc_number_title = (TextView) findViewById(R.id.tv_anc_num_title);
+            et_drugs.setOnTouchListener(this);
+            et_investigations.setOnTouchListener(this);
+            et_diagnosis.setOnTouchListener(this);
 
-//            bt_history.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Toast.makeText(ViewPlanOfCareActivity.this, "Poc History", Toast.LENGTH_SHORT).show();
-//                }
-//            });
             bt_close.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -96,6 +96,7 @@ public class ViewPlanOfCareActivity extends SecuredActivity {
                                 }
                                 et_plan_of_care_date.setText(getDataFromJson(pocJson.toString(), "planofCareDate"));
                                 et_drugs.setText(getDatafromDrugsArray(pocJson.getString("drugs")));
+
                                 et_diagnosis.setText(getDatafromArray(pocJson.getJSONArray("diagnosis").toString()));
                                 Log.e(TAG, "Advice" + pocJson.getString("advice"));
                                 et_advice.setText(getDataFromJson(pocJson.toString(), "advice"));
@@ -214,5 +215,11 @@ public class ViewPlanOfCareActivity extends SecuredActivity {
             e.printStackTrace();
         }
         return "";
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        v.getParent().requestDisallowInterceptTouchEvent(true);
+        return false;
     }
 }

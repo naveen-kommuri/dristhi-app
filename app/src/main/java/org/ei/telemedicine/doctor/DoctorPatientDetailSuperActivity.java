@@ -80,9 +80,12 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
     }
 
     public void pausePlay() {
+        try{
         if (player != null) {
             player.stop();
             player.release();
+        }}catch (Exception e){
+            player=null;
         }
     }
 
@@ -99,6 +102,12 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
 //            Toast.makeText(DoctorPatientDetailSuperActivity.this, "Unable to play, check audio settings", Toast.LENGTH_SHORT).show();
 //        }
         try {
+//            final ProgressDialog waitProgressDialog = new ProgressDialog(DoctorPatientDetailSuperActivity.this);
+//            waitProgressDialog.setTitle("Playing Heart sound");
+//            waitProgressDialog.setMessage("Waiting for Heart sound");
+//            waitProgressDialog.setCancelable(false);
+//            waitProgressDialog.show();
+
             player = new MediaPlayer();
             player.setAudioStreamType(AudioManager.STREAM_MUSIC);
             player.setDataSource(url);
@@ -123,6 +132,8 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
             player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
+//                    if(waitProgressDialog!=null&& waitProgressDialog.isShowing())
+//                        waitProgressDialog.dismiss();
                     playProgressDialog.show();
                     mp.start();
                 }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ import java.util.ArrayList;
  */
 public class NativeReportsActivity extends Activity {
     ListView lv_services;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,12 @@ public class NativeReportsActivity extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                Toast.makeText(NativeReportsActivity.this, servicesList.get(i).toString(), Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(NativeReportsActivity.this, ReportsInfoActivity.class).putExtra("service", servicesList.get(i).toString()));
+            }
+        });
+        ((ImageView) findViewById(R.id.iv_home)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }

@@ -437,6 +437,7 @@
         </span>
         <span class="required">*</span>
         <select name="/EC_Registration_EngKan/num_livingchildren1"
+            data-constraint=".&lt;= /EC_Registration_EngKan/num_livebirths"
             data-name="/EC_Registration_EngKan/num_livingchildren1"
             data-relevant=" /EC_Registration_EngKan/num_livebirths  &gt; 0" data-type-xml="select1"
             required="required">

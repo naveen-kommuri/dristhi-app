@@ -197,6 +197,7 @@
             android:screenOrientation="landscape" />
         <!--<activity android:name=".view.activity.DummyCallActivity" />-->
         <!--<activity android:name=".bluetooth.VisulActivity" />-->
+        <!--<activity android:name=".view.activity.VideosActivity" />-->
     </application>
 
 </manifest>

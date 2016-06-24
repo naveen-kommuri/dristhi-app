@@ -1,11 +1,16 @@
 //package org.ei.telemedicine.view.activity;
 //
-//import org.ei.telemedicine.view.controller.VideosController;
+//import android.app.Activity;
+//import android.os.Bundle;
+//import android.widget.TextView;
 //
-//public class VideosActivity extends SecuredWebActivity {
+//public class VideosActivity extends Activity {
+//
 //    @Override
-//    protected void onInitialization() {
-//        webView.addJavascriptInterface(new VideosController(this), "context");
-//        webView.loadUrl("file:///android_asset/www/smart_registry/videos.html");
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        TextView textView = new TextView(this);
+//        textView.setText("Hello");
+//        setContentView(textView);
 //    }
 //}

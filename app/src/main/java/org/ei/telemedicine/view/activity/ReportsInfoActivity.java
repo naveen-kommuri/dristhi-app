@@ -5,6 +5,8 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import org.ei.telemedicine.AllConstants;
@@ -73,6 +75,12 @@ public class ReportsInfoActivity extends Activity {
 
             }
         }
+        ((ImageView) findViewById(R.id.iv_home)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     private ArrayList<ReportInfo> getReports(final String serviceType) {

@@ -759,32 +759,24 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
 //
         }
 
-        @Override
-        protected void onProgressUpdate(Long... values) {
-            super.onProgressUpdate(values);
-            if (recordProgressDialog != null)
-                recordProgressDialog.setMessage("seconds remaining: " + values[0] / 1000);
-        }
 
         @Override
         protected String doInBackground(String... params) {
-
-            // Do your long operations here and return the result
-            // Sleeping for given time period
+            try {
+                // Do your long operations here and return the result
+                // Sleeping for given time period
 //                startRecording(params[0], Integer.parseInt(params[1]));
+                startRecording(params[0]);
 
-            startRecording(params[0]);
-            new CountDownTimer(time, 1000) {
-                public void onTick(long millisUntilFinished) {
-                    onProgressUpdate(millisUntilFinished);
-//                    mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
-                }
-
-                public void onFinish() {
-                    resp = "Completed";
-                }
-            }.start();
-
+                Thread.sleep(time);
+                resp = "Slept for " + time + " milliseconds";
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                resp = e.getMessage();
+            } catch (Exception e) {
+                e.printStackTrace();
+                resp = e.getMessage();
+            }
             return resp;
         }
 

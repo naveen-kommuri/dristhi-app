@@ -58,8 +58,8 @@
         <span class="question-label active" lang="">Hb level (g/dl)
         </span>
         <span class="required">*</span>
-        <input name="/Hb_Test_EngKan/hb_level" data-constraint=".&gt;0" data-type-xml="decimal"
-            required="required" step="any" type="decimal" />
+        <input name="/Hb_Test_EngKan/hb_level" data-constraint=".&gt;0 and .&lt; 20"
+            data-type-xml="decimal" required="required" step="any" type="decimal" />
     </label>
     <label class="note or-branch pre-init non-select ">
         <span class="question-label active" lang="">Woman is anaemic! Start her on therapeutic dose

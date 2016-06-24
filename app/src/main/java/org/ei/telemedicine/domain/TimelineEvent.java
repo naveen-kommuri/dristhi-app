@@ -2,6 +2,7 @@ package org.ei.telemedicine.domain;
 
 import android.util.Log;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -82,11 +83,11 @@ public class TimelineEvent {
                 .put("reviewedHRPStatus", highRiskReason).map();
 
         String detailsString = new DetailBuilder(map)
-                .withDeliveryFacilityName("deliveryFacilityName").withComma()
-                .withTransportationPlan("transportationPlan").withComma()
-                .withBirthCompanion("birthCompanion").withComma()
-                .withFamilyContactNumber("phoneNumber").withComma()
-                .withHighRiskReason("reviewedHRPStatus").withComma()
+                .withDeliveryFacilityName("deliveryFacilityName")
+                .withTransportationPlan("transportationPlan")
+                .withBirthCompanion("birthCompanion")
+                .withFamilyContactNumber("phoneNumber")
+                .withHighRiskReason("reviewedHRPStatus")
                 .value();
 
         return new TimelineEvent(caseId, "DELIVERYPLAN", LocalDate.parse(referenceDate), "Delivery Plan", "Detail: " + detailsString, null);
@@ -307,7 +308,7 @@ public class TimelineEvent {
         }
 
         private DetailBuilder withRisks(String risksObserved) {
-            String fetal = "Risks Observed : " + details.get(risksObserved) + "\n";
+            String fetal = "Risks Observed : " + StringUtils.capitalize(details.get(risksObserved)) + "\n";
             this.stringBuilder.append(checkEmptyField(fetal, details.get(risksObserved)));
             return this;
         }
@@ -319,7 +320,7 @@ public class TimelineEvent {
         }
 
         private DetailBuilder withDeliveryFacilityName(String deliveryFacilityName) {
-            String deliveryFacility = "Delivery Facility Name: " + details.get(deliveryFacilityName);
+            String deliveryFacility = "Delivery Facility Name: " + details.get(deliveryFacilityName) + ",";
             this.stringBuilder.append(checkEmptyField(deliveryFacility, details.get(deliveryFacilityName)));
             return this;
         }
@@ -330,13 +331,13 @@ public class TimelineEvent {
         }
 
         private DetailBuilder withTransportationPlan(String transportationPlan) {
-            String plan = "Transportation Plan: " + details.get(transportationPlan);
+            String plan = "Transportation Plan: " + details.get(transportationPlan) + ",";
             this.stringBuilder.append(checkEmptyField(plan, details.get(transportationPlan)));
             return this;
         }
 
         private DetailBuilder withBirthCompanion(String birthCompanion) {
-            String companion = "Birth Companion: " + details.get(birthCompanion);
+            String companion = "Birth Companion: " + details.get(birthCompanion) + ",";
             this.stringBuilder.append(checkEmptyField(companion, details.get(birthCompanion)));
             return this;
         }
@@ -348,7 +349,7 @@ public class TimelineEvent {
         }
 
         private DetailBuilder withFamilyContactNumber(String phoneNumber) {
-            String familyContact = "Phone Number: " + details.get(phoneNumber);
+            String familyContact = "Phone Number: " + details.get(phoneNumber) + ",";
             this.stringBuilder.append(checkEmptyField(familyContact, details.get(phoneNumber)));
             return this;
         }

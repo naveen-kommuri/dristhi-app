@@ -30,6 +30,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
@@ -38,6 +39,7 @@ import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.event.Listener;
+import org.ei.telemedicine.util.StringUtil;
 import org.ei.telemedicine.view.customControls.CustomFontTextView;
 import org.ei.telemedicine.view.receiver.ConnectivityChangeReceiver;
 import org.json.JSONArray;
@@ -496,15 +498,13 @@ public class DoctorPlanofCareActivity extends Activity {
                                                        et_drug_qty.setText("");
                                                    }
                                                }
-
                 );
                 bt_save_plan_of_care.setOnClickListener(new View.OnClickListener()
 
                                                         {
                                                             @Override
                                                             public void onClick(View v) {
-//                                                                if (!swich_poc_pending.isChecked() && et_reason.getText().length()@) {
-
+                  //if (!swich_poc_pending.isChecked() && et_reason.getText().length()@) {
                                                                 try {
                                                                     JSONObject resultJson = new JSONObject();
                                                                     JSONArray drugsArray = new JSONArray();
@@ -512,24 +512,24 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                     JSONArray testsArray = new JSONArray();
 
                                                                     for (int i = 0; i < selectICD10Diagnosis.size(); i++) {
-                                                                        diagnosisArray.put(selectICD10Diagnosis.get(i).toString());
+                                                                        diagnosisArray.put(StringUtils.capitalize(selectICD10Diagnosis.get(i).toString()));
                                                                     }
                                                                     Log.e(TAG, "Drugs Size " + selectDrugs.size() + "");
                                                                     for (int i = 0; i < selectDrugs.size(); i++) {
                                                                         JSONObject drugsJson = new JSONObject();
                                                                         PocDrugData pocDrugData = selectDrugs.get(i);
-                                                                        drugsJson.put("direction", pocDrugData.getDirection());
-                                                                        drugsJson.put("dosage", pocDrugData.getDosage());
-                                                                        drugsJson.put("drugName", pocDrugData.getDrugName());
-                                                                        drugsJson.put("drugNoOfDays", pocDrugData.getDrugNoofDays());
-                                                                        drugsJson.put("drugQty", pocDrugData.getDrugQty());
+                                                                        drugsJson.put("direction", StringUtils.capitalize(pocDrugData.getDirection()));
+                                                                        drugsJson.put("dosage", StringUtils.capitalize(pocDrugData.getDosage()));
+                                                                        drugsJson.put("drugName", StringUtils.capitalize(pocDrugData.getDrugName()));
+                                                                        drugsJson.put("drugNoOfDays", StringUtils.capitalize(pocDrugData.getDrugNoofDays()));
+                                                                        drugsJson.put("drugQty", StringUtils.capitalize(pocDrugData.getDrugQty()));
                                                                         drugsJson.put("drugStopDate", pocDrugData.getDrugStopByDate());
-                                                                        drugsJson.put("frequency", pocDrugData.getFrequncy());
+                                                                        drugsJson.put("frequency", StringUtils.capitalize(pocDrugData.getFrequncy()));
                                                                         drugsArray.put(drugsJson);
                                                                     }
 
                                                                     for (int i = 0; i < selectTests.size(); i++) {
-                                                                        testsArray.put(selectTests.get(i).toString());
+                                                                        testsArray.put(StringUtils.capitalize(selectTests.get(i).toString()));
                                                                     }
                                                                     resultJson.put("visitType", visitType);
                                                                     resultJson.put("visitNumber", visitNumber);
@@ -540,7 +540,7 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                     resultJson.put("investigations", testsArray);
                                                                     resultJson.put("pocDate", getCurrentDate());
                                                                     String adviceStr = et_advice.getText().toString() + (switch_poc_physical_consultation.isChecked() ? "\n Physical Examination is Required." : "");
-                                                                    resultJson.put("advice", adviceStr);
+                                                                    resultJson.put("advice", StringUtils.capitalize(adviceStr));
                                                                     //                            resultJson.put("reason", et_reason.getText().toString());
                                                                     Log.e(TAG, "Reason" + et_reason.getText().toString() + "---" + switch_poc_physical_consultation.isChecked() + "");
                                                                     Log.e(TAG, "selected Json" + resultJson.toString());
