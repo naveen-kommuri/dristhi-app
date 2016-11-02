@@ -71,43 +71,43 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 }
-apply plugin: 'jacoco'
+//apply plugin: 'jacoco'
 
-jacoco {
-    toolVersion = "0.7.1.201405082137"
-}
+//jacoco {
+//    toolVersion = "0.7.1.201405082137"
+//}
 
-def coverageSourceDirs = [
-        '../app/src/main/java'
-]
+//def coverageSourceDirs = [
+//        '../app/src/main/java'
+//]
 
-task jacocoTestReport(type: JacocoReport, dependsOn: "testDebug") {
-    group = "Reporting"
+//task jacocoTestReport(type: JacocoReport, dependsOn: "testDebug") {
+//    group = "Reporting"
 
-    description = "Generate Jacoco coverage reports"
+//    description = "Generate Jacoco coverage reports"
 
-    classDirectories = fileTree(
-            dir: '../app/build/intermediates/classes/debug',
-            excludes: ['**/R.class',
-                       '**/R$*.class',
-                       '**/*Repository.class',
-                       '**/bluetooth/*/*.class',
-                       '**/*$ViewInjector*.*',
-                       '**/BuildConfig.*',
-                       '**/Manifest*.*'],
-            includes: ['**/bluetooth/*.class', '**/doctor/*.class']
-    )
+ //   classDirectories = fileTree(
+  //          dir: '../app/build/intermediates/classes/debug',
+//            excludes: ['**/R.class',
+//                       '**/R$*.class',
+//                       '**/*Repository.class',
+//                       '**/bluetooth/*/*.class',
+//                       '**/*$ViewInjector*.*',
+//                       '**/BuildConfig.*',
+//                       '**/Manifest*.*'],
+//            includes: ['**/bluetooth/*.class', '**/doctor/*.class']
+//    )
 
-    additionalSourceDirs = files(coverageSourceDirs)
-    sourceDirectories = files(coverageSourceDirs)
-    executionData = files('../app/build/jacoco/testDebug.exec')
+//    additionalSourceDirs = files(coverageSourceDirs)
+//    sourceDirectories = files(coverageSourceDirs)
+//    executionData = files('../app/build/jacoco/testDebug.exec')
 
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
+//    reports {
+//        xml.enabled = true
+//        html.enabled = true
+//    }
 
-}
+//}
 dependencies {
     compile 'com.diogobernardino:williamchart:2.0.1'
     compile 'com.google.code.gson:gson:2.2.2'
